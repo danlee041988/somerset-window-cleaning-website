@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Book Online | Somerset Window Cleaning</title>
+  <meta name="description" content="Book your window cleaning online in minutes. Choose your property, frequency and extras." />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <div class="topbar">
+    <div class="container">
+      <div class="topbar-left">
+        <a href="tel:01458860339">01458 860339</a>
+        <span class="divider">|</span>
+        <a href="mailto:info@somersetwindowcleaning.co.uk">info@somersetwindowcleaning.co.uk</a>
+      </div>
+      <div class="topbar-right">
+        <a class="btn-topbar" href="/booking.html">Book Online</a>
+      </div>
+    </div>
+  </div>
+
+  <nav class="navbar">
+    <div class="container">
+      <div class="nav-brand"><h1>Somerset Window Cleaning</h1></div>
+      <ul class="nav-menu">
+        <li><a href="/index.html">Home</a></li>
+        <li><a href="/services.html">Services</a></li>
+        <li><a href="/about.html">About</a></li>
+        <li><a href="/pricing.html">Pricing</a></li>
+        <li><a href="/faq.html">FAQ</a></li>
+        <li><a href="/booking.html">Book Online</a></li>
+        <li><a href="/contact.html">Contact</a></li>
+        <li><a href="/contact.html#quote" class="btn-primary">Get Quote</a></li>
+      </ul>
+      <div class="hamburger"><span></span><span></span><span></span></div>
+    </div>
+  </nav>
+
+  <section class="booking">
+    <div class="container">
+      <h2 class="section-title">Book Your Service Online</h2>
+      <p class="section-subtitle">Quick and easy online booking - get your windows sparkling clean!</p>
+      <div class="booking-wrapper">
+        <div class="booking-form-container">
+          <!-- Reuse the same form markup from the homepage -->
+          <!-- Copied for a standalone booking page -->
+          <form class="booking-form" id="bookingForm">
+            <div class="form-progress">
+              <div class="progress-step active" data-step="1">1. Service</div>
+              <div class="progress-step" data-step="2">2. Additional</div>
+              <div class="progress-step" data-step="3">3. Details</div>
+              <div class="progress-step" data-step="4">4. Review</div>
+            </div>
+            <div class="form-step active" id="step1">
+              <h3>Select Your Service</h3>
+              <div class="service-selection">
+                <div class="property-type-section">
+                  <label>Property Type</label>
+                  <select name="propertyType" id="propertyType" required>
+                    <option value="">Select property type</option>
+                    <option value="semi-2">Semi-detached House (2 bed)</option>
+                    <option value="semi-3">Semi-detached House (3 bed)</option>
+                    <option value="semi-4">Semi-detached House (4 bed)</option>
+                    <option value="semi-5">Semi-detached House (5 bed)</option>
+                    <option value="detached-2">Detached House (2 bed)</option>
+                    <option value="detached-3">Detached House (3 bed)</option>
+                    <option value="detached-4">Detached House (4 bed)</option>
+                    <option value="detached-5">Detached House (5 bed)</option>
+                    <option value="custom">Large Property (6+ bed)</option>
+                    <option value="commercial">Commercial Property</option>
+                    <option value="general">General Enquiry</option>
+                  </select>
+                </div>
+
+                <div class="frequency-section" style="display: none;">
+                  <label>Cleaning Frequency</label>
+                  <div class="frequency-options">
+                    <label class="frequency-option">
+                      <input type="radio" name="frequency" value="4weekly" checked />
+                      <div class="frequency-content">
+                        <h4>Every 4 Weeks</h4>
+                        <p>Regular service</p>
+                      </div>
+                    </label>
+                    <label class="frequency-option">
+                      <input type="radio" name="frequency" value="8weekly" />
+                      <div class="frequency-content">
+                        <h4>Every 8 Weeks</h4>
+                        <p>+£3 per clean</p>
+                      </div>
+                    </label>
+                    <label class="frequency-option">
+                      <input type="radio" name="frequency" value="12weekly" />
+                      <div class="frequency-content">
+                        <h4>Every 12 Weeks</h4>
+                        <p>+£5 per clean</p>
+                      </div>
+                    </label>
+                    <label class="frequency-option">
+                      <input type="radio" name="frequency" value="onetime" />
+                      <div class="frequency-content">
+                        <h4>One-time Clean</h4>
+                        <p>+£20 per clean</p>
+                      </div>
+                    </label>
+                  </div>
+                </div>
+
+                <div class="price-display" style="display: none;">
+                  <h4>Estimated Price</h4>
+                  <div class="price-amount" id="step1Price">£0</div>
+                  <p class="price-frequency">per clean</p>
+                </div>
+              </div>
+
+              <div class="form-navigation">
+                <button type="button" class="btn-secondary" disabled>Previous</button>
+                <button type="button" class="btn-primary" onclick="nextStep()">Next</button>
+              </div>
+            </div>
+
+            <div class="form-step" id="step2">
+              <h3>Additional Services</h3>
+              <div class="additional-services-grid">
+                <label class="service-card-option">
+                  <input type="checkbox" name="additionalServices" value="gutterInternal" />
+                  <div class="service-card-content">
+                    <h4>Gutter Clearing (Internal)</h4>
+                    <p>Remove leaves and debris from inside gutters</p>
+                    <span class="service-price">From £80</span>
+                  </div>
+                </label>
+                <label class="service-card-option">
+                  <input type="checkbox" name="additionalServices" value="gutterExternal" />
+                  <div class="service-card-content">
+                    <h4>Gutter, Fascia & Soffit Cleaning</h4>
+                    <p>Clean the outside of gutters, fascias and soffits</p>
+                    <span class="service-price">From £50</span>
+                  </div>
+                </label>
+                <label class="service-card-option">
+                  <input type="checkbox" name="additionalServices" value="solar" />
+                  <div class="service-card-content">
+                    <h4>Solar Panel Cleaning</h4>
+                    <p>Specialist cleaning to maximize efficiency</p>
+                    <span class="service-price">Quote Required</span>
+                  </div>
+                </label>
+                <label class="service-card-option">
+                  <input type="checkbox" name="additionalServices" value="conservatory" />
+                  <div class="service-card-content">
+                    <h4>Conservatory Roof Cleaning</h4>
+                    <p>Complete conservatory roof cleaning service</p>
+                    <span class="service-price">Quote Required</span>
+                  </div>
+                </label>
+              </div>
+              <div class="special-offer" id="gutterOffer" style="display: none;">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                </svg>
+                <p><strong>Special Offer!</strong> Select both gutter services and get your windows cleaned FREE!</p>
+              </div>
+              <div class="form-navigation">
+                <button type="button" class="btn-secondary" onclick="previousStep()">Previous</button>
+                <button type="button" class="btn-primary" onclick="nextStep()">Next</button>
+              </div>
+            </div>
+
+            <div class="form-step" id="step3">
+              <h3>Your Details</h3>
+              <div class="form-row">
+                <div class="form-group"><label>Full Name</label><input type="text" name="fullName" required /></div>
+                <div class="form-group"><label>Email Address</label><input type="email" name="email" required /></div>
+              </div>
+              <div class="form-group"><label>Property Address</label><input type="text" name="address" placeholder="Street address" required /></div>
+              <div class="form-row">
+                <div class="form-group"><label>Town/City</label><input type="text" name="city" required /></div>
+                <div class="form-group"><label>Postcode</label><input type="text" name="postcode" required pattern="[A-Za-z]{1,2}[0-9]{1,2}[A-Za-z]?\s?[0-9][A-Za-z]{2}" /></div>
+              </div>
+              <div class="form-row">
+                <div class="form-group"><label>Phone Number</label><input type="tel" name="phone" required /></div>
+                <div class="form-group"><label>Preferred Contact Method</label>
+                  <select name="contactMethod" required>
+                    <option value="email">Email</option>
+                    <option value="phone">Phone</option>
+                    <option value="text">Text Message</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group" id="preferredDateGroup" style="display: none;">
+                <label>Preferred Start Date</label>
+                <select name="preferredDate" id="preferredDate"><option value="">Select available date</option></select>
+                <p class="date-note">Available dates based on your postcode area</p>
+              </div>
+              <div class="form-group"><label>Additional Notes</label><textarea name="notes" rows="3" placeholder="Any special requirements, access instructions, or questions..."></textarea></div>
+              <div class="form-navigation">
+                <button type="button" class="btn-secondary" onclick="previousStep()">Previous</button>
+                <button type="button" class="btn-primary" onclick="nextStep()">Next</button>
+              </div>
+            </div>
+
+            <div class="form-step" id="step4">
+              <h3>Review Your Booking</h3>
+              <div class="booking-summary">
+                <div class="summary-section"><h4>Service Details</h4><div id="serviceSummary"></div></div>
+                <div class="summary-section"><h4>Contact Information</h4><div id="contactSummary"></div></div>
+                <div class="summary-section"><h4>Price Summary</h4><div id="priceSummary"></div></div>
+              </div>
+              <div class="recaptcha-container"><div id="recaptcha"></div></div>
+              <div class="terms-agreement"><label><input type="checkbox" name="termsAgreed" required /> I agree to the terms and conditions</label></div>
+              <div class="form-navigation">
+                <button type="button" class="btn-secondary" onclick="previousStep()">Previous</button>
+                <button type="submit" class="btn-primary" id="submitBtn">Submit Booking</button>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="booking-benefits">
+          <h3>Why Book With Us?</h3>
+          <div class="benefit-item"><div>✓</div><div><h4>Instant Confirmation</h4><p>Get your booking confirmed immediately</p></div></div>
+          <div class="benefit-item"><div>✓</div><div><h4>Flexible Scheduling</h4><p>Choose a time that suits you</p></div></div>
+          <div class="benefit-item"><div>✓</div><div><h4>Transparent Pricing</h4><p>See your estimate before booking</p></div></div>
+          <div class="benefit-item"><div>✓</div><div><h4>Satisfaction Guaranteed</h4><p>100% satisfaction or we'll re-clean for free</p></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand"><h3>Somerset Window Cleaning</h3><p>Professional window cleaning services you can trust. Established 2019.</p></div>
+        <div class="footer-links">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="/services.html">Services</a></li>
+            <li><a href="/about.html">About Us</a></li>
+            <li><a href="/pricing.html">Pricing</a></li>
+            <li><a href="/contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-social"><h4>Follow Us</h4><div class="social-links"><a href="#">F</a><a href="#">T</a><a href="#">I</a></div></div>
+      </div>
+      <div class="footer-bottom"><p>&copy; 2024 Somerset Window Cleaning. All rights reserved. | VAT: 359 427 172</p></div>
+    </div>
+  </footer>
+
+  <div class="floating-cta" role="complementary">
+    <a href="tel:01458860339" class="cta-call">Call</a>
+    <a href="/booking.html" class="cta-book">Book</a>
+  </div>
+
+  <script src="/script.js" defer></script>
+</body>
+</html>
+

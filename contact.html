@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact | Somerset Window Cleaning</title>
+  <meta name="description" content="Contact Somerset Window Cleaning – request a free quote or ask a question." />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <div class="topbar">
+    <div class="container">
+      <div class="topbar-left">
+        <a href="tel:01458860339">01458 860339</a>
+        <span class="divider">|</span>
+        <a href="mailto:info@somersetwindowcleaning.co.uk">info@somersetwindowcleaning.co.uk</a>
+      </div>
+      <div class="topbar-right">
+        <a class="btn-topbar" href="/booking.html">Book Online</a>
+      </div>
+    </div>
+  </div>
+
+  <nav class="navbar">
+    <div class="container">
+      <div class="nav-brand"><h1>Somerset Window Cleaning</h1></div>
+      <ul class="nav-menu">
+        <li><a href="/index.html">Home</a></li>
+        <li><a href="/services.html">Services</a></li>
+        <li><a href="/about.html">About</a></li>
+        <li><a href="/pricing.html">Pricing</a></li>
+        <li><a href="/faq.html">FAQ</a></li>
+        <li><a href="/booking.html">Book Online</a></li>
+        <li><a href="/contact.html">Contact</a></li>
+        <li><a href="#quote" class="btn-primary">Get Quote</a></li>
+      </ul>
+      <div class="hamburger"><span></span><span></span><span></span></div>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <h2 class="hero-title">Get In Touch</h2>
+        <p class="hero-subtitle">We’ll respond within 24 hours</p>
+        <div class="hero-buttons">
+          <a class="btn-primary" href="#quote">Request a Quote</a>
+          <a class="btn-secondary" href="tel:01458860339">Call Us</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact">
+    <div class="container">
+      <div class="contact-content">
+        <div class="contact-info">
+          <div class="contact-item"><h4>Phone</h4><p>01458 860339</p></div>
+          <div class="contact-item"><h4>Email</h4><p>info@somersetwindowcleaning.co.uk</p></div>
+          <div class="contact-item"><h4>Address</h4><p>13 Rockhaven Business Centre<br/>Gravenchon Way, BA16 0HW</p></div>
+        </div>
+        <form id="quote" class="contact-form">
+          <h3>Request a Free Quote</h3>
+          <div class="form-row">
+            <div class="form-group"><input type="text" name="name" placeholder="Your Name" required /></div>
+            <div class="form-group"><input type="email" name="email" placeholder="Your Email" required /></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group"><input type="tel" name="phone" placeholder="Your Phone Number" required /></div>
+            <div class="form-group"><input type="text" name="postcode" placeholder="Your Postcode (e.g., BA16 0HW)" required /></div>
+          </div>
+          <div class="form-group">
+            <label>Property Type</label>
+            <select name="propertyType" required>
+              <option value="">Select Property Type</option>
+              <option value="terraced-2">Terraced House (2 bed)</option>
+              <option value="terraced-3">Terraced House (3 bed)</option>
+              <option value="semi-2">Semi-detached House (2 bed)</option>
+              <option value="semi-3">Semi-detached House (3 bed)</option>
+              <option value="semi-4">Semi-detached House (4 bed)</option>
+              <option value="detached-3">Detached House (3 bed)</option>
+              <option value="detached-4">Detached House (4 bed)</option>
+              <option value="detached-5">Detached House (5+ bed)</option>
+              <option value="bungalow">Bungalow</option>
+              <option value="flat">Flat/Apartment</option>
+              <option value="office">Office</option>
+              <option value="shop">Shop/Retail</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Services Required</label>
+            <div class="checkbox-group">
+              <label class="checkbox-item"><input type="checkbox" name="services[]" value="window-cleaning" /><span>Window Cleaning</span></label>
+              <label class="checkbox-item"><input type="checkbox" name="services[]" value="gutter-clearing" /><span>Gutter Clearing</span></label>
+              <label class="checkbox-item"><input type="checkbox" name="services[]" value="fascia-soffit" /><span>Fascia & Soffit</span></label>
+              <label class="checkbox-item"><input type="checkbox" name="services[]" value="conservatory" /><span>Conservatory</span></label>
+              <label class="checkbox-item"><input type="checkbox" name="services[]" value="solar-panels" /><span>Solar Panels</span></label>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Additional Information</label>
+            <textarea name="message" rows="4" placeholder="Tell us anything helpful…"></textarea>
+          </div>
+          <button type="submit" class="btn-primary">Get My Free Quote</button>
+          <p class="form-note">We'll contact you within 24 hours with a personalized quote</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <h3>Somerset Window Cleaning</h3>
+          <p>Professional window cleaning services you can trust. Established 2019.</p>
+        </div>
+        <div class="footer-links">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="/services.html">Services</a></li>
+            <li><a href="/about.html">About Us</a></li>
+            <li><a href="/pricing.html">Pricing</a></li>
+            <li><a href="/contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-social">
+          <h4>Follow Us</h4>
+          <div class="social-links">
+            <a href="#" aria-label="Facebook">F</a>
+            <a href="#" aria-label="Twitter">T</a>
+            <a href="#" aria-label="Instagram">I</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2024 Somerset Window Cleaning. All rights reserved. | VAT: 359 427 172</p>
+      </div>
+    </div>
+  </footer>
+
+  <div class="floating-cta" role="complementary">
+    <a href="tel:01458860339" class="cta-call">Call</a>
+    <a href="/booking.html" class="cta-book">Book</a>
+  </div>
+
+  <script src="/script.js" defer></script>
+</body>
+</html>
+
