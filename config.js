@@ -1,22 +1,25 @@
 // Configuration loader for environment variables
 // This file handles loading configuration from environment variables or defaults
 
+// Helper to safely read global window variables when running in a browser
+const getWindowVar = (key) => (typeof window !== 'undefined' && window[key]) || undefined;
+
 const config = {
     // EmailJS Configuration
     emailjs: {
-        serviceId: window.EMAILJS_SERVICE_ID || process.env.EMAILJS_SERVICE_ID || 'service_dsxv0ig',
-        templateId: window.EMAILJS_TEMPLATE_ID || process.env.EMAILJS_TEMPLATE_ID || 'template_loh8t5j',
-        publicKey: window.EMAILJS_PUBLIC_KEY || process.env.EMAILJS_PUBLIC_KEY || 'DVzUcK_kOKQ96JOtk'
+        serviceId: getWindowVar('EMAILJS_SERVICE_ID') || process.env.EMAILJS_SERVICE_ID || 'service_dsxv0ig',
+        templateId: getWindowVar('EMAILJS_TEMPLATE_ID') || process.env.EMAILJS_TEMPLATE_ID || 'template_loh8t5j',
+        publicKey: getWindowVar('EMAILJS_PUBLIC_KEY') || process.env.EMAILJS_PUBLIC_KEY || 'DVzUcK_kOKQ96JOtk'
     },
-    
+
     // reCAPTCHA Configuration
     recaptcha: {
-        siteKey: window.RECAPTCHA_SITE_KEY || process.env.RECAPTCHA_SITE_KEY || '6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI'
+        siteKey: getWindowVar('RECAPTCHA_SITE_KEY') || process.env.RECAPTCHA_SITE_KEY || '6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI'
     },
-    
+
     // API Configuration
     api: {
-        url: window.API_URL || process.env.API_URL || 'https://window-cleaning-booking-system-6k15.vercel.app'
+        url: getWindowVar('API_URL') || process.env.API_URL || 'https://window-cleaning-booking-system-6k15.vercel.app'
     },
     
     // Form Configuration
@@ -55,4 +58,4 @@ config.isConfigured = function() {
 // Export for use in other files
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = config;
-}
+  }
