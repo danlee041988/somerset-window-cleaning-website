@@ -37,63 +37,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// FAQ Toggle functionality
-function toggleFAQ(button) {
-    const faqItem = button.parentElement;
-    const answer = faqItem.querySelector('.faq-answer');
-    const isActive = button.classList.contains('active');
-    
-    // Close all other FAQ items
-    document.querySelectorAll('.faq-question').forEach(q => {
-        if (q !== button) {
-            q.classList.remove('active');
-            q.parentElement.querySelector('.faq-answer').classList.remove('active');
-        }
-    });
-    
-    // Toggle current FAQ item
-    if (!isActive) {
-        button.classList.add('active');
-        answer.classList.add('active');
-    } else {
-        button.classList.remove('active');
-        answer.classList.remove('active');
-    }
-}
-
-// Core Web Vitals optimization - preload critical resources
-function preloadCriticalResources() {
-    // Preload Google Fonts
-    const fontLink = document.createElement('link');
-    fontLink.rel = 'preload';
-    fontLink.href = 'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap';
-    fontLink.as = 'style';
-    fontLink.onload = function() { this.onload = null; this.rel = 'stylesheet'; };
-    document.head.appendChild(fontLink);
-}
-
-// Initialize performance optimizations
-document.addEventListener('DOMContentLoaded', () => {
-    preloadCriticalResources();
-    
-    // Lazy load images
-    const images = document.querySelectorAll('img[loading="lazy"]');
-    if ('IntersectionObserver' in window) {
-        const imageObserver = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const img = entry.target;
-                    img.src = img.dataset.src || img.src;
-                    img.classList.remove('lazy');
-                    observer.unobserve(img);
-                }
-            });
-        });
-        
-        images.forEach(img => imageObserver.observe(img));
-    }
-});
-
 // Form submission handling
 const contactForm = document.querySelector('.contact-form');
 contactForm.addEventListener('submit', async (e) => {

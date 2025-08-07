@@ -21,10 +21,6 @@ body {
     line-height: 1.6;
     color: var(--text-dark);
     background-color: var(--background);
-    /* Core Web Vitals Optimizations */
-    text-rendering: optimizeSpeed;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
 }
 
 .container {
@@ -1116,279 +1112,90 @@ h1, h2, h3, h4, h5, h6 {
     }
 }
 
-/* Google Reviews Section */
-.reviews {
-    padding: 5rem 0;
-    background-color: var(--section-bg);
-}
-
-.google-reviews-widget {
-    background: white;
-    border-radius: 12px;
-    padding: 2rem;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-}
-
-.reviews-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 2rem;
-    flex-wrap: wrap;
-    gap: 1rem;
-}
-
-.google-logo {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-weight: 600;
-    font-size: 1.125rem;
-}
-
-.overall-rating {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-}
-
-.stars {
-    display: flex;
-    gap: 0.25rem;
-}
-
-.star {
-    color: #fbbf24;
-    font-size: 1.25rem;
-}
-
-.rating-text {
-    font-weight: 600;
-    color: var(--text-dark);
-}
-
-.reviews-carousel {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 1.5rem;
-    margin-bottom: 2rem;
-}
-
-.review-card {
-    background: var(--section-bg);
-    border-radius: 8px;
+/* Simple Google Reviews Social Proof */
+.reviews-summary {
+    margin-top: 2rem;
     padding: 1.5rem;
+    background-color: var(--section-bg);
+    border-radius: 8px;
     border-left: 4px solid var(--primary-color);
 }
 
-.review-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
+.google-rating {
     margin-bottom: 1rem;
 }
 
-.reviewer-info {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-}
-
-.reviewer-avatar {
-    width: 40px;
-    height: 40px;
-    background: var(--primary-color);
-    color: white;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 600;
-    font-size: 1rem;
-}
-
-.reviewer-details h4 {
-    font-size: 1rem;
-    margin: 0;
-    color: var(--text-dark);
-}
-
-.review-date {
-    font-size: 0.875rem;
-    color: var(--text-light);
-}
-
-.review-stars {
-    display: flex;
-    gap: 0.125rem;
-}
-
-.review-stars .star {
-    font-size: 1rem;
+.stars {
     color: #fbbf24;
+    font-size: 1.2rem;
+    margin-right: 0.5rem;
 }
 
-.review-text {
-    font-style: italic;
+.sample-reviews p {
+    margin: 0.5rem 0;
     color: var(--text-light);
-    line-height: 1.6;
-    margin: 0;
+    font-size: 0.9rem;
 }
 
-.reviews-cta {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-    flex-wrap: wrap;
+.google-reviews-link {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 500;
 }
 
-/* FAQ Section */
+.google-reviews-link:hover {
+    text-decoration: underline;
+}
+
+/* Simple FAQ Section */
 .faq {
-    padding: 5rem 0;
-    background-color: var(--background);
+    padding: 4rem 0;
+    background-color: var(--section-bg);
 }
 
-.faq-content {
+.faq-simple {
     max-width: 800px;
     margin: 0 auto;
-}
-
-.faq-category {
-    margin-bottom: 3rem;
-}
-
-.category-title {
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: var(--primary-color);
-    margin-bottom: 1.5rem;
-    padding-bottom: 0.5rem;
-    border-bottom: 2px solid var(--border-color);
+    display: grid;
+    gap: 2rem;
 }
 
 .faq-item {
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
-    margin-bottom: 1rem;
-    overflow: hidden;
-    transition: box-shadow 0.2s ease;
-}
-
-.faq-item:hover {
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
-
-.faq-question {
-    width: 100%;
-    background: none;
-    border: none;
+    background: white;
     padding: 1.5rem;
-    text-align: left;
-    cursor: pointer;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.faq-item h3 {
+    color: var(--primary-color);
+    margin-bottom: 0.75rem;
     font-size: 1.1rem;
-    font-weight: 500;
-    color: var(--text-dark);
-    transition: background-color 0.2s ease;
 }
 
-.faq-question:hover {
-    background-color: var(--section-bg);
-}
-
-.faq-question.active {
-    background-color: var(--section-bg);
-}
-
-.faq-icon {
-    transition: transform 0.2s ease;
-    flex-shrink: 0;
-}
-
-.faq-question.active .faq-icon {
-    transform: rotate(180deg);
-}
-
-.faq-answer {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.3s ease, padding 0.3s ease;
-}
-
-.faq-answer.active {
-    max-height: 200px;
-    padding: 0 1.5rem 1.5rem;
-}
-
-.faq-answer p {
+.faq-item p {
     color: var(--text-light);
-    line-height: 1.6;
     margin: 0;
+    line-height: 1.6;
 }
 
-.faq-cta {
-    text-align: center;
-    margin-top: 3rem;
-    padding: 2rem;
-    background-color: var(--section-bg);
-    border-radius: 12px;
-}
-
-.faq-cta p {
-    font-size: 1.125rem;
-    margin-bottom: 1rem;
-    color: var(--text-dark);
-}
-
-/* Core Web Vitals Optimizations */
+/* Core Web Vitals - Minimize layout shifts */
 img {
     max-width: 100%;
     height: auto;
 }
 
-/* Preload critical resources */
-.container {
-    contain: layout;
-}
-
-/* Reduce layout shift */
-.service-card, .review-card, .faq-item {
-    contain: layout;
-}
-
-/* Optimize animations for performance */
-@media (prefers-reduced-motion: reduce) {
-    *, *::before, *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-    }
-}
-
-/* Mobile optimizations */
+/* Mobile responsive adjustments */
 @media (max-width: 768px) {
-    .reviews-carousel {
-        grid-template-columns: 1fr;
+    .faq-simple {
+        gap: 1rem;
     }
     
-    .reviews-header {
-        flex-direction: column;
-        text-align: center;
-    }
-    
-    .reviews-cta {
-        flex-direction: column;
-        align-items: center;
-    }
-    
-    .faq-question {
+    .faq-item {
         padding: 1rem;
-        font-size: 1rem;
     }
     
-    .faq-answer.active {
-        padding: 0 1rem 1rem;
+    .reviews-summary {
+        padding: 1rem;
     }
 }
