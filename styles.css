@@ -5,68 +5,6 @@
     box-sizing: border-box;
 }
 
-/* Screen reader only class for accessibility */
-.sr-only {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border: 0;
-}
-
-/* Loading spinner styles */
-.loading-spinner {
-    display: inline-block;
-    width: 20px;
-    height: 20px;
-    border: 3px solid rgba(255, 255, 255, 0.3);
-    border-radius: 50%;
-    border-top-color: #fff;
-    animation: spin 1s ease-in-out infinite;
-}
-
-@keyframes spin {
-    to { transform: rotate(360deg); }
-}
-
-.btn-loading {
-    position: relative;
-    color: transparent !important;
-    pointer-events: none;
-}
-
-.btn-loading .loading-spinner {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-/* Form loading overlay */
-.form-loading-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(255, 255, 255, 0.8);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 1000;
-    border-radius: 8px;
-}
-
-.form-loading-overlay .loading-spinner {
-    width: 40px;
-    height: 40px;
-    border-width: 4px;
-}
-
 :root {
     --primary-color: #2563eb;
     --secondary-color: #1e40af;
@@ -487,11 +425,6 @@ h1, h2, h3, h4, h5, h6 {
     padding: 2rem;
     border-radius: 12px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    min-height: 600px;
-    max-height: none;
-    overflow: visible;
-    transition: all 0.3s ease;
-    position: relative;
 }
 
 .form-progress {
@@ -1133,19 +1066,11 @@ h1, h2, h3, h4, h5, h6 {
     
     .booking-wrapper {
         grid-template-columns: 1fr;
-        gap: 2rem;
     }
     
     .booking-benefits {
         position: static;
         margin-top: 2rem;
-    }
-    
-    .booking-form-container {
-        padding: 1.5rem;
-        min-height: auto;
-        max-height: none;
-        margin-bottom: 2rem;
     }
     
     .form-row {
@@ -1184,59 +1109,5 @@ h1, h2, h3, h4, h5, h6 {
     to {
         opacity: 1;
         transform: translateY(0);
-    }
-}
-
-/* Form step transitions */
-.form-step {
-    transition: all 0.3s ease;
-    min-height: 400px;
-}
-
-/* Dynamic content animations */
-.service-card-option,
-.special-offer,
-.form-navigation {
-    transition: all 0.3s ease;
-    animation: slideDown 0.3s ease-out;
-}
-
-/* Ensure form can expand naturally */
-.booking-form {
-    display: flex;
-    flex-direction: column;
-    min-height: inherit;
-}
-
-/* Better spacing for dynamic content */
-.service-selection {
-    min-height: 300px;
-    transition: height 0.3s ease;
-}
-
-/* Prevent layout shifts */
-.additional-services-section {
-    transition: all 0.3s ease;
-}
-
-.special-offer {
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-    transform: translateY(0);
-}
-
-/* Smooth height transitions for mobile */
-@media (max-width: 768px) {
-    .form-step {
-        min-height: 350px;
-    }
-    
-    .service-selection {
-        min-height: 250px;
-    }
-    
-    .booking-form-container {
-        overflow: visible;
-        height: auto;
     }
 }
