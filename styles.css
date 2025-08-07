@@ -23,6 +23,37 @@ body {
     background-color: var(--background);
 }
 
+/* Topbar */
+.topbar {
+    background: #0f172a;
+    color: #e5e7eb;
+    font-size: 0.9rem;
+}
+
+.topbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 20px;
+}
+
+.topbar a {
+    color: #e5e7eb;
+    text-decoration: none;
+}
+
+.topbar a:hover { text-decoration: underline; }
+
+.topbar .divider { margin: 0 0.75rem; opacity: 0.5; }
+
+.btn-topbar {
+    background: var(--primary-color);
+    padding: 6px 12px;
+    border-radius: 6px;
+    color: white !important;
+    font-weight: 600;
+}
+
 .container {
     max-width: 1200px;
     margin: 0 auto;
@@ -150,6 +181,30 @@ h1, h2, h3, h4, h5, h6 {
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     color: white;
 }
+
+/* Floating mobile CTA */
+.floating-cta {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 16px;
+    display: none;
+    gap: 12px;
+    justify-content: center;
+    z-index: 1100;
+}
+
+.floating-cta a {
+    padding: 12px 18px;
+    border-radius: 9999px;
+    color: white;
+    text-decoration: none;
+    font-weight: 700;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+}
+
+.floating-cta .cta-call { background: #059669; }
+.floating-cta .cta-book { background: var(--primary-color); }
 
 .hero-content {
     text-align: center;
@@ -1084,6 +1139,9 @@ h1, h2, h3, h4, h5, h6 {
     input.error {
         border-color: #ef4444;
     }
+
+    /* Show floating CTA on small screens */
+    .floating-cta { display: flex; }
 }
 
 /* Real-time Validation Styles */

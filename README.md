@@ -123,10 +123,9 @@ Builds the app for production to the `build` folder.
 
 ## Deployment
 
-1. Build the project: `npm run build`
-2. Deploy the `build` folder to your hosting service
-3. Update reCAPTCHA settings to include your production domain
-4. Ensure environment variables are properly configured for production
+- This static site is configured for Vercel via `vercel.json`.
+- Place `index.html`, `styles.css`, and `script.js` at the project root (as here).
+- Optional: add `robots.txt` and `sitemap.xml` at the root for SEO.
 
 ## Technologies Used
 
