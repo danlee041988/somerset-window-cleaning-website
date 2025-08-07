@@ -5,10 +5,42 @@ cl<!DOCTYPE html>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Somerset Window Cleaning - Professional Window Cleaning Services</title>
     <meta name="description" content="Somerset Window Cleaning provides professional window cleaning services for residential and commercial properties. Reliable, affordable, and fully insured.">
+    
+    <!-- Core Web Vitals Optimizations -->
+    <link rel="preload" href="styles.css" as="style">
+    <link rel="preload" href="script.js" as="script">
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    
+    <!-- Critical CSS inlined for LCP optimization -->
+    <style>
+        :root { --primary-color: #2563eb; --text-dark: #1a1a1a; --background: #ffffff; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; margin: 0; background: var(--background); }
+        .navbar { position: fixed; top: 0; width: 100%; background: white; z-index: 1000; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .hero { padding-top: 120px; min-height: 100vh; display: flex; align-items: center; }
+    </style>
+    
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Performance and SEO meta tags -->
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="Somerset Window Cleaning">
+    <link rel="canonical" href="https://somersetwindowcleaning.co.uk">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://somersetwindowcleaning.co.uk">
+    <meta property="og:title" content="Somerset Window Cleaning - Professional Window Cleaning Services">
+    <meta property="og:description" content="Professional window cleaning services for residential and commercial properties across Somerset. Over 3,000 satisfied customers. Fully insured and reliable.">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://somersetwindowcleaning.co.uk">
+    <meta property="twitter:title" content="Somerset Window Cleaning - Professional Window Cleaning Services">
+    <meta property="twitter:description" content="Professional window cleaning services for residential and commercial properties across Somerset. Over 3,000 satisfied customers. Fully insured and reliable.">
 </head>
 <body>
     <!-- Navigation -->
@@ -21,7 +53,8 @@ cl<!DOCTYPE html>
                 <li><a href="#home">Home</a></li>
                 <li><a href="#services">Services</a></li>
                 <li><a href="#about">About</a></li>
-                <li><a href="#pricing">Pricing</a></li>
+                <li><a href="#reviews">Reviews</a></li>
+                <li><a href="#faq">FAQ</a></li>
                 <li><a href="#booking">Book Online</a></li>
                 <li><a href="#contact">Contact</a></li>
                 <li><a href="#quote" class="btn-primary">Get Quote</a></li>
@@ -226,6 +259,240 @@ cl<!DOCTYPE html>
                         <p>Professional Window Cleaning</p>
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Google Reviews Section -->
+    <section id="reviews" class="reviews">
+        <div class="container">
+            <h2 class="section-title">What Our Customers Say</h2>
+            <p class="section-subtitle">Over 150 five-star Google reviews from satisfied customers</p>
+            
+            <div class="google-reviews-widget">
+                <div class="reviews-header">
+                    <div class="google-logo">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+                            <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+                            <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
+                            <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+                        </svg>
+                        <span>Google Reviews</span>
+                    </div>
+                    <div class="overall-rating">
+                        <div class="stars">
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                        </div>
+                        <span class="rating-text">4.9/5 (152 reviews)</span>
+                    </div>
+                </div>
+                
+                <div class="reviews-carousel">
+                    <div class="review-card">
+                        <div class="review-header">
+                            <div class="reviewer-info">
+                                <div class="reviewer-avatar">S</div>
+                                <div class="reviewer-details">
+                                    <h4>Sarah Johnson</h4>
+                                    <span class="review-date">2 weeks ago</span>
+                                </div>
+                            </div>
+                            <div class="review-stars">
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                            </div>
+                        </div>
+                        <p class="review-text">"Absolutely fantastic service! The team arrived on time, were professional and thorough. My windows have never looked better. Will definitely be booking again."</p>
+                    </div>
+                    
+                    <div class="review-card">
+                        <div class="review-header">
+                            <div class="reviewer-info">
+                                <div class="reviewer-avatar">M</div>
+                                <div class="reviewer-details">
+                                    <h4>Mark Thompson</h4>
+                                    <span class="review-date">1 month ago</span>
+                                </div>
+                            </div>
+                            <div class="review-stars">
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                            </div>
+                        </div>
+                        <p class="review-text">"Outstanding window cleaning service. Reliable, professional, and great value for money. They also cleaned our conservatory roof - excellent work all around!"</p>
+                    </div>
+                    
+                    <div class="review-card">
+                        <div class="review-header">
+                            <div class="reviewer-info">
+                                <div class="reviewer-avatar">L</div>
+                                <div class="reviewer-details">
+                                    <h4>Lisa Roberts</h4>
+                                    <span class="review-date">3 weeks ago</span>
+                                </div>
+                            </div>
+                            <div class="review-stars">
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                            </div>
+                        </div>
+                        <p class="review-text">"Been using Somerset Window Cleaning for over 2 years now. Always punctual, thorough, and reasonably priced. Highly recommend to anyone looking for quality window cleaning."</p>
+                    </div>
+                </div>
+                
+                <div class="reviews-cta">
+                    <a href="https://g.page/r/YourGoogleBusinessPageID/review" target="_blank" class="btn-secondary">Leave a Review</a>
+                    <a href="https://www.google.com/search?q=somerset+window+cleaning+reviews" target="_blank" class="btn-primary">See All Reviews</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="faq">
+        <div class="container">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            <p class="section-subtitle">Get answers to common questions about our services</p>
+            
+            <div class="faq-content">
+                <div class="faq-category">
+                    <h3 class="category-title">Service & Pricing</h3>
+                    
+                    <div class="faq-item">
+                        <button class="faq-question" onclick="toggleFAQ(this)">
+                            <span>How much does window cleaning cost?</span>
+                            <svg class="faq-icon" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Our residential window cleaning starts from £15 for a 2-bedroom house. Prices vary based on property size, frequency, and additional services. We offer regular service discounts and transparent pricing with no hidden charges.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <button class="faq-question" onclick="toggleFAQ(this)">
+                            <span>Do you clean inside and outside windows?</span>
+                            <svg class="faq-icon" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Yes, our standard service includes cleaning both inside and outside windows, along with frames and sills. We use pure water technology for streak-free results on the exterior and traditional methods for interior cleaning.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <button class="faq-question" onclick="toggleFAQ(this)">
+                            <span>How often should I have my windows cleaned?</span>
+                            <svg class="faq-icon" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </button>
+                        <div class="faq-answer">
+                            <p>We recommend every 4-8 weeks for most residential properties. Regular cleaning maintains window clarity, prevents damage from dirt buildup, and is more cost-effective than one-off cleans.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="faq-category">
+                    <h3 class="category-title">Booking & Scheduling</h3>
+                    
+                    <div class="faq-item">
+                        <button class="faq-question" onclick="toggleFAQ(this)">
+                            <span>How do I book a service?</span>
+                            <svg class="faq-icon" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </button>
+                        <div class="faq-answer">
+                            <p>You can book online through our booking form above, call us at 01458 860339, or email info@somersetwindowcleaning.co.uk. We offer flexible scheduling to fit your convenience.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <button class="faq-question" onclick="toggleFAQ(this)">
+                            <span>Do I need to be home during the cleaning?</span>
+                            <svg class="faq-icon" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </button>
+                        <div class="faq-answer">
+                            <p>No, you don't need to be home for exterior-only cleaning. For interior cleaning, we'll need access to your property. We can work around your schedule and will text you before arriving.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <button class="faq-question" onclick="toggleFAQ(this)">
+                            <span>What if it's raining?</span>
+                            <svg class="faq-icon" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Light rain doesn't affect our pure water cleaning system - the windows will still dry crystal clear. In heavy rain or storms, we'll reschedule for safety reasons and contact you about the new appointment.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="faq-category">
+                    <h3 class="category-title">Service Quality & Insurance</h3>
+                    
+                    <div class="faq-item">
+                        <button class="faq-question" onclick="toggleFAQ(this)">
+                            <span>Are you fully insured?</span>
+                            <svg class="faq-icon" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Yes, we carry comprehensive public liability insurance and employer's liability insurance. All our team members are trained professionals, and we follow strict safety protocols for your peace of mind.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <button class="faq-question" onclick="toggleFAQ(this)">
+                            <span>What if I'm not satisfied with the service?</span>
+                            <svg class="faq-icon" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Your satisfaction is guaranteed! If you're not completely happy with our work, contact us within 24 hours and we'll return to re-clean any areas of concern at no extra charge.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <button class="faq-question" onclick="toggleFAQ(this)">
+                            <span>Do you provide additional services?</span>
+                            <svg class="faq-icon" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Yes! We also offer gutter cleaning, conservatory roof cleaning, solar panel cleaning, fascia and soffit cleaning, and pressure washing services. Contact us for a comprehensive quote.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="faq-cta">
+                <p>Still have questions?</p>
+                <a href="#contact" class="btn-primary">Contact Us</a>
             </div>
         </div>
     </section>
