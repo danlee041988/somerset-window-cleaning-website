@@ -1,0 +1,415 @@
+---
+/**
+ * Mobile Performance Optimisations Component
+ * 
+ * Implements mobile-first optimisations including:
+ * - Critical CSS inlining
+ * - Responsive image loading
+ * - Touch-friendly interactions
+ * - Mobile viewport optimisations
+ * - Progressive Web App features
+ * 
+ * These optimisations ensure excellent mobile performance for Core Web Vitals.
+ */
+---
+
+<!-- Critical CSS for Above-the-Fold Content -->
+<style is:inline>
+  /* Critical styles that must load immediately */
+  
+  /* Reset and base styles */
+  * {
+    box-sizing: border-box;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+    text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter Variable', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    line-height: 1.6;
+    color: #1f2937;
+    background-color: #ffffff;
+  }
+  
+  /* Header critical styles */
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Navigation critical styles */
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  /* Logo critical styles */
+  .logo {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #2563eb;
+    text-decoration: none;
+  }
+  
+  /* Hero section critical styles */
+  .hero {
+    position: relative;
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+  }
+  
+  .hero h1 {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 800;
+    margin: 0 0 1rem 0;
+    line-height: 1.2;
+  }
+  
+  .hero p {
+    font-size: clamp(1rem, 2.5vw, 1.25rem);
+    margin: 0 0 2rem 0;
+    opacity: 0.9;
+  }
+  
+  /* Button critical styles */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    min-height: 44px; /* Touch target size */
+    min-width: 44px;
+  }
+  
+  .btn-primary {
+    background-color: #2563eb;
+    color: white;
+    border: 2px solid #2563eb;
+  }
+  
+  .btn-primary:hover,
+  .btn-primary:focus {
+    background-color: #1d4ed8;
+    transform: translateY(-1px);
+  }
+  
+  /* Mobile-first responsive design */
+  @media (max-width: 768px) {
+    nav {
+      padding: 0.5rem 1rem;
+    }
+    
+    .hero {
+      min-height: 50vh;
+      padding: 2rem 1rem;
+    }
+    
+    .btn {
+      width: 100%;
+      max-width: 280px;
+      margin: 0.5rem 0;
+    }
+  }
+  
+  /* Prevent layout shift */
+  img {
+    height: auto;
+    max-width: 100%;
+    vertical-align: middle;
+  }
+  
+  /* Loading skeleton to prevent CLS */
+  .skeleton {
+    background: linear-gradient(90deg, #f3f4f6 25%, #e5e7eb 50%, #f3f4f6 75%);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+  }
+  
+  @keyframes loading {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+  }
+  
+  /* Dark mode support */
+  @media (prefers-color-scheme: dark) {
+    body {
+      color: #f9fafb;
+      background-color: #111827;
+    }
+    
+    header {
+      background: rgba(17, 24, 39, 0.95);
+      border-bottom-color: rgba(255, 255, 255, 0.1);
+    }
+    
+    .skeleton {
+      background: linear-gradient(90deg, #374151 25%, #4b5563 50%, #374151 75%);
+      background-size: 200% 100%;
+    }
+  }
+  
+  /* Prefers reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+</style>
+
+<!-- Progressive Enhancement Script -->
+<script>
+  // Mobile performance optimisations
+  document.addEventListener('DOMContentLoaded', function() {
+    
+    // Detect mobile device
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    const isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+    
+    if (isMobile || isTouch) {
+      document.body.classList.add('is-mobile');
+      
+      // Optimise touch interactions
+      let touchStartY = 0;
+      document.addEventListener('touchstart', function(e) {
+        touchStartY = e.touches[0].clientY;
+      }, { passive: true });
+      
+      // Prevent iOS bounce scroll on body
+      document.addEventListener('touchmove', function(e) {
+        if (e.target === document.body) {
+          e.preventDefault();
+        }
+      }, { passive: false });
+    }
+    
+    // Lazy load images below the fold
+    const lazyImages = document.querySelectorAll('img[data-src]');
+    const imageObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const img = entry.target;
+          img.src = img.dataset.src;
+          img.classList.remove('skeleton');
+          observer.unobserve(img);
+        }
+      });
+    }, {
+      rootMargin: '50px 0px'
+    });
+    
+    lazyImages.forEach(img => imageObserver.observe(img));
+    
+    // Preload critical resources
+    function preloadCriticalResources() {
+      // Preload fonts
+      const fontUrls = [
+        'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap'
+      ];
+      
+      fontUrls.forEach(url => {
+        const link = document.createElement('link');
+        link.rel = 'preload';
+        link.as = 'style';
+        link.href = url;
+        document.head.appendChild(link);
+      });
+      
+      // Preload hero image
+      const heroImg = new Image();
+      heroImg.src = '/assets/images/DJI_0007.JPG';
+    }
+    
+    // Use requestIdleCallback for non-critical tasks
+    if ('requestIdleCallback' in window) {
+      requestIdleCallback(preloadCriticalResources);
+    } else {
+      setTimeout(preloadCriticalResources, 100);
+    }
+    
+    // Optimise form interactions for mobile
+    const forms = document.querySelectorAll('form');
+    forms.forEach(form => {
+      const inputs = form.querySelectorAll('input, textarea, select');
+      
+      inputs.forEach(input => {
+        // Add appropriate input modes for mobile keyboards
+        if (input.type === 'tel') {
+          input.setAttribute('inputmode', 'tel');
+        } else if (input.type === 'email') {
+          input.setAttribute('inputmode', 'email');
+        } else if (input.type === 'number') {
+          input.setAttribute('inputmode', 'numeric');
+        }
+        
+        // Auto-correct and spellcheck optimisation
+        if (input.type === 'email' || input.type === 'tel' || input.type === 'url') {
+          input.setAttribute('autocorrect', 'off');
+          input.setAttribute('spellcheck', 'false');
+        }
+      });
+    });
+    
+    // Service Worker registration for caching
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function() {
+        navigator.serviceWorker.register('/sw.js')
+          .then(function(registration) {
+            console.log('SW registered: ', registration);
+          })
+          .catch(function(registrationError) {
+            console.log('SW registration failed: ', registrationError);
+          });
+      });
+    }
+    
+    // Connection-aware loading
+    if ('connection' in navigator) {
+      const connection = navigator.connection;
+      
+      // Reduce resources on slow connections
+      if (connection.effectiveType === 'slow-2g' || connection.effectiveType === '2g') {
+        document.body.classList.add('slow-connection');
+        
+        // Disable animations
+        const style = document.createElement('style');
+        style.textContent = `
+          *, *::before, *::after {
+            animation-duration: 0s !important;
+            transition-duration: 0s !important;
+          }
+        `;
+        document.head.appendChild(style);
+      }
+    }
+    
+    // Battery API for performance adjustments
+    if ('getBattery' in navigator) {
+      navigator.getBattery().then(function(battery) {
+        if (battery.level < 0.2 || !battery.charging) {
+          // Reduce performance for low battery
+          document.body.classList.add('low-battery');
+        }
+      });
+    }
+    
+    // Viewport height fix for mobile browsers
+    function setVH() {
+      const vh = window.innerHeight * 0.01;
+      document.documentElement.style.setProperty('--vh', `${vh}px`);
+    }
+    
+    setVH();
+    window.addEventListener('resize', setVH);
+    window.addEventListener('orientationchange', setVH);
+    
+    // Performance monitoring
+    if ('PerformanceObserver' in window) {
+      // Monitor Largest Contentful Paint
+      const lcpObserver = new PerformanceObserver((entryList) => {
+        const entries = entryList.getEntries();
+        const lastEntry = entries[entries.length - 1];
+        
+        // Report to analytics if LCP is too high
+        if (lastEntry.startTime > 2500) {
+          console.warn('LCP is high:', lastEntry.startTime);
+        }
+      });
+      
+      lcpObserver.observe({entryTypes: ['largest-contentful-paint']});
+      
+      // Monitor Cumulative Layout Shift
+      const clsObserver = new PerformanceObserver((entryList) => {
+        let clsValue = 0;
+        for (const entry of entryList.getEntries()) {
+          if (!entry.hadRecentInput) {
+            clsValue += entry.value;
+          }
+        }
+        
+        if (clsValue > 0.1) {
+          console.warn('CLS is high:', clsValue);
+        }
+      });
+      
+      clsObserver.observe({entryTypes: ['layout-shift']});
+    }
+  });
+</script>
+
+<!-- Service Worker for Caching -->
+<script is:inline>
+  // Inline service worker for critical caching
+  if ('serviceWorker' in navigator) {
+    const swContent = `
+      const CACHE_NAME = 'somerset-window-cleaning-v1';
+      const urlsToCache = [
+        '/',
+        '/services',
+        '/about',
+        '/contact',
+        '/assets/styles/tailwind.css',
+        '/assets/images/logo.png'
+      ];
+      
+      self.addEventListener('install', function(event) {
+        event.waitUntil(
+          caches.open(CACHE_NAME)
+            .then(function(cache) {
+              return cache.addAll(urlsToCache);
+            })
+        );
+      });
+      
+      self.addEventListener('fetch', function(event) {
+        event.respondWith(
+          caches.match(event.request)
+            .then(function(response) {
+              if (response) {
+                return response;
+              }
+              return fetch(event.request);
+            }
+          )
+        );
+      });
+    `;
+    
+    const blob = new Blob([swContent], { type: 'application/javascript' });
+    const swUrl = URL.createObjectURL(blob);
+    
+    window.addEventListener('load', function() {
+      navigator.serviceWorker.register(swUrl);
+    });
+  }
+</script>

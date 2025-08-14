@@ -1,0 +1,286 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import Hero from '~/components/widgets/Hero.astro';
+import Features2 from '~/components/widgets/Features2.astro';
+import { getPermalink } from '~/utils/permalinks';
+
+const metadata = {
+  title: 'Sitemap',
+  description: 'Navigate our website easily with this comprehensive sitemap. Find all pages and services offered by Somerset Window Cleaning.',
+  robots: {
+    index: true,
+    follow: true,
+  },
+};
+
+// Main navigation pages with priorities for local business
+const mainPages = [
+  {
+    title: 'Home',
+    href: getPermalink('/'),
+    description: 'Our main page with services overview and contact information',
+    priority: 'High',
+    frequency: 'Weekly'
+  },
+  {
+    title: 'Services',
+    href: getPermalink('/services'),
+    description: 'Complete list of professional exterior cleaning services',
+    priority: 'High',
+    frequency: 'Monthly'
+  },
+  {
+    title: 'Service Areas',
+    href: getPermalink('/areas'),
+    description: 'All locations across Somerset where we provide services',
+    priority: 'High',
+    frequency: 'Monthly'
+  },
+  {
+    title: 'About Us',
+    href: getPermalink('/about'),
+    description: 'Learn about our team, experience, and commitment to quality',
+    priority: 'Medium',
+    frequency: 'Quarterly'
+  },
+  {
+    title: 'Contact & Get a Quote',
+    href: getPermalink('/contact'),
+    description: 'Contact form, business hours, and quote request',
+    priority: 'High',
+    frequency: 'Monthly'
+  }
+];
+
+// Services offered - important for local SEO
+const services = [
+  {
+    title: 'Window Cleaning',
+    description: 'Professional window cleaning using pure water systems',
+    keywords: 'window cleaning, streak-free, pure water, residential, commercial'
+  },
+  {
+    title: 'Gutter Clearing',
+    description: 'High-reach vacuum system gutter clearing service',
+    keywords: 'gutter clearing, moss removal, leaf removal, gutters'
+  },
+  {
+    title: 'Fascia & Soffit Cleaning',
+    description: 'UPVC fascia and soffit exterior cleaning',
+    keywords: 'fascia cleaning, soffit cleaning, UPVC cleaning'
+  },
+  {
+    title: 'Conservatory Roof Cleaning',
+    description: 'Specialist conservatory roof panel cleaning',
+    keywords: 'conservatory cleaning, roof cleaning, glass panels'
+  },
+  {
+    title: 'Solar Panel Cleaning',
+    description: 'Professional solar panel maintenance cleaning',
+    keywords: 'solar panel cleaning, solar maintenance, panel efficiency'
+  },
+  {
+    title: 'Commercial Cleaning',
+    description: 'Window and exterior cleaning for businesses',
+    keywords: 'commercial cleaning, office cleaning, shop cleaning'
+  }
+];
+
+// Key service areas in Somerset
+const serviceAreas = [
+  'Wells (BA5)', 'Glastonbury (BA6)', 'Street (BA16)', 'Yeovil (BA20-22)',
+  'Bridgwater (TA6-7)', 'Weston-super-Mare (BS23-25)', 'Burnham-on-Sea (TA8)',
+  'Highbridge (TA9)', 'Frome (BA11)', 'Shepton Mallet (BA4)', 'Castle Cary (BA7)',
+  'Bruton (BA10)', 'Radstock (BA3)', 'Taunton (TA2)', 'Chard (TA20)',
+  'Ilminster (TA19)', 'Crewkerne (TA18)', 'Martock (TA12)', 'Langport (TA10)',
+  'Somerton (TA11)', 'South Petherton (TA13)', 'Axbridge (BS26)', 'Wedmore (BS28)'
+];
+
+// Legal and policy pages
+const legalPages = [
+  {
+    title: 'Privacy Policy',
+    href: getPermalink('/privacy'),
+    description: 'How we collect, use, and protect your personal information'
+  },
+  {
+    title: 'Terms of Service',
+    href: getPermalink('/terms'),
+    description: 'Terms and conditions for our services'
+  }
+];
+---
+
+<Layout metadata={metadata}>
+  <!-- Hero Widget -->
+  <Hero tagline="Sitemap" title="Navigate Our Website" subtitle="Find everything you need quickly and easily with our comprehensive site map.">
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-slate-800 dark:to-slate-900"></div>
+    </Fragment>
+  </Hero>
+
+  <!-- Main Navigation Section -->
+  <section class="py-12 md:py-16 lg:py-20">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      <div class="mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold text-center mb-4">Main Pages</h2>
+        <p class="text-lg text-muted text-center max-w-3xl mx-auto">
+          Our key pages with the most important information about our window cleaning services across Somerset.
+        </p>
+      </div>
+
+      <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {mainPages.map((page) => (
+          <div class="rounded-lg border border-gray-200 dark:border-gray-700 bg-white/50 dark:bg-slate-800/50 p-6 hover:shadow-lg transition-shadow">
+            <div class="flex items-start justify-between mb-3">
+              <h3 class="text-xl font-semibold">
+                <a href={page.href} class="text-primary hover:text-secondary transition-colors">
+                  {page.title}
+                </a>
+              </h3>
+              <span class={`px-2 py-1 text-xs rounded-full ${page.priority === 'High' ? 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300' : 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300'}`}>
+                {page.priority}
+              </span>
+            </div>
+            <p class="text-sm text-muted mb-2">{page.description}</p>
+            <div class="text-xs text-muted">
+              <span>Updated: {page.frequency}</span>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section class="py-12 md:py-16 bg-gray-50 dark:bg-slate-800">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      <div class="mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold text-center mb-4">Our Services</h2>
+        <p class="text-lg text-muted text-center max-w-3xl mx-auto">
+          Professional exterior cleaning services we offer across Somerset.
+        </p>
+      </div>
+
+      <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {services.map((service) => (
+          <div class="rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-slate-900 p-6">
+            <h3 class="text-lg font-semibold mb-2 text-primary">{service.title}</h3>
+            <p class="text-sm text-muted mb-3">{service.description}</p>
+            <div class="text-xs text-muted">
+              <strong>Keywords:</strong> {service.keywords}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div class="text-center mt-8">
+        <a href="/services" class="inline-flex items-center justify-center rounded-md bg-primary px-6 py-3 text-base font-medium text-white hover:bg-secondary transition-colors">
+          View All Services
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Service Areas Section -->
+  <section class="py-12 md:py-16">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      <div class="mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold text-center mb-4">Service Areas</h2>
+        <p class="text-lg text-muted text-center max-w-3xl mx-auto">
+          We serve customers across Somerset. Here are our key coverage areas.
+        </p>
+      </div>
+
+      <div class="grid gap-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+        {serviceAreas.map((area) => (
+          <div class="rounded-lg border border-gray-200 dark:border-gray-700 bg-white/30 dark:bg-slate-800/30 p-4 text-center">
+            <span class="text-sm font-medium">{area}</span>
+          </div>
+        ))}
+      </div>
+
+      <div class="text-center mt-8">
+        <a href="/areas" class="inline-flex items-center justify-center rounded-md bg-primary px-6 py-3 text-base font-medium text-white hover:bg-secondary transition-colors">
+          Check Your Postcode
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Legal Pages Section -->
+  <section class="py-12 md:py-16 bg-gray-50 dark:bg-slate-800">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      <div class="mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold text-center mb-4">Legal & Policies</h2>
+        <p class="text-lg text-muted text-center max-w-3xl mx-auto">
+          Important information about privacy, terms, and our business practices.
+        </p>
+      </div>
+
+      <div class="grid gap-6 md:grid-cols-2 max-w-4xl mx-auto">
+        {legalPages.map((page) => (
+          <div class="rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-slate-900 p-6">
+            <h3 class="text-lg font-semibold mb-2">
+              <a href={page.href} class="text-primary hover:text-secondary transition-colors">
+                {page.title}
+              </a>
+            </h3>
+            <p class="text-sm text-muted">{page.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="py-12 md:py-16">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 text-center">
+      <h2 class="text-3xl md:text-4xl font-bold mb-4">Need Help?</h2>
+      <p class="text-lg text-muted mb-8">
+        Can't find what you're looking for? Get in touch and we'll be happy to help.
+      </p>
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href="/contact" class="inline-flex items-center justify-center rounded-md bg-primary px-6 py-3 text-base font-medium text-white hover:bg-secondary transition-colors">
+          Get a Quote
+        </a>
+        <a href="tel:01458860339" class="inline-flex items-center justify-center rounded-md border border-primary px-6 py-3 text-base font-medium text-primary hover:bg-primary hover:text-white transition-colors">
+          Call 01458 860339
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<!-- Structured Data for HTML Sitemap -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Sitemap - Somerset Window Cleaning",
+  "description": "Navigate our website easily with this comprehensive sitemap. Find all pages and services offered by Somerset Window Cleaning.",
+  "url": "https://somersetwindowcleaning.co.uk/sitemap",
+  "mainEntity": {
+    "@type": "SiteNavigationElement",
+    "name": "Website Navigation",
+    "url": "https://somersetwindowcleaning.co.uk/sitemap"
+  },
+  "breadcrumb": {
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://somersetwindowcleaning.co.uk"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Sitemap",
+        "item": "https://somersetwindowcleaning.co.uk/sitemap"
+      }
+    ]
+  }
+}
+</script>

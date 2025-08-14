@@ -1,0 +1,348 @@
+---
+/**
+ * Structured Data Component for Somerset Window Cleaning
+ * 
+ * Implements comprehensive JSON-LD structured data optimised for UK local businesses.
+ * Includes LocalBusiness, Service, and Review schemas with proper UK formatting.
+ * 
+ * This component helps search engines understand the business entity, services,
+ * location, and customer reviews for enhanced local SEO performance.
+ */
+
+import { SITE } from 'astrowind:config';
+
+interface Props {
+  type?: 'homepage' | 'services' | 'about' | 'contact' | 'areas';
+  pageTitle?: string;
+  pageDescription?: string;
+}
+
+const { type = 'homepage', pageTitle, pageDescription } = Astro.props;
+
+// Core business information with UK-specific formatting
+const businessData = {
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  '@id': 'https://somersetwindowcleaning.co.uk/#business',
+  name: 'Somerset Window Cleaning',
+  alternateName: 'Somerset Window Cleaning Ltd',
+  description: 'Professional window cleaning services across Somerset. Reliable, fully insured exterior cleaning including window cleaning, gutter clearing, fascia & soffit, conservatory roof and solar panel cleaning.',
+  url: 'https://somersetwindowcleaning.co.uk',
+  logo: 'https://somersetwindowcleaning.co.uk/brand/logo.png',
+  image: [
+    'https://somersetwindowcleaning.co.uk/brand/logo.png',
+    'https://somersetwindowcleaning.co.uk/brand/home-hero.jpg'
+  ],
+  
+  // UK business registration and VAT details
+  vatID: 'GB359427172',
+  taxID: '359427172',
+  legalName: 'Somerset Window Cleaning Ltd',
+  foundingDate: '2019',
+  
+  // Contact information with proper UK formatting
+  telephone: '+44 1458 860339',
+  email: 'info@somersetwindowcleaning.co.uk',
+  
+  // Physical business address in UK format
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: '13 Rockhaven Business Centre, Gravenchon Way',
+    addressLocality: 'Highbridge',
+    addressRegion: 'Somerset',
+    postalCode: 'BA16 0HW',
+    addressCountry: 'GB'
+  },
+  
+  // Geographic coordinates for local SEO
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: 51.2167,
+    longitude: -2.9833
+  },
+  
+  // Service areas across Somerset
+  areaServed: [
+    {
+      '@type': 'GeoCircle',
+      geoMidpoint: {
+        '@type': 'GeoCoordinates',
+        latitude: 51.2167,
+        longitude: -2.9833
+      },
+      geoRadius: '30000' // 30km radius
+    },
+    {
+      '@type': 'AdministrativeArea',
+      name: 'Somerset',
+      addressCountry: 'GB'
+    }
+  ],
+  
+  // Business hours in UK format
+  openingHoursSpecification: {
+    '@type': 'OpeningHoursSpecification',
+    dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+    opens: '09:00',
+    closes: '16:00',
+    validFrom: '2019-01-01'
+  },
+  
+  // Price range indicator
+  priceRange: '£15-£200',
+  
+  // Payment methods accepted
+  paymentAccepted: ['Direct Debit', 'Credit Card', 'Bank Transfer'],
+  currenciesAccepted: 'GBP',
+  
+  // Aggregate rating from customer reviews
+  aggregateRating: {
+    '@type': 'AggregateRating',
+    ratingValue: '4.9',
+    reviewCount: '150',
+    bestRating: '5',
+    worstRating: '1'
+  },
+  
+  // Key personnel
+  founder: {
+    '@type': 'Person',
+    name: 'Dan Lee',
+    jobTitle: 'Owner & Director',
+    description: 'Former Royal Marine with expertise in exterior cleaning and customer service'
+  },
+  
+  // Business capabilities and certifications
+  hasCredential: [
+    {
+      '@type': 'EducationalOccupationalCredential',
+      credentialCategory: 'Public Liability Insurance',
+      recognizedBy: {
+        '@type': 'Organization',
+        name: 'Insurance Provider'
+      }
+    }
+  ],
+  
+  // Social media profiles
+  sameAs: [
+    'https://www.facebook.com/somersetwindowcleaning',
+    'https://www.instagram.com/somersetwindowcleaning'
+  ]
+};
+
+// Services offered with detailed descriptions
+const servicesData = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  '@id': 'https://somersetwindowcleaning.co.uk/#services',
+  serviceType: 'Window Cleaning Services',
+  provider: {
+    '@id': 'https://somersetwindowcleaning.co.uk/#business'
+  },
+  areaServed: businessData.areaServed,
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: 'Professional Exterior Cleaning Services',
+    itemListElement: [
+      {
+        '@type': 'Offer',
+        itemOffered: {
+          '@type': 'Service',
+          name: 'Window Cleaning',
+          description: 'Professional window cleaning using pure water systems for streak-free results. Includes frames and sills as standard.',
+          serviceType: 'Window Cleaning'
+        },
+        priceSpecification: {
+          '@type': 'PriceSpecification',
+          price: '15.00',
+          priceCurrency: 'GBP',
+          valueAddedTaxIncluded: true,
+          description: 'Starting from £15 for residential properties'
+        }
+      },
+      {
+        '@type': 'Offer',
+        itemOffered: {
+          '@type': 'Service',
+          name: 'Gutter Clearing',
+          description: 'High-reach vacuum system for safe and thorough gutter clearing, removing moss and leaves.',
+          serviceType: 'Gutter Cleaning'
+        }
+      },
+      {
+        '@type': 'Offer',
+        itemOffered: {
+          '@type': 'Service',
+          name: 'Fascia & Soffit Cleaning',
+          description: 'UPVC fascia, soffit and gutter exterior cleaning to restore kerb appeal.',
+          serviceType: 'Exterior Cleaning'
+        }
+      },
+      {
+        '@type': 'Offer',
+        itemOffered: {
+          '@type': 'Service',
+          name: 'Conservatory Roof Cleaning',
+          description: 'Specialist conservatory roof panel and frame cleaning service.',
+          serviceType: 'Conservatory Cleaning'
+        }
+      },
+      {
+        '@type': 'Offer',
+        itemOffered: {
+          '@type': 'Service',
+          name: 'Solar Panel Cleaning',
+          description: 'Professional solar panel cleaning to maintain efficiency and warranties.',
+          serviceType: 'Solar Panel Maintenance'
+        }
+      },
+      {
+        '@type': 'Offer',
+        itemOffered: {
+          '@type': 'Service',
+          name: 'Commercial Cleaning',
+          description: 'Window and exterior cleaning for shops, offices, schools and managed sites.',
+          serviceType: 'Commercial Cleaning'
+        }
+      }
+    ]
+  }
+};
+
+// Customer reviews and testimonials
+const reviewsData = {
+  '@context': 'https://schema.org',
+  '@type': 'Review',
+  itemReviewed: {
+    '@id': 'https://somersetwindowcleaning.co.uk/#business'
+  },
+  reviewBody: 'Second window clean with Somerset Window Cleaning — excellent on both occasions.',
+  reviewRating: {
+    '@type': 'Rating',
+    ratingValue: '5',
+    bestRating: '5'
+  },
+  author: {
+    '@type': 'Person',
+    name: 'Jodie Cater'
+  },
+  publisher: {
+    '@type': 'Organization',
+    name: 'Google Reviews'
+  }
+};
+
+// Website and organisation data
+const websiteData = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  '@id': 'https://somersetwindowcleaning.co.uk/#website',
+  url: 'https://somersetwindowcleaning.co.uk',
+  name: 'Somerset Window Cleaning',
+  description: 'Professional window cleaning across Somerset. Get a free quote today.',
+  publisher: {
+    '@id': 'https://somersetwindowcleaning.co.uk/#business'
+  },
+  potentialAction: {
+    '@type': 'SearchAction',
+    target: {
+      '@type': 'EntryPoint',
+      urlTemplate: 'https://somersetwindowcleaning.co.uk/contact?q={search_term_string}'
+    },
+    'query-input': 'required name=search_term_string'
+  },
+  inLanguage: 'en-GB'
+};
+
+// Breadcrumb navigation for SEO
+const breadcrumbData = (() => {
+  const items = [
+    { name: 'Home', url: 'https://somersetwindowcleaning.co.uk' }
+  ];
+  
+  if (type === 'services') {
+    items.push({ name: 'Services', url: 'https://somersetwindowcleaning.co.uk/services' });
+  } else if (type === 'about') {
+    items.push({ name: 'About', url: 'https://somersetwindowcleaning.co.uk/about' });
+  } else if (type === 'contact') {
+    items.push({ name: 'Contact', url: 'https://somersetwindowcleaning.co.uk/contact' });
+  } else if (type === 'areas') {
+    items.push({ name: 'Service Areas', url: 'https://somersetwindowcleaning.co.uk/areas' });
+  }
+  
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: items.map((item, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      name: item.name,
+      item: item.url
+    }))
+  };
+})();
+
+// FAQ data for frequently asked questions
+const faqData = type === 'homepage' ? {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'How much does window cleaning cost?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Residential window cleaning starts from £15 for a 2-bedroom house. Prices vary by property size and frequency.'
+      }
+    },
+    {
+      '@type': 'Question',
+      name: 'Do I need to be home during cleaning?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'No. Exterior cleaning does not require you to be at home. For interior windows we\'ll arrange a convenient time.'
+      }
+    },
+    {
+      '@type': 'Question',
+      name: 'Are you insured?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes, we carry full public liability insurance and all team members are trained professionals.'
+      }
+    },
+    {
+      '@type': 'Question',
+      name: 'What areas do you cover?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'We serve customers across Somerset. Contact us with your postcode and we\'ll confirm availability.'
+      }
+    }
+  ]
+} : null;
+
+// Combine all structured data based on page type
+const structuredDataItems = [websiteData, businessData, breadcrumbData];
+
+if (type === 'homepage') {
+  structuredDataItems.push(servicesData, reviewsData);
+  if (faqData) structuredDataItems.push(faqData);
+} else if (type === 'services') {
+  structuredDataItems.push(servicesData);
+} else if (type === 'about') {
+  structuredDataItems.push({
+    '@context': 'https://schema.org',
+    '@type': 'AboutPage',
+    mainEntity: {
+      '@id': 'https://somersetwindowcleaning.co.uk/#business'
+    }
+  });
+}
+---
+
+<!-- Structured Data for Local Business SEO -->
+{structuredDataItems.map((data) => (
+  <script type="application/ld+json" set:html={JSON.stringify(data)} />
+))}

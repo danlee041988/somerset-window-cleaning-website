@@ -1,0 +1,2798 @@
+<testsuites id="" name="" tests="672" failures="0" skipped="672" errors="0" time="0.21477799999999997">
+<testsuite name="specs/contact-form.spec.ts" timestamp="2025-08-14T23:47:56.781Z" hostname="chromium" tests="11" failures="0" skipped="11" time="0" errors="0">
+<testcase name="Contact Form Tests › should display contact form correctly" classname="specs/contact-form.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Contact Form Tests › should have all required form fields" classname="specs/contact-form.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Contact Form Tests › should validate required fields" classname="specs/contact-form.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Contact Form Tests › should fill and submit contact form" classname="specs/contact-form.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Contact Form Tests › should handle email validation" classname="specs/contact-form.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Contact Form Tests › should check additional services" classname="specs/contact-form.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Contact Form Tests › should display business information" classname="specs/contact-form.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Contact Form Tests › should handle file uploads" classname="specs/contact-form.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Contact Form Tests › should show coverage information" classname="specs/contact-form.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Contact Form Tests › should have proper form accessibility" classname="specs/contact-form.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Contact Form Tests › should handle form submission gracefully" classname="specs/contact-form.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+</testsuite>
+<testsuite name="specs/cross-browser.spec.ts" timestamp="2025-08-14T23:47:56.781Z" hostname="chromium" tests="13" failures="0" skipped="13" time="0" errors="0">
+<testcase name="Cross-Browser Compatibility Tests › should load home page across all browsers" classname="specs/cross-browser.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Cross-Browser Compatibility Tests › should handle contact form across browsers" classname="specs/cross-browser.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Cross-Browser Compatibility Tests › should handle postcode checker across browsers" classname="specs/cross-browser.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Cross-Browser Compatibility Tests › should render CSS consistently across browsers" classname="specs/cross-browser.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Cross-Browser Compatibility Tests › should handle JavaScript interactions across browsers" classname="specs/cross-browser.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Cross-Browser Compatibility Tests › should handle mobile responsiveness across browsers" classname="specs/cross-browser.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Cross-Browser Compatibility Tests › should handle WebKit specific features" classname="specs/cross-browser.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Cross-Browser Compatibility Tests › should handle Firefox specific features" classname="specs/cross-browser.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Cross-Browser Compatibility Tests › should handle image loading across browsers" classname="specs/cross-browser.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Cross-Browser Compatibility Tests › should handle font rendering across browsers" classname="specs/cross-browser.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Cross-Browser Compatibility Tests › should handle animations and transitions across browsers" classname="specs/cross-browser.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Cross-Browser Compatibility Tests › should handle local storage across browsers" classname="specs/cross-browser.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Cross-Browser Compatibility Tests › should handle form submission across browsers" classname="specs/cross-browser.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+</testsuite>
+<testsuite name="specs/home-page.spec.ts" timestamp="2025-08-14T23:47:56.781Z" hostname="chromium" tests="15" failures="0" skipped="15" time="0" errors="0">
+<testcase name="Home Page Tests › should load home page successfully" classname="specs/home-page.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Home Page Tests › should display all main sections" classname="specs/home-page.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Home Page Tests › should have functional hero section" classname="specs/home-page.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Home Page Tests › should display services correctly" classname="specs/home-page.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Home Page Tests › should show statistics section" classname="specs/home-page.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Home Page Tests › should display process steps" classname="specs/home-page.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Home Page Tests › should show customer testimonials" classname="specs/home-page.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Home Page Tests › should display FAQ section" classname="specs/home-page.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Home Page Tests › should have working call-to-action section" classname="specs/home-page.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Home Page Tests › should navigate to contact page from CTA buttons" classname="specs/home-page.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Home Page Tests › should scroll to postcode checker" classname="specs/home-page.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Home Page Tests › should load all images properly" classname="specs/home-page.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Home Page Tests › should have proper heading hierarchy" classname="specs/home-page.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Home Page Tests › should display contact information" classname="specs/home-page.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Home Page Tests › should have working social media links" classname="specs/home-page.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+</testsuite>
+<testsuite name="specs/link-validation.spec.ts" timestamp="2025-08-14T23:47:56.781Z" hostname="chromium" tests="11" failures="0" skipped="11" time="0" errors="0">
+<testcase name="Link Validation Tests › should validate all internal links site-wide" classname="specs/link-validation.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Link Validation Tests › should validate home page links" classname="specs/link-validation.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Link Validation Tests › should validate contact page links" classname="specs/link-validation.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Link Validation Tests › should validate navigation links" classname="specs/link-validation.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Link Validation Tests › should validate footer links" classname="specs/link-validation.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Link Validation Tests › should validate CTA button links" classname="specs/link-validation.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Link Validation Tests › should validate phone and email links" classname="specs/link-validation.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Link Validation Tests › should validate WhatsApp links" classname="specs/link-validation.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Link Validation Tests › should check for broken assets (images, CSS, JS)" classname="specs/link-validation.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Link Validation Tests › should validate social media links" classname="specs/link-validation.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Link Validation Tests › should handle 404 pages gracefully" classname="specs/link-validation.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+</testsuite>
+<testsuite name="specs/navigation.spec.ts" timestamp="2025-08-14T23:47:56.781Z" hostname="chromium" tests="8" failures="0" skipped="8" time="0" errors="0">
+<testcase name="Navigation Tests › should navigate to all main pages successfully" classname="specs/navigation.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Navigation Tests › should have working navigation menu" classname="specs/navigation.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Navigation Tests › should have working logo link" classname="specs/navigation.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Navigation Tests › should show mobile menu on small screens" classname="specs/navigation.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Navigation Tests › should handle 404 page gracefully" classname="specs/navigation.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Navigation Tests › should have no console errors on main pages" classname="specs/navigation.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Navigation Tests › should have proper meta tags on all pages" classname="specs/navigation.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Navigation Tests › should have working back/forward navigation" classname="specs/navigation.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+</testsuite>
+<testsuite name="specs/performance.spec.ts" timestamp="2025-08-14T23:47:56.781Z" hostname="chromium" tests="11" failures="0" skipped="11" time="0" errors="0">
+<testcase name="Performance Tests › should load home page within acceptable time" classname="specs/performance.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Performance Tests › should measure Core Web Vitals" classname="specs/performance.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Performance Tests › should measure time to interactive" classname="specs/performance.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Performance Tests › should have reasonable bundle sizes" classname="specs/performance.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Performance Tests › should load images efficiently" classname="specs/performance.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Performance Tests › should handle concurrent users simulation" classname="specs/performance.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Performance Tests › should measure contact form performance" classname="specs/performance.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Performance Tests › should measure postcode checker performance" classname="specs/performance.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Performance Tests › should check memory usage" classname="specs/performance.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Performance Tests › should validate font loading performance" classname="specs/performance.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Performance Tests › should check Third-party script performance" classname="specs/performance.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+</testsuite>
+<testsuite name="specs/postcode-checker.spec.ts" timestamp="2025-08-14T23:47:56.781Z" hostname="chromium" tests="11" failures="0" skipped="11" time="0" errors="0">
+<testcase name="Postcode Checker Tests › should display postcode checker form" classname="specs/postcode-checker.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Postcode Checker Tests › should validate full UK postcode format" classname="specs/postcode-checker.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Postcode Checker Tests › should handle covered postcodes correctly" classname="specs/postcode-checker.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Postcode Checker Tests › should handle potentially covered postcodes" classname="specs/postcode-checker.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Postcode Checker Tests › should handle postcode with different formats" classname="specs/postcode-checker.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Postcode Checker Tests › should prefill form postcode from URL" classname="specs/postcode-checker.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Postcode Checker Tests › should test coverage logic for all area codes" classname="specs/postcode-checker.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Postcode Checker Tests › should show confetti animation for covered postcodes" classname="specs/postcode-checker.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Postcode Checker Tests › should auto-scroll to form after confirmation" classname="specs/postcode-checker.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Postcode Checker Tests › should handle edge cases gracefully" classname="specs/postcode-checker.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Postcode Checker Tests › should maintain postcode state across page reloads" classname="specs/postcode-checker.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+</testsuite>
+<testsuite name="specs/responsive.spec.ts" timestamp="2025-08-14T23:47:56.781Z" hostname="chromium" tests="16" failures="0" skipped="16" time="0" errors="0">
+<testcase name="Mobile Responsiveness Tests › should display correctly on iPhone SE (375x667)" classname="specs/responsive.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Mobile Responsiveness Tests › should display correctly on iPhone 12 (390x844)" classname="specs/responsive.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Mobile Responsiveness Tests › should display correctly on iPad (768x1024)" classname="specs/responsive.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Mobile Responsiveness Tests › should display correctly on iPad Pro (1024x1366)" classname="specs/responsive.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Mobile Responsiveness Tests › should display correctly on Desktop Small (1280x720)" classname="specs/responsive.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Mobile Responsiveness Tests › should display correctly on Desktop Large (1920x1080)" classname="specs/responsive.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Mobile Responsiveness Tests › should handle mobile contact form correctly" classname="specs/responsive.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Mobile Responsiveness Tests › should handle tablet layout correctly" classname="specs/responsive.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Mobile Responsiveness Tests › should scale images properly across devices" classname="specs/responsive.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Mobile Responsiveness Tests › should maintain readability on small screens" classname="specs/responsive.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Mobile Responsiveness Tests › should handle orientation changes" classname="specs/responsive.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Mobile Responsiveness Tests › should handle touch interactions on mobile" classname="specs/responsive.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Mobile Responsiveness Tests › should display services grid responsively" classname="specs/responsive.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Mobile Responsiveness Tests › should handle long content on mobile" classname="specs/responsive.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Mobile Responsiveness Tests › should maintain form usability on small screens" classname="specs/responsive.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Mobile Responsiveness Tests › should handle responsive navigation menus" classname="specs/responsive.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+</testsuite>
+<testsuite name="specs/visual-regression.spec.ts" timestamp="2025-08-14T23:47:56.781Z" hostname="chromium" tests="16" failures="0" skipped="16" time="0" errors="0">
+<testcase name="Visual Regression Tests › should match home page screenshot" classname="specs/visual-regression.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Visual Regression Tests › should match home page hero section" classname="specs/visual-regression.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Visual Regression Tests › should match contact page screenshot" classname="specs/visual-regression.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Visual Regression Tests › should match postcode checker states" classname="specs/visual-regression.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Visual Regression Tests › should match mobile viewport screenshots" classname="specs/visual-regression.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Visual Regression Tests › should match tablet viewport screenshots" classname="specs/visual-regression.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Visual Regression Tests › should match contact form elements" classname="specs/visual-regression.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Visual Regression Tests › should match services section layout" classname="specs/visual-regression.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Visual Regression Tests › should match testimonials section" classname="specs/visual-regression.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Visual Regression Tests › should match FAQ section" classname="specs/visual-regression.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Visual Regression Tests › should handle dark mode if supported" classname="specs/visual-regression.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Visual Regression Tests › should match error states" classname="specs/visual-regression.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Visual Regression Tests › should match cross-browser rendering" classname="specs/visual-regression.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Visual Regression Tests › should handle loading states" classname="specs/visual-regression.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Visual Regression Tests › should match print styles" classname="specs/visual-regression.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Visual Regression Tests › should handle high contrast mode" classname="specs/visual-regression.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+</testsuite>
+<testsuite name="specs/contact-form.spec.ts" timestamp="2025-08-14T23:47:56.781Z" hostname="firefox" tests="11" failures="0" skipped="11" time="0" errors="0">
+<testcase name="Contact Form Tests › should display contact form correctly" classname="specs/contact-form.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Contact Form Tests › should have all required form fields" classname="specs/contact-form.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Contact Form Tests › should validate required fields" classname="specs/contact-form.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Contact Form Tests › should fill and submit contact form" classname="specs/contact-form.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Contact Form Tests › should handle email validation" classname="specs/contact-form.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Contact Form Tests › should check additional services" classname="specs/contact-form.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Contact Form Tests › should display business information" classname="specs/contact-form.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Contact Form Tests › should handle file uploads" classname="specs/contact-form.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Contact Form Tests › should show coverage information" classname="specs/contact-form.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Contact Form Tests › should have proper form accessibility" classname="specs/contact-form.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Contact Form Tests › should handle form submission gracefully" classname="specs/contact-form.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+</testsuite>
+<testsuite name="specs/cross-browser.spec.ts" timestamp="2025-08-14T23:47:56.781Z" hostname="firefox" tests="13" failures="0" skipped="13" time="0" errors="0">
+<testcase name="Cross-Browser Compatibility Tests › should load home page across all browsers" classname="specs/cross-browser.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Cross-Browser Compatibility Tests › should handle contact form across browsers" classname="specs/cross-browser.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Cross-Browser Compatibility Tests › should handle postcode checker across browsers" classname="specs/cross-browser.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Cross-Browser Compatibility Tests › should render CSS consistently across browsers" classname="specs/cross-browser.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Cross-Browser Compatibility Tests › should handle JavaScript interactions across browsers" classname="specs/cross-browser.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Cross-Browser Compatibility Tests › should handle mobile responsiveness across browsers" classname="specs/cross-browser.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Cross-Browser Compatibility Tests › should handle WebKit specific features" classname="specs/cross-browser.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Cross-Browser Compatibility Tests › should handle Firefox specific features" classname="specs/cross-browser.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Cross-Browser Compatibility Tests › should handle image loading across browsers" classname="specs/cross-browser.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Cross-Browser Compatibility Tests › should handle font rendering across browsers" classname="specs/cross-browser.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Cross-Browser Compatibility Tests › should handle animations and transitions across browsers" classname="specs/cross-browser.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Cross-Browser Compatibility Tests › should handle local storage across browsers" classname="specs/cross-browser.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Cross-Browser Compatibility Tests › should handle form submission across browsers" classname="specs/cross-browser.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+</testsuite>
+<testsuite name="specs/home-page.spec.ts" timestamp="2025-08-14T23:47:56.781Z" hostname="firefox" tests="15" failures="0" skipped="15" time="0" errors="0">
+<testcase name="Home Page Tests › should load home page successfully" classname="specs/home-page.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Home Page Tests › should display all main sections" classname="specs/home-page.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Home Page Tests › should have functional hero section" classname="specs/home-page.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Home Page Tests › should display services correctly" classname="specs/home-page.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Home Page Tests › should show statistics section" classname="specs/home-page.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Home Page Tests › should display process steps" classname="specs/home-page.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Home Page Tests › should show customer testimonials" classname="specs/home-page.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Home Page Tests › should display FAQ section" classname="specs/home-page.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Home Page Tests › should have working call-to-action section" classname="specs/home-page.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Home Page Tests › should navigate to contact page from CTA buttons" classname="specs/home-page.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Home Page Tests › should scroll to postcode checker" classname="specs/home-page.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Home Page Tests › should load all images properly" classname="specs/home-page.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Home Page Tests › should have proper heading hierarchy" classname="specs/home-page.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Home Page Tests › should display contact information" classname="specs/home-page.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Home Page Tests › should have working social media links" classname="specs/home-page.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+</testsuite>
+<testsuite name="specs/link-validation.spec.ts" timestamp="2025-08-14T23:47:56.781Z" hostname="firefox" tests="11" failures="0" skipped="11" time="0" errors="0">
+<testcase name="Link Validation Tests › should validate all internal links site-wide" classname="specs/link-validation.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Link Validation Tests › should validate home page links" classname="specs/link-validation.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Link Validation Tests › should validate contact page links" classname="specs/link-validation.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Link Validation Tests › should validate navigation links" classname="specs/link-validation.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Link Validation Tests › should validate footer links" classname="specs/link-validation.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Link Validation Tests › should validate CTA button links" classname="specs/link-validation.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Link Validation Tests › should validate phone and email links" classname="specs/link-validation.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Link Validation Tests › should validate WhatsApp links" classname="specs/link-validation.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Link Validation Tests › should check for broken assets (images, CSS, JS)" classname="specs/link-validation.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Link Validation Tests › should validate social media links" classname="specs/link-validation.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Link Validation Tests › should handle 404 pages gracefully" classname="specs/link-validation.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+</testsuite>
+<testsuite name="specs/navigation.spec.ts" timestamp="2025-08-14T23:47:56.781Z" hostname="firefox" tests="8" failures="0" skipped="8" time="0" errors="0">
+<testcase name="Navigation Tests › should navigate to all main pages successfully" classname="specs/navigation.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Navigation Tests › should have working navigation menu" classname="specs/navigation.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Navigation Tests › should have working logo link" classname="specs/navigation.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Navigation Tests › should show mobile menu on small screens" classname="specs/navigation.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Navigation Tests › should handle 404 page gracefully" classname="specs/navigation.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Navigation Tests › should have no console errors on main pages" classname="specs/navigation.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Navigation Tests › should have proper meta tags on all pages" classname="specs/navigation.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Navigation Tests › should have working back/forward navigation" classname="specs/navigation.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+</testsuite>
+<testsuite name="specs/performance.spec.ts" timestamp="2025-08-14T23:47:56.781Z" hostname="firefox" tests="11" failures="0" skipped="11" time="0" errors="0">
+<testcase name="Performance Tests › should load home page within acceptable time" classname="specs/performance.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Performance Tests › should measure Core Web Vitals" classname="specs/performance.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Performance Tests › should measure time to interactive" classname="specs/performance.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Performance Tests › should have reasonable bundle sizes" classname="specs/performance.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Performance Tests › should load images efficiently" classname="specs/performance.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Performance Tests › should handle concurrent users simulation" classname="specs/performance.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Performance Tests › should measure contact form performance" classname="specs/performance.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Performance Tests › should measure postcode checker performance" classname="specs/performance.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Performance Tests › should check memory usage" classname="specs/performance.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Performance Tests › should validate font loading performance" classname="specs/performance.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Performance Tests › should check Third-party script performance" classname="specs/performance.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+</testsuite>
+<testsuite name="specs/postcode-checker.spec.ts" timestamp="2025-08-14T23:47:56.781Z" hostname="firefox" tests="11" failures="0" skipped="11" time="0" errors="0">
+<testcase name="Postcode Checker Tests › should display postcode checker form" classname="specs/postcode-checker.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Postcode Checker Tests › should validate full UK postcode format" classname="specs/postcode-checker.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Postcode Checker Tests › should handle covered postcodes correctly" classname="specs/postcode-checker.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Postcode Checker Tests › should handle potentially covered postcodes" classname="specs/postcode-checker.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Postcode Checker Tests › should handle postcode with different formats" classname="specs/postcode-checker.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Postcode Checker Tests › should prefill form postcode from URL" classname="specs/postcode-checker.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Postcode Checker Tests › should test coverage logic for all area codes" classname="specs/postcode-checker.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Postcode Checker Tests › should show confetti animation for covered postcodes" classname="specs/postcode-checker.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Postcode Checker Tests › should auto-scroll to form after confirmation" classname="specs/postcode-checker.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Postcode Checker Tests › should handle edge cases gracefully" classname="specs/postcode-checker.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Postcode Checker Tests › should maintain postcode state across page reloads" classname="specs/postcode-checker.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+</testsuite>
+<testsuite name="specs/responsive.spec.ts" timestamp="2025-08-14T23:47:56.781Z" hostname="firefox" tests="16" failures="0" skipped="16" time="0" errors="0">
+<testcase name="Mobile Responsiveness Tests › should display correctly on iPhone SE (375x667)" classname="specs/responsive.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Mobile Responsiveness Tests › should display correctly on iPhone 12 (390x844)" classname="specs/responsive.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Mobile Responsiveness Tests › should display correctly on iPad (768x1024)" classname="specs/responsive.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Mobile Responsiveness Tests › should display correctly on iPad Pro (1024x1366)" classname="specs/responsive.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Mobile Responsiveness Tests › should display correctly on Desktop Small (1280x720)" classname="specs/responsive.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Mobile Responsiveness Tests › should display correctly on Desktop Large (1920x1080)" classname="specs/responsive.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Mobile Responsiveness Tests › should handle mobile contact form correctly" classname="specs/responsive.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Mobile Responsiveness Tests › should handle tablet layout correctly" classname="specs/responsive.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Mobile Responsiveness Tests › should scale images properly across devices" classname="specs/responsive.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Mobile Responsiveness Tests › should maintain readability on small screens" classname="specs/responsive.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Mobile Responsiveness Tests › should handle orientation changes" classname="specs/responsive.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Mobile Responsiveness Tests › should handle touch interactions on mobile" classname="specs/responsive.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Mobile Responsiveness Tests › should display services grid responsively" classname="specs/responsive.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Mobile Responsiveness Tests › should handle long content on mobile" classname="specs/responsive.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Mobile Responsiveness Tests › should maintain form usability on small screens" classname="specs/responsive.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Mobile Responsiveness Tests › should handle responsive navigation menus" classname="specs/responsive.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+</testsuite>
+<testsuite name="specs/visual-regression.spec.ts" timestamp="2025-08-14T23:47:56.781Z" hostname="firefox" tests="16" failures="0" skipped="16" time="0" errors="0">
+<testcase name="Visual Regression Tests › should match home page screenshot" classname="specs/visual-regression.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Visual Regression Tests › should match home page hero section" classname="specs/visual-regression.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Visual Regression Tests › should match contact page screenshot" classname="specs/visual-regression.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Visual Regression Tests › should match postcode checker states" classname="specs/visual-regression.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Visual Regression Tests › should match mobile viewport screenshots" classname="specs/visual-regression.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Visual Regression Tests › should match tablet viewport screenshots" classname="specs/visual-regression.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Visual Regression Tests › should match contact form elements" classname="specs/visual-regression.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Visual Regression Tests › should match services section layout" classname="specs/visual-regression.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Visual Regression Tests › should match testimonials section" classname="specs/visual-regression.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Visual Regression Tests › should match FAQ section" classname="specs/visual-regression.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Visual Regression Tests › should handle dark mode if supported" classname="specs/visual-regression.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Visual Regression Tests › should match error states" classname="specs/visual-regression.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Visual Regression Tests › should match cross-browser rendering" classname="specs/visual-regression.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Visual Regression Tests › should handle loading states" classname="specs/visual-regression.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Visual Regression Tests › should match print styles" classname="specs/visual-regression.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Visual Regression Tests › should handle high contrast mode" classname="specs/visual-regression.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+</testsuite>
+<testsuite name="specs/contact-form.spec.ts" timestamp="2025-08-14T23:47:56.781Z" hostname="webkit" tests="11" failures="0" skipped="11" time="0" errors="0">
+<testcase name="Contact Form Tests › should display contact form correctly" classname="specs/contact-form.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Contact Form Tests › should have all required form fields" classname="specs/contact-form.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Contact Form Tests › should validate required fields" classname="specs/contact-form.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Contact Form Tests › should fill and submit contact form" classname="specs/contact-form.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Contact Form Tests › should handle email validation" classname="specs/contact-form.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Contact Form Tests › should check additional services" classname="specs/contact-form.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Contact Form Tests › should display business information" classname="specs/contact-form.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Contact Form Tests › should handle file uploads" classname="specs/contact-form.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Contact Form Tests › should show coverage information" classname="specs/contact-form.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Contact Form Tests › should have proper form accessibility" classname="specs/contact-form.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Contact Form Tests › should handle form submission gracefully" classname="specs/contact-form.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+</testsuite>
+<testsuite name="specs/cross-browser.spec.ts" timestamp="2025-08-14T23:47:56.781Z" hostname="webkit" tests="13" failures="0" skipped="13" time="0" errors="0">
+<testcase name="Cross-Browser Compatibility Tests › should load home page across all browsers" classname="specs/cross-browser.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Cross-Browser Compatibility Tests › should handle contact form across browsers" classname="specs/cross-browser.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Cross-Browser Compatibility Tests › should handle postcode checker across browsers" classname="specs/cross-browser.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Cross-Browser Compatibility Tests › should render CSS consistently across browsers" classname="specs/cross-browser.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Cross-Browser Compatibility Tests › should handle JavaScript interactions across browsers" classname="specs/cross-browser.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Cross-Browser Compatibility Tests › should handle mobile responsiveness across browsers" classname="specs/cross-browser.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Cross-Browser Compatibility Tests › should handle WebKit specific features" classname="specs/cross-browser.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Cross-Browser Compatibility Tests › should handle Firefox specific features" classname="specs/cross-browser.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Cross-Browser Compatibility Tests › should handle image loading across browsers" classname="specs/cross-browser.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Cross-Browser Compatibility Tests › should handle font rendering across browsers" classname="specs/cross-browser.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Cross-Browser Compatibility Tests › should handle animations and transitions across browsers" classname="specs/cross-browser.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Cross-Browser Compatibility Tests › should handle local storage across browsers" classname="specs/cross-browser.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Cross-Browser Compatibility Tests › should handle form submission across browsers" classname="specs/cross-browser.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+</testsuite>
+<testsuite name="specs/home-page.spec.ts" timestamp="2025-08-14T23:47:56.781Z" hostname="webkit" tests="15" failures="0" skipped="15" time="0" errors="0">
+<testcase name="Home Page Tests › should load home page successfully" classname="specs/home-page.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Home Page Tests › should display all main sections" classname="specs/home-page.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Home Page Tests › should have functional hero section" classname="specs/home-page.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Home Page Tests › should display services correctly" classname="specs/home-page.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Home Page Tests › should show statistics section" classname="specs/home-page.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Home Page Tests › should display process steps" classname="specs/home-page.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Home Page Tests › should show customer testimonials" classname="specs/home-page.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Home Page Tests › should display FAQ section" classname="specs/home-page.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Home Page Tests › should have working call-to-action section" classname="specs/home-page.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Home Page Tests › should navigate to contact page from CTA buttons" classname="specs/home-page.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Home Page Tests › should scroll to postcode checker" classname="specs/home-page.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Home Page Tests › should load all images properly" classname="specs/home-page.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Home Page Tests › should have proper heading hierarchy" classname="specs/home-page.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Home Page Tests › should display contact information" classname="specs/home-page.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Home Page Tests › should have working social media links" classname="specs/home-page.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+</testsuite>
+<testsuite name="specs/link-validation.spec.ts" timestamp="2025-08-14T23:47:56.781Z" hostname="webkit" tests="11" failures="0" skipped="11" time="0" errors="0">
+<testcase name="Link Validation Tests › should validate all internal links site-wide" classname="specs/link-validation.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Link Validation Tests › should validate home page links" classname="specs/link-validation.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Link Validation Tests › should validate contact page links" classname="specs/link-validation.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Link Validation Tests › should validate navigation links" classname="specs/link-validation.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Link Validation Tests › should validate footer links" classname="specs/link-validation.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Link Validation Tests › should validate CTA button links" classname="specs/link-validation.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Link Validation Tests › should validate phone and email links" classname="specs/link-validation.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Link Validation Tests › should validate WhatsApp links" classname="specs/link-validation.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Link Validation Tests › should check for broken assets (images, CSS, JS)" classname="specs/link-validation.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Link Validation Tests › should validate social media links" classname="specs/link-validation.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Link Validation Tests › should handle 404 pages gracefully" classname="specs/link-validation.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+</testsuite>
+<testsuite name="specs/navigation.spec.ts" timestamp="2025-08-14T23:47:56.781Z" hostname="webkit" tests="8" failures="0" skipped="8" time="0" errors="0">
+<testcase name="Navigation Tests › should navigate to all main pages successfully" classname="specs/navigation.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Navigation Tests › should have working navigation menu" classname="specs/navigation.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Navigation Tests › should have working logo link" classname="specs/navigation.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Navigation Tests › should show mobile menu on small screens" classname="specs/navigation.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Navigation Tests › should handle 404 page gracefully" classname="specs/navigation.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Navigation Tests › should have no console errors on main pages" classname="specs/navigation.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Navigation Tests › should have proper meta tags on all pages" classname="specs/navigation.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Navigation Tests › should have working back/forward navigation" classname="specs/navigation.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+</testsuite>
+<testsuite name="specs/performance.spec.ts" timestamp="2025-08-14T23:47:56.781Z" hostname="webkit" tests="11" failures="0" skipped="11" time="0" errors="0">
+<testcase name="Performance Tests › should load home page within acceptable time" classname="specs/performance.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Performance Tests › should measure Core Web Vitals" classname="specs/performance.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Performance Tests › should measure time to interactive" classname="specs/performance.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Performance Tests › should have reasonable bundle sizes" classname="specs/performance.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Performance Tests › should load images efficiently" classname="specs/performance.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Performance Tests › should handle concurrent users simulation" classname="specs/performance.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Performance Tests › should measure contact form performance" classname="specs/performance.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Performance Tests › should measure postcode checker performance" classname="specs/performance.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Performance Tests › should check memory usage" classname="specs/performance.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Performance Tests › should validate font loading performance" classname="specs/performance.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Performance Tests › should check Third-party script performance" classname="specs/performance.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+</testsuite>
+<testsuite name="specs/postcode-checker.spec.ts" timestamp="2025-08-14T23:47:56.781Z" hostname="webkit" tests="11" failures="0" skipped="11" time="0" errors="0">
+<testcase name="Postcode Checker Tests › should display postcode checker form" classname="specs/postcode-checker.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Postcode Checker Tests › should validate full UK postcode format" classname="specs/postcode-checker.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Postcode Checker Tests › should handle covered postcodes correctly" classname="specs/postcode-checker.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Postcode Checker Tests › should handle potentially covered postcodes" classname="specs/postcode-checker.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Postcode Checker Tests › should handle postcode with different formats" classname="specs/postcode-checker.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Postcode Checker Tests › should prefill form postcode from URL" classname="specs/postcode-checker.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Postcode Checker Tests › should test coverage logic for all area codes" classname="specs/postcode-checker.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Postcode Checker Tests › should show confetti animation for covered postcodes" classname="specs/postcode-checker.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Postcode Checker Tests › should auto-scroll to form after confirmation" classname="specs/postcode-checker.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Postcode Checker Tests › should handle edge cases gracefully" classname="specs/postcode-checker.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Postcode Checker Tests › should maintain postcode state across page reloads" classname="specs/postcode-checker.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+</testsuite>
+<testsuite name="specs/responsive.spec.ts" timestamp="2025-08-14T23:47:56.781Z" hostname="webkit" tests="16" failures="0" skipped="16" time="0" errors="0">
+<testcase name="Mobile Responsiveness Tests › should display correctly on iPhone SE (375x667)" classname="specs/responsive.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Mobile Responsiveness Tests › should display correctly on iPhone 12 (390x844)" classname="specs/responsive.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Mobile Responsiveness Tests › should display correctly on iPad (768x1024)" classname="specs/responsive.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Mobile Responsiveness Tests › should display correctly on iPad Pro (1024x1366)" classname="specs/responsive.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Mobile Responsiveness Tests › should display correctly on Desktop Small (1280x720)" classname="specs/responsive.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Mobile Responsiveness Tests › should display correctly on Desktop Large (1920x1080)" classname="specs/responsive.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Mobile Responsiveness Tests › should handle mobile contact form correctly" classname="specs/responsive.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Mobile Responsiveness Tests › should handle tablet layout correctly" classname="specs/responsive.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Mobile Responsiveness Tests › should scale images properly across devices" classname="specs/responsive.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Mobile Responsiveness Tests › should maintain readability on small screens" classname="specs/responsive.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Mobile Responsiveness Tests › should handle orientation changes" classname="specs/responsive.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Mobile Responsiveness Tests › should handle touch interactions on mobile" classname="specs/responsive.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Mobile Responsiveness Tests › should display services grid responsively" classname="specs/responsive.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Mobile Responsiveness Tests › should handle long content on mobile" classname="specs/responsive.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Mobile Responsiveness Tests › should maintain form usability on small screens" classname="specs/responsive.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Mobile Responsiveness Tests › should handle responsive navigation menus" classname="specs/responsive.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+</testsuite>
+<testsuite name="specs/visual-regression.spec.ts" timestamp="2025-08-14T23:47:56.781Z" hostname="webkit" tests="16" failures="0" skipped="16" time="0" errors="0">
+<testcase name="Visual Regression Tests › should match home page screenshot" classname="specs/visual-regression.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Visual Regression Tests › should match home page hero section" classname="specs/visual-regression.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Visual Regression Tests › should match contact page screenshot" classname="specs/visual-regression.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Visual Regression Tests › should match postcode checker states" classname="specs/visual-regression.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Visual Regression Tests › should match mobile viewport screenshots" classname="specs/visual-regression.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Visual Regression Tests › should match tablet viewport screenshots" classname="specs/visual-regression.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Visual Regression Tests › should match contact form elements" classname="specs/visual-regression.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Visual Regression Tests › should match services section layout" classname="specs/visual-regression.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Visual Regression Tests › should match testimonials section" classname="specs/visual-regression.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Visual Regression Tests › should match FAQ section" classname="specs/visual-regression.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Visual Regression Tests › should handle dark mode if supported" classname="specs/visual-regression.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Visual Regression Tests › should match error states" classname="specs/visual-regression.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Visual Regression Tests › should match cross-browser rendering" classname="specs/visual-regression.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Visual Regression Tests › should handle loading states" classname="specs/visual-regression.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Visual Regression Tests › should match print styles" classname="specs/visual-regression.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Visual Regression Tests › should handle high contrast mode" classname="specs/visual-regression.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+</testsuite>
+<testsuite name="specs/contact-form.spec.ts" timestamp="2025-08-14T23:47:56.781Z" hostname="Mobile Chrome" tests="11" failures="0" skipped="11" time="0" errors="0">
+<testcase name="Contact Form Tests › should display contact form correctly" classname="specs/contact-form.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Contact Form Tests › should have all required form fields" classname="specs/contact-form.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Contact Form Tests › should validate required fields" classname="specs/contact-form.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Contact Form Tests › should fill and submit contact form" classname="specs/contact-form.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Contact Form Tests › should handle email validation" classname="specs/contact-form.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Contact Form Tests › should check additional services" classname="specs/contact-form.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Contact Form Tests › should display business information" classname="specs/contact-form.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Contact Form Tests › should handle file uploads" classname="specs/contact-form.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Contact Form Tests › should show coverage information" classname="specs/contact-form.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Contact Form Tests › should have proper form accessibility" classname="specs/contact-form.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Contact Form Tests › should handle form submission gracefully" classname="specs/contact-form.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+</testsuite>
+<testsuite name="specs/cross-browser.spec.ts" timestamp="2025-08-14T23:47:56.781Z" hostname="Mobile Chrome" tests="13" failures="0" skipped="13" time="0" errors="0">
+<testcase name="Cross-Browser Compatibility Tests › should load home page across all browsers" classname="specs/cross-browser.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Cross-Browser Compatibility Tests › should handle contact form across browsers" classname="specs/cross-browser.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Cross-Browser Compatibility Tests › should handle postcode checker across browsers" classname="specs/cross-browser.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Cross-Browser Compatibility Tests › should render CSS consistently across browsers" classname="specs/cross-browser.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Cross-Browser Compatibility Tests › should handle JavaScript interactions across browsers" classname="specs/cross-browser.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Cross-Browser Compatibility Tests › should handle mobile responsiveness across browsers" classname="specs/cross-browser.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Cross-Browser Compatibility Tests › should handle WebKit specific features" classname="specs/cross-browser.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Cross-Browser Compatibility Tests › should handle Firefox specific features" classname="specs/cross-browser.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Cross-Browser Compatibility Tests › should handle image loading across browsers" classname="specs/cross-browser.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Cross-Browser Compatibility Tests › should handle font rendering across browsers" classname="specs/cross-browser.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Cross-Browser Compatibility Tests › should handle animations and transitions across browsers" classname="specs/cross-browser.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Cross-Browser Compatibility Tests › should handle local storage across browsers" classname="specs/cross-browser.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Cross-Browser Compatibility Tests › should handle form submission across browsers" classname="specs/cross-browser.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+</testsuite>
+<testsuite name="specs/home-page.spec.ts" timestamp="2025-08-14T23:47:56.781Z" hostname="Mobile Chrome" tests="15" failures="0" skipped="15" time="0" errors="0">
+<testcase name="Home Page Tests › should load home page successfully" classname="specs/home-page.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Home Page Tests › should display all main sections" classname="specs/home-page.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Home Page Tests › should have functional hero section" classname="specs/home-page.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Home Page Tests › should display services correctly" classname="specs/home-page.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Home Page Tests › should show statistics section" classname="specs/home-page.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Home Page Tests › should display process steps" classname="specs/home-page.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Home Page Tests › should show customer testimonials" classname="specs/home-page.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Home Page Tests › should display FAQ section" classname="specs/home-page.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Home Page Tests › should have working call-to-action section" classname="specs/home-page.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Home Page Tests › should navigate to contact page from CTA buttons" classname="specs/home-page.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Home Page Tests › should scroll to postcode checker" classname="specs/home-page.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Home Page Tests › should load all images properly" classname="specs/home-page.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Home Page Tests › should have proper heading hierarchy" classname="specs/home-page.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Home Page Tests › should display contact information" classname="specs/home-page.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Home Page Tests › should have working social media links" classname="specs/home-page.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+</testsuite>
+<testsuite name="specs/link-validation.spec.ts" timestamp="2025-08-14T23:47:56.781Z" hostname="Mobile Chrome" tests="11" failures="0" skipped="11" time="0" errors="0">
+<testcase name="Link Validation Tests › should validate all internal links site-wide" classname="specs/link-validation.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Link Validation Tests › should validate home page links" classname="specs/link-validation.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Link Validation Tests › should validate contact page links" classname="specs/link-validation.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Link Validation Tests › should validate navigation links" classname="specs/link-validation.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Link Validation Tests › should validate footer links" classname="specs/link-validation.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Link Validation Tests › should validate CTA button links" classname="specs/link-validation.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Link Validation Tests › should validate phone and email links" classname="specs/link-validation.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Link Validation Tests › should validate WhatsApp links" classname="specs/link-validation.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Link Validation Tests › should check for broken assets (images, CSS, JS)" classname="specs/link-validation.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Link Validation Tests › should validate social media links" classname="specs/link-validation.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Link Validation Tests › should handle 404 pages gracefully" classname="specs/link-validation.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+</testsuite>
+<testsuite name="specs/navigation.spec.ts" timestamp="2025-08-14T23:47:56.781Z" hostname="Mobile Chrome" tests="8" failures="0" skipped="8" time="0" errors="0">
+<testcase name="Navigation Tests › should navigate to all main pages successfully" classname="specs/navigation.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Navigation Tests › should have working navigation menu" classname="specs/navigation.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Navigation Tests › should have working logo link" classname="specs/navigation.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Navigation Tests › should show mobile menu on small screens" classname="specs/navigation.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Navigation Tests › should handle 404 page gracefully" classname="specs/navigation.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Navigation Tests › should have no console errors on main pages" classname="specs/navigation.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Navigation Tests › should have proper meta tags on all pages" classname="specs/navigation.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Navigation Tests › should have working back/forward navigation" classname="specs/navigation.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+</testsuite>
+<testsuite name="specs/performance.spec.ts" timestamp="2025-08-14T23:47:56.781Z" hostname="Mobile Chrome" tests="11" failures="0" skipped="11" time="0" errors="0">
+<testcase name="Performance Tests › should load home page within acceptable time" classname="specs/performance.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Performance Tests › should measure Core Web Vitals" classname="specs/performance.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Performance Tests › should measure time to interactive" classname="specs/performance.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Performance Tests › should have reasonable bundle sizes" classname="specs/performance.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Performance Tests › should load images efficiently" classname="specs/performance.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Performance Tests › should handle concurrent users simulation" classname="specs/performance.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Performance Tests › should measure contact form performance" classname="specs/performance.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Performance Tests › should measure postcode checker performance" classname="specs/performance.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Performance Tests › should check memory usage" classname="specs/performance.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Performance Tests › should validate font loading performance" classname="specs/performance.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Performance Tests › should check Third-party script performance" classname="specs/performance.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+</testsuite>
+<testsuite name="specs/postcode-checker.spec.ts" timestamp="2025-08-14T23:47:56.781Z" hostname="Mobile Chrome" tests="11" failures="0" skipped="11" time="0" errors="0">
+<testcase name="Postcode Checker Tests › should display postcode checker form" classname="specs/postcode-checker.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Postcode Checker Tests › should validate full UK postcode format" classname="specs/postcode-checker.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Postcode Checker Tests › should handle covered postcodes correctly" classname="specs/postcode-checker.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Postcode Checker Tests › should handle potentially covered postcodes" classname="specs/postcode-checker.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Postcode Checker Tests › should handle postcode with different formats" classname="specs/postcode-checker.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Postcode Checker Tests › should prefill form postcode from URL" classname="specs/postcode-checker.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Postcode Checker Tests › should test coverage logic for all area codes" classname="specs/postcode-checker.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Postcode Checker Tests › should show confetti animation for covered postcodes" classname="specs/postcode-checker.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Postcode Checker Tests › should auto-scroll to form after confirmation" classname="specs/postcode-checker.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Postcode Checker Tests › should handle edge cases gracefully" classname="specs/postcode-checker.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Postcode Checker Tests › should maintain postcode state across page reloads" classname="specs/postcode-checker.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+</testsuite>
+<testsuite name="specs/responsive.spec.ts" timestamp="2025-08-14T23:47:56.781Z" hostname="Mobile Chrome" tests="16" failures="0" skipped="16" time="0" errors="0">
+<testcase name="Mobile Responsiveness Tests › should display correctly on iPhone SE (375x667)" classname="specs/responsive.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Mobile Responsiveness Tests › should display correctly on iPhone 12 (390x844)" classname="specs/responsive.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Mobile Responsiveness Tests › should display correctly on iPad (768x1024)" classname="specs/responsive.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Mobile Responsiveness Tests › should display correctly on iPad Pro (1024x1366)" classname="specs/responsive.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Mobile Responsiveness Tests › should display correctly on Desktop Small (1280x720)" classname="specs/responsive.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Mobile Responsiveness Tests › should display correctly on Desktop Large (1920x1080)" classname="specs/responsive.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Mobile Responsiveness Tests › should handle mobile contact form correctly" classname="specs/responsive.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Mobile Responsiveness Tests › should handle tablet layout correctly" classname="specs/responsive.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Mobile Responsiveness Tests › should scale images properly across devices" classname="specs/responsive.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Mobile Responsiveness Tests › should maintain readability on small screens" classname="specs/responsive.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Mobile Responsiveness Tests › should handle orientation changes" classname="specs/responsive.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Mobile Responsiveness Tests › should handle touch interactions on mobile" classname="specs/responsive.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Mobile Responsiveness Tests › should display services grid responsively" classname="specs/responsive.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Mobile Responsiveness Tests › should handle long content on mobile" classname="specs/responsive.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Mobile Responsiveness Tests › should maintain form usability on small screens" classname="specs/responsive.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Mobile Responsiveness Tests › should handle responsive navigation menus" classname="specs/responsive.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+</testsuite>
+<testsuite name="specs/visual-regression.spec.ts" timestamp="2025-08-14T23:47:56.781Z" hostname="Mobile Chrome" tests="16" failures="0" skipped="16" time="0" errors="0">
+<testcase name="Visual Regression Tests › should match home page screenshot" classname="specs/visual-regression.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Visual Regression Tests › should match home page hero section" classname="specs/visual-regression.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Visual Regression Tests › should match contact page screenshot" classname="specs/visual-regression.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Visual Regression Tests › should match postcode checker states" classname="specs/visual-regression.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Visual Regression Tests › should match mobile viewport screenshots" classname="specs/visual-regression.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Visual Regression Tests › should match tablet viewport screenshots" classname="specs/visual-regression.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Visual Regression Tests › should match contact form elements" classname="specs/visual-regression.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Visual Regression Tests › should match services section layout" classname="specs/visual-regression.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Visual Regression Tests › should match testimonials section" classname="specs/visual-regression.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Visual Regression Tests › should match FAQ section" classname="specs/visual-regression.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Visual Regression Tests › should handle dark mode if supported" classname="specs/visual-regression.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Visual Regression Tests › should match error states" classname="specs/visual-regression.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Visual Regression Tests › should match cross-browser rendering" classname="specs/visual-regression.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Visual Regression Tests › should handle loading states" classname="specs/visual-regression.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Visual Regression Tests › should match print styles" classname="specs/visual-regression.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Visual Regression Tests › should handle high contrast mode" classname="specs/visual-regression.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+</testsuite>
+<testsuite name="specs/contact-form.spec.ts" timestamp="2025-08-14T23:47:56.781Z" hostname="Mobile Safari" tests="11" failures="0" skipped="11" time="0" errors="0">
+<testcase name="Contact Form Tests › should display contact form correctly" classname="specs/contact-form.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Contact Form Tests › should have all required form fields" classname="specs/contact-form.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Contact Form Tests › should validate required fields" classname="specs/contact-form.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Contact Form Tests › should fill and submit contact form" classname="specs/contact-form.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Contact Form Tests › should handle email validation" classname="specs/contact-form.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Contact Form Tests › should check additional services" classname="specs/contact-form.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Contact Form Tests › should display business information" classname="specs/contact-form.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Contact Form Tests › should handle file uploads" classname="specs/contact-form.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Contact Form Tests › should show coverage information" classname="specs/contact-form.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Contact Form Tests › should have proper form accessibility" classname="specs/contact-form.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Contact Form Tests › should handle form submission gracefully" classname="specs/contact-form.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+</testsuite>
+<testsuite name="specs/cross-browser.spec.ts" timestamp="2025-08-14T23:47:56.781Z" hostname="Mobile Safari" tests="13" failures="0" skipped="13" time="0" errors="0">
+<testcase name="Cross-Browser Compatibility Tests › should load home page across all browsers" classname="specs/cross-browser.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Cross-Browser Compatibility Tests › should handle contact form across browsers" classname="specs/cross-browser.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Cross-Browser Compatibility Tests › should handle postcode checker across browsers" classname="specs/cross-browser.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Cross-Browser Compatibility Tests › should render CSS consistently across browsers" classname="specs/cross-browser.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Cross-Browser Compatibility Tests › should handle JavaScript interactions across browsers" classname="specs/cross-browser.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Cross-Browser Compatibility Tests › should handle mobile responsiveness across browsers" classname="specs/cross-browser.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Cross-Browser Compatibility Tests › should handle WebKit specific features" classname="specs/cross-browser.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Cross-Browser Compatibility Tests › should handle Firefox specific features" classname="specs/cross-browser.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Cross-Browser Compatibility Tests › should handle image loading across browsers" classname="specs/cross-browser.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Cross-Browser Compatibility Tests › should handle font rendering across browsers" classname="specs/cross-browser.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Cross-Browser Compatibility Tests › should handle animations and transitions across browsers" classname="specs/cross-browser.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Cross-Browser Compatibility Tests › should handle local storage across browsers" classname="specs/cross-browser.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Cross-Browser Compatibility Tests › should handle form submission across browsers" classname="specs/cross-browser.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+</testsuite>
+<testsuite name="specs/home-page.spec.ts" timestamp="2025-08-14T23:47:56.781Z" hostname="Mobile Safari" tests="15" failures="0" skipped="15" time="0" errors="0">
+<testcase name="Home Page Tests › should load home page successfully" classname="specs/home-page.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Home Page Tests › should display all main sections" classname="specs/home-page.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Home Page Tests › should have functional hero section" classname="specs/home-page.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Home Page Tests › should display services correctly" classname="specs/home-page.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Home Page Tests › should show statistics section" classname="specs/home-page.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Home Page Tests › should display process steps" classname="specs/home-page.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Home Page Tests › should show customer testimonials" classname="specs/home-page.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Home Page Tests › should display FAQ section" classname="specs/home-page.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Home Page Tests › should have working call-to-action section" classname="specs/home-page.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Home Page Tests › should navigate to contact page from CTA buttons" classname="specs/home-page.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Home Page Tests › should scroll to postcode checker" classname="specs/home-page.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Home Page Tests › should load all images properly" classname="specs/home-page.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Home Page Tests › should have proper heading hierarchy" classname="specs/home-page.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Home Page Tests › should display contact information" classname="specs/home-page.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Home Page Tests › should have working social media links" classname="specs/home-page.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+</testsuite>
+<testsuite name="specs/link-validation.spec.ts" timestamp="2025-08-14T23:47:56.781Z" hostname="Mobile Safari" tests="11" failures="0" skipped="11" time="0" errors="0">
+<testcase name="Link Validation Tests › should validate all internal links site-wide" classname="specs/link-validation.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Link Validation Tests › should validate home page links" classname="specs/link-validation.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Link Validation Tests › should validate contact page links" classname="specs/link-validation.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Link Validation Tests › should validate navigation links" classname="specs/link-validation.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Link Validation Tests › should validate footer links" classname="specs/link-validation.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Link Validation Tests › should validate CTA button links" classname="specs/link-validation.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Link Validation Tests › should validate phone and email links" classname="specs/link-validation.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Link Validation Tests › should validate WhatsApp links" classname="specs/link-validation.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Link Validation Tests › should check for broken assets (images, CSS, JS)" classname="specs/link-validation.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Link Validation Tests › should validate social media links" classname="specs/link-validation.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Link Validation Tests › should handle 404 pages gracefully" classname="specs/link-validation.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+</testsuite>
+<testsuite name="specs/navigation.spec.ts" timestamp="2025-08-14T23:47:56.781Z" hostname="Mobile Safari" tests="8" failures="0" skipped="8" time="0" errors="0">
+<testcase name="Navigation Tests › should navigate to all main pages successfully" classname="specs/navigation.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Navigation Tests › should have working navigation menu" classname="specs/navigation.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Navigation Tests › should have working logo link" classname="specs/navigation.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Navigation Tests › should show mobile menu on small screens" classname="specs/navigation.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Navigation Tests › should handle 404 page gracefully" classname="specs/navigation.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Navigation Tests › should have no console errors on main pages" classname="specs/navigation.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Navigation Tests › should have proper meta tags on all pages" classname="specs/navigation.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Navigation Tests › should have working back/forward navigation" classname="specs/navigation.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+</testsuite>
+<testsuite name="specs/performance.spec.ts" timestamp="2025-08-14T23:47:56.781Z" hostname="Mobile Safari" tests="11" failures="0" skipped="11" time="0" errors="0">
+<testcase name="Performance Tests › should load home page within acceptable time" classname="specs/performance.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Performance Tests › should measure Core Web Vitals" classname="specs/performance.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Performance Tests › should measure time to interactive" classname="specs/performance.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Performance Tests › should have reasonable bundle sizes" classname="specs/performance.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Performance Tests › should load images efficiently" classname="specs/performance.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Performance Tests › should handle concurrent users simulation" classname="specs/performance.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Performance Tests › should measure contact form performance" classname="specs/performance.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Performance Tests › should measure postcode checker performance" classname="specs/performance.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Performance Tests › should check memory usage" classname="specs/performance.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Performance Tests › should validate font loading performance" classname="specs/performance.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Performance Tests › should check Third-party script performance" classname="specs/performance.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+</testsuite>
+<testsuite name="specs/postcode-checker.spec.ts" timestamp="2025-08-14T23:47:56.781Z" hostname="Mobile Safari" tests="11" failures="0" skipped="11" time="0" errors="0">
+<testcase name="Postcode Checker Tests › should display postcode checker form" classname="specs/postcode-checker.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Postcode Checker Tests › should validate full UK postcode format" classname="specs/postcode-checker.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Postcode Checker Tests › should handle covered postcodes correctly" classname="specs/postcode-checker.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Postcode Checker Tests › should handle potentially covered postcodes" classname="specs/postcode-checker.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Postcode Checker Tests › should handle postcode with different formats" classname="specs/postcode-checker.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Postcode Checker Tests › should prefill form postcode from URL" classname="specs/postcode-checker.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Postcode Checker Tests › should test coverage logic for all area codes" classname="specs/postcode-checker.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Postcode Checker Tests › should show confetti animation for covered postcodes" classname="specs/postcode-checker.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Postcode Checker Tests › should auto-scroll to form after confirmation" classname="specs/postcode-checker.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Postcode Checker Tests › should handle edge cases gracefully" classname="specs/postcode-checker.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Postcode Checker Tests › should maintain postcode state across page reloads" classname="specs/postcode-checker.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+</testsuite>
+<testsuite name="specs/responsive.spec.ts" timestamp="2025-08-14T23:47:56.781Z" hostname="Mobile Safari" tests="16" failures="0" skipped="16" time="0" errors="0">
+<testcase name="Mobile Responsiveness Tests › should display correctly on iPhone SE (375x667)" classname="specs/responsive.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Mobile Responsiveness Tests › should display correctly on iPhone 12 (390x844)" classname="specs/responsive.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Mobile Responsiveness Tests › should display correctly on iPad (768x1024)" classname="specs/responsive.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Mobile Responsiveness Tests › should display correctly on iPad Pro (1024x1366)" classname="specs/responsive.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Mobile Responsiveness Tests › should display correctly on Desktop Small (1280x720)" classname="specs/responsive.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Mobile Responsiveness Tests › should display correctly on Desktop Large (1920x1080)" classname="specs/responsive.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Mobile Responsiveness Tests › should handle mobile contact form correctly" classname="specs/responsive.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Mobile Responsiveness Tests › should handle tablet layout correctly" classname="specs/responsive.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Mobile Responsiveness Tests › should scale images properly across devices" classname="specs/responsive.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Mobile Responsiveness Tests › should maintain readability on small screens" classname="specs/responsive.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Mobile Responsiveness Tests › should handle orientation changes" classname="specs/responsive.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Mobile Responsiveness Tests › should handle touch interactions on mobile" classname="specs/responsive.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Mobile Responsiveness Tests › should display services grid responsively" classname="specs/responsive.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Mobile Responsiveness Tests › should handle long content on mobile" classname="specs/responsive.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Mobile Responsiveness Tests › should maintain form usability on small screens" classname="specs/responsive.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Mobile Responsiveness Tests › should handle responsive navigation menus" classname="specs/responsive.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+</testsuite>
+<testsuite name="specs/visual-regression.spec.ts" timestamp="2025-08-14T23:47:56.781Z" hostname="Mobile Safari" tests="16" failures="0" skipped="16" time="0" errors="0">
+<testcase name="Visual Regression Tests › should match home page screenshot" classname="specs/visual-regression.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Visual Regression Tests › should match home page hero section" classname="specs/visual-regression.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Visual Regression Tests › should match contact page screenshot" classname="specs/visual-regression.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Visual Regression Tests › should match postcode checker states" classname="specs/visual-regression.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Visual Regression Tests › should match mobile viewport screenshots" classname="specs/visual-regression.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Visual Regression Tests › should match tablet viewport screenshots" classname="specs/visual-regression.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Visual Regression Tests › should match contact form elements" classname="specs/visual-regression.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Visual Regression Tests › should match services section layout" classname="specs/visual-regression.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Visual Regression Tests › should match testimonials section" classname="specs/visual-regression.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Visual Regression Tests › should match FAQ section" classname="specs/visual-regression.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Visual Regression Tests › should handle dark mode if supported" classname="specs/visual-regression.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Visual Regression Tests › should match error states" classname="specs/visual-regression.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Visual Regression Tests › should match cross-browser rendering" classname="specs/visual-regression.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Visual Regression Tests › should handle loading states" classname="specs/visual-regression.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Visual Regression Tests › should match print styles" classname="specs/visual-regression.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Visual Regression Tests › should handle high contrast mode" classname="specs/visual-regression.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+</testsuite>
+<testsuite name="specs/contact-form.spec.ts" timestamp="2025-08-14T23:47:56.781Z" hostname="iPad" tests="11" failures="0" skipped="11" time="0" errors="0">
+<testcase name="Contact Form Tests › should display contact form correctly" classname="specs/contact-form.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Contact Form Tests › should have all required form fields" classname="specs/contact-form.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Contact Form Tests › should validate required fields" classname="specs/contact-form.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Contact Form Tests › should fill and submit contact form" classname="specs/contact-form.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Contact Form Tests › should handle email validation" classname="specs/contact-form.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Contact Form Tests › should check additional services" classname="specs/contact-form.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Contact Form Tests › should display business information" classname="specs/contact-form.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Contact Form Tests › should handle file uploads" classname="specs/contact-form.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Contact Form Tests › should show coverage information" classname="specs/contact-form.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Contact Form Tests › should have proper form accessibility" classname="specs/contact-form.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Contact Form Tests › should handle form submission gracefully" classname="specs/contact-form.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+</testsuite>
+<testsuite name="specs/cross-browser.spec.ts" timestamp="2025-08-14T23:47:56.781Z" hostname="iPad" tests="13" failures="0" skipped="13" time="0" errors="0">
+<testcase name="Cross-Browser Compatibility Tests › should load home page across all browsers" classname="specs/cross-browser.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Cross-Browser Compatibility Tests › should handle contact form across browsers" classname="specs/cross-browser.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Cross-Browser Compatibility Tests › should handle postcode checker across browsers" classname="specs/cross-browser.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Cross-Browser Compatibility Tests › should render CSS consistently across browsers" classname="specs/cross-browser.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Cross-Browser Compatibility Tests › should handle JavaScript interactions across browsers" classname="specs/cross-browser.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Cross-Browser Compatibility Tests › should handle mobile responsiveness across browsers" classname="specs/cross-browser.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Cross-Browser Compatibility Tests › should handle WebKit specific features" classname="specs/cross-browser.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Cross-Browser Compatibility Tests › should handle Firefox specific features" classname="specs/cross-browser.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Cross-Browser Compatibility Tests › should handle image loading across browsers" classname="specs/cross-browser.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Cross-Browser Compatibility Tests › should handle font rendering across browsers" classname="specs/cross-browser.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Cross-Browser Compatibility Tests › should handle animations and transitions across browsers" classname="specs/cross-browser.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Cross-Browser Compatibility Tests › should handle local storage across browsers" classname="specs/cross-browser.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Cross-Browser Compatibility Tests › should handle form submission across browsers" classname="specs/cross-browser.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+</testsuite>
+<testsuite name="specs/home-page.spec.ts" timestamp="2025-08-14T23:47:56.781Z" hostname="iPad" tests="15" failures="0" skipped="15" time="0" errors="0">
+<testcase name="Home Page Tests › should load home page successfully" classname="specs/home-page.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Home Page Tests › should display all main sections" classname="specs/home-page.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Home Page Tests › should have functional hero section" classname="specs/home-page.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Home Page Tests › should display services correctly" classname="specs/home-page.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Home Page Tests › should show statistics section" classname="specs/home-page.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Home Page Tests › should display process steps" classname="specs/home-page.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Home Page Tests › should show customer testimonials" classname="specs/home-page.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Home Page Tests › should display FAQ section" classname="specs/home-page.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Home Page Tests › should have working call-to-action section" classname="specs/home-page.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Home Page Tests › should navigate to contact page from CTA buttons" classname="specs/home-page.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Home Page Tests › should scroll to postcode checker" classname="specs/home-page.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Home Page Tests › should load all images properly" classname="specs/home-page.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Home Page Tests › should have proper heading hierarchy" classname="specs/home-page.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Home Page Tests › should display contact information" classname="specs/home-page.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Home Page Tests › should have working social media links" classname="specs/home-page.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+</testsuite>
+<testsuite name="specs/link-validation.spec.ts" timestamp="2025-08-14T23:47:56.781Z" hostname="iPad" tests="11" failures="0" skipped="11" time="0" errors="0">
+<testcase name="Link Validation Tests › should validate all internal links site-wide" classname="specs/link-validation.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Link Validation Tests › should validate home page links" classname="specs/link-validation.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Link Validation Tests › should validate contact page links" classname="specs/link-validation.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Link Validation Tests › should validate navigation links" classname="specs/link-validation.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Link Validation Tests › should validate footer links" classname="specs/link-validation.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Link Validation Tests › should validate CTA button links" classname="specs/link-validation.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Link Validation Tests › should validate phone and email links" classname="specs/link-validation.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Link Validation Tests › should validate WhatsApp links" classname="specs/link-validation.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Link Validation Tests › should check for broken assets (images, CSS, JS)" classname="specs/link-validation.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Link Validation Tests › should validate social media links" classname="specs/link-validation.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Link Validation Tests › should handle 404 pages gracefully" classname="specs/link-validation.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+</testsuite>
+<testsuite name="specs/navigation.spec.ts" timestamp="2025-08-14T23:47:56.781Z" hostname="iPad" tests="8" failures="0" skipped="8" time="0" errors="0">
+<testcase name="Navigation Tests › should navigate to all main pages successfully" classname="specs/navigation.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Navigation Tests › should have working navigation menu" classname="specs/navigation.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Navigation Tests › should have working logo link" classname="specs/navigation.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Navigation Tests › should show mobile menu on small screens" classname="specs/navigation.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Navigation Tests › should handle 404 page gracefully" classname="specs/navigation.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Navigation Tests › should have no console errors on main pages" classname="specs/navigation.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Navigation Tests › should have proper meta tags on all pages" classname="specs/navigation.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Navigation Tests › should have working back/forward navigation" classname="specs/navigation.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+</testsuite>
+<testsuite name="specs/performance.spec.ts" timestamp="2025-08-14T23:47:56.781Z" hostname="iPad" tests="11" failures="0" skipped="11" time="0" errors="0">
+<testcase name="Performance Tests › should load home page within acceptable time" classname="specs/performance.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Performance Tests › should measure Core Web Vitals" classname="specs/performance.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Performance Tests › should measure time to interactive" classname="specs/performance.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Performance Tests › should have reasonable bundle sizes" classname="specs/performance.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Performance Tests › should load images efficiently" classname="specs/performance.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Performance Tests › should handle concurrent users simulation" classname="specs/performance.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Performance Tests › should measure contact form performance" classname="specs/performance.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Performance Tests › should measure postcode checker performance" classname="specs/performance.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Performance Tests › should check memory usage" classname="specs/performance.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Performance Tests › should validate font loading performance" classname="specs/performance.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Performance Tests › should check Third-party script performance" classname="specs/performance.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+</testsuite>
+<testsuite name="specs/postcode-checker.spec.ts" timestamp="2025-08-14T23:47:56.781Z" hostname="iPad" tests="11" failures="0" skipped="11" time="0" errors="0">
+<testcase name="Postcode Checker Tests › should display postcode checker form" classname="specs/postcode-checker.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Postcode Checker Tests › should validate full UK postcode format" classname="specs/postcode-checker.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Postcode Checker Tests › should handle covered postcodes correctly" classname="specs/postcode-checker.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Postcode Checker Tests › should handle potentially covered postcodes" classname="specs/postcode-checker.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Postcode Checker Tests › should handle postcode with different formats" classname="specs/postcode-checker.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Postcode Checker Tests › should prefill form postcode from URL" classname="specs/postcode-checker.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Postcode Checker Tests › should test coverage logic for all area codes" classname="specs/postcode-checker.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Postcode Checker Tests › should show confetti animation for covered postcodes" classname="specs/postcode-checker.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Postcode Checker Tests › should auto-scroll to form after confirmation" classname="specs/postcode-checker.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Postcode Checker Tests › should handle edge cases gracefully" classname="specs/postcode-checker.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Postcode Checker Tests › should maintain postcode state across page reloads" classname="specs/postcode-checker.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+</testsuite>
+<testsuite name="specs/responsive.spec.ts" timestamp="2025-08-14T23:47:56.781Z" hostname="iPad" tests="16" failures="0" skipped="16" time="0" errors="0">
+<testcase name="Mobile Responsiveness Tests › should display correctly on iPhone SE (375x667)" classname="specs/responsive.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Mobile Responsiveness Tests › should display correctly on iPhone 12 (390x844)" classname="specs/responsive.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Mobile Responsiveness Tests › should display correctly on iPad (768x1024)" classname="specs/responsive.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Mobile Responsiveness Tests › should display correctly on iPad Pro (1024x1366)" classname="specs/responsive.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Mobile Responsiveness Tests › should display correctly on Desktop Small (1280x720)" classname="specs/responsive.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Mobile Responsiveness Tests › should display correctly on Desktop Large (1920x1080)" classname="specs/responsive.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Mobile Responsiveness Tests › should handle mobile contact form correctly" classname="specs/responsive.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Mobile Responsiveness Tests › should handle tablet layout correctly" classname="specs/responsive.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Mobile Responsiveness Tests › should scale images properly across devices" classname="specs/responsive.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Mobile Responsiveness Tests › should maintain readability on small screens" classname="specs/responsive.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Mobile Responsiveness Tests › should handle orientation changes" classname="specs/responsive.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Mobile Responsiveness Tests › should handle touch interactions on mobile" classname="specs/responsive.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Mobile Responsiveness Tests › should display services grid responsively" classname="specs/responsive.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Mobile Responsiveness Tests › should handle long content on mobile" classname="specs/responsive.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Mobile Responsiveness Tests › should maintain form usability on small screens" classname="specs/responsive.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Mobile Responsiveness Tests › should handle responsive navigation menus" classname="specs/responsive.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+</testsuite>
+<testsuite name="specs/visual-regression.spec.ts" timestamp="2025-08-14T23:47:56.781Z" hostname="iPad" tests="16" failures="0" skipped="16" time="0" errors="0">
+<testcase name="Visual Regression Tests › should match home page screenshot" classname="specs/visual-regression.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Visual Regression Tests › should match home page hero section" classname="specs/visual-regression.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Visual Regression Tests › should match contact page screenshot" classname="specs/visual-regression.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Visual Regression Tests › should match postcode checker states" classname="specs/visual-regression.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Visual Regression Tests › should match mobile viewport screenshots" classname="specs/visual-regression.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Visual Regression Tests › should match tablet viewport screenshots" classname="specs/visual-regression.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Visual Regression Tests › should match contact form elements" classname="specs/visual-regression.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Visual Regression Tests › should match services section layout" classname="specs/visual-regression.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Visual Regression Tests › should match testimonials section" classname="specs/visual-regression.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Visual Regression Tests › should match FAQ section" classname="specs/visual-regression.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Visual Regression Tests › should handle dark mode if supported" classname="specs/visual-regression.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Visual Regression Tests › should match error states" classname="specs/visual-regression.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Visual Regression Tests › should match cross-browser rendering" classname="specs/visual-regression.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Visual Regression Tests › should handle loading states" classname="specs/visual-regression.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Visual Regression Tests › should match print styles" classname="specs/visual-regression.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Visual Regression Tests › should handle high contrast mode" classname="specs/visual-regression.spec.ts" time="0">
+<skipped>
+</skipped>
+</testcase>
+</testsuite>
+</testsuites>

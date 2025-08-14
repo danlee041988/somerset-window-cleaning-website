@@ -1,2 +1,68 @@
+# Robots.txt for Somerset Window Cleaning
+# Professional window cleaning services across Somerset, UK
+# Last updated: 2025-01-14
+
+# Allow all crawlers access to public content
 User-agent: *
-Disallow:
+Allow: /
+
+# Prioritise local business pages for UK search engines
+# Home page - key landing page
+Allow: /
+
+# Services pages - core business offerings
+Allow: /services
+Allow: /about
+Allow: /contact
+Allow: /areas
+
+# Allow crawling of assets and static content
+Allow: /assets/
+Allow: /brand/
+Allow: /_astro/
+
+# Block admin and development areas
+Disallow: /admin/
+Disallow: /_/
+Disallow: /api/
+Disallow: /decapcms/
+
+# Block temporary and test pages
+Disallow: /*?*utm_*
+Disallow: /*?*fbclid*
+Disallow: /*?*gclid*
+
+# Sitemap locations for efficient crawling
+# XML sitemaps for search engines
+Sitemap: https://somersetwindowcleaning.co.uk/sitemap-index.xml
+Sitemap: https://somersetwindowcleaning.co.uk/sitemap-0.xml
+
+# HTML sitemap for users
+Sitemap: https://somersetwindowcleaning.co.uk/sitemap
+
+# Crawl delay to be respectful to server resources
+Crawl-delay: 1
+
+# Specific instructions for major search engines
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+# Local business optimisation - encourage crawling of location pages
+User-agent: *
+Allow: /areas
+Allow: /contact
+
+# Block known problematic crawlers
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /

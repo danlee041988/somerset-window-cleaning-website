@@ -1,0 +1,360 @@
+---
+/**
+ * Accessibility Enhancements Component
+ * 
+ * Implements WCAG 2.1 AA compliance improvements including:
+ * - Skip links for keyboard navigation
+ * - Focus management
+ * - Screen reader optimisations
+ * - High contrast mode support
+ * - Reduced motion preferences
+ * 
+ * This component ensures the Somerset Window Cleaning website is accessible
+ * to all users, including those using assistive technologies.
+ */
+---
+
+<!-- Skip Links for Keyboard Navigation -->
+<div class="skip-links">
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  <a href="#navigation" class="skip-link">Skip to navigation</a>
+  <a href="#footer" class="skip-link">Skip to footer</a>
+</div>
+
+<!-- Live Region for Dynamic Content Announcements -->
+<div id="live-region" aria-live="polite" aria-atomic="true" class="sr-only"></div>
+
+<!-- Accessibility Enhancement Styles -->
+<style>
+  /* Skip Links - WCAG 2.1 AA Requirement */
+  .skip-links {
+    position: absolute;
+    top: -40px;
+    left: 6px;
+    z-index: 1000;
+  }
+
+  .skip-link {
+    position: absolute;
+    left: -10000px;
+    top: auto;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    background: #000;
+    color: #fff;
+    padding: 8px 16px;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+  }
+
+  .skip-link:focus {
+    position: static;
+    left: auto;
+    width: auto;
+    height: auto;
+    overflow: visible;
+    z-index: 1001;
+  }
+
+  /* Screen Reader Only Content */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  /* High Contrast Mode Support */
+  @media (prefers-contrast: high) {
+    .btn-primary, .btn-secondary {
+      border: 2px solid;
+    }
+    
+    .text-muted {
+      opacity: 1;
+      color: inherit;
+    }
+  }
+
+  /* Reduced Motion Support */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
+  /* Focus Indicators - Enhanced Visibility */
+  *:focus {
+    outline: 2px solid #2563eb;
+    outline-offset: 2px;
+  }
+
+  /* Button Focus Styles */
+  button:focus,
+  .btn-primary:focus,
+  .btn-secondary:focus,
+  .btn-whatsapp:focus {
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.5);
+  }
+
+  /* Link Focus Styles */
+  a:focus {
+    background-color: rgba(37, 99, 235, 0.1);
+    border-radius: 2px;
+  }
+
+  /* Input Focus Styles */
+  input:focus,
+  textarea:focus,
+  select:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+  }
+
+  /* Ensure sufficient color contrast */
+  .text-muted {
+    color: #6b7280; /* Ensures 4.5:1 contrast ratio */
+  }
+
+  .dark .text-muted {
+    color: #9ca3af; /* Ensures 4.5:1 contrast ratio in dark mode */
+  }
+
+  /* Large touch targets for mobile accessibility */
+  @media (max-width: 768px) {
+    button,
+    .btn-primary,
+    .btn-secondary,
+    .btn-whatsapp,
+    a[role="button"] {
+      min-height: 44px;
+      min-width: 44px;
+      padding: 12px 16px;
+    }
+  }
+
+  /* Error message styling for form accessibility */
+  .error-message {
+    color: #dc2626;
+    font-size: 14px;
+    margin-top: 4px;
+  }
+
+  .dark .error-message {
+    color: #f87171;
+  }
+
+  /* Success message styling */
+  .success-message {
+    color: #059669;
+    font-size: 14px;
+    margin-top: 4px;
+  }
+
+  .dark .success-message {
+    color: #34d399;
+  }
+
+  /* Loading state accessibility */
+  .loading {
+    position: relative;
+  }
+
+  .loading::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .dark .loading::after {
+    background: rgba(0, 0, 0, 0.8);
+  }
+</style>
+
+<!-- Accessibility Enhancement JavaScript -->
+<script>
+  // Enhance keyboard navigation
+  document.addEventListener('DOMContentLoaded', function() {
+    
+    // Add keyboard navigation for custom components
+    const customButtons = document.querySelectorAll('[role="button"]:not(button)');
+    customButtons.forEach(button => {
+      button.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          button.click();
+        }
+      });
+      
+      // Ensure focusable
+      if (!button.hasAttribute('tabindex')) {
+        button.setAttribute('tabindex', '0');
+      }
+    });
+
+    // Manage focus for modal dialogs and popups
+    window.trapFocus = function(element) {
+      const focusableElements = element.querySelectorAll(
+        'a[href], button, textarea, input[type="text"], input[type="radio"], input[type="checkbox"], select'
+      );
+      const firstFocusableElement = focusableElements[0];
+      const lastFocusableElement = focusableElements[focusableElements.length - 1];
+
+      element.addEventListener('keydown', function(e) {
+        if (e.key === 'Tab') {
+          if (e.shiftKey) {
+            if (document.activeElement === firstFocusableElement) {
+              lastFocusableElement.focus();
+              e.preventDefault();
+            }
+          } else {
+            if (document.activeElement === lastFocusableElement) {
+              firstFocusableElement.focus();
+              e.preventDefault();
+            }
+          }
+        }
+        
+        if (e.key === 'Escape') {
+          // Close modal/popup
+          const closeButton = element.querySelector('[data-close]');
+          if (closeButton) closeButton.click();
+        }
+      });
+    };
+
+    // Announce dynamic content changes to screen readers
+    window.announceToScreenReader = function(message, priority = 'polite') {
+      const liveRegion = document.getElementById('live-region');
+      if (liveRegion) {
+        liveRegion.setAttribute('aria-live', priority);
+        liveRegion.textContent = message;
+        
+        // Clear after announcement
+        setTimeout(() => {
+          liveRegion.textContent = '';
+        }, 1000);
+      }
+    };
+
+    // Form validation with accessibility
+    window.validateFormAccessibly = function(form) {
+      const inputs = form.querySelectorAll('input, textarea, select');
+      let isValid = true;
+      let firstErrorField = null;
+
+      inputs.forEach(input => {
+        const errorElement = document.getElementById(`${input.id}-error`);
+        
+        // Remove previous error states
+        input.removeAttribute('aria-invalid');
+        input.removeAttribute('aria-describedby');
+        if (errorElement) {
+          errorElement.remove();
+        }
+
+        // Validate based on input type and requirements
+        let errorMessage = '';
+        
+        if (input.required && !input.value.trim()) {
+          errorMessage = `${input.labels[0]?.textContent || 'This field'} is required.`;
+        } else if (input.type === 'email' && input.value && !input.value.includes('@')) {
+          errorMessage = 'Please enter a valid email address.';
+        } else if (input.type === 'tel' && input.value && !/^[\d\s\-\+\(\)]+$/.test(input.value)) {
+          errorMessage = 'Please enter a valid phone number.';
+        }
+
+        if (errorMessage) {
+          isValid = false;
+          if (!firstErrorField) firstErrorField = input;
+
+          // Create error message element
+          const errorDiv = document.createElement('div');
+          errorDiv.id = `${input.id}-error`;
+          errorDiv.className = 'error-message';
+          errorDiv.textContent = errorMessage;
+          errorDiv.setAttribute('role', 'alert');
+          
+          // Insert after input
+          input.parentNode.insertBefore(errorDiv, input.nextSibling);
+          
+          // Link error to input
+          input.setAttribute('aria-invalid', 'true');
+          input.setAttribute('aria-describedby', errorDiv.id);
+        }
+      });
+
+      // Focus first error field and announce
+      if (!isValid && firstErrorField) {
+        firstErrorField.focus();
+        announceToScreenReader('Please correct the errors in the form.', 'assertive');
+      }
+
+      return isValid;
+    };
+
+    // Enhance tables for screen readers
+    const tables = document.querySelectorAll('table');
+    tables.forEach(table => {
+      if (!table.querySelector('caption')) {
+        const caption = document.createElement('caption');
+        caption.textContent = 'Data table'; // Default caption
+        caption.className = 'sr-only';
+        table.insertBefore(caption, table.firstChild);
+      }
+    });
+
+    // Add landmarks if missing
+    const main = document.querySelector('main');
+    if (main && !main.getAttribute('role')) {
+      main.setAttribute('role', 'main');
+      main.id = 'main-content';
+    }
+
+    const nav = document.querySelector('nav');
+    if (nav && !nav.getAttribute('role')) {
+      nav.setAttribute('role', 'navigation');
+      nav.id = 'navigation';
+    }
+
+    const footer = document.querySelector('footer');
+    if (footer && !footer.getAttribute('role')) {
+      footer.setAttribute('role', 'contentinfo');
+      footer.id = 'footer';
+    }
+
+    // Heading hierarchy check (development only)
+    if (process.env.NODE_ENV === 'development') {
+      const headings = document.querySelectorAll('h1, h2, h3, h4, h5, h6');
+      let lastLevel = 0;
+      
+      headings.forEach(heading => {
+        const level = parseInt(heading.tagName.charAt(1));
+        if (level > lastLevel + 1) {
+          console.warn(`Heading level skipped: ${heading.tagName} follows h${lastLevel}`, heading);
+        }
+        lastLevel = level;
+      });
+    }
+  });
+</script>

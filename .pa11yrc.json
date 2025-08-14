@@ -1,0 +1,60 @@
+{
+  "standard": "WCAG2AA",
+  "ignore": [],
+  "hideElements": [],
+  "includeNotices": false,
+  "includeWarnings": true,
+  "level": "error",
+  "reporter": "cli",
+  "threshold": 0,
+  "timeout": 30000,
+  "wait": 2000,
+  "chromeLaunchConfig": {
+    "args": [
+      "--no-sandbox",
+      "--disable-dev-shm-usage",
+      "--disable-web-security"
+    ]
+  },
+  "actions": [
+    "wait for element .main to be visible",
+    "wait for 2000"
+  ],
+  "rules": [
+    "color-contrast",
+    "landmark-one-main",
+    "region",
+    "bypass",
+    "heading-order",
+    "aria-valid-attr-value",
+    "aria-valid-attr",
+    "aria-labelledby",
+    "aria-required-attr",
+    "button-name",
+    "form-field-multiple-labels",
+    "frame-title",
+    "image-alt",
+    "input-image-alt",
+    "label",
+    "link-name",
+    "list",
+    "listitem",
+    "definition-list",
+    "dlitem",
+    "document-title",
+    "duplicate-id",
+    "html-has-lang",
+    "html-lang-valid",
+    "html-xml-lang-mismatch",
+    "lang",
+    "meta-refresh",
+    "meta-viewport",
+    "object-alt",
+    "tabindex",
+    "td-headers-attr",
+    "th-has-data-cells",
+    "valid-lang",
+    "video-caption",
+    "audio-caption"
+  ]
+}

@@ -1,0 +1,241 @@
+name: E2E Tests
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+  schedule:
+    # Run tests daily at 2 AM UTC
+    - cron: '0 2 * * *'
+
+jobs:
+  test:
+    timeout-minutes: 30
+    runs-on: ubuntu-latest
+    
+    strategy:
+      matrix:
+        # Test across multiple Node.js versions
+        node-version: [18.x, 20.x]
+        # Test different browser combinations
+        project: [chromium, firefox, webkit]
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+    
+    - name: Install dependencies
+      run: npm ci
+    
+    - name: Install Playwright Browsers
+      run: npx playwright install --with-deps ${{ matrix.project }}
+    
+    - name: Build application
+      run: npm run build
+    
+    - name: Run E2E tests
+      run: npx playwright test --project=${{ matrix.project }}
+      env:
+        CI: true
+    
+    - name: Upload test results
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: test-results-${{ matrix.project }}-${{ matrix.node-version }}
+        path: |
+          test-results/
+          playwright-report/
+        retention-days: 7
+    
+    - name: Upload link validation reports
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: link-reports-${{ matrix.project }}-${{ matrix.node-version }}
+        path: test-results/link-reports/
+        retention-days: 7
+
+  lighthouse:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Use Node.js 20.x
+      uses: actions/setup-node@v4
+      with:
+        node-version: 20.x
+        cache: 'npm'
+    
+    - name: Install dependencies
+      run: npm ci
+    
+    - name: Build application
+      run: npm run build
+    
+    - name: Start server
+      run: npm run preview &
+      
+    - name: Wait for server
+      run: npx wait-on http://localhost:4321 --timeout 60000
+    
+    - name: Run Lighthouse CI
+      run: |
+        npm install -g @lhci/cli@0.12.x
+        lhci autorun
+      env:
+        LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
+
+  accessibility:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Use Node.js 20.x
+      uses: actions/setup-node@v4
+      with:
+        node-version: 20.x
+        cache: 'npm'
+    
+    - name: Install dependencies
+      run: npm ci
+    
+    - name: Install Playwright
+      run: npx playwright install chromium
+    
+    - name: Build application
+      run: npm run build
+    
+    - name: Run accessibility tests
+      run: |
+        npm install -g @axe-core/cli
+        npm run preview &
+        npx wait-on http://localhost:4321 --timeout 60000
+        npx axe-core http://localhost:4321 --exit
+
+  security:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Run security audit
+      run: npm audit --audit-level moderate
+    
+    - name: Check for known vulnerabilities
+      run: |
+        npm install -g npm-audit-resolver
+        npm-audit-resolver --audit-level moderate
+
+  performance:
+    runs-on: ubuntu-latest
+    needs: test
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Use Node.js 20.x
+      uses: actions/setup-node@v4
+      with:
+        node-version: 20.x
+        cache: 'npm'
+    
+    - name: Install dependencies
+      run: npm ci
+    
+    - name: Install Playwright
+      run: npx playwright install chromium
+    
+    - name: Build application
+      run: npm run build
+    
+    - name: Run performance tests
+      run: npx playwright test tests/specs/performance.spec.ts
+    
+    - name: Upload performance results
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: performance-results
+        path: test-results/
+        retention-days: 30
+
+  visual-regression:
+    runs-on: ubuntu-latest
+    needs: test
+    if: github.event_name == 'pull_request'
+    
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        # Need full history for visual regression comparison
+        fetch-depth: 0
+    
+    - name: Use Node.js 20.x
+      uses: actions/setup-node@v4
+      with:
+        node-version: 20.x
+        cache: 'npm'
+    
+    - name: Install dependencies
+      run: npm ci
+    
+    - name: Install Playwright
+      run: npx playwright install chromium
+    
+    - name: Build application
+      run: npm run build
+    
+    - name: Run visual regression tests
+      run: npx playwright test tests/specs/visual-regression.spec.ts --update-snapshots
+    
+    - name: Upload visual diffs
+      uses: actions/upload-artifact@v4
+      if: failure()
+      with:
+        name: visual-regression-diffs
+        path: test-results/
+        retention-days: 7
+
+  deploy-preview:
+    runs-on: ubuntu-latest
+    needs: [test, lighthouse, accessibility]
+    if: github.event_name == 'pull_request'
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Deploy to Netlify Preview
+      uses: nwtgck/actions-netlify@v2.0
+      with:
+        publish-dir: './dist'
+        production-deploy: false
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        deploy-message: "Deploy from GitHub Actions"
+        enable-pull-request-comment: true
+        enable-commit-comment: false
+        overwrites-pull-request-comment: true
+      env:
+        NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+        NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+
+  notify-on-failure:
+    runs-on: ubuntu-latest
+    needs: [test, lighthouse, accessibility, security]
+    if: failure()
+    
+    steps:
+    - name: Notify on failure
+      uses: 8398a7/action-slack@v3
+      if: always()
+      with:
+        status: ${{ job.status }}
+        channel: '#dev-alerts'
+        webhook_url: ${{ secrets.SLACK_WEBHOOK }}
+        text: 'E2E tests failed for Somerset Window Cleaning website'

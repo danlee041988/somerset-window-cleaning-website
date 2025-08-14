@@ -17,19 +17,31 @@ metadata:
     follow: true
   openGraph:
     site_name: Somerset Window Cleaning
+    locale: en_GB
+    type: website
     images:
       - url: '~/assets/images/default.png'
         width: 1200
         height: 628
-    type: website
+        alt: 'Somerset Window Cleaning - Professional window cleaning services'
+    # UK local business specific Open Graph properties
+    street_address: '13 Rockhaven Business Centre, Gravenchon Way'
+    locality: 'Highbridge'
+    region: 'Somerset'
+    postal_code: 'BA16 0HW'
+    country_name: 'United Kingdom'
+    phone_number: '+44 1458 860339'
+    business_type: 'LocalBusiness'
   twitter:
-    handle: '@'
-    site: '@'
+    handle: '@SomersetWindowC'
+    site: '@SomersetWindowC'
     cardType: summary_large_image
+    creator: '@SomersetWindowC'
 
 i18n:
   language: en
   textDirection: ltr
+  locale: en_GB
 
 apps:
   blog:
