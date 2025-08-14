@@ -223,9 +223,30 @@ export const astroAssetsOptimizer: ImagesOptimizer = async (
     return [];
   }
 
+  // Compute per-breakpoint height when caller provided original dimensions.
+  // This is required for non-ESM images (e.g., files served from `public/`),
+  // where Astro's image service requires both width and height.
+  const aspectRatio = _width && _height ? _width / _height : undefined;
+
+  // If the input is a remote URL that isn't handled by Unpic, avoid calling
+  // astro:assets getImage() to prevent network fetches during build.
+  // We'll fall back to the original URL without generating a srcset.
+  if (typeof image === 'string' && (image.startsWith('http://') || image.startsWith('https://'))) {
+    return [];
+  }
+
   return Promise.all(
     breakpoints.map(async (w: number) => {
-      const result = await getImage({ src: image, width: w, inferSize: true, ...(format ? { format: format } : {}) });
+      const computedHeight = aspectRatio ? computeHeight(w, aspectRatio) : _height;
+
+      const result = await getImage({
+        src: image,
+        width: w,
+        // Provide height to satisfy validation for non-ESM images
+        height: computedHeight,
+        inferSize: true,
+        ...(format ? { format: format } : {}),
+      });
 
       return {
         src: result?.src,
@@ -327,12 +348,23 @@ export async function getImagesOptimized(
   let breakpoints = getBreakpoints({ width: width, breakpoints: widths, layout: layout });
   breakpoints = [...new Set(breakpoints)].sort((a, b) => a - b);
 
-  const srcset = (await transform(image, breakpoints, Number(width) || undefined, Number(height) || undefined, format))
-    .map(({ src, width }) => `${src} ${width}w`)
-    .join(', ');
+  const transformed = await transform(
+    image,
+    breakpoints,
+    Number(width) || undefined,
+    Number(height) || undefined,
+    format
+  );
+
+  const srcset = transformed.map(({ src, width }) => `${src} ${width}w`).join(', ');
+
+  // Prefer transformed URL (largest) as main src when available
+  const transformedSrc = transformed.length
+    ? transformed.sort((a, b) => a.width - b.width)[transformed.length - 1]?.src
+    : undefined;
 
   return {
-    src: typeof image === 'string' ? image : image.src,
+    src: typeof transformedSrc === 'string' ? transformedSrc : typeof image === 'string' ? image : image.src,
     attributes: {
       width: width,
       height: height,

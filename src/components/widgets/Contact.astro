@@ -18,23 +18,33 @@ const {
   isDark = false,
   classes = {},
   bg = await Astro.slots.render('bg'),
+  aside = await Astro.slots.render('aside'),
 } = Astro.props;
 ---
 
 <WidgetWrapper id={id} isDark={isDark} containerClass={`max-w-7xl mx-auto ${classes?.container ?? ''}`} bg={bg}>
   <Headline title={title} subtitle={subtitle} tagline={tagline} />
 
-  {
-    inputs && (
-      <div class="flex flex-col max-w-xl mx-auto rounded-lg backdrop-blur border border-gray-200 dark:border-gray-700 bg-white dark:bg-slate-900 shadow p-4 sm:p-6 lg:p-8 w-full">
-        <FormContainer
-          inputs={inputs}
-          textarea={textarea}
-          disclaimer={disclaimer}
-          button={button}
-          description={description}
-        />
-      </div>
-    )
-  }
+  <div class="grid grid-cols-1 md:grid-cols-5 gap-6 md:gap-8 items-start">
+    {
+      inputs && (
+        <div class="md:col-span-3 flex flex-col rounded-lg backdrop-blur border border-gray-200 dark:border-gray-700 bg-white dark:bg-slate-900 shadow p-4 sm:p-6 lg:p-8 w-full">
+          <FormContainer
+            inputs={inputs}
+            textarea={textarea}
+            disclaimer={disclaimer}
+            button={button}
+            description={description}
+          />
+        </div>
+      )
+    }
+    {
+      aside && (
+        <div class="md:col-span-2 rounded-lg border border-gray-200 dark:border-gray-700 bg-white/80 dark:bg-slate-900/60 p-5 sm:p-6">
+          <Fragment set:html={aside} />
+        </div>
+      )
+    }
+  </div>
 </WidgetWrapper>

@@ -1,0 +1,171 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import Hero from '~/components/widgets/Hero.astro';
+import heroImage from '~/assets/images/DJI_0007.JPG';
+
+const metadata = {
+  title: 'Areas we cover',
+  description: 'Somerset Window Cleaning service areas across Somerset including Wells (BA5), Glastonbury (BA6), Street (BA16), Yeovil (BA20–22), Bridgwater (TA6–TA7), Weston-super-Mare (BS23–BS25) and more. Check your postcode.',
+};
+
+const keyTowns = [
+  { name: 'Wells', code: 'BA5' },
+  { name: 'Glastonbury', code: 'BA6' },
+  { name: 'Street', code: 'BA16' },
+  { name: 'Yeovil', code: 'BA20–22' },
+  { name: 'Bridgwater', code: 'TA6, TA7' },
+  { name: 'Weston‑super‑Mare', code: 'BS23–25' },
+];
+
+const towns = [
+  'Axbridge (BS26)', 'Banwell (BS29)', 'Blagdon (BS40)', 'Bruton (BA10)', 'Burnham‑on‑Sea (TA8)',
+  'Castle Cary (BA7)', 'Chard (TA20)', 'Clevedon (BS21)', 'Crewkerne (TA18)', 'Frome (BA11)',
+  'Highbridge (TA9)', 'Ilminster (TA19)', 'Langport (TA10)', 'Martock (TA12)', 'Wells (BA5)',
+  'Glastonbury (BA6)', 'Paulton (BS39)', 'Radstock (BA3)', 'Shepton Mallet (BA4)', 'Sherborne (DT9)',
+  'Somerton (TA11)', 'South Petherton (TA13)', 'Stoke‑sub‑Hamdon (TA14)', 'Taunton (TA2)',
+  'Templecombe (BA8)', 'Wedmore (BS28)', 'Winscombe (BS25)', 'Wincanton (BA9)', 'Yatton (BS49)'
+];
+---
+
+<Layout metadata={metadata}>
+  <Hero tagline="Areas we cover">
+    <Fragment slot="bg">
+      <img src={heroImage.src} alt="" width="1600" height="900" style="width:100%; height:100%; object-fit:cover; opacity:0.35;" />
+      <div class="absolute inset-0 bg-black/40"></div>
+    </Fragment>
+    <Fragment slot="title">Serving homes and businesses across Somerset</Fragment>
+    <Fragment slot="subtitle">Check your postcode to confirm coverage, or browse key towns and our full list below.</Fragment>
+  </Hero>
+
+  <!-- Coverage checker -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 py-10">
+    <div class="rounded-2xl border border-red-500/20 bg-red-500/5 dark:bg-red-500/10 p-5 sm:p-6">
+      <div class="grid gap-4 sm:grid-cols-3 sm:items-center">
+        <div class="sm:col-span-2">
+          <h3 class="text-xl font-semibold">Check your postcode</h3>
+          <p class="text-sm text-muted">We cover most BA, TA, BS and DT9 postcodes. Enter yours to confirm.</p>
+          <div class="mt-3 flex flex-col sm:flex-row gap-3">
+            <input id="postcodeInput" type="text" placeholder="e.g. BA6 8AB" class="w-full sm:w-72 py-3 px-4 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent uppercase tracking-wider" />
+            <button id="postcodeBtn" class="btn-primary whitespace-nowrap">Check coverage</button>
+          </div>
+          <p id="postcodeResult" class="mt-3 text-sm"></p>
+        </div>
+        <div class="sm:col-span-1">
+          <div class="flex flex-wrap gap-2">
+            {keyTowns.map(({ name, code }) => (
+              <a href={`/contact?area=${encodeURIComponent(name)}`} class="inline-flex items-center rounded-full border border-primary text-white bg-primary/20 hover:bg-primary/30 px-4 py-2 text-sm">
+                {name} <span class="ml-2 text-xs opacity-80">{code}</span>
+              </a>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 pb-16">
+    <div class="mb-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+      <h2 class="text-2xl md:text-3xl font-semibold">All service areas</h2>
+      <input id="areaSearch" type="text" placeholder="Search for your town…" class="w-full sm:w-80 py-3 px-4 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" />
+    </div>
+
+    <ul id="areasList" class="flex flex-wrap gap-2">
+      {towns.map((label) => (
+        <li class="inline-flex items-center rounded-full border border-gray-300 dark:border-gray-700 bg-white/5 hover:bg-white/10 px-4 py-2 text-sm" data-town={label.toLowerCase()}>{label}</li>
+      ))}
+    </ul>
+
+    <div class="mt-8 text-center">
+      <a href="/contact" class="btn-primary inline-flex items-center">Get a quote</a>
+    </div>
+  </section>
+
+  <script is:inline>
+    // Postcode checker
+    const inputPc = document.getElementById('postcodeInput');
+    const btnPc = document.getElementById('postcodeBtn');
+    const resPc = document.getElementById('postcodeResult');
+    function normalisePc(v) {
+      return (v || '').toString().toUpperCase().replace(/\s+/g, '');
+    }
+    function coversPostcode(v) {
+      const pc = normalisePc(v);
+      if (!pc) return null;
+      // Extract outward code (e.g., BA6, TA7, BS24, DT9)
+      const m = pc.match(/^([A-Z]{1,2}\d{1,2})/);
+      if (!m) return false;
+      const outward = m[1];
+      if (outward.startsWith('BA')) return true;
+      if (outward.startsWith('TA')) return true;
+      if (outward.startsWith('BS')) return true;
+      if (outward === 'DT9') return true;
+      return false;
+    }
+    function isFullUkPostcode(v) {
+      const pc = (v || '').toUpperCase().trim();
+      // Basic but robust UK postcode validation (no space required)
+      const re = /^([A-Z]{1,2}[0-9][0-9A-Z]?)[ ]?([0-9][ABD-HJLNP-UW-Z]{2})$/;
+      return re.test(pc);
+    }
+    function showPcResult(v) {
+      const covered = coversPostcode(v);
+      if (covered === null) {
+        resPc.textContent = '';
+        resPc.className = 'mt-3 text-sm';
+        return;
+      }
+      if (covered) {
+        resPc.innerHTML = 'Yes — we cover your area.';
+        resPc.className = 'mt-3 text-sm text-green-500';
+      } else {
+        resPc.textContent = 'We may still be able to help — send your postcode and we\'ll confirm availability.';
+        resPc.className = 'mt-3 text-sm text-amber-500';
+      }
+    }
+    if (inputPc && btnPc && resPc) {
+      inputPc.addEventListener('input', () => showPcResult(inputPc.value));
+      btnPc.addEventListener('click', () => {
+        const value = inputPc.value;
+        const covered = coversPostcode(value);
+        if (!isFullUkPostcode(value)) {
+          resPc.textContent = 'Please enter your full postcode (e.g., BA6 8AB).';
+          resPc.className = 'mt-3 text-sm text-red-500';
+          return;
+        }
+        const pc = (value || '').toUpperCase().replace(/\s+/g, '');
+        const coveredFlag = covered ? '1' : '0';
+        window.location.href = `/contact?postcode=${encodeURIComponent(pc)}&covered=${coveredFlag}`;
+      });
+    }
+
+    const input = document.getElementById('areaSearch');
+    const list = document.getElementById('areasList');
+    if (input && list) {
+      input.addEventListener('input', () => {
+        const q = input.value.trim().toLowerCase();
+        list.querySelectorAll('li').forEach((li) => {
+          const match = li.getAttribute('data-town')?.includes(q);
+          li.classList.toggle('hidden', q.length > 0 && !match);
+        });
+      });
+    }
+  </script>
+  
+  <!-- SEO: Structured data for service areas -->
+  <script type="application/ld+json">
+    {JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'Service',
+      serviceType: 'Window cleaning',
+      provider: {
+        '@type': 'LocalBusiness',
+        name: 'Somerset Window Cleaning',
+        telephone: '01458 860339'
+      },
+      areaServed: towns.map((label) => ({ '@type': 'Place', name: label }))
+    })}
+  </script>
+  <script is:inline>
+    try { window.location.replace('/contact#postcode-checker'); } catch { window.location.href = '/contact#postcode-checker'; }
+  </script>
+</Layout>

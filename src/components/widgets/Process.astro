@@ -1,0 +1,69 @@
+---
+import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
+import Headline from '~/components/ui/Headline.astro';
+import { Icon } from 'astro-icon/components';
+import Button from '~/components/ui/Button.astro';
+import type { CallToAction } from '~/types';
+
+interface StepItem {
+  title: string;
+  description?: string;
+  icon?: string;
+  callToAction?: CallToAction;
+}
+
+export interface Props {
+  id?: string;
+  title?: string;
+  subtitle?: string;
+  tagline?: string;
+  items?: StepItem[];
+  isDark?: boolean;
+}
+
+const {
+  id,
+  title = 'How it works',
+  subtitle = '',
+  tagline = '',
+  items = [],
+  isDark = false,
+} = Astro.props as Props;
+---
+
+<WidgetWrapper id={id} isDark={isDark} containerClass="max-w-7xl mx-auto">
+  <Headline title={title} subtitle={subtitle} tagline={tagline} />
+
+  <div class="relative">
+    <ol class="grid grid-cols-1 md:grid-cols-4 gap-6 md:gap-8 items-stretch">
+      {items.map((item, idx) => (
+        <li class="group relative flex flex-col rounded-xl border border-gray-200 dark:border-gray-700 bg-white/90 dark:bg-slate-900/70 p-6 md:p-8 shadow-sm transition">
+          <div class="flex items-center gap-3">
+            <span class="inline-flex items-center justify-center text-sm md:text-base font-semibold rounded-full border border-primary/40 bg-primary/10 text-primary px-3 py-1">
+              Step {idx + 1}
+            </span>
+            {item.icon && <Icon name={item.icon} class="w-7 h-7 text-primary" />}
+          </div>
+          <h3 class="mt-4 text-xl md:text-2xl font-semibold leading-snug">{item.title}</h3>
+          {item.description && <p class="mt-3 text-base text-muted">{item.description}</p>}
+          {item.callToAction && (
+            <div class="mt-4">
+              <Button {...item.callToAction} />
+            </div>
+          )}
+
+          {idx < items.length - 1 && (
+            <div class="hidden md:block absolute top-1/2 right-[-26px] -translate-y-1/2" aria-hidden="true">
+              <svg width="52" height="14" viewBox="0 0 52 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0 7h42" stroke="currentColor" stroke-opacity="0.25" stroke-width="2" />
+                <path d="M42 2l8 5-8 5" fill="currentColor" class="text-primary" />
+              </svg>
+            </div>
+          )}
+        </li>
+      ))}
+    </ol>
+  </div>
+</WidgetWrapper>
+
+

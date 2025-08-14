@@ -3,37 +3,62 @@ import type { Form as Props } from '~/types';
 import Button from '~/components/ui/Button.astro';
 
 const { inputs, textarea, disclaimer, button = 'Contact us', description = '' } = Astro.props;
+
+const inputClass = 'py-3 px-4 block w-full text-md rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-slate-900 text-page focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition';
+const labelClass = 'block text-sm font-medium mb-2';
+const checkboxClass = 'h-5 w-5 rounded-md border-gray-400 dark:border-gray-600 bg-white dark:bg-slate-900 accent-primary cursor-pointer';
 ---
 
-<form>
+<form id="quoteForm">
   {
     inputs &&
-      inputs.map(
-        ({ type = 'text', name, label = '', autocomplete = 'on', placeholder = '' }) =>
-          name && (
+      inputs.map((item) => {
+        const { type = 'text', name, label = '', autocomplete = 'on', placeholder = '', options = [], multiple = false, accept = '' } = item as any;
+        if (!name) return null;
+        if (type === 'select') {
+          return (
             <div class="mb-6">
-              {label && (
-                <label for={name} class="block text-sm font-medium">
-                  {label}
-                </label>
-              )}
-              <input
-                type={type}
-                name={name}
-                id={name}
-                autocomplete={autocomplete}
-                placeholder={placeholder}
-                class="py-3 px-4 block w-full text-md rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-slate-900"
-              />
+              {label && (<label for={name} class={labelClass}>{label}</label>)}
+              <div class="relative">
+                <select name={name} id={name} class={`${inputClass} appearance-none pr-10`}>
+                  {options.map((opt: string) => (<option value={opt}>{opt}</option>))}
+                </select>
+                <svg class="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                  <path fill-rule="evenodd" d="M10 12a1 1 0 01-.7-.29l-4-4a1 1 0 111.4-1.42L10 9.59l3.3-3.3a1 1 0 111.4 1.42l-4 4A1 1 0 0110 12z" clip-rule="evenodd" />
+                </svg>
+              </div>
             </div>
-          )
-      )
+          );
+        }
+        if (type === 'checkbox') {
+          return (
+            <div class="mb-3 flex items-center gap-3">
+              <input type="checkbox" id={`${name}-${label}`} name={name} value={item.value || label} class={checkboxClass} />
+              <label for={`${name}-${label}`} class="text-sm cursor-pointer select-none">{label}</label>
+            </div>
+          );
+        }
+        if (type === 'file') {
+          return (
+            <div class="mb-6">
+              {label && (<label for={name} class={labelClass}>{label}</label>)}
+              <input type="file" id={name} name={name} multiple={multiple} accept={accept} class={`${inputClass} file:mr-4 file:py-2.5 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-primary file:text-white hover:file:bg-secondary`} />
+            </div>
+          );
+        }
+        return (
+          <div class="mb-6">
+            {label && (<label for={name} class={labelClass}>{label}</label>)}
+            <input type={type} name={name} id={name} autocomplete={autocomplete} placeholder={placeholder} class={inputClass} />
+          </div>
+        );
+      })
   }
 
   {
     textarea && (
-      <div>
-        <label for="textarea" class="block text-sm font-medium">
+      <div class="mb-6">
+        <label for="textarea" class={labelClass}>
           {textarea.label}
         </label>
         <textarea
@@ -41,7 +66,7 @@ const { inputs, textarea, disclaimer, button = 'Contact us', description = '' } 
           name={textarea.name ? textarea.name : 'message'}
           rows={textarea.rows ? textarea.rows : 4}
           placeholder={textarea.placeholder}
-          class="py-3 px-4 block w-full text-md rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-slate-900"
+          class={`${inputClass} resize-y min-h-[120px]`}
         />
       </div>
     )
@@ -49,13 +74,13 @@ const { inputs, textarea, disclaimer, button = 'Contact us', description = '' } 
 
   {
     disclaimer && (
-      <div class="mt-3 flex items-start">
+      <div class="mt-2 flex items-start">
         <div class="flex mt-0.5">
           <input
             id="disclaimer"
             name="disclaimer"
             type="checkbox"
-            class="cursor-pointer mt-1 py-3 px-4 block w-full text-md rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-slate-900"
+            class={checkboxClass}
           />
         </div>
         <div class="ml-3">
@@ -67,12 +92,12 @@ const { inputs, textarea, disclaimer, button = 'Contact us', description = '' } 
     )
   }
 
+  <div class="mt-4" id="recaptcha"></div>
+
   {
     button && (
-      <div class="mt-10 grid">
-        <Button variant="primary" type="submit">
-          {button}
-        </Button>
+      <div class="mt-6 grid">
+        <Button variant="primary" type="submit">{button}</Button>
       </div>
     )
   }
@@ -84,4 +109,102 @@ const { inputs, textarea, disclaimer, button = 'Contact us', description = '' } 
       </div>
     )
   }
+  <script>
+    // reCAPTCHA v2 Checkbox
+    const RECAPTCHA_SITE_KEY = '6LcuV6ArAAAAAOSDE-o2Evkq704THds9m9KQpQge';
+    let recaptchaWidgetId = null;
+
+    function onRecaptchaLoad() {
+      const container = document.getElementById('recaptcha');
+      if (container && window.grecaptcha && recaptchaWidgetId === null) {
+        try {
+          recaptchaWidgetId = window.grecaptcha.render('recaptcha', {
+            sitekey: RECAPTCHA_SITE_KEY,
+            theme: 'dark',
+          });
+        } catch (e) {
+          // ignore
+        }
+      }
+    }
+
+    // Load script
+    if (!window.grecaptcha) {
+      const s = document.createElement('script');
+      s.src = 'https://www.google.com/recaptcha/api.js?onload=onRecaptchaLoad&render=explicit';
+      s.async = true; s.defer = true; document.head.appendChild(s);
+      window.onRecaptchaLoad = onRecaptchaLoad;
+    } else {
+      onRecaptchaLoad();
+    }
+
+    const form = document.getElementById('quoteForm');
+    form?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const formData = new FormData(form);
+      const data = Object.fromEntries(formData.entries());
+      try {
+        // Ensure captcha is completed
+        let captchaToken = null;
+        try {
+          if (window.grecaptcha && recaptchaWidgetId !== null) {
+            captchaToken = window.grecaptcha.getResponse(recaptchaWidgetId);
+          }
+        } catch {}
+        if (!captchaToken) {
+          alert('Please complete the reCAPTCHA.');
+          return;
+        }
+
+        // Collect selected services
+        const selectedServices = formData.getAll('services') as string[];
+        const servicesMap = selectedServices.reduce((acc, s) => {
+          const key = String(s)
+            .toLowerCase()
+            .replace(/[^a-z0-9]+/g, ' ')
+            .trim()
+            .replace(/\s+/g, '');
+          acc[key] = true; return acc;
+        }, {} as Record<string, boolean>);
+
+        // Convert photos to base64 (small images recommended)
+        const photoFiles = (formData.getAll('photos') as File[]).filter(Boolean);
+        const attachments = await Promise.all(photoFiles.map((file) => new Promise((resolve) => {
+          const reader = new FileReader();
+          reader.onload = () => resolve({ name: file.name, type: file.type, data: reader.result });
+          reader.onerror = () => resolve(null);
+          reader.readAsDataURL(file);
+        })));
+
+        const payload = {
+          customerName: data.fullName || data.name || '',
+          email: data.email || '',
+          mobile: data.phone || '',
+          addressLine1: data.address || '',
+          townCity: '',
+          postcode: data.postcode || '',
+          propertyType: String(data.propertyType || ''),
+          frequency: (data.frequency || '').toString().toLowerCase().replace(/\s\(.*\)/, '').replace(' ', ''),
+          servicesRequested: { windowCleaning: true, ...servicesMap },
+          preferredContactMethod: 'email',
+          specialRequirements: data.message || data.notes || '',
+          recaptchaToken: captchaToken,
+          attachments: attachments.filter(Boolean),
+        };
+        const res = await fetch('https://window-cleaning-booking-system-6k15.vercel.app/api/submit-booking', {
+          method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload)
+        });
+        const result = await res.json();
+        if (result?.success) {
+          alert(`Thanks! Your booking reference is ${result.bookingReference}. We will be in touch within 24 hours.`);
+          form.reset();
+          try { window.grecaptcha && recaptchaWidgetId !== null && window.grecaptcha.reset(recaptchaWidgetId); } catch {}
+        } else {
+          alert(result?.error || 'There was an error submitting your booking. Please try again.');
+        }
+      } catch (err) {
+        alert('Unable to connect right now. Please try again later or call 01458 860339.');
+      }
+    });
+  </script>
 </form>

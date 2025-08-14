@@ -2,7 +2,15 @@
 import Layout from '~/layouts/PageLayout.astro';
 import HeroText from '~/components/widgets/HeroText.astro';
 import ContactUs from '~/components/widgets/Contact.astro';
-import Features2 from '~/components/widgets/Features2.astro';
+import heroImage from '~/assets/images/DJI_0007.JPG';
+import { Icon } from 'astro-icon/components';
+
+// Read query params for postcode/coverage
+const url = new URL(Astro.url);
+const postcode = url.searchParams.get('postcode') || '';
+const covered = url.searchParams.get('covered') === '1';
+const whatsappText = `Hi Somerset Window Cleaning, my postcode is ${postcode} and I'd like a quote`;
+const whatsappHref = `https://wa.me/447415526331?text=${encodeURIComponent(whatsappText)}`;
 
 const metadata = {
   title: 'Contact',
@@ -12,68 +20,227 @@ const metadata = {
 <Layout metadata={metadata}>
   <!-- HeroText Widget ******************* -->
 
-  <HeroText tagline="Contact" title="Let's Connect!" />
+  <!-- Coverage hero (hidden by default; shown via client script when covered=true) -->
+  <div id="hero-covered" class="hidden">
+    <HeroText tagline="Coverage confirmed" subtitle="Send your details below for a fast, firm quote (we'll reply within one working day).">
+      <Fragment slot="bg">
+        <img src={heroImage.src} alt="" width="1600" height="900" style="width:100%; height:100%; object-fit:cover; opacity:0.35;" />
+        <div class="absolute inset-0 bg-black/40"></div>
+      </Fragment>
+      <Fragment slot="title">Yes — we cover <span class="text-accent" id="covered-postcode"></span></Fragment>
+      <div class="max-w-4xl mx-auto mt-4 flex flex-wrap justify-center gap-3">
+        <a href="#form" class="btn-primary whitespace-nowrap animate-pulse">Start your quote</a>
+        <a id="covered-whats" href="#" class="btn-whatsapp whitespace-nowrap">WhatsApp</a>
+      </div>
+    </HeroText>
+  </div>
+
+  <!-- Default hero (shown by default) -->
+  <div id="hero-default">
+    <HeroText tagline="Contact" title="Get a free quote" subtitle="We usually respond within one working day.">
+      <Fragment slot="bg">
+        <img src={heroImage.src} alt="" width="1600" height="900" style="width:100%; height:100%; object-fit:cover; opacity:0.35;" />
+        <div class="absolute inset-0 bg-black/40"></div>
+      </Fragment>
+    </HeroText>
+  </div>
+
+  <!-- Maybe-help banner (hidden by default; shown if postcode present but not confirmed) -->
+  <section id="maybe-banner" class="hidden max-w-7xl mx-auto px-4 sm:px-6 -mt-6 pb-4">
+    <div class="rounded-2xl border border-green-600/30 bg-gradient-to-r from-green-600/15 to-primary/10 p-5 sm:p-6">
+      <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
+        <div class="flex items-start gap-3">
+          <div class="mt-0.5">
+            <Icon name="tabler:circle-check" class="w-7 h-7 text-green-500" />
+          </div>
+          <div>
+            <h3 class="text-xl font-semibold">
+              We may still be able to help in <span class="text-accent" id="maybe-postcode"></span>
+            </h3>
+            <p class="text-sm text-muted mt-1">Reliable 4–8 week schedules with email or text reminders. Fully insured. 48‑hour spot‑free guarantee.</p>
+          </div>
+        </div>
+        <div class="flex flex-wrap gap-2">
+          <a href="#form" class="btn-primary whitespace-nowrap">Start your quote</a>
+          <a id="maybe-whats" href="#" class="btn-whatsapp whitespace-nowrap">WhatsApp</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Inline postcode checker (replacing /areas) -->
+  <section id="postcode-checker" class="max-w-7xl mx-auto px-4 sm:px-6 -mt-4 pb-2">
+    <div class="rounded-2xl border border-red-500/20 bg-red-500/5 dark:bg-red-500/10 p-5 sm:p-6">
+      <div class="grid gap-4 sm:grid-cols-3 sm:items-center">
+        <div class="sm:col-span-2">
+          <h3 class="text-xl font-semibold">Check your postcode</h3>
+          <p class="text-sm text-muted">We cover most BA, TA, BS and DT9 postcodes. Enter yours to confirm.</p>
+          <div class="mt-3 flex flex-col sm:flex-row gap-3">
+            <input id="postcodeInputC" type="text" placeholder="e.g. BA6 8AB" class="w-full sm:w-72 py-3 px-4 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent uppercase tracking-wider" />
+            <button id="postcodeBtnC" class="btn-primary whitespace-nowrap">Check coverage</button>
+          </div>
+          <p id="postcodeResultC" class="mt-3 text-sm"></p>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <ContactUs
     id="form"
-    title="Drop us a message today!"
-    subtitle="For quicker answers, explore our FAQs section. You may find the solution you're looking  for right there! If not, our support team is delighted to help you."
+    title="Tell us about your property"
+    subtitle="Send your details and we’ll confirm your price."
     inputs={[
-      {
-        type: 'text',
-        name: 'name',
-        label: 'Name',
-      },
-      {
-        type: 'email',
-        name: 'email',
-        label: 'Email',
-      },
+      { type: 'text', name: 'fullName', label: 'Full name' },
+      { type: 'email', name: 'email', label: 'Email address' },
+      { type: 'tel', name: 'phone', label: 'Phone number' },
+      { type: 'text', name: 'address', label: 'Address' },
+      { type: 'text', name: 'postcode', label: 'Postcode', placeholder: postcode },
+      { type: 'select', name: 'propertyType', label: 'Property type', options: ['Terraced (2 bed)', 'Terraced (3 bed)', 'Semi-detached (2 bed)', 'Semi-detached (3 bed)', 'Semi-detached (4 bed)', 'Detached (3 bed)', 'Detached (4 bed)', 'Detached (5+ bed)', 'Bungalow', 'Flat/Apartment', 'Commercial'] },
+      { type: 'select', name: 'frequency', label: 'Frequency (window cleaning)', options: ['Every 4 weeks', 'Every 8 weeks', 'Every 12 weeks', 'One-time clean'] },
+      { type: 'checkbox', name: 'services', label: 'Gutter clearing' },
+      { type: 'checkbox', name: 'services', label: 'Fascia & soffit cleaning' },
+      { type: 'checkbox', name: 'services', label: 'Conservatory roof cleaning' },
+      { type: 'checkbox', name: 'services', label: 'Solar panel cleaning' },
+      { type: 'file', name: 'photos', label: 'Attach photos (optional)', multiple: true, accept: 'image/*' },
     ]}
-    textarea={{
-      label: 'Message',
-    }}
-    disclaimer={{
-      label:
-        'By submitting this contact form, you acknowledge and agree to the collection of your personal information.',
-    }}
-    description="Our support team typically responds within 24 business hours."
-  />
+    textarea={{ label: 'Notes (optional)' }}
+    disclaimer={{ label: 'By submitting this form you agree to be contacted about your quote.' }}
+    description="Prefer to talk? Call 01458 860339 or email info@somersetwindowcleaning.co.uk"
+  >
+    <Fragment slot="aside">
+      <div class="space-y-5">
+        <h3 class="text-lg font-semibold">Prefer to talk?</h3>
+        <div class="grid grid-cols-1 gap-3">
+          <a href="tel:01458860339" class="inline-flex items-center justify-center rounded-md bg-primary text-white px-4 py-2 hover:opacity-90">
+            Call 01458 860339
+          </a>
+          <a href="mailto:info@somersetwindowcleaning.co.uk" class="inline-flex items-center justify-center rounded-md bg-white/10 text-white px-4 py-2 hover:bg-white/15">
+            Email info@somersetwindowcleaning.co.uk
+          </a>
+          <a href="/contact?method=direct-debit" class="inline-flex items-center justify-center rounded-md bg-green-600 text-white px-4 py-2 hover:opacity-90">
+            Set up Direct Debit (GoCardless)
+          </a>
+        </div>
+
+        <div class="pt-3 border-t border-gray-700/40">
+          <h4 class="text-base font-semibold mb-2">Business hours</h4>
+          <p class="text-sm text-gray-300">Mon–Fri 9:00–16:00 · We usually reply within one working day.</p>
+        </div>
+
+        <div class="pt-3 border-t border-gray-700/40">
+          <h4 class="text-base font-semibold mb-2">Coverage</h4>
+          <p class="text-sm text-gray-300">We serve homes and businesses across Somerset. Include your postcode and property type for a fast, firm quote.</p>
+        </div>
+
+        <div class="pt-3 border-t border-gray-700/40">
+          <h4 class="text-base font-semibold mb-2">Payments</h4>
+          <p class="text-sm text-gray-300">Direct Debit via GoCardless is preferred. We also accept card (Stripe) and bank transfer.</p>
+        </div>
+      </div>
+    </Fragment>
+  </ContactUs>
 
   <!-- Features2 Widget ************** -->
 
-  <Features2
-    title="We are here to help!"
-    items={[
-      {
-        title: 'General support',
-        description: `Chat with us for inquiries related to account management, website navigation, payment issues, accessing purchased templates or general questions about the website's functionality.`,
-      },
-      {
-        title: 'Contact sales',
-        description:
-          'Chat with us for questions about purchases, customization options, licensing for commercial use, inquiries about specific template, etc.',
-      },
-      {
-        title: 'Technical support',
-        description:
-          'Chat with us when facing issues like template installation, problems editing difficulties, compatibility issues with software or download errors, or other technical challenges related to using the templates.',
-      },
-      {
-        title: 'Phone',
-        description: '+1 (234) 567-890',
-        icon: 'tabler:headset',
-      },
-      {
-        title: 'Email',
-        description: 'contact@support.com',
-        icon: 'tabler:mail',
-      },
-      {
-        title: 'Location',
-        description: '1234 Lorem Ipsum St, 12345, Miami, EEUU',
-        icon: 'tabler:map-pin',
-      },
-    ]}
-  />
+  <script is:inline>
+    const params = new URLSearchParams(window.location.search);
+    const pc = (params.get('postcode') || '').toUpperCase();
+    const coveredFlag = params.get('covered') === '1';
+    if (pc) {
+      const el = document.getElementById('postcode');
+      if (el) el.value = pc.replace(/\s+/g, '');
+    }
+    const heroDefault = document.getElementById('hero-default');
+    const heroCovered = document.getElementById('hero-covered');
+    const coveredPcEl = document.getElementById('covered-postcode');
+    const coveredWhats = document.getElementById('covered-whats');
+    const maybeBanner = document.getElementById('maybe-banner');
+    const maybePcEl = document.getElementById('maybe-postcode');
+    const maybeWhats = document.getElementById('maybe-whats');
+
+    const whatsUrl = 'https://wa.me/447415526331?text=' + encodeURIComponent('Hi Somerset Window Cleaning, my postcode is ' + pc + " and I'd like a quote");
+
+    if (coveredFlag && pc) {
+      if (heroDefault) heroDefault.classList.add('hidden');
+      if (heroCovered) heroCovered.classList.remove('hidden');
+      if (coveredPcEl) coveredPcEl.textContent = pc;
+      if (coveredWhats) coveredWhats.href = whatsUrl;
+
+      // Delay scroll to keep the confirmation hero visible for a moment
+      const form = document.getElementById('form');
+      let userInteracted = false;
+      ['wheel','touchmove','keydown','scroll'].forEach((ev) => {
+        window.addEventListener(ev, () => { userInteracted = true; }, { once: true, passive: true });
+      });
+      if (form) setTimeout(() => {
+        if (!userInteracted) {
+          try {
+            const rect = form.getBoundingClientRect();
+            const y = rect.top + window.scrollY - 120; // offset so the heading is fully visible below sticky header
+            window.scrollTo({ top: y, behavior: 'smooth' });
+          } catch {}
+        }
+      }, 2400);
+
+      try {
+        const confettiHost = document.createElement('div');
+        confettiHost.id = 'confetti';
+        document.body.appendChild(confettiHost);
+        const colors = ['#22c55e', '#ef4444', '#ffffff', '#f59e0b'];
+        for (let i = 0; i < 48; i++) {
+          const s = document.createElement('span');
+          s.className = 'confetti';
+          s.style.left = Math.random() * 100 + '%';
+          s.style.background = colors[Math.floor(Math.random() * colors.length)];
+          s.style.animationDelay = (Math.random() * 0.6) + 's';
+          s.style.transform = 'translateY(-10px) rotate(' + Math.floor(Math.random() * 360) + 'deg)';
+          confettiHost.appendChild(s);
+        }
+        setTimeout(() => { confettiHost.remove(); }, 2000);
+      } catch {}
+    } else if (pc) {
+      if (maybeBanner) maybeBanner.classList.remove('hidden');
+      if (maybePcEl) maybePcEl.textContent = pc;
+      if (maybeWhats) maybeWhats.href = whatsUrl;
+    }
+
+    // Inline postcode checker
+    function normalisePc(v) { return (v || '').toString().toUpperCase().replace(/\s+/g, ''); }
+    function coversPostcode(v) {
+      const pcx = normalisePc(v);
+      if (!pcx) return null;
+      const m = pcx.match(/^([A-Z]{1,2}\d{1,2})/);
+      if (!m) return false;
+      const outward = m[1];
+      if (outward.startsWith('BA')) return true;
+      if (outward.startsWith('TA')) return true;
+      if (outward.startsWith('BS')) return true;
+      if (outward === 'DT9') return true;
+      return false;
+    }
+    function isFullUkPostcode(v) {
+      const re = /^([A-Z]{1,2}[0-9][0-9A-Z]?)[ ]?([0-9][ABD-HJLNP-UW-Z]{2})$/;
+      return re.test((v || '').toUpperCase().trim());
+    }
+    const inEl = document.getElementById('postcodeInputC');
+    const btnEl = document.getElementById('postcodeBtnC');
+    const resEl = document.getElementById('postcodeResultC');
+    btnEl?.addEventListener('click', () => {
+      const val = inEl?.value || '';
+      if (!isFullUkPostcode(val)) {
+        if (resEl) { resEl.textContent = 'Please enter your full postcode (e.g., BA6 8AB).'; resEl.className = 'mt-3 text-sm text-red-500'; }
+        return;
+      }
+      const coveredNow = coversPostcode(val);
+      const pcClean = normalisePc(val);
+      window.location.href = `/contact?postcode=${encodeURIComponent(pcClean)}&covered=${coveredNow ? '1' : '0'}`;
+    });
+  </script>
+
+  <style is:inline>
+    #confetti { position: fixed; inset: 0; pointer-events: none; overflow: hidden; z-index: 60; }
+    .confetti { position: absolute; width: 8px; height: 14px; opacity: .9; border-radius: 2px; animation: confetti-fall 1200ms ease-out forwards; }
+    @keyframes confetti-fall { from { transform: translateY(-10px) rotate(0deg); } to { transform: translateY(110vh) rotate(360deg); } }
+  </style>
+  
 </Layout>

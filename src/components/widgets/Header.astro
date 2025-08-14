@@ -50,7 +50,7 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
 <header
   class:list={[
     { sticky: isSticky, relative: !isSticky, dark: isDark },
-    'top-0 z-40 flex-none mx-auto w-full border-b border-gray-50/0 transition-[opacity] ease-in-out',
+    'top-0 z-40 flex-none mx-auto w-full border-b border-gray-50/0 transition-[opacity] ease-in-out bg-black text-white',
   ]}
   {...isSticky ? { 'data-aw-sticky-header': true } : {}}
   {...id ? { id } : {}}
@@ -58,7 +58,7 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
   <div class="absolute inset-0"></div>
   <div
     class:list={[
-      'relative text-default py-3 px-3 md:px-6 mx-auto w-full',
+      'relative text-default py-3 px-3 md:px-6 mx-auto w-full header-inner',
       {
         'md:flex md:justify-between': position !== 'center',
       },
@@ -92,7 +92,7 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
                 <>
                   <button
                     type="button"
-                    class="hover:text-link dark:hover:text-white px-4 py-3 flex items-center whitespace-nowrap"
+                    class="hover:text-link dark:hover:text-white px-3 py-2 flex items-center whitespace-nowrap"
                   >
                     {text}{' '}
                     <Icon name="tabler:chevron-down" class="w-3.5 h-3.5 ml-0.5 rtl:ml-0 rtl:mr-0.5 hidden md:inline" />
@@ -116,7 +116,7 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
               ) : (
                 <a
                   class:list={[
-                    'hover:text-link dark:hover:text-white px-4 py-3 flex items-center whitespace-nowrap',
+                    'hover:text-link dark:hover:text-white px-3 py-2 flex items-center whitespace-nowrap',
                     { 'aw-link-active': href === currentPath },
                   ]}
                   href={href}
@@ -152,11 +152,26 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
         </div>
         {
           actions?.length ? (
-            <span class="ml-4 rtl:ml-0 rtl:mr-4">
-              {actions.map((btnProps) => (
-                <Button {...btnProps} class="ml-2 py-2.5 px-5.5 md:px-6 font-semibold shadow-none text-sm w-auto" />
-              ))}
-            </span>
+            <div class="ml-4 rtl:ml-0 rtl:mr-4 flex flex-col items-end gap-2 main-actions">
+              {
+                [...actions]
+                  .sort((a, b) => (a.priority || 99) - (b.priority || 99))
+                  .map((btnProps) => {
+                    const label = (btnProps.text || '').toLowerCase();
+                    const visibility = label.includes('need')
+                      ? 'hidden xl:inline-flex'
+                      : label.includes('call')
+                      ? 'hidden lg:inline-flex'
+                      : '';
+                    return (
+                      <Button
+                        {...btnProps}
+                        class={`${visibility} py-1.5 md:py-2 px-4 md:px-6 font-semibold shadow-none text-sm w-auto ${btnProps.class || ''}`}
+                      />
+                    );
+                  })
+              }
+            </div>
           ) : (
             ''
           )
