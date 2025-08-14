@@ -87,33 +87,12 @@ export default defineConfig({
   build: {
     // Inline stylesheets smaller than 4KB for critical CSS
     inlineStylesheets: 'auto',
-    // Split code for better caching
-    rollupOptions: {
-      output: {
-        // Separate vendor code for better caching
-        manualChunks: {
-          'vendor-react': ['react', 'react-dom'],
-          'vendor-utils': ['lodash.merge', 'limax'],
-        },
-      },
-    },
-  },
-
-  // Enable experimental features for performance
-  experimental: {
-    optimizeHoistedScript: true,
   },
 
   // Performance optimisations
   server: {
     // Enable port reuse for faster dev starts
     port: 4321,
-  },
-
-  // Prefetch settings for faster navigation
-  prefetch: {
-    prefetchAll: true,
-    defaultStrategy: 'viewport',
   },
 
   markdown: {

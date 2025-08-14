@@ -11,9 +11,10 @@ import Metadata from '~/components/common/Metadata.astro';
 import SiteVerification from '~/components/common/SiteVerification.astro';
 import Analytics from '~/components/common/Analytics.astro';
 import BasicScripts from '~/components/common/BasicScripts.astro';
-import StructuredData from '~/components/common/StructuredData.astro';
-import AccessibilityEnhancements from '~/components/common/AccessibilityEnhancements.astro';
-import MobileOptimisations from '~/components/common/MobileOptimisations.astro';
+// Temporarily disabled for compatibility
+// import StructuredData from '~/components/common/StructuredData.astro';
+// import AccessibilityEnhancements from '~/components/common/AccessibilityEnhancements.astro';
+// import MobileOptimisations from '~/components/common/MobileOptimisations.astro';
 
 // Comment the line below to disable View Transitions
 import { ClientRouter } from 'astro:transitions';
@@ -39,15 +40,16 @@ const { language, textDirection } = I18N;
     <Metadata {...metadata} />
     <SiteVerification />
     <Analytics />
-    <StructuredData type={structuredDataType} />
-    <MobileOptimisations />
+    <!-- Temporarily disabled for compatibility -->
+    <!-- <StructuredData type={structuredDataType} /> -->
+    <!-- <MobileOptimisations /> -->
 
     <!-- Comment the line below to disable View Transitions -->
     <ClientRouter fallback="swap" />
   </head>
 
   <body class="antialiased text-default bg-page tracking-tight">
-    <AccessibilityEnhancements />
+    <!-- <AccessibilityEnhancements /> -->
     <slot />
 
     <BasicScripts />
