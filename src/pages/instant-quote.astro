@@ -1,0 +1,411 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import Hero from '~/components/widgets/Hero.astro';
+import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
+
+const metadata = {
+  title: 'Instant Quote - Somerset Window Cleaning | Get Price & Book Online',
+  description: 'Get an instant quote for window cleaning in Somerset. Enter your details and book online in minutes with Direct Debit setup.',
+};
+---
+
+<Layout metadata={metadata}>
+  <!-- Hero Section -->
+  <Hero>
+    <Fragment slot="title">
+      Get Your Instant <span class="text-accent">Quote</span>
+    </Fragment>
+    <Fragment slot="subtitle">
+      Enter your details and get an instant price. Book online and set up Direct Debit in minutes.
+    </Fragment>
+  </Hero>
+
+  <!-- Instant Quote Form -->
+  <WidgetWrapper>
+    <div class="max-w-4xl mx-auto px-4 py-12">
+      <div class="grid lg:grid-cols-2 gap-12">
+        <!-- Quote Form -->
+        <div class="space-y-6">
+          <div class="bg-white rounded-lg shadow-lg p-6 border border-gray-100">
+            <h2 class="text-2xl font-bold text-gray-900 mb-6">Step 1: Property Details</h2>
+            
+            <form id="quote-form" class="space-y-6">
+              <!-- Property Type -->
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-3">Property Type</label>
+                <div class="grid grid-cols-2 gap-3">
+                  <button type="button" class="property-type-btn bg-white border-2 border-gray-200 rounded-lg p-4 text-center hover:border-primary hover:bg-primary/5 transition-all" data-type="house">
+                    <div class="text-2xl mb-2">🏠</div>
+                    <div class="font-medium">House</div>
+                  </button>
+                  <button type="button" class="property-type-btn bg-white border-2 border-gray-200 rounded-lg p-4 text-center hover:border-primary hover:bg-primary/5 transition-all" data-type="flat">
+                    <div class="text-2xl mb-2">🏢</div>
+                    <div class="font-medium">Flat/Apartment</div>
+                  </button>
+                  <button type="button" class="property-type-btn bg-white border-2 border-gray-200 rounded-lg p-4 text-center hover:border-primary hover:bg-primary/5 transition-all" data-type="commercial">
+                    <div class="text-2xl mb-2">🏪</div>
+                    <div class="font-medium">Commercial</div>
+                  </button>
+                  <button type="button" class="property-type-btn bg-white border-2 border-gray-200 rounded-lg p-4 text-center hover:border-primary hover:bg-primary/5 transition-all" data-type="other">
+                    <div class="text-2xl mb-2">🏗️</div>
+                    <div class="font-medium">Other</div>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Number of Bedrooms (for houses/flats) -->
+              <div id="bedrooms-section" class="hidden">
+                <label class="block text-sm font-medium text-gray-700 mb-3">Number of Bedrooms</label>
+                <select id="bedrooms" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                  <option value="">Select bedrooms</option>
+                  <option value="1">1 bedroom</option>
+                  <option value="2">2 bedrooms</option>
+                  <option value="3">3 bedrooms</option>
+                  <option value="4">4 bedrooms</option>
+                  <option value="5">5+ bedrooms</option>
+                </select>
+              </div>
+
+              <!-- Services -->
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-3">Services Required</label>
+                <div class="space-y-3">
+                  <label class="flex items-center">
+                    <input type="checkbox" name="services" value="windows" checked class="service-checkbox w-5 h-5 text-primary border-gray-300 rounded focus:ring-primary">
+                    <span class="ml-3 text-gray-700">Window Cleaning (£15-£45)</span>
+                  </label>
+                  <label class="flex items-center">
+                    <input type="checkbox" name="services" value="gutters" class="service-checkbox w-5 h-5 text-primary border-gray-300 rounded focus:ring-primary">
+                    <span class="ml-3 text-gray-700">Gutter Clearing (+£25-£60)</span>
+                  </label>
+                  <label class="flex items-center">
+                    <input type="checkbox" name="services" value="fascia" class="service-checkbox w-5 h-5 text-primary border-gray-300 rounded focus:ring-primary">
+                    <span class="ml-3 text-gray-700">Fascia & Soffit Cleaning (+£20-£50)</span>
+                  </label>
+                  <label class="flex items-center">
+                    <input type="checkbox" name="services" value="conservatory" class="service-checkbox w-5 h-5 text-primary border-gray-300 rounded focus:ring-primary">
+                    <span class="ml-3 text-gray-700">Conservatory Roof (+£30-£80)</span>
+                  </label>
+                  <label class="flex items-center">
+                    <input type="checkbox" name="services" value="solar" class="service-checkbox w-5 h-5 text-primary border-gray-300 rounded focus:ring-primary">
+                    <span class="ml-3 text-gray-700">Solar Panel Cleaning (+£40-£100)</span>
+                  </label>
+                </div>
+              </div>
+
+              <!-- Frequency -->
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-3">Cleaning Frequency</label>
+                <select id="frequency" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                  <option value="4">Every 4 weeks (Recommended - 10% discount)</option>
+                  <option value="6">Every 6 weeks (5% discount)</option>
+                  <option value="8">Every 8 weeks</option>
+                  <option value="12">Every 12 weeks (+10% premium)</option>
+                  <option value="one-off">One-off clean (+20% premium)</option>
+                </select>
+              </div>
+
+              <!-- Location -->
+              <div>
+                <label for="postcode" class="block text-sm font-medium text-gray-700 mb-2">Postcode</label>
+                <input type="text" id="postcode" placeholder="e.g. BA16 0HW" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                <p class="text-sm text-gray-500 mt-1">We cover all of Somerset - enter your postcode to confirm service availability</p>
+              </div>
+
+              <button type="button" id="calculate-quote" class="w-full btn-primary text-lg py-4 disabled:opacity-50 disabled:cursor-not-allowed">
+                Calculate My Quote
+              </button>
+            </form>
+          </div>
+        </div>
+
+        <!-- Quote Result & Next Steps -->
+        <div class="space-y-6">
+          <!-- Price Display -->
+          <div id="quote-result" class="bg-gradient-to-br from-primary/5 to-accent/5 rounded-lg p-6 border border-primary/20 hidden">
+            <h3 class="text-xl font-bold text-gray-900 mb-4">Your Instant Quote</h3>
+            <div class="space-y-3">
+              <div class="flex justify-between items-center text-lg">
+                <span>Total Cost:</span>
+                <span id="total-price" class="font-bold text-2xl text-primary">£--</span>
+              </div>
+              <div class="text-sm text-gray-600">
+                <div id="price-breakdown" class="space-y-1"></div>
+              </div>
+              <div class="border-t pt-3 mt-3">
+                <div class="flex justify-between items-center text-sm">
+                  <span>Frequency:</span>
+                  <span id="frequency-display" class="font-medium"></span>
+                </div>
+                <div class="flex justify-between items-center text-sm">
+                  <span>Next payment:</span>
+                  <span id="next-payment" class="font-medium"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Booking Form -->
+          <div id="booking-form" class="bg-white rounded-lg shadow-lg p-6 border border-gray-100 hidden">
+            <h3 class="text-xl font-bold text-gray-900 mb-4">Step 2: Book Your Service</h3>
+            <form id="booking-details" class="space-y-4">
+              <div class="grid grid-cols-2 gap-4">
+                <div>
+                  <label for="first-name" class="block text-sm font-medium text-gray-700 mb-1">First Name</label>
+                  <input type="text" id="first-name" required class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                </div>
+                <div>
+                  <label for="last-name" class="block text-sm font-medium text-gray-700 mb-1">Last Name</label>
+                  <input type="text" id="last-name" required class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                </div>
+              </div>
+              
+              <div>
+                <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
+                <input type="email" id="email" required class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+              </div>
+              
+              <div>
+                <label for="phone" class="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
+                <input type="tel" id="phone" required class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+              </div>
+              
+              <div>
+                <label for="address" class="block text-sm font-medium text-gray-700 mb-1">Full Address</label>
+                <textarea id="address" rows="3" required class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"></textarea>
+              </div>
+
+              <div>
+                <label for="special-instructions" class="block text-sm font-medium text-gray-700 mb-1">Special Instructions (Optional)</label>
+                <textarea id="special-instructions" rows="2" placeholder="e.g. locked gate, dogs, access details" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"></textarea>
+              </div>
+
+              <button type="button" id="proceed-to-payment" class="w-full btn-primary text-lg py-3">
+                Proceed to Direct Debit Setup
+              </button>
+            </form>
+          </div>
+
+          <!-- Benefits -->
+          <div class="bg-white rounded-lg shadow-lg p-6 border border-gray-100">
+            <h3 class="text-lg font-bold text-gray-900 mb-4">Why Choose Direct Debit?</h3>
+            <div class="space-y-3">
+              <div class="flex items-start space-x-3">
+                <svg class="w-5 h-5 text-green-500 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+                <div>
+                  <div class="font-medium">Never miss a payment</div>
+                  <div class="text-sm text-gray-600">Automatic payments after each clean</div>
+                </div>
+              </div>
+              <div class="flex items-start space-x-3">
+                <svg class="w-5 h-5 text-green-500 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+                <div>
+                  <div class="font-medium">Secure & Protected</div>
+                  <div class="text-sm text-gray-600">Direct Debit Guarantee protection</div>
+                </div>
+              </div>
+              <div class="flex items-start space-x-3">
+                <svg class="w-5 h-5 text-green-500 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+                <div>
+                  <div class="font-medium">Easy to manage</div>
+                  <div class="text-sm text-gray-600">Cancel or modify anytime</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </WidgetWrapper>
+</Layout>
+
+<script>
+// Quote calculation logic
+const pricing = {
+  windows: {
+    house: { 1: 15, 2: 18, 3: 25, 4: 35, 5: 45 },
+    flat: { 1: 12, 2: 15, 3: 20, 4: 28, 5: 35 },
+    commercial: 50,
+    other: 30
+  },
+  gutters: {
+    house: { 1: 25, 2: 30, 3: 40, 4: 50, 5: 60 },
+    flat: { 1: 20, 2: 25, 3: 30, 4: 40, 5: 50 },
+    commercial: 80,
+    other: 40
+  },
+  fascia: {
+    house: { 1: 20, 2: 25, 3: 35, 4: 45, 5: 50 },
+    flat: { 1: 15, 2: 20, 3: 25, 4: 35, 5: 40 },
+    commercial: 60,
+    other: 30
+  },
+  conservatory: {
+    house: { 1: 30, 2: 40, 3: 50, 4: 70, 5: 80 },
+    flat: { 1: 25, 2: 30, 3: 40, 4: 60, 5: 70 },
+    commercial: 100,
+    other: 50
+  },
+  solar: {
+    house: { 1: 40, 2: 50, 3: 60, 4: 80, 5: 100 },
+    flat: { 1: 30, 2: 40, 3: 50, 4: 70, 5: 90 },
+    commercial: 150,
+    other: 70
+  }
+};
+
+const frequencyMultipliers = {
+  '4': 0.9,   // 10% discount
+  '6': 0.95,  // 5% discount
+  '8': 1.0,   // standard
+  '12': 1.1,  // 10% premium
+  'one-off': 1.2  // 20% premium
+};
+
+let selectedPropertyType = '';
+let currentQuote = null;
+
+// Property type selection
+document.querySelectorAll('.property-type-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.property-type-btn').forEach(b => {
+      b.classList.remove('border-primary', 'bg-primary/5');
+      b.classList.add('border-gray-200');
+    });
+    
+    btn.classList.add('border-primary', 'bg-primary/5');
+    btn.classList.remove('border-gray-200');
+    
+    selectedPropertyType = btn.dataset.type;
+    
+    // Show/hide bedrooms section
+    const bedroomsSection = document.getElementById('bedrooms-section');
+    if (selectedPropertyType === 'house' || selectedPropertyType === 'flat') {
+      bedroomsSection.classList.remove('hidden');
+    } else {
+      bedroomsSection.classList.add('hidden');
+    }
+  });
+});
+
+// Calculate quote
+document.getElementById('calculate-quote').addEventListener('click', () => {
+  if (!selectedPropertyType) {
+    alert('Please select a property type');
+    return;
+  }
+
+  const bedrooms = document.getElementById('bedrooms').value;
+  const frequency = document.getElementById('frequency').value;
+  const postcode = document.getElementById('postcode').value;
+  const selectedServices = Array.from(document.querySelectorAll('.service-checkbox:checked')).map(cb => cb.value);
+
+  if ((selectedPropertyType === 'house' || selectedPropertyType === 'flat') && !bedrooms) {
+    alert('Please select number of bedrooms');
+    return;
+  }
+
+  if (!postcode) {
+    alert('Please enter your postcode');
+    return;
+  }
+
+  if (selectedServices.length === 0) {
+    alert('Please select at least one service');
+    return;
+  }
+
+  // Calculate total
+  let total = 0;
+  const breakdown = [];
+
+  selectedServices.forEach(service => {
+    let price = 0;
+    
+    if (selectedPropertyType === 'commercial' || selectedPropertyType === 'other') {
+      price = pricing[service][selectedPropertyType];
+    } else {
+      price = pricing[service][selectedPropertyType][bedrooms];
+    }
+    
+    total += price;
+    breakdown.push(`${service.charAt(0).toUpperCase() + service.slice(1)}: £${price}`);
+  });
+
+  // Apply frequency multiplier
+  const multiplier = frequencyMultipliers[frequency];
+  total = Math.round(total * multiplier);
+
+  // Display quote
+  document.getElementById('total-price').textContent = `£${total}`;
+  document.getElementById('price-breakdown').innerHTML = breakdown.map(item => `<div>${item}</div>`).join('');
+  document.getElementById('frequency-display').textContent = document.getElementById('frequency').selectedOptions[0].text;
+  
+  // Calculate next payment date
+  const nextDate = new Date();
+  const weeksToAdd = frequency === 'one-off' ? 0 : parseInt(frequency);
+  if (weeksToAdd > 0) {
+    nextDate.setDate(nextDate.getDate() + (weeksToAdd * 7));
+    document.getElementById('next-payment').textContent = nextDate.toLocaleDateString('en-GB');
+  } else {
+    document.getElementById('next-payment').textContent = 'One-off payment';
+  }
+
+  // Store quote data
+  currentQuote = {
+    propertyType: selectedPropertyType,
+    bedrooms,
+    services: selectedServices,
+    frequency,
+    postcode,
+    total,
+    breakdown
+  };
+
+  // Show results
+  document.getElementById('quote-result').classList.remove('hidden');
+  document.getElementById('booking-form').classList.remove('hidden');
+});
+
+// Proceed to payment
+document.getElementById('proceed-to-payment').addEventListener('click', () => {
+  const form = document.getElementById('booking-details');
+  const firstName = document.getElementById('first-name').value;
+  const lastName = document.getElementById('last-name').value;
+  const email = document.getElementById('email').value;
+  const phone = document.getElementById('phone').value;
+  const address = document.getElementById('address').value;
+
+  if (!firstName || !lastName || !email || !phone || !address) {
+    alert('Please fill in all required fields');
+    return;
+  }
+
+  // Store booking data
+  const bookingData = {
+    ...currentQuote,
+    customer: {
+      firstName,
+      lastName,
+      email,
+      phone,
+      address,
+      specialInstructions: document.getElementById('special-instructions').value
+    }
+  };
+
+  // Store in localStorage for now (in production, this would go to your backend)
+  localStorage.setItem('pendingBooking', JSON.stringify(bookingData));
+
+  // Redirect to payment/Direct Debit setup
+  // In production, this would integrate with GoCardless or similar
+  alert('Great! In production, this would redirect to GoCardless for Direct Debit setup. For now, we\'ll redirect to the contact page.');
+  window.location.href = '/contact?booking=true';
+});
+</script>

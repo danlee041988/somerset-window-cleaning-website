@@ -5,90 +5,302 @@ import Prices from '~/components/widgets/Pricing.astro';
 import FAQs from '~/components/widgets/FAQs.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
 import Image from '~/components/common/Image.astro';
+import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
 
 const metadata = {
-  title: 'Pricing',
+  title: 'Window Cleaning Prices Somerset | Transparent Pricing | Somerset Window Cleaning',
+  description: 'Transparent window cleaning prices for Somerset. From £15 for window cleaning, with discounts for regular service. Instant quotes available online.',
 };
 ---
 
 <Layout metadata={metadata}>
   <!-- HeroText Widget ******************* -->
-
-  <HeroText tagline="Pricing" title="Transparent pricing" subtitle="Simple, competitive rates with no hidden charges.">
+  <HeroText tagline="Pricing" title="Transparent, honest pricing" subtitle="Clear prices with no hidden charges. Regular service discounts available.">
     <Fragment slot="bg">
       <Image src="~/assets/images/DJI_0007.JPG" alt="" width={1600} height={900} layout="cover" style="width:100%; height:100%; object-fit:cover; opacity:0.35;" />
       <div class="absolute inset-0 bg-black/40"></div>
     </Fragment>
   </HeroText>
 
-  <!-- Pricing Widget ******************* -->
+  <!-- Instant Quote CTA -->
+  <WidgetWrapper>
+    <div class="text-center py-8">
+      <div class="bg-primary/5 rounded-xl p-6 max-w-2xl mx-auto">
+        <h2 class="text-2xl font-bold mb-3">Want an exact price?</h2>
+        <p class="text-gray-600 mb-4">Get an instant quote based on your specific property details</p>
+        <a href="/instant-quote" class="btn-primary inline-flex items-center space-x-2">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"/>
+          </svg>
+          <span>Get Instant Quote</span>
+        </a>
+      </div>
+    </div>
+  </WidgetWrapper>
 
-  <Prices
-    title="Our prices"
-    subtitle="Guide pricing — confirmed on quote"
-    prices={[
-      {
-        title: 'Residential',
-        subtitle: 'Regular service',
-        price: 'from 15',
-        period: 'per clean',
-        items: [
-          { description: '2 Bed: £15–20' },
-          { description: '3 Bed: £20–25' },
-          { description: '4 Bed: £25–35' },
-        ],
-        callToAction: { text: 'Get a quote', href: '/contact' },
-      },
-      {
-        title: 'Additional services',
-        subtitle: 'Competitive',
-        price: 'enquire',
-        period: 'fixed quote',
-        items: [
-          { description: 'Gutter clearing from £60' },
-          { description: 'Conservatory roof cleaning from £40' },
-          { description: 'Solar panel cleaning from £50' },
-        ],
-        callToAction: { text: 'Get a quote', href: '/contact' },
-      },
-      {
-        title: 'Commercial',
-        subtitle: 'Flexible schedules',
-        price: 'POA',
-        period: 'site visit',
-        items: [
-          { description: 'Shops and offices' },
-          { description: 'Managed sites' },
-          { description: 'Out-of-hours options' },
-        ],
-        callToAction: { text: 'Book a visit', href: '/contact' },
-        hasRibbon: true,
-        ribbonTitle: 'Popular',
-      },
-    ]}
-  />
+  <!-- Detailed Pricing Tables -->
+  <WidgetWrapper>
+    <div class="max-w-7xl mx-auto px-4 py-12">
+      
+      <!-- Residential Window Cleaning -->
+      <div class="mb-16">
+        <h2 class="text-3xl font-bold text-center mb-2">Window Cleaning Prices</h2>
+        <p class="text-center text-gray-600 mb-8">All prices include frames and sills as standard</p>
+        
+        <div class="grid lg:grid-cols-2 gap-8">
+          <!-- Standard Properties -->
+          <div class="bg-white rounded-lg shadow-lg border border-gray-100 overflow-hidden">
+            <div class="bg-gray-50 px-6 py-4 border-b">
+              <h3 class="text-xl font-semibold">Standard Properties</h3>
+              <p class="text-sm text-gray-600">Regular 4-6 week cleaning schedule</p>
+            </div>
+            <div class="p-6 space-y-4">
+              <div class="flex justify-between items-center">
+                <span>1-2 bedroom house/flat</span>
+                <span class="font-semibold text-primary">£15-£18</span>
+              </div>
+              <div class="flex justify-between items-center">
+                <span>3 bedroom house</span>
+                <span class="font-semibold text-primary">£22-£28</span>
+              </div>
+              <div class="flex justify-between items-center">
+                <span>4 bedroom house</span>
+                <span class="font-semibold text-primary">£30-£38</span>
+              </div>
+              <div class="flex justify-between items-center">
+                <span>5+ bedroom house</span>
+                <span class="font-semibold text-primary">£40-£55</span>
+              </div>
+              <div class="border-t pt-4">
+                <div class="flex items-center space-x-2 text-green-600 text-sm">
+                  <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                  </svg>
+                  <span>4-week schedule: 10% discount</span>
+                </div>
+                <div class="flex items-center space-x-2 text-green-600 text-sm">
+                  <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                  </svg>
+                  <span>6-week schedule: 5% discount</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Premium/Difficult Access -->
+          <div class="bg-white rounded-lg shadow-lg border border-gray-100 overflow-hidden">
+            <div class="bg-yellow-50 px-6 py-4 border-b">
+              <h3 class="text-xl font-semibold">Premium Properties</h3>
+              <p class="text-sm text-gray-600">Large/difficult access properties</p>
+            </div>
+            <div class="p-6 space-y-4">
+              <div class="flex justify-between items-center">
+                <span>Georgian/Victorian houses</span>
+                <span class="font-semibold text-primary">£45-£65</span>
+              </div>
+              <div class="flex justify-between items-center">
+                <span>Large detached houses</span>
+                <span class="font-semibold text-primary">£50-£75</span>
+              </div>
+              <div class="flex justify-between items-center">
+                <span>Difficult access properties</span>
+                <span class="font-semibold text-primary">+20%</span>
+              </div>
+              <div class="flex justify-between items-center">
+                <span>Leaded/Georgian windows</span>
+                <span class="font-semibold text-primary">+£5-£10</span>
+              </div>
+              <div class="border-t pt-4">
+                <div class="text-sm text-gray-600">
+                  <p><strong>Includes:</strong> All windows inside and out, frames, sills, doors</p>
+                  <p><strong>Access:</strong> Safely reached up to 40ft with professional equipment</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Additional Services -->
+      <div class="mb-16">
+        <h2 class="text-3xl font-bold text-center mb-2">Additional Services</h2>
+        <p class="text-center text-gray-600 mb-8">Professional exterior cleaning add-ons</p>
+        
+        <div class="grid md:grid-cols-2 gap-6">
+          <div class="bg-white rounded-lg shadow-lg border border-gray-100 p-6">
+            <h3 class="text-lg font-semibold mb-4 flex items-center">
+              <svg class="w-5 h-5 mr-2 text-primary" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z"/>
+              </svg>
+              Gutter Clearing
+            </h3>
+            <div class="space-y-2">
+              <div class="flex justify-between">
+                <span>2-3 bed house</span>
+                <span class="font-semibold">£30-£45</span>
+              </div>
+              <div class="flex justify-between">
+                <span>4+ bed house</span>
+                <span class="font-semibold">£50-£70</span>
+              </div>
+              <div class="flex justify-between">
+                <span>Downpipe clearing</span>
+                <span class="font-semibold">+£10-£15</span>
+              </div>
+            </div>
+            <p class="text-sm text-gray-600 mt-3">High-reach vacuum system, photo report provided</p>
+          </div>
+
+          <div class="bg-white rounded-lg shadow-lg border border-gray-100 p-6">
+            <h3 class="text-lg font-semibold mb-4 flex items-center">
+              <svg class="w-5 h-5 mr-2 text-primary" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z"/>
+              </svg>
+              Conservatory Roof
+            </h3>
+            <div class="space-y-2">
+              <div class="flex justify-between">
+                <span>Small conservatory</span>
+                <span class="font-semibold">£40-£60</span>
+              </div>
+              <div class="flex justify-between">
+                <span>Large conservatory</span>
+                <span class="font-semibold">£70-£100</span>
+              </div>
+              <div class="flex justify-between">
+                <span>UPVC frame clean</span>
+                <span class="font-semibold">+£15-£25</span>
+              </div>
+            </div>
+            <p class="text-sm text-gray-600 mt-3">Roof panels and frames, algae and moss removal</p>
+          </div>
+
+          <div class="bg-white rounded-lg shadow-lg border border-gray-100 p-6">
+            <h3 class="text-lg font-semibold mb-4 flex items-center">
+              <svg class="w-5 h-5 mr-2 text-primary" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/>
+              </svg>
+              Solar Panel Cleaning
+            </h3>
+            <div class="space-y-2">
+              <div class="flex justify-between">
+                <span>Domestic system (up to 4kW)</span>
+                <span class="font-semibold">£60-£80</span>
+              </div>
+              <div class="flex justify-between">
+                <span>Large system (4kW+)</span>
+                <span class="font-semibold">£90-£120</span>
+              </div>
+              <div class="flex justify-between">
+                <span>Commercial systems</span>
+                <span class="font-semibold">POA</span>
+              </div>
+            </div>
+            <p class="text-sm text-gray-600 mt-3">Specialist cleaning to maintain efficiency and warranties</p>
+          </div>
+
+          <div class="bg-white rounded-lg shadow-lg border border-gray-100 p-6">
+            <h3 class="text-lg font-semibold mb-4 flex items-center">
+              <svg class="w-5 h-5 mr-2 text-primary" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"/>
+              </svg>
+              Fascia & Soffit
+            </h3>
+            <div class="space-y-2">
+              <div class="flex justify-between">
+                <span>Front elevation only</span>
+                <span class="font-semibold">£25-£40</span>
+              </div>
+              <div class="flex justify-between">
+                <span>Full house</span>
+                <span class="font-semibold">£50-£80</span>
+              </div>
+              <div class="flex justify-between">
+                <span>Gutter exterior clean</span>
+                <span class="font-semibold">+£15-£25</span>
+              </div>
+            </div>
+            <p class="text-sm text-gray-600 mt-3">UPVC restoration, removes green algae and grime</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Frequency Discounts -->
+      <div class="bg-gradient-to-r from-primary/5 to-accent/5 rounded-xl p-8 mb-12">
+        <h2 class="text-2xl font-bold text-center mb-6">Regular Service Discounts</h2>
+        <div class="grid md:grid-cols-3 gap-6 text-center">
+          <div class="bg-white rounded-lg p-6 shadow-md">
+            <div class="text-green-600 font-bold text-xl mb-2">10% OFF</div>
+            <div class="font-semibold mb-2">Every 4 weeks</div>
+            <div class="text-sm text-gray-600">Most popular - keeps windows consistently clean</div>
+          </div>
+          <div class="bg-white rounded-lg p-6 shadow-md">
+            <div class="text-green-600 font-bold text-xl mb-2">5% OFF</div>
+            <div class="font-semibold mb-2">Every 6 weeks</div>
+            <div class="text-sm text-gray-600">Good balance of cost and cleanliness</div>
+          </div>
+          <div class="bg-white rounded-lg p-6 shadow-md">
+            <div class="text-red-600 font-bold text-xl mb-2">+10%</div>
+            <div class="font-semibold mb-2">12+ weeks</div>
+            <div class="text-sm text-gray-600">Additional charge for less frequent cleaning</div>
+          </div>
+        </div>
+        <div class="text-center mt-6">
+          <p class="text-sm text-gray-600">One-off cleans available with 20% premium</p>
+        </div>
+      </div>
+    </div>
+  </WidgetWrapper>
 
   <!-- FAQs *************************** -->
-
   <FAQs
     title="Pricing FAQs"
-    subtitle="Quick answers about pricing and scheduling."
-    columns={1}
+    subtitle="Everything you need to know about our pricing"
+    columns={2}
     items={[
-      { title: 'How are prices calculated?', description: 'Prices depend on property size, access and frequency. We confirm your price on quote.' },
-      { title: 'Do you charge extra for 8 or 12 weekly?', description: 'Yes, a small surcharge applies for less frequent schedules (guide: +£3 / +£5).' },
-     { title: 'Do you offer combined service discounts?', description: 'Yes. Ask for a combined quote for gutters, fascia/soffit or conservatory roof cleaning.' },
-      { title: 'Is there a call-out charge?', description: 'No. Quotes are free. Work is only charged once completed.' },
+      { 
+        title: 'How are prices calculated?', 
+        description: 'Prices depend on property size, number of windows, access difficulty, and cleaning frequency. We provide exact quotes after seeing your property details.' 
+      },
+      { 
+        title: 'Are there any hidden charges?', 
+        description: 'No hidden charges. The quote we give is the price you pay. Only additional services you request (like gutters) cost extra.' 
+      },
+      { 
+        title: 'Do you offer discounts for regular cleaning?', 
+        description: 'Yes! 4-weekly cleaning gets 10% off, 6-weekly gets 5% off. One-off cleans have a 20% premium due to additional setup time.' 
+      },
+      { 
+        title: 'What payment methods do you accept?', 
+        description: 'Direct Debit (preferred), card payment via Stripe, bank transfer, or cash. Direct Debit customers get priority booking slots.' 
+      },
+      { 
+        title: 'Is there a minimum charge?', 
+        description: 'Our minimum charge is £15 for basic window cleaning. This covers most 1-2 bedroom properties.' 
+      },
+      { 
+        title: 'Do you charge for quotes?', 
+        description: 'No, all quotes are completely free with no obligation. We can often provide accurate quotes just from your postcode and property description.' 
+      },
+      { 
+        title: 'What if I\'m not happy with the clean?', 
+        description: 'We offer a 48-hour spot-free guarantee. Report any issues within 48 hours and we\'ll return to fix them free of charge.' 
+      },
+      { 
+        title: 'Can I cancel or change my regular cleaning?', 
+        description: 'Yes, you can cancel or change frequency anytime with 7 days notice. No contracts or cancellation fees.' 
+      },
     ]}
   />
 
-  
-
   <!-- CallToAction Widget *********** -->
-
   <CallToAction
-    title="Ready for a firm quote?"
-    subtitle="Send us your postcode and property type — we’ll confirm your price."
-    actions={[{ variant: 'primary', text: 'Get a free quote', href: '/contact' }]}
+    title="Ready for crystal-clear windows?"
+    subtitle="Get your exact price in seconds with our instant quote tool, or contact us for a traditional quote."
+    actions={[
+      { variant: 'primary', text: 'Get Instant Quote', href: '/instant-quote', icon: 'tabler:calculator' },
+      { text: 'Call 01458 860339', href: 'tel:01458860339', icon: 'tabler:phone' },
+    ]}
   />
 </Layout>

@@ -11,10 +11,12 @@ import FAQs from '~/components/widgets/FAQs.astro';
 import Stats from '~/components/widgets/Stats.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
 import Testimonials from '~/components/widgets/Testimonials.astro';
+import LiveReviews from '~/components/widgets/LiveReviews.astro';
 import Process from '~/components/widgets/Process.astro';
 
 const metadata = {
-  title: 'Somerset Window Cleaning — Professional window cleaning across Somerset',
+  title: 'Window Cleaning Somerset | Instant Online Quotes & Booking | Somerset Window Cleaning',
+  description: 'Get instant quotes and book window cleaning online in Somerset. Reliable, fully insured service with 48-hour guarantee. Serving Bath, Wells, Street, Glastonbury & more.',
   ignoreTitleTemplate: true,
 };
 ---
@@ -24,8 +26,9 @@ const metadata = {
 
   <Hero
     actions={[
-      { variant: 'primary', text: 'Get a quote', href: '/contact', icon: 'tabler:calendar' },
-      { text: 'Check your postcode', href: '/contact#postcode-checker', icon: 'tabler:map-pin' },
+      { variant: 'primary', text: 'Get Instant Quote & Book Online', href: '/instant-quote', icon: 'tabler:calculator' },
+      { variant: 'secondary', text: 'Traditional Quote', href: '/contact', icon: 'tabler:calendar' },
+      { text: 'Call 01458 860339', href: 'tel:01458860339', icon: 'tabler:phone' },
     ]}
   >
     <Fragment slot="bg">
@@ -37,6 +40,28 @@ const metadata = {
     </Fragment>
     <Fragment slot="subtitle">
       Professional exterior cleaning across Somerset — <span class="text-accent">fully insured</span>, friendly and on‑time.
+    </Fragment>
+    <Fragment slot="content">
+      <div class="flex flex-wrap justify-center gap-4 mt-6 text-sm text-white/90">
+        <div class="flex items-center gap-2 bg-white/10 rounded-full px-3 py-1">
+          <svg class="w-4 h-4 text-accent" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+          </svg>
+          <span>4,000+ Happy Customers</span>
+        </div>
+        <div class="flex items-center gap-2 bg-white/10 rounded-full px-3 py-1">
+          <svg class="w-4 h-4 text-accent" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+          </svg>
+          <span>48-Hour Spot-Free Guarantee</span>
+        </div>
+        <div class="flex items-center gap-2 bg-white/10 rounded-full px-3 py-1">
+          <svg class="w-4 h-4 text-accent" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+          </svg>
+          <span>Established Since 2019</span>
+        </div>
+      </div>
     </Fragment>
   </Hero>
 
@@ -96,53 +121,21 @@ const metadata = {
   <Process
     id="process"
     tagline="How it works"
-    title="Simple, reliable service"
-    subtitle="Clear steps from quote to payment."
+    title="Book online in minutes"
+    subtitle="Get instant pricing and set up your regular cleaning service."
     items={[
-      { title: 'Get a fast quote', description: 'Send your details and photos (optional) — we reply within one working day.', icon: 'tabler:message-2', callToAction: { variant: 'primary', text: 'Get a quote', href: '/contact', icon: 'tabler:calendar' } },
-      { title: 'Reminder', description: 'We email or text before each visit with the scheduled day (no specific time provided).', icon: 'tabler:bell' },
-      { title: 'We carry out your exterior clean', description: 'Windows, frames and sills included as standard — with our 48‑hour spot‑free guarantee. Add gutter clearing, fascia & soffit, conservatory roof and solar panel cleaning if needed.', icon: 'tabler:sparkles' },
-      { title: 'Invoice & payment', description: 'Pay by Direct Debit (GoCardless), card (Stripe) or bank transfer.', icon: 'tabler:credit-card' },
+      { title: 'Instant quote', description: 'Enter your details and get an instant quote. Book online and set up Direct Debit in minutes.', icon: 'tabler:calculator', callToAction: { variant: 'primary', text: 'Get instant quote', href: '/instant-quote', icon: 'tabler:calculator' } },
+      { title: 'We clean', description: 'Professional exterior cleaning with our 48‑hour spot‑free guarantee. We text before each visit.', icon: 'tabler:sparkles' },
+      { title: 'Automatic payment', description: 'Direct Debit takes payment automatically after each clean. Secure and hassle‑free.', icon: 'tabler:credit-card' },
     ]}
   />
 
-  <!-- Testimonials ******************************* -->
-  <Testimonials
+  <!-- Live Google Reviews ******************************* -->
+  <LiveReviews 
     title="What our customers say"
-    scroll={false}
-    classes={{ container: 'max-w-7xl' }}
-    testimonials={[
-      {
-        testimonial: 'Second window clean with Somerset Window Cleaning — excellent on both occasions.',
-        name: 'Jodie Cater',
-        rating: 5,
-      },
-      {
-        testimonial: 'Dylan did a fantastic window clean this morning. Hard-to-reach, high windows left spotless.',
-        name: 'Sandra',
-        rating: 5,
-      },
-      {
-        testimonial: 'Would highly recommend — brilliant service, windows have never been cleaner. Very polite operative.',
-        name: 'Dean Rowland',
-        rating: 5,
-      },
-      {
-        testimonial: 'Great experience — windows done brilliantly. Reliable company, would use again.',
-        name: 'Jayne Trott',
-        rating: 5,
-      },
-      {
-        testimonial: 'Very friendly and thorough service. Would definitely recommend.',
-        name: 'Cher Davis',
-        rating: 5,
-      },
-      {
-        testimonial: 'Needed a clean urgently before a viewing — rapid response and excellent result.',
-        name: 'TheShortfry',
-        rating: 5,
-      },
-    ]}
+    subtitle="Real reviews from verified Google customers"
+    maxReviews={6}
+    autoRotate={true}
   />
 
   <!-- FAQs Widget ******************* -->
@@ -197,7 +190,7 @@ const metadata = {
 
   <CallToAction
     actions={[
-      { variant: 'primary', text: 'Get a quote', href: '/contact', icon: 'tabler:calendar' },
+      { variant: 'primary', text: 'Get Instant Quote & Book', href: '/instant-quote', icon: 'tabler:calculator' },
       { variant: 'whatsapp', text: 'WhatsApp', href: 'https://wa.me/447415526331?text=Hi%20Somerset%20Window%20Cleaning%2C%20please%20can%20I%20get%20a%20quote%20for%20window%20cleaning%20at%20%5Byour%20address%5D', icon: 'tabler:brand-whatsapp' },
       { text: 'Call 01458 860339', href: 'tel:01458860339', icon: 'tabler:phone' },
     ]}

@@ -1,0 +1,251 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import Hero from '~/components/widgets/Hero.astro';
+import Features from '~/components/widgets/Features.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+import Testimonials from '~/components/widgets/Testimonials.astro';
+import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
+
+const metadata = {
+  title: 'Window Cleaning Bath | Professional Service | Somerset Window Cleaning',
+  description: 'Professional window cleaning in Bath and surrounding areas. Fully insured, reliable service with 48-hour spot-free guarantee. Serving Bath BA1, BA2 postcodes.',
+};
+---
+
+<Layout metadata={metadata}>
+  <!-- Hero Widget ******************* -->
+  <Hero
+    actions={[
+      { variant: 'primary', text: 'Get Instant Quote', href: '/instant-quote', icon: 'tabler:calculator' },
+      { text: 'Call 01458 860339', href: 'tel:01458860339', icon: 'tabler:phone' },
+    ]}
+  >
+    <Fragment slot="title">
+      Professional Window Cleaning in <span class="text-accent">Bath</span>
+    </Fragment>
+    <Fragment slot="subtitle">
+      Reliable window cleaning service for homes and businesses in Bath and surrounding areas. Fully insured with a 48-hour spot-free guarantee.
+    </Fragment>
+  </Hero>
+
+  <!-- Local Area Info -->
+  <WidgetWrapper>
+    <section class="py-12 max-w-6xl mx-auto px-4">
+      <div class="grid lg:grid-cols-2 gap-12">
+        <div>
+          <h2 class="text-3xl font-bold mb-6">Window Cleaning Services in Bath</h2>
+          <div class="space-y-4 text-gray-600">
+            <p>We provide professional window cleaning services throughout Bath and the surrounding areas, including:</p>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="flex items-center space-x-2">
+                <svg class="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+                <span>Bath City Centre</span>
+              </div>
+              <div class="flex items-center space-x-2">
+                <svg class="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+                <span>Bathwick</span>
+              </div>
+              <div class="flex items-center space-x-2">
+                <svg class="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+                <span>Combe Down</span>
+              </div>
+              <div class="flex items-center space-x-2">
+                <svg class="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+                <span>Bear Flat</span>
+              </div>
+              <div class="flex items-center space-x-2">
+                <svg class="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+                <span>Widcombe</span>
+              </div>
+              <div class="flex items-center space-x-2">
+                <svg class="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+                <span>Lansdown</span>
+              </div>
+              <div class="flex items-center space-x-2">
+                <svg class="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+                <span>Newbridge</span>
+              </div>
+              <div class="flex items-center space-x-2">
+                <svg class="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+                <span>Larkhall</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="bg-white rounded-lg shadow-lg p-6 border border-gray-100">
+          <h3 class="text-xl font-bold mb-4">Bath Window Cleaning Prices</h3>
+          <div class="space-y-3">
+            <div class="flex justify-between items-center">
+              <span>2-bed terraced house</span>
+              <span class="font-semibold text-primary">From £18</span>
+            </div>
+            <div class="flex justify-between items-center">
+              <span>3-bed semi-detached</span>
+              <span class="font-semibold text-primary">From £25</span>
+            </div>
+            <div class="flex justify-between items-center">
+              <span>4-bed detached house</span>
+              <span class="font-semibold text-primary">From £35</span>
+            </div>
+            <div class="flex justify-between items-center">
+              <span>Georgian townhouse</span>
+              <span class="font-semibold text-primary">From £45</span>
+            </div>
+            <div class="border-t pt-3 mt-3">
+              <div class="text-sm text-gray-600 space-y-1">
+                <div class="flex justify-between">
+                  <span>Gutter clearing</span>
+                  <span>+£30-£60</span>
+                </div>
+                <div class="flex justify-between">
+                  <span>Conservatory roof</span>
+                  <span>+£40-£80</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="mt-6">
+            <a href="/instant-quote" class="w-full btn-primary text-center block">Get Instant Quote</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </WidgetWrapper>
+
+  <!-- Services for Bath -->
+  <Features
+    id="bath-services"
+    title="Our Bath Window Cleaning Services"
+    subtitle="Professional cleaning for Bath's historic and modern properties"
+    items={[
+      {
+        title: 'Georgian & Victorian Properties',
+        description: 'Specialist care for Bath\'s historic Georgian and Victorian windows with traditional charm.',
+        icon: 'tabler:building-cottage',
+      },
+      {
+        title: 'Modern Developments',
+        description: 'Contemporary properties in Newbridge, Combe Down and surrounding developments.',
+        icon: 'tabler:building-skyscraper',
+      },
+      {
+        title: 'Student Accommodation',
+        description: 'Regular cleaning for student houses and purpose-built accommodation near Bath University.',
+        icon: 'tabler:school',
+      },
+      {
+        title: 'Commercial Properties',
+        description: 'Shops, offices and restaurants in Bath city centre and business parks.',
+        icon: 'tabler:building-store',
+      },
+      {
+        title: 'Hard Water Specialist',
+        description: 'Pure water system removes Bath\'s hard water mineral deposits for streak-free results.',
+        icon: 'tabler:droplet',
+      },
+      {
+        title: 'Heritage Area Approved',
+        description: 'Experience working in Bath\'s UNESCO World Heritage conservation areas.',
+        icon: 'tabler:shield-check',
+      },
+    ]}
+  />
+
+  <!-- Local Testimonials -->
+  <Testimonials
+    title="What Bath customers say"
+    testimonials={[
+      {
+        testimonial: 'Perfect for our Georgian townhouse in the Circus. They understand how to handle period windows properly.',
+        name: 'Sarah M.',
+        job: 'Bath',
+        rating: 5,
+      },
+      {
+        testimonial: 'Great service for our student house. Reliable and reasonable prices for regular cleaning.',
+        name: 'Tom R.',
+        job: 'Bathwick',
+        rating: 5,
+      },
+      {
+        testimonial: 'Professional team, spotless results. Highly recommend for anyone in Bath looking for window cleaners.',
+        name: 'James P.',
+        job: 'Combe Down',
+        rating: 5,
+      },
+    ]}
+  />
+
+  <!-- CTA -->
+  <CallToAction
+    actions={[
+      { variant: 'primary', text: 'Book Bath Window Cleaning', href: '/instant-quote', icon: 'tabler:calculator' },
+      { text: 'Call 01458 860339', href: 'tel:01458860339', icon: 'tabler:phone' },
+    ]}
+  >
+    <Fragment slot="title">
+      Ready for crystal-clear windows in Bath?
+    </Fragment>
+    <Fragment slot="subtitle">
+      Get an instant quote and book your Bath window cleaning service online in minutes.
+    </Fragment>
+  </CallToAction>
+</Layout>
+
+<!-- Local Business Schema for Bath -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "Somerset Window Cleaning - Bath",
+  "image": "https://somersetwindowcleaning.co.uk/brand/logo.png",
+  "telephone": "01458860339",
+  "email": "info@somersetwindowcleaning.co.uk",
+  "url": "https://somersetwindowcleaning.co.uk/areas/bath",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "13 Rockhaven Business Centre, Gravenchon Way",
+    "addressLocality": "Street",
+    "addressRegion": "Somerset",
+    "postalCode": "BA16 0HW",
+    "addressCountry": "GB"
+  },
+  "areaServed": [
+    {
+      "@type": "Place",
+      "name": "Bath",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Bath",
+        "addressRegion": "Somerset",
+        "postalCode": "BA1, BA2",
+        "addressCountry": "GB"
+      }
+    }
+  ],
+  "service": {
+    "@type": "Service",
+    "name": "Window Cleaning Bath",
+    "description": "Professional window cleaning services in Bath and surrounding areas"
+  },
+  "priceRange": "££",
+  "openingHours": "Mo-Fr 09:00-16:00"
+}
+</script>

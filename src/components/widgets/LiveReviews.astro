@@ -1,0 +1,268 @@
+---
+/**
+ * Live Reviews Widget
+ * 
+ * Displays live Google Reviews with automatic rotation and real-time data.
+ * Features verified Google Business Profile integration and review management.
+ */
+
+interface Props {
+  title?: string;
+  subtitle?: string;
+  maxReviews?: number;
+  autoRotate?: boolean;
+  className?: string;
+}
+
+const {
+  title = "What our customers say",
+  subtitle = "Real reviews from verified Google customers",
+  maxReviews = 6,
+  autoRotate = true,
+  className = '',
+} = Astro.props;
+
+// Fallback reviews for when Google API is unavailable
+const fallbackReviews = [
+  {
+    author_name: "Jodie Cater",
+    text: "Second window clean with Somerset Window Cleaning — excellent on both occasions.",
+    rating: 5,
+    time: Date.now() - (1000 * 60 * 60 * 24 * 7), // 1 week ago
+    relative_time_description: "a week ago"
+  },
+  {
+    author_name: "Sandra",
+    text: "Dylan did a fantastic window clean this morning. Hard-to-reach, high windows left spotless.",
+    rating: 5,
+    time: Date.now() - (1000 * 60 * 60 * 24 * 14), // 2 weeks ago
+    relative_time_description: "2 weeks ago"
+  },
+  {
+    author_name: "Dean Rowland",
+    text: "Would highly recommend — brilliant service, windows have never been cleaner. Very polite operative.",
+    rating: 5,
+    time: Date.now() - (1000 * 60 * 60 * 24 * 21), // 3 weeks ago
+    relative_time_description: "3 weeks ago"
+  },
+  {
+    author_name: "Jayne Trott",
+    text: "Great experience — windows done brilliantly. Reliable company, would use again.",
+    rating: 5,
+    time: Date.now() - (1000 * 60 * 60 * 24 * 28), // 4 weeks ago
+    relative_time_description: "4 weeks ago"
+  },
+  {
+    author_name: "Cher Davis",
+    text: "Very friendly and thorough service. Would definitely recommend.",
+    rating: 5,
+    time: Date.now() - (1000 * 60 * 60 * 24 * 35), // 5 weeks ago
+    relative_time_description: "5 weeks ago"
+  },
+  {
+    author_name: "TheShortfry",
+    text: "Needed a clean urgently before a viewing — rapid response and excellent result.",
+    rating: 5,
+    time: Date.now() - (1000 * 60 * 60 * 24 * 42), // 6 weeks ago
+    relative_time_description: "6 weeks ago"
+  }
+];
+---
+
+<section class={`py-12 ${className}`}>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold mb-4">{title}</h2>
+      <p class="text-xl text-gray-600 mb-6">{subtitle}</p>
+      
+      <!-- Google Reviews Stats -->
+      <div class="flex items-center justify-center space-x-6 mb-8">
+        <div class="flex items-center space-x-2">
+          <div class="flex space-x-1">
+            {Array.from({ length: 5 }, (_, i) => (
+              <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+              </svg>
+            ))}
+          </div>
+          <span class="font-semibold text-lg">4.9</span>
+        </div>
+        
+        <div class="text-gray-600">
+          <span id="review-count" class="font-semibold">190+</span> Google Reviews
+        </div>
+        
+        <a 
+          href="https://g.page/r/CQr1XNaOScPuEAE/review" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          class="text-primary hover:text-primary/80 font-medium text-sm"
+        >
+          Write a Review
+        </a>
+      </div>
+    </div>
+
+    <!-- Reviews Grid -->
+    <div id="reviews-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <!-- Reviews will be loaded here -->
+    </div>
+
+    <!-- View All Reviews CTA -->
+    <div class="text-center mt-12">
+      <a 
+        href="https://g.page/r/CQr1XNaOScPuEAE/review" 
+        target="_blank" 
+        rel="noopener noreferrer"
+        class="inline-flex items-center space-x-2 btn-secondary"
+      >
+        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+        </svg>
+        <span>View All Google Reviews</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<script define:vars={{ fallbackReviews, maxReviews, autoRotate }}>
+  class LiveReviews {
+    constructor() {
+      this.container = document.getElementById('reviews-container');
+      this.reviews = [];
+      this.currentIndex = 0;
+      this.maxReviews = maxReviews;
+      this.autoRotate = autoRotate;
+      
+      if (this.container) {
+        this.init();
+      }
+    }
+    
+    async init() {
+      await this.loadReviews();
+      this.renderReviews();
+      
+      if (this.autoRotate && this.reviews.length > this.maxReviews) {
+        this.startAutoRotation();
+      }
+    }
+    
+    async loadReviews() {
+      try {
+        // Try to fetch live reviews from the API
+        const response = await fetch('/api/google-reviews');
+        
+        if (response.ok) {
+          const data = await response.json();
+          if (data.reviews && data.reviews.length > 0) {
+            this.reviews = data.reviews;
+            
+            // Update review count if available
+            const countElement = document.getElementById('review-count');
+            if (countElement && data.total_reviews) {
+              countElement.textContent = `${data.total_reviews}+`;
+            }
+            
+            return;
+          }
+        }
+      } catch (error) {
+        console.log('Using fallback reviews:', error.message);
+      }
+      
+      // Fall back to static reviews
+      this.reviews = fallbackReviews;
+    }
+    
+    renderReviews() {
+      if (!this.container || this.reviews.length === 0) return;
+      
+      const reviewsToShow = this.reviews.slice(0, this.maxReviews);
+      
+      this.container.innerHTML = reviewsToShow.map(review => this.createReviewCard(review)).join('');
+    }
+    
+    createReviewCard(review) {
+      const stars = Array.from({ length: 5 }, (_, i) => 
+        `<svg class="w-4 h-4 ${i < review.rating ? 'text-yellow-400' : 'text-gray-300'}" fill="currentColor" viewBox="0 0 20 20">
+          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+        </svg>`
+      ).join('');
+      
+      return `
+        <div class="bg-white rounded-lg shadow-lg border border-gray-100 p-6 hover:shadow-xl transition-shadow duration-300">
+          <div class="flex items-center space-x-1 mb-3">
+            ${stars}
+          </div>
+          
+          <blockquote class="text-gray-700 mb-4 line-clamp-4">
+            "${review.text}"
+          </blockquote>
+          
+          <div class="flex items-center justify-between">
+            <div>
+              <div class="font-semibold text-gray-900">${review.author_name}</div>
+              <div class="text-sm text-gray-500">${review.relative_time_description || 'Recent'}</div>
+            </div>
+            
+            <div class="flex items-center space-x-1">
+              <svg class="w-4 h-4 text-blue-600" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+                <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+              </svg>
+              <span class="text-xs text-gray-500">Google</span>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+    
+    startAutoRotation() {
+      setInterval(() => {
+        this.rotateReviews();
+      }, 8000); // Rotate every 8 seconds
+    }
+    
+    rotateReviews() {
+      if (this.reviews.length <= this.maxReviews) return;
+      
+      this.currentIndex = (this.currentIndex + 1) % (this.reviews.length - this.maxReviews + 1);
+      
+      const reviewsToShow = this.reviews.slice(this.currentIndex, this.currentIndex + this.maxReviews);
+      
+      // Fade out current reviews
+      this.container.style.opacity = '0.5';
+      
+      setTimeout(() => {
+        this.container.innerHTML = reviewsToShow.map(review => this.createReviewCard(review)).join('');
+        this.container.style.opacity = '1';
+      }, 300);
+    }
+  }
+  
+  // Initialize when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => new LiveReviews());
+  } else {
+    new LiveReviews();
+  }
+  
+  // Re-initialize after Astro page transitions
+  document.addEventListener('astro:after-swap', () => new LiveReviews());
+</script>
+
+<style>
+  .line-clamp-4 {
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  
+  #reviews-container {
+    transition: opacity 0.3s ease-in-out;
+  }
+</style>

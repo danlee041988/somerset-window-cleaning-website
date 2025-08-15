@@ -35,7 +35,7 @@ const {
   <Headline title={title} subtitle={subtitle} tagline={tagline} />
 
   <div class="relative">
-    <ol class="grid grid-cols-1 md:grid-cols-4 gap-6 md:gap-8 items-stretch">
+    <ol class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 items-stretch">
       {items.map((item, idx) => (
         <li class="group relative flex flex-col rounded-xl border border-gray-200 dark:border-gray-700 bg-white/90 dark:bg-slate-900/70 p-6 md:p-8 shadow-sm transition">
           <div class="flex items-center gap-3">
@@ -53,10 +53,13 @@ const {
           )}
 
           {idx < items.length - 1 && (
-            <div class="hidden md:block absolute top-1/2 right-[-26px] -translate-y-1/2" aria-hidden="true">
-              <svg width="52" height="14" viewBox="0 0 52 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M0 7h42" stroke="currentColor" stroke-opacity="0.25" stroke-width="2" />
-                <path d="M42 2l8 5-8 5" fill="currentColor" class="text-primary" />
+            <div class="hidden md:block absolute top-1/2 right-[-32px] -translate-y-1/2 animate-pulse" aria-hidden="true">
+              <svg width="64" height="20" viewBox="0 0 64 20" fill="none" xmlns="http://www.w3.org/2000/svg" class="drop-shadow-sm">
+                <path d="M2 10h52" stroke="currentColor" stroke-opacity="0.4" stroke-width="5" stroke-linecap="round" />
+                <path d="M54 4l8 6-8 6" fill="currentColor" class="text-primary" />
+                <circle cx="10" cy="10" r="2" fill="currentColor" class="text-primary opacity-60" />
+                <circle cx="20" cy="10" r="1.5" fill="currentColor" class="text-primary opacity-40" />
+                <circle cx="30" cy="10" r="1" fill="currentColor" class="text-primary opacity-30" />
               </svg>
             </div>
           )}

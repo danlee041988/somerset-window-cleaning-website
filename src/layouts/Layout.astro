@@ -16,8 +16,8 @@ import BasicScripts from '~/components/common/BasicScripts.astro';
 // import AccessibilityEnhancements from '~/components/common/AccessibilityEnhancements.astro';
 // import MobileOptimisations from '~/components/common/MobileOptimisations.astro';
 
-// Comment the line below to disable View Transitions
-import { ClientRouter } from 'astro:transitions';
+// View Transitions disabled to fix navigation  
+// import { ViewTransitions } from 'astro:transitions';
 
 import type { MetaData as MetaDataType } from '~/types';
 
@@ -44,8 +44,8 @@ const { language, textDirection } = I18N;
     <!-- <StructuredData type={structuredDataType} /> -->
     <!-- <MobileOptimisations /> -->
 
-    <!-- Comment the line below to disable View Transitions -->
-    <ClientRouter fallback="swap" />
+    <!-- View Transitions disabled to fix navigation -->
+    <!-- <ViewTransitions /> -->
   </head>
 
   <body class="antialiased text-default bg-page tracking-tight">
