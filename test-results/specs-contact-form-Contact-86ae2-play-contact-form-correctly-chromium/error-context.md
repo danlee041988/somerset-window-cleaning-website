@@ -1,0 +1,195 @@
+# Page snapshot
+
+```yaml
+- banner:
+  - link "Somerset Window Cleaning":
+    - /url: /
+    - img "Somerset Window Cleaning"
+  - navigation "Main navigation":
+    - list:
+      - listitem:
+        - link "Home":
+          - /url: /
+      - listitem:
+        - link "Services":
+          - /url: /services
+      - listitem:
+        - link "Gallery":
+          - /url: /gallery
+      - listitem:
+        - link "Pricing":
+          - /url: /pricing
+      - listitem:
+        - link "About":
+          - /url: /about
+      - listitem:
+        - link "Contact":
+          - /url: /contact
+  - link "Call 01458 860339":
+    - /url: tel:01458860339
+    - text: Call 01458 860339
+    - img
+  - link "WhatsApp":
+    - /url: https://wa.me/447415526331?text=Hi%20Somerset%20Window%20Cleaning%2C%20please%20can%20I%20get%20a%20quote%20for%20window%20cleaning%20at%20%5Byour%20address%5D
+    - text: WhatsApp
+    - img
+  - link "Get a quote":
+    - /url: /contact
+    - text: Get a quote
+    - img
+- main:
+  - paragraph: Contact
+  - heading "Get a free quote" [level=1]
+  - paragraph: We usually respond within one working day.
+  - heading "Check your postcode" [level=3]
+  - paragraph: We cover most BA, TA, BS and DT9 postcodes. Enter yours to confirm.
+  - textbox "e.g. BA6 8AB"
+  - button "Check coverage"
+  - paragraph
+  - heading "Tell us about your property" [level=2]
+  - paragraph: Send your details and we’ll confirm your price.
+  - text: Full name
+  - textbox "Full name"
+  - text: Email address
+  - textbox "Email address"
+  - text: Phone number
+  - textbox "Phone number"
+  - text: Address
+  - textbox "Address"
+  - text: Postcode
+  - textbox "Postcode"
+  - text: Property type
+  - combobox "Property type":
+    - option "Terraced (2 bed)" [selected]
+    - option "Terraced (3 bed)"
+    - option "Semi-detached (2 bed)"
+    - option "Semi-detached (3 bed)"
+    - option "Semi-detached (4 bed)"
+    - option "Detached (3 bed)"
+    - option "Detached (4 bed)"
+    - option "Detached (5+ bed)"
+    - option "Bungalow"
+    - option "Flat/Apartment"
+    - option "Commercial"
+  - text: Frequency (window cleaning)
+  - combobox "Frequency (window cleaning)":
+    - option "Every 4 weeks" [selected]
+    - option "Every 8 weeks"
+    - option "Every 12 weeks"
+    - option "One-time clean"
+  - checkbox "Gutter clearing"
+  - text: Gutter clearing
+  - checkbox "Fascia & soffit cleaning"
+  - text: Fascia & soffit cleaning
+  - checkbox "Conservatory roof cleaning"
+  - text: Conservatory roof cleaning
+  - checkbox "Solar panel cleaning"
+  - text: Solar panel cleaning Attach photos (optional)
+  - button "Attach photos (optional)"
+  - text: Notes (optional)
+  - textbox "Notes (optional)"
+  - checkbox "By submitting this form you agree to be contacted about your quote."
+  - text: By submitting this form you agree to be contacted about your quote.
+  - iframe
+  - button "Contact us"
+  - paragraph: Prefer to talk? Call 01458 860339 or email info@somersetwindowcleaning.co.uk
+  - heading "Prefer to talk?" [level=3]
+  - link "Call 01458 860339":
+    - /url: tel:01458860339
+  - link "Email us":
+    - /url: mailto:info@somersetwindowcleaning.co.uk
+  - link "Set up Direct Debit (GoCardless)":
+    - /url: /contact?method=direct-debit
+  - heading "Business hours" [level=4]
+  - paragraph: Mon–Fri 9:00–16:00 · We usually reply within one working day.
+  - heading "Coverage" [level=4]
+  - paragraph: We serve homes and businesses across Somerset. Include your postcode and property type for a fast, firm quote.
+  - heading "Payments" [level=4]
+  - paragraph: Direct Debit via GoCardless is preferred. We also accept card (Stripe) and bank transfer.
+- contentinfo:
+  - link "Somerset Window Cleaning":
+    - /url: /
+  - link "Terms & Conditions":
+    - /url: /terms
+  - text: ·
+  - link "Privacy Policy":
+    - /url: /privacy
+  - text: ·
+  - link "Service Areas":
+    - /url: /areas
+  - text: Services
+  - list:
+    - listitem:
+      - link "Window Cleaning":
+        - /url: /services
+    - listitem:
+      - link "Gutter Clearing":
+        - /url: /services#gutters
+    - listitem:
+      - link "Conservatory Cleaning":
+        - /url: /services#conservatory
+    - listitem:
+      - link "Solar Panel Cleaning":
+        - /url: /services#solar
+    - listitem:
+      - link "Commercial Cleaning":
+        - /url: /services#commercial
+  - text: Service Areas
+  - list:
+    - listitem:
+      - link "Bath Window Cleaning":
+        - /url: /areas/bath
+    - listitem:
+      - link "Wells Window Cleaning":
+        - /url: /areas/wells
+    - listitem:
+      - link "Street Window Cleaning":
+        - /url: /areas/street
+    - listitem:
+      - link "Glastonbury Window Cleaning":
+        - /url: /areas/glastonbury
+    - listitem:
+      - link "Yeovil Window Cleaning":
+        - /url: /areas/yeovil
+  - text: Quick Links
+  - list:
+    - listitem:
+      - link "Instant Quote":
+        - /url: /instant-quote
+    - listitem:
+      - link "Pricing":
+        - /url: /pricing
+    - listitem:
+      - link "Gallery":
+        - /url: /gallery
+    - listitem:
+      - link "About Us":
+        - /url: /about
+    - listitem:
+      - link "Contact":
+        - /url: /contact
+  - text: Contact Info
+  - list:
+    - listitem:
+      - link "Call 01458 860339":
+        - /url: tel:01458860339
+    - listitem:
+      - link "WhatsApp Quote":
+        - /url: https://wa.me/447415526331?text=Hi%20Somerset%20Window%20Cleaning%2C%20please%20can%20I%20get%20a%20quote%20for%20window%20cleaning
+    - listitem:
+      - link "Email Us":
+        - /url: mailto:info@somersetwindowcleaning.co.uk
+    - listitem:
+      - link "Street, Somerset BA16 0HW":
+        - /url: https://maps.google.com/?q=13+Rockhaven+Business+Centre+Gravenchon+Way+Street+Somerset+BA16+0HW
+  - list:
+    - listitem:
+      - link "Facebook":
+        - /url: https://facebook.com/somersetwindowcleaning
+        - img
+    - listitem:
+      - link "Instagram":
+        - /url: https://instagram.com/somersetwindowcleaning
+        - img
+  - text: "© 2025 Somerset Window Cleaning · VAT: 359 427 172 · Professional Window Cleaning Since 2019"
+```
