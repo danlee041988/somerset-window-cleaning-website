@@ -15,8 +15,8 @@ export const headerData = {
       href: getPermalink('/gallery'),
     },
     {
-      text: 'Pricing',
-      href: getPermalink('/pricing'),
+      text: 'Book Online',
+      href: getPermalink('/booking'),
     },
     {
       text: 'About',
@@ -60,7 +60,7 @@ export const footerData = {
       title: 'Quick Links',
       links: [
         { text: 'Instant Quote', href: getPermalink('/instant-quote') },
-        { text: 'Pricing', href: getPermalink('/pricing') },
+        { text: 'Book Online', href: getPermalink('/booking') },
         { text: 'Gallery', href: getPermalink('/gallery') },
         { text: 'About Us', href: getPermalink('/about') },
         { text: 'Contact', href: getPermalink('/contact') },
