@@ -1,0 +1,556 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import Hero from '~/components/widgets/Hero.astro';
+import Features from '~/components/widgets/Features.astro';
+import Features2 from '~/components/widgets/Features2.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+import FAQs from '~/components/widgets/FAQs.astro';
+import Stats from '~/components/widgets/Stats.astro';
+import ContactUs from '~/components/widgets/Contact.astro';
+import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
+import Image from '~/components/common/Image.astro';
+
+const metadata = {
+  title: 'Commercial Window Cleaning Somerset | Professional Business Service',
+  description: 'Professional commercial window cleaning across Somerset. Offices, shops, schools, healthcare facilities. Flexible scheduling, health & safety compliant, fully insured.',
+};
+---
+
+<Layout metadata={metadata} structuredDataType="service">
+  <!-- Hero Widget ******************* -->
+  <Hero
+    actions={[
+      { variant: 'primary', text: 'Request Commercial Quote', href: '#commercial-quote', icon: 'tabler:building' },
+      { text: 'Call 01458 860339', href: 'tel:01458860339', icon: 'tabler:phone' },
+    ]}
+  >
+    <Fragment slot="title">
+      <span class="text-accent">Commercial</span> Window Cleaning Somerset
+    </Fragment>
+    <Fragment slot="subtitle">
+      Professional window cleaning for businesses across Somerset. Maintain your professional appearance with reliable, health & safety compliant service.
+    </Fragment>
+    <Fragment slot="bg">
+      <Image src="~/assets/images/DJI_0007.JPG" alt="Commercial window cleaning service Somerset" width={1600} height={900} layout="cover" style="width:100%; height:100%; object-fit:cover; opacity:0.35;" />
+      <div class="absolute inset-0 bg-black/40"></div>
+    </Fragment>
+  </Hero>
+
+  <!-- Business Stats -->
+  <Stats
+    title="Trusted by Somerset Businesses"
+    stats={[
+      { title: 'Business Clients', amount: '200+', description: 'Regular commercial customers' },
+      { title: 'Sectors Served', amount: '15+', description: 'Different business types' },
+      { title: 'Safety Record', amount: '100%', description: 'Incident-free since 2019' },
+      { title: 'Contract Retention', amount: '95%+', description: 'Customer satisfaction rate' },
+    ]}
+  />
+
+  <!-- Service Overview -->
+  <WidgetWrapper>
+    <section class="py-12 max-w-6xl mx-auto px-4">
+      <div class="grid lg:grid-cols-3 gap-8">
+        <div class="lg:col-span-2">
+          <h2 class="text-3xl font-bold mb-6">Professional Commercial Window Cleaning</h2>
+          <div class="prose prose-lg max-w-none text-gray-600 space-y-4">
+            <p>Your business premises reflect your professional standards. Clean windows create positive first impressions, improve working environments, and demonstrate attention to detail that customers and staff notice.</p>
+            
+            <p>Our commercial window cleaning service across Somerset is designed specifically for business needs - flexible scheduling, minimal disruption, full health & safety compliance, and consistent results that maintain your professional image.</p>
+
+            <div class="bg-green-50 border-l-4 border-green-400 p-4 my-6">
+              <div class="flex">
+                <div class="flex-shrink-0">
+                  <svg class="h-5 w-5 text-green-400" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                  </svg>
+                </div>
+                <div class="ml-3">
+                  <h3 class="text-sm font-medium text-green-800">Health & Safety Compliant</h3>
+                  <div class="mt-2 text-sm text-green-700">
+                    <p>Full risk assessments, method statements, and safety procedures. All staff trained and certified for commercial work.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <h3 class="text-xl font-semibold mt-8 mb-4">Industries We Serve</h3>
+            <div class="grid md:grid-cols-2 gap-6">
+              <div class="bg-blue-50 p-4 rounded-lg">
+                <h4 class="font-semibold text-blue-900 mb-3">🏢 Office Buildings</h4>
+                <ul class="text-sm text-blue-800 space-y-1">
+                  <li>• Corporate headquarters</li>
+                  <li>• Professional services</li>
+                  <li>• Co-working spaces</li>
+                  <li>• Business parks</li>
+                </ul>
+              </div>
+              <div class="bg-purple-50 p-4 rounded-lg">
+                <h4 class="font-semibold text-purple-900 mb-3">🏪 Retail & Hospitality</h4>
+                <ul class="text-sm text-purple-800 space-y-1">
+                  <li>• Shop fronts</li>
+                  <li>• Restaurants & cafes</li>
+                  <li>• Hotels & guest houses</li>
+                  <li>• Shopping centres</li>
+                </ul>
+              </div>
+              <div class="bg-green-50 p-4 rounded-lg">
+                <h4 class="font-semibold text-green-900 mb-3">🏥 Healthcare & Education</h4>
+                <ul class="text-sm text-green-800 space-y-1">
+                  <li>• Medical centres</li>
+                  <li>• Dental practices</li>
+                  <li>• Schools & colleges</li>
+                  <li>• Care facilities</li>
+                </ul>
+              </div>
+              <div class="bg-orange-50 p-4 rounded-lg">
+                <h4 class="font-semibold text-orange-900 mb-3">🏭 Industrial & Manufacturing</h4>
+                <ul class="text-sm text-orange-800 space-y-1">
+                  <li>• Factory offices</li>
+                  <li>• Warehouses</li>
+                  <li>• Industrial units</li>
+                  <li>• Distribution centres</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Commercial Benefits Sidebar -->
+        <div class="bg-white rounded-lg shadow-lg p-6 border border-gray-100 h-fit">
+          <h3 class="text-xl font-bold mb-4 text-center">Why Choose Us for Commercial?</h3>
+          
+          <div class="space-y-4">
+            <div class="p-4 bg-blue-50 rounded-lg">
+              <h4 class="font-semibold text-blue-800 mb-2">📋 Professional Standards</h4>
+              <ul class="text-sm text-blue-700 space-y-1">
+                <li>• Full risk assessments</li>
+                <li>• Method statements provided</li>
+                <li>• £2M public liability insurance</li>
+                <li>• Uniformed, ID-carrying staff</li>
+              </ul>
+            </div>
+
+            <div class="p-4 bg-green-50 rounded-lg">
+              <h4 class="font-semibold text-green-800 mb-2">⏰ Flexible Scheduling</h4>
+              <ul class="text-sm text-green-700 space-y-1">
+                <li>• Work around your business hours</li>
+                <li>• Early morning/evening available</li>
+                <li>• Planned maintenance schedules</li>
+                <li>• Emergency call-outs</li>
+              </ul>
+            </div>
+
+            <div class="p-4 bg-purple-50 rounded-lg">
+              <h4 class="font-semibold text-purple-800 mb-2">💼 Business Focus</h4>
+              <ul class="text-sm text-purple-700 space-y-1">
+                <li>• Minimal disruption</li>
+                <li>• Direct invoicing</li>
+                <li>• Contract agreements available</li>
+                <li>• Regular account management</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="mt-6">
+            <a href="#commercial-quote" class="w-full bg-primary hover:bg-primary/90 text-white font-medium py-3 px-4 rounded-lg transition-colors duration-200 text-center block">Request Quote</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </WidgetWrapper>
+
+  <!-- Commercial Benefits -->
+  <Features
+    id="commercial-benefits"
+    title="Why Professional Appearance Matters for Business"
+    subtitle="Clean windows contribute to your business success"
+    items={[
+      {
+        title: 'Professional First Impressions',
+        description: 'Clean windows signal attention to detail and professional standards that customers and clients notice immediately.',
+        icon: 'tabler:eye',
+      },
+      {
+        title: 'Enhanced Working Environment',
+        description: 'Maximum natural light improves staff wellbeing, productivity, and creates a more pleasant workspace.',
+        icon: 'tabler:sun',
+      },
+      {
+        title: 'Regulatory Compliance',
+        description: 'Meet health and safety requirements for window cleaning with our fully compliant commercial service.',
+        icon: 'tabler:certificate',
+      },
+      {
+        title: 'Cost-Effective Maintenance',
+        description: 'Regular cleaning prevents expensive glass replacement and maintains your property investment.',
+        icon: 'tabler:piggy-bank',
+      },
+      {
+        title: 'Flexible Scheduling',
+        description: 'Work fits around your business hours with minimal disruption to operations and customers.',
+        icon: 'tabler:clock',
+      },
+      {
+        title: 'Reliable Service',
+        description: 'Consistent, dependable cleaning with backup coverage to ensure your service is never missed.',
+        icon: 'tabler:shield-check',
+      },
+    ]}
+  />
+
+  <!-- Service Process -->
+  <Features2
+    title="Our Commercial Window Cleaning Process"
+    subtitle="Structured approach for consistent business results"
+    columns={3}
+    items={[
+      {
+        title: '1. Site Survey',
+        description: 'Free assessment of your premises, access requirements, and specific cleaning needs.',
+        icon: 'tabler:clipboard-check',
+      },
+      {
+        title: '2. Risk Assessment',
+        description: 'Comprehensive risk assessment and method statement tailored to your premises.',
+        icon: 'tabler:shield-star',
+      },
+      {
+        title: '3. Service Agreement',
+        description: 'Clear contract terms, pricing, and schedule that works for your business needs.',
+        icon: 'tabler:file-text',
+      },
+      {
+        title: '4. Scheduled Cleaning',
+        description: 'Regular cleaning service according to agreed schedule with advance notifications.',
+        icon: 'tabler:calendar-event',
+      },
+      {
+        title: '5. Quality Assurance',
+        description: 'Regular quality checks and customer feedback to ensure consistent high standards.',
+        icon: 'tabler:star',
+      },
+      {
+        title: '6. Account Management',
+        description: 'Dedicated account management for contract customers with direct communication channels.',
+        icon: 'tabler:user-check',
+      },
+    ]}
+  />
+
+  <!-- Health & Safety Section -->
+  <WidgetWrapper>
+    <section class="py-12 max-w-6xl mx-auto px-4">
+      <div class="bg-red-50 rounded-lg p-8 border border-red-200">
+        <h2 class="text-2xl font-bold text-center mb-8 text-red-900">Health & Safety Compliance</h2>
+        <div class="grid md:grid-cols-2 gap-8">
+          <div>
+            <h3 class="font-semibold mb-4 text-red-800">📋 Documentation We Provide:</h3>
+            <ul class="space-y-2 text-red-700">
+              <li>• Method statements for all work</li>
+              <li>• Risk assessments (RAMS)</li>
+              <li>• Public liability insurance certificates</li>
+              <li>• Staff training certifications</li>
+              <li>• Equipment inspection records</li>
+              <li>• COSHH assessments</li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="font-semibold mb-4 text-red-800">🛡️ Safety Standards We Meet:</h3>
+            <ul class="space-y-2 text-red-700">
+              <li>• Working at Height Regulations 2005</li>
+              <li>• Health & Safety at Work Act 1974</li>
+              <li>• COSHH Regulations 2002</li>
+              <li>• CDM Regulations 2015 (where applicable)</li>
+              <li>• Manual Handling Operations Regulations</li>
+              <li>• PPE at Work Regulations 1992</li>
+            </ul>
+          </div>
+        </div>
+        <div class="text-center mt-8">
+          <p class="text-red-800 font-medium">All documentation provided before work commences</p>
+        </div>
+      </div>
+    </section>
+  </WidgetWrapper>
+
+  <!-- Contract Options -->
+  <WidgetWrapper>
+    <section class="py-12 max-w-6xl mx-auto px-4">
+      <h2 class="text-3xl font-bold text-center mb-12">Flexible Service Options</h2>
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="bg-white rounded-lg shadow-lg p-6 border-2 border-blue-200">
+          <h3 class="text-xl font-semibold mb-4 text-blue-600">Monthly Contracts</h3>
+          <ul class="space-y-3 text-gray-600 mb-6">
+            <li class="flex items-start">
+              <span class="text-blue-500 mr-2">✓</span>
+              <span>Regular scheduled service</span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-blue-500 mr-2">✓</span>
+              <span>Predictable monthly costs</span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-blue-500 mr-2">✓</span>
+              <span>Priority booking</span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-blue-500 mr-2">✓</span>
+              <span>Volume discounts available</span>
+            </li>
+          </ul>
+          <div class="text-center">
+            <span class="text-2xl font-bold text-blue-600">Best Value</span>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-lg shadow-lg p-6 border-2 border-green-200">
+          <h3 class="text-xl font-semibold mb-4 text-green-600">Quarterly Service</h3>
+          <ul class="space-y-3 text-gray-600 mb-6">
+            <li class="flex items-start">
+              <span class="text-green-500 mr-2">✓</span>
+              <span>Seasonal deep cleaning</span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-green-500 mr-2">✓</span>
+              <span>Flexible scheduling</span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-green-500 mr-2">✓</span>
+              <span>Ideal for most businesses</span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-green-500 mr-2">✓</span>
+              <span>Professional appearance maintained</span>
+            </li>
+          </ul>
+          <div class="text-center">
+            <span class="text-2xl font-bold text-green-600">Most Popular</span>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-lg shadow-lg p-6 border-2 border-purple-200">
+          <h3 class="text-xl font-semibold mb-4 text-purple-600">One-off Projects</h3>
+          <ul class="space-y-3 text-gray-600 mb-6">
+            <li class="flex items-start">
+              <span class="text-purple-500 mr-2">✓</span>
+              <span>Post-construction cleaning</span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-purple-500 mr-2">✓</span>
+              <span>Special events preparation</span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-purple-500 mr-2">✓</span>
+              <span>End of tenancy cleaning</span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-purple-500 mr-2">✓</span>
+              <span>Emergency call-outs</span>
+            </li>
+          </ul>
+          <div class="text-center">
+            <span class="text-2xl font-bold text-purple-600">Flexible</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </WidgetWrapper>
+
+  <!-- Commercial Quote Form -->
+  <section id="commercial-quote" class="py-12 bg-gray-50">
+    <div class="max-w-4xl mx-auto px-4">
+      <div class="text-center mb-8">
+        <h2 class="text-3xl font-bold mb-4">Request Commercial Quote</h2>
+        <p class="text-gray-600">Get a tailored quote for your business premises. We'll assess your requirements and provide competitive pricing.</p>
+      </div>
+
+      <div class="bg-white rounded-lg shadow-lg p-8">
+        <form class="space-y-6">
+          <!-- Business Information -->
+          <div class="grid md:grid-cols-2 gap-6">
+            <div>
+              <label for="company-name" class="block text-sm font-medium text-gray-700 mb-2">Company Name *</label>
+              <input type="text" id="company-name" name="companyName" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+            </div>
+            <div>
+              <label for="contact-person" class="block text-sm font-medium text-gray-700 mb-2">Contact Person *</label>
+              <input type="text" id="contact-person" name="contactPerson" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+            </div>
+          </div>
+
+          <div class="grid md:grid-cols-2 gap-6">
+            <div>
+              <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email Address *</label>
+              <input type="email" id="email" name="email" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+            </div>
+            <div>
+              <label for="phone" class="block text-sm font-medium text-gray-700 mb-2">Phone Number *</label>
+              <input type="tel" id="phone" name="phone" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+            </div>
+          </div>
+
+          <!-- Premises Information -->
+          <div>
+            <label for="business-address" class="block text-sm font-medium text-gray-700 mb-2">Business Address *</label>
+            <input type="text" id="business-address" name="businessAddress" required placeholder="Full address including postcode" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+          </div>
+
+          <div class="grid md:grid-cols-2 gap-6">
+            <div>
+              <label for="building-type" class="block text-sm font-medium text-gray-700 mb-2">Building Type *</label>
+              <select id="building-type" name="buildingType" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                <option value="">Select building type</option>
+                <option value="office">Office Building</option>
+                <option value="retail">Retail/Shop</option>
+                <option value="restaurant">Restaurant/Cafe</option>
+                <option value="healthcare">Healthcare Facility</option>
+                <option value="education">School/College</option>
+                <option value="hotel">Hotel/Accommodation</option>
+                <option value="industrial">Industrial/Warehouse</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+            <div>
+              <label for="building-floors" class="block text-sm font-medium text-gray-700 mb-2">Number of Floors</label>
+              <select id="building-floors" name="buildingFloors" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                <option value="">Select floors</option>
+                <option value="1">1 Floor</option>
+                <option value="2">2 Floors</option>
+                <option value="3">3 Floors</option>
+                <option value="4+">4+ Floors</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Service Requirements -->
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-3">Services Required *</label>
+            <div class="grid md:grid-cols-2 gap-3">
+              <label class="flex items-center">
+                <input type="checkbox" name="services[]" value="exterior-windows" class="mr-2 h-4 w-4 text-primary">
+                <span>Exterior Window Cleaning</span>
+              </label>
+              <label class="flex items-center">
+                <input type="checkbox" name="services[]" value="interior-windows" class="mr-2 h-4 w-4 text-primary">
+                <span>Interior Window Cleaning</span>
+              </label>
+              <label class="flex items-center">
+                <input type="checkbox" name="services[]" value="shopfront" class="mr-2 h-4 w-4 text-primary">
+                <span>Shopfront Cleaning</span>
+              </label>
+              <label class="flex items-center">
+                <input type="checkbox" name="services[]" value="gutters" class="mr-2 h-4 w-4 text-primary">
+                <span>Gutter Cleaning</span>
+              </label>
+              <label class="flex items-center">
+                <input type="checkbox" name="services[]" value="fascia" class="mr-2 h-4 w-4 text-primary">
+                <span>Fascia & Soffit Cleaning</span>
+              </label>
+              <label class="flex items-center">
+                <input type="checkbox" name="services[]" value="solar" class="mr-2 h-4 w-4 text-primary">
+                <span>Solar Panel Cleaning</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="grid md:grid-cols-2 gap-6">
+            <div>
+              <label for="frequency" class="block text-sm font-medium text-gray-700 mb-2">Preferred Frequency</label>
+              <select id="frequency" name="frequency" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                <option value="">Select frequency</option>
+                <option value="weekly">Weekly</option>
+                <option value="fortnightly">Fortnightly</option>
+                <option value="monthly">Monthly</option>
+                <option value="quarterly">Quarterly</option>
+                <option value="biannual">Twice Yearly</option>
+                <option value="annual">Annual</option>
+                <option value="oneoff">One-off</option>
+              </select>
+            </div>
+            <div>
+              <label for="urgency" class="block text-sm font-medium text-gray-700 mb-2">How Soon?</label>
+              <select id="urgency" name="urgency" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                <option value="">Select timeframe</option>
+                <option value="urgent">This week</option>
+                <option value="soon">Within 2 weeks</option>
+                <option value="month">Within a month</option>
+                <option value="planning">Planning ahead</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Additional Information -->
+          <div>
+            <label for="additional-info" class="block text-sm font-medium text-gray-700 mb-2">Additional Information</label>
+            <textarea id="additional-info" name="additionalInfo" rows="4" placeholder="Access requirements, specific needs, current issues, preferred contact times..." class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"></textarea>
+          </div>
+
+          <!-- Submit Button -->
+          <div class="text-center">
+            <button type="submit" class="bg-primary hover:bg-primary/90 text-white font-bold py-4 px-8 rounded-lg transition-colors duration-200 text-lg">
+              Request Commercial Quote
+            </button>
+            <p class="text-sm text-gray-600 mt-3">We'll respond within 24 hours with a detailed quote</p>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQs -->
+  <FAQs
+    title="Commercial Window Cleaning FAQs"
+    subtitle="Common questions about our business window cleaning service"
+    items={[
+      {
+        title: 'Do you provide risk assessments and method statements?',
+        description: 'Yes, we provide comprehensive risk assessments (RAMS) and method statements for all commercial work. These are tailored to your specific premises and provided before work commences.',
+      },
+      {
+        title: 'Can you work outside normal business hours?',
+        description: 'Yes, we offer flexible scheduling including early morning, evening, and weekend work to minimize disruption to your business operations.',
+      },
+      {
+        title: 'What insurance do you carry for commercial work?',
+        description: 'We carry £2 million public liability insurance specifically for commercial operations. Full insurance certificates are provided to all business customers.',
+      },
+      {
+        title: 'Do you offer contract pricing for regular customers?',
+        description: 'Yes, we offer competitive contract rates for regular commercial customers. Volume discounts and fixed pricing agreements are available for ongoing contracts.',
+      },
+      {
+        title: 'How do you handle access and security?',
+        description: 'All staff carry ID and are vetted. We can work with your security procedures and key holder arrangements. Access requirements are discussed during the initial site survey.',
+      },
+      {
+        title: 'What happens if you can\'t complete the work due to weather?',
+        description: 'We reschedule at no extra cost and provide alternative dates. For contract customers, we maintain the cleaning schedule by adjusting subsequent visits.',
+      },
+      {
+        title: 'Can you clean high-rise buildings?',
+        description: 'Our reach-and-wash system can safely clean up to 4 storeys. For higher buildings, we can arrange specialist high-access cleaning through our partner network.',
+      },
+      {
+        title: 'Do you clean interior windows for businesses?',
+        description: 'Yes, interior commercial window cleaning is available. This requires coordination with your staff and can be scheduled during or after business hours as preferred.',
+      },
+    ]}
+  />
+
+  <!-- CTA Section -->
+  <CallToAction
+    actions={[
+      { variant: 'primary', text: 'Request Commercial Quote', href: '#commercial-quote', icon: 'tabler:building' },
+      { variant: 'whatsapp', text: 'WhatsApp Business', href: 'https://wa.me/447415526331?text=Hi%20Somerset%20Window%20Cleaning%2C%20I%27d%20like%20a%20commercial%20window%20cleaning%20quote%20for%20%5Bbusiness%20name%20and%20location%5D', icon: 'tabler:brand-whatsapp' },
+      { text: 'Call 01458 860339', href: 'tel:01458860339', icon: 'tabler:phone' },
+    ]}
+  >
+    <Fragment slot="title">
+      Ready to Enhance Your Business Image?
+    </Fragment>
+    <Fragment slot="subtitle">
+      Professional commercial window cleaning across Somerset. Health & safety compliant, fully insured, flexible scheduling for your business needs.
+    </Fragment>
+  </CallToAction>
+</Layout>

@@ -9,6 +9,14 @@ export const headerData = {
     {
       text: 'Services',
       href: getPermalink('/services'),
+      links: [
+        { text: 'Window Cleaning', href: getPermalink('/services/window-cleaning') },
+        { text: 'Commercial Window Cleaning', href: getPermalink('/services/commercial-window-cleaning') },
+        { text: 'Gutter Cleaning', href: getPermalink('/services/gutter-cleaning') },
+        { text: 'Solar Panel Cleaning', href: getPermalink('/services/solar-panel-cleaning') },
+        { text: 'Fascia & Soffit Cleaning', href: getPermalink('/services/fascia-soffit-cleaning') },
+        { text: 'Conservatory Cleaning', href: getPermalink('/services/conservatory-cleaning') },
+      ],
     },
     {
       text: 'Gallery',
@@ -39,11 +47,12 @@ export const footerData = {
     {
       title: 'Services',
       links: [
-        { text: 'Window Cleaning', href: getPermalink('/services') },
-        { text: 'Gutter Clearing', href: getPermalink('/services#gutters') },
-        { text: 'Conservatory Cleaning', href: getPermalink('/services#conservatory') },
-        { text: 'Solar Panel Cleaning', href: getPermalink('/services#solar') },
-        { text: 'Commercial Cleaning', href: getPermalink('/services#commercial') },
+        { text: 'Window Cleaning', href: getPermalink('/services/window-cleaning') },
+        { text: 'Gutter Clearing', href: getPermalink('/services/gutter-cleaning') },
+        { text: 'Conservatory Cleaning', href: getPermalink('/services/conservatory-cleaning') },
+        { text: 'Solar Panel Cleaning', href: getPermalink('/services/solar-panel-cleaning') },
+        { text: 'Fascia & Soffit Cleaning', href: getPermalink('/services/fascia-soffit-cleaning') },
+        { text: 'Commercial Cleaning', href: getPermalink('/services/commercial-window-cleaning') },
       ],
     },
     {

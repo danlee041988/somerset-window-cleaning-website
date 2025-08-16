@@ -126,18 +126,6 @@ const metadata = {
                   </div>
                 </button>
                 
-                <button class="bedroom-option property-card group bg-gray-700 border-2 border-gray-600 p-4 rounded-xl hover:border-red-500 hover:bg-gray-600 transition-all duration-300 min-h-[80px] active:scale-95" data-bedrooms="Commercial">
-                  <div class="flex items-center space-x-3">
-                    <div class="w-12 h-12 bg-red-600 rounded-full flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
-                      <span class="text-white font-bold text-xs">BIZ</span>
-                    </div>
-                    <div class="flex-1 text-left">
-                      <div class="text-white font-semibold">Commercial</div>
-                      <div class="text-gray-300 text-sm">Business Property</div>
-                      <div class="text-red-400 text-xs font-medium">Custom Quote</div>
-                    </div>
-                  </div>
-                </button>
               </div>
             </div>
 
@@ -460,8 +448,7 @@ const metadata = {
       '2-3 Bed': 25,
       '4 Bed': 30,
       '5 Bed': 35,
-      '6+ Bed': 0, // Custom quote
-      'Commercial': 0 // Custom quote
+      '6+ Bed': 0 // Custom quote
     };
     
     basePrice = prices[property] || 0;
@@ -685,7 +672,7 @@ const metadata = {
     });
 
     // Update payment schedule
-    if (selectedProperty === '6+ Bed' || selectedProperty === 'Commercial') {
+    if (selectedProperty === '6+ Bed') {
       document.getElementById('payment-schedule').textContent = 'Physical quotation required';
     } else {
       document.getElementById('payment-schedule').textContent = `Regular payment every ${selectedFrequency} weeks`;

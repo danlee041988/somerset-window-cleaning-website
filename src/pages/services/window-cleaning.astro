@@ -1,0 +1,467 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import Hero from '~/components/widgets/Hero.astro';
+import Features from '~/components/widgets/Features.astro';
+import Features2 from '~/components/widgets/Features2.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+import FAQs from '~/components/widgets/FAQs.astro';
+import Stats from '~/components/widgets/Stats.astro';
+import Testimonials from '~/components/widgets/Testimonials.astro';
+import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
+import Image from '~/components/common/Image.astro';
+
+const metadata = {
+  title: 'Professional Window Cleaning Somerset | Pure Water System | From £20',
+  description: 'Professional residential window cleaning across Somerset. Pure water reach-and-wash system for streak-free results. Frames & sills included. Fully insured from £20.',
+};
+---
+
+<Layout metadata={metadata} structuredDataType="service">
+  <!-- Hero Widget ******************* -->
+  <Hero
+    actions={[
+      { variant: 'primary', text: 'Book Window Cleaning', href: '/booking-2step', icon: 'tabler:calendar' },
+      { text: 'Call 01458 860339', href: 'tel:01458860339', icon: 'tabler:phone' },
+    ]}
+  >
+    <Fragment slot="title">
+      Professional <span class="text-accent">Window Cleaning</span> Somerset
+    </Fragment>
+    <Fragment slot="subtitle">
+      Crystal-clear windows with our pure water reach-and-wash system. Streak-free results, frames and sills included. Fully insured service across Somerset.
+    </Fragment>
+    <Fragment slot="bg">
+      <Image src="~/assets/images/DJI_0007.JPG" alt="Professional window cleaning service Somerset" width={1600} height={900} layout="cover" style="width:100%; height:100%; object-fit:cover; opacity:0.35;" />
+      <div class="absolute inset-0 bg-black/40"></div>
+    </Fragment>
+  </Hero>
+
+  <!-- Trust Stats -->
+  <Stats
+    title="Trusted by Somerset Families"
+    stats={[
+      { title: 'Happy Customers', amount: '4,000+', description: 'Regular window cleaning customers' },
+      { title: 'Years Experience', amount: '5+', description: 'Established since 2019' },
+      { title: 'Google Rating', amount: '4.9★', description: 'Verified customer reviews' },
+      { title: 'Guarantee', amount: '48 Hours', description: 'Spot-free guarantee' },
+    ]}
+  />
+
+  <!-- Service Overview -->
+  <WidgetWrapper>
+    <section class="py-12 max-w-6xl mx-auto px-4">
+      <div class="grid lg:grid-cols-3 gap-8">
+        <div class="lg:col-span-2">
+          <h2 class="text-3xl font-bold mb-6">Why Choose Our Window Cleaning Service?</h2>
+          <div class="prose prose-lg max-w-none text-gray-600 space-y-4">
+            <p>Clean windows transform your home, letting in maximum natural light and maintaining your property's appearance. Our professional window cleaning service across Somerset uses a pure water reach-and-wash system that delivers consistently superior results without the safety risks of traditional ladder-based cleaning.</p>
+            
+            <p>Established in 2019, we've built our reputation on reliability, quality, and excellent customer service. Our team serves over 4,000 regular customers across Somerset, from small apartments to large family homes, with the same attention to detail and professional standards.</p>
+
+            <div class="bg-blue-50 border-l-4 border-blue-400 p-4 my-6">
+              <div class="flex">
+                <div class="flex-shrink-0">
+                  <svg class="h-5 w-5 text-blue-400" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                  </svg>
+                </div>
+                <div class="ml-3">
+                  <h3 class="text-sm font-medium text-blue-800">Pure Water Technology</h3>
+                  <div class="mt-2 text-sm text-blue-700">
+                    <p>Our pure water system removes all minerals and impurities, ensuring your windows dry completely clear without water marks or streaks - guaranteed.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <h3 class="text-xl font-semibold mt-8 mb-4">What's Always Included</h3>
+            <div class="grid md:grid-cols-2 gap-4">
+              <ul class="space-y-2">
+                <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> All exterior window surfaces</li>
+                <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> Window frames cleaned</li>
+                <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> Sills wiped down</li>
+                <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> Door glass included</li>
+              </ul>
+              <ul class="space-y-2">
+                <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> 48-hour spot-free guarantee</li>
+                <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> Fully insured service</li>
+                <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> No ladders on your property</li>
+                <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> Text notifications before visits</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pricing Sidebar -->
+        <div class="bg-white rounded-lg shadow-lg p-6 border border-gray-100 h-fit">
+          <h3 class="text-xl font-bold mb-4 text-center">Window Cleaning Prices</h3>
+          <div class="space-y-4">
+            <div class="text-center mb-4">
+              <p class="text-sm text-gray-600">Regular cleaning service</p>
+            </div>
+            <div class="flex justify-between items-center pb-2 border-b">
+              <span class="font-medium">1-2 bed property</span>
+              <span class="font-bold text-primary text-lg">£20</span>
+            </div>
+            <div class="flex justify-between items-center pb-2 border-b">
+              <span class="font-medium">3 bed property</span>
+              <span class="font-bold text-primary text-lg">£25</span>
+            </div>
+            <div class="flex justify-between items-center pb-2 border-b">
+              <span class="font-medium">4 bed property</span>
+              <span class="font-bold text-primary text-lg">£30</span>
+            </div>
+            <div class="flex justify-between items-center pb-2 border-b">
+              <span class="font-medium">5+ bed property</span>
+              <span class="font-bold text-primary text-lg">£35+</span>
+            </div>
+            <div class="flex justify-between items-center">
+              <span class="font-medium">Detached houses</span>
+              <span class="font-bold text-primary text-lg">+£5</span>
+            </div>
+          </div>
+          
+          <div class="mt-6 p-4 bg-green-50 rounded-lg">
+            <h4 class="font-semibold text-green-800 mb-2">💰 Frequency Discounts</h4>
+            <ul class="text-sm text-green-700 space-y-1">
+              <li>• Every 4 weeks: Standard price</li>
+              <li>• Every 8 weeks: +£3 per clean</li>
+              <li>• One-off cleans: +£5 per clean</li>
+            </ul>
+          </div>
+
+          <div class="mt-4 p-4 bg-blue-50 rounded-lg">
+            <h4 class="font-semibold text-blue-800 mb-2">🏠 Popular Add-Ons</h4>
+            <div class="text-sm text-blue-700 space-y-1">
+              <div class="flex justify-between">
+                <span>Interior windows</span>
+                <span class="font-semibold">+50%</span>
+              </div>
+              <div class="flex justify-between">
+                <span>Conservatory clean</span>
+                <span class="font-semibold">+£15-25</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-6">
+            <a href="/booking-2step" class="w-full bg-primary hover:bg-primary/90 text-white font-medium py-3 px-4 rounded-lg transition-colors duration-200 text-center block">Book Window Cleaning</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </WidgetWrapper>
+
+  <!-- Pure Water System Benefits -->
+  <Features
+    id="pure-water-benefits"
+    title="Why Pure Water Window Cleaning?"
+    subtitle="Advanced technology for superior results and safety"
+    items={[
+      {
+        title: 'Streak-Free Results',
+        description: 'Pure water contains no minerals or chemicals, so windows dry crystal clear without water marks or streaks.',
+        icon: 'tabler:droplet',
+      },
+      {
+        title: 'Safer for Everyone',
+        description: 'Reach-and-wash poles eliminate ladder risks, keeping our team and your property safe during cleaning.',
+        icon: 'tabler:shield-check',
+      },
+      {
+        title: 'Environmentally Friendly',
+        description: 'No chemicals or detergents needed - just pure water that\'s completely safe for plants and pets.',
+        icon: 'tabler:leaf',
+      },
+      {
+        title: 'Frames & Sills Included',
+        description: 'We clean the whole window area including frames and sills, not just the glass surface.',
+        icon: 'tabler:frame',
+      },
+      {
+        title: 'Reaches Anywhere',
+        description: 'Our extending poles reach high windows, conservatories, and difficult access areas safely.',
+        icon: 'tabler:arrow-up',
+      },
+      {
+        title: 'Weather Independent',
+        description: 'Pure water cleaning works effectively in light rain - no need to reschedule for minor weather.',
+        icon: 'tabler:cloud-rain',
+      },
+    ]}
+  />
+
+  <!-- Cleaning Process -->
+  <Features2
+    title="Our Professional Window Cleaning Process"
+    subtitle="Consistent, reliable service every time"
+    columns={3}
+    items={[
+      {
+        title: '1. Arrival & Setup',
+        description: 'We text before arrival and set up our pure water system with minimal disruption to your day.',
+        icon: 'tabler:message-circle',
+      },
+      {
+        title: '2. Rinse & Scrub',
+        description: 'Initial rinse to remove loose dirt, followed by thorough scrubbing with our soft-bristled brushes.',
+        icon: 'tabler:wash',
+      },
+      {
+        title: '3. Deep Clean',
+        description: 'Detailed cleaning of all glass surfaces, paying special attention to frames and sill areas.',
+        icon: 'tabler:sparkles',
+      },
+      {
+        title: '4. Final Rinse',
+        description: 'Comprehensive rinse with pure water to remove all cleaning residue and ensure spot-free drying.',
+        icon: 'tabler:wash-dry',
+      },
+      {
+        title: '5. Quality Check',
+        description: 'Visual inspection of all cleaned windows to ensure our high standards are consistently met.',
+        icon: 'tabler:eye-check',
+      },
+      {
+        title: '6. Tidy & Go',
+        description: 'Equipment packed away and any minor spillage cleaned up before we leave your property.',
+        icon: 'tabler:check',
+      },
+    ]}
+  />
+
+  <!-- Service Areas -->
+  <WidgetWrapper>
+    <section class="py-12 max-w-6xl mx-auto px-4">
+      <h2 class="text-3xl font-bold text-center mb-8">Window Cleaning Service Areas</h2>
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="bg-white rounded-lg shadow p-6 text-center">
+          <h3 class="font-semibold mb-4 text-blue-600">Central Somerset</h3>
+          <ul class="text-sm text-gray-600 space-y-2">
+            <li><a href="/areas/taunton" class="hover:text-primary">Taunton</a></li>
+            <li>Bridgwater</li>
+            <li>Burnham-on-Sea</li>
+            <li>Highbridge</li>
+            <li>Wellington</li>
+            <li>Wiveliscombe</li>
+          </ul>
+        </div>
+        <div class="bg-white rounded-lg shadow p-6 text-center">
+          <h3 class="font-semibold mb-4 text-green-600">South Somerset</h3>
+          <ul class="text-sm text-gray-600 space-y-2">
+            <li>Yeovil</li>
+            <li>Chard</li>
+            <li>Crewkerne</li>
+            <li>Ilminster</li>
+            <li>Martock</li>
+            <li>South Petherton</li>
+          </ul>
+        </div>
+        <div class="bg-white rounded-lg shadow p-6 text-center">
+          <h3 class="font-semibold mb-4 text-purple-600">Mendip Areas</h3>
+          <ul class="text-sm text-gray-600 space-y-2">
+            <li><a href="/areas/wells" class="hover:text-primary">Wells</a></li>
+            <li><a href="/areas/glastonbury" class="hover:text-primary">Glastonbury</a></li>
+            <li><a href="/areas/street" class="hover:text-primary">Street</a></li>
+            <li>Shepton Mallet</li>
+            <li>Cheddar</li>
+            <li>Axbridge</li>
+          </ul>
+        </div>
+      </div>
+      <div class="text-center mt-8">
+        <p class="text-gray-600 mb-4">Not sure if we cover your area?</p>
+        <a href="/contact" class="bg-primary hover:bg-primary/90 text-white font-medium py-2 px-6 rounded-lg transition-colors duration-200">Check Your Postcode</a>
+      </div>
+    </section>
+  </WidgetWrapper>
+
+  <!-- Testimonials -->
+  <Testimonials
+    title="What Our Customers Say"
+    subtitle="Real reviews from satisfied customers across Somerset"
+    testimonials={[
+      {
+        testimonial: `Excellent service from Somerset Window Cleaning. Always punctual, thorough, and reasonably priced. Windows are streak-free every time.`,
+        name: 'Sarah Mitchell',
+        job: 'Homeowner, Taunton',
+        image: {
+          alt: 'Sarah Mitchell',
+        },
+      },
+      {
+        testimonial: `We've used them for 3 years now. Professional, reliable, and great value. The pure water system really does make a difference to the finish.`,
+        name: 'David Thompson',
+        job: 'Homeowner, Wells',
+        image: {
+          alt: 'David Thompson',
+        },
+      },
+      {
+        testimonial: `Brilliant service! They text before arriving and always leave the windows spotless. Would definitely recommend to others.`,
+        name: 'Emma Roberts',
+        job: 'Homeowner, Glastonbury',
+        image: {
+          alt: 'Emma Roberts',
+        },
+      },
+    ]}
+  />
+
+  <!-- Frequency Guide -->
+  <WidgetWrapper>
+    <section class="py-12 max-w-4xl mx-auto px-4">
+      <h2 class="text-3xl font-bold text-center mb-8">How Often Should You Clean Windows?</h2>
+      <div class="grid md:grid-cols-2 gap-8">
+        <div class="bg-blue-50 rounded-lg p-6">
+          <h3 class="text-xl font-semibold mb-4 text-blue-900">🏠 Residential Properties</h3>
+          <div class="space-y-4 text-blue-800">
+            <div>
+              <h4 class="font-medium">Every 4 Weeks (Recommended)</h4>
+              <p class="text-sm">Maintains consistently clean appearance, prevents buildup of grime and atmospheric pollutants.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">Every 8 Weeks</h4>
+              <p class="text-sm">Good balance of cleanliness and cost. Suitable for most properties not directly exposed to heavy pollution.</p>
+            </div>
+            <div>
+              <h4 class="font-medium">One-off Cleans</h4>
+              <p class="text-sm">Perfect for moving house, special occasions, or trying our service for the first time.</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="bg-green-50 rounded-lg p-6">
+          <h3 class="text-xl font-semibold mb-4 text-green-900">🌍 Factors That Affect Frequency</h3>
+          <ul class="space-y-3 text-green-800">
+            <li class="flex items-start">
+              <span class="text-green-500 mr-2 mt-1">•</span>
+              <div>
+                <span class="font-medium">Location:</span> 
+                <span class="text-sm block">Rural areas and busy roads need more frequent cleaning</span>
+              </div>
+            </li>
+            <li class="flex items-start">
+              <span class="text-green-500 mr-2 mt-1">•</span>
+              <div>
+                <span class="font-medium">Weather exposure:</span>
+                <span class="text-sm block">South/west facing windows get dirtier faster</span>
+              </div>
+            </li>
+            <li class="flex items-start">
+              <span class="text-green-500 mr-2 mt-1">•</span>
+              <div>
+                <span class="font-medium">Surrounding vegetation:</span>
+                <span class="text-sm block">Trees and gardens increase pollen and organic deposits</span>
+              </div>
+            </li>
+            <li class="flex items-start">
+              <span class="text-green-500 mr-2 mt-1">•</span>
+              <div>
+                <span class="font-medium">Personal preference:</span>
+                <span class="text-sm block">Some customers prefer the pristine look of monthly cleaning</span>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </WidgetWrapper>
+
+  <!-- Additional Services Upsell -->
+  <Features
+    id="additional-services"
+    title="Complete Exterior Cleaning Services"
+    subtitle="Enhance your window cleaning with our other professional services"
+    items={[
+      {
+        title: 'Gutter Cleaning',
+        description: 'Professional gutter clearing with high-reach vacuum system. Protect your property from water damage.',
+        icon: 'tabler:home-share',
+        callToAction: { text: 'Learn More', href: '/services/gutter-cleaning' },
+      },
+      {
+        title: 'Solar Panel Cleaning',
+        description: 'Maintain peak energy efficiency with specialist solar panel cleaning. Warranty-safe methods.',
+        icon: 'tabler:sun',
+        callToAction: { text: 'Learn More', href: '/services/solar-panel-cleaning' },
+      },
+      {
+        title: 'Fascia & Soffit Cleaning',
+        description: 'Restore UPVC fascias and soffits to like-new condition. Remove algae and atmospheric staining.',
+        icon: 'tabler:building',
+        callToAction: { text: 'Learn More', href: '/services/fascia-soffit-cleaning' },
+      },
+      {
+        title: 'Conservatory Cleaning',
+        description: 'Bring back the light with professional conservatory roof cleaning. Glass and polycarbonate specialists.',
+        icon: 'tabler:home-2',
+        callToAction: { text: 'Learn More', href: '/services/conservatory-cleaning' },
+      },
+    ]}
+  />
+
+  <!-- FAQs -->
+  <FAQs
+    title="Window Cleaning FAQs"
+    subtitle="Common questions about our professional window cleaning service"
+    items={[
+      {
+        title: 'Do I need to be home during window cleaning?',
+        description: 'No, you don\'t need to be home. Our exterior cleaning service doesn\'t require access to your property. We\'ll text you when we arrive and when we\'re finished.',
+      },
+      {
+        title: 'What if it rains after you clean my windows?',
+        description: 'Rain actually helps! Pure water cleaning means windows dry spot-free, and rainwater will sheet off cleanly. We offer a 48-hour guarantee - if you\'re not satisfied, we\'ll return free of charge.',
+      },
+      {
+        title: 'Do you clean interior windows too?',
+        description: 'Yes, we offer interior window cleaning as an additional service for 50% extra. This requires you to be home and includes all internal glass surfaces.',
+      },
+      {
+        title: 'How do I pay for the service?',
+        description: 'We prefer Direct Debit through GoCardless for regular customers (automated payment after each clean). We also accept card payments, bank transfer, or cash.',
+      },
+      {
+        title: 'What happens if you can\'t access my windows?',
+        description: 'We\'ll contact you if access is restricted. Please ensure gates are unlocked and paths are clear on your scheduled day. Persistent access issues may affect service frequency.',
+      },
+      {
+        title: 'Do you work in all weather conditions?',
+        description: 'We work in most weather including light rain. We avoid cleaning in heavy rain, strong winds, or freezing conditions for safety and quality reasons.',
+      },
+      {
+        title: 'How long does window cleaning take?',
+        description: 'Typical houses take 15-45 minutes depending on size and number of windows. Larger properties or first cleans may take longer.',
+      },
+      {
+        title: 'Can you clean high or difficult access windows?',
+        description: 'Yes, our reach-and-wash poles can safely access windows up to 4 storeys high. This includes dormer windows, conservatories, and most bay windows.',
+      },
+      {
+        title: 'What\'s included in your window cleaning service?',
+        description: 'All exterior window glass, frames, sills, and any door glass. We also clean conservatory windows and remove cobwebs from window areas.',
+      },
+      {
+        title: 'Do you provide a guarantee?',
+        description: 'Yes, we offer a 48-hour spot-free guarantee. If you\'re not completely satisfied with the results, contact us within 48 hours and we\'ll return to rectify any issues free of charge.',
+      },
+    ]}
+  />
+
+  <!-- CTA Section -->
+  <CallToAction
+    actions={[
+      { variant: 'primary', text: 'Book Window Cleaning', href: '/booking-2step', icon: 'tabler:calendar' },
+      { variant: 'whatsapp', text: 'WhatsApp Quote', href: 'https://wa.me/447415526331?text=Hi%20Somerset%20Window%20Cleaning%2C%20I%27d%20like%20to%20book%20window%20cleaning%20at%20%5Byour%20address%5D', icon: 'tabler:brand-whatsapp' },
+      { text: 'Call 01458 860339', href: 'tel:01458860339', icon: 'tabler:phone' },
+    ]}
+  >
+    <Fragment slot="title">
+      Ready for Crystal-Clear Windows?
+    </Fragment>
+    <Fragment slot="subtitle">
+      Professional window cleaning across Somerset. Book online in minutes or call for a fast quote. Fully insured with 48-hour guarantee.
+    </Fragment>
+  </CallToAction>
+</Layout>
