@@ -1,0 +1,437 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import Hero from '~/components/widgets/Hero.astro';
+import Features from '~/components/widgets/Features.astro';
+import Features2 from '~/components/widgets/Features2.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+import FAQs from '~/components/widgets/FAQs.astro';
+import Stats from '~/components/widgets/Stats.astro';
+import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
+import Image from '~/components/common/Image.astro';
+
+const metadata = {
+  title: 'Professional Conservatory Roof Cleaning Somerset | Glass & Polycarbonate',
+  description: 'Specialist conservatory roof cleaning across Somerset. Restore clarity to glass and polycarbonate roofs, remove algae and grime. Professional, safe, insured service.',
+};
+---
+
+<Layout metadata={metadata} structuredDataType="service">
+  <!-- Hero Widget ******************* -->
+  <Hero
+    actions={[
+      { variant: 'primary', text: 'Get Conservatory Quote', href: '/booking-2step', icon: 'tabler:calculator' },
+      { text: 'Call 01458 860339', href: 'tel:01458860339', icon: 'tabler:phone' },
+    ]}
+  >
+    <Fragment slot="title">
+      Professional <span class="text-accent">Conservatory Roof Cleaning</span>
+    </Fragment>
+    <Fragment slot="subtitle">
+      Specialist cleaning for glass and polycarbonate conservatory roofs. Remove algae, restore clarity, and bring back the sparkle to your conservatory across Somerset.
+    </Fragment>
+    <Fragment slot="bg">
+      <Image src="~/assets/images/DJI_0007.JPG" alt="Professional conservatory roof cleaning service" width={1600} height={900} layout="cover" style="width:100%; height:100%; object-fit:cover; opacity:0.35;" />
+      <div class="absolute inset-0 bg-black/40"></div>
+    </Fragment>
+  </Hero>
+
+  <!-- Impact Stats -->
+  <Stats
+    title="Transform Your Conservatory"
+    stats={[
+      { title: 'Light Increase', amount: '40-60%', description: 'More natural light inside' },
+      { title: 'Algae Removal', amount: '100%', description: 'Complete cleaning coverage' },
+      { title: 'Temperature Control', amount: 'Improved', description: 'Better thermal performance' },
+      { title: 'Property Value', amount: 'Enhanced', description: 'Maintained appearance' },
+    ]}
+  />
+
+  <!-- Service Overview -->
+  <WidgetWrapper>
+    <section class="py-12 max-w-6xl mx-auto px-4">
+      <div class="grid lg:grid-cols-3 gap-8">
+        <div class="lg:col-span-2">
+          <h2 class="text-3xl font-bold mb-6">Why Professional Conservatory Roof Cleaning?</h2>
+          <div class="prose prose-lg max-w-none text-gray-600 space-y-4">
+            <p>Your conservatory roof is constantly exposed to the elements, collecting dirt, algae, leaves, and atmospheric pollutants that significantly reduce light transmission and spoil the appearance. What should be a bright, airy space becomes dark and uninviting when the roof is dirty.</p>
+            
+            <p>Our specialist conservatory roof cleaning service across Somerset safely cleans both glass and polycarbonate roofs, restoring clarity and brightness. We use professional equipment designed specifically for conservatory cleaning, ensuring safe access and outstanding results without damage to delicate roof structures.</p>
+
+            <div class="bg-green-50 border-l-4 border-green-400 p-4 my-6">
+              <div class="flex">
+                <div class="flex-shrink-0">
+                  <svg class="h-5 w-5 text-green-400" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clip-rule="evenodd" />
+                  </svg>
+                </div>
+                <div class="ml-3">
+                  <h3 class="text-sm font-medium text-green-800">Light Enhancement</h3>
+                  <div class="mt-2 text-sm text-green-700">
+                    <p>A clean conservatory roof can increase natural light by 40-60%, transforming your conservatory from a dull space into the bright room it was designed to be.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <h3 class="text-xl font-semibold mt-8 mb-4">Types of Conservatory Roofs We Clean</h3>
+            <div class="grid md:grid-cols-2 gap-4">
+              <div class="bg-blue-50 p-4 rounded-lg">
+                <h4 class="font-semibold text-blue-900 mb-2">🏠 Glass Roofs</h4>
+                <ul class="text-sm text-blue-800 space-y-1">
+                  <li>• Single and double glazed units</li>
+                  <li>• Toughened safety glass</li>
+                  <li>• Georgian bar designs</li>
+                  <li>• Self-cleaning glass</li>
+                </ul>
+              </div>
+              <div class="bg-green-50 p-4 rounded-lg">
+                <h4 class="font-semibold text-green-900 mb-2">🌟 Polycarbonate Roofs</h4>
+                <ul class="text-sm text-green-800 space-y-1">
+                  <li>• Multi-wall polycarbonate</li>
+                  <li>• Clear and tinted panels</li>
+                  <li>• Corrugated designs</li>
+                  <li>• Glazing bar systems</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pricing Sidebar -->
+        <div class="bg-white rounded-lg shadow-lg p-6 border border-gray-100 h-fit">
+          <h3 class="text-xl font-bold mb-4 text-center">Conservatory Cleaning Prices</h3>
+          <div class="space-y-4">
+            <div class="text-center mb-4">
+              <p class="text-sm text-gray-600">Based on conservatory size</p>
+            </div>
+            <div class="flex justify-between items-center pb-2 border-b">
+              <span class="font-medium">Small (up to 3m x 3m)</span>
+              <span class="font-bold text-primary text-lg">£40-60</span>
+            </div>
+            <div class="flex justify-between items-center pb-2 border-b">
+              <span class="font-medium">Medium (up to 4m x 4m)</span>
+              <span class="font-bold text-primary text-lg">£60-80</span>
+            </div>
+            <div class="flex justify-between items-center pb-2 border-b">
+              <span class="font-medium">Large (up to 5m x 5m)</span>
+              <span class="font-bold text-primary text-lg">£80-120</span>
+            </div>
+            <div class="flex justify-between items-center">
+              <span class="font-medium">Extra large/complex</span>
+              <span class="font-bold text-primary text-lg">POA</span>
+            </div>
+          </div>
+          
+          <div class="mt-6 p-4 bg-blue-50 rounded-lg">
+            <h4 class="font-semibold text-blue-800 mb-2">☀️ What's Included</h4>
+            <ul class="text-sm text-blue-700 space-y-1">
+              <li>• Complete roof panel cleaning</li>
+              <li>• Glazing bars and frames</li>
+              <li>• Guttering around roof</li>
+              <li>• Ridge and finial cleaning</li>
+              <li>• Internal glass cleaning*</li>
+              <li>• Debris removal</li>
+            </ul>
+            <p class="text-xs text-blue-600 mt-2">*Where safely accessible</p>
+          </div>
+
+          <div class="mt-4 p-4 bg-green-50 rounded-lg">
+            <h4 class="font-semibold text-green-800 mb-2">🌿 Optional Extras</h4>
+            <div class="text-sm text-green-700 space-y-1">
+              <div class="flex justify-between">
+                <span>Full conservatory clean</span>
+                <span class="font-semibold">+£20-40</span>
+              </div>
+              <div class="flex justify-between">
+                <span>Gutter clearing</span>
+                <span class="font-semibold">+£30</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-6">
+            <a href="/booking-2step" class="w-full bg-primary hover:bg-primary/90 text-white font-medium py-3 px-4 rounded-lg transition-colors duration-200 text-center block">Book Conservatory Clean</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </WidgetWrapper>
+
+  <!-- Problems We Solve -->
+  <Features
+    id="problems"
+    title="Common Conservatory Roof Problems"
+    subtitle="Professional solutions for typical conservatory maintenance issues"
+    items={[
+      {
+        title: 'Green Algae Growth',
+        description: 'Unsightly green coating that blocks light and makes your conservatory feel dark and dingy.',
+        icon: 'tabler:leaf',
+      },
+      {
+        title: 'Bird Droppings & Debris',
+        description: 'Accumulated waste and organic matter that\'s difficult to remove safely from roof level.',
+        icon: 'tabler:feather',
+      },
+      {
+        title: 'Water Marks & Staining',
+        description: 'Mineral deposits and water marks that make glass and polycarbonate look cloudy and dirty.',
+        icon: 'tabler:droplet-half',
+      },
+      {
+        title: 'Blocked Gutters',
+        description: 'Conservatory gutters often become blocked, causing overflow and potential water damage.',
+        icon: 'tabler:pipe',
+      },
+      {
+        title: 'Reduced Natural Light',
+        description: 'Dirty roofs can reduce light transmission by up to 60%, defeating the purpose of your conservatory.',
+        icon: 'tabler:sun-off',
+      },
+      {
+        title: 'Poor Appearance',
+        description: 'Neglected conservatory roofs detract from your property\'s overall appearance and kerb appeal.',
+        icon: 'tabler:eye-off',
+      },
+    ]}
+  />
+
+  <!-- Cleaning Process -->
+  <Features2
+    title="Our Safe Conservatory Cleaning Process"
+    subtitle="Professional equipment and techniques for outstanding results"
+    columns={3}
+    items={[
+      {
+        title: '1. Safety Assessment',
+        description: 'Evaluate roof structure, access requirements, and establish safe working methods for your specific conservatory.',
+        icon: 'tabler:shield-check',
+      },
+      {
+        title: '2. Equipment Setup',
+        description: 'Deploy specialist conservatory cleaning equipment including extending poles and pure water systems.',
+        icon: 'tabler:tools',
+      },
+      {
+        title: '3. Debris Removal',
+        description: 'Carefully remove leaves, twigs, and larger debris from roof panels and guttering.',
+        icon: 'tabler:trash',
+      },
+      {
+        title: '4. Deep Cleaning',
+        description: 'Apply cleaning solutions to break down algae and stubborn staining on glass or polycarbonate panels.',
+        icon: 'tabler:spray',
+      },
+      {
+        title: '5. Scrubbing & Rinsing',
+        description: 'Gentle scrubbing with appropriate brushes followed by thorough rinsing with pure water.',
+        icon: 'tabler:wash',
+      },
+      {
+        title: '6. Final Inspection',
+        description: 'Quality check all panels and frames, ensuring complete cleaning and customer satisfaction.',
+        icon: 'tabler:eye-check',
+      },
+    ]}
+  />
+
+  <!-- Benefits Section -->
+  <WidgetWrapper>
+    <section class="py-12 max-w-6xl mx-auto px-4">
+      <h2 class="text-3xl font-bold text-center mb-12">Benefits of Professional Conservatory Cleaning</h2>
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="bg-white rounded-lg shadow-md p-6 text-center">
+          <div class="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold mb-3">Dramatically More Light</h3>
+          <p class="text-gray-600">Clean conservatory roofs can increase natural light by 40-60%, transforming your conservatory experience.</p>
+        </div>
+
+        <div class="bg-white rounded-lg shadow-md p-6 text-center">
+          <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold mb-3">Better Temperature Control</h3>
+          <p class="text-gray-600">Clean roofs improve thermal performance, helping maintain comfortable temperatures year-round.</p>
+        </div>
+
+        <div class="bg-white rounded-lg shadow-md p-6 text-center">
+          <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold mb-3">Safer Than DIY</h3>
+          <p class="text-gray-600">Professional cleaning eliminates the risks of working at height on potentially slippery roof surfaces.</p>
+        </div>
+
+        <div class="bg-white rounded-lg shadow-md p-6 text-center">
+          <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold mb-3">Preserve Property Value</h3>
+          <p class="text-gray-600">Well-maintained conservatories add value to your property and enhance overall kerb appeal.</p>
+        </div>
+
+        <div class="bg-white rounded-lg shadow-md p-6 text-center">
+          <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold mb-3">Time Saving</h3>
+          <p class="text-gray-600">Professional cleaning is faster and more efficient than DIY attempts, with guaranteed results.</p>
+        </div>
+
+        <div class="bg-white rounded-lg shadow-md p-6 text-center">
+          <div class="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold mb-3">Enjoy Your Space Again</h3>
+          <p class="text-gray-600">A clean, bright conservatory becomes a space you'll want to use and enjoy throughout the year.</p>
+        </div>
+      </div>
+    </section>
+  </WidgetWrapper>
+
+  <!-- Types of Conservatories -->
+  <WidgetWrapper>
+    <section class="py-12 max-w-6xl mx-auto px-4">
+      <h2 class="text-3xl font-bold text-center mb-12">Conservatory Types We Clean</h2>
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="bg-white rounded-lg shadow p-6 text-center">
+          <h3 class="font-semibold mb-4 text-blue-600">Victorian Style</h3>
+          <ul class="text-sm text-gray-600 space-y-1">
+            <li>Multi-faceted roof</li>
+            <li>Ornate ridges</li>
+            <li>Bay front design</li>
+            <li>Complex glazing bars</li>
+          </ul>
+        </div>
+        <div class="bg-white rounded-lg shadow p-6 text-center">
+          <h3 class="font-semibold mb-4 text-green-600">Edwardian Style</h3>
+          <ul class="text-sm text-gray-600 space-y-1">
+            <li>Square/rectangular</li>
+            <li>Simple ridge design</li>
+            <li>Maximum floor space</li>
+            <li>Clean lines</li>
+          </ul>
+        </div>
+        <div class="bg-white rounded-lg shadow p-6 text-center">
+          <h3 class="font-semibold mb-4 text-purple-600">Lean-To Style</h3>
+          <ul class="text-sm text-gray-600 space-y-1">
+            <li>Single slope roof</li>
+            <li>Simple design</li>
+            <li>Cost-effective</li>
+            <li>Easy access</li>
+          </ul>
+        </div>
+        <div class="bg-white rounded-lg shadow p-6 text-center">
+          <h3 class="font-semibold mb-4 text-orange-600">Orangery Style</h3>
+          <ul class="text-sm text-gray-600 space-y-1">
+            <li>Lantern roof light</li>
+            <li>Brick/stone walls</li>
+            <li>Glass roof sections</li>
+            <li>Premium design</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </WidgetWrapper>
+
+  <!-- Maintenance Tips -->
+  <WidgetWrapper>
+    <section class="py-12 max-w-4xl mx-auto px-4">
+      <div class="bg-blue-50 rounded-lg p-8 border border-blue-200">
+        <h2 class="text-2xl font-bold text-center mb-6 text-blue-900">Conservatory Maintenance Tips</h2>
+        <div class="grid md:grid-cols-2 gap-6">
+          <div>
+            <h3 class="font-semibold mb-3 text-blue-800">🏠 Regular Maintenance:</h3>
+            <ul class="space-y-2 text-blue-700">
+              <li>• Clean internal glass monthly</li>
+              <li>• Clear gutters of leaves regularly</li>
+              <li>• Check and clean door and window seals</li>
+              <li>• Ensure adequate ventilation</li>
+              <li>• Monitor for any structural issues</li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="font-semibold mb-3 text-green-800">⚠️ When to Call Professionals:</h3>
+            <ul class="space-y-2 text-green-700">
+              <li>• Roof cleaning (safety requirement)</li>
+              <li>• Stubborn algae or staining</li>
+              <li>• Blocked or damaged guttering</li>
+              <li>• Broken or leaking panels</li>
+              <li>• Annual deep clean service</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  </WidgetWrapper>
+
+  <!-- FAQs -->
+  <FAQs
+    title="Conservatory Cleaning FAQs"
+    subtitle="Common questions about professional conservatory roof cleaning"
+    items={[
+      {
+        title: 'How often should a conservatory roof be cleaned?',
+        description: 'We recommend annual cleaning for most conservatories, or twice yearly if you have overhanging trees or live in an area with high pollution levels.',
+      },
+      {
+        title: 'Can you clean polycarbonate roofs safely?',
+        description: 'Yes, we use specific techniques and cleaning products designed for polycarbonate that won\'t cause scratching or clouding of the material.',
+      },
+      {
+        title: 'Do you clean the inside of the conservatory roof?',
+        description: 'We clean internal glass where safely accessible. For high or difficult access areas, we can recommend interior cleaning as a separate service.',
+      },
+      {
+        title: 'What if my conservatory roof has broken panels?',
+        description: 'We\'ll identify any damage during our assessment and can recommend trusted glaziers for repairs. We don\'t carry out glazing repairs ourselves.',
+      },
+      {
+        title: 'Is conservatory roof cleaning safe?',
+        description: 'Yes, we use professional equipment including extending poles and safety systems to clean conservatory roofs safely without needing to walk on them.',
+      },
+      {
+        title: 'Can you clean conservatory roofs in winter?',
+        description: 'Yes, we work year-round except in severe weather conditions. Winter cleaning can be very effective as algae growth is slower.',
+      },
+      {
+        title: 'Will cleaning remove all the algae and green staining?',
+        description: 'Yes, professional cleaning removes virtually all algae and green staining. Severely neglected roofs may need multiple treatments for best results.',
+      },
+      {
+        title: 'Do you clean conservatory windows and doors too?',
+        description: 'We can include conservatory windows and doors as part of a complete conservatory cleaning service for an additional charge.',
+      },
+    ]}
+  />
+
+  <!-- CTA Section -->
+  <CallToAction
+    actions={[
+      { variant: 'primary', text: 'Book Conservatory Cleaning', href: '/booking-2step', icon: 'tabler:calendar' },
+      { variant: 'whatsapp', text: 'WhatsApp Quote', href: 'https://wa.me/447415526331?text=Hi%20Somerset%20Window%20Cleaning%2C%20I%27d%20like%20a%20quote%20for%20conservatory%20roof%20cleaning%20at%20%5Byour%20address%5D', icon: 'tabler:brand-whatsapp' },
+      { text: 'Call 01458 860339', href: 'tel:01458860339', icon: 'tabler:phone' },
+    ]}
+  >
+    <Fragment slot="title">
+      Bring Back the Light to Your Conservatory
+    </Fragment>
+    <Fragment slot="subtitle">
+      Professional conservatory roof cleaning to restore clarity and brightness. Safe, efficient service with outstanding results across Somerset.
+    </Fragment>
+  </CallToAction>
+</Layout>

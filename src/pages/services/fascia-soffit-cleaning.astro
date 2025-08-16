@@ -1,0 +1,387 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import Hero from '~/components/widgets/Hero.astro';
+import Features from '~/components/widgets/Features.astro';
+import Features2 from '~/components/widgets/Features2.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+import FAQs from '~/components/widgets/FAQs.astro';
+import Stats from '~/components/widgets/Stats.astro';
+import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
+import Image from '~/components/common/Image.astro';
+
+const metadata = {
+  title: 'Professional Fascia & Soffit Cleaning Somerset | UPVC Restoration | From £90',
+  description: 'Professional fascia, soffit & gutter exterior cleaning across Somerset. Restore UPVC to like-new condition, remove algae & stains. Fully insured service from £90.',
+};
+---
+
+<Layout metadata={metadata} structuredDataType="service">
+  <!-- Hero Widget ******************* -->
+  <Hero
+    actions={[
+      { variant: 'primary', text: 'Get Fascia Quote', href: '/booking-2step', icon: 'tabler:calculator' },
+      { text: 'Call 01458 860339', href: 'tel:01458860339', icon: 'tabler:phone' },
+    ]}
+  >
+    <Fragment slot="title">
+      Professional <span class="text-accent">Fascia & Soffit Cleaning</span> Somerset
+    </Fragment>
+    <Fragment slot="subtitle">
+      Revive UPVC fascias, soffits and gutters with a gentle yet thorough exterior clean. Remove algae, stains and restore like-new appearance across Somerset.
+    </Fragment>
+    <Fragment slot="bg">
+      <Image src="~/assets/images/DJI_0007.JPG" alt="Professional fascia and soffit cleaning service" width={1600} height={900} layout="cover" style="width:100%; height:100%; object-fit:cover; opacity:0.35;" />
+      <div class="absolute inset-0 bg-black/40"></div>
+    </Fragment>
+  </Hero>
+
+  <!-- Impact Stats -->
+  <Stats
+    title="Transform Your Property's Appearance"
+    stats={[
+      { title: 'Kerb Appeal Boost', amount: '40-60%', description: 'Increase in property appearance' },
+      { title: 'Algae Removal', amount: '100%', description: 'Green/black staining eliminated' },
+      { title: 'Service Life', amount: '+10 years', description: 'Extended UPVC lifespan' },
+      { title: 'Property Value', amount: '+£1000s', description: 'Enhanced market appeal' },
+    ]}
+  />
+
+  <!-- Service Overview -->
+  <WidgetWrapper>
+    <section class="py-12 max-w-6xl mx-auto px-4">
+      <div class="grid lg:grid-cols-3 gap-8">
+        <div class="lg:col-span-2">
+          <h2 class="text-3xl font-bold mb-6">Why Professional Fascia & Soffit Cleaning?</h2>
+          <div class="prose prose-lg max-w-none text-gray-600 space-y-4">
+            <p>UPVC fascias, soffits and gutters are constantly exposed to the elements, accumulating dirt, algae, and atmospheric pollutants that make them look tired and stained. What was once bright white UPVC can become dull, green, or black over time, significantly impacting your property's kerb appeal.</p>
+            
+            <p>Our professional fascia and soffit cleaning service across Somerset uses specialist cleaning solutions and techniques designed specifically for UPVC. We safely remove algae, lichen, and stubborn stains that regular maintenance can't tackle, restoring your roofline to its original appearance.</p>
+
+            <div class="bg-blue-50 border-l-4 border-blue-400 p-4 my-6">
+              <div class="flex">
+                <div class="flex-shrink-0">
+                  <svg class="h-5 w-5 text-blue-400" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd" />
+                  </svg>
+                </div>
+                <div class="ml-3">
+                  <h3 class="text-sm font-medium text-blue-800">Did You Know?</h3>
+                  <div class="mt-2 text-sm text-blue-700">
+                    <p>Algae and atmospheric staining on UPVC isn't just cosmetic - it can cause permanent damage if left untreated. Professional cleaning prevents costly replacement.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <h3 class="text-xl font-semibold mt-8 mb-4">What We Clean</h3>
+            <ul class="space-y-2">
+              <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> UPVC fascia boards</li>
+              <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> Soffit boards and ventilation</li>
+              <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> External gutter cleaning</li>
+              <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> Bargeboards and cladding</li>
+              <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> Window frames (where accessible)</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Pricing Sidebar -->
+        <div class="bg-white rounded-lg shadow-lg p-6 border border-gray-100 h-fit">
+          <h3 class="text-xl font-bold mb-4 text-center">Fascia & Soffit Cleaning Prices</h3>
+          <div class="space-y-4">
+            <div class="text-center mb-4">
+              <p class="text-sm text-gray-600">Based on property size</p>
+            </div>
+            <div class="flex justify-between items-center pb-2 border-b">
+              <span class="font-medium">1-2 bed property</span>
+              <span class="font-bold text-primary text-lg">£90</span>
+            </div>
+            <div class="flex justify-between items-center pb-2 border-b">
+              <span class="font-medium">2-3 bed property</span>
+              <span class="font-bold text-primary text-lg">£100</span>
+            </div>
+            <div class="flex justify-between items-center pb-2 border-b">
+              <span class="font-medium">4 bed property</span>
+              <span class="font-bold text-primary text-lg">£120</span>
+            </div>
+            <div class="flex justify-between items-center pb-2 border-b">
+              <span class="font-medium">5 bed property</span>
+              <span class="font-bold text-primary text-lg">£140</span>
+            </div>
+            <div class="flex justify-between items-center">
+              <span class="font-medium">Large/commercial</span>
+              <span class="font-bold text-primary text-lg">POA</span>
+            </div>
+          </div>
+          
+          <div class="mt-6 p-4 bg-green-50 rounded-lg">
+            <h4 class="font-semibold text-green-800 mb-2">🏠 What's Included</h4>
+            <ul class="text-sm text-green-700 space-y-1">
+              <li>• Fascia boards deep clean</li>
+              <li>• Soffit cleaning & vents</li>
+              <li>• External gutter cleaning</li>
+              <li>• Algae & stain removal</li>
+              <li>• UPVC restoration treatment</li>
+              <li>• Window frames (where accessible)</li>
+            </ul>
+          </div>
+
+          <div class="mt-4 p-4 bg-blue-50 rounded-lg">
+            <h4 class="font-semibold text-blue-800 mb-2">💡 Popular Add-On</h4>
+            <div class="text-sm text-blue-700">
+              <div class="flex justify-between items-center">
+                <span>+ Gutter Clearing</span>
+                <span class="font-semibold">Save £20</span>
+              </div>
+              <p class="text-xs mt-1">Complete roofline service</p>
+            </div>
+          </div>
+
+          <div class="mt-6">
+            <a href="/booking-2step" class="w-full bg-primary hover:bg-primary/90 text-white font-medium py-3 px-4 rounded-lg transition-colors duration-200 text-center block">Book Fascia Cleaning</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </WidgetWrapper>
+
+  <!-- Before & After Benefits -->
+  <Features
+    id="benefits"
+    title="Transform Your Property's Roofline"
+    subtitle="See the dramatic difference professional fascia and soffit cleaning makes"
+    items={[
+      {
+        title: 'Remove Green Algae Staining',
+        description: 'Eliminate unsightly green and black algae that makes UPVC look old and neglected. Restore original white appearance.',
+        icon: 'tabler:wash',
+      },
+      {
+        title: 'Boost Kerb Appeal',
+        description: 'Clean fascias and soffits dramatically improve your property\'s appearance, making it look well-maintained and cared for.',
+        icon: 'tabler:home-star',
+      },
+      {
+        title: 'Protect Your Investment',
+        description: 'Regular cleaning prevents permanent staining and extends the life of UPVC components, saving money on replacements.',
+        icon: 'tabler:shield-dollar',
+      },
+      {
+        title: 'Increase Property Value',
+        description: 'Well-maintained exterior features add value to your property and appeal to potential buyers.',
+        icon: 'tabler:trending-up',
+      },
+      {
+        title: 'Professional Results',
+        description: 'Specialist equipment and cleaning solutions achieve results impossible with DIY methods.',
+        icon: 'tabler:star',
+      },
+      {
+        title: 'Complete Roofline Care',
+        description: 'We clean all visible UPVC elements for a comprehensive, uniform appearance across your roofline.',
+        icon: 'tabler:building',
+      },
+    ]}
+  />
+
+  <!-- Cleaning Process -->
+  <Features2
+    title="Our Professional Cleaning Process"
+    subtitle="Systematic approach for outstanding results on every property"
+    columns={3}
+    items={[
+      {
+        title: '1. Property Assessment',
+        description: 'Inspect fascias, soffits and gutters to assess condition and identify specific cleaning requirements.',
+        icon: 'tabler:search',
+      },
+      {
+        title: '2. Safety Setup',
+        description: 'Establish safe working practices with proper equipment and protection for your property and plants.',
+        icon: 'tabler:shield-check',
+      },
+      {
+        title: '3. Pre-Treatment',
+        description: 'Apply specialist cleaning solutions to break down algae, lichen and atmospheric staining.',
+        icon: 'tabler:spray',
+      },
+      {
+        title: '4. Deep Cleaning',
+        description: 'Thorough cleaning using soft brush technique and high-pressure rinse systems.',
+        icon: 'tabler:wash',
+      },
+      {
+        title: '5. Detail Work',
+        description: 'Hand-clean joints, brackets and detailed areas that require individual attention.',
+        icon: 'tabler:tool',
+      },
+      {
+        title: '6. Final Inspection',
+        description: 'Quality check and touch-up any areas needing extra attention before completion.',
+        icon: 'tabler:eye-check',
+      },
+    ]}
+  />
+
+  <!-- Problems We Solve -->
+  <WidgetWrapper>
+    <section class="py-12 max-w-6xl mx-auto px-4">
+      <h2 class="text-3xl font-bold text-center mb-12">Common UPVC Problems We Solve</h2>
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="bg-white rounded-lg shadow-md p-6 border-l-4 border-green-500">
+          <h3 class="text-lg font-semibold mb-3 text-green-700">🦠 Green Algae Staining</h3>
+          <p class="text-gray-600 mb-3">Unsightly green coating that makes white UPVC look dirty and neglected.</p>
+          <p class="text-sm font-medium text-green-600">✓ Completely removed with specialist treatment</p>
+        </div>
+
+        <div class="bg-white rounded-lg shadow-md p-6 border-l-4 border-red-500">
+          <h3 class="text-lg font-semibold mb-3 text-red-700">⚫ Black Lichen Growth</h3>
+          <p class="text-gray-600 mb-3">Dark spots and patches that are resistant to normal cleaning methods.</p>
+          <p class="text-sm font-medium text-red-600">✓ Professional removal without damage</p>
+        </div>
+
+        <div class="bg-white rounded-lg shadow-md p-6 border-l-4 border-blue-500">
+          <h3 class="text-lg font-semibold mb-3 text-blue-700">💨 Atmospheric Staining</h3>
+          <p class="text-gray-600 mb-3">General discoloration from pollution, traffic fumes and environmental factors.</p>
+          <p class="text-sm font-medium text-blue-600">✓ Deep clean restores original colour</p>
+        </div>
+
+        <div class="bg-white rounded-lg shadow-md p-6 border-l-4 border-yellow-500">
+          <h3 class="text-lg font-semibold mb-3 text-yellow-700">🕸️ Spider Webs & Debris</h3>
+          <p class="text-gray-600 mb-3">Accumulated webs, dirt and organic matter in soffit areas.</p>
+          <p class="text-sm font-medium text-yellow-600">✓ Thorough cleaning of all crevices</p>
+        </div>
+
+        <div class="bg-white rounded-lg shadow-md p-6 border-l-4 border-purple-500">
+          <h3 class="text-lg font-semibold mb-3 text-purple-700">🍃 Leaf & Moss Build-up</h3>
+          <p class="text-gray-600 mb-3">Organic matter trapped behind gutters and in bracket areas.</p>
+          <p class="text-sm font-medium text-purple-600">✓ Complete removal and clean-up</p>
+        </div>
+
+        <div class="bg-white rounded-lg shadow-md p-6 border-l-4 border-orange-500">
+          <h3 class="text-lg font-semibold mb-3 text-orange-700">💧 Water Stain Marks</h3>
+          <p class="text-gray-600 mb-3">Calcium deposits and water marks from overflowing gutters.</p>
+          <p class="text-sm font-medium text-orange-600">✓ Specialist removal techniques</p>
+        </div>
+      </div>
+    </section>
+  </WidgetWrapper>
+
+  <!-- Why Not DIY -->
+  <WidgetWrapper>
+    <section class="py-12 max-w-4xl mx-auto px-4">
+      <div class="bg-amber-50 rounded-lg p-8 border border-amber-200">
+        <h2 class="text-2xl font-bold text-center mb-6 text-amber-900">Why Professional Cleaning Beats DIY</h2>
+        <div class="grid md:grid-cols-2 gap-6">
+          <div>
+            <h3 class="font-semibold mb-3 text-amber-800">❌ DIY Challenges:</h3>
+            <ul class="space-y-2 text-amber-700">
+              <li>• Dangerous ladder work at height</li>
+              <li>• Wrong products can damage UPVC</li>
+              <li>• Inadequate pressure washing results</li>
+              <li>• Time-consuming and physically demanding</li>
+              <li>• Risk of property damage</li>
+              <li>• Limited access to high areas</li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="font-semibold mb-3 text-green-800">✅ Professional Advantages:</h3>
+            <ul class="space-y-2 text-green-700">
+              <li>• Safe working from ground level</li>
+              <li>• Specialist UPVC cleaning products</li>
+              <li>• Professional pressure washing equipment</li>
+              <li>• Fast, efficient service</li>
+              <li>• Fully insured for peace of mind</li>
+              <li>• Access to all roof areas safely</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  </WidgetWrapper>
+
+  <!-- Maintenance Schedule -->
+  <WidgetWrapper>
+    <section class="py-12 max-w-4xl mx-auto px-4 text-center">
+      <h2 class="text-3xl font-bold mb-8">Recommended Cleaning Schedule</h2>
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="bg-blue-50 rounded-lg p-6">
+          <h3 class="text-xl font-semibold mb-4 text-blue-900">🏠 Standard Properties</h3>
+          <div class="text-blue-800">
+            <p class="font-medium mb-2">Every 2-3 Years</p>
+            <p class="text-sm">Properties in normal environments with average exposure to algae and atmospheric pollution.</p>
+          </div>
+        </div>
+        <div class="bg-green-50 rounded-lg p-6">
+          <h3 class="text-xl font-semibold mb-4 text-green-900">🌲 High-Risk Areas</h3>
+          <div class="text-green-800">
+            <p class="font-medium mb-2">Every 1-2 Years</p>
+            <p class="text-sm">Properties near trees, rural areas, or exposed to high moisture where algae grows faster.</p>
+          </div>
+        </div>
+        <div class="bg-purple-50 rounded-lg p-6">
+          <h3 class="text-xl font-semibold mb-4 text-purple-900">🏘️ Urban Areas</h3>
+          <div class="text-purple-800">
+            <p class="font-medium mb-2">Every 2-4 Years</p>
+            <p class="text-sm">Urban properties may need less frequent cleaning but benefit from pollution stain removal.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </WidgetWrapper>
+
+  <!-- FAQs -->
+  <FAQs
+    title="Fascia & Soffit Cleaning FAQs"
+    subtitle="Everything you need to know about professional UPVC roofline cleaning"
+    items={[
+      {
+        title: 'Will pressure washing damage my UPVC?',
+        description: 'No, we use controlled pressure appropriate for UPVC and specialist techniques that clean effectively without causing damage. DIY pressure washing is where damage typically occurs.',
+      },
+      {
+        title: 'How long does fascia and soffit cleaning take?',
+        description: 'Typically 2-4 hours depending on property size and level of staining. We work efficiently to minimise disruption while ensuring thorough results.',
+      },
+      {
+        title: 'Can you clean coloured UPVC or just white?',
+        description: 'We clean all colours of UPVC including white, cream, brown, and grey. Our methods are safe for all UPVC types and finishes.',
+      },
+      {
+        title: 'What if the staining comes back quickly?',
+        description: 'Properly cleaned UPVC should stay clean for 2-3 years in normal conditions. Quick return of staining usually indicates underlying moisture issues we can advise on.',
+      },
+      {
+        title: 'Do you clean inside soffits and fascias?',
+        description: 'This is an exterior cleaning service. We clean the visible external surfaces of fascias, soffits, and gutters. Interior areas would require separate maintenance.',
+      },
+      {
+        title: 'Is it worth cleaning old UPVC that\'s been neglected?',
+        description: 'Yes! Even badly stained UPVC can often be restored to near-original appearance. It\'s much more cost-effective than replacement and can add years to the life of your roofline.',
+      },
+      {
+        title: 'Do you use chemicals that could harm plants?',
+        description: 'We use cleaning solutions designed for external use and take precautions to protect your plants and garden. All products are biodegradable and environmentally responsible.',
+      },
+      {
+        title: 'Can you clean fascias and soffits in winter?',
+        description: 'Yes, we work year-round except in severe weather. Winter cleaning is often effective as algae is dormant and easier to remove.',
+      },
+    ]}
+  />
+
+  <!-- CTA Section -->
+  <CallToAction
+    actions={[
+      { variant: 'primary', text: 'Book Fascia Cleaning', href: '/booking-2step', icon: 'tabler:calendar' },
+      { variant: 'whatsapp', text: 'WhatsApp Quote', href: 'https://wa.me/447415526331?text=Hi%20Somerset%20Window%20Cleaning%2C%20I%27d%20like%20a%20quote%20for%20fascia%20and%20soffit%20cleaning%20at%20%5Byour%20address%5D', icon: 'tabler:brand-whatsapp' },
+      { text: 'Call 01458 860339', href: 'tel:01458860339', icon: 'tabler:phone' },
+    ]}
+  >
+    <Fragment slot="title">
+      Restore Your Property's Roofline
+    </Fragment>
+    <Fragment slot="subtitle">
+      Professional fascia and soffit cleaning to bring back that like-new appearance. Fast quotes, reliable service, outstanding results.
+    </Fragment>
+  </CallToAction>
+</Layout>

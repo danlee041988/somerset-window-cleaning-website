@@ -1,0 +1,309 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import Hero from '~/components/widgets/Hero.astro';
+import Features from '~/components/widgets/Features.astro';
+import Features2 from '~/components/widgets/Features2.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+import FAQs from '~/components/widgets/FAQs.astro';
+import Testimonials from '~/components/widgets/Testimonials.astro';
+import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
+import Image from '~/components/common/Image.astro';
+
+const metadata = {
+  title: 'Professional Gutter Cleaning Somerset | Vacuum System | From £70',
+  description: 'Professional gutter cleaning across Somerset using high-reach vacuum systems. Safely remove leaves, moss & debris. Fully insured service from £70. Book online or call 01458 860339.',
+};
+---
+
+<Layout metadata={metadata} structuredDataType="service">
+  <!-- Hero Widget ******************* -->
+  <Hero
+    actions={[
+      { variant: 'primary', text: 'Get Instant Quote', href: '/booking-2step', icon: 'tabler:calculator' },
+      { text: 'Call 01458 860339', href: 'tel:01458860339', icon: 'tabler:phone' },
+    ]}
+  >
+    <Fragment slot="title">
+      Professional <span class="text-accent">Gutter Cleaning</span> Somerset
+    </Fragment>
+    <Fragment slot="subtitle">
+      High-reach vacuum system safely removes leaves, moss and debris from your gutters. Fully insured service with 48-hour guarantee across Somerset.
+    </Fragment>
+    <Fragment slot="bg">
+      <Image src="~/assets/images/DJI_0007.JPG" alt="Professional gutter cleaning service" width={1600} height={900} layout="cover" style="width:100%; height:100%; object-fit:cover; opacity:0.35;" />
+      <div class="absolute inset-0 bg-black/40"></div>
+    </Fragment>
+  </Hero>
+
+  <!-- Service Overview -->
+  <WidgetWrapper>
+    <section class="py-12 max-w-6xl mx-auto px-4">
+      <div class="grid lg:grid-cols-3 gap-8">
+        <div class="lg:col-span-2">
+          <h2 class="text-3xl font-bold mb-6">Why Choose Our Gutter Cleaning Service?</h2>
+          <div class="prose prose-lg max-w-none text-gray-600 space-y-4">
+            <p>Blocked gutters can cause serious damage to your property, leading to damp, structural issues, and costly repairs. Our professional gutter cleaning service across Somerset uses advanced high-reach vacuum technology to safely and effectively clear your gutters without the need for ladders.</p>
+            
+            <p>With over 4,000+ satisfied customers since 2019, we understand the importance of maintaining clean, functional gutters. Our team serves properties throughout Somerset, from small residential homes to large commercial buildings.</p>
+
+            <div class="bg-amber-50 border-l-4 border-amber-400 p-4 my-6">
+              <div class="flex">
+                <div class="flex-shrink-0">
+                  <svg class="h-5 w-5 text-amber-400" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
+                  </svg>
+                </div>
+                <div class="ml-3">
+                  <h3 class="text-sm font-medium text-amber-800">Did You Know?</h3>
+                  <div class="mt-2 text-sm text-amber-700">
+                    <p>Blocked gutters can overflow causing damp penetration, foundation damage, and in winter, ice formation that can damage roof structures. Regular gutter cleaning prevents these costly problems.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pricing Sidebar -->
+        <div class="bg-white rounded-lg shadow-lg p-6 border border-gray-100 h-fit">
+          <h3 class="text-xl font-bold mb-4 text-center">Gutter Cleaning Prices</h3>
+          <div class="space-y-4">
+            <div class="flex justify-between items-center pb-2 border-b">
+              <span class="font-medium">1-2 bed property</span>
+              <span class="font-bold text-primary text-lg">£70</span>
+            </div>
+            <div class="flex justify-between items-center pb-2 border-b">
+              <span class="font-medium">2-3 bed property</span>
+              <span class="font-bold text-primary text-lg">£80</span>
+            </div>
+            <div class="flex justify-between items-center pb-2 border-b">
+              <span class="font-medium">4 bed property</span>
+              <span class="font-bold text-primary text-lg">£100</span>
+            </div>
+            <div class="flex justify-between items-center pb-2 border-b">
+              <span class="font-medium">5 bed property</span>
+              <span class="font-bold text-primary text-lg">£120</span>
+            </div>
+            <div class="flex justify-between items-center">
+              <span class="font-medium">6+ bed property</span>
+              <span class="font-bold text-primary text-lg">£150+</span>
+            </div>
+          </div>
+          
+          <div class="mt-6 p-4 bg-green-50 rounded-lg">
+            <h4 class="font-semibold text-green-800 mb-2">✅ What's Included</h4>
+            <ul class="text-sm text-green-700 space-y-1">
+              <li>• Complete gutter clearance</li>
+              <li>• Downpipe clearing</li>
+              <li>• Debris removal & disposal</li>
+              <li>• Basic gutter inspection</li>
+              <li>• Before/after photos</li>
+            </ul>
+          </div>
+
+          <div class="mt-6">
+            <a href="/booking-2step" class="w-full bg-primary hover:bg-primary/90 text-white font-medium py-3 px-4 rounded-lg transition-colors duration-200 text-center block">Book Gutter Cleaning</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </WidgetWrapper>
+
+  <!-- Process Section -->
+  <Features2
+    title="Our Professional Gutter Cleaning Process"
+    subtitle="Safe, efficient, and thorough - here's how we clean your gutters"
+    columns={3}
+    items={[
+      {
+        title: '1. Site Assessment',
+        description: 'We assess your property and gutter condition, noting any potential issues or repairs needed.',
+        icon: 'tabler:search',
+      },
+      {
+        title: '2. High-Reach Vacuum',
+        description: 'Using professional vacuum equipment, we safely remove all debris from ground level - no ladders needed.',
+        icon: 'tabler:vacuum-cleaner',
+      },
+      {
+        title: '3. Downpipe Clearing',
+        description: 'We clear all downpipes to ensure proper water flow and check for any blockages or damage.',
+        icon: 'tabler:arrow-down',
+      },
+      {
+        title: '4. Flow Testing',
+        description: 'We test water flow through your gutter system to ensure everything is working properly.',
+        icon: 'tabler:droplet',
+      },
+      {
+        title: '5. Debris Disposal',
+        description: 'All cleared debris is properly disposed of, leaving your property clean and tidy.',
+        icon: 'tabler:trash',
+      },
+      {
+        title: '6. Inspection Report',
+        description: 'We provide before/after photos and highlight any maintenance recommendations.',
+        icon: 'tabler:camera',
+      },
+    ]}
+  />
+
+  <!-- Benefits Section -->
+  <Features
+    id="benefits"
+    title="Benefits of Professional Gutter Cleaning"
+    subtitle="Regular gutter maintenance protects your most valuable asset - your property"
+    items={[
+      {
+        title: 'Prevents Water Damage',
+        description: 'Clean gutters direct rainwater away from your property, preventing damp, mould, and structural damage.',
+        icon: 'tabler:shield-check',
+      },
+      {
+        title: 'Extends Roof Life',
+        description: 'Proper drainage prevents ice dams and reduces stress on roof structures, extending their lifespan.',
+        icon: 'tabler:home',
+      },
+      {
+        title: 'Maintains Property Value',
+        description: 'Well-maintained gutters preserve your property\'s appearance and prevent costly damage that affects value.',
+        icon: 'tabler:trending-up',
+      },
+      {
+        title: 'Prevents Pest Issues',
+        description: 'Standing water in blocked gutters attracts insects and provides nesting sites for birds and rodents.',
+        icon: 'tabler:bug-off',
+      },
+      {
+        title: 'Safer Than DIY',
+        description: 'Our ground-based vacuum system eliminates ladder risks while providing superior cleaning results.',
+        icon: 'tabler:shield',
+      },
+      {
+        title: 'Comprehensive Service',
+        description: 'We clean gutters, downpipes, and provide inspection reports to keep your system in top condition.',
+        icon: 'tabler:checklist',
+      },
+    ]}
+  />
+
+  <!-- When to Clean Section -->
+  <WidgetWrapper>
+    <section class="py-12 max-w-4xl mx-auto px-4 text-center">
+      <h2 class="text-3xl font-bold mb-8">When Should You Clean Your Gutters?</h2>
+      <div class="grid md:grid-cols-2 gap-8">
+        <div class="bg-blue-50 rounded-lg p-6">
+          <h3 class="text-xl font-semibold mb-4 text-blue-900">🍂 Autumn (September - November)</h3>
+          <p class="text-blue-800">Essential after leaf fall. Most important time for gutter cleaning as fallen leaves can completely block gutters before winter rains.</p>
+        </div>
+        <div class="bg-green-50 rounded-lg p-6">
+          <h3 class="text-xl font-semibold mb-4 text-green-900">🌸 Spring (March - May)</h3>
+          <p class="text-green-800">Remove winter debris and storm damage. Prepare gutters for summer growth and ensure they're ready for spring rains.</p>
+        </div>
+      </div>
+      <div class="mt-8 bg-amber-50 rounded-lg p-6">
+        <h3 class="text-xl font-semibold mb-4 text-amber-900">⚠️ Emergency Cleaning</h3>
+        <p class="text-amber-800 mb-4">Book immediately if you notice:</p>
+        <ul class="text-left text-amber-800 space-y-2 max-w-md mx-auto">
+          <li>• Water overflowing from gutters during rain</li>
+          <li>• Visible plants or moss growing in gutters</li>
+          <li>• Sagging or pulling away from the building</li>
+          <li>• Water stains on exterior walls</li>
+          <li>• Ice formation in winter</li>
+        </ul>
+      </div>
+    </section>
+  </WidgetWrapper>
+
+  <!-- Service Areas -->
+  <WidgetWrapper>
+    <section class="py-12 max-w-6xl mx-auto px-4">
+      <h2 class="text-3xl font-bold text-center mb-8">Gutter Cleaning Service Areas</h2>
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="bg-white rounded-lg shadow p-6 text-center">
+          <h3 class="font-semibold mb-4">Central Somerset</h3>
+          <ul class="text-sm text-gray-600 space-y-1">
+            <li>Taunton</li>
+            <li>Bridgwater</li>
+            <li>Burnham-on-Sea</li>
+            <li>Highbridge</li>
+          </ul>
+        </div>
+        <div class="bg-white rounded-lg shadow p-6 text-center">
+          <h3 class="font-semibold mb-4">South Somerset</h3>
+          <ul class="text-sm text-gray-600 space-y-1">
+            <li>Yeovil</li>
+            <li>Chard</li>
+            <li>Crewkerne</li>
+            <li>Ilminster</li>
+          </ul>
+        </div>
+        <div class="bg-white rounded-lg shadow p-6 text-center">
+          <h3 class="font-semibold mb-4">Mendip Areas</h3>
+          <ul class="text-sm text-gray-600 space-y-1">
+            <li>Wells</li>
+            <li>Glastonbury</li>
+            <li>Street</li>
+            <li>Shepton Mallet</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </WidgetWrapper>
+
+  <!-- FAQs -->
+  <FAQs
+    title="Gutter Cleaning FAQs"
+    subtitle="Common questions about our professional gutter cleaning service"
+    items={[
+      {
+        title: 'How often should gutters be cleaned?',
+        description: 'We recommend twice yearly - in autumn after leaf fall and in spring before summer growth. Properties with many overhanging trees may need more frequent cleaning.',
+      },
+      {
+        title: 'Is your gutter cleaning service safe?',
+        description: 'Yes, our high-reach vacuum system allows us to clean gutters safely from ground level. No ladders means no risk of falls or damage to your property.',
+      },
+      {
+        title: 'What if you find damage during cleaning?',
+        description: 'We\'ll take photos and provide a detailed report of any issues found. We can recommend trusted local contractors for repairs, but we focus purely on cleaning.',
+      },
+      {
+        title: 'Do you clean the outside of gutters too?',
+        description: 'Our standard service focuses on clearing debris from inside gutters and downpipes. External gutter cleaning is available as part of our fascia & soffit cleaning service.',
+      },
+      {
+        title: 'What happens to the debris you remove?',
+        description: 'All debris is bagged and disposed of responsibly. We leave your property clean and tidy with no mess left behind.',
+      },
+      {
+        title: 'Can you clean gutters in winter?',
+        description: 'Yes, we work year-round except in severe weather conditions. Winter cleaning is important to prevent ice damage and ensure proper drainage.',
+      },
+      {
+        title: 'Do you provide before and after photos?',
+        description: 'Yes, we document our work with photos showing the condition before cleaning and the results achieved. This is included in our service at no extra cost.',
+      },
+      {
+        title: 'What if my gutters are too high or difficult to access?',
+        description: 'Our professional equipment can reach up to 4 storeys safely. For unusual access requirements, we\'ll assess each property individually and provide a custom solution.',
+      },
+    ]}
+  />
+
+  <!-- CTA Section -->
+  <CallToAction
+    actions={[
+      { variant: 'primary', text: 'Book Gutter Cleaning', href: '/booking-2step', icon: 'tabler:calendar' },
+      { variant: 'whatsapp', text: 'WhatsApp Quote', href: 'https://wa.me/447415526331?text=Hi%20Somerset%20Window%20Cleaning%2C%20I%27d%20like%20a%20quote%20for%20gutter%20cleaning%20at%20%5Byour%20address%5D', icon: 'tabler:brand-whatsapp' },
+      { text: 'Call 01458 860339', href: 'tel:01458860339', icon: 'tabler:phone' },
+    ]}
+  >
+    <Fragment slot="title">
+      Ready for Professional Gutter Cleaning?
+    </Fragment>
+    <Fragment slot="subtitle">
+      Protect your property with our professional gutter cleaning service. Fast quotes, reliable service, fully insured across Somerset.
+    </Fragment>
+  </CallToAction>
+</Layout>

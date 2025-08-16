@@ -1,0 +1,355 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import Hero from '~/components/widgets/Hero.astro';
+import Features from '~/components/widgets/Features.astro';
+import Features2 from '~/components/widgets/Features2.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+import FAQs from '~/components/widgets/FAQs.astro';
+import Stats from '~/components/widgets/Stats.astro';
+import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
+import Image from '~/components/common/Image.astro';
+
+const metadata = {
+  title: 'Professional Solar Panel Cleaning Somerset | Maintain Efficiency & Warranty',
+  description: 'Specialist solar panel cleaning across Somerset. Maintain peak efficiency, protect warranties, and extend panel life. Pure water system, fully insured. Quote from £40.',
+};
+---
+
+<Layout metadata={metadata} structuredDataType="service">
+  <!-- Hero Widget ******************* -->
+  <Hero
+    actions={[
+      { variant: 'primary', text: 'Get Solar Panel Quote', href: '/booking-2step', icon: 'tabler:calculator' },
+      { text: 'Call 01458 860339', href: 'tel:01458860339', icon: 'tabler:phone' },
+    ]}
+  >
+    <Fragment slot="title">
+      Professional <span class="text-accent">Solar Panel Cleaning</span> Somerset
+    </Fragment>
+    <Fragment slot="subtitle">
+      Specialist cleaning to maintain peak efficiency, protect warranties, and extend panel life. Pure water system, fully insured service across Somerset.
+    </Fragment>
+    <Fragment slot="bg">
+      <Image src="~/assets/images/solar-panels.jpeg" alt="Professional solar panel cleaning service" width={1600} height={900} layout="cover" style="width:100%; height:100%; object-fit:cover; opacity:0.35;" />
+      <div class="absolute inset-0 bg-black/40"></div>
+    </Fragment>
+  </Hero>
+
+  <!-- Performance Impact Stats -->
+  <Stats
+    title="Why Solar Panel Cleaning Matters"
+    stats={[
+      { title: 'Efficiency Loss', amount: '15-25%', description: 'From dirty panels annually' },
+      { title: 'Warranty Risk', amount: 'Void', description: 'Without proper maintenance' },
+      { title: 'Payback Period', amount: '3-6 months', description: 'For professional cleaning' },
+      { title: 'Panel Lifespan', amount: '+5 years', description: 'With regular maintenance' },
+    ]}
+  />
+
+  <!-- Service Overview -->
+  <WidgetWrapper>
+    <section class="py-12 max-w-6xl mx-auto px-4">
+      <div class="grid lg:grid-cols-3 gap-8">
+        <div class="lg:col-span-2">
+          <h2 class="text-3xl font-bold mb-6">Why Professional Solar Panel Cleaning?</h2>
+          <div class="prose prose-lg max-w-none text-gray-600 space-y-4">
+            <p>Solar panels are a significant investment that can save thousands on energy bills over their lifetime. However, dirty panels can lose 15-25% of their efficiency, costing you money every month. Professional cleaning not only restores peak performance but also protects your warranty and extends panel life.</p>
+            
+            <p>Our specialist solar panel cleaning service across Somerset uses pure water systems and soft brush techniques specifically designed for solar installations. We understand the delicate nature of solar panels and follow manufacturer guidelines to ensure your warranty remains valid.</p>
+
+            <div class="bg-green-50 border-l-4 border-green-400 p-4 my-6">
+              <div class="flex">
+                <div class="flex-shrink-0">
+                  <svg class="h-5 w-5 text-green-400" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                  </svg>
+                </div>
+                <div class="ml-3">
+                  <h3 class="text-sm font-medium text-green-800">Efficiency Guarantee</h3>
+                  <div class="mt-2 text-sm text-green-700">
+                    <p>Our customers typically see immediate improvement in power generation after professional cleaning. Many report 10-20% increases in daily energy production.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pricing Sidebar -->
+        <div class="bg-white rounded-lg shadow-lg p-6 border border-gray-100 h-fit">
+          <h3 class="text-xl font-bold mb-4 text-center">Solar Panel Cleaning Prices</h3>
+          <div class="space-y-4">
+            <div class="text-center mb-4">
+              <p class="text-sm text-gray-600">Pricing based on number of panels</p>
+            </div>
+            <div class="flex justify-between items-center pb-2 border-b">
+              <span class="font-medium">Up to 10 panels</span>
+              <span class="font-bold text-primary text-lg">£40</span>
+            </div>
+            <div class="flex justify-between items-center pb-2 border-b">
+              <span class="font-medium">11-20 panels</span>
+              <span class="font-bold text-primary text-lg">£60</span>
+            </div>
+            <div class="flex justify-between items-center pb-2 border-b">
+              <span class="font-medium">21-30 panels</span>
+              <span class="font-bold text-primary text-lg">£80</span>
+            </div>
+            <div class="flex justify-between items-center pb-2 border-b">
+              <span class="font-medium">31+ panels</span>
+              <span class="font-bold text-primary text-lg">POA</span>
+            </div>
+          </div>
+          
+          <div class="mt-6 p-4 bg-blue-50 rounded-lg">
+            <h4 class="font-semibold text-blue-800 mb-2">☀️ What's Included</h4>
+            <ul class="text-sm text-blue-700 space-y-1">
+              <li>• Pure water cleaning system</li>
+              <li>• Soft brush technique</li>
+              <li>• Panel frame cleaning</li>
+              <li>• Safety equipment included</li>
+              <li>• Performance check</li>
+              <li>• Warranty-safe methods</li>
+            </ul>
+          </div>
+
+          <div class="mt-6">
+            <a href="/booking-2step" class="w-full bg-primary hover:bg-primary/90 text-white font-medium py-3 px-4 rounded-lg transition-colors duration-200 text-center block">Book Solar Panel Clean</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </WidgetWrapper>
+
+  <!-- Why Choose Us -->
+  <Features
+    id="why-choose-us"
+    title="Why Choose Our Solar Panel Cleaning?"
+    subtitle="Specialist knowledge and equipment for optimal results"
+    items={[
+      {
+        title: 'Warranty Safe Methods',
+        description: 'We follow manufacturer guidelines and use approved cleaning methods that won\'t void your warranty.',
+        icon: 'tabler:shield-check',
+      },
+      {
+        title: 'Pure Water System',
+        description: 'Deionised water leaves no residue or water marks, ensuring crystal clear panels for maximum light absorption.',
+        icon: 'tabler:droplet',
+      },
+      {
+        title: 'Specialist Equipment',
+        description: 'Professional solar panel cleaning brushes and tools designed specifically for photovoltaic systems.',
+        icon: 'tabler:tool',
+      },
+      {
+        title: 'Safety First',
+        description: 'Fully insured with proper safety equipment for roof work. Risk assessments completed for every job.',
+        icon: 'tabler:shield',
+      },
+      {
+        title: 'Performance Focus',
+        description: 'We understand solar technology and focus on methods that maximise energy generation.',
+        icon: 'tabler:trending-up',
+      },
+      {
+        title: 'Regular Maintenance',
+        description: 'Set up annual or bi-annual cleaning schedules to maintain peak performance year-round.',
+        icon: 'tabler:calendar',
+      },
+    ]}
+  />
+
+  <!-- Cleaning Process -->
+  <Features2
+    title="Our Solar Panel Cleaning Process"
+    subtitle="Careful, systematic approach for optimal results"
+    columns={3}
+    items={[
+      {
+        title: '1. Safety Setup',
+        description: 'Complete safety assessment and setup of equipment. All work carried out with proper safety measures.',
+        icon: 'tabler:hard-hat',
+      },
+      {
+        title: '2. Initial Inspection',
+        description: 'Check panel condition, note any damage, and assess cleaning requirements for your specific system.',
+        icon: 'tabler:search',
+      },
+      {
+        title: '3. Pure Water Cleaning',
+        description: 'Gentle cleaning with deionised water and specialist solar panel brushes to remove dirt and grime.',
+        icon: 'tabler:wash',
+      },
+      {
+        title: '4. Frame & Mounting Clean',
+        description: 'Clean panel frames and visible mounting hardware to ensure complete appearance and function.',
+        icon: 'tabler:frame',
+      },
+      {
+        title: '5. Final Rinse',
+        description: 'Thorough rinse with pure water to ensure no cleaning residue is left on the panels.',
+        icon: 'tabler:wash-dry',
+      },
+      {
+        title: '6. Performance Check',
+        description: 'Visual inspection of cleaned panels and basic performance assessment where possible.',
+        icon: 'tabler:check',
+      },
+    ]}
+  />
+
+  <!-- Benefits Section -->
+  <WidgetWrapper>
+    <section class="py-12 max-w-6xl mx-auto px-4">
+      <h2 class="text-3xl font-bold text-center mb-12">Benefits of Regular Solar Panel Cleaning</h2>
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="bg-white rounded-lg shadow-md p-6 text-center">
+          <div class="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold mb-3">Maximise Energy Output</h3>
+          <p class="text-gray-600">Clean panels can produce 15-25% more electricity, increasing your energy savings and feed-in tariff earnings.</p>
+        </div>
+
+        <div class="bg-white rounded-lg shadow-md p-6 text-center">
+          <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold mb-3">Protect Your Warranty</h3>
+          <p class="text-gray-600">Many solar panel warranties require regular professional maintenance. Our service keeps your warranty valid.</p>
+        </div>
+
+        <div class="bg-white rounded-lg shadow-md p-6 text-center">
+          <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold mb-3">Extend Panel Life</h3>
+          <p class="text-gray-600">Regular cleaning prevents build-up that can cause hot spots and permanent damage to solar cells.</p>
+        </div>
+
+        <div class="bg-white rounded-lg shadow-md p-6 text-center">
+          <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold mb-3">Faster ROI</h3>
+          <p class="text-gray-600">The increased energy production from clean panels typically pays for cleaning costs within 3-6 months.</p>
+        </div>
+
+        <div class="bg-white rounded-lg shadow-md p-6 text-center">
+          <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold mb-3">Maintain Appearance</h3>
+          <p class="text-gray-600">Clean panels look better and maintain the aesthetic appeal of your property's green technology investment.</p>
+        </div>
+
+        <div class="bg-white rounded-lg shadow-md p-6 text-center">
+          <div class="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold mb-3">Monitor Performance</h3>
+          <p class="text-gray-600">Regular cleaning visits allow early detection of potential issues with your solar panel system.</p>
+        </div>
+      </div>
+    </section>
+  </WidgetWrapper>
+
+  <!-- When to Clean -->
+  <WidgetWrapper>
+    <section class="py-12 max-w-4xl mx-auto px-4 text-center">
+      <h2 class="text-3xl font-bold mb-8">When Should You Clean Solar Panels?</h2>
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="bg-blue-50 rounded-lg p-6">
+          <h3 class="text-xl font-semibold mb-4 text-blue-900">🌸 Spring Clean (March-April)</h3>
+          <p class="text-blue-800">Remove winter grime and prepare for peak summer generation months. Essential after pollen season.</p>
+        </div>
+        <div class="bg-yellow-50 rounded-lg p-6">
+          <h3 class="text-xl font-semibold mb-4 text-yellow-900">☀️ Summer Check (July-August)</h3>
+          <p class="text-yellow-800">Mid-summer clean during peak generation period. Maximise output during longest daylight hours.</p>
+        </div>
+        <div class="bg-orange-50 rounded-lg p-6">
+          <h3 class="text-xl font-semibold mb-4 text-orange-900">🍂 Autumn Prep (October-November)</h3>
+          <p class="text-orange-800">Clear leaf debris and prepare for winter. Ensure optimal performance during shorter days.</p>
+        </div>
+      </div>
+      <div class="mt-8 bg-red-50 rounded-lg p-6">
+        <h3 class="text-xl font-semibold mb-4 text-red-900">🚨 Signs Your Panels Need Cleaning</h3>
+        <ul class="text-left text-red-800 space-y-2 max-w-md mx-auto">
+          <li>• Visible dirt, bird droppings, or debris</li>
+          <li>• Decreased energy generation readings</li>
+          <li>• White or chalky residue on panels</li>
+          <li>• Panels look different from different angles</li>
+          <li>• Annual maintenance schedule due</li>
+        </ul>
+      </div>
+    </section>
+  </WidgetWrapper>
+
+  <!-- FAQs -->
+  <FAQs
+    title="Solar Panel Cleaning FAQs"
+    subtitle="Everything you need to know about professional solar panel maintenance"
+    items={[
+      {
+        title: 'How often should solar panels be cleaned?',
+        description: 'We recommend 2-3 times per year for optimal performance - spring, summer, and autumn. Properties in dusty areas or under trees may need more frequent cleaning.',
+      },
+      {
+        title: 'Will cleaning damage my solar panels?',
+        description: 'No, our methods are specifically designed for solar panels. We use pure water, soft brushes, and techniques approved by panel manufacturers that won\'t damage the surface.',
+      },
+      {
+        title: 'Can I clean solar panels myself?',
+        description: 'While possible, we don\'t recommend DIY cleaning. Improper techniques can damage panels, void warranties, and roof work carries safety risks. Professional cleaning ensures best results safely.',
+      },
+      {
+        title: 'Does cleaning really improve solar panel efficiency?',
+        description: 'Yes, studies show dirty panels can lose 15-25% efficiency. Our customers typically see immediate improvements in energy generation after professional cleaning.',
+      },
+      {
+        title: 'What about rain - doesn\'t that clean the panels?',
+        description: 'Rain helps but isn\'t sufficient. It can\'t remove bird droppings, pollen, or stubborn grime. Rain often leaves water spots that can actually reduce efficiency.',
+      },
+      {
+        title: 'Do you work on all types of solar panels?',
+        description: 'Yes, we clean all types of solar panels including monocrystalline, polycrystalline, and thin-film systems. Our methods are safe for all panel types and mounting systems.',
+      },
+      {
+        title: 'What if it rains after you clean the panels?',
+        description: 'Rain after cleaning actually helps! Clean panels with pure water cleaning dry spot-free. Rain will sheet off cleanly without leaving marks.',
+      },
+      {
+        title: 'Can you clean solar panels in winter?',
+        description: 'Yes, we work year-round except in severe weather. Winter cleaning is important as shorter days mean you need maximum efficiency from available sunlight.',
+      },
+    ]}
+  />
+
+  <!-- CTA Section -->
+  <CallToAction
+    actions={[
+      { variant: 'primary', text: 'Book Solar Panel Cleaning', href: '/booking-2step', icon: 'tabler:calendar' },
+      { variant: 'whatsapp', text: 'WhatsApp Quote', href: 'https://wa.me/447415526331?text=Hi%20Somerset%20Window%20Cleaning%2C%20I%27d%20like%20a%20quote%20for%20solar%20panel%20cleaning%20at%20%5Byour%20address%5D', icon: 'tabler:brand-whatsapp' },
+      { text: 'Call 01458 860339', href: 'tel:01458860339', icon: 'tabler:phone' },
+    ]}
+  >
+    <Fragment slot="title">
+      Maximise Your Solar Investment
+    </Fragment>
+    <Fragment slot="subtitle">
+      Professional solar panel cleaning to maintain peak efficiency and protect your green energy investment. Book your service today.
+    </Fragment>
+  </CallToAction>
+</Layout>
