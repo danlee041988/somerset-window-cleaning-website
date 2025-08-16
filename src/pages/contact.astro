@@ -68,22 +68,6 @@ const metadata = {
     </div>
   </section>
 
-  <!-- Inline postcode checker (replacing /areas) -->
-  <section id="postcode-checker" class="max-w-7xl mx-auto px-4 sm:px-6 -mt-4 pb-2">
-    <div class="rounded-2xl border border-red-500/20 bg-red-500/5 dark:bg-red-500/10 p-5 sm:p-6">
-      <div class="grid gap-4 sm:grid-cols-3 sm:items-center">
-        <div class="sm:col-span-2">
-          <h3 class="text-xl font-semibold">Check your postcode</h3>
-          <p class="text-sm text-muted">We cover most BA, TA, BS and DT9 postcodes. Enter yours to confirm.</p>
-          <div class="mt-3 flex flex-col sm:flex-row gap-3">
-            <input id="postcodeInputC" type="text" placeholder="e.g. BA6 8AB" class="w-full sm:w-72 py-3 px-4 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent uppercase tracking-wider" />
-            <button id="postcodeBtnC" class="btn-primary whitespace-nowrap">Check coverage</button>
-          </div>
-          <p id="postcodeResultC" class="mt-3 text-sm"></p>
-        </div>
-      </div>
-    </div>
-  </section>
 
   <ContactUs
     id="form"
@@ -127,15 +111,6 @@ const metadata = {
           <p class="text-sm text-gray-300">Mon–Fri 9:00–16:00 · We usually reply within one working day.</p>
         </div>
 
-        <div class="pt-3 border-t border-gray-700/40">
-          <h4 class="text-base font-semibold mb-2">Coverage</h4>
-          <p class="text-sm text-gray-300">We serve homes and businesses across Somerset. Include your postcode and property type for a fast, firm quote.</p>
-        </div>
-
-        <div class="pt-3 border-t border-gray-700/40">
-          <h4 class="text-base font-semibold mb-2">Payments</h4>
-          <p class="text-sm text-gray-300">Direct Debit via GoCardless is preferred. We also accept card (Stripe) and bank transfer.</p>
-        </div>
       </div>
     </Fragment>
   </ContactUs>
@@ -204,37 +179,6 @@ const metadata = {
       if (maybeWhats) maybeWhats.href = whatsUrl;
     }
 
-    // Inline postcode checker
-    function normalisePc(v) { return (v || '').toString().toUpperCase().replace(/\s+/g, ''); }
-    function coversPostcode(v) {
-      const pcx = normalisePc(v);
-      if (!pcx) return null;
-      const m = pcx.match(/^([A-Z]{1,2}\d{1,2})/);
-      if (!m) return false;
-      const outward = m[1];
-      if (outward.startsWith('BA')) return true;
-      if (outward.startsWith('TA')) return true;
-      if (outward.startsWith('BS')) return true;
-      if (outward === 'DT9') return true;
-      return false;
-    }
-    function isFullUkPostcode(v) {
-      const re = /^([A-Z]{1,2}[0-9][0-9A-Z]?)[ ]?([0-9][ABD-HJLNP-UW-Z]{2})$/;
-      return re.test((v || '').toUpperCase().trim());
-    }
-    const inEl = document.getElementById('postcodeInputC');
-    const btnEl = document.getElementById('postcodeBtnC');
-    const resEl = document.getElementById('postcodeResultC');
-    btnEl?.addEventListener('click', () => {
-      const val = inEl?.value || '';
-      if (!isFullUkPostcode(val)) {
-        if (resEl) { resEl.textContent = 'Please enter your full postcode (e.g., BA6 8AB).'; resEl.className = 'mt-3 text-sm text-red-500'; }
-        return;
-      }
-      const coveredNow = coversPostcode(val);
-      const pcClean = normalisePc(val);
-      window.location.href = `/contact?postcode=${encodeURIComponent(pcClean)}&covered=${coveredNow ? '1' : '0'}`;
-    });
   </script>
 
   <style is:inline>

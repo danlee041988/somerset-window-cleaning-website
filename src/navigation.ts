@@ -16,7 +16,7 @@ export const headerData = {
     },
     {
       text: 'Book Online',
-      href: getPermalink('/booking'),
+      href: getPermalink('/booking-2step'),
     },
     {
       text: 'About',
@@ -28,9 +28,9 @@ export const headerData = {
     },
   ],
   actions: [
-    { text: 'Call 01458 860339', href: 'tel:01458860339', variant: 'secondary', icon: 'tabler:phone', priority: 1 },
-    { text: 'WhatsApp', href: 'https://wa.me/447415526331?text=Hi%20Somerset%20Window%20Cleaning%2C%20please%20can%20I%20get%20a%20quote%20for%20window%20cleaning%20at%20%5Byour%20address%5D', variant: 'whatsapp', icon: 'tabler:brand-whatsapp', priority: 2 },
-    { text: 'Get a quote', href: getPermalink('/contact'), variant: 'primary', icon: 'tabler:calendar', priority: 3 },
+    { text: 'Book Online', href: getPermalink('/booking-2step'), variant: 'primary', icon: 'tabler:calendar', priority: 1 },
+    { text: 'Call 01458 860339', href: 'tel:01458860339', variant: 'secondary', icon: 'tabler:phone', priority: 2 },
+    { text: 'WhatsApp', href: 'https://wa.me/447415526331?text=Hi%20Somerset%20Window%20Cleaning%2C%20please%20can%20I%20get%20a%20quote%20for%20window%20cleaning%20at%20%5Byour%20address%5D', variant: 'whatsapp', icon: 'tabler:brand-whatsapp', priority: 3 },
   ],
 };
 
@@ -49,7 +49,7 @@ export const footerData = {
     {
       title: 'Service Areas',
       links: [
-        { text: 'Bath Window Cleaning', href: getPermalink('/areas/bath') },
+        { text: 'Taunton Window Cleaning', href: getPermalink('/areas/taunton') },
         { text: 'Wells Window Cleaning', href: getPermalink('/areas/wells') },
         { text: 'Street Window Cleaning', href: getPermalink('/areas/street') },
         { text: 'Glastonbury Window Cleaning', href: getPermalink('/areas/glastonbury') },
@@ -59,8 +59,7 @@ export const footerData = {
     {
       title: 'Quick Links',
       links: [
-        { text: 'Instant Quote', href: getPermalink('/instant-quote') },
-        { text: 'Book Online', href: getPermalink('/booking') },
+        { text: 'Book Online', href: getPermalink('/booking-2step') },
         { text: 'Gallery', href: getPermalink('/gallery') },
         { text: 'About Us', href: getPermalink('/about') },
         { text: 'Contact', href: getPermalink('/contact') },

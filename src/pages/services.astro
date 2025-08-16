@@ -1,5 +1,4 @@
 ---
-import CallToAction from '~/components/widgets/CallToAction.astro';
 import Features2 from '~/components/widgets/Features2.astro';
 import Hero from '~/components/widgets/Hero.astro';
 import Layout from '~/layouts/PageLayout.astro';
@@ -15,7 +14,7 @@ const metadata = {
 
   <Hero
     tagline="Our services"
-    actions={[{ variant: 'primary', text: 'Get a free quote', href: '/contact', icon: 'tabler:calendar' }]}
+    actions={[{ variant: 'primary', text: 'Book Online', href: '/booking-2step', icon: 'tabler:calendar' }]}
   >
     <Fragment slot="title">Professional exterior cleaning <span class="text-accent">you can trust</span></Fragment>
     <Fragment slot="subtitle">Clean, safe and reliable across Somerset — <span class="text-accent">fully insured</span>.</Fragment>
@@ -32,6 +31,9 @@ const metadata = {
     title="What we do"
     subtitle="Comprehensive exterior cleaning for homes and businesses."
     columns={3}
+    classes={{
+      container: 'pb-16 md:pb-20 lg:pb-24'
+    }}
     items={[
       {
         title: 'Window cleaning',
@@ -66,17 +68,12 @@ const metadata = {
     ]}
   />
 
-  <!-- Individual Service Sections for Anchor Links -->
-  <div id="gutters" class="pt-16"></div>
-  <div id="conservatory" class="pt-16"></div>
-  <div id="solar" class="pt-16"></div>
-  <div id="commercial" class="pt-16"></div>
+  <!-- Individual Service Sections for Anchor Links - Optimised spacing -->
+  <div class="relative -mt-12 md:-mt-16 lg:-mt-20">
+    <div id="gutters" class="absolute -top-16"></div>
+    <div id="conservatory" class="absolute -top-16"></div>
+    <div id="solar" class="absolute -top-16"></div>
+    <div id="commercial" class="absolute -top-16"></div>
+  </div>
 
-  <!-- CallToAction Widget *********** -->
-
-  <CallToAction
-    actions={[{ variant: 'primary', text: 'Get a free quote', href: '/contact' }]}
-    title="Need multiple services?"
-    subtitle="Ask for a combined quote and save on the day."
-  />
 </Layout>

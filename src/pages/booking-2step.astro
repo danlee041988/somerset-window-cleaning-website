@@ -1,0 +1,904 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import Hero from '~/components/widgets/Hero.astro';
+import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
+import FAQs from '~/components/widgets/FAQs.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+import Image from '~/components/common/Image.astro';
+
+const metadata = {
+  title: 'Book Window Cleaning Online - 2-Step Booking | Somerset Window Cleaning',
+  description: 'Quick 2-step booking process for professional window cleaning in Somerset. Get instant pricing and book online in under 2 minutes.',
+};
+---
+
+<Layout metadata={metadata}>
+  <!-- Compact Hero Section -->
+  <div class="relative bg-gray-900 py-12">
+    <div class="absolute inset-0">
+      <Image src="~/assets/images/solar-panels.jpeg" alt="" width={1600} height={400} layout="cover" style="width:100%; height:100%; object-fit:cover; opacity:0.2;" />
+    </div>
+    <div class="relative max-w-7xl mx-auto px-4 text-center">
+      <h1 class="text-3xl font-bold text-white mb-2">Professional Window Cleaning <span class="text-red-500">Quick Book</span></h1>
+      <p class="text-gray-300 text-lg">2-Step Booking - Get your quote and book in under 2 minutes</p>
+    </div>
+  </div>
+
+  <!-- Simplified 2-Step Booking Form -->
+  <div class="bg-gray-900 min-h-screen">
+    <div class="max-w-7xl mx-auto px-4 py-6">
+      
+      <!-- Progress Steps -->
+      <div class="mb-6">
+        <div class="flex items-center justify-center space-x-6 mb-4">
+          <div class="flex items-center">
+            <div id="step-1-indicator" class="w-8 h-8 bg-red-600 text-white rounded-full flex items-center justify-center text-sm font-bold">1</div>
+            <span class="ml-2 text-sm font-medium text-white">Select Property & Services</span>
+          </div>
+          <div class="w-12 h-1 bg-gray-600"><div id="progress-1" class="h-full bg-red-600 transition-all duration-300" style="width: 0%"></div></div>
+          
+          <div class="flex items-center">
+            <div id="step-2-indicator" class="w-8 h-8 bg-gray-600 text-gray-300 rounded-full flex items-center justify-center text-sm font-bold">2</div>
+            <span class="ml-2 text-sm font-medium text-gray-300">Complete Booking</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid lg:grid-cols-3 gap-8">
+        
+        <!-- Left Column: Form Steps -->
+        <div class="lg:col-span-2">
+          
+          <!-- Step 1: Property & Services Combined -->
+          <div id="step-1" class="bg-gray-800 rounded-lg border border-gray-700 p-6 mb-4">
+            <h2 class="text-xl font-bold text-white mb-4">Step 1: Choose Your Property & Services</h2>
+            
+            <!-- Property Size Selection -->
+            <div class="mb-8">
+              <h3 class="text-lg font-semibold text-white mb-4">Property Size</h3>
+              <p class="text-sm text-gray-300 mb-4">Select your property type for accurate pricing</p>
+              
+              <!-- Mobile-First Property Grid -->
+              <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                <!-- Enhanced Mobile-Friendly Property Options -->
+                <button class="bedroom-option property-card group bg-gray-700 border-2 border-gray-600 p-4 rounded-xl hover:border-red-500 hover:bg-gray-600 transition-all duration-300 min-h-[80px] active:scale-95" data-bedrooms="1-2 Bed">
+                  <div class="flex items-center space-x-3">
+                    <div class="w-12 h-12 bg-red-600 rounded-full flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+                      <span class="text-white font-bold">1-2</span>
+                    </div>
+                    <div class="flex-1 text-left">
+                      <div class="text-white font-semibold">1-2 Bedroom</div>
+                      <div class="text-gray-300 text-sm">Apartment / Small House</div>
+                      <div class="text-red-400 text-xs font-medium">From £20</div>
+                    </div>
+                  </div>
+                </button>
+                
+                <button class="bedroom-option property-card group bg-gray-700 border-2 border-gray-600 p-4 rounded-xl hover:border-red-500 hover:bg-gray-600 transition-all duration-300 min-h-[80px] active:scale-95" data-bedrooms="2-3 Bed">
+                  <div class="flex items-center space-x-3">
+                    <div class="w-12 h-12 bg-red-600 rounded-full flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+                      <span class="text-white font-bold">2-3</span>
+                    </div>
+                    <div class="flex-1 text-left">
+                      <div class="text-white font-semibold">2-3 Bedroom</div>
+                      <div class="text-gray-300 text-sm">Semi-Detached / Terraced</div>
+                      <div class="text-red-400 text-xs font-medium">From £25</div>
+                    </div>
+                  </div>
+                </button>
+                
+                <button class="bedroom-option property-card group bg-gray-700 border-2 border-gray-600 p-4 rounded-xl hover:border-red-500 hover:bg-gray-600 transition-all duration-300 min-h-[80px] active:scale-95" data-bedrooms="4 Bed">
+                  <div class="flex items-center space-x-3">
+                    <div class="w-12 h-12 bg-red-600 rounded-full flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+                      <span class="text-white font-bold">4</span>
+                    </div>
+                    <div class="flex-1 text-left">
+                      <div class="text-white font-semibold">4 Bedroom</div>
+                      <div class="text-gray-300 text-sm">Family Home</div>
+                      <div class="text-red-400 text-xs font-medium">From £30</div>
+                    </div>
+                  </div>
+                </button>
+                
+                <button class="bedroom-option property-card group bg-gray-700 border-2 border-gray-600 p-4 rounded-xl hover:border-red-500 hover:bg-gray-600 transition-all duration-300 min-h-[80px] active:scale-95" data-bedrooms="5 Bed">
+                  <div class="flex items-center space-x-3">
+                    <div class="w-12 h-12 bg-red-600 rounded-full flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+                      <span class="text-white font-bold">5</span>
+                    </div>
+                    <div class="flex-1 text-left">
+                      <div class="text-white font-semibold">5 Bedroom</div>
+                      <div class="text-gray-300 text-sm">Large Family Home</div>
+                      <div class="text-red-400 text-xs font-medium">From £35</div>
+                    </div>
+                  </div>
+                </button>
+                
+                <button class="bedroom-option property-card group bg-gray-700 border-2 border-gray-600 p-4 rounded-xl hover:border-red-500 hover:bg-gray-600 transition-all duration-300 min-h-[80px] active:scale-95" data-bedrooms="6+ Bed">
+                  <div class="flex items-center space-x-3">
+                    <div class="w-12 h-12 bg-red-600 rounded-full flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+                      <span class="text-white font-bold">6+</span>
+                    </div>
+                    <div class="flex-1 text-left">
+                      <div class="text-white font-semibold">6+ Bedrooms</div>
+                      <div class="text-gray-300 text-sm">Large Property</div>
+                      <div class="text-red-400 text-xs font-medium">Custom Quote</div>
+                    </div>
+                  </div>
+                </button>
+                
+                <button class="bedroom-option property-card group bg-gray-700 border-2 border-gray-600 p-4 rounded-xl hover:border-red-500 hover:bg-gray-600 transition-all duration-300 min-h-[80px] active:scale-95" data-bedrooms="Commercial">
+                  <div class="flex items-center space-x-3">
+                    <div class="w-12 h-12 bg-red-600 rounded-full flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+                      <span class="text-white font-bold text-xs">BIZ</span>
+                    </div>
+                    <div class="flex-1 text-left">
+                      <div class="text-white font-semibold">Commercial</div>
+                      <div class="text-gray-300 text-sm">Business Property</div>
+                      <div class="text-red-400 text-xs font-medium">Custom Quote</div>
+                    </div>
+                  </div>
+                </button>
+              </div>
+            </div>
+
+            <!-- Services Selection -->
+            <div class="mb-8">
+              <h3 class="text-lg font-semibold text-white mb-3">Select Services</h3>
+              
+              <!-- Window Cleaning Service -->
+              <div class="bg-gray-700 rounded-lg p-4 mb-4 border-2 border-red-500">
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center">
+                    <div class="w-6 h-6 bg-red-600 rounded-full flex items-center justify-center mr-3">
+                      <span class="text-white text-xs">✓</span>
+                    </div>
+                    <div>
+                      <h4 class="text-white font-semibold">Window Cleaning</h4>
+                      <p class="text-gray-300 text-sm">Professional window cleaning service</p>
+                    </div>
+                  </div>
+                  <div class="text-right">
+                    <div class="text-white font-bold" id="window-cleaning-price">£--</div>
+                    <div class="text-gray-300 text-sm">Every <span id="window-cleaning-frequency">--</span> weeks</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Frequency Selection -->
+              <div class="mb-6">
+                <label class="block text-white text-sm font-medium mb-3">Cleaning Frequency</label>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                  <!-- 4 weeks tab -->
+                  <button class="frequency-tab bg-gray-700 border-2 border-red-500 p-4 rounded-lg hover:bg-gray-600 transition-all duration-300 text-left" data-frequency="4">
+                    <div class="flex items-center justify-between">
+                      <div>
+                        <div class="text-white font-semibold">Every 4 weeks</div>
+                        <div class="text-gray-300 text-sm">Regular service</div>
+                      </div>
+                      <div class="w-6 h-6 bg-red-600 rounded-full flex items-center justify-center">
+                        <span class="text-white text-xs">✓</span>
+                      </div>
+                    </div>
+                  </button>
+                  
+                  <!-- 8 weeks tab -->
+                  <button class="frequency-tab bg-gray-700 border-2 border-gray-600 p-4 rounded-lg hover:border-red-500 hover:bg-gray-600 transition-all duration-300 text-left" data-frequency="8">
+                    <div class="flex items-center justify-between">
+                      <div>
+                        <div class="text-white font-semibold">Every 8 weeks</div>
+                        <div class="text-gray-300 text-sm">+£3 per clean</div>
+                      </div>
+                      <div class="w-6 h-6 bg-gray-600 rounded-full flex items-center justify-center">
+                        <span class="text-gray-400 text-xs">○</span>
+                      </div>
+                    </div>
+                  </button>
+                  
+                  <!-- One-off tab -->
+                  <button class="frequency-tab bg-gray-700 border-2 border-gray-600 p-4 rounded-lg hover:border-red-500 hover:bg-gray-600 transition-all duration-300 text-left" data-frequency="one-off">
+                    <div class="flex items-center justify-between">
+                      <div>
+                        <div class="text-white font-semibold">One-off clean</div>
+                        <div class="text-gray-300 text-sm">+£5 per clean</div>
+                      </div>
+                      <div class="w-6 h-6 bg-gray-600 rounded-full flex items-center justify-center">
+                        <span class="text-gray-400 text-xs">○</span>
+                      </div>
+                    </div>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Additional Services -->
+              <div class="space-y-3">
+                <h4 class="text-white font-medium mb-3">Additional Services (Optional)</h4>
+                
+                <!-- Fascia, Soffit & Gutter Clean -->
+                <div class="bg-gray-700 rounded-lg p-4 border-2 border-gray-600 additional-service" data-service="fascia-soffit-gutter">
+                  <div class="flex items-center justify-between">
+                    <div class="flex items-center">
+                      <input type="checkbox" id="fascia-soffit-gutter" class="w-5 h-5 text-red-600 bg-gray-600 border-gray-500 rounded focus:ring-red-500">
+                      <div class="ml-3">
+                        <h5 class="text-white font-medium">Fascia, Soffit & Gutter Clean</h5>
+                        <p class="text-gray-300 text-sm">Complete exterior cleaning package</p>
+                      </div>
+                    </div>
+                    <div class="text-right">
+                      <div id="fascia-price" class="text-white font-bold">From £90</div>
+                      <div class="text-gray-300 text-sm">One-time</div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Gutter Clearing -->
+                <div class="bg-gray-700 rounded-lg p-4 border-2 border-gray-600 additional-service" data-service="gutter-clearing">
+                  <div class="flex items-center justify-between">
+                    <div class="flex items-center">
+                      <input type="checkbox" id="gutter-clearing" class="w-5 h-5 text-red-600 bg-gray-600 border-gray-500 rounded focus:ring-red-500">
+                      <div class="ml-3">
+                        <h5 class="text-white font-medium">Gutter Clearing</h5>
+                        <p class="text-gray-300 text-sm">Remove leaves, debris and blockages</p>
+                      </div>
+                    </div>
+                    <div class="text-right">
+                      <div id="gutter-price" class="text-white font-bold">From £70</div>
+                      <div class="text-gray-300 text-sm">One-time</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Special Offer Banner -->
+              <div id="special-offer-banner" class="mt-6 p-4 bg-gradient-to-r from-green-600 to-green-700 rounded-lg border-2 border-green-500" style="display: none;">
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center">
+                    <div class="w-8 h-8 bg-yellow-400 rounded-full flex items-center justify-center mr-3">
+                      <span class="text-green-800 font-bold text-sm">🎉</span>
+                    </div>
+                    <div>
+                      <h4 class="text-white font-bold">Special Offer!</h4>
+                      <p class="text-green-100 text-sm">Book both services and get your <strong>first window clean FREE!</strong></p>
+                    </div>
+                  </div>
+                  <div class="text-white font-bold text-lg">FREE</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Continue Button -->
+            <div class="mt-8">
+              <button id="continue-to-booking" class="w-full bg-red-600 hover:bg-red-700 text-white font-medium py-4 px-6 rounded-lg transition-all duration-300 flex items-center justify-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed" disabled>
+                <span>Continue to Booking Details</span>
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- Step 2: Complete Booking -->
+          <div id="step-2" class="bg-gray-800 rounded-lg border border-gray-700 p-6 mb-4" style="display: none;">
+            <h2 class="text-xl font-bold text-white mb-6">Complete Your Booking</h2>
+            
+            <form id="booking-form" class="space-y-6">
+              <!-- Customer Details -->
+              <div class="grid md:grid-cols-2 gap-4">
+                <div>
+                  <label for="first-name" class="block text-white text-sm font-medium mb-2">First Name *</label>
+                  <input type="text" id="first-name" name="firstName" required class="w-full p-3 bg-gray-700 text-white border border-gray-600 rounded-lg focus:border-red-500 focus:outline-none">
+                </div>
+                <div>
+                  <label for="last-name" class="block text-white text-sm font-medium mb-2">Last Name *</label>
+                  <input type="text" id="last-name" name="lastName" required class="w-full p-3 bg-gray-700 text-white border border-gray-600 rounded-lg focus:border-red-500 focus:outline-none">
+                </div>
+              </div>
+
+              <div class="grid md:grid-cols-2 gap-4">
+                <div>
+                  <label for="email" class="block text-white text-sm font-medium mb-2">Email Address *</label>
+                  <input type="email" id="email" name="email" required class="w-full p-3 bg-gray-700 text-white border border-gray-600 rounded-lg focus:border-red-500 focus:outline-none">
+                </div>
+                <div>
+                  <label for="phone" class="block text-white text-sm font-medium mb-2">Phone Number *</label>
+                  <input type="tel" id="phone" name="phone" required class="w-full p-3 bg-gray-700 text-white border border-gray-600 rounded-lg focus:border-red-500 focus:outline-none">
+                </div>
+              </div>
+
+              <!-- Address -->
+              <div>
+                <label for="address" class="block text-white text-sm font-medium mb-2">Property Address *</label>
+                <input type="text" id="address" name="address" required placeholder="123 Main Street" class="w-full p-3 bg-gray-700 text-white border border-gray-600 rounded-lg focus:border-red-500 focus:outline-none">
+              </div>
+
+              <div class="grid md:grid-cols-3 gap-4">
+                <div>
+                  <label for="city" class="block text-white text-sm font-medium mb-2">City *</label>
+                  <input type="text" id="city" name="city" required class="w-full p-3 bg-gray-700 text-white border border-gray-600 rounded-lg focus:border-red-500 focus:outline-none">
+                </div>
+                <div>
+                  <label for="postcode" class="block text-white text-sm font-medium mb-2">Postcode *</label>
+                  <input type="text" id="postcode" name="postcode" required class="w-full p-3 bg-gray-700 text-white border border-gray-600 rounded-lg focus:border-red-500 focus:outline-none">
+                </div>
+                <div>
+                  <label for="county" class="block text-white text-sm font-medium mb-2">County</label>
+                  <input type="text" id="county" name="county" value="Somerset" class="w-full p-3 bg-gray-700 text-white border border-gray-600 rounded-lg focus:border-red-500 focus:outline-none">
+                </div>
+              </div>
+
+              <!-- Special Instructions -->
+              <div>
+                <label for="notes" class="block text-white text-sm font-medium mb-2">Special Instructions (Optional)</label>
+                <textarea id="notes" name="notes" rows="3" placeholder="Gate access, parking instructions, specific areas of focus..." class="w-full p-3 bg-gray-700 text-white border border-gray-600 rounded-lg focus:border-red-500 focus:outline-none"></textarea>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <!-- Right Column: Combined Quote & Review -->
+        <div class="lg:col-span-1">
+          <div class="bg-gray-800 rounded-lg border border-gray-700 p-6 sticky top-20">
+            <!-- Step 1: Quote Summary -->
+            <div id="quote-section">
+              <h3 class="text-xl font-bold text-white mb-4">Your Quote</h3>
+              
+              <div id="price-breakdown" class="space-y-4">
+                <div class="bg-gray-700 rounded-lg p-4">
+                  <div class="flex justify-between items-center mb-2">
+                    <span class="text-gray-300 text-sm">Property Size:</span>
+                    <span id="selected-property" class="text-white font-medium">Not selected</span>
+                  </div>
+                  
+                  <div class="flex justify-between items-center">
+                    <span class="text-white font-medium">Window Cleaning:</span>
+                    <div class="text-right">
+                      <span id="window-price" class="text-red-400 font-bold text-lg">£--</span>
+                      <div class="text-xs text-gray-400">Every <span id="frequency-display">--</span> weeks</div>
+                    </div>
+                  </div>
+                </div>
+
+                <div id="additional-services-summary" class="space-y-2">
+                  <!-- Additional services will be added here -->
+                </div>
+
+                <div id="special-offer-summary" class="bg-green-800 rounded-lg p-4" style="display: none;">
+                  <div class="flex items-center justify-between">
+                    <div class="flex items-center space-x-2">
+                      <span class="text-2xl">🎉</span>
+                      <span class="text-green-100 font-medium">Special Offer!</span>
+                    </div>
+                    <span class="text-green-200 font-bold">FREE</span>
+                  </div>
+                  <div class="text-green-200 text-sm mt-1">First window clean FREE with both services</div>
+                </div>
+
+                <div class="bg-gray-700 rounded-lg p-4">
+                  <div class="flex justify-between items-center">
+                    <span class="text-white font-bold text-lg">Total:</span>
+                    <span id="total-price" class="text-red-400 font-bold text-2xl">£--</span>
+                  </div>
+                  <div class="text-center text-sm text-gray-400 mt-2">
+                    <span id="payment-schedule">Select a property to see pricing</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 2: Review & Complete -->
+            <div id="review-section" style="display: none;">
+              <h3 class="text-xl font-bold text-white mb-4">Review & Complete</h3>
+              
+              <!-- Booking Summary -->
+              <div class="space-y-4 mb-6">
+                <div class="bg-gray-700 rounded-lg p-4">
+                  <h4 class="text-white font-medium mb-3">Booking Summary</h4>
+                  <div class="space-y-2 text-sm">
+                    <div class="flex justify-between">
+                      <span class="text-gray-300">Property:</span>
+                      <span id="review-property" class="text-white">--</span>
+                    </div>
+                    <div class="flex justify-between">
+                      <span class="text-gray-300">Frequency:</span>
+                      <span id="review-frequency" class="text-white">--</span>
+                    </div>
+                    <div class="flex justify-between">
+                      <span class="text-gray-300">Address:</span>
+                      <span id="review-address" class="text-white text-right">--</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="bg-gray-700 rounded-lg p-4">
+                  <h4 class="text-white font-medium mb-3">Services</h4>
+                  <div id="review-services" class="space-y-2 text-sm">
+                    <!-- Services will be populated here -->
+                  </div>
+                </div>
+
+                <div class="bg-red-900 rounded-lg p-4">
+                  <div class="flex justify-between items-center">
+                    <span class="text-red-100 font-bold text-lg">Total Amount:</span>
+                    <span id="review-total" class="text-red-200 font-bold text-2xl">£--</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Submit Button -->
+              <button type="submit" form="booking-form" id="submit-booking" class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-4 px-6 rounded-lg transition-all duration-300 flex items-center justify-center space-x-2">
+                <span>Complete Booking</span>
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                </svg>
+              </button>
+            </div>
+
+            <!-- Trust Indicators -->
+            <div class="mt-6 pt-4 border-t border-gray-600">
+              <div class="text-center text-sm text-gray-400">
+                <div class="flex items-center justify-center space-x-4 mb-2">
+                  <span>✓ Fully Insured</span>
+                  <span>✓ 5-Star Reviews</span>
+                </div>
+                <div>✓ No Contract Required</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<script>
+  // Pricing calculation logic
+  function calculatePrice(property, frequency, additionalServices) {
+    let basePrice = 0;
+    
+    // Base window cleaning prices - new pricing structure
+    const prices = {
+      '1-2 Bed': 20,
+      '2-3 Bed': 25,
+      '4 Bed': 30,
+      '5 Bed': 35,
+      '6+ Bed': 0, // Custom quote
+      'Commercial': 0 // Custom quote
+    };
+    
+    basePrice = prices[property] || 0;
+    
+    // Frequency adjustments
+    if (frequency === '8') {
+      basePrice += 3;
+    } else if (frequency === 'one-off') {
+      basePrice += 5;
+    }
+    
+    let totalPrice = basePrice;
+    let additionalCost = 0;
+    
+    // Additional services - calculate based on property size
+    if (additionalServices.has('fascia-soffit-gutter')) {
+      // Fascia pricing based on property size (gutter clearing + £20)
+      const gutterPrice = getGutterClearingPrice(property);
+      additionalCost += gutterPrice + 20;
+    }
+    if (additionalServices.has('gutter-clearing')) {
+      additionalCost += getGutterClearingPrice(property);
+    }
+    
+    function getGutterClearingPrice(bedrooms) {
+      switch (bedrooms) {
+        case '1-2 Bed': return 70;
+        case '2-3 Bed': return 80;
+        case '4 Bed': return 100;
+        case '5 Bed': return 120;
+        case '6+ Bed': return 150;
+        default: return 80;
+      }
+    }
+    
+    // Special offer: First clean free if both additional services selected
+    const hasBothServices = additionalServices.has('fascia-soffit-gutter') && additionalServices.has('gutter-clearing');
+    const firstCleanDiscount = hasBothServices ? basePrice : 0;
+    
+    totalPrice = basePrice + additionalCost - firstCleanDiscount;
+    
+    return {
+      windowCleaningPrice: basePrice,
+      additionalCost: additionalCost,
+      firstCleanDiscount: firstCleanDiscount,
+      totalPrice: Math.max(0, totalPrice)
+    };
+  }
+
+  // State management
+  let selectedProperty = null;
+  let selectedFrequency = '4';
+  let additionalServices = new Set();
+  let currentStep = 1;
+
+  // Initialize the form
+  document.addEventListener('DOMContentLoaded', function() {
+    initializeForm();
+  });
+
+  function initializeForm() {
+    // Property selection handlers
+    document.querySelectorAll('.bedroom-option').forEach(button => {
+      button.addEventListener('click', function() {
+        selectProperty(this.dataset.bedrooms);
+      });
+    });
+
+    // Frequency tab handlers
+    document.querySelectorAll('.frequency-tab').forEach(button => {
+      button.addEventListener('click', function() {
+        selectFrequency(this.dataset.frequency);
+      });
+    });
+
+    // Additional services handlers
+    document.querySelectorAll('.additional-service input[type="checkbox"]').forEach(checkbox => {
+      checkbox.addEventListener('change', function() {
+        if (this.checked) {
+          additionalServices.add(this.id);
+        } else {
+          additionalServices.delete(this.id);
+        }
+        updatePricing();
+        updateSpecialOffer();
+      });
+    });
+
+    // Continue button handler
+    document.getElementById('continue-to-booking').addEventListener('click', function() {
+      goToStep(2);
+    });
+
+    // Form submission handler
+    document.getElementById('booking-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      submitBooking();
+    });
+  }
+
+  function selectProperty(bedrooms) {
+    // Update visual selection with enhanced mobile feedback
+    document.querySelectorAll('.bedroom-option').forEach(btn => {
+      btn.classList.remove('border-red-500', 'bg-gray-600', 'selected');
+      btn.classList.add('border-gray-600', 'bg-gray-700');
+    });
+
+    const selectedCard = event.target.closest('.bedroom-option');
+    selectedCard.classList.remove('border-gray-600', 'bg-gray-700');
+    selectedCard.classList.add('border-red-500', 'bg-gray-600', 'selected');
+    
+    // Add haptic feedback for mobile
+    if (navigator.vibrate) {
+      navigator.vibrate(50);
+    }
+    
+    // Smooth scroll to show pricing update on mobile
+    if (window.innerWidth < 768) {
+      setTimeout(() => {
+        document.getElementById('total-price').scrollIntoView({ 
+          behavior: 'smooth', 
+          block: 'nearest' 
+        });
+      }, 300);
+    }
+
+    selectedProperty = bedrooms;
+    updatePricing();
+    updateServicePricing();
+    
+    // Enable continue button with animation
+    const continueBtn = document.getElementById('continue-to-booking');
+    continueBtn.disabled = false;
+    continueBtn.classList.add('pulse-animation');
+    setTimeout(() => continueBtn.classList.remove('pulse-animation'), 1000);
+  }
+
+  function selectFrequency(frequency) {
+    // Update visual selection for frequency tabs
+    document.querySelectorAll('.frequency-tab').forEach(btn => {
+      btn.classList.remove('border-red-500');
+      btn.classList.add('border-gray-600');
+      
+      // Reset indicators
+      const indicator = btn.querySelector('.w-6.h-6');
+      const icon = btn.querySelector('.w-6.h-6 span');
+      if (indicator && icon) {
+        indicator.classList.remove('bg-red-600');
+        indicator.classList.add('bg-gray-600');
+        icon.classList.remove('text-white');
+        icon.classList.add('text-gray-400');
+        icon.textContent = '○';
+      }
+    });
+
+    // Highlight selected frequency tab
+    const selectedTab = document.querySelector(`[data-frequency="${frequency}"]`);
+    if (selectedTab) {
+      selectedTab.classList.remove('border-gray-600');
+      selectedTab.classList.add('border-red-500');
+      
+      const indicator = selectedTab.querySelector('.w-6.h-6');
+      const icon = selectedTab.querySelector('.w-6.h-6 span');
+      if (indicator && icon) {
+        indicator.classList.remove('bg-gray-600');
+        indicator.classList.add('bg-red-600');
+        icon.classList.remove('text-gray-400');
+        icon.classList.add('text-white');
+        icon.textContent = '✓';
+      }
+    }
+
+    selectedFrequency = frequency;
+    updatePricing();
+  }
+
+  function updatePricing() {
+    if (!selectedProperty) return;
+
+    const pricing = calculatePrice(selectedProperty, selectedFrequency, additionalServices);
+    
+    // Update main pricing display
+    document.getElementById('window-cleaning-price').textContent = `£${pricing.windowCleaningPrice}`;
+    document.getElementById('window-cleaning-frequency').textContent = selectedFrequency;
+    
+    // Update summary
+    document.getElementById('selected-property').textContent = selectedProperty;
+    document.getElementById('window-price').textContent = `£${pricing.windowCleaningPrice}`;
+    document.getElementById('frequency-display').textContent = selectedFrequency;
+    document.getElementById('total-price').textContent = `£${pricing.totalPrice}`;
+
+    // Update additional services summary
+    const summaryDiv = document.getElementById('additional-services-summary');
+    summaryDiv.innerHTML = '';
+    
+    additionalServices.forEach(service => {
+      const div = document.createElement('div');
+      div.className = 'bg-gray-700 rounded-lg p-4';
+      
+      if (service === 'fascia-soffit-gutter') {
+        const fasciaPrice = getGutterClearingPrice(selectedProperty) + 20;
+        div.innerHTML = `
+          <div class="flex justify-between items-center">
+            <span class="text-white font-medium">Fascia & Gutter Clean</span>
+            <span class="text-red-400 font-bold text-lg">£${fasciaPrice}</span>
+          </div>
+          <div class="text-xs text-gray-400 mt-1">One-time service</div>
+        `;
+      } else if (service === 'gutter-clearing') {
+        const gutterPrice = getGutterClearingPrice(selectedProperty);
+        div.innerHTML = `
+          <div class="flex justify-between items-center">
+            <span class="text-white font-medium">Gutter Clearing</span>
+            <span class="text-red-400 font-bold text-lg">£${gutterPrice}</span>
+          </div>
+          <div class="text-xs text-gray-400 mt-1">One-time service</div>
+        `;
+      }
+      
+      summaryDiv.appendChild(div);
+    });
+
+    // Update payment schedule
+    if (selectedProperty === '6+ Bed' || selectedProperty === 'Commercial') {
+      document.getElementById('payment-schedule').textContent = 'Physical quotation required';
+    } else {
+      document.getElementById('payment-schedule').textContent = `Regular payment every ${selectedFrequency} weeks`;
+    }
+  }
+
+  function updateSpecialOffer() {
+    const hasBothServices = additionalServices.has('fascia-soffit-gutter') && additionalServices.has('gutter-clearing');
+    const banner = document.getElementById('special-offer-banner');
+    const summary = document.getElementById('special-offer-summary');
+    
+    if (hasBothServices) {
+      banner.style.display = 'block';
+      summary.style.display = 'block';
+    } else {
+      banner.style.display = 'none';
+      summary.style.display = 'none';
+    }
+  }
+
+  function goToStep(step) {
+    if (step === 2) {
+      // Hide step 1, show step 2
+      document.getElementById('step-1').style.display = 'none';
+      document.getElementById('step-2').style.display = 'block';
+      
+      // Switch from quote section to review section
+      document.getElementById('quote-section').style.display = 'none';
+      document.getElementById('review-section').style.display = 'block';
+      
+      // Update progress indicators
+      document.getElementById('step-1-indicator').classList.remove('bg-red-600');
+      document.getElementById('step-1-indicator').classList.add('bg-green-600');
+      document.getElementById('progress-1').style.width = '100%';
+      
+      document.getElementById('step-2-indicator').classList.remove('bg-gray-600', 'text-gray-300');
+      document.getElementById('step-2-indicator').classList.add('bg-red-600', 'text-white');
+      
+      // Populate review section
+      populateReviewSection();
+      
+      currentStep = 2;
+    }
+  }
+
+  function updateServicePricing() {
+    if (!selectedProperty) return;
+    
+    const gutterPrice = getGutterClearingPrice(selectedProperty);
+    const fasciaPrice = gutterPrice + 20;
+    
+    // Update pricing displays
+    document.getElementById('gutter-price').textContent = `£${gutterPrice}`;
+    document.getElementById('fascia-price').textContent = `£${fasciaPrice}`;
+  }
+
+  function populateReviewSection() {
+    // Update review summary
+    document.getElementById('review-property').textContent = selectedProperty || '--';
+    document.getElementById('review-frequency').textContent = selectedFrequency ? `Every ${selectedFrequency} weeks` : '--';
+    document.getElementById('review-total').textContent = document.getElementById('total-price').textContent;
+    
+    // Get address from form
+    const address = document.getElementById('address').value;
+    const city = document.getElementById('city').value;
+    const postcode = document.getElementById('postcode').value;
+    const fullAddress = [address, city, postcode].filter(Boolean).join(', ') || '--';
+    document.getElementById('review-address').textContent = fullAddress;
+    
+    // Update services list
+    const servicesDiv = document.getElementById('review-services');
+    servicesDiv.innerHTML = '';
+    
+    // Add window cleaning
+    const windowService = document.createElement('div');
+    windowService.className = 'flex justify-between';
+    windowService.innerHTML = `
+      <span class="text-gray-300">Window Cleaning</span>
+      <span class="text-white">${document.getElementById('window-price').textContent}</span>
+    `;
+    servicesDiv.appendChild(windowService);
+    
+    // Add additional services
+    additionalServices.forEach(service => {
+      const serviceDiv = document.createElement('div');
+      serviceDiv.className = 'flex justify-between';
+      
+      if (service === 'fascia-soffit-gutter') {
+        const fasciaPrice = getGutterClearingPrice(selectedProperty) + 20;
+        serviceDiv.innerHTML = `<span class="text-gray-300">Fascia & Gutter Clean</span><span class="text-white">£${fasciaPrice}</span>`;
+      } else if (service === 'gutter-clearing') {
+        const gutterPrice = getGutterClearingPrice(selectedProperty);
+        serviceDiv.innerHTML = `<span class="text-gray-300">Gutter Clearing</span><span class="text-white">£${gutterPrice}</span>`;
+      }
+      
+      servicesDiv.appendChild(serviceDiv);
+    });
+    
+    // Add special offer if applicable
+    const hasBothServices = additionalServices.has('fascia-soffit-gutter') && additionalServices.has('gutter-clearing');
+    if (hasBothServices) {
+      const offerDiv = document.createElement('div');
+      offerDiv.className = 'flex justify-between text-green-400';
+      offerDiv.innerHTML = '<span>First Clean Discount</span><span>FREE</span>';
+      servicesDiv.appendChild(offerDiv);
+    }
+  }
+
+  function submitBooking() {
+    // Collect form data
+    const formData = new FormData(document.getElementById('booking-form'));
+    const bookingData = {
+      property: selectedProperty,
+      frequency: selectedFrequency,
+      services: Array.from(additionalServices),
+      customer: Object.fromEntries(formData),
+      pricing: calculatePrice(selectedProperty, selectedFrequency, additionalServices)
+    };
+
+    // Submit booking (placeholder)
+    console.log('Booking submitted:', bookingData);
+    alert('Booking submitted successfully! (This is a demo)');
+  }
+</script>
+
+<style>
+  /* Enhanced Mobile UX Styles */
+  .property-card {
+    touch-action: manipulation;
+    user-select: none;
+    -webkit-touch-callout: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  .property-card.selected {
+    border-color: #dc2626 !important;
+    background-color: #4b5563 !important;
+    box-shadow: 0 4px 20px rgba(220, 38, 38, 0.3);
+  }
+  
+  .property-card:active {
+    transform: scale(0.95);
+  }
+  
+  .pulse-animation {
+    animation: pulse 0.5s ease-in-out;
+  }
+  
+  @keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+  }
+  
+  /* Mobile-specific optimizations */
+  @media (max-width: 768px) {
+    .property-card {
+      min-height: 90px;
+      padding: 1.25rem;
+    }
+    
+    .property-card .w-12.h-12 {
+      width: 3.5rem;
+      height: 3.5rem;
+    }
+    
+    /* Enhance touch targets */
+    button, input, select {
+      min-height: 44px;
+      touch-action: manipulation;
+    }
+    
+    /* Smooth scrolling for form sections */
+    .form-section {
+      scroll-margin-top: 20px;
+    }
+  }
+  
+  /* Loading states */
+  .loading {
+    opacity: 0.6;
+    pointer-events: none;
+  }
+  
+  .loading .spinner {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border: 2px solid #ffffff;
+    border-radius: 50%;
+    border-top-color: transparent;
+    animation: spin 1s ease-in-out infinite;
+  }
+  
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+  
+  /* Improved focus states for accessibility */
+  .property-card:focus,
+  .property-card:focus-visible {
+    outline: 2px solid #dc2626;
+    outline-offset: 2px;
+  }
+  
+  /* Visual feedback for form validation */
+  .input-error {
+    border-color: #ef4444 !important;
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+  }
+  
+  .input-success {
+    border-color: #10b981 !important;
+    box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+  }
+</style>

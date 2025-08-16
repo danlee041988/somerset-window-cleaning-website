@@ -58,7 +58,7 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
   <div class="absolute inset-0"></div>
   <div
     class:list={[
-      'relative text-default py-3 px-3 md:px-6 mx-auto w-full header-inner',
+      'relative text-default py-2 px-3 md:px-6 mx-auto w-full header-inner transition-all duration-300 ease-in-out',
       {
         'md:flex md:justify-between': position !== 'center',
       },
@@ -180,3 +180,71 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
     </div>
   </div>
 </header>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const header = document.querySelector('[data-aw-sticky-header]');
+    const footer = document.querySelector('footer');
+    
+    if (header) {
+      let isScrolled = false;
+      let isFooterScrolled = false;
+      let scrollDirection = 0; // 0 = no change, 1 = down, -1 = up
+      let lastScrollY = 0;
+      
+      // Pre-calculate values for performance
+      const scrollThreshold = 50;
+      const footerThreshold = 150;
+      const maxScroll = 200; // Maximum scroll distance for full effect
+      
+      function updateScrollEffects(scrollY) {
+        // Calculate progress from 0 to 1 based on scroll position
+        const scrollProgress = Math.min(scrollY / maxScroll, 1);
+        
+        // Use CSS custom properties for smooth GPU-accelerated animations
+        header.style.setProperty('--scroll-progress', scrollProgress.toString());
+        
+        // Determine scroll direction for performance optimizations
+        const currentDirection = scrollY > lastScrollY ? 1 : scrollY < lastScrollY ? -1 : 0;
+        if (currentDirection !== scrollDirection) {
+          scrollDirection = currentDirection;
+        }
+        lastScrollY = scrollY;
+        
+        // Toggle header classes only when crossing threshold to minimize DOM manipulation
+        const shouldBeScrolled = scrollY > scrollThreshold;
+        if (shouldBeScrolled !== isScrolled) {
+          header.classList.toggle('header-scrolled', shouldBeScrolled);
+          isScrolled = shouldBeScrolled;
+        }
+        
+        // Toggle footer classes for scaling effect
+        if (footer) {
+          const shouldFooterBeScrolled = scrollY > footerThreshold;
+          if (shouldFooterBeScrolled !== isFooterScrolled) {
+            footer.classList.toggle('footer-scrolled', shouldFooterBeScrolled);
+            isFooterScrolled = shouldFooterBeScrolled;
+          }
+        }
+      }
+      
+      // Optimized scroll handler using passive listener and RAF
+      let rafId = null;
+      function handleScroll() {
+        if (rafId) return; // Prevent multiple RAF calls
+        
+        rafId = requestAnimationFrame(() => {
+          const scrollY = window.pageYOffset || document.documentElement.scrollTop;
+          updateScrollEffects(scrollY);
+          rafId = null;
+        });
+      }
+      
+      // Use passive listener for better performance
+      window.addEventListener('scroll', handleScroll, { passive: true });
+      
+      // Initial call to set proper state
+      handleScroll();
+    }
+  });
+</script>

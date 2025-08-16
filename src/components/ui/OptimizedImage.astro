@@ -1,0 +1,105 @@
+---
+export interface Props {
+  src: string;
+  alt: string;
+  class?: string;
+  width?: number;
+  height?: number;
+  loading?: 'lazy' | 'eager';
+  priority?: boolean;
+  sizes?: string;
+}
+
+const { 
+  src, 
+  alt, 
+  class: className = '', 
+  width, 
+  height,
+  loading = 'lazy',
+  priority = false,
+  sizes = '(max-width: 640px) 400px, (max-width: 1024px) 800px, (max-width: 1280px) 1200px, 1920px'
+} = Astro.props;
+
+// Map common image names to optimized versions
+const optimizedImages: Record<string, string> = {
+  'solar-panels.jpeg': 'solar-panels',
+  'DJI_0007.JPG': 'hero-aerial', 
+  'hero-image.png': 'hero-main'
+};
+
+// Get the base name for optimized images
+const getOptimizedBaseName = (src: string) => {
+  const fileName = src.split('/').pop() || '';
+  return optimizedImages[fileName] || null;
+};
+
+const baseName = getOptimizedBaseName(src);
+
+// If we have optimized versions, use them. Otherwise use original
+const useOptimized = baseName !== null;
+---
+
+{useOptimized ? (
+  <picture>
+    <!-- AVIF format for modern browsers (best compression) -->
+    <source 
+      type="image/avif"
+      sizes={sizes}
+      srcset={`
+        /src/assets/images/optimized/${baseName}-sm.avif 400w,
+        /src/assets/images/optimized/${baseName}-md.avif 800w,
+        /src/assets/images/optimized/${baseName}-lg.avif 1200w,
+        /src/assets/images/optimized/${baseName}-xl.avif 1920w
+      `}
+    />
+    
+    <!-- WebP format for good compression and wide support -->
+    <source 
+      type="image/webp"
+      sizes={sizes}
+      srcset={`
+        /src/assets/images/optimized/${baseName}-sm.webp 400w,
+        /src/assets/images/optimized/${baseName}-md.webp 800w,
+        /src/assets/images/optimized/${baseName}-lg.webp 1200w,
+        /src/assets/images/optimized/${baseName}-xl.webp 1920w
+      `}
+    />
+    
+    <!-- JPEG fallback for older browsers -->
+    <source 
+      type="image/jpeg"
+      sizes={sizes}
+      srcset={`
+        /src/assets/images/optimized/${baseName}-sm.jpg 400w,
+        /src/assets/images/optimized/${baseName}-md.jpg 800w,
+        /src/assets/images/optimized/${baseName}-lg.jpg 1200w,
+        /src/assets/images/optimized/${baseName}-xl.jpg 1920w
+      `}
+    />
+    
+    <!-- Fallback img tag -->
+    <img 
+      src={`/src/assets/images/optimized/${baseName}-lg.jpg`}
+      alt={alt}
+      class={className}
+      width={width}
+      height={height}
+      loading={priority ? 'eager' : loading}
+      decoding="async"
+      {priority && { fetchpriority: 'high' }}
+    />
+  </picture>
+) : (
+  <!-- Use original image if no optimized version available -->
+  <img 
+    src={src}
+    alt={alt}
+    class={className}
+    width={width}
+    height={height}
+    loading={priority ? 'eager' : loading}
+    decoding="async"
+    {priority && { fetchpriority: 'high' }}
+  />
+)}

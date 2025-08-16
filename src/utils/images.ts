@@ -2,10 +2,17 @@ import { isUnpicCompatible, unpicOptimizer, astroAssetsOptimizer } from './image
 import type { ImageMetadata } from 'astro';
 import type { OpenGraph } from '@astrolib/seo';
 
+// Map of large images to their optimized versions
+const OPTIMIZED_IMAGE_MAP: Record<string, string> = {
+  '~/assets/images/solar-panels.jpeg': 'solar-panels',
+  '~/assets/images/DJI_0007.JPG': 'hero-aerial',
+  '~/assets/images/hero-image.png': 'hero-main'
+};
+
 const load = async function () {
   let images: Record<string, () => Promise<unknown>> | undefined = undefined;
   try {
-    images = import.meta.glob('~/assets/images/**/*.{jpeg,jpg,png,tiff,webp,gif,svg,JPEG,JPG,PNG,TIFF,WEBP,GIF,SVG}');
+    images = import.meta.glob('~/assets/images/**/*.{jpeg,jpg,png,tiff,webp,gif,svg,avif,JPEG,JPG,PNG,TIFF,WEBP,GIF,SVG,AVIF}');
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
   } catch (error) {
     // continue regardless of error
@@ -19,6 +26,16 @@ let _images: Record<string, () => Promise<unknown>> | undefined = undefined;
 export const fetchLocalImages = async () => {
   _images = _images || (await load());
   return _images;
+};
+
+/** Check if we have an optimized version of this image */
+export const getOptimizedImagePath = (imagePath: string): string | null => {
+  const baseName = OPTIMIZED_IMAGE_MAP[imagePath];
+  if (baseName) {
+    // Return the medium-sized optimized version as default
+    return `~/assets/images/optimized/${baseName}-lg.webp`;
+  }
+  return null;
 };
 
 /** */
@@ -40,6 +57,19 @@ export const findImage = async (
     return imagePath;
   }
 
+  // Check if we have an optimized version
+  const optimizedPath = getOptimizedImagePath(imagePath);
+  if (optimizedPath) {
+    // Use the optimized version - find it in our glob
+    const images = await fetchLocalImages();
+    const optimizedKey = optimizedPath.replace('~/', '/src/');
+    
+    if (images && typeof images[optimizedKey] === 'function') {
+      return ((await images[optimizedKey]()) as { default: ImageMetadata })['default'];
+    }
+  }
+
+  // Fallback to original image loading
   const images = await fetchLocalImages();
   const key = imagePath.replace('~/', '/src/');
 

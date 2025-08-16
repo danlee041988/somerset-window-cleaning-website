@@ -35,6 +35,7 @@
     "lighthouse:mobile": "lighthouse --preset=mobile --chrome-flags=\"--no-sandbox\" --output=html --output-path=./lighthouse-mobile-report.html http://localhost:4321",
     "pa11y": "node pa11y-test.js",
     "accessibility": "npm run pa11y",
+    "optimize:images": "node scripts/optimize-images.js",
     "seo:audit": "npm run lighthouse && npm run pa11y",
     "performance:audit": "npm run lighthouse:desktop && npm run lighthouse:mobile",
     "quality:check": "npm run check && npm run seo:audit"
