@@ -11,7 +11,7 @@ import Image from '~/components/common/Image.astro';
 
 const metadata = {
   title: 'Professional Solar Panel Cleaning Somerset | Maintain Efficiency & Warranty',
-  description: 'Specialist solar panel cleaning across Somerset. Maintain peak efficiency, protect warranties, and extend panel life. Pure water system, fully insured. Quote from £40.',
+  description: 'Specialist solar panel cleaning across Somerset. Maintain peak efficiency, protect warranties, and extend panel life. Pure water system, fully insured service.',
 };
 ---
 
@@ -19,7 +19,7 @@ const metadata = {
   <!-- Hero Widget ******************* -->
   <Hero
     actions={[
-      { variant: 'primary', text: 'Get Solar Panel Quote', href: '/booking-2step', icon: 'tabler:calculator' },
+      { variant: 'primary', text: 'Get Free Quote', href: '/booking-2step', icon: 'tabler:calculator' },
       { text: 'Call 01458 860339', href: 'tel:01458860339', icon: 'tabler:phone' },
     ]}
   >
@@ -75,33 +75,12 @@ const metadata = {
           </div>
         </div>
 
-        <!-- Pricing Sidebar -->
-        <div class="bg-white rounded-lg shadow-lg p-6 border border-gray-100 h-fit">
-          <h3 class="text-xl font-bold mb-4 text-center">Solar Panel Cleaning Prices</h3>
-          <div class="space-y-4">
-            <div class="text-center mb-4">
-              <p class="text-sm text-gray-600">Pricing based on number of panels</p>
-            </div>
-            <div class="flex justify-between items-center pb-2 border-b">
-              <span class="font-medium">Up to 10 panels</span>
-              <span class="font-bold text-primary text-lg">£40</span>
-            </div>
-            <div class="flex justify-between items-center pb-2 border-b">
-              <span class="font-medium">11-20 panels</span>
-              <span class="font-bold text-primary text-lg">£60</span>
-            </div>
-            <div class="flex justify-between items-center pb-2 border-b">
-              <span class="font-medium">21-30 panels</span>
-              <span class="font-bold text-primary text-lg">£80</span>
-            </div>
-            <div class="flex justify-between items-center pb-2 border-b">
-              <span class="font-medium">31+ panels</span>
-              <span class="font-bold text-primary text-lg">POA</span>
-            </div>
-          </div>
+        <div class="text-center">
+          <Image src="~/assets/images/solar-panels.jpeg" alt="Professional solar panel cleaning results" width={500} height={400} class="rounded-lg shadow-lg" />
+          <p class="text-sm text-gray-600 mt-4">Professional solar panel cleaning - maintain peak efficiency and protect your green energy investment</p>
           
           <div class="mt-6 p-4 bg-blue-50 rounded-lg">
-            <h4 class="font-semibold text-blue-800 mb-2">☀️ What's Included</h4>
+            <h4 class="font-semibold text-blue-800 mb-2">☀️ Service Includes</h4>
             <ul class="text-sm text-blue-700 space-y-1">
               <li>• Pure water cleaning system</li>
               <li>• Soft brush technique</li>
@@ -110,10 +89,6 @@ const metadata = {
               <li>• Performance check</li>
               <li>• Warranty-safe methods</li>
             </ul>
-          </div>
-
-          <div class="mt-6">
-            <a href="/booking-2step" class="w-full bg-primary hover:bg-primary/90 text-white font-medium py-3 px-4 rounded-lg transition-colors duration-200 text-center block">Book Solar Panel Clean</a>
           </div>
         </div>
       </div>
@@ -168,7 +143,7 @@ const metadata = {
       {
         title: '1. Safety Setup',
         description: 'Complete safety assessment and setup of equipment. All work carried out with proper safety measures.',
-        icon: 'tabler:hard-hat',
+        icon: 'tabler:shield-check',
       },
       {
         title: '2. Initial Inspection',
@@ -183,17 +158,17 @@ const metadata = {
       {
         title: '4. Frame & Mounting Clean',
         description: 'Clean panel frames and visible mounting hardware to ensure complete appearance and function.',
-        icon: 'tabler:frame',
+        icon: 'tabler:square',
       },
       {
         title: '5. Final Rinse',
         description: 'Thorough rinse with pure water to ensure no cleaning residue is left on the panels.',
-        icon: 'tabler:wash-dry',
+        icon: 'tabler:wash',
       },
       {
         title: '6. Performance Check',
         description: 'Visual inspection of cleaned panels and basic performance assessment where possible.',
-        icon: 'tabler:check',
+        icon: 'tabler:circle-check',
       },
     ]}
   />
@@ -340,7 +315,7 @@ const metadata = {
   <!-- CTA Section -->
   <CallToAction
     actions={[
-      { variant: 'primary', text: 'Book Solar Panel Cleaning', href: '/booking-2step', icon: 'tabler:calendar' },
+      { variant: 'primary', text: 'Get Free Quote', href: '/booking-2step', icon: 'tabler:calculator' },
       { variant: 'whatsapp', text: 'WhatsApp Quote', href: 'https://wa.me/447415526331?text=Hi%20Somerset%20Window%20Cleaning%2C%20I%27d%20like%20a%20quote%20for%20solar%20panel%20cleaning%20at%20%5Byour%20address%5D', icon: 'tabler:brand-whatsapp' },
       { text: 'Call 01458 860339', href: 'tel:01458860339', icon: 'tabler:phone' },
     ]}
@@ -349,7 +324,7 @@ const metadata = {
       Maximise Your Solar Investment
     </Fragment>
     <Fragment slot="subtitle">
-      Professional solar panel cleaning to maintain peak efficiency and protect your green energy investment. Book your service today.
+      Professional solar panel cleaning to maintain peak efficiency and protect your green energy investment. Increase energy output by up to 25% with expert maintenance.
     </Fragment>
   </CallToAction>
 </Layout>

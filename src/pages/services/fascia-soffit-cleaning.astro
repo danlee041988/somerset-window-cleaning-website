@@ -10,8 +10,8 @@ import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
 import Image from '~/components/common/Image.astro';
 
 const metadata = {
-  title: 'Professional Fascia & Soffit Cleaning Somerset | UPVC Restoration | From £90',
-  description: 'Professional fascia, soffit & gutter exterior cleaning across Somerset. Restore UPVC to like-new condition, remove algae & stains. Fully insured service from £90.',
+  title: 'Professional Fascia & Soffit Cleaning Somerset | UPVC Restoration | Somerset Window Cleaning',
+  description: 'Professional fascia, soffit & gutter exterior cleaning across Somerset. Restore UPVC to like-new condition, remove algae & stains. Transform your property appearance.',
 };
 ---
 
@@ -19,7 +19,7 @@ const metadata = {
   <!-- Hero Widget ******************* -->
   <Hero
     actions={[
-      { variant: 'primary', text: 'Get Fascia Quote', href: '/booking-2step', icon: 'tabler:calculator' },
+      { variant: 'primary', text: 'Get Free Quote', href: '/booking-2step', icon: 'tabler:calculator' },
       { text: 'Call 01458 860339', href: 'tel:01458860339', icon: 'tabler:phone' },
     ]}
   >
@@ -73,72 +73,31 @@ const metadata = {
               </div>
             </div>
 
-            <h3 class="text-xl font-semibold mt-8 mb-4">What We Clean</h3>
-            <ul class="space-y-2">
-              <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> UPVC fascia boards</li>
-              <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> Soffit boards and ventilation</li>
-              <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> External gutter cleaning</li>
-              <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> Bargeboards and cladding</li>
-              <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> Window frames (where accessible)</li>
-            </ul>
+            <h3 class="text-xl font-semibold mt-8 mb-6">Complete Roofline Cleaning Service</h3>
+            <div class="grid md:grid-cols-2 gap-4">
+              <div class="bg-blue-50 p-4 rounded-lg border border-blue-200">
+                <h4 class="font-semibold text-blue-900 mb-3">🏠 UPVC Components</h4>
+                <ul class="text-sm text-blue-800 space-y-2">
+                  <li class="flex items-center"><span class="text-blue-500 mr-2">✓</span> Fascia boards (all sizes)</li>
+                  <li class="flex items-center"><span class="text-blue-500 mr-2">✓</span> Soffit boards & ventilation</li>
+                  <li class="flex items-center"><span class="text-blue-500 mr-2">✓</span> Bargeboards & cladding</li>
+                </ul>
+              </div>
+              <div class="bg-green-50 p-4 rounded-lg border border-green-200">
+                <h4 class="font-semibold text-green-900 mb-3">🧽 Additional Areas</h4>
+                <ul class="text-sm text-green-800 space-y-2">
+                  <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> External gutter cleaning</li>
+                  <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> Window frames (accessible)</li>
+                  <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> Downpipes & brackets</li>
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
 
-        <!-- Pricing Sidebar -->
-        <div class="bg-white rounded-lg shadow-lg p-6 border border-gray-100 h-fit">
-          <h3 class="text-xl font-bold mb-4 text-center">Fascia & Soffit Cleaning Prices</h3>
-          <div class="space-y-4">
-            <div class="text-center mb-4">
-              <p class="text-sm text-gray-600">Based on property size</p>
-            </div>
-            <div class="flex justify-between items-center pb-2 border-b">
-              <span class="font-medium">1-2 bed property</span>
-              <span class="font-bold text-primary text-lg">£90</span>
-            </div>
-            <div class="flex justify-between items-center pb-2 border-b">
-              <span class="font-medium">2-3 bed property</span>
-              <span class="font-bold text-primary text-lg">£100</span>
-            </div>
-            <div class="flex justify-between items-center pb-2 border-b">
-              <span class="font-medium">4 bed property</span>
-              <span class="font-bold text-primary text-lg">£120</span>
-            </div>
-            <div class="flex justify-between items-center pb-2 border-b">
-              <span class="font-medium">5 bed property</span>
-              <span class="font-bold text-primary text-lg">£140</span>
-            </div>
-            <div class="flex justify-between items-center">
-              <span class="font-medium">Large/commercial</span>
-              <span class="font-bold text-primary text-lg">POA</span>
-            </div>
-          </div>
-          
-          <div class="mt-6 p-4 bg-green-50 rounded-lg">
-            <h4 class="font-semibold text-green-800 mb-2">🏠 What's Included</h4>
-            <ul class="text-sm text-green-700 space-y-1">
-              <li>• Fascia boards deep clean</li>
-              <li>• Soffit cleaning & vents</li>
-              <li>• External gutter cleaning</li>
-              <li>• Algae & stain removal</li>
-              <li>• UPVC restoration treatment</li>
-              <li>• Window frames (where accessible)</li>
-            </ul>
-          </div>
-
-          <div class="mt-4 p-4 bg-blue-50 rounded-lg">
-            <h4 class="font-semibold text-blue-800 mb-2">💡 Popular Add-On</h4>
-            <div class="text-sm text-blue-700">
-              <div class="flex justify-between items-center">
-                <span>+ Gutter Clearing</span>
-                <span class="font-semibold">Save £20</span>
-              </div>
-              <p class="text-xs mt-1">Complete roofline service</p>
-            </div>
-          </div>
-
-          <div class="mt-6">
-            <a href="/booking-2step" class="w-full bg-primary hover:bg-primary/90 text-white font-medium py-3 px-4 rounded-lg transition-colors duration-200 text-center block">Book Fascia Cleaning</a>
-          </div>
+        <div class="text-center">
+          <Image src="~/assets/images/solar-panels.jpeg" alt="Professional fascia and soffit cleaning results" width={500} height={400} class="rounded-lg shadow-lg" />
+          <p class="text-sm text-gray-600 mt-4">Professional UPVC restoration - specialist equipment and techniques for outstanding results</p>
         </div>
       </div>
     </section>
@@ -158,12 +117,12 @@ const metadata = {
       {
         title: 'Boost Kerb Appeal',
         description: 'Clean fascias and soffits dramatically improve your property\'s appearance, making it look well-maintained and cared for.',
-        icon: 'tabler:home-star',
+        icon: 'tabler:home',
       },
       {
         title: 'Protect Your Investment',
         description: 'Regular cleaning prevents permanent staining and extends the life of UPVC components, saving money on replacements.',
-        icon: 'tabler:shield-dollar',
+        icon: 'tabler:shield',
       },
       {
         title: 'Increase Property Value',
@@ -217,7 +176,7 @@ const metadata = {
       {
         title: '6. Final Inspection',
         description: 'Quality check and touch-up any areas needing extra attention before completion.',
-        icon: 'tabler:eye-check',
+        icon: 'tabler:eye',
       },
     ]}
   />
@@ -372,7 +331,7 @@ const metadata = {
   <!-- CTA Section -->
   <CallToAction
     actions={[
-      { variant: 'primary', text: 'Book Fascia Cleaning', href: '/booking-2step', icon: 'tabler:calendar' },
+      { variant: 'primary', text: 'Get Free Quote', href: '/booking-2step', icon: 'tabler:calculator' },
       { variant: 'whatsapp', text: 'WhatsApp Quote', href: 'https://wa.me/447415526331?text=Hi%20Somerset%20Window%20Cleaning%2C%20I%27d%20like%20a%20quote%20for%20fascia%20and%20soffit%20cleaning%20at%20%5Byour%20address%5D', icon: 'tabler:brand-whatsapp' },
       { text: 'Call 01458 860339', href: 'tel:01458860339', icon: 'tabler:phone' },
     ]}
@@ -381,7 +340,7 @@ const metadata = {
       Restore Your Property's Roofline
     </Fragment>
     <Fragment slot="subtitle">
-      Professional fascia and soffit cleaning to bring back that like-new appearance. Fast quotes, reliable service, outstanding results.
+      Professional fascia and soffit cleaning to restore that like-new appearance. Specialist UPVC cleaning, fully insured service, outstanding transformation results.
     </Fragment>
   </CallToAction>
 </Layout>
