@@ -47,19 +47,36 @@ const {
 const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
 ---
 
-<style is:inline>
-  /* Force all header navigation text to be white */
+<style>
+  /* Force all header navigation text to be white with highest specificity */
+  #header nav ul li a,
+  #header nav ul li button,
+  #header nav a,
+  #header nav button,
+  #header .aw-link-active,
+  #header a[aria-current="page"],
+  header nav ul li a,
+  header nav ul li button,
   header nav a,
-  header nav button,
-  header .aw-link-active,
-  header a[aria-current="page"] {
+  header nav button {
     color: white !important;
   }
   
-  header nav a:hover,
-  header nav button:hover,
-  header .aw-link-active:hover {
+  #header nav ul li a:hover,
+  #header nav ul li button:hover,
+  #header nav a:hover,
+  #header nav button:hover,
+  header nav ul li a:hover,
+  header nav ul li button:hover {
     color: rgba(255, 255, 255, 0.8) !important;
+  }
+
+  /* Override any red color classes specifically */
+  #header .text-red-400,
+  #header .hover\:text-red-400:hover,
+  header .text-red-400,
+  header .hover\:text-red-400:hover {
+    color: white !important;
   }
 </style>
 
