@@ -128,7 +128,7 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
                 <a
                   class:list={[
                     'text-white hover:text-white/80 px-3 py-2 flex items-center whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-white/20 rounded min-h-[44px] transition-colors',
-                    { 'aw-link-active': href === currentPath },
+                    { 'aw-link-active text-white font-medium': href === currentPath },
                   ]}
                   href={href}
                   aria-current={href === currentPath ? 'page' : undefined}
