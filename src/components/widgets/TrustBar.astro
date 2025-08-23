@@ -10,30 +10,42 @@ const { class: className = '' } = Astro.props;
 
 <div class={`relative ${className}`}>
   <div class="absolute inset-0 bg-black"></div>
-  <div class="relative py-6 px-4">
-    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-sm">
-          <div class="rounded-xl border border-red-600/20 bg-black/50 hover:bg-red-600/10 transition-colors p-3 text-center">
-      <div class="text-green-400 font-medium mb-1">✓ Fully Insured</div>
-      <div class="text-xs text-white/70">£5M public liability</div>
-    </div>
-
-      <div class="rounded-xl border border-red-600/20 bg-black/50 hover:bg-red-600/10 transition-colors p-3 text-center">
-        <div class="text-blue-400 font-medium mb-1">💳 Easy Payment</div>
-        <div class="text-xs text-white/70">Card & Direct Debit</div>
+  <div class="relative py-8 px-4">
+    <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 text-sm">
+      <!-- Fully Insured -->
+      <div class="group rounded-2xl border-2 border-green-400/30 bg-gradient-to-br from-black/60 to-green-900/20 hover:from-green-900/30 hover:to-black/60 hover:border-green-400/60 transition-all duration-300 p-4 text-center hover:scale-105 hover:shadow-lg hover:shadow-green-400/20">
+        <div class="text-white font-bold text-lg mb-2 group-hover:text-green-100 transition-colors duration-300">
+          <span class="text-green-400 text-xl">✓</span> Fully Insured
+        </div>
+        <div class="text-sm text-green-100/90 font-medium">£5M public liability</div>
       </div>
 
+      <!-- Easy Payment -->
+      <div class="group rounded-2xl border-2 border-blue-400/30 bg-gradient-to-br from-black/60 to-blue-900/20 hover:from-blue-900/30 hover:to-black/60 hover:border-blue-400/60 transition-all duration-300 p-4 text-center hover:scale-105 hover:shadow-lg hover:shadow-blue-400/20">
+        <div class="text-white font-bold text-lg mb-2 group-hover:text-blue-100 transition-colors duration-300">
+          <span class="text-blue-400 text-xl">💳</span> Easy Payment
+        </div>
+        <div class="text-sm text-blue-100/90 font-medium">Card & Direct Debit</div>
+      </div>
+
+      <!-- Reviews -->
       <a
         href={siteConfig.social.google}
         target="_blank"
-        class="rounded-xl border border-red-600/20 bg-black/50 hover:bg-red-600/10 transition-colors p-3 text-center group"
+        class="group rounded-2xl border-2 border-yellow-400/30 bg-gradient-to-br from-black/60 to-yellow-900/20 hover:from-yellow-900/30 hover:to-black/60 hover:border-yellow-400/60 transition-all duration-300 p-4 text-center hover:scale-105 hover:shadow-lg hover:shadow-yellow-400/20 cursor-pointer"
       >
-        <div class="text-yellow-400 font-medium mb-1 group-hover:text-yellow-300">⭐ 4.9/5 Reviews</div>
-        <div class="text-xs text-white/70">Google verified</div>
+        <div class="text-white font-bold text-lg mb-2 group-hover:text-yellow-100 transition-colors duration-300">
+          <span class="text-yellow-400 text-xl">⭐</span> 4.9/5 Reviews
+        </div>
+        <div class="text-sm text-yellow-100/90 font-medium">Google verified</div>
       </a>
 
-      <div class="rounded-xl border border-red-600/20 bg-black/50 hover:bg-red-600/10 transition-colors p-3 text-center">
-        <div class="text-purple-400 font-medium mb-1">🛡️ {siteConfig.guaranteeHours}hr Guarantee</div>
-        <div class="text-xs text-white/70">Spot-free promise</div>
+      <!-- Guarantee -->
+      <div class="group rounded-2xl border-2 border-purple-400/30 bg-gradient-to-br from-black/60 to-purple-900/20 hover:from-purple-900/30 hover:to-black/60 hover:border-purple-400/60 transition-all duration-300 p-4 text-center hover:scale-105 hover:shadow-lg hover:shadow-purple-400/20">
+        <div class="text-white font-bold text-lg mb-2 group-hover:text-purple-100 transition-colors duration-300">
+          <span class="text-purple-400 text-xl">🛡️</span> {siteConfig.guaranteeHours}hr Guarantee
+        </div>
+        <div class="text-sm text-purple-100/90 font-medium">Spot-free promise</div>
       </div>
     </div>
   </div>
