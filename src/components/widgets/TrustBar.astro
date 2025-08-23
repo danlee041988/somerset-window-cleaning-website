@@ -12,28 +12,28 @@ const { class: className = '' } = Astro.props;
   <div class="absolute inset-0 bg-black"></div>
   <div class="relative py-6 px-4">
     <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-sm">
-          <div class="rounded-xl border border-gray-600 bg-gray-800/90 hover:bg-gray-700 transition-colors p-3 text-center">
+          <div class="rounded-xl border border-red-600/20 bg-black/50 hover:bg-red-600/10 transition-colors p-3 text-center">
       <div class="text-green-400 font-medium mb-1">✓ Fully Insured</div>
-      <div class="text-xs text-gray-300">£5M public liability</div>
+      <div class="text-xs text-white/70">£5M public liability</div>
     </div>
 
-      <div class="rounded-xl border border-gray-600 bg-gray-800/90 hover:bg-gray-700 transition-colors p-3 text-center">
+      <div class="rounded-xl border border-red-600/20 bg-black/50 hover:bg-red-600/10 transition-colors p-3 text-center">
         <div class="text-blue-400 font-medium mb-1">💳 Easy Payment</div>
-        <div class="text-xs text-gray-300">Card & Direct Debit</div>
+        <div class="text-xs text-white/70">Card & Direct Debit</div>
       </div>
 
       <a
         href={siteConfig.social.google}
         target="_blank"
-        class="rounded-xl border border-gray-600 bg-gray-800/90 hover:bg-gray-700 transition-colors p-3 text-center group"
+        class="rounded-xl border border-red-600/20 bg-black/50 hover:bg-red-600/10 transition-colors p-3 text-center group"
       >
         <div class="text-yellow-400 font-medium mb-1 group-hover:text-yellow-300">⭐ 4.9/5 Reviews</div>
-        <div class="text-xs text-gray-300">Google verified</div>
+        <div class="text-xs text-white/70">Google verified</div>
       </a>
 
-      <div class="rounded-xl border border-gray-600 bg-gray-800/90 hover:bg-gray-700 transition-colors p-3 text-center">
+      <div class="rounded-xl border border-red-600/20 bg-black/50 hover:bg-red-600/10 transition-colors p-3 text-center">
         <div class="text-purple-400 font-medium mb-1">🛡️ {siteConfig.guaranteeHours}hr Guarantee</div>
-        <div class="text-xs text-gray-300">Spot-free promise</div>
+        <div class="text-xs text-white/70">Spot-free promise</div>
       </div>
     </div>
   </div>
