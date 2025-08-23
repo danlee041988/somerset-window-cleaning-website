@@ -213,7 +213,8 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
                     return (
                       <Button
                         {...btnProps}
-                        class={`${visibility} py-1.5 md:py-2 px-4 md:px-6 font-semibold shadow-none text-sm w-auto text-slate-100 ${btnProps.class || ''}`}
+                        class={`${visibility} py-1.5 md:py-2 px-4 md:px-6 font-semibold shadow-none text-sm w-auto ${btnProps.class || ''}`}
+                        style="color: white !important;"
                       />
                     );
                   })
