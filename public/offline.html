@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>You're Offline - Somerset Window Cleaning</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .offline-container {
+            text-align: center;
+            color: white;
+            max-width: 500px;
+            padding: 2rem;
+        }
+
+        .offline-icon {
+            width: 80px;
+            height: 80px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 2rem;
+            font-size: 2rem;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .retry-btn {
+            background: white;
+            color: #667eea;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 1rem;
+        }
+
+        .retry-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .features {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .features h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .features ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .features li {
+            padding: 0.5rem 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .features li::before {
+            content: "✓";
+            color: #10b981;
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="offline-container">
+        <div class="offline-icon">📱</div>
+        <h1>You're Offline</h1>
+        <p>Don't worry! You can still access some features of our window cleaning service even without an internet connection.</p>
+
+        <button class="retry-btn" onclick="location.reload()">Try Again</button>
+
+        <div class="features">
+            <h3>What you can do offline:</h3>
+            <ul>
+                <li>View previously loaded pages</li>
+                <li>Access cached service information</li>
+                <li>Browse our guides and tips</li>
+                <li>View contact information</li>
+            </ul>
+        </div>
+
+        <div style="margin-top: 2rem; opacity: 0.8;">
+            <p>💡 <strong>Pro tip:</strong> Your booking information will be saved and synced when you're back online.</p>
+        </div>
+    </div>
+
+    <script>
+        // Check for network connectivity every few seconds
+        setInterval(() => {
+            if (navigator.onLine) {
+                // If we're back online, reload the page
+                window.location.reload();
+            }
+        }, 5000);
+
+        // Retry button functionality
+        document.querySelector('.retry-btn').addEventListener('click', () => {
+            if (navigator.onLine) {
+                window.location.reload();
+            } else {
+                // Show a message that we're still offline
+                const btn = document.querySelector('.retry-btn');
+                const originalText = btn.textContent;
+                btn.textContent = 'Still offline...';
+                setTimeout(() => {
+                    btn.textContent = originalText;
+                }, 2000);
+            }
+        });
+    </script>
+</body>
+</html>
+

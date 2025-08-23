@@ -39,10 +39,10 @@ const {
       {items.map((item, idx) => (
         <li class="group relative flex flex-col rounded-xl border border-gray-200 dark:border-gray-700 bg-white/90 dark:bg-slate-900/70 p-6 md:p-8 shadow-sm transition">
           <div class="flex items-center gap-3">
-            <span class="inline-flex items-center justify-center text-sm md:text-base font-semibold rounded-full border border-primary/40 bg-primary/10 text-primary px-3 py-1">
+            <span class="inline-flex items-center justify-center text-sm md:text-base font-semibold rounded-full border border-gray-600 bg-gray-100 text-gray-800 px-3 py-1">
               Step {idx + 1}
             </span>
-            {item.icon && <Icon name={item.icon} class="w-7 h-7 text-primary" />}
+            {item.icon && <Icon name={item.icon} class="w-7 h-7 text-gray-700" />}
           </div>
           <h3 class="mt-4 text-xl md:text-2xl font-semibold leading-snug">{item.title}</h3>
           {item.description && <p class="mt-3 text-base text-muted">{item.description}</p>}

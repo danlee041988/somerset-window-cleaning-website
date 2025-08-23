@@ -11,20 +11,10 @@ export const headerData = {
       href: getPermalink('/services'),
       links: [
         { text: 'Window Cleaning', href: getPermalink('/services/window-cleaning') },
-        { text: 'Commercial Window Cleaning', href: getPermalink('/services/commercial-window-cleaning') },
-        { text: 'Gutter Cleaning', href: getPermalink('/services/gutter-cleaning') },
-        { text: 'Solar Panel Cleaning', href: getPermalink('/services/solar-panel-cleaning') },
-        { text: 'Fascia & Soffit Cleaning', href: getPermalink('/services/fascia-soffit-cleaning') },
-        { text: 'Conservatory Cleaning', href: getPermalink('/services/conservatory-cleaning') },
+        { text: 'Commercial Cleaning', href: getPermalink('/services/commercial-window-cleaning') },
+        { text: 'Gutter Clearing', href: getPermalink('/services/gutter-cleaning') },
+        { text: 'All Services →', href: getPermalink('/services') },
       ],
-    },
-    {
-      text: 'Gallery',
-      href: getPermalink('/gallery'),
-    },
-    {
-      text: 'Book Online',
-      href: getPermalink('/booking-2step'),
     },
     {
       text: 'About',
@@ -36,7 +26,7 @@ export const headerData = {
     },
   ],
   actions: [
-    { text: 'Book Online', href: getPermalink('/booking-2step'), variant: 'primary', icon: 'tabler:calendar', priority: 1 },
+    { text: 'Get Quote', href: getPermalink('/booking-2step'), variant: 'primary', icon: 'tabler:calculator', priority: 1 },
     { text: 'Call 01458 860339', href: 'tel:01458860339', variant: 'secondary', icon: 'tabler:phone', priority: 2 },
     { text: 'WhatsApp', href: 'https://wa.me/447415526331?text=Hi%20Somerset%20Window%20Cleaning%2C%20please%20can%20I%20get%20a%20quote%20for%20window%20cleaning%20at%20%5Byour%20address%5D', variant: 'whatsapp', icon: 'tabler:brand-whatsapp', priority: 3 },
   ],
@@ -45,53 +35,42 @@ export const headerData = {
 export const footerData = {
   links: [
     {
-      title: 'Services',
+      title: 'Our Services',
       links: [
         { text: 'Window Cleaning', href: getPermalink('/services/window-cleaning') },
-        { text: 'Gutter Clearing', href: getPermalink('/services/gutter-cleaning') },
-        { text: 'Conservatory Cleaning', href: getPermalink('/services/conservatory-cleaning') },
-        { text: 'Solar Panel Cleaning', href: getPermalink('/services/solar-panel-cleaning') },
-        { text: 'Fascia & Soffit Cleaning', href: getPermalink('/services/fascia-soffit-cleaning') },
         { text: 'Commercial Cleaning', href: getPermalink('/services/commercial-window-cleaning') },
+        { text: 'Gutter Clearing', href: getPermalink('/services/gutter-cleaning') },
+        { text: 'View All Services →', href: getPermalink('/services') },
       ],
     },
+
     {
-      title: 'Service Areas',
+      title: 'Get Started',
       links: [
-        { text: 'Taunton Window Cleaning', href: getPermalink('/areas/taunton') },
-        { text: 'Wells Window Cleaning', href: getPermalink('/areas/wells') },
-        { text: 'Street Window Cleaning', href: getPermalink('/areas/street') },
-        { text: 'Glastonbury Window Cleaning', href: getPermalink('/areas/glastonbury') },
-        { text: 'Yeovil Window Cleaning', href: getPermalink('/areas/yeovil') },
-      ],
-    },
-    {
-      title: 'Quick Links',
-      links: [
-        { text: 'Book Online', href: getPermalink('/booking-2step') },
-        { text: 'Gallery', href: getPermalink('/gallery') },
+        { text: 'Get FREE Quote', href: getPermalink('/booking-2step') },
+        { text: 'Call 01458 860339', href: 'tel:01458860339' },
+        { text: 'WhatsApp Quote', href: 'https://wa.me/447415526331?text=Hi%20Somerset%20Window%20Cleaning%2C%20please%20can%20I%20get%20a%20quote%20for%20window%20cleaning' },
         { text: 'About Us', href: getPermalink('/about') },
         { text: 'Contact', href: getPermalink('/contact') },
       ],
     },
     {
-      title: 'Contact Info',
+      title: 'Contact Details',
       links: [
-        { text: 'Call 01458 860339', href: 'tel:01458860339' },
-        { text: 'WhatsApp Quote', href: 'https://wa.me/447415526331?text=Hi%20Somerset%20Window%20Cleaning%2C%20please%20can%20I%20get%20a%20quote%20for%20window%20cleaning' },
-        { text: 'Email Us', href: 'mailto:info@somersetwindowcleaning.co.uk' },
-        { text: 'Street, Somerset BA16 0HW', href: 'https://maps.google.com/?q=13+Rockhaven+Business+Centre+Gravenchon+Way+Street+Somerset+BA16+0HW' },
+        { text: 'Email: info@somersetwindowcleaning.co.uk', href: 'mailto:info@somersetwindowcleaning.co.uk' },
+        { text: '13 Rockhaven Business Centre', href: 'https://maps.google.com/?q=13+Rockhaven+Business+Centre+Gravenchon+Way+Street+Somerset+BA16+0HW' },
+        { text: 'Gravenchon Way, Street, Somerset BA16 0HW', href: 'https://maps.google.com/?q=13+Rockhaven+Business+Centre+Gravenchon+Way+Street+Somerset+BA16+0HW' },
       ],
     },
   ],
   secondaryLinks: [
     { text: 'Terms & Conditions', href: getPermalink('/terms') },
     { text: 'Privacy Policy', href: getPermalink('/privacy') },
-    { text: 'Service Areas', href: getPermalink('/areas') },
   ],
   socialLinks: [
-    { ariaLabel: 'Facebook', icon: 'tabler:brand-facebook', href: 'https://facebook.com/somersetwindowcleaning' },
+    { ariaLabel: 'Facebook', icon: 'tabler:brand-facebook', href: 'https://www.facebook.com/somersetwindowcleaning' },
     { ariaLabel: 'Instagram', icon: 'tabler:brand-instagram', href: 'https://instagram.com/somersetwindowcleaning' },
+    { ariaLabel: 'LinkedIn', icon: 'tabler:brand-linkedin', href: 'https://uk.linkedin.com/company/somerset-window-cleaning' },
   ],
   footNote: `
     © ${new Date().getFullYear()} Somerset Window Cleaning · VAT: 359 427 172 · Professional Window Cleaning Since 2019

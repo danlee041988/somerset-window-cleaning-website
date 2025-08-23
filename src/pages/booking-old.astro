@@ -10,19 +10,22 @@ const metadata = {
   title: 'Book Window Cleaning Online - Somerset Window Cleaning | Instant Quote & Booking',
   description: 'Book professional window cleaning in Somerset online. Get instant pricing for residential and commercial properties. Fully insured service with transparent pricing.',
 };
+
+// Redirect to the primary booking form
+return Astro.redirect('/booking-2step', 301);
 ---
 
 <Layout metadata={metadata}>
   <!-- Hero Section -->
   <Hero>
     <Fragment slot="title">
-      Professional Window Cleaning <span class="text-accent">Book Online</span>
+      Professional Window Cleaning <span class="text-accent">Get Quote</span>
     </Fragment>
     <Fragment slot="subtitle">
-      Instant Quote & Book Online - Select your property type for transparent pricing
+      Get Instant Quote - Select your property type for transparent pricing
     </Fragment>
     <Fragment slot="bg">
-      <Image src="~/assets/images/solar-panels.jpeg" alt="" width={1600} height={900} layout="cover" style="width:100%; height:100%; object-fit:cover; opacity:0.35;" />
+      <Image src="~/assets/images/optimized/solar-panels-large.webp" alt="Book window cleaning services" width={1200} height={800} layout="cover" style="width:100%; height:100%; object-fit:cover; opacity:0.35;" />
       <div class="absolute inset-0 bg-gradient-to-br from-gray-800/60 via-gray-700/60 to-blue-900/60"></div>
     </Fragment>
   </Hero>
@@ -365,7 +368,7 @@ const metadata = {
                   </svg>
                   <div>
                     <div class="font-medium">Fully Insured</div>
-                    <div class="text-sm text-gray-600">£2M public liability</div>
+                    <div class="text-sm text-gray-600">£5M public liability</div>
                   </div>
                 </div>
                 <div class="flex items-start space-x-3">
@@ -374,7 +377,7 @@ const metadata = {
                   </svg>
                   <div>
                     <div class="font-medium">48-Hour Guarantee</div>
-                    <div class="text-sm text-gray-600">Spot-free guarantee</div>
+                    <div class="text-sm text-gray-600">48-hour guarantee</div>
                   </div>
                 </div>
                 <div class="flex items-start space-x-3">
@@ -442,7 +445,7 @@ const metadata = {
       },
       { 
         title: 'What if I\'m not satisfied?', 
-        description: 'We offer a 48-hour spot-free guarantee. Report any issues and we\'ll return to fix them free of charge.' 
+        description: 'We offer a 48-hour guarantee. Report any issues with your clean and we\'ll return to address them free of charge.' 
       },
       { 
         title: 'Do you provide equipment and materials?', 
@@ -1059,7 +1062,7 @@ function populatePropertyDetails() {
             </label>
             <label class="flex items-center p-4 border-2 border-gray-200 rounded-lg hover:border-primary cursor-pointer transition-all">
               <input type="checkbox" name="commercial-services" value="gutterCleaning" class="w-5 h-5 text-primary border-gray-300 rounded focus:ring-primary mr-3">
-              <span>Gutter Cleaning</span>
+              <span>Gutter Clearing</span>
             </label>
             <label class="flex items-center p-4 border-2 border-gray-200 rounded-lg hover:border-primary cursor-pointer transition-all">
               <input type="checkbox" name="commercial-services" value="fasciaSoffitCleaning" class="w-5 h-5 text-primary border-gray-300 rounded focus:ring-primary mr-3">
@@ -1154,7 +1157,7 @@ function populatePropertyDetails() {
             </label>
             <label class="flex items-center p-4 border-2 border-gray-200 rounded-lg hover:border-primary cursor-pointer transition-all">
               <input type="checkbox" name="custom-services" value="gutterCleaning" class="w-5 h-5 text-primary border-gray-300 rounded focus:ring-primary mr-3">
-              <span>Gutter Cleaning</span>
+              <span>Gutter Clearing</span>
             </label>
             <label class="flex items-center p-4 border-2 border-gray-200 rounded-lg hover:border-primary cursor-pointer transition-all">
               <input type="checkbox" name="custom-services" value="fasciaSoffitCleaning" class="w-5 h-5 text-primary border-gray-300 rounded focus:ring-primary mr-3">
@@ -1568,7 +1571,7 @@ async function submitBooking() {
             </div>
           </div>
           <div class="space-y-3">
-            <button onclick="window.location.reload()" class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-lg transition-all duration-200 w-full sm:w-auto">Book Another Service</button>
+            <button onclick="window.location.reload()" class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-lg transition-all duration-200 w-full sm:w-auto">Get Another Quote</button>
             <div class="flex flex-col sm:flex-row gap-2 justify-center">
               <a href="tel:01458860339" class="bg-gray-100 hover:bg-gray-200 text-gray-700 font-medium py-2 px-4 rounded-lg transition-all duration-200 text-sm">Call Us</a>
               <a href="/" class="bg-gray-100 hover:bg-gray-200 text-gray-700 font-medium py-2 px-4 rounded-lg transition-all duration-200 text-sm">Back to Home</a>

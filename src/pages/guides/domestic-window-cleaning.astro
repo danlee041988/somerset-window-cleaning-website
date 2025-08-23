@@ -1,0 +1,338 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import Image from '~/components/common/Image.astro';
+
+const metadata = {
+  title: 'Domestic Window Cleaning Guide | Pricing, Services & Tips | Somerset',
+  description: 'Complete guide to domestic window cleaning in Somerset. Learn about pricing, service options, maintenance tips, and how to choose the right window cleaner.',
+  keywords: 'domestic window cleaning, residential window cleaning, window cleaning prices Somerset, window cleaning guide'
+};
+---
+
+<Layout metadata={metadata}>
+  <!-- Hero Section -->
+  <div class="relative bg-gradient-to-br from-blue-900 to-blue-700 py-16">
+    <div class="absolute inset-0">
+      <Image src="~/assets/images/hero-image.png" alt="" width={1600} height={600} layout="cover" style="width:100%; height:100%; object-fit:cover; opacity:0.2;" />
+    </div>
+    <div class="relative max-w-4xl mx-auto px-4 text-center">
+      <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">Domestic Window Cleaning Guide</h1>
+      <p class="text-xl text-blue-100 mb-8">Everything you need to know about professional residential window cleaning services in Somerset</p>
+      <div class="flex flex-wrap justify-center gap-4 text-sm">
+        <span class="bg-white/20 text-white px-3 py-1 rounded-full">Residential Focus</span>
+        <span class="bg-white/20 text-white px-3 py-1 rounded-full">Pricing Guide</span>
+        <span class="bg-white/20 text-white px-3 py-1 rounded-full">Service Options</span>
+        <span class="bg-white/20 text-white px-3 py-1 rounded-full">Maintenance Tips</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Table of Contents -->
+  <div class="bg-gray-50 py-8">
+    <div class="max-w-4xl mx-auto px-4">
+      <div class="bg-white p-6 rounded-lg shadow-sm">
+        <h2 class="text-xl font-semibold text-gray-900 mb-4">Table of Contents</h2>
+        <div class="grid md:grid-cols-2 gap-4">
+          <ul class="space-y-2 text-blue-600">
+            <li><a href="#what-is-included" class="hover:text-blue-800">✓ What's Included</a></li>
+            <li><a href="#pricing-guide" class="hover:text-blue-800">✓ Pricing Guide</a></li>
+            <li><a href="#service-frequency" class="hover:text-blue-800">✓ Service Frequency</a></li>
+            <li><a href="#booking-process" class="hover:text-blue-800">✓ Booking Process</a></li>
+          </ul>
+          <ul class="space-y-2 text-blue-600">
+            <li><a href="#maintenance-tips" class="hover:text-blue-800">✓ DIY Maintenance</a></li>
+            <li><a href="#property-types" class="hover:text-blue-800">✓ Property Types</a></li>
+            <li><a href="#faqs" class="hover:text-blue-800">✓ Frequently Asked Questions</a></li>
+            <li><a href="#get-quote" class="hover:text-blue-800">✓ Get Your Quote</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="max-w-4xl mx-auto px-4 py-16 space-y-16">
+
+    <!-- What's Included Section -->
+    <section id="what-is-included" class="scroll-mt-20">
+      <div class="flex items-center mb-6">
+        <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4">
+          <span class="text-blue-600 font-bold text-xl">1</span>
+        </div>
+        <h2 class="text-3xl font-bold text-gray-900">What's Included in Domestic Window Cleaning</h2>
+      </div>
+
+      <div class="bg-white p-8 rounded-lg shadow-sm border">
+        <div class="grid md:grid-cols-2 gap-8">
+          <div>
+            <h3 class="text-xl font-semibold text-gray-900 mb-4">Interior Cleaning</h3>
+            <ul class="space-y-2 text-gray-700">
+              <li class="flex items-start">
+                <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+                Complete interior glass cleaning
+              </li>
+              <li class="flex items-start">
+                <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+                Window frame and sill cleaning
+              </li>
+              <li class="flex items-start">
+                <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+                Window track and mechanism cleaning
+              </li>
+              <li class="flex items-start">
+                <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+                Streak-free glass finish
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 class="text-xl font-semibold text-gray-900 mb-4">Exterior Cleaning</h3>
+            <ul class="space-y-2 text-gray-700">
+              <li class="flex items-start">
+                <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+                Exterior glass cleaning
+              </li>
+              <li class="flex items-start">
+                <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+                External frame cleaning
+              </li>
+              <li class="flex items-start">
+                <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+                Safety-conscious ladder work
+              </li>
+              <li class="flex items-start">
+                <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+                Professional equipment usage
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pricing Guide Section -->
+    <section id="pricing-guide" class="scroll-mt-20">
+      <div class="flex items-center mb-6">
+        <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mr-4">
+          <span class="text-green-600 font-bold text-xl">2</span>
+        </div>
+        <h2 class="text-3xl font-bold text-gray-900">Domestic Window Cleaning Pricing Guide</h2>
+      </div>
+
+      <div class="bg-white p-8 rounded-lg shadow-sm border">
+        <div class="grid md:grid-cols-2 gap-8">
+          <div>
+            <h3 class="text-xl font-semibold text-gray-900 mb-4">Price Ranges by Property Size</h3>
+            <div class="space-y-3">
+              <div class="flex justify-between items-center p-3 bg-gray-50 rounded">
+                <span>1-2 Bedroom Property</span>
+                <span class="font-semibold text-green-600">£15-£25</span>
+              </div>
+              <div class="flex justify-between items-center p-3 bg-gray-50 rounded">
+                <span>3 Bedroom Property</span>
+                <span class="font-semibold text-green-600">£25-£35</span>
+              </div>
+              <div class="flex justify-between items-center p-3 bg-gray-50 rounded">
+                <span>4 Bedroom Property</span>
+                <span class="font-semibold text-green-600">£35-£45</span>
+              </div>
+              <div class="flex justify-between items-center p-3 bg-gray-50 rounded">
+                <span>5+ Bedroom Property</span>
+                <span class="font-semibold text-green-600">£45-£65</span>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <h3 class="text-xl font-semibold text-gray-900 mb-4">Additional Service Costs</h3>
+            <div class="space-y-3">
+              <div class="flex justify-between items-center p-3 bg-blue-50 rounded">
+                <span>Conservatory Cleaning</span>
+                <span class="font-semibold text-blue-600">£5-£15</span>
+              </div>
+              <div class="flex justify-between items-center p-3 bg-blue-50 rounded">
+                <span>Gutter Clearing</span>
+                <span class="font-semibold text-blue-600">£25-£45</span>
+              </div>
+              <div class="flex justify-between items-center p-3 bg-blue-50 rounded">
+                <span>Fascia & Soffit</span>
+                <span class="font-semibold text-blue-600">£15-£30</span>
+              </div>
+              <div class="flex justify-between items-center p-3 bg-blue-50 rounded">
+                <span>One-Off Deep Clean</span>
+                <span class="font-semibold text-blue-600">+20%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-8 p-4 bg-yellow-50 border border-yellow-200 rounded">
+          <h4 class="font-semibold text-yellow-800 mb-2">💡 Pricing Notes</h4>
+          <ul class="text-yellow-700 text-sm space-y-1">
+            <li>• Prices are per visit for regular maintenance cleaning</li>
+            <li>• One-off deep cleans cost approximately 20% more</li>
+            <li>• Discounts available for 8+ weekly or monthly contracts</li>
+            <li>• Additional charges may apply for difficult access properties</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Service Frequency Section -->
+    <section id="service-frequency" class="scroll-mt-20">
+      <div class="flex items-center mb-6">
+        <div class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mr-4">
+          <span class="text-purple-600 font-bold text-xl">3</span>
+        </div>
+        <h2 class="text-3xl font-bold text-gray-900">Choosing the Right Service Frequency</h2>
+      </div>
+
+      <div class="bg-white p-8 rounded-lg shadow-sm border">
+        <div class="grid gap-6">
+          <div class="border-l-4 border-blue-500 pl-4">
+            <h3 class="text-lg font-semibold text-gray-900">One-Off Cleaning</h3>
+            <p class="text-gray-600 mt-1">Perfect for spring cleaning, moving in/out, or special occasions. Thorough deep clean of all windows.</p>
+            <p class="text-sm text-blue-600 mt-2 font-medium">Best for: Seasonal cleaning, moving, events</p>
+          </div>
+
+          <div class="border-l-4 border-green-500 pl-4">
+            <h3 class="text-lg font-semibold text-gray-900">4-Weekly Service</h3>
+            <p class="text-gray-600 mt-1">Monthly cleaning service ideal for keeping windows crystal clear throughout the year.</p>
+            <p class="text-sm text-green-600 mt-2 font-medium">Best for: Most households, regular maintenance</p>
+          </div>
+
+          <div class="border-l-4 border-yellow-500 pl-4">
+            <h3 class="text-lg font-semibold text-gray-900">8-Weekly Service</h3>
+            <p class="text-gray-600 mt-1">Every 2 months service for homes that don't get extremely dirty or for budget-conscious customers.</p>
+            <p class="text-sm text-yellow-600 mt-2 font-medium">Best for: Low-traffic homes, budget options</p>
+          </div>
+
+          <div class="border-l-4 border-red-500 pl-4">
+            <h3 class="text-lg font-semibold text-gray-900">12-Weekly Service</h3>
+            <p class="text-gray-600 mt-1">Quarterly cleaning service for minimal maintenance requirements.</p>
+            <p class="text-sm text-red-600 mt-2 font-medium">Best for: Holiday homes, occasional use</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Maintenance Tips Section -->
+    <section id="maintenance-tips" class="scroll-mt-20">
+      <div class="flex items-center mb-6">
+        <div class="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center mr-4">
+          <span class="text-orange-600 font-bold text-xl">4</span>
+        </div>
+        <h2 class="text-3xl font-bold text-gray-900">DIY Window Maintenance Tips</h2>
+      </div>
+
+      <div class="bg-white p-8 rounded-lg shadow-sm border">
+        <div class="grid md:grid-cols-2 gap-8">
+          <div>
+            <h3 class="text-xl font-semibold text-gray-900 mb-4">Weekly Maintenance</h3>
+            <ul class="space-y-3 text-gray-700">
+              <li class="flex items-start">
+                <span class="w-6 h-6 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center text-sm font-bold mr-3 mt-0.5">1</span>
+                <div>
+                  <strong>Dust window frames and sills</strong>
+                  <p class="text-sm mt-1">Prevents scratches and makes professional cleaning easier</p>
+                </div>
+              </li>
+              <li class="flex items-start">
+                <span class="w-6 h-6 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center text-sm font-bold mr-3 mt-0.5">2</span>
+                <div>
+                  <strong>Quick interior wipe-down</strong>
+                  <p class="text-sm mt-1">Remove fingerprints and smudges as they appear</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 class="text-xl font-semibold text-gray-900 mb-4">Monthly Maintenance</h3>
+            <ul class="space-y-3 text-gray-700">
+              <li class="flex items-start">
+                <span class="w-6 h-6 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-sm font-bold mr-3 mt-0.5">1</span>
+                <div>
+                  <strong>Check window seals</strong>
+                  <p class="text-sm mt-1">Ensure weather stripping is intact and functioning</p>
+                </div>
+              </li>
+              <li class="flex items-start">
+                <span class="w-6 h-6 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-sm font-bold mr-3 mt-0.5">2</span>
+                <div>
+                  <strong>Clean window tracks</strong>
+                  <p class="text-sm mt-1">Remove dust and debris for smooth operation</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faqs" class="scroll-mt-20">
+      <div class="flex items-center mb-6">
+        <div class="w-12 h-12 bg-indigo-100 rounded-full flex items-center justify-center mr-4">
+          <span class="text-indigo-600 font-bold text-xl">5</span>
+        </div>
+        <h2 class="text-3xl font-bold text-gray-900">Frequently Asked Questions</h2>
+      </div>
+
+      <div class="bg-white rounded-lg shadow-sm border divide-y divide-gray-200">
+        <div class="p-6">
+          <h3 class="text-lg font-semibold text-gray-900 mb-2">How long does a typical window cleaning take?</h3>
+          <p class="text-gray-600">A standard 3-bedroom house takes approximately 45-60 minutes for both interior and exterior cleaning. Larger properties or those requiring additional services may take longer.</p>
+        </div>
+
+        <div class="p-6">
+          <h3 class="text-lg font-semibold text-gray-900 mb-2">Do you clean both sides of the windows?</h3>
+          <p class="text-gray-600">Yes, we clean both interior and exterior surfaces of all accessible windows. For safety reasons, we can only clean windows accessible from ground level or safe ladder heights.</p>
+        </div>
+
+        <div class="p-6">
+          <h3 class="text-lg font-semibold text-gray-900 mb-2">What cleaning products do you use?</h3>
+          <p class="text-gray-600">We use professional-grade, eco-friendly cleaning solutions that are safe for your windows, frames, and the environment. All products are streak-free and leave no residue.</p>
+        </div>
+
+        <div class="p-6">
+          <h3 class="text-lg font-semibold text-gray-900 mb-2">Is window cleaning safe for all window types?</h3>
+          <p class="text-gray-600">We safely clean all types of windows including double-glazed, UPVC, wooden, and aluminium frames. We take extra care with antique or delicate window treatments.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section id="get-quote" class="bg-gradient-to-br from-blue-600 to-blue-700 rounded-lg p-8 text-center">
+      <h2 class="text-3xl font-bold text-white mb-4">Ready to Book Your Domestic Window Cleaning?</h2>
+      <p class="text-xl text-blue-100 mb-8">Get a free quote and book your service online today</p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="/booking-2step" class="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
+          Get Free Quote
+        </a>
+        <a href="tel:+441458860339" class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition-colors">
+          Call 01458 860339
+        </a>
+      </div>
+    </section>
+
+  </div>
+</Layout>
+

@@ -22,58 +22,58 @@ const {
   className = '',
 } = Astro.props;
 
-// Fallback reviews for when Google API is unavailable
+// Real Google reviews from Somerset Window Cleaning verified customers
 const fallbackReviews = [
   {
     author_name: "Jodie Cater",
     text: "Second window clean with Somerset Window Cleaning — excellent on both occasions.",
     rating: 5,
-    time: Date.now() - (1000 * 60 * 60 * 24 * 7), // 1 week ago
-    relative_time_description: "a week ago"
+    time: Date.now(),
+    relative_time_description: ""
   },
   {
     author_name: "Sandra",
     text: "Dylan did a fantastic window clean this morning. Hard-to-reach, high windows left spotless.",
     rating: 5,
-    time: Date.now() - (1000 * 60 * 60 * 24 * 14), // 2 weeks ago
-    relative_time_description: "2 weeks ago"
+    time: Date.now(),
+    relative_time_description: ""
   },
   {
     author_name: "Dean Rowland",
     text: "Would highly recommend — brilliant service, windows have never been cleaner. Very polite operative.",
     rating: 5,
-    time: Date.now() - (1000 * 60 * 60 * 24 * 21), // 3 weeks ago
-    relative_time_description: "3 weeks ago"
+    time: Date.now(),
+    relative_time_description: ""
   },
   {
     author_name: "Jayne Trott",
     text: "Great experience — windows done brilliantly. Reliable company, would use again.",
     rating: 5,
-    time: Date.now() - (1000 * 60 * 60 * 24 * 28), // 4 weeks ago
-    relative_time_description: "4 weeks ago"
+    time: Date.now(),
+    relative_time_description: ""
   },
   {
     author_name: "Cher Davis",
     text: "Very friendly and thorough service. Would definitely recommend.",
     rating: 5,
-    time: Date.now() - (1000 * 60 * 60 * 24 * 35), // 5 weeks ago
-    relative_time_description: "5 weeks ago"
+    time: Date.now(),
+    relative_time_description: ""
   },
   {
     author_name: "TheShortfry",
     text: "Needed a clean urgently before a viewing — rapid response and excellent result.",
     rating: 5,
-    time: Date.now() - (1000 * 60 * 60 * 24 * 42), // 6 weeks ago
-    relative_time_description: "6 weeks ago"
+    time: Date.now(),
+    relative_time_description: ""
   }
 ];
 ---
 
-<section class={`py-12 ${className}`}>
+<section class={`py-12 ${className}`} id="live-reviews">
   <div class="max-w-7xl mx-auto px-4 sm:px-6">
     <div class="text-center mb-12">
       <h2 class="text-3xl md:text-4xl font-bold mb-4">{title}</h2>
-      <p class="text-xl text-gray-600 mb-6">{subtitle}</p>
+      <p class="text-xl text-gray-700 dark:text-gray-200 mb-6">{subtitle}</p>
       
       <!-- Google Reviews Stats -->
       <div class="flex items-center justify-center space-x-6 mb-8">
@@ -104,9 +104,9 @@ const fallbackReviews = [
     </div>
 
     <!-- Reviews Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" data-reviews-grid>
       {fallbackReviews.slice(0, maxReviews).map(review => (
-        <div class="bg-white rounded-lg shadow-lg border border-gray-100 p-6 hover:shadow-xl transition-shadow duration-300">
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-100 dark:border-gray-700 p-6 transition-all duration-200 hover:shadow-xl hover:-translate-y-0.5 hover:border-primary/40 focus-within:ring-2 focus-within:ring-primary/40 focus-within:border-primary/50" data-review-card>
           <div class="flex items-center space-x-1 mb-3">
             {Array.from({ length: 5 }, (_, i) => (
               <svg class={`w-4 h-4 ${i < review.rating ? 'text-yellow-400' : 'text-gray-300'}`} fill="currentColor" viewBox="0 0 20 20">
@@ -115,14 +115,14 @@ const fallbackReviews = [
             ))}
           </div>
           
-          <blockquote class="text-gray-700 mb-4 line-clamp-4">
+          <blockquote class="text-gray-800 dark:text-gray-100 mb-4 line-clamp-4">
             "{review.text}"
           </blockquote>
           
           <div class="flex items-center justify-between">
             <div>
-              <div class="font-semibold text-gray-900">{review.author_name}</div>
-              <div class="text-sm text-gray-500">{review.relative_time_description || 'Recent'}</div>
+              <div class="font-semibold text-gray-900 dark:text-white">{review.author_name}</div>
+              <div class="text-sm text-gray-600 dark:text-gray-300">Verified Customer</div>
             </div>
             
             <div class="flex items-center space-x-1">
@@ -169,3 +169,5 @@ const fallbackReviews = [
     transition: opacity 0.3s ease-in-out;
   }
 </style>
+
+<!-- Removed auto-rotating highlight. Cards now highlight on hover/focus for a cleaner look. -->

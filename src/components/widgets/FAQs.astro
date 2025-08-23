@@ -1,6 +1,5 @@
 ---
 import Headline from '~/components/ui/Headline.astro';
-import ItemGrid from '~/components/ui/ItemGrid.astro';
 import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
 import type { Faqs as Props } from '~/types';
 
@@ -20,14 +19,66 @@ const {
 
 <WidgetWrapper id={id} isDark={isDark} containerClass={`max-w-7xl mx-auto ${classes?.container ?? ''}`} bg={bg}>
   <Headline title={title} subtitle={subtitle} tagline={tagline} />
-  <ItemGrid
-    items={items}
-    columns={columns}
-    defaultIcon="tabler:chevron-right"
-    classes={{
-      container: `${columns === 1 ? 'max-w-4xl' : ''} gap-y-8 md:gap-y-12`,
-      panel: 'max-w-none',
-      icon: 'flex-shrink-0 mt-1 w-6 h-6 text-primary',
-    }}
-  />
+
+  <!-- Accessible Accordion (button + aria-controls + aria-expanded) -->
+  <div class={`${columns === 1 ? 'max-w-4xl mx-auto' : ''} divide-y divide-gray-200 bg-white dark:bg-gray-900 rounded-xl border border-gray-100 dark:border-gray-800`} role="region" aria-label="Frequently Asked Questions">
+    {items.map((item, index) => {
+      const panelId = `faq-panel-${index}`;
+      const buttonId = `faq-button-${index}`;
+      return (
+        <div class="p-0">
+          <h3 class="m-0">
+            <button
+              id={buttonId}
+              class="w-full text-left px-5 py-4 flex items-center justify-between gap-3 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-500 min-h-[44px]"
+              type="button"
+              aria-controls={panelId}
+              aria-expanded="false"
+              data-accordion-button
+            >
+              <span class="text-lg font-semibold">{item.title}</span>
+              <svg class="w-5 h-5 text-gray-500 transition-transform" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-accordion-icon>
+                <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.24 4.5a.75.75 0 01-1.08 0l-4.24-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
+              </svg>
+            </button>
+          </h3>
+          <div id={panelId} role="region" aria-labelledby={buttonId} class="hidden px-5 pb-5 text-muted" data-accordion-panel set:html={item.description} />
+        </div>
+      );
+    })}
+  </div>
+
+  <script is:inline>
+    // Progressive enhancement for accordion behavior
+    (function(){
+      const root = document.currentScript?.parentElement;
+      if (!root) return;
+      const buttons = root.querySelectorAll('[data-accordion-button]');
+      buttons.forEach((btn) => {
+        const panel = root.querySelector('#' + btn.getAttribute('aria-controls'));
+        const icon = btn.querySelector('[data-accordion-icon]');
+        if (!panel) return;
+        btn.addEventListener('click', () => {
+          const expanded = btn.getAttribute('aria-expanded') === 'true';
+          // Close all others if multi not desired
+          buttons.forEach((b) => {
+            const p = root.querySelector('#' + b.getAttribute('aria-controls'));
+            const i = b.querySelector('[data-accordion-icon]');
+            if (p && b !== btn) {
+              b.setAttribute('aria-expanded', 'false');
+              p.classList.add('hidden');
+              i && i.classList.remove('rotate-180');
+            }
+          });
+          btn.setAttribute('aria-expanded', String(!expanded));
+          panel.classList.toggle('hidden', expanded);
+          icon && icon.classList.toggle('rotate-180', !expanded);
+        });
+      });
+    })();
+  </script>
+
+  <style is:inline>
+    [data-accordion-icon] { transition: transform 200ms ease; }
+  </style>
 </WidgetWrapper>

@@ -123,6 +123,10 @@ export default defineConfig({
   build: {
     // Inline stylesheets smaller than 4KB for critical CSS
     inlineStylesheets: 'auto',
+    // Enable code splitting for better caching
+    splitting: true,
+    // Generate source maps only in development
+    sourcemap: process.env.NODE_ENV === 'development',
   },
 
   // Performance optimisations
@@ -137,6 +141,22 @@ export default defineConfig({
   },
 
   vite: {
+    build: {
+      // Optimize chunk size for better caching
+      rollupOptions: {
+        output: {
+          manualChunks: {
+            // Separate vendor chunks for better caching
+            vendor: ['astro', 'react', 'react-dom'],
+            ui: ['@astrojs/tailwind', '@astrojs/mdx'],
+          },
+        },
+      },
+      // Enable CSS code splitting
+      cssCodeSplit: true,
+      // Minify for production
+      minify: 'terser',
+    },
     resolve: {
       alias: {
         '~': path.resolve(__dirname, './src'),

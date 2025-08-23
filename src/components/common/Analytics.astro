@@ -3,11 +3,26 @@ import { GoogleAnalytics } from '@astrolib/analytics';
 import { ANALYTICS } from 'astrowind:config';
 ---
 
-{
-  ANALYTICS?.vendors?.googleAnalytics?.id ? (
-    <GoogleAnalytics
-      id={String(ANALYTICS.vendors.googleAnalytics.id)}
-      partytown={ANALYTICS?.vendors?.googleAnalytics?.partytown}
-    />
-  ) : null
-}
+{ANALYTICS?.vendors?.googleAnalytics?.id ? (
+  <script type="application/json" id="ga-config" is:inline>
+    {JSON.stringify({ id: String(ANALYTICS.vendors.googleAnalytics.id) })}
+  </script>
+) : null}
+
+<script is:inline>
+  // Initialize GA lazily after idle to improve TTI
+  document.addEventListener('idle:load-analytics', function() {
+    const cfgEl = document.getElementById('ga-config');
+    if (!cfgEl) return;
+    const cfg = JSON.parse(cfgEl.textContent || '{}');
+    if (!cfg.id) return;
+
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    window.ga('create', cfg.id, 'auto');
+    window.ga('send', 'pageview');
+  });
+</script>

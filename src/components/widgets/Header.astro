@@ -2,7 +2,7 @@
 import { Icon } from 'astro-icon/components';
 import Logo from '~/components/Logo.astro';
 import ToggleTheme from '~/components/common/ToggleTheme.astro';
-import ToggleMenu from '~/components/common/ToggleMenu.astro';
+import AccessibleMobileNav from '~/components/widgets/AccessibleMobileNav.astro';
 import Button from '~/components/ui/Button.astro';
 
 import { getHomePermalink } from '~/utils/permalinks';
@@ -66,7 +66,7 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
         'md:grid md:grid-cols-3 md:items-center': position === 'center',
       },
       {
-        'max-w-7xl': !isFullWidth,
+        'max-w-5xl': !isFullWidth,
       },
     ]}
   >
@@ -75,11 +75,11 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
         <Logo />
       </a>
       <div class="flex items-center md:hidden">
-        <ToggleMenu />
+        <AccessibleMobileNav links={links} currentPath={currentPath} />
       </div>
     </div>
     <nav
-      class="items-center w-full md:w-auto hidden md:flex md:mx-5 text-default overflow-y-auto overflow-x-hidden md:overflow-y-visible md:overflow-x-auto md:justify-self-center"
+      class="items-center w-full md:w-auto hidden md:flex md:mx-5 text-slate-100 overflow-y-auto overflow-x-hidden md:overflow-y-visible md:overflow-x-auto md:justify-self-center"
       aria-label="Main navigation"
     >
       <ul
@@ -92,20 +92,31 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
                 <>
                   <button
                     type="button"
-                    class="hover:text-link dark:hover:text-white px-3 py-2 flex items-center whitespace-nowrap"
+                    class="text-slate-100 hover:text-red-400 px-3 py-2 flex items-center whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-white/20 rounded min-h-[44px]"
+                    aria-expanded="false"
+                    aria-haspopup="true"
+                    aria-label={`${text} submenu`}
+                    data-dropdown-toggle
                   >
                     {text}{' '}
-                    <Icon name="tabler:chevron-down" class="w-3.5 h-3.5 ml-0.5 rtl:ml-0 rtl:mr-0.5 hidden md:inline" />
+                    <Icon name="tabler:chevron-down" class="w-3.5 h-3.5 ml-0.5 rtl:ml-0 rtl:mr-0.5 hidden md:inline transition-transform duration-200" data-dropdown-chevron />
                   </button>
-                  <ul class="dropdown-menu md:backdrop-blur-md dark:md:bg-dark rounded md:absolute pl-4 md:pl-0 md:hidden font-medium md:bg-white/90 md:min-w-[200px] drop-shadow-xl">
+                  <ul 
+                    class="dropdown-menu md:backdrop-blur-md dark:md:bg-dark rounded md:absolute pl-4 md:pl-0 md:hidden font-medium md:bg-white/90 md:min-w-[200px] drop-shadow-xl"
+                    role="menu"
+                    aria-label={`${text} submenu`}
+                    data-dropdown-menu
+                  >
                     {links.map(({ text: text2, href: href2 }) => (
-                      <li>
+                      <li role="none">
                         <a
                           class:list={[
-                            'first:rounded-t last:rounded-b md:hover:bg-gray-100 hover:text-link dark:hover:text-white dark:hover:bg-gray-700 py-2 px-5 block whitespace-no-wrap',
+                            'first:rounded-t last:rounded-b md:hover:bg-gray-100 hover:text-link dark:hover:text-white dark:hover:bg-gray-700 py-2 px-5 block whitespace-no-wrap focus:outline-none focus:ring-2 focus:ring-blue-500 min-h-[44px] flex items-center transition-colors',
                             { 'aw-link-active': href2 === currentPath },
                           ]}
                           href={href2}
+                          role="menuitem"
+                          aria-current={href2 === currentPath ? 'page' : undefined}
                         >
                           {text2}
                         </a>
@@ -116,10 +127,11 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
               ) : (
                 <a
                   class:list={[
-                    'hover:text-link dark:hover:text-white px-3 py-2 flex items-center whitespace-nowrap',
+                    'text-slate-100 hover:text-red-400 px-3 py-2 flex items-center whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-white/20 rounded min-h-[44px] transition-colors',
                     { 'aw-link-active': href === currentPath },
                   ]}
                   href={href}
+                  aria-current={href === currentPath ? 'page' : undefined}
                 >
                   {text}
                 </a>
@@ -166,7 +178,7 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
                     return (
                       <Button
                         {...btnProps}
-                        class={`${visibility} py-1.5 md:py-2 px-4 md:px-6 font-semibold shadow-none text-sm w-auto ${btnProps.class || ''}`}
+                        class={`${visibility} py-1.5 md:py-2 px-4 md:px-6 font-semibold shadow-none text-sm w-auto text-slate-100 ${btnProps.class || ''}`}
                       />
                     );
                   })
@@ -182,69 +194,195 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
 </header>
 
 <script>
+  // Enhanced accessible header with dropdown functionality
   document.addEventListener('DOMContentLoaded', function() {
     const header = document.querySelector('[data-aw-sticky-header]');
-    const footer = document.querySelector('footer');
-    
+
     if (header) {
-      let isScrolled = false;
-      let isFooterScrolled = false;
-      let scrollDirection = 0; // 0 = no change, 1 = down, -1 = up
+      // Simple sticky behavior without visual changes
       let lastScrollY = 0;
-      
-      // Pre-calculate values for performance
-      const scrollThreshold = 50;
-      const footerThreshold = 150;
-      const maxScroll = 200; // Maximum scroll distance for full effect
-      
-      function updateScrollEffects(scrollY) {
-        // Calculate progress from 0 to 1 based on scroll position
-        const scrollProgress = Math.min(scrollY / maxScroll, 1);
-        
-        // Use CSS custom properties for smooth GPU-accelerated animations
-        header.style.setProperty('--scroll-progress', scrollProgress.toString());
-        
-        // Determine scroll direction for performance optimizations
-        const currentDirection = scrollY > lastScrollY ? 1 : scrollY < lastScrollY ? -1 : 0;
-        if (currentDirection !== scrollDirection) {
-          scrollDirection = currentDirection;
-        }
-        lastScrollY = scrollY;
-        
-        // Toggle header classes only when crossing threshold to minimize DOM manipulation
-        const shouldBeScrolled = scrollY > scrollThreshold;
-        if (shouldBeScrolled !== isScrolled) {
-          header.classList.toggle('header-scrolled', shouldBeScrolled);
-          isScrolled = shouldBeScrolled;
-        }
-        
-        // Toggle footer classes for scaling effect
-        if (footer) {
-          const shouldFooterBeScrolled = scrollY > footerThreshold;
-          if (shouldFooterBeScrolled !== isFooterScrolled) {
-            footer.classList.toggle('footer-scrolled', shouldFooterBeScrolled);
-            isFooterScrolled = shouldFooterBeScrolled;
-          }
-        }
-      }
-      
-      // Optimized scroll handler using passive listener and RAF
-      let rafId = null;
+
       function handleScroll() {
-        if (rafId) return; // Prevent multiple RAF calls
-        
-        rafId = requestAnimationFrame(() => {
-          const scrollY = window.pageYOffset || document.documentElement.scrollTop;
-          updateScrollEffects(scrollY);
-          rafId = null;
-        });
+        const scrollY = window.pageYOffset || document.documentElement.scrollTop;
+        lastScrollY = scrollY;
       }
-      
-      // Use passive listener for better performance
+
       window.addEventListener('scroll', handleScroll, { passive: true });
-      
-      // Initial call to set proper state
       handleScroll();
     }
+
+    // Enhanced accessible dropdown functionality
+    class AccessibleDropdown {
+      constructor() {
+        this.dropdowns = document.querySelectorAll('[data-dropdown-toggle]');
+        this.activeDropdown = null;
+        this.init();
+      }
+
+      init() {
+        this.dropdowns.forEach(toggle => {
+          const menu = toggle.nextElementSibling;
+          if (menu && menu.hasAttribute('data-dropdown-menu')) {
+            // Click events
+            toggle.addEventListener('click', (e) => this.toggleDropdown(e, toggle, menu));
+            
+            // Hover events for desktop
+            toggle.parentElement.addEventListener('mouseenter', () => {
+              if (window.innerWidth >= 768) {
+                this.openDropdown(toggle, menu);
+              }
+            });
+            
+            toggle.parentElement.addEventListener('mouseleave', () => {
+              if (window.innerWidth >= 768) {
+                this.closeDropdown(toggle, menu);
+              }
+            });
+
+            // Keyboard events
+            toggle.addEventListener('keydown', (e) => this.handleKeyDown(e, toggle, menu));
+            
+            // Focus events
+            menu.addEventListener('focusout', (e) => {
+              // Close dropdown if focus moves outside
+              setTimeout(() => {
+                if (!toggle.parentElement.contains(document.activeElement)) {
+                  this.closeDropdown(toggle, menu);
+                }
+              }, 100);
+            });
+          }
+        });
+
+        // Close dropdowns when clicking outside
+        document.addEventListener('click', (e) => {
+          if (!e.target.closest('.dropdown')) {
+            this.closeAllDropdowns();
+          }
+        });
+
+        // Close dropdowns on escape
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape') {
+            this.closeAllDropdowns();
+            this.activeDropdown?.focus();
+          }
+        });
+      }
+
+      toggleDropdown(e, toggle, menu) {
+        e.preventDefault();
+        const isOpen = toggle.getAttribute('aria-expanded') === 'true';
+        
+        if (isOpen) {
+          this.closeDropdown(toggle, menu);
+        } else {
+          this.closeAllDropdowns();
+          this.openDropdown(toggle, menu);
+        }
+      }
+
+      openDropdown(toggle, menu) {
+        // Update ARIA states
+        toggle.setAttribute('aria-expanded', 'true');
+        
+        // Show menu
+        menu.classList.remove('md:hidden');
+        menu.classList.add('md:block');
+        
+        // Rotate chevron
+        const chevron = toggle.querySelector('[data-dropdown-chevron]');
+        chevron?.classList.add('rotate-180');
+        
+        this.activeDropdown = toggle;
+      }
+
+      closeDropdown(toggle, menu) {
+        // Update ARIA states
+        toggle.setAttribute('aria-expanded', 'false');
+        
+        // Hide menu
+        menu.classList.add('md:hidden');
+        menu.classList.remove('md:block');
+        
+        // Reset chevron
+        const chevron = toggle.querySelector('[data-dropdown-chevron]');
+        chevron?.classList.remove('rotate-180');
+        
+        if (this.activeDropdown === toggle) {
+          this.activeDropdown = null;
+        }
+      }
+
+      closeAllDropdowns() {
+        this.dropdowns.forEach(toggle => {
+          const menu = toggle.nextElementSibling;
+          if (menu && menu.hasAttribute('data-dropdown-menu')) {
+            this.closeDropdown(toggle, menu);
+          }
+        });
+      }
+
+      handleKeyDown(e, toggle, menu) {
+        const isOpen = toggle.getAttribute('aria-expanded') === 'true';
+        
+        switch (e.key) {
+          case 'ArrowDown':
+            e.preventDefault();
+            if (!isOpen) {
+              this.openDropdown(toggle, menu);
+            }
+            // Focus first menu item
+            const firstItem = menu.querySelector('[role="menuitem"]');
+            firstItem?.focus();
+            break;
+            
+          case 'ArrowUp':
+            e.preventDefault();
+            if (isOpen) {
+              this.closeDropdown(toggle, menu);
+            }
+            break;
+            
+          case 'Enter':
+          case ' ':
+            e.preventDefault();
+            this.toggleDropdown(e, toggle, menu);
+            break;
+        }
+      }
+    }
+
+    // Initialize accessible dropdowns
+    new AccessibleDropdown();
   });
 </script>
+
+<style>
+  /* Smooth header transition on scroll */
+  #header[data-aw-sticky-header] {
+    transition: background-color 200ms ease, backdrop-filter 200ms ease, box-shadow 200ms ease;
+  }
+
+  /* Reduce inner padding when scrolled */
+  #header .header-inner {
+    transition: padding 200ms ease;
+  }
+
+  /* On scroll: subtle blur, compact height, slight shadow */
+  #header.scroll {
+    background-color: rgba(0, 0, 0, 0.7) !important;
+    backdrop-filter: saturate(120%) blur(10px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+  }
+
+  #header.scroll .header-inner {
+    padding-top: 0.25rem !important; /* 4px */
+    padding-bottom: 0.25rem !important;
+  }
+
+  /* Ensure CTAs remain visually prominent */
+  #header.scroll .main-actions .btn-primary {
+    box-shadow: 0 6px 20px rgba(239, 68, 68, 0.35);
+  }
+</style>

@@ -1,0 +1,921 @@
+---
+/**
+ * Comprehensive Keyboard Navigation Enhancer
+ * 
+ * Implements full WCAG 2.1 AA keyboard navigation compliance:
+ * - All functionality available via keyboard
+ * - Visible focus indicators
+ * - Logical tab order
+ * - Keyboard shortcuts
+ * - Focus management
+ * - Escape key handling
+ * - Arrow key navigation for menus/components
+ */
+---
+
+<style is:global>
+  /* ===== ENHANCED FOCUS INDICATORS ===== */
+  
+  /* High-visibility focus ring for all interactive elements */
+  *:focus,
+  *:focus-visible {
+    outline: 3px solid #2563eb !important;
+    outline-offset: 2px !important;
+    border-radius: 4px;
+    transition: outline 0.15s ease-in-out;
+  }
+  
+  /* Dark mode focus indicators */
+  .dark *:focus,
+  .dark *:focus-visible {
+    outline-color: #60a5fa !important;
+  }
+  
+  /* Specific focus styles for different element types */
+  
+  /* Buttons */
+  button:focus,
+  [role="button"]:focus,
+  input[type="button"]:focus,
+  input[type="submit"]:focus,
+  input[type="reset"]:focus {
+    outline: 3px solid #1d4ed8 !important;
+    outline-offset: 2px !important;
+    box-shadow: 0 0 0 6px rgba(37, 99, 235, 0.2) !important;
+  }
+  
+  /* Links */
+  a:focus {
+    outline: 3px solid #2563eb !important;
+    outline-offset: 2px !important;
+    text-decoration: underline !important;
+    background-color: rgba(37, 99, 235, 0.1) !important;
+    border-radius: 4px !important;
+    padding: 2px 4px !important;
+    margin: -2px -4px !important;
+  }
+  
+  /* Form inputs */
+  input:focus,
+  textarea:focus,
+  select:focus {
+    outline: 3px solid #059669 !important;
+    outline-offset: 2px !important;
+    border-color: #059669 !important;
+    box-shadow: 0 0 0 6px rgba(5, 150, 105, 0.2) !important;
+  }
+  
+  /* Radio buttons and checkboxes */
+  input[type="radio"]:focus,
+  input[type="checkbox"]:focus {
+    outline: 3px solid #dc2626 !important;
+    outline-offset: 3px !important;
+  }
+  
+  /* Skip links - enhanced visibility */
+  .skip-link:focus {
+    position: absolute !important;
+    top: 8px !important;
+    left: 8px !important;
+    background: #1f2937 !important;
+    color: #ffffff !important;
+    padding: 12px 16px !important;
+    text-decoration: none !important;
+    z-index: 100000 !important;
+    border-radius: 8px !important;
+    font-weight: 600 !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
+    outline: 3px solid #ffffff !important;
+    outline-offset: 2px !important;
+  }
+  
+  /* Navigation menu focus */
+  nav a:focus,
+  [role="navigation"] a:focus {
+    background-color: rgba(37, 99, 235, 0.15) !important;
+    outline: 3px solid #2563eb !important;
+    outline-offset: 2px !important;
+  }
+  
+  /* Dropdown menu focus */
+  [role="menu"] [role="menuitem"]:focus,
+  [role="listbox"] [role="option"]:focus {
+    background-color: #2563eb !important;
+    color: #ffffff !important;
+    outline: 3px solid #1d4ed8 !important;
+    outline-offset: 2px !important;
+  }
+  
+  /* Tab focus for tabbed interfaces */
+  [role="tab"]:focus {
+    outline: 3px solid #7c3aed !important;
+    outline-offset: 2px !important;
+    background-color: rgba(124, 58, 237, 0.1) !important;
+  }
+  
+  [role="tab"][aria-selected="true"]:focus {
+    background-color: #7c3aed !important;
+    color: #ffffff !important;
+  }
+  
+  /* Modal and dialog focus */
+  [role="dialog"]:focus,
+  .modal:focus {
+    outline: 3px solid #dc2626 !important;
+    outline-offset: 4px !important;
+  }
+  
+  /* Focus within containers */
+  .focus-within:focus-within {
+    outline: 2px solid #8b5cf6 !important;
+    outline-offset: 4px !important;
+  }
+  
+  /* High contrast mode - maximum visibility */
+  @media (prefers-contrast: high) {
+    *:focus,
+    *:focus-visible {
+      outline: 4px solid #000000 !important;
+      outline-offset: 2px !important;
+      background-color: #ffff00 !important;
+      color: #000000 !important;
+    }
+    
+    .dark *:focus,
+    .dark *:focus-visible {
+      outline-color: #ffffff !important;
+      background-color: #000000 !important;
+      color: #ffffff !important;
+    }
+  }
+  
+  /* Reduced motion preferences */
+  @media (prefers-reduced-motion: reduce) {
+    *:focus,
+    *:focus-visible {
+      transition: none !important;
+    }
+  }
+  
+  /* ===== KEYBOARD NAVIGATION STATES ===== */
+  
+  /* Keyboard user indicator */
+  .keyboard-user *:focus {
+    outline-style: solid !important;
+  }
+  
+  .mouse-user *:focus {
+    outline-style: none !important;
+  }
+  
+  /* Active/pressed states for keyboard */
+  button:active,
+  [role="button"]:active {
+    transform: translateY(1px) !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2) !important;
+  }
+  
+  /* Loading states */
+  .loading:focus {
+    outline-color: #6b7280 !important;
+    cursor: wait !important;
+  }
+  
+  [aria-disabled="true"]:focus,
+  [disabled]:focus {
+    outline-color: #9ca3af !important;
+    opacity: 0.6 !important;
+  }
+  
+  /* ===== TAB ORDER HELPERS ===== */
+  
+  /* Remove from tab order but keep focusable programmatically */
+  [tabindex="-1"] {
+    outline: none;
+  }
+  
+  /* Ensure important elements are focusable */
+  [role="button"],
+  [role="link"],
+  [role="menuitem"],
+  [role="tab"],
+  [role="option"] {
+    cursor: pointer;
+  }
+  
+  [role="button"]:not([tabindex]),
+  [role="link"]:not([tabindex]),
+  [role="menuitem"]:not([tabindex]),
+  [role="tab"]:not([tabindex]),
+  [role="option"]:not([tabindex]) {
+    tabindex: 0;
+  }
+  
+  /* ===== KEYBOARD SHORTCUTS INDICATOR ===== */
+  
+  .keyboard-shortcut {
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+    background: #f3f4f6;
+    border: 1px solid #d1d5db;
+    border-radius: 4px;
+    padding: 2px 6px;
+    font-size: 0.75rem;
+    margin-left: 8px;
+  }
+  
+  .dark .keyboard-shortcut {
+    background: #374151;
+    border-color: #6b7280;
+    color: #e5e7eb;
+  }
+  
+  /* ===== FOCUS TRAPPING STYLES ===== */
+  
+  .focus-trap-active {
+    overflow: hidden;
+  }
+  
+  .focus-trap-active *:not(.focus-trap-container *) {
+    pointer-events: none;
+    user-select: none;
+  }
+  
+  .focus-trap-container {
+    position: relative;
+    z-index: 1000;
+  }
+</style>
+
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', function() {
+    console.log('⌨️ Initializing comprehensive keyboard navigation...');
+    
+    // Initialize keyboard navigation enhancer
+    const keyboardNav = new KeyboardNavigationEnhancer();
+    keyboardNav.init();
+    
+    class KeyboardNavigationEnhancer {
+      constructor() {
+        this.isKeyboardUser = false;
+        this.focusHistory = [];
+        this.currentFocusTrap = null;
+        this.shortcuts = new Map();
+        this.roamingTabIndex = new Map();
+      }
+      
+      init() {
+        this.detectInputMethod();
+        this.setupKeyboardShortcuts();
+        this.enhanceTabOrder();
+        this.setupFocusManagement();
+        this.setupArrowKeyNavigation();
+        this.setupEscapeHandling();
+        this.setupSkipLinks();
+        this.monitorFocusChanges();
+        
+        console.log('✅ Keyboard navigation ready');
+      }
+      
+      detectInputMethod() {
+        // Detect if user is using keyboard or mouse
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'Tab' || e.key === 'Enter' || e.key === ' ') {
+            this.isKeyboardUser = true;
+            document.body.classList.add('keyboard-user');
+            document.body.classList.remove('mouse-user');
+          }
+        });
+        
+        document.addEventListener('mousedown', () => {
+          this.isKeyboardUser = false;
+          document.body.classList.add('mouse-user');
+          document.body.classList.remove('keyboard-user');
+        });
+        
+        // Initial state
+        document.body.classList.add('mouse-user');
+      }
+      
+      setupKeyboardShortcuts() {
+        // Global keyboard shortcuts
+        this.registerShortcut('/', () => {
+          const searchInput = document.querySelector('input[type="search"], input[aria-label*="search" i]');
+          if (searchInput) {
+            searchInput.focus();
+            return true;
+          }
+          return false;
+        }, 'Focus search');
+        
+        this.registerShortcut('h', () => {
+          const homeLink = document.querySelector('a[href="/"], a[href=""]');
+          if (homeLink) {
+            homeLink.click();
+            return true;
+          }
+          return false;
+        }, 'Go to homepage');
+        
+        this.registerShortcut('m', () => {
+          const mainContent = document.querySelector('main, [role="main"]');
+          if (mainContent) {
+            mainContent.focus();
+            mainContent.scrollIntoView({ behavior: 'smooth' });
+            return true;
+          }
+          return false;
+        }, 'Skip to main content');
+        
+        this.registerShortcut('n', () => {
+          const nav = document.querySelector('nav, [role="navigation"]');
+          if (nav) {
+            const firstLink = nav.querySelector('a, button');
+            if (firstLink) {
+              firstLink.focus();
+              return true;
+            }
+          }
+          return false;
+        }, 'Focus navigation');
+        
+        this.registerShortcut('?', () => {
+          this.showKeyboardShortcuts();
+          return true;
+        }, 'Show keyboard shortcuts');
+        
+        // Listen for shortcuts
+        document.addEventListener('keydown', (e) => {
+          // Only trigger shortcuts when not in form fields
+          if (e.target.matches('input, textarea, select, [contenteditable]')) {
+            return;
+          }
+          
+          const shortcut = this.shortcuts.get(e.key.toLowerCase());
+          if (shortcut && shortcut.handler()) {
+            e.preventDefault();
+            this.announceAction(`Keyboard shortcut: ${shortcut.description}`);
+          }
+        });
+      }
+      
+      registerShortcut(key, handler, description) {
+        this.shortcuts.set(key.toLowerCase(), { handler, description });
+      }
+      
+      enhanceTabOrder() {
+        // Ensure logical tab order
+        const interactiveElements = document.querySelectorAll(
+          'a[href], button, input, select, textarea, [tabindex]:not([tabindex="-1"]), [role="button"], [role="link"], [role="menuitem"], [role="tab"]'
+        );
+        
+        // Remove problematic tabindex values and ensure logical order
+        interactiveElements.forEach((element, index) => {
+          const tabIndex = parseInt(element.getAttribute('tabindex')) || 0;
+          
+          // Remove positive tabindex values to maintain natural order
+          if (tabIndex > 0) {
+            element.setAttribute('tabindex', '0');
+          }
+          
+          // Ensure elements are keyboard accessible
+          if (!element.hasAttribute('tabindex') && element.matches('[role="button"], [role="link"], [role="menuitem"], [role="tab"]')) {
+            element.setAttribute('tabindex', '0');
+          }
+        });
+        
+        // Setup roaming tabindex for radio groups
+        const radioGroups = new Map();
+        document.querySelectorAll('input[type="radio"]').forEach(radio => {
+          const name = radio.name;
+          if (!radioGroups.has(name)) {
+            radioGroups.set(name, []);
+          }
+          radioGroups.get(name).push(radio);
+        });
+        
+        radioGroups.forEach((radios, groupName) => {
+          this.setupRoamingTabIndex(radios);
+        });
+      }
+      
+      setupRoamingTabIndex(elements) {
+        // Only one element in group should be tabbable
+        const checked = elements.find(el => el.checked) || elements[0];
+        
+        elements.forEach(el => {
+          el.setAttribute('tabindex', el === checked ? '0' : '-1');
+        });
+        
+        elements.forEach(el => {
+          el.addEventListener('focus', () => {
+            elements.forEach(other => {
+              other.setAttribute('tabindex', other === el ? '0' : '-1');
+            });
+          });
+        });
+        
+        this.roamingTabIndex.set(elements[0], elements);
+      }
+      
+      setupFocusManagement() {
+        // Track focus history for better UX
+        document.addEventListener('focusin', (e) => {
+          this.focusHistory.push(e.target);
+          if (this.focusHistory.length > 10) {
+            this.focusHistory.shift();
+          }
+        });
+        
+        // Enhanced focus management for dynamic content
+        const observer = new MutationObserver((mutations) => {
+          mutations.forEach(mutation => {
+            if (mutation.type === 'childList') {
+              mutation.addedNodes.forEach(node => {
+                if (node.nodeType === Node.ELEMENT_NODE) {
+                  this.enhanceNewContent(node);
+                }
+              });
+            }
+          });
+        });
+        
+        observer.observe(document.body, {
+          childList: true,
+          subtree: true
+        });
+      }
+      
+      enhanceNewContent(container) {
+        // Enhance newly added content
+        const interactiveElements = container.querySelectorAll(
+          'a[href], button, input, select, textarea, [role="button"], [role="link"]'
+        );
+        
+        interactiveElements.forEach(element => {
+          if (!element.hasAttribute('tabindex') && element.matches('[role="button"], [role="link"]')) {
+            element.setAttribute('tabindex', '0');
+          }
+        });
+      }
+      
+      setupArrowKeyNavigation() {
+        // Arrow key navigation for menus
+        document.addEventListener('keydown', (e) => {
+          const target = e.target;
+          
+          // Menu navigation
+          if (target.matches('[role="menuitem"], [role="option"]') && ['ArrowUp', 'ArrowDown', 'Home', 'End'].includes(e.key)) {
+            e.preventDefault();
+            this.handleMenuNavigation(target, e.key);
+          }
+          
+          // Tab navigation
+          if (target.matches('[role="tab"]') && ['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(e.key)) {
+            e.preventDefault();
+            this.handleTabNavigation(target, e.key);
+          }
+          
+          // Radio group navigation
+          if (target.matches('input[type="radio"]') && ['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(e.key)) {
+            e.preventDefault();
+            this.handleRadioNavigation(target, e.key);
+          }
+          
+          // Grid navigation (for card layouts, etc.)
+          if (target.closest('[role="grid"]') && ['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(e.key)) {
+            e.preventDefault();
+            this.handleGridNavigation(target, e.key);
+          }
+        });
+      }
+      
+      handleMenuNavigation(current, key) {
+        const menu = current.closest('[role="menu"], [role="listbox"]');
+        if (!menu) return;
+        
+        const items = Array.from(menu.querySelectorAll('[role="menuitem"], [role="option"]'));
+        const currentIndex = items.indexOf(current);
+        
+        let nextIndex;
+        switch (key) {
+          case 'ArrowUp':
+            nextIndex = currentIndex > 0 ? currentIndex - 1 : items.length - 1;
+            break;
+          case 'ArrowDown':
+            nextIndex = currentIndex < items.length - 1 ? currentIndex + 1 : 0;
+            break;
+          case 'Home':
+            nextIndex = 0;
+            break;
+          case 'End':
+            nextIndex = items.length - 1;
+            break;
+        }
+        
+        if (nextIndex !== undefined) {
+          items[nextIndex].focus();
+        }
+      }
+      
+      handleTabNavigation(current, key) {
+        const tablist = current.closest('[role="tablist"]');
+        if (!tablist) return;
+        
+        const tabs = Array.from(tablist.querySelectorAll('[role="tab"]'));
+        const currentIndex = tabs.indexOf(current);
+        
+        let nextIndex;
+        switch (key) {
+          case 'ArrowLeft':
+            nextIndex = currentIndex > 0 ? currentIndex - 1 : tabs.length - 1;
+            break;
+          case 'ArrowRight':
+            nextIndex = currentIndex < tabs.length - 1 ? currentIndex + 1 : 0;
+            break;
+          case 'Home':
+            nextIndex = 0;
+            break;
+          case 'End':
+            nextIndex = tabs.length - 1;
+            break;
+        }
+        
+        if (nextIndex !== undefined) {
+          tabs[nextIndex].focus();
+          tabs[nextIndex].click(); // Activate tab
+        }
+      }
+      
+      handleRadioNavigation(current, key) {
+        const group = this.roamingTabIndex.get(current) || 
+                     Array.from(document.querySelectorAll(`input[type="radio"][name="${current.name}"]`));
+        
+        const currentIndex = group.indexOf(current);
+        let nextIndex;
+        
+        switch (key) {
+          case 'ArrowUp':
+          case 'ArrowLeft':
+            nextIndex = currentIndex > 0 ? currentIndex - 1 : group.length - 1;
+            break;
+          case 'ArrowDown':
+          case 'ArrowRight':
+            nextIndex = currentIndex < group.length - 1 ? currentIndex + 1 : 0;
+            break;
+        }
+        
+        if (nextIndex !== undefined) {
+          group[nextIndex].focus();
+          group[nextIndex].checked = true;
+          group[nextIndex].dispatchEvent(new Event('change', { bubbles: true }));
+        }
+      }
+      
+      handleGridNavigation(current, key) {
+        const grid = current.closest('[role="grid"]');
+        const cells = Array.from(grid.querySelectorAll('[role="gridcell"], [role="cell"]'));
+        const currentIndex = cells.indexOf(current);
+        
+        // Calculate grid dimensions
+        const rows = Array.from(grid.querySelectorAll('[role="row"]'));
+        const columnsPerRow = rows.length > 0 ? rows[0].querySelectorAll('[role="gridcell"], [role="cell"]').length : 1;
+        
+        let nextIndex;
+        switch (key) {
+          case 'ArrowUp':
+            nextIndex = currentIndex - columnsPerRow;
+            if (nextIndex < 0) nextIndex = currentIndex;
+            break;
+          case 'ArrowDown':
+            nextIndex = currentIndex + columnsPerRow;
+            if (nextIndex >= cells.length) nextIndex = currentIndex;
+            break;
+          case 'ArrowLeft':
+            nextIndex = currentIndex > 0 ? currentIndex - 1 : currentIndex;
+            break;
+          case 'ArrowRight':
+            nextIndex = currentIndex < cells.length - 1 ? currentIndex + 1 : currentIndex;
+            break;
+        }
+        
+        if (nextIndex !== undefined && cells[nextIndex]) {
+          cells[nextIndex].focus();
+        }
+      }
+      
+      setupEscapeHandling() {
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape') {
+            // Close current focus trap (modal, dropdown, etc.)
+            if (this.currentFocusTrap) {
+              this.releaseFocusTrap();
+              return;
+            }
+            
+            // Close open dropdowns
+            const openDropdowns = document.querySelectorAll('[aria-expanded="true"]');
+            let closed = false;
+            openDropdowns.forEach(trigger => {
+              trigger.setAttribute('aria-expanded', 'false');
+              trigger.focus();
+              closed = true;
+            });
+            
+            if (closed) {
+              this.announceAction('Dropdown closed');
+              return;
+            }
+            
+            // Return focus to previous element
+            if (this.focusHistory.length > 1) {
+              const previous = this.focusHistory[this.focusHistory.length - 2];
+              if (previous && document.contains(previous)) {
+                previous.focus();
+              }
+            }
+          }
+        });
+      }
+      
+      setupSkipLinks() {
+        // Create skip links if they don't exist
+        if (!document.querySelector('.skip-link')) {
+          const skipLinks = [
+            { href: '#main', text: 'Skip to main content' },
+            { href: '#navigation', text: 'Skip to navigation' },
+            { href: '#footer', text: 'Skip to footer' }
+          ];
+          
+          const skipContainer = document.createElement('div');
+          skipContainer.className = 'skip-links';
+          
+          skipLinks.forEach(link => {
+            const target = document.querySelector(link.href) || 
+                          document.querySelector(`[id="${link.href.slice(1)}"]`) ||
+                          document.querySelector(`main, nav, footer`);
+            
+            if (target) {
+              const skipLink = document.createElement('a');
+              skipLink.href = link.href;
+              skipLink.textContent = link.text;
+              skipLink.className = 'skip-link';
+              skipLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                target.focus();
+                target.scrollIntoView({ behavior: 'smooth' });
+                this.announceAction(`Skipped to ${link.text.toLowerCase()}`);
+              });
+              skipContainer.appendChild(skipLink);
+            }
+          });
+          
+          document.body.insertBefore(skipContainer, document.body.firstChild);
+        }
+      }
+      
+      monitorFocusChanges() {
+        let lastFocusedElement = null;
+        
+        document.addEventListener('focusin', (e) => {
+          if (this.isKeyboardUser) {
+            // Announce focus changes for screen readers
+            const element = e.target;
+            const role = element.getAttribute('role');
+            const label = element.getAttribute('aria-label') || 
+                         element.textContent.trim() || 
+                         element.value || 
+                         element.alt || 
+                         element.title;
+            
+            if (label && element !== lastFocusedElement) {
+              const type = role || element.tagName.toLowerCase();
+              // Don't over-announce, let screen readers handle most cases
+              lastFocusedElement = element;
+            }
+          }
+        });
+      }
+      
+      createFocusTrap(container) {
+        const focusableElements = container.querySelectorAll(
+          'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+        );
+        
+        if (focusableElements.length === 0) return null;
+        
+        const firstElement = focusableElements[0];
+        const lastElement = focusableElements[focusableElements.length - 1];
+        
+        this.currentFocusTrap = {
+          container,
+          firstElement,
+          lastElement,
+          previousFocus: document.activeElement
+        };
+        
+        container.classList.add('focus-trap-container');
+        document.body.classList.add('focus-trap-active');
+        
+        const trapHandler = (e) => {
+          if (e.key === 'Tab') {
+            if (e.shiftKey) {
+              if (document.activeElement === firstElement) {
+                e.preventDefault();
+                lastElement.focus();
+              }
+            } else {
+              if (document.activeElement === lastElement) {
+                e.preventDefault();
+                firstElement.focus();
+              }
+            }
+          }
+        };
+        
+        container.addEventListener('keydown', trapHandler);
+        this.currentFocusTrap.handler = trapHandler;
+        
+        // Focus first element
+        firstElement.focus();
+        
+        return this.currentFocusTrap;
+      }
+      
+      releaseFocusTrap() {
+        if (!this.currentFocusTrap) return;
+        
+        const { container, handler, previousFocus } = this.currentFocusTrap;
+        
+        container.removeEventListener('keydown', handler);
+        container.classList.remove('focus-trap-container');
+        document.body.classList.remove('focus-trap-active');
+        
+        // Return focus
+        if (previousFocus && document.contains(previousFocus)) {
+          previousFocus.focus();
+        }
+        
+        this.currentFocusTrap = null;
+        this.announceAction('Dialog closed');
+      }
+      
+      showKeyboardShortcuts() {
+        const modal = document.createElement('div');
+        modal.className = 'keyboard-shortcuts-modal';
+        modal.setAttribute('role', 'dialog');
+        modal.setAttribute('aria-modal', 'true');
+        modal.setAttribute('aria-labelledby', 'shortcuts-title');
+        
+        modal.innerHTML = `
+          <div class="modal-content">
+            <div class="modal-header">
+              <h2 id="shortcuts-title">Keyboard Shortcuts</h2>
+              <button type="button" class="close-button" aria-label="Close shortcuts">×</button>
+            </div>
+            <div class="modal-body">
+              <ul class="shortcuts-list">
+                ${Array.from(this.shortcuts.entries()).map(([key, {description}]) => 
+                  `<li><kbd class="keyboard-shortcut">${key.toUpperCase()}</kbd> ${description}</li>`
+                ).join('')}
+                <li><kbd class="keyboard-shortcut">ESC</kbd> Close dialogs and menus</li>
+                <li><kbd class="keyboard-shortcut">TAB</kbd> Navigate forward</li>
+                <li><kbd class="keyboard-shortcut">SHIFT+TAB</kbd> Navigate backward</li>
+                <li><kbd class="keyboard-shortcut">ENTER</kbd> Activate buttons and links</li>
+                <li><kbd class="keyboard-shortcut">SPACE</kbd> Activate buttons and checkboxes</li>
+                <li><kbd class="keyboard-shortcut">ARROW KEYS</kbd> Navigate menus and options</li>
+              </ul>
+            </div>
+          </div>
+        `;
+        
+        // Add styles
+        modal.style.cssText = `
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: rgba(0, 0, 0, 0.5);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          z-index: 10000;
+        `;
+        
+        const content = modal.querySelector('.modal-content');
+        content.style.cssText = `
+          background: white;
+          border-radius: 8px;
+          padding: 24px;
+          max-width: 500px;
+          max-height: 80vh;
+          overflow-y: auto;
+          box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        `;
+        
+        document.body.appendChild(modal);
+        
+        // Setup focus trap and close handlers
+        this.createFocusTrap(modal);
+        
+        const closeButton = modal.querySelector('.close-button');
+        const closeModal = () => {
+          this.releaseFocusTrap();
+          document.body.removeChild(modal);
+        };
+        
+        closeButton.addEventListener('click', closeModal);
+        modal.addEventListener('click', (e) => {
+          if (e.target === modal) closeModal();
+        });
+      }
+      
+      announceAction(message) {
+        // Use the global announce function from AriaEnhancer
+        if (window.announceToScreenReader) {
+          window.announceToScreenReader(message);
+        }
+      }
+    }
+    
+    // Expose utilities globally
+    window.keyboardNav = {
+      createFocusTrap: (container) => new KeyboardNavigationEnhancer().createFocusTrap(container),
+      releaseFocusTrap: () => new KeyboardNavigationEnhancer().releaseFocusTrap(),
+      showShortcuts: () => new KeyboardNavigationEnhancer().showKeyboardShortcuts()
+    };
+  });
+</script>
+
+<style>
+  /* Skip links container */
+  .skip-links {
+    position: absolute;
+    top: -100px;
+    left: 0;
+    z-index: 100000;
+  }
+  
+  .skip-link {
+    position: absolute;
+    top: -100px;
+    left: 8px;
+    background: #1f2937;
+    color: #ffffff;
+    padding: 8px 12px;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: 600;
+    transition: top 0.3s ease;
+  }
+  
+  .skip-link:focus {
+    top: 8px;
+  }
+  
+  /* Keyboard shortcuts modal styles */
+  .keyboard-shortcuts-modal .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #e5e7eb;
+  }
+  
+  .keyboard-shortcuts-modal .close-button {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 4px 8px;
+    border-radius: 4px;
+  }
+  
+  .keyboard-shortcuts-modal .close-button:hover {
+    background: #f3f4f6;
+  }
+  
+  .shortcuts-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .shortcuts-list li {
+    display: flex;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid #f3f4f6;
+  }
+  
+  .shortcuts-list li:last-child {
+    border-bottom: none;
+  }
+  
+  .shortcuts-list .keyboard-shortcut {
+    margin-right: 16px;
+    min-width: 60px;
+    text-align: center;
+  }
+</style>

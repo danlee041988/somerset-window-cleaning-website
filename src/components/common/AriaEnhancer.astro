@@ -1,0 +1,759 @@
+---
+/**
+ * ARIA Labels and Semantic HTML Enhancer
+ * 
+ * Automatically enhances the site with proper ARIA labels, landmarks,
+ * and semantic HTML structure for WCAG 2.1 AA compliance.
+ * 
+ * Features:
+ * - Dynamic ARIA label generation
+ * - Landmark region identification
+ * - Role assignments for UI components
+ * - Accessible descriptions and help text
+ * - Live region management
+ * - Screen reader optimizations
+ */
+---
+
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', function() {
+    console.log('🏷️ Initializing ARIA enhancements...');
+    
+    // Initialize ARIA enhancer
+    const ariaEnhancer = new ARIAEnhancer();
+    ariaEnhancer.enhanceDocument();
+    
+    class ARIAEnhancer {
+      constructor() {
+        this.enhanced = new Set();
+        this.setupLiveRegions();
+      }
+      
+      enhanceDocument() {
+        this.enhanceLandmarks();
+        this.enhanceNavigationElements();
+        this.enhanceFormElements();
+        this.enhanceInteractiveElements();
+        this.enhanceContentStructure();
+        this.enhanceImages();
+        this.enhanceTablesAndLists();
+        this.enhanceModalsAndDialogs();
+        this.setupKeyboardTraps();
+        
+        console.log('✅ ARIA enhancements complete');
+      }
+      
+      setupLiveRegions() {
+        // Create polite live region for announcements
+        if (!document.getElementById('aria-live-polite')) {
+          const politeRegion = document.createElement('div');
+          politeRegion.id = 'aria-live-polite';
+          politeRegion.setAttribute('aria-live', 'polite');
+          politeRegion.setAttribute('aria-atomic', 'true');
+          politeRegion.className = 'sr-only';
+          document.body.appendChild(politeRegion);
+        }
+        
+        // Create assertive live region for urgent announcements
+        if (!document.getElementById('aria-live-assertive')) {
+          const assertiveRegion = document.createElement('div');
+          assertiveRegion.id = 'aria-live-assertive';
+          assertiveRegion.setAttribute('aria-live', 'assertive');
+          assertiveRegion.setAttribute('aria-atomic', 'true');
+          assertiveRegion.className = 'sr-only';
+          document.body.appendChild(assertiveRegion);
+        }
+      }
+      
+      enhanceLandmarks() {
+        // Main content area
+        const main = document.querySelector('main');
+        if (main && !main.hasAttribute('role')) {
+          main.setAttribute('role', 'main');
+          main.setAttribute('aria-label', 'Main content');
+        }
+        
+        // Header
+        const header = document.querySelector('header');
+        if (header && !header.hasAttribute('role')) {
+          header.setAttribute('role', 'banner');
+          header.setAttribute('aria-label', 'Site header');
+        }
+        
+        // Footer
+        const footer = document.querySelector('footer');
+        if (footer && !footer.hasAttribute('role')) {
+          footer.setAttribute('role', 'contentinfo');
+          footer.setAttribute('aria-label', 'Site footer');
+        }
+        
+        // Navigation areas
+        const navElements = document.querySelectorAll('nav');
+        navElements.forEach((nav, index) => {
+          if (!nav.hasAttribute('role')) {
+            nav.setAttribute('role', 'navigation');
+          }
+          if (!nav.hasAttribute('aria-label')) {
+            // Try to determine navigation type
+            if (nav.closest('header')) {
+              nav.setAttribute('aria-label', 'Main navigation');
+            } else if (nav.closest('footer')) {
+              nav.setAttribute('aria-label', 'Footer navigation');
+            } else if (nav.querySelector('.breadcrumb')) {
+              nav.setAttribute('aria-label', 'Breadcrumb');
+            } else {
+              nav.setAttribute('aria-label', `Navigation ${index + 1}`);
+            }
+          }
+        });
+        
+        // Aside/sidebar content
+        const asideElements = document.querySelectorAll('aside');
+        asideElements.forEach((aside, index) => {
+          if (!aside.hasAttribute('role')) {
+            aside.setAttribute('role', 'complementary');
+          }
+          if (!aside.hasAttribute('aria-label')) {
+            aside.setAttribute('aria-label', `Sidebar ${index + 1}`);
+          }
+        });
+        
+        // Article content
+        const articles = document.querySelectorAll('article');
+        articles.forEach((article, index) => {
+          if (!article.hasAttribute('role')) {
+            article.setAttribute('role', 'article');
+          }
+          if (!article.hasAttribute('aria-label')) {
+            const heading = article.querySelector('h1, h2, h3, h4, h5, h6');
+            const label = heading ? heading.textContent.trim() : `Article ${index + 1}`;
+            article.setAttribute('aria-label', label);
+          }
+        });
+        
+        // Section content
+        const sections = document.querySelectorAll('section');
+        sections.forEach((section, index) => {
+          if (!section.hasAttribute('role')) {
+            section.setAttribute('role', 'region');
+          }
+          if (!section.hasAttribute('aria-label') && !section.hasAttribute('aria-labelledby')) {
+            const heading = section.querySelector('h1, h2, h3, h4, h5, h6');
+            if (heading && heading.id) {
+              section.setAttribute('aria-labelledby', heading.id);
+            } else if (heading) {
+              // Create ID for heading if it doesn't have one
+              const headingId = `heading-${Date.now()}-${index}`;
+              heading.id = headingId;
+              section.setAttribute('aria-labelledby', headingId);
+            } else {
+              section.setAttribute('aria-label', `Section ${index + 1}`);
+            }
+          }
+        });
+      }
+      
+      enhanceNavigationElements() {
+        // Menu buttons
+        const menuButtons = document.querySelectorAll('[data-aw-toggle-menu], [data-mobile-menu-toggle]');
+        menuButtons.forEach(button => {
+          if (!button.hasAttribute('aria-label')) {
+            button.setAttribute('aria-label', 'Toggle navigation menu');
+          }
+          if (!button.hasAttribute('aria-expanded')) {
+            button.setAttribute('aria-expanded', 'false');
+          }
+          if (!button.hasAttribute('aria-controls')) {
+            // Try to find the menu it controls
+            const menu = document.querySelector('nav, [data-mobile-nav]');
+            if (menu && menu.id) {
+              button.setAttribute('aria-controls', menu.id);
+            }
+          }
+        });
+        
+        // Dropdown menus
+        const dropdownToggles = document.querySelectorAll('[data-dropdown-toggle]');
+        dropdownToggles.forEach(toggle => {
+          if (!toggle.hasAttribute('aria-haspopup')) {
+            toggle.setAttribute('aria-haspopup', 'true');
+          }
+          if (!toggle.hasAttribute('aria-expanded')) {
+            toggle.setAttribute('aria-expanded', 'false');
+          }
+          
+          // Find associated menu
+          const menu = toggle.nextElementSibling || toggle.parentElement.querySelector('[data-dropdown-menu]');
+          if (menu) {
+            if (!menu.id) {
+              menu.id = `dropdown-menu-${Date.now()}`;
+            }
+            toggle.setAttribute('aria-controls', menu.id);
+            
+            if (!menu.hasAttribute('role')) {
+              menu.setAttribute('role', 'menu');
+            }
+            
+            // Enhance menu items
+            const menuItems = menu.querySelectorAll('a, button');
+            menuItems.forEach(item => {
+              if (!item.hasAttribute('role')) {
+                item.setAttribute('role', 'menuitem');
+              }
+            });
+          }
+        });
+        
+        // Breadcrumb navigation
+        const breadcrumbs = document.querySelectorAll('.breadcrumb, [aria-label*="breadcrumb" i]');
+        breadcrumbs.forEach(breadcrumb => {
+          if (!breadcrumb.hasAttribute('role')) {
+            breadcrumb.setAttribute('role', 'navigation');
+          }
+          if (!breadcrumb.hasAttribute('aria-label')) {
+            breadcrumb.setAttribute('aria-label', 'Breadcrumb');
+          }
+          
+          const list = breadcrumb.querySelector('ol, ul');
+          if (list && !list.hasAttribute('role')) {
+            list.setAttribute('role', 'list');
+          }
+        });
+        
+        // Pagination
+        const pagination = document.querySelectorAll('.pagination, [aria-label*="pagination" i]');
+        pagination.forEach(pag => {
+          if (!pag.hasAttribute('role')) {
+            pag.setAttribute('role', 'navigation');
+          }
+          if (!pag.hasAttribute('aria-label')) {
+            pag.setAttribute('aria-label', 'Pagination');
+          }
+        });
+      }
+      
+      enhanceFormElements() {
+        // Form containers
+        const forms = document.querySelectorAll('form');
+        forms.forEach((form, index) => {
+          if (!form.hasAttribute('role')) {
+            form.setAttribute('role', 'form');
+          }
+          if (!form.hasAttribute('aria-label')) {
+            const legend = form.querySelector('legend');
+            const heading = form.querySelector('h1, h2, h3, h4, h5, h6');
+            const label = legend?.textContent.trim() || heading?.textContent.trim() || `Form ${index + 1}`;
+            form.setAttribute('aria-label', label);
+          }
+        });
+        
+        // Input groups and fieldsets
+        const fieldsets = document.querySelectorAll('fieldset');
+        fieldsets.forEach(fieldset => {
+          if (!fieldset.hasAttribute('role')) {
+            fieldset.setAttribute('role', 'group');
+          }
+          
+          const legend = fieldset.querySelector('legend');
+          if (legend && !fieldset.hasAttribute('aria-labelledby')) {
+            if (!legend.id) {
+              legend.id = `legend-${Date.now()}`;
+            }
+            fieldset.setAttribute('aria-labelledby', legend.id);
+          }
+        });
+        
+        // Required field indicators
+        const requiredInputs = document.querySelectorAll('input[required], select[required], textarea[required]');
+        requiredInputs.forEach(input => {
+          if (!input.hasAttribute('aria-required')) {
+            input.setAttribute('aria-required', 'true');
+          }
+          
+          // Add required indicator to label if not present
+          const label = document.querySelector(`label[for="${input.id}"]`);
+          if (label && !label.textContent.includes('*') && !label.querySelector('.required')) {
+            const requiredSpan = document.createElement('span');
+            requiredSpan.className = 'required';
+            requiredSpan.setAttribute('aria-label', 'required');
+            requiredSpan.textContent = ' *';
+            label.appendChild(requiredSpan);
+          }
+        });
+        
+        // Error messages
+        const inputsWithErrors = document.querySelectorAll('.error input, .has-error input, input.error');
+        inputsWithErrors.forEach(input => {
+          if (!input.hasAttribute('aria-invalid')) {
+            input.setAttribute('aria-invalid', 'true');
+          }
+          
+          // Look for error message
+          const errorId = input.id + '-error';
+          let errorElement = document.getElementById(errorId);
+          
+          if (!errorElement) {
+            // Look for nearby error message
+            errorElement = input.parentElement.querySelector('.error-message, .help-block, .invalid-feedback');
+            if (errorElement && !errorElement.id) {
+              errorElement.id = errorId;
+            }
+          }
+          
+          if (errorElement && !input.hasAttribute('aria-describedby')) {
+            input.setAttribute('aria-describedby', errorElement.id);
+            if (!errorElement.hasAttribute('role')) {
+              errorElement.setAttribute('role', 'alert');
+            }
+          }
+        });
+        
+        // Help text
+        const inputsWithHelp = document.querySelectorAll('input, select, textarea');
+        inputsWithHelp.forEach(input => {
+          const helpElement = input.parentElement.querySelector('.help-text, .form-help, .field-help');
+          if (helpElement && !input.hasAttribute('aria-describedby')) {
+            if (!helpElement.id) {
+              helpElement.id = `${input.id || 'input'}-help-${Date.now()}`;
+            }
+            input.setAttribute('aria-describedby', helpElement.id);
+          }
+        });
+        
+        // Search forms
+        const searchInputs = document.querySelectorAll('input[type="search"], input[placeholder*="search" i]');
+        searchInputs.forEach(input => {
+          if (!input.hasAttribute('role')) {
+            input.setAttribute('role', 'searchbox');
+          }
+          if (!input.hasAttribute('aria-label') && !input.hasAttribute('aria-labelledby')) {
+            input.setAttribute('aria-label', 'Search');
+          }
+        });
+      }
+      
+      enhanceInteractiveElements() {
+        // Buttons without proper labels
+        const buttons = document.querySelectorAll('button, [role="button"]');
+        buttons.forEach(button => {
+          if (!button.hasAttribute('aria-label') && !button.textContent.trim() && !button.hasAttribute('aria-labelledby')) {
+            // Try to infer purpose from context
+            const icon = button.querySelector('svg, i, [class*="icon"]');
+            const parent = button.closest('[data-purpose]');
+            
+            if (button.classList.contains('close') || button.querySelector('.close')) {
+              button.setAttribute('aria-label', 'Close');
+            } else if (button.type === 'submit') {
+              button.setAttribute('aria-label', 'Submit form');
+            } else if (parent) {
+              const purpose = parent.getAttribute('data-purpose');
+              button.setAttribute('aria-label', purpose);
+            } else if (icon) {
+              button.setAttribute('aria-label', 'Action button');
+            }
+          }
+          
+          // Disabled state
+          if (button.disabled && !button.hasAttribute('aria-disabled')) {
+            button.setAttribute('aria-disabled', 'true');
+          }
+        });
+        
+        // Links that open in new windows
+        const externalLinks = document.querySelectorAll('a[target="_blank"]');
+        externalLinks.forEach(link => {
+          if (!link.hasAttribute('aria-label') && !link.textContent.includes('(opens in new window)')) {
+            const currentLabel = link.getAttribute('aria-label') || link.textContent.trim();
+            link.setAttribute('aria-label', `${currentLabel} (opens in new window)`);
+          }
+        });
+        
+        // Skip links
+        const skipLinks = document.querySelectorAll('a[href^="#"]:first-child, .skip-link');
+        skipLinks.forEach(link => {
+          if (!link.hasAttribute('aria-label')) {
+            link.setAttribute('aria-label', 'Skip to main content');
+          }
+        });
+        
+        // Toggle buttons
+        const toggleButtons = document.querySelectorAll('[data-toggle], .toggle, [aria-pressed]');
+        toggleButtons.forEach(toggle => {
+          if (!toggle.hasAttribute('aria-pressed')) {
+            toggle.setAttribute('aria-pressed', 'false');
+          }
+          if (!toggle.hasAttribute('role')) {
+            toggle.setAttribute('role', 'switch');
+          }
+        });
+        
+        // Accordion/collapsible content
+        const accordionButtons = document.querySelectorAll('[data-bs-toggle="collapse"], [data-toggle="collapse"], .accordion-toggle');
+        accordionButtons.forEach(button => {
+          if (!button.hasAttribute('aria-expanded')) {
+            button.setAttribute('aria-expanded', 'false');
+          }
+          
+          // Find target
+          const target = button.getAttribute('data-bs-target') || button.getAttribute('data-target') || button.getAttribute('href');
+          if (target && target.startsWith('#')) {
+            const targetElement = document.querySelector(target);
+            if (targetElement) {
+              if (!targetElement.id) {
+                targetElement.id = target.slice(1);
+              }
+              button.setAttribute('aria-controls', targetElement.id);
+              
+              if (!targetElement.hasAttribute('role')) {
+                targetElement.setAttribute('role', 'region');
+              }
+            }
+          }
+        });
+      }
+      
+      enhanceContentStructure() {
+        // Ensure heading hierarchy
+        const headings = document.querySelectorAll('h1, h2, h3, h4, h5, h6');
+        headings.forEach((heading, index) => {
+          if (!heading.id && heading.textContent.trim()) {
+            // Create ID from text content
+            const id = heading.textContent.trim()
+              .toLowerCase()
+              .replace(/[^\w\s-]/g, '')
+              .replace(/\s+/g, '-')
+              .replace(/-+/g, '-')
+              .replace(/^-|-$/g, '');
+            heading.id = id || `heading-${index}`;
+          }
+        });
+        
+        // Lists
+        const lists = document.querySelectorAll('ul, ol');
+        lists.forEach(list => {
+          if (!list.hasAttribute('role')) {
+            list.setAttribute('role', 'list');
+          }
+          
+          const items = list.querySelectorAll('li');
+          items.forEach(item => {
+            if (!item.hasAttribute('role')) {
+              item.setAttribute('role', 'listitem');
+            }
+          });
+        });
+        
+        // Definition lists
+        const definitionLists = document.querySelectorAll('dl');
+        definitionLists.forEach(dl => {
+          if (!dl.hasAttribute('role')) {
+            dl.setAttribute('role', 'list');
+          }
+          
+          const terms = dl.querySelectorAll('dt');
+          const definitions = dl.querySelectorAll('dd');
+          
+          terms.forEach(term => {
+            if (!term.hasAttribute('role')) {
+              term.setAttribute('role', 'term');
+            }
+          });
+          
+          definitions.forEach(def => {
+            if (!def.hasAttribute('role')) {
+              def.setAttribute('role', 'definition');
+            }
+          });
+        });
+        
+        // Blockquotes
+        const blockquotes = document.querySelectorAll('blockquote');
+        blockquotes.forEach(quote => {
+          if (!quote.hasAttribute('role')) {
+            quote.setAttribute('role', 'blockquote');
+          }
+          
+          const cite = quote.querySelector('cite');
+          if (cite && !quote.hasAttribute('aria-labelledby')) {
+            if (!cite.id) {
+              cite.id = `cite-${Date.now()}`;
+            }
+            quote.setAttribute('aria-labelledby', cite.id);
+          }
+        });
+      }
+      
+      enhanceImages() {
+        // Images without alt text
+        const images = document.querySelectorAll('img');
+        images.forEach(img => {
+          if (!img.hasAttribute('alt')) {
+            // Try to infer alt text from context
+            const figure = img.closest('figure');
+            const caption = figure?.querySelector('figcaption');
+            
+            if (caption) {
+              img.alt = caption.textContent.trim();
+            } else if (img.title) {
+              img.alt = img.title;
+            } else {
+              // Check if decorative
+              if (img.closest('.decoration, .bg-image') || img.classList.contains('decoration')) {
+                img.alt = '';
+                img.setAttribute('role', 'presentation');
+              } else {
+                console.warn('Image missing alt text:', img.src);
+                img.alt = 'Image';
+              }
+            }
+          }
+          
+          // Empty alt for decorative images
+          if (img.alt === '' && !img.hasAttribute('role')) {
+            img.setAttribute('role', 'presentation');
+          }
+        });
+        
+        // Figure elements
+        const figures = document.querySelectorAll('figure');
+        figures.forEach(figure => {
+          if (!figure.hasAttribute('role')) {
+            figure.setAttribute('role', 'img');
+          }
+          
+          const caption = figure.querySelector('figcaption');
+          const img = figure.querySelector('img');
+          
+          if (caption && img && !figure.hasAttribute('aria-labelledby')) {
+            if (!caption.id) {
+              caption.id = `caption-${Date.now()}`;
+            }
+            figure.setAttribute('aria-labelledby', caption.id);
+          }
+        });
+      }
+      
+      enhanceTablesAndLists() {
+        // Data tables
+        const tables = document.querySelectorAll('table');
+        tables.forEach(table => {
+          if (!table.hasAttribute('role')) {
+            table.setAttribute('role', 'table');
+          }
+          
+          // Caption
+          const caption = table.querySelector('caption');
+          if (caption && !table.hasAttribute('aria-labelledby')) {
+            if (!caption.id) {
+              caption.id = `table-caption-${Date.now()}`;
+            }
+            table.setAttribute('aria-labelledby', caption.id);
+          }
+          
+          // Headers
+          const headers = table.querySelectorAll('th');
+          headers.forEach(th => {
+            if (!th.hasAttribute('role')) {
+              th.setAttribute('role', 'columnheader');
+            }
+            if (!th.hasAttribute('scope')) {
+              th.setAttribute('scope', 'col');
+            }
+          });
+          
+          // Cells
+          const cells = table.querySelectorAll('td');
+          cells.forEach(td => {
+            if (!td.hasAttribute('role')) {
+              td.setAttribute('role', 'cell');
+            }
+          });
+          
+          // Rows
+          const rows = table.querySelectorAll('tr');
+          rows.forEach(tr => {
+            if (!tr.hasAttribute('role')) {
+              tr.setAttribute('role', 'row');
+            }
+          });
+        });
+      }
+      
+      enhanceModalsAndDialogs() {
+        // Modal dialogs
+        const modals = document.querySelectorAll('.modal, [role="dialog"], [aria-modal]');
+        modals.forEach(modal => {
+          if (!modal.hasAttribute('role')) {
+            modal.setAttribute('role', 'dialog');
+          }
+          if (!modal.hasAttribute('aria-modal')) {
+            modal.setAttribute('aria-modal', 'true');
+          }
+          
+          // Find title
+          const title = modal.querySelector('.modal-title, h1, h2, h3, h4, h5, h6');
+          if (title && !modal.hasAttribute('aria-labelledby')) {
+            if (!title.id) {
+              title.id = `modal-title-${Date.now()}`;
+            }
+            modal.setAttribute('aria-labelledby', title.id);
+          }
+          
+          // Close buttons
+          const closeButtons = modal.querySelectorAll('.close, [data-dismiss="modal"], [data-bs-dismiss="modal"]');
+          closeButtons.forEach(btn => {
+            if (!btn.hasAttribute('aria-label')) {
+              btn.setAttribute('aria-label', 'Close dialog');
+            }
+          });
+        });
+        
+        // Tooltips
+        const tooltipTriggers = document.querySelectorAll('[data-tooltip], [title]');
+        tooltipTriggers.forEach(trigger => {
+          if (!trigger.hasAttribute('aria-describedby')) {
+            const tooltipId = `tooltip-${Date.now()}`;
+            trigger.setAttribute('aria-describedby', tooltipId);
+            
+            // Create hidden tooltip container if needed
+            let tooltip = document.getElementById(tooltipId);
+            if (!tooltip) {
+              tooltip = document.createElement('div');
+              tooltip.id = tooltipId;
+              tooltip.className = 'sr-only';
+              tooltip.setAttribute('role', 'tooltip');
+              tooltip.textContent = trigger.getAttribute('data-tooltip') || trigger.title;
+              document.body.appendChild(tooltip);
+            }
+          }
+        });
+      }
+      
+      setupKeyboardTraps() {
+        // Focus trap for modals
+        const activeModals = document.querySelectorAll('.modal.show, [aria-modal="true"]:not([aria-hidden="true"])');
+        activeModals.forEach(modal => {
+          this.createFocusTrap(modal);
+        });
+      }
+      
+      createFocusTrap(container) {
+        const focusableElements = container.querySelectorAll(
+          'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+        );
+        
+        if (focusableElements.length === 0) return;
+        
+        const firstElement = focusableElements[0];
+        const lastElement = focusableElements[focusableElements.length - 1];
+        
+        container.addEventListener('keydown', function(e) {
+          if (e.key === 'Tab') {
+            if (e.shiftKey) {
+              if (document.activeElement === firstElement) {
+                e.preventDefault();
+                lastElement.focus();
+              }
+            } else {
+              if (document.activeElement === lastElement) {
+                e.preventDefault();
+                firstElement.focus();
+              }
+            }
+          }
+        });
+      }
+      
+      announce(message, priority = 'polite') {
+        const liveRegion = document.getElementById(`aria-live-${priority}`);
+        if (liveRegion) {
+          liveRegion.textContent = message;
+          setTimeout(() => {
+            liveRegion.textContent = '';
+          }, 1000);
+        }
+      }
+    }
+    
+    // Expose announce function globally
+    window.announceToScreenReader = function(message, priority = 'polite') {
+      const liveRegion = document.getElementById(`aria-live-${priority}`);
+      if (liveRegion) {
+        liveRegion.textContent = message;
+        setTimeout(() => {
+          liveRegion.textContent = '';
+        }, 1000);
+      }
+    };
+    
+    // Monitor for dynamic content changes
+    const observer = new MutationObserver(function(mutations) {
+      let shouldReenhance = false;
+      
+      mutations.forEach(function(mutation) {
+        if (mutation.type === 'childList' && mutation.addedNodes.length > 0) {
+          mutation.addedNodes.forEach(node => {
+            if (node.nodeType === Node.ELEMENT_NODE) {
+              shouldReenhance = true;
+            }
+          });
+        }
+      });
+      
+      if (shouldReenhance) {
+        setTimeout(() => {
+          new ARIAEnhancer().enhanceDocument();
+        }, 100);
+      }
+    });
+    
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true
+    });
+  });
+</script>
+
+<style>
+  /* Screen reader only utility class */
+  .sr-only {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    padding: 0 !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    clip: rect(0, 0, 0, 0) !important;
+    white-space: nowrap !important;
+    border: 0 !important;
+  }
+  
+  /* Focus visible enhancements */
+  .focus-visible {
+    outline: 3px solid #2563eb !important;
+    outline-offset: 2px !important;
+  }
+  
+  /* Required field indicator */
+  .required {
+    color: #dc2626;
+    font-weight: bold;
+  }
+  
+  /* Skip link styles */
+  .skip-link {
+    position: absolute;
+    top: -40px;
+    left: 6px;
+    background: #000;
+    color: #fff;
+    padding: 8px;
+    text-decoration: none;
+    z-index: 100000;
+    border-radius: 4px;
+  }
+  
+  .skip-link:focus {
+    top: 6px;
+  }
+</style>

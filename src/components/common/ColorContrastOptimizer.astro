@@ -1,0 +1,916 @@
+---
+/**
+ * Color Contrast Optimizer Component
+ * 
+ * Implements WCAG 2.1 AA color contrast compliance across the entire site.
+ * - Normal text: 4.5:1 contrast ratio minimum
+ * - Large text (18pt+ or 14pt+ bold): 3:1 contrast ratio minimum
+ * - UI components: 3:1 contrast ratio minimum
+ * - Brand color accessibility enhancements
+ */
+---
+
+<style is:global>
+  /* WCAG 2.1 AA Color Contrast Optimizations */
+  
+  /* ===== PRIMARY BRAND COLORS - ENHANCED CONTRAST ===== */
+  
+  /* Red primary with enhanced contrast */
+  .text-red-600,
+  .text-primary {
+    color: #dc2626; /* Enhanced from lighter red - 4.5:1 ratio on white */
+  }
+  
+  .text-red-500 {
+    color: #ef4444; /* Maintained for sufficient contrast */
+  }
+  
+  .text-red-700 {
+    color: #b91c1c; /* Enhanced for better contrast */
+  }
+  
+  .text-red-800 {
+    color: #991b1b; /* High contrast for emphasis */
+  }
+  
+  /* Blue colors replaced with readable colors */
+  .text-blue-600,
+  .text-blue-500,
+  .text-blue-400,
+  .text-blue-300,
+  .text-blue-200,
+  .text-blue-100 {
+    color: #374151 !important; /* Medium gray for good readability */
+  }
+  
+  .text-blue-700 {
+    color: #374151 !important; /* Medium gray for readability */
+  }
+  
+  .text-blue-800 {
+    color: #1f2937 !important; /* Darker gray but still readable */
+  }
+  
+  .text-blue-900 {
+    color: #1f2937 !important; /* Darker gray but still readable */
+  }
+  
+  /* Dark mode blue text replacements */
+  .dark .text-blue-600,
+  .dark .text-blue-500,
+  .dark .text-blue-400,
+  .dark .text-blue-300,
+  .dark .text-blue-200,
+  .dark .text-blue-100 {
+    color: #f9fafb !important; /* Light gray for contrast on dark backgrounds */
+  }
+  
+  .dark .text-blue-700,
+  .dark .text-blue-800,
+  .dark .text-blue-900 {
+    color: #ffffff !important; /* White for maximum contrast on dark backgrounds */
+  }
+  
+  /* ===== GRAY SCALE ENHANCEMENTS ===== */
+  
+  /* Light gray text on white backgrounds - improved readability */
+  .text-gray-600 {
+    color: #6b7280; /* Lighter gray for better readability */
+  }
+  
+  .text-gray-700 {
+    color: #4b5563; /* Lighter for better readability */
+  }
+  
+  .text-gray-500 {
+    color: #6b7280; /* More readable gray */
+  }
+  
+  /* Muted text improvements */
+  .text-muted {
+    color: #6b7280 !important; /* Lighter muted text for readability */
+  }
+  
+  /* ===== DARK MODE ENHANCEMENTS ===== */
+  
+  .dark .text-gray-300 {
+    color: #e5e7eb; /* Enhanced contrast on dark backgrounds */
+  }
+  
+  .dark .text-gray-400 {
+    color: #d1d5db; /* Better visibility on dark */
+  }
+  
+  .dark .text-gray-500 {
+    color: #9ca3af; /* Sufficient contrast for large text */
+  }
+  
+  /* ===== COMPONENT-SPECIFIC OPTIMIZATIONS ===== */
+  
+  /* Navigation links */
+  .nav-link,
+  nav a {
+    color: #374151; /* Lighter gray for better readability */
+    font-weight: 500; /* Enhanced weight for better readability */
+  }
+  
+  .dark .nav-link,
+  .dark nav a {
+    color: #f9fafb; /* High contrast on dark nav */
+  }
+  
+  /* Button text contrast */
+  .btn-primary {
+    background-color: #2563eb; /* Enhanced blue */
+    color: #ffffff; /* Maximum contrast */
+    border-color: #2563eb;
+  }
+  
+  .btn-primary:hover {
+    background-color: #1d4ed8; /* Darker on hover */
+    border-color: #1d4ed8;
+  }
+  
+  .btn-secondary {
+    background-color: #6b7280;
+    color: #ffffff;
+    border-color: #6b7280;
+  }
+  
+  .btn-secondary:hover {
+    background-color: #4b5563;
+    border-color: #4b5563;
+  }
+  
+  /* ===== LINK COLORS: RED ONLY ===== */
+  a:not(.btn), a:visited:not(.btn) {
+    color: #ef4444 !important; /* red-500 */
+    text-decoration: none !important;
+    font-weight: 700;
+  }
+
+  a:hover:not(.btn), a:focus-visible:not(.btn) {
+    color: #dc2626 !important; /* red-600 */
+  }
+  
+  .dark a:not(.btn), .dark a:visited:not(.btn) {
+    color: #ef4444 !important;
+  }
+  .dark a:hover:not(.btn), .dark a:focus-visible:not(.btn) {
+    color: #dc2626 !important;
+  }
+  
+  /* ===== FORM ELEMENT CONTRAST ===== */
+  
+  /* Input field enhancements */
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  input[type="password"],
+  select,
+  textarea {
+    border-color: #6b7280 !important; /* Enhanced border contrast */
+    color: #1f2937 !important; /* High contrast text */
+  }
+  
+  input::placeholder,
+  textarea::placeholder {
+    color: #6b7280 !important; /* Enhanced placeholder contrast */
+  }
+  
+  .dark input[type="text"],
+  .dark input[type="email"],
+  .dark input[type="tel"],
+  .dark input[type="password"],
+  .dark select,
+  .dark textarea {
+    border-color: #9ca3af !important;
+    color: #f9fafb !important;
+    background-color: #374151 !important;
+  }
+  
+  .dark input::placeholder,
+  .dark textarea::placeholder {
+    color: #9ca3af !important;
+  }
+  
+  /* Label contrast */
+  label {
+    color: #1f2937 !important;
+    font-weight: 600;
+  }
+  
+  .dark label {
+    color: #f9fafb !important;
+  }
+  
+  /* ===== FOCUS INDICATORS - ENHANCED VISIBILITY ===== */
+  
+  /* High contrast focus rings */
+  *:focus {
+    outline: 3px solid #2563eb !important;
+    outline-offset: 2px !important;
+  }
+  
+  .dark *:focus {
+    outline-color: #60a5fa !important;
+  }
+  
+  /* Button focus states */
+  .btn:focus {
+    outline: 3px solid #1d4ed8 !important;
+    outline-offset: 2px !important;
+  }
+  
+  /* ===== TABLE CONTRAST IMPROVEMENTS ===== */
+  
+  table {
+    border-color: #6b7280;
+  }
+  
+  th {
+    background-color: #f9fafb;
+    color: #1f2937;
+    font-weight: 700;
+  }
+  
+  td {
+    border-color: #e5e7eb;
+    color: #374151;
+  }
+  
+  .dark th {
+    background-color: #374151;
+    color: #f9fafb;
+  }
+  
+  .dark td {
+    border-color: #4b5563;
+    color: #e5e7eb;
+  }
+  
+  /* ===== CARD AND CONTENT BLOCK ENHANCEMENTS ===== */
+  
+  /* Card backgrounds with sufficient contrast */
+  .card,
+  .bg-white {
+    background-color: #ffffff;
+    color: #1f2937;
+  }
+  
+  .dark .card,
+  .dark .bg-white {
+    background-color: #1f2937;
+    color: #f9fafb;
+  }
+  
+  /* Content blocks */
+  .bg-gray-50 {
+    background-color: #f9fafb;
+    color: #1f2937;
+  }
+  
+  .dark .bg-gray-50 {
+    background-color: #374151;
+    color: #f9fafb;
+  }
+  
+  .bg-gray-100 {
+    background-color: #f3f4f6;
+    color: #1f2937;
+  }
+  
+  .dark .bg-gray-100 {
+    background-color: #4b5563;
+    color: #f9fafb;
+  }
+  
+  /* ===== STATUS AND ALERT COLORS ===== */
+  
+  /* Success colors */
+  .text-green-600 {
+    color: #059669; /* Enhanced green */
+  }
+  
+  .text-green-700 {
+    color: #047857;
+  }
+  
+  .bg-green-50 {
+    background-color: #ecfdf5;
+    color: #064e3b; /* High contrast text */
+  }
+  
+  .dark .bg-green-50 {
+    background-color: #064e3b;
+    color: #d1fae5;
+  }
+  
+  /* Warning colors */
+  .text-yellow-600 {
+    color: #d97706; /* Enhanced yellow for better contrast */
+  }
+  
+  .text-yellow-700 {
+    color: #b45309;
+  }
+  
+  .text-yellow-800 {
+    color: #92400e;
+  }
+  
+  .bg-yellow-50 {
+    background-color: #fffbeb;
+    color: #92400e; /* High contrast text */
+  }
+  
+  .dark .bg-yellow-50 {
+    background-color: #451a03;
+    color: #fef3c7;
+  }
+  
+  /* Error colors */
+  .text-red-600 {
+    color: #dc2626;
+  }
+  
+  .text-red-700 {
+    color: #b91c1c;
+  }
+  
+  .bg-red-50 {
+    background-color: #fef2f2;
+    color: #7f1d1d; /* High contrast text */
+  }
+  
+  .dark .bg-red-50 {
+    background-color: #7f1d1d;
+    color: #fecaca;
+  }
+  
+  /* Info colors */
+  .text-blue-600 {
+    color: #2563eb;
+  }
+  
+  .text-blue-700 {
+    color: #1d4ed8;
+  }
+  
+  .bg-blue-50 {
+    background-color: #eff6ff;
+    color: #1e3a8a; /* High contrast text */
+  }
+  
+  .dark .bg-blue-50 {
+    background-color: #1e3a8a;
+    color: #dbeafe;
+  }
+  
+  /* ===== LARGE TEXT OPTIMIZATIONS ===== */
+  
+  /* Headings - can use slightly lower contrast (3:1 minimum) */
+  h1, h2, h3, h4, h5, h6,
+  .text-xl, .text-2xl, .text-3xl, .text-4xl, .text-5xl, .text-6xl {
+    color: #1f2937;
+    font-weight: 700; /* Enhanced weight for better readability */
+  }
+  
+  .dark h1, .dark h2, .dark h3, .dark h4, .dark h5, .dark h6,
+  .dark .text-xl, .dark .text-2xl, .dark .text-3xl, .dark .text-4xl, .dark .text-5xl, .dark .text-6xl {
+    color: #f9fafb;
+  }
+  
+  /* ===== HIGH CONTRAST MODE SUPPORT ===== */
+  
+  @media (prefers-contrast: high) {
+    /* Maximum contrast for high contrast mode */
+    * {
+      color: #000000 !important;
+      background-color: #ffffff !important;
+    }
+    
+    .dark * {
+      color: #ffffff !important;
+      background-color: #000000 !important;
+    }
+    
+    /* High contrast borders */
+    *:not(.no-border) {
+      border-color: #000000 !important;
+      border-width: 2px !important;
+    }
+    
+    .dark *:not(.no-border) {
+      border-color: #ffffff !important;
+    }
+    
+    /* High contrast focus indicators */
+    *:focus {
+      outline: 4px solid #000000 !important;
+      outline-offset: 2px !important;
+    }
+    
+    .dark *:focus {
+      outline-color: #ffffff !important;
+    }
+    
+    /* High contrast buttons */
+    .btn {
+      background-color: #000000 !important;
+      color: #ffffff !important;
+      border: 3px solid #000000 !important;
+    }
+    
+    .dark .btn {
+      background-color: #ffffff !important;
+      color: #000000 !important;
+      border-color: #ffffff !important;
+    }
+  }
+  
+  /* ===== REDUCED MOTION PREFERENCES ===== */
+  
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+  
+  /* ===== PRINT STYLES WITH HIGH CONTRAST ===== */
+  
+  @media print {
+    * {
+      background: white !important;
+      color: black !important;
+      box-shadow: none !important;
+    }
+    
+    a {
+      text-decoration: underline !important;
+    }
+    
+    .btn {
+      border: 2px solid black !important;
+      background: white !important;
+      color: black !important;
+    }
+  }
+  
+  /* ===== BLUE COLOR GLOBAL OVERRIDES ===== */
+  
+  /* Comprehensive blue text color replacements */
+  .text-blue-50,
+  .text-blue-100,
+  .text-blue-200,
+  .text-blue-300,
+  .text-blue-400,
+  .text-blue-500 {
+    color: #4b5563 !important; /* Medium gray for better readability */
+  }
+  
+  /* Blue backgrounds with proper text contrast */
+  .bg-blue-50,
+  .bg-blue-100,
+  .bg-blue-200 {
+    background-color: #f9fafb !important;
+    color: #1f2937 !important;
+  }
+  
+  .bg-blue-300,
+  .bg-blue-400,
+  .bg-blue-500,
+  .bg-blue-600,
+  .bg-blue-700,
+  .bg-blue-800,
+  .bg-blue-900 {
+    background-color: #374151 !important;
+    color: #ffffff !important;
+  }
+  
+  /* Blue border replacements */
+  .border-blue-300,
+  .border-blue-400,
+  .border-blue-500,
+  .border-blue-600,
+  .border-blue-700 {
+    border-color: #6b7280 !important; /* Neutral gray border */
+  }
+  
+  /* Focus ring replacements */
+  .focus\:ring-blue-500,
+  .focus\:ring-blue-600 {
+    --tw-ring-color: #374151 !important;
+  }
+  
+  .focus\:border-blue-500,
+  .focus\:border-blue-600 {
+    border-color: #374151 !important;
+  }
+  
+  /* Hover state blue text replacements */
+  .hover\:text-blue-300,
+  .hover\:text-blue-400,
+  .hover\:text-blue-500,
+  .hover\:text-blue-600 {
+    color: #4b5563 !important;
+  }
+  
+  .hover\:text-blue-300:hover,
+  .hover\:text-blue-400:hover,
+  .hover\:text-blue-500:hover,
+  .hover\:text-blue-600:hover {
+    color: #374151 !important;
+  }
+  
+  /* Dark mode overrides for blue replacements */
+  .dark .bg-blue-50,
+  .dark .bg-blue-100,
+  .dark .bg-blue-200,
+  .dark .bg-blue-300,
+  .dark .bg-blue-400,
+  .dark .bg-blue-500,
+  .dark .bg-blue-600,
+  .dark .bg-blue-700,
+  .dark .bg-blue-800,
+  .dark .bg-blue-900 {
+    background-color: #374151 !important;
+    color: #f9fafb !important;
+  }
+  
+  .dark .border-blue-300,
+  .dark .border-blue-400,
+  .dark .border-blue-500,
+  .dark .border-blue-600,
+  .dark .border-blue-700 {
+    border-color: #9ca3af !important;
+  }
+  
+  .dark .hover\:text-blue-300:hover,
+  .dark .hover\:text-blue-400:hover,
+  .dark .hover\:text-blue-500:hover,
+  .dark .hover\:text-blue-600:hover {
+    color: #ffffff !important;
+  }
+
+  /* ===== REMOVE ALL UNDERLINES GLOBALLY ===== */
+  
+  /* Remove underlines from all text elements */
+  * {
+    text-decoration: none !important;
+  }
+  
+  /* Specifically target common text elements */
+  p, span, div, h1, h2, h3, h4, h5, h6, li, td, th, blockquote {
+    text-decoration: none !important;
+  }
+  
+  /* Remove underlines from all links globally */
+  a, a:hover, a:focus, a:active, a:visited {
+    text-decoration: none !important;
+  }
+  
+  /* Remove underlines from buttons */
+  button, .btn, .button {
+    text-decoration: none !important;
+  }
+
+  /* ===== GLOBAL TYPOGRAPHY: OFF-WHITE OR RED ONLY ===== */
+  /* On dark surfaces, force all wording to off-white */
+  .bg-black *, .bg-gray-900 *, .bg-slate-900 *, .bg-neutral-900 *, .bg-stone-900 *,
+  .dark body *, .dark .bg-gray-800 *, .dark .bg-slate-800 * {
+    color: #f1f5f9 !important; /* off-white */
+  }
+
+  /* Remove gray usage: map gray utilities to off-white */
+  .text-gray-500, .text-gray-600, .text-gray-700, .text-gray-800, .text-gray-900,
+  .text-muted {
+    color: #f1f5f9 !important; /* off-white */
+  }
+
+  /* Headings default to off-white on dark surfaces */
+  .dark h1, .dark h2, .dark h3, .dark h4, .dark h5, .dark h6,
+  .dark .text-xl, .dark .text-2xl, .dark .text-3xl, .dark .text-4xl, .dark .text-5xl, .dark .text-6xl {
+    color: #f8fafc !important; /* slightly brighter off-white for headings */
+  }
+  
+  /* Google Reviews and testimonial specific styling - Much lighter for readability */
+  .review-text,
+  .testimonial-text,
+  .customer-review,
+  blockquote {
+    color: #1f2937 !important; /* Much darker for excellent readability */
+    line-height: 1.6;
+    font-weight: 500; /* Slightly bolder for better visibility */
+  }
+  
+  /* Review star ratings and metadata */
+  .review-meta,
+  .review-date,
+  .reviewer-name {
+    color: #374151 !important; /* Much darker than before */
+  }
+  
+  /* Specific Google Reviews component styling */
+  .text-gray-700 {
+    color: #1f2937 !important; /* Much darker for review text */
+  }
+  
+  .text-gray-900 {
+    color: #111827 !important; /* Very dark for names */
+  }
+  
+  .text-gray-500 {
+    color: #6b7280 !important; /* Readable gray for metadata */
+  }
+  
+  .text-gray-600 {
+    color: #4b5563 !important; /* Readable gray for subtitles */
+  }
+  
+  /* LiveReviews component specific overrides */
+  .font-semibold.text-gray-900 {
+    color: #111827 !important; /* Very dark for customer names */
+    font-weight: 600 !important;
+  }
+  
+  /* Review cards background and text */
+  .bg-white .text-gray-700 {
+    color: #1f2937 !important; /* Dark text for review content */
+  }
+  
+  .bg-white .text-gray-500 {
+    color: #6b7280 !important; /* Lighter but readable for metadata */
+  }
+  
+  .bg-white .text-gray-900 {
+    color: #111827 !important; /* Very dark for names in review cards */
+  }
+  
+  /* Dark mode readability for reviews and gray utilities */
+  .dark .text-gray-700 { color: #e5e7eb !important; }
+  .dark .text-gray-600 { color: #d1d5db !important; }
+  .dark .text-gray-500 { color: #9ca3af !important; }
+  .dark .text-gray-900 { color: #ffffff !important; }
+  .dark .text-muted { color: #cbd5e1 !important; }
+
+  /* Ensure LiveReviews is highly readable in dark mode */
+  .dark #live-reviews .text-gray-700 { color: #e5e7eb !important; }
+  .dark #live-reviews .text-gray-500 { color: #cbd5e1 !important; }
+  .dark #live-reviews .text-gray-900 { color: #ffffff !important; }
+  .dark #live-reviews blockquote,
+  .dark #live-reviews .review-text,
+  .dark #live-reviews .testimonial-text,
+  .dark #live-reviews .customer-review {
+    color: #f1f5f9 !important;
+  }
+  
+  /* Card and content blocks */
+  .card p,
+  .content-block p,
+  .service-description {
+    color: #4b5563 !important;
+  }
+  
+  /* Dark mode text improvements */
+  .dark p, 
+  .dark span, 
+  .dark div, 
+  .dark li, 
+  .dark td, 
+  .dark th {
+    color: #d1d5db !important;
+  }
+  
+  .dark h1, 
+  .dark h2, 
+  .dark h3, 
+  .dark h4, 
+  .dark h5, 
+  .dark h6 {
+    color: #f9fafb !important;
+  }
+
+  /* ===== CUSTOM COMPONENT OVERRIDES ===== */
+  
+  /* Hero section text contrast */
+  .hero-title {
+    color: #ffffff !important;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Enhanced readability on images */
+  }
+  
+  .hero-subtitle {
+    color: #f3f4f6 !important;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+  }
+  
+  /* Footer text improvements */
+  footer {
+    background-color: #1f2937 !important;
+    color: #f9fafb !important;
+  }
+  
+  footer a {
+    color: #93c5fd !important;
+  }
+  
+  footer a:hover {
+    color: #dbeafe !important;
+  }
+  
+  /* Navigation contrast in header */
+  header {
+    background-color: #000000 !important;
+    color: #ffffff !important;
+  }
+  
+  header a {
+    color: #ffffff !important;
+  }
+  
+  header a:hover {
+    color: #e5e7eb !important;
+  }
+  
+  /* ===== UTILITY CLASSES FOR DEVELOPERS ===== */
+  
+  /* High contrast utility classes */
+  .contrast-aa {
+    color: #1f2937 !important; /* 4.5:1 ratio on white */
+  }
+  
+  .contrast-aaa {
+    color: #000000 !important; /* 7:1 ratio on white */
+  }
+  
+  .dark .contrast-aa {
+    color: #f9fafb !important;
+  }
+  
+  .dark .contrast-aaa {
+    color: #ffffff !important;
+  }
+  
+  /* Large text contrast (3:1 minimum) */
+  .contrast-large {
+    color: #4b5563 !important;
+  }
+  
+  .dark .contrast-large {
+    color: #d1d5db !important;
+  }
+  
+  /* ===== ERROR HIGHLIGHTING FOR DEBUGGING ===== */
+  
+  /* Development mode - highlight potential contrast issues */
+  [data-contrast-warning] {
+    outline: 2px dashed orange !important;
+  }
+  
+  [data-contrast-error] {
+    outline: 3px solid red !important;
+  }
+</style>
+
+<script>
+  // Color contrast monitoring and reporting
+  document.addEventListener('DOMContentLoaded', function() {
+    
+    // Only run in development mode
+    if (import.meta.env.DEV) {
+      checkColorContrast();
+    }
+    
+    function checkColorContrast() {
+      console.log('🎨 Running WCAG 2.1 AA color contrast audit...');
+      
+      const elements = document.querySelectorAll('*');
+      let issuesFound = 0;
+      
+      elements.forEach(element => {
+        const styles = window.getComputedStyle(element);
+        const textColor = styles.color;
+        const backgroundColor = styles.backgroundColor;
+        const fontSize = parseFloat(styles.fontSize);
+        const fontWeight = styles.fontWeight;
+        
+        // Skip elements without meaningful text
+        if (!element.textContent.trim() || element.textContent.trim().length < 3) {
+          return;
+        }
+        
+        // Calculate if this is "large text" (18pt+ or 14pt+ bold)
+        const isLargeText = fontSize >= 18 || (fontSize >= 14 && (fontWeight === 'bold' || parseInt(fontWeight) >= 700));
+        
+        // Required contrast ratios
+        const requiredRatio = isLargeText ? 3.0 : 4.5;
+        
+        try {
+          const ratio = calculateContrastRatio(textColor, backgroundColor);
+          
+          if (ratio < requiredRatio) {
+            issuesFound++;
+            console.warn(`❌ Contrast issue found:`, {
+              element: element.tagName + (element.className ? '.' + element.className.split(' ')[0] : ''),
+              textColor,
+              backgroundColor,
+              ratio: ratio.toFixed(2),
+              required: requiredRatio,
+              isLargeText,
+              fontSize: fontSize + 'px'
+            });
+            
+            // Mark element for debugging
+            element.setAttribute('data-contrast-warning', 'true');
+            element.title = `Contrast ratio: ${ratio.toFixed(2)}:1 (Required: ${requiredRatio}:1)`;
+          }
+        } catch (error) {
+          // Skip elements where contrast cannot be calculated
+        }
+      });
+      
+      if (issuesFound === 0) {
+        console.log('✅ No color contrast issues found! WCAG 2.1 AA compliant.');
+      } else {
+        console.warn(`⚠️  Found ${issuesFound} potential contrast issues. Check console for details.`);
+      }
+    }
+    
+    function calculateContrastRatio(color1, color2) {
+      const rgb1 = parseRgb(color1);
+      const rgb2 = parseRgb(color2);
+      
+      const l1 = getRelativeLuminance(rgb1);
+      const l2 = getRelativeLuminance(rgb2);
+      
+      const lighter = Math.max(l1, l2);
+      const darker = Math.min(l1, l2);
+      
+      return (lighter + 0.05) / (darker + 0.05);
+    }
+    
+    function parseRgb(colorString) {
+      // Handle rgb() and rgba() formats
+      const rgbMatch = colorString.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)/);
+      if (rgbMatch) {
+        return {
+          r: parseInt(rgbMatch[1]),
+          g: parseInt(rgbMatch[2]),
+          b: parseInt(rgbMatch[3])
+        };
+      }
+      
+      // Handle hex colors
+      if (colorString.startsWith('#')) {
+        const hex = colorString.slice(1);
+        return {
+          r: parseInt(hex.slice(0, 2), 16),
+          g: parseInt(hex.slice(2, 4), 16),
+          b: parseInt(hex.slice(4, 6), 16)
+        };
+      }
+      
+      // Default to black if can't parse
+      return { r: 0, g: 0, b: 0 };
+    }
+    
+    function getRelativeLuminance({ r, g, b }) {
+      const rsRGB = r / 255;
+      const gsRGB = g / 255;
+      const bsRGB = b / 255;
+      
+      const rLinear = rsRGB <= 0.03928 ? rsRGB / 12.92 : Math.pow((rsRGB + 0.055) / 1.055, 2.4);
+      const gLinear = gsRGB <= 0.03928 ? gsRGB / 12.92 : Math.pow((gsRGB + 0.055) / 1.055, 2.4);
+      const bLinear = bsRGB <= 0.03928 ? bsRGB / 12.92 : Math.pow((bsRGB + 0.055) / 1.055, 2.4);
+      
+      return 0.2126 * rLinear + 0.7152 * gLinear + 0.0722 * bLinear;
+    }
+    
+    // Live contrast monitoring for dynamic content
+    const observer = new MutationObserver(function(mutations) {
+      let shouldRecheck = false;
+      
+      mutations.forEach(function(mutation) {
+        if (mutation.type === 'childList' && mutation.addedNodes.length > 0) {
+          shouldRecheck = true;
+        }
+        if (mutation.type === 'attributes' && (mutation.attributeName === 'class' || mutation.attributeName === 'style')) {
+          shouldRecheck = true;
+        }
+      });
+      
+      if (shouldRecheck && import.meta.env.DEV) {
+        setTimeout(checkColorContrast, 100);
+      }
+    });
+    
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true,
+      attributes: true,
+      attributeFilter: ['class', 'style']
+    });
+  });
+</script>

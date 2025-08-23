@@ -1,0 +1,375 @@
+---
+/**
+ * Touch Target Optimization Component
+ * 
+ * Ensures all interactive elements meet WCAG 2.1 AA requirements:
+ * - Minimum 44px touch target size
+ * - Adequate spacing between targets
+ * - Clear visual feedback for touch interactions
+ * 
+ * Automatically scans and fixes touch targets on the page.
+ */
+---
+
+<style>
+  /* Touch target optimization styles */
+  
+  /* Ensure all interactive elements meet minimum touch target size */
+  button,
+  input[type="submit"],
+  input[type="button"],
+  input[type="reset"],
+  a,
+  [role="button"],
+  [tabindex="0"],
+  label,
+  input[type="checkbox"],
+  input[type="radio"],
+  select {
+    min-height: 44px;
+    min-width: 44px;
+    
+    /* Ensure clickable area includes padding */
+    position: relative;
+  }
+  
+  /* Special handling for small icons/buttons */
+  .icon-button,
+  .small-button {
+    min-height: 44px;
+    min-width: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+  }
+  
+  /* Extend touch target for small elements using pseudo-elements */
+  .touch-target-extend::before {
+    content: '';
+    position: absolute;
+    top: -8px;
+    left: -8px;
+    right: -8px;
+    bottom: -8px;
+    min-height: 44px;
+    min-width: 44px;
+    z-index: -1;
+  }
+  
+  /* Form controls optimization */
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  input[type="password"],
+  input[type="search"],
+  input[type="url"],
+  input[type="number"],
+  textarea,
+  select {
+    min-height: 44px;
+    padding: 12px 16px;
+    font-size: 16px; /* Prevent zoom on iOS */
+  }
+  
+  /* Checkbox and radio button optimization */
+  input[type="checkbox"],
+  input[type="radio"] {
+    width: 20px;
+    height: 20px;
+    margin: 12px; /* Creates 44px total touch area */
+  }
+  
+  /* Label optimization for better touch targets */
+  label {
+    display: block;
+    padding: 8px 0;
+    cursor: pointer;
+    line-height: 1.5;
+  }
+  
+  /* Navigation touch targets */
+  nav a,
+  .nav-link {
+    padding: 12px 16px;
+    margin: 4px 0;
+    border-radius: 8px;
+    transition: background-color 0.2s ease;
+  }
+  
+  /* Mobile-specific optimizations */
+  @media (max-width: 768px) {
+    /* Increase touch targets on mobile */
+    button,
+    .btn,
+    a.btn {
+      min-height: 48px;
+      padding: 12px 20px;
+      font-size: 16px;
+    }
+    
+    /* Mobile navigation */
+    .mobile-nav a {
+      padding: 16px 20px;
+      font-size: 18px;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    }
+    
+    /* Mobile form controls */
+    input,
+    textarea,
+    select {
+      min-height: 48px;
+      font-size: 16px;
+      padding: 14px 16px;
+    }
+    
+    /* Hamburger menu button */
+    .hamburger-menu {
+      min-height: 48px;
+      min-width: 48px;
+      padding: 12px;
+    }
+  }
+  
+  /* Touch feedback */
+  @media (hover: none) and (pointer: coarse) {
+    /* Touch devices */
+    button:active,
+    .btn:active,
+    a:active,
+    [role="button"]:active {
+      transform: scale(0.98);
+      opacity: 0.8;
+    }
+    
+    /* Remove hover states on touch devices */
+    *:hover {
+      background-color: initial !important;
+      color: initial !important;
+    }
+  }
+  
+  /* Focus management for touch and keyboard users */
+  button:focus-visible,
+  a:focus-visible,
+  input:focus-visible,
+  textarea:focus-visible,
+  select:focus-visible,
+  [tabindex]:focus-visible {
+    outline: 3px solid #2563eb;
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+  
+  /* High contrast mode support */
+  @media (prefers-contrast: high) {
+    button,
+    .btn,
+    input,
+    select,
+    textarea {
+      border: 2px solid;
+    }
+    
+    button:focus,
+    .btn:focus,
+    a:focus {
+      outline: 4px solid;
+      outline-offset: 2px;
+    }
+  }
+  
+  /* Spacing between touch targets */
+  .touch-grid > *:not(:last-child),
+  .button-group > *:not(:last-child) {
+    margin-right: 8px;
+    margin-bottom: 8px;
+  }
+  
+  /* Prevent accidental activation */
+  .touch-target-safe {
+    margin: 8px;
+  }
+</style>
+
+<script>
+  // Touch target optimization script
+  document.addEventListener('DOMContentLoaded', function() {
+    
+    // Function to check and fix touch targets
+    function optimizeTouchTargets() {
+      const interactiveElements = document.querySelectorAll(
+        'button, a, input, select, textarea, [role="button"], [tabindex="0"], label'
+      );
+      
+      interactiveElements.forEach((element) => {
+        const rect = element.getBoundingClientRect();
+        const style = window.getComputedStyle(element);
+        
+        // Check if element meets minimum touch target size
+        const hasMinHeight = rect.height >= 44 || parseFloat(style.minHeight) >= 44;
+        const hasMinWidth = rect.width >= 44 || parseFloat(style.minWidth) >= 44;
+        
+        if (!hasMinHeight || !hasMinWidth) {
+          // Add class to extend touch target
+          element.classList.add('touch-target-extend');
+          
+          // Log for debugging
+          console.log('[Touch Target] Extended:', element, {
+            width: rect.width,
+            height: rect.height
+          });
+        }
+        
+        // Ensure adequate spacing
+        const nextSibling = element.nextElementSibling;
+        if (nextSibling && isInteractiveElement(nextSibling)) {
+          const nextRect = nextSibling.getBoundingClientRect();
+          const spacing = nextRect.left - rect.right;
+          
+          if (spacing < 8) {
+            element.classList.add('touch-target-safe');
+          }
+        }
+      });
+    }
+    
+    // Check if element is interactive
+    function isInteractiveElement(element) {
+      const interactiveTags = ['button', 'a', 'input', 'select', 'textarea'];
+      const interactiveRoles = ['button', 'link', 'tab', 'menuitem'];
+      
+      return (
+        interactiveTags.includes(element.tagName.toLowerCase()) ||
+        interactiveRoles.includes(element.getAttribute('role')) ||
+        element.hasAttribute('tabindex') ||
+        element.hasAttribute('onclick')
+      );
+    }
+    
+    // Add touch-friendly classes to common elements
+    function addTouchFriendlyClasses() {
+      // Navigation links
+      const navLinks = document.querySelectorAll('nav a');
+      navLinks.forEach(link => link.classList.add('nav-link'));
+      
+      // Buttons
+      const buttons = document.querySelectorAll('button');
+      buttons.forEach(button => {
+        if (button.offsetHeight < 44 || button.offsetWidth < 44) {
+          button.classList.add('icon-button');
+        }
+      });
+      
+      // Form controls
+      const formControls = document.querySelectorAll('input, select, textarea');
+      formControls.forEach(control => {
+        // Add mobile-friendly attributes
+        if (control.type === 'email') {
+          control.setAttribute('autocomplete', 'email');
+          control.setAttribute('autocapitalize', 'none');
+        } else if (control.type === 'tel') {
+          control.setAttribute('autocomplete', 'tel');
+        }
+      });
+    }
+    
+    // Create touch target report
+    function createTouchTargetReport() {
+      const interactiveElements = document.querySelectorAll(
+        'button, a, input, select, textarea, [role="button"]'
+      );
+      
+      let report = {
+        total: interactiveElements.length,
+        compliant: 0,
+        nonCompliant: 0,
+        issues: []
+      };
+      
+      interactiveElements.forEach((element, index) => {
+        const rect = element.getBoundingClientRect();
+        const isCompliant = rect.height >= 44 && rect.width >= 44;
+        
+        if (isCompliant) {
+          report.compliant++;
+        } else {
+          report.nonCompliant++;
+          report.issues.push({
+            element: element.tagName.toLowerCase(),
+            id: element.id || `element-${index}`,
+            width: Math.round(rect.width),
+            height: Math.round(rect.height),
+            text: element.textContent?.trim().substring(0, 50)
+          });
+        }
+      });
+      
+      console.log('[Touch Target Report]', report);
+      return report;
+    }
+    
+    // Run optimizations
+    optimizeTouchTargets();
+    addTouchFriendlyClasses();
+    
+    // Generate report in development
+    if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+      setTimeout(() => {
+        const report = createTouchTargetReport();
+        if (report.nonCompliant > 0) {
+          console.warn(`[Touch Targets] ${report.nonCompliant} elements need attention:`, report.issues);
+        } else {
+          console.log('[Touch Targets] ✅ All elements are compliant');
+        }
+      }, 1000);
+    }
+    
+    // Re-run optimizations on dynamic content changes
+    const observer = new MutationObserver((mutations) => {
+      let shouldRerun = false;
+      
+      mutations.forEach((mutation) => {
+        if (mutation.type === 'childList' && mutation.addedNodes.length > 0) {
+          shouldRerun = true;
+        }
+      });
+      
+      if (shouldRerun) {
+        setTimeout(optimizeTouchTargets, 100);
+      }
+    });
+    
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true
+    });
+    
+    // Touch feedback for better UX
+    if ('ontouchstart' in window) {
+      document.addEventListener('touchstart', function(e) {
+        if (isInteractiveElement(e.target)) {
+          e.target.classList.add('touch-active');
+        }
+      }, { passive: true });
+      
+      document.addEventListener('touchend', function(e) {
+        if (isInteractiveElement(e.target)) {
+          setTimeout(() => {
+            e.target.classList.remove('touch-active');
+          }, 150);
+        }
+      }, { passive: true });
+    }
+  });
+</script>
+
+<style>
+  /* Touch active state */
+  .touch-active {
+    opacity: 0.8;
+    transform: scale(0.98);
+    transition: all 0.1s ease;
+  }
+</style>

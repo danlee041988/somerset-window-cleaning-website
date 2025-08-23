@@ -32,9 +32,9 @@ const {
         containerClass
       )}
     >
-      {items.map(({ title, description, icon, callToAction, classes: itemClasses = {} }) => (
+      {items.map(({ title, description, icon, callToAction, price, classes: itemClasses = {} }) => (
         <div class="intersect-once motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade">
-          <div class={twMerge('flex flex-row max-w-md', panelClass, itemClasses?.panel)}>
+          <div class={twMerge('flex flex-row max-w-md transition-all duration-300 hover:-translate-y-1 hover:shadow-lg', panelClass, itemClasses?.panel)}>
             <div class="flex justify-center">
               {(icon || defaultIcon) && (
                 <Icon
@@ -45,6 +45,13 @@ const {
             </div>
             <div class="mt-0.5">
               {title && <h3 class={twMerge('text-xl font-bold', titleClass, itemClasses?.title)}>{title}</h3>}
+              {price && (
+                <div class="mt-2">
+                  <span class="inline-block bg-accent/10 text-accent px-2 py-1 rounded-full text-sm font-medium">
+                    From {price}
+                  </span>
+                </div>
+              )}
               {description && (
                 <p
                   class={twMerge(`${title ? 'mt-3' : ''} text-muted`, descriptionClass, itemClasses?.description)}

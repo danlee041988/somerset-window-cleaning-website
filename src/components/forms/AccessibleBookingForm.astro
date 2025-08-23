@@ -1,0 +1,1234 @@
+---
+/**
+ * Accessible Mobile-Optimized Booking Form
+ * 
+ * Features:
+ * - WCAG 2.1 AA compliant
+ * - Mobile-first design with progressive enhancement
+ * - 44px+ touch targets
+ * - Proper labeling and error handling
+ * - Keyboard navigation support
+ * - Screen reader friendly
+ * - Auto-completion and input validation
+ */
+
+export interface Props {
+  title?: string;
+  subtitle?: string;
+  showSteps?: boolean;
+}
+
+const { 
+  title = "Get Your FREE Quote", 
+  subtitle = "Complete your details and we'll contact you within 1 hour",
+  showSteps = true 
+} = Astro.props;
+---
+
+<form 
+  id="accessible-booking-form"
+  class="accessible-booking-form"
+  novalidate
+  aria-label="Window cleaning booking form"
+>
+  <!-- Progress Indicator -->
+  {showSteps && (
+    <div class="progress-container mb-8" role="progressbar" aria-valuenow="1" aria-valuemin="1" aria-valuemax="3" aria-label="Booking progress">
+      <div class="flex items-center justify-between mb-4">
+        <div class="step active" data-step="1">
+          <div class="step-circle">
+            <span class="step-number">1</span>
+          </div>
+          <span class="step-label">Property Details</span>
+        </div>
+        <div class="step-line"></div>
+        <div class="step" data-step="2">
+          <div class="step-circle">
+            <span class="step-number">2</span>
+          </div>
+          <span class="step-label">Services</span>
+        </div>
+        <div class="step-line"></div>
+        <div class="step" data-step="3">
+          <div class="step-circle">
+            <span class="step-number">3</span>
+          </div>
+          <span class="step-label">Contact</span>
+        </div>
+      </div>
+    </div>
+  )}
+
+  <!-- Step 1: Property Details -->
+  <fieldset class="form-step active" data-step="1" aria-labelledby="step1-heading">
+    <legend id="step1-heading" class="sr-only">Property Details</legend>
+    
+    <div class="form-section">
+      <h2 class="form-heading">Tell us about your property</h2>
+      
+      <!-- Property Type -->
+      <div class="form-group">
+        <fieldset>
+          <legend class="field-label required">Property Type</legend>
+          <div class="radio-group" role="radiogroup" aria-labelledby="property-type-label">
+            <label class="radio-option">
+              <input 
+                type="radio" 
+                name="propertyType" 
+                value="house" 
+                required 
+                aria-describedby="property-type-error"
+              >
+              <span class="radio-custom"></span>
+              <span class="radio-label">House</span>
+            </label>
+            
+            <label class="radio-option">
+              <input 
+                type="radio" 
+                name="propertyType" 
+                value="flat" 
+                required
+              >
+              <span class="radio-custom"></span>
+              <span class="radio-label">Flat/Apartment</span>
+            </label>
+            
+            <label class="radio-option">
+              <input 
+                type="radio" 
+                name="propertyType" 
+                value="business" 
+                required
+              >
+              <span class="radio-custom"></span>
+              <span class="radio-label">Business/Commercial</span>
+            </label>
+          </div>
+          <div id="property-type-error" class="error-message" aria-live="polite"></div>
+        </fieldset>
+      </div>
+
+      <!-- Property Size -->
+      <div class="form-group">
+        <label for="propertySize" class="field-label required">Number of Windows</label>
+        <select 
+          id="propertySize" 
+          name="propertySize" 
+          required 
+          aria-describedby="property-size-help property-size-error"
+          class="form-select"
+        >
+          <option value="">Select number of windows</option>
+          <option value="1-10">1-10 windows</option>
+          <option value="11-20">11-20 windows</option>
+          <option value="21-30">21-30 windows</option>
+          <option value="31+">31+ windows</option>
+        </select>
+        <div id="property-size-help" class="field-help">Count all windows that need cleaning</div>
+        <div id="property-size-error" class="error-message" aria-live="polite"></div>
+      </div>
+
+      <!-- Postcode -->
+      <div class="form-group">
+        <label for="postcode" class="field-label required">Postcode</label>
+        <input 
+          type="text" 
+          id="postcode" 
+          name="postcode" 
+          required 
+          autocomplete="postal-code"
+          pattern="[A-Za-z]{1,2}[0-9Rr][0-9A-Za-z]? [0-9][ABD-HJLNP-UW-Zabd-hjlnp-uw-z]{2}"
+          aria-describedby="postcode-help postcode-error"
+          class="form-input"
+          placeholder="e.g. BA6 9TH"
+        >
+        <div id="postcode-help" class="field-help">We serve across Somerset</div>
+        <div id="postcode-error" class="error-message" aria-live="polite"></div>
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <button 
+        type="button" 
+        class="btn btn-primary btn-full-width"
+        data-next-step="2"
+        aria-describedby="step1-progress"
+      >
+        Continue to Services
+        <svg class="btn-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+        </svg>
+      </button>
+      <div id="step1-progress" class="sr-only">Proceeding to step 2 of 3: Services</div>
+    </div>
+  </fieldset>
+
+  <!-- Step 2: Services -->
+  <fieldset class="form-step" data-step="2" aria-labelledby="step2-heading">
+    <legend id="step2-heading" class="sr-only">Services Selection</legend>
+    
+    <div class="form-section">
+      <h2 class="form-heading">Which services do you need?</h2>
+      
+      <!-- Services Checkboxes -->
+      <div class="form-group">
+        <fieldset>
+          <legend class="field-label required">Services Required</legend>
+          <div class="checkbox-group" role="group" aria-labelledby="services-label">
+            
+            <label class="checkbox-option">
+              <input 
+                type="checkbox" 
+                name="services" 
+                value="window-cleaning" 
+                aria-describedby="services-error"
+              >
+              <span class="checkbox-custom"></span>
+              <div class="service-info">
+                <span class="service-name">Window Cleaning</span>
+                <span class="service-desc">Internal & external cleaning</span>
+              </div>
+            </label>
+            
+            <label class="checkbox-option">
+              <input 
+                type="checkbox" 
+                name="services" 
+                value="gutter-cleaning"
+              >
+              <span class="checkbox-custom"></span>
+              <div class="service-info">
+                <span class="service-name">Gutter Cleaning</span>
+                <span class="service-desc">Clear gutters & downpipes</span>
+              </div>
+            </label>
+            
+            <label class="checkbox-option">
+              <input 
+                type="checkbox" 
+                name="services" 
+                value="fascia-soffit"
+              >
+              <span class="checkbox-custom"></span>
+              <div class="service-info">
+                <span class="service-name">Fascia & Soffit Cleaning</span>
+                <span class="service-desc">External cleaning & washing</span>
+              </div>
+            </label>
+            
+            <label class="checkbox-option">
+              <input 
+                type="checkbox" 
+                name="services" 
+                value="conservatory"
+              >
+              <span class="checkbox-custom"></span>
+              <div class="service-info">
+                <span class="service-name">Conservatory Cleaning</span>
+                <span class="service-desc">Roof & panels cleaning</span>
+              </div>
+            </label>
+            
+            <label class="checkbox-option">
+              <input 
+                type="checkbox" 
+                name="services" 
+                value="solar-panels"
+              >
+              <span class="checkbox-custom"></span>
+              <div class="service-info">
+                <span class="service-name">Solar Panel Cleaning</span>
+                <span class="service-desc">Maximize energy efficiency</span>
+              </div>
+            </label>
+          </div>
+          <div id="services-error" class="error-message" aria-live="polite"></div>
+        </fieldset>
+      </div>
+
+      <!-- Frequency -->
+      <div class="form-group">
+        <label for="frequency" class="field-label">Cleaning Frequency</label>
+        <select 
+          id="frequency" 
+          name="frequency" 
+          aria-describedby="frequency-help"
+          class="form-select"
+        >
+          <option value="">Select frequency (optional)</option>
+          <option value="monthly">Monthly</option>
+          <option value="bi-monthly">Every 2 months</option>
+          <option value="quarterly">Every 3 months</option>
+          <option value="one-off">One-off clean</option>
+        </select>
+        <div id="frequency-help" class="field-help">Regular cleans get better rates</div>
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <button 
+        type="button" 
+        class="btn btn-secondary"
+        data-prev-step="1"
+      >
+        <svg class="btn-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+        </svg>
+        Back
+      </button>
+      
+      <button 
+        type="button" 
+        class="btn btn-primary"
+        data-next-step="3"
+        aria-describedby="step2-progress"
+      >
+        Continue to Contact
+        <svg class="btn-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+        </svg>
+      </button>
+      <div id="step2-progress" class="sr-only">Proceeding to step 3 of 3: Contact details</div>
+    </div>
+  </fieldset>
+
+  <!-- Step 3: Contact Details -->
+  <fieldset class="form-step" data-step="3" aria-labelledby="step3-heading">
+    <legend id="step3-heading" class="sr-only">Contact Information</legend>
+    
+    <div class="form-section">
+      <h2 class="form-heading">Your contact details</h2>
+      
+      <!-- Name -->
+      <div class="form-group">
+        <label for="fullName" class="field-label required">Full Name</label>
+        <input 
+          type="text" 
+          id="fullName" 
+          name="fullName" 
+          required 
+          autocomplete="name"
+          aria-describedby="name-error"
+          class="form-input"
+          placeholder="John Smith"
+        >
+        <div id="name-error" class="error-message" aria-live="polite"></div>
+      </div>
+
+      <!-- Email -->
+      <div class="form-group">
+        <label for="email" class="field-label required">Email Address</label>
+        <input 
+          type="email" 
+          id="email" 
+          name="email" 
+          required 
+          autocomplete="email"
+          aria-describedby="email-help email-error"
+          class="form-input"
+          placeholder="john@example.com"
+        >
+        <div id="email-help" class="field-help">We'll send your quote confirmation here</div>
+        <div id="email-error" class="error-message" aria-live="polite"></div>
+      </div>
+
+      <!-- Phone -->
+      <div class="form-group">
+        <label for="phone" class="field-label required">Phone Number</label>
+        <input 
+          type="tel" 
+          id="phone" 
+          name="phone" 
+          required 
+          autocomplete="tel"
+          aria-describedby="phone-help phone-error"
+          class="form-input"
+          placeholder="07123 456789"
+          inputmode="tel"
+        >
+        <div id="phone-help" class="field-help">We'll call to arrange your service</div>
+        <div id="phone-error" class="error-message" aria-live="polite"></div>
+      </div>
+
+      <!-- Address -->
+      <div class="form-group">
+        <label for="address" class="field-label required">Property Address</label>
+        <textarea 
+          id="address" 
+          name="address" 
+          required 
+          autocomplete="street-address"
+          aria-describedby="address-help address-error"
+          class="form-textarea"
+          rows="3"
+          placeholder="1 High Street, Glastonbury"
+        ></textarea>
+        <div id="address-help" class="field-help">Full address including town</div>
+        <div id="address-error" class="error-message" aria-live="polite"></div>
+      </div>
+
+      <!-- Special Instructions -->
+      <div class="form-group">
+        <label for="instructions" class="field-label">Special Instructions</label>
+        <textarea 
+          id="instructions" 
+          name="instructions" 
+          aria-describedby="instructions-help"
+          class="form-textarea"
+          rows="3"
+          placeholder="Any special requirements or access information..."
+        ></textarea>
+        <div id="instructions-help" class="field-help">Optional: Access details, special requirements</div>
+      </div>
+
+      <!-- Consent -->
+      <div class="form-group">
+        <label class="checkbox-option consent-checkbox">
+          <input 
+            type="checkbox" 
+            name="consent" 
+            required 
+            aria-describedby="consent-error"
+          >
+          <span class="checkbox-custom"></span>
+          <span class="consent-text">
+            I agree to be contacted by Somerset Window Cleaning regarding my quote. 
+            <a href="/privacy" target="_blank" rel="noopener" class="link">Privacy Policy</a>
+          </span>
+        </label>
+        <div id="consent-error" class="error-message" aria-live="polite"></div>
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <button 
+        type="button" 
+        class="btn btn-secondary"
+        data-prev-step="2"
+      >
+        <svg class="btn-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+        </svg>
+        Back
+      </button>
+      
+      <button 
+        type="submit" 
+        class="btn btn-primary btn-submit"
+        aria-describedby="submit-info"
+      >
+        <svg class="btn-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
+        </svg>
+        Get My FREE Quote
+      </button>
+      <div id="submit-info" class="field-help">We'll contact you within 1 hour</div>
+    </div>
+  </fieldset>
+
+  <!-- Loading State -->
+  <div class="form-loading hidden" aria-hidden="true">
+    <div class="loading-spinner"></div>
+    <p>Sending your quote request...</p>
+  </div>
+
+  <!-- Success State -->
+  <div class="form-success hidden" aria-hidden="true">
+    <div class="success-icon">
+      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+      </svg>
+    </div>
+    <h2>Quote Request Sent!</h2>
+    <p>Thank you! We'll contact you within 1 hour to discuss your requirements and provide your free quote.</p>
+  </div>
+</form>
+
+<style>
+  /* Mobile-First Accessible Form Styles */
+  .accessible-booking-form {
+    max-width: 100%;
+    margin: 0 auto;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  }
+
+  /* Progress Indicator */
+  .progress-container {
+    margin-bottom: 2rem;
+  }
+
+  .step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    opacity: 0.5;
+    transition: opacity 0.3s ease;
+  }
+
+  .step.active {
+    opacity: 1;
+  }
+
+  .step-circle {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: #e5e7eb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 8px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+  }
+
+  .step.active .step-circle {
+    background: #3b82f6;
+    color: white;
+  }
+
+  .step-label {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #6b7280;
+  }
+
+  .step.active .step-label {
+    color: #1f2937;
+  }
+
+  .step-line {
+    flex: 1;
+    height: 2px;
+    background: #e5e7eb;
+    margin: 24px 16px 0;
+  }
+
+  /* Form Steps */
+  .form-step {
+    display: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .form-step.active {
+    display: block;
+  }
+
+  /* Form Sections */
+  .form-section {
+    background: white;
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 24px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+
+  .form-heading {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 24px;
+    color: #1f2937;
+  }
+
+  /* Form Groups */
+  .form-group {
+    margin-bottom: 24px;
+  }
+
+  .field-label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #374151;
+    font-size: 1rem;
+  }
+
+  .field-label.required::after {
+    content: ' *';
+    color: #ef4444;
+  }
+
+  /* Form Controls */
+  .form-input,
+  .form-select,
+  .form-textarea {
+    width: 100%;
+    min-height: 48px;
+    padding: 12px 16px;
+    border: 2px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 16px; /* Prevent zoom on iOS */
+    background: white;
+    transition: all 0.2s ease;
+  }
+
+  .form-input:focus,
+  .form-select:focus,
+  .form-textarea:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+  }
+
+  .form-input:invalid,
+  .form-select:invalid,
+  .form-textarea:invalid {
+    border-color: #ef4444;
+  }
+
+  .form-textarea {
+    resize: vertical;
+    min-height: 96px;
+  }
+
+  /* Radio and Checkbox Groups */
+  .radio-group,
+  .checkbox-group {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .radio-option,
+  .checkbox-option {
+    display: flex;
+    align-items: flex-start;
+    padding: 16px;
+    border: 2px solid #e5e7eb;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    min-height: 48px;
+  }
+
+  .radio-option:hover,
+  .checkbox-option:hover {
+    border-color: #3b82f6;
+    background: #f8fafc;
+  }
+
+  .radio-option:has(input:checked),
+  .checkbox-option:has(input:checked) {
+    border-color: #3b82f6;
+    background: #eff6ff;
+  }
+
+  .radio-custom,
+  .checkbox-custom {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #d1d5db;
+    border-radius: 50%;
+    margin-right: 12px;
+    flex-shrink: 0;
+    position: relative;
+    margin-top: 2px;
+  }
+
+  .checkbox-custom {
+    border-radius: 4px;
+  }
+
+  .radio-option input,
+  .checkbox-option input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .radio-option input:checked + .radio-custom::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 8px;
+    height: 8px;
+    background: #3b82f6;
+    border-radius: 50%;
+  }
+
+  .checkbox-option input:checked + .checkbox-custom::after {
+    content: '✓';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #3b82f6;
+    font-weight: bold;
+    font-size: 14px;
+  }
+
+  .radio-label {
+    font-weight: 500;
+  }
+
+  .service-info {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .service-name {
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+
+  .service-desc {
+    font-size: 0.875rem;
+    color: #6b7280;
+  }
+
+  /* Consent Checkbox */
+  .consent-checkbox {
+    align-items: flex-start;
+    padding: 16px 0;
+    border: none;
+    background: none;
+  }
+
+  .consent-text {
+    line-height: 1.5;
+    font-size: 0.875rem;
+  }
+
+  /* Help Text and Errors */
+  .field-help {
+    font-size: 0.875rem;
+    color: #6b7280;
+    margin-top: 4px;
+  }
+
+  .error-message {
+    font-size: 0.875rem;
+    color: #ef4444;
+    margin-top: 4px;
+    min-height: 1.25rem;
+  }
+
+  /* Buttons */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 48px;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 1rem;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    border: 2px solid;
+    gap: 8px;
+  }
+
+  .btn-primary {
+    background: #3b82f6;
+    color: white;
+    border-color: #3b82f6;
+  }
+
+  .btn-primary:hover,
+  .btn-primary:focus {
+    background: #2563eb;
+    border-color: #2563eb;
+    transform: translateY(-1px);
+  }
+
+  .btn-secondary {
+    background: white;
+    color: #374151;
+    border-color: #d1d5db;
+  }
+
+  .btn-secondary:hover,
+  .btn-secondary:focus {
+    border-color: #9ca3af;
+    background: #f9fafb;
+  }
+
+  .btn:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
+  }
+
+  .btn-icon {
+    width: 20px;
+    height: 20px;
+  }
+
+  .btn-full-width {
+    width: 100%;
+  }
+
+  /* Form Actions */
+  .form-actions {
+    display: flex;
+    gap: 16px;
+    justify-content: space-between;
+    margin-top: 32px;
+  }
+
+  /* Loading and Success States */
+  .form-loading,
+  .form-success {
+    text-align: center;
+    padding: 48px 24px;
+  }
+
+  .loading-spinner {
+    width: 48px;
+    height: 48px;
+    border: 4px solid #e5e7eb;
+    border-top: 4px solid #3b82f6;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 16px;
+  }
+
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  .success-icon {
+    width: 64px;
+    height: 64px;
+    background: #10b981;
+    border-radius: 50%;
+    margin: 0 auto 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+  }
+
+  .success-icon svg {
+    width: 32px;
+    height: 32px;
+  }
+
+  /* Responsive Design */
+  @media (min-width: 640px) {
+    .accessible-booking-form {
+      max-width: 640px;
+    }
+
+    .form-actions {
+      justify-content: flex-end;
+    }
+
+    .btn {
+      width: auto;
+      min-width: 120px;
+    }
+
+    .radio-group,
+    .checkbox-group {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 16px;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .accessible-booking-form {
+      max-width: 768px;
+    }
+
+    .form-section {
+      padding: 32px;
+    }
+
+    .step {
+      flex-direction: row;
+      text-align: left;
+    }
+
+    .step-circle {
+      margin-bottom: 0;
+      margin-right: 12px;
+    }
+
+    .step-line {
+      margin: 0 24px;
+    }
+  }
+
+  /* High Contrast Mode */
+  @media (prefers-contrast: high) {
+    .form-input,
+    .form-select,
+    .form-textarea,
+    .radio-option,
+    .checkbox-option {
+      border-width: 3px;
+    }
+
+    .btn {
+      border-width: 3px;
+    }
+  }
+
+  /* Reduced Motion */
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      transition: none;
+      animation: none;
+    }
+  }
+
+  /* Screen Reader Only */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  .hidden {
+    display: none;
+  }
+</style>
+
+<script>
+  // Accessible Booking Form Script
+  class AccessibleBookingForm {
+    constructor() {
+      this.form = document.getElementById('accessible-booking-form');
+      this.currentStep = 1;
+      this.totalSteps = 3;
+      this.init();
+    }
+
+    init() {
+      if (!this.form) return;
+
+      // Form navigation
+      this.bindNavigationEvents();
+      
+      // Form validation
+      this.bindValidationEvents();
+      
+      // Form submission
+      this.bindSubmissionEvents();
+      
+      // Accessibility enhancements
+      this.enhanceAccessibility();
+    }
+
+    bindNavigationEvents() {
+      // Next/Previous step buttons
+      this.form.addEventListener('click', (e) => {
+        if (e.target.hasAttribute('data-next-step')) {
+          e.preventDefault();
+          const nextStep = parseInt(e.target.getAttribute('data-next-step'));
+          this.validateAndProceed(nextStep);
+        }
+        
+        if (e.target.hasAttribute('data-prev-step')) {
+          e.preventDefault();
+          const prevStep = parseInt(e.target.getAttribute('data-prev-step'));
+          this.goToStep(prevStep);
+        }
+      });
+
+      // Keyboard navigation
+      this.form.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' && e.target.type === 'button') {
+          e.target.click();
+        }
+      });
+    }
+
+    bindValidationEvents() {
+      // Real-time validation
+      this.form.addEventListener('blur', (e) => {
+        if (e.target.matches('input, select, textarea')) {
+          this.validateField(e.target);
+        }
+      }, true);
+
+      // Clear errors on input
+      this.form.addEventListener('input', (e) => {
+        if (e.target.matches('input, select, textarea')) {
+          this.clearFieldError(e.target);
+        }
+      });
+    }
+
+    bindSubmissionEvents() {
+      this.form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        this.submitForm();
+      });
+    }
+
+    validateAndProceed(nextStep) {
+      if (this.validateCurrentStep()) {
+        this.goToStep(nextStep);
+      } else {
+        // Focus first error field
+        const firstError = this.form.querySelector('.error-message:not(:empty)');
+        if (firstError) {
+          const fieldId = firstError.id.replace('-error', '');
+          const field = document.getElementById(fieldId);
+          field?.focus();
+        }
+      }
+    }
+
+    goToStep(stepNumber) {
+      // Hide current step
+      const currentStepEl = this.form.querySelector(`[data-step="${this.currentStep}"]`);
+      currentStepEl?.classList.remove('active');
+
+      // Show new step
+      const newStepEl = this.form.querySelector(`[data-step="${stepNumber}"]`);
+      newStepEl?.classList.add('active');
+
+      // Update progress indicator
+      this.updateProgressIndicator(stepNumber);
+
+      // Update current step
+      this.currentStep = stepNumber;
+
+      // Update progress bar
+      const progressBar = this.form.querySelector('[role="progressbar"]');
+      if (progressBar) {
+        progressBar.setAttribute('aria-valuenow', stepNumber);
+      }
+
+      // Focus first field in new step
+      const firstField = newStepEl?.querySelector('input, select, textarea');
+      firstField?.focus();
+
+      // Announce step change to screen readers
+      this.announceStepChange(stepNumber);
+    }
+
+    updateProgressIndicator(stepNumber) {
+      const steps = this.form.querySelectorAll('.step');
+      steps.forEach((step, index) => {
+        if (index + 1 <= stepNumber) {
+          step.classList.add('active');
+        } else {
+          step.classList.remove('active');
+        }
+      });
+    }
+
+    validateCurrentStep() {
+      const currentStepEl = this.form.querySelector(`[data-step="${this.currentStep}"]`);
+      const fields = currentStepEl?.querySelectorAll('input, select, textarea');
+      let isValid = true;
+
+      fields?.forEach(field => {
+        if (!this.validateField(field)) {
+          isValid = false;
+        }
+      });
+
+      return isValid;
+    }
+
+    validateField(field) {
+      const value = field.value.trim();
+      let isValid = true;
+      let errorMessage = '';
+
+      // Required field validation
+      if (field.hasAttribute('required') && !value) {
+        isValid = false;
+        errorMessage = `${this.getFieldLabel(field)} is required.`;
+      }
+
+      // Email validation
+      if (field.type === 'email' && value) {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(value)) {
+          isValid = false;
+          errorMessage = 'Please enter a valid email address.';
+        }
+      }
+
+      // Phone validation
+      if (field.type === 'tel' && value) {
+        const phoneRegex = /^[\d\s\+\-\(\)]+$/;
+        if (!phoneRegex.test(value) || value.length < 10) {
+          isValid = false;
+          errorMessage = 'Please enter a valid phone number.';
+        }
+      }
+
+      // Postcode validation
+      if (field.name === 'postcode' && value) {
+        const postcodeRegex = /^[A-Za-z]{1,2}[0-9Rr][0-9A-Za-z]?\s?[0-9][ABD-HJLNP-UW-Zabd-hjlnp-uw-z]{2}$/;
+        if (!postcodeRegex.test(value)) {
+          isValid = false;
+          errorMessage = 'Please enter a valid UK postcode.';
+        }
+      }
+
+      // Radio group validation
+      if (field.type === 'radio' && field.hasAttribute('required')) {
+        const radioGroup = this.form.querySelectorAll(`input[name="${field.name}"]`);
+        const isChecked = Array.from(radioGroup).some(radio => radio.checked);
+        if (!isChecked) {
+          isValid = false;
+          errorMessage = 'Please select an option.';
+        }
+      }
+
+      // Checkbox group validation (services)
+      if (field.name === 'services') {
+        const checkboxes = this.form.querySelectorAll('input[name="services"]');
+        const isAnyChecked = Array.from(checkboxes).some(cb => cb.checked);
+        if (!isAnyChecked && this.currentStep === 2) {
+          isValid = false;
+          errorMessage = 'Please select at least one service.';
+        }
+      }
+
+      this.displayFieldError(field, errorMessage);
+      return isValid;
+    }
+
+    getFieldLabel(field) {
+      const label = this.form.querySelector(`label[for="${field.id}"]`);
+      return label?.textContent.replace('*', '').trim() || field.name;
+    }
+
+    displayFieldError(field, message) {
+      const errorId = `${field.id || field.name}-error`;
+      const errorEl = document.getElementById(errorId);
+      
+      if (errorEl) {
+        errorEl.textContent = message;
+        errorEl.setAttribute('aria-live', 'polite');
+      }
+
+      // Update field ARIA
+      if (message) {
+        field.setAttribute('aria-invalid', 'true');
+        field.setAttribute('aria-describedby', errorId);
+      } else {
+        field.removeAttribute('aria-invalid');
+      }
+    }
+
+    clearFieldError(field) {
+      const errorId = `${field.id || field.name}-error`;
+      const errorEl = document.getElementById(errorId);
+      
+      if (errorEl && errorEl.textContent) {
+        errorEl.textContent = '';
+        field.removeAttribute('aria-invalid');
+      }
+    }
+
+    async submitForm() {
+      if (!this.validateCurrentStep()) {
+        return;
+      }
+
+      this.showLoading();
+
+      // Collect form data
+      const formData = new FormData(this.form);
+      const data = Object.fromEntries(formData.entries());
+
+      // Collect checkbox values
+      const services = Array.from(this.form.querySelectorAll('input[name="services"]:checked'))
+        .map(cb => cb.value);
+      data.services = services;
+
+      try {
+        // Here you would send the data to your backend
+        // For now, we'll simulate a successful submission
+        await this.simulateSubmission(data);
+        this.showSuccess();
+      } catch (error) {
+        this.showError('Sorry, there was a problem submitting your quote request. Please try again.');
+      }
+    }
+
+    async simulateSubmission(data) {
+      // Simulate API call
+      return new Promise((resolve) => {
+        setTimeout(resolve, 2000);
+      });
+    }
+
+    showLoading() {
+      this.form.style.display = 'none';
+      const loading = this.form.parentElement.querySelector('.form-loading');
+      loading?.classList.remove('hidden');
+    }
+
+    showSuccess() {
+      const loading = this.form.parentElement.querySelector('.form-loading');
+      loading?.classList.add('hidden');
+      
+      const success = this.form.parentElement.querySelector('.form-success');
+      success?.classList.remove('hidden');
+      success?.focus();
+    }
+
+    showError(message) {
+      const loading = this.form.parentElement.querySelector('.form-loading');
+      loading?.classList.add('hidden');
+      
+      this.form.style.display = 'block';
+      
+      // Create or update error message
+      let errorEl = this.form.querySelector('.form-error');
+      if (!errorEl) {
+        errorEl = document.createElement('div');
+        errorEl.className = 'form-error error-message';
+        errorEl.setAttribute('role', 'alert');
+        this.form.insertBefore(errorEl, this.form.firstChild);
+      }
+      
+      errorEl.textContent = message;
+      errorEl.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    enhanceAccessibility() {
+      // Add live region for announcements
+      if (!document.getElementById('form-announcements')) {
+        const liveRegion = document.createElement('div');
+        liveRegion.id = 'form-announcements';
+        liveRegion.setAttribute('aria-live', 'polite');
+        liveRegion.setAttribute('aria-atomic', 'true');
+        liveRegion.className = 'sr-only';
+        document.body.appendChild(liveRegion);
+      }
+    }
+
+    announceStepChange(stepNumber) {
+      const stepNames = ['', 'Property Details', 'Services', 'Contact'];
+      const announcement = `Step ${stepNumber} of ${this.totalSteps}: ${stepNames[stepNumber]}`;
+      
+      const liveRegion = document.getElementById('form-announcements');
+      if (liveRegion) {
+        liveRegion.textContent = announcement;
+      }
+    }
+  }
+
+  // Initialize when DOM is ready
+  document.addEventListener('DOMContentLoaded', () => {
+    new AccessibleBookingForm();
+  });
+</script>

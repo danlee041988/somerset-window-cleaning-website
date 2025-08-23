@@ -1,6 +1,7 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
 import Image from '~/components/common/Image.astro';
+import { siteConfig, policyCopy } from '~/config/site';
 
 import Hero from '~/components/widgets/Hero.astro';
 import Note from '~/components/widgets/Note.astro';
@@ -13,6 +14,7 @@ import CallToAction from '~/components/widgets/CallToAction.astro';
 import Testimonials from '~/components/widgets/Testimonials.astro';
 import LiveReviews from '~/components/widgets/LiveReviews.astro';
 import Process from '~/components/widgets/Process.astro';
+import TrustBar from '~/components/widgets/TrustBar.astro';
 
 const metadata = {
   title: 'Window Cleaning Somerset | Instant Online Quotes & Booking | Somerset Window Cleaning',
@@ -24,113 +26,73 @@ const metadata = {
 <Layout metadata={metadata} structuredDataType="homepage">
   <!-- Hero Widget ******************* -->
 
-  <Hero>
+  <Hero
+    actions={[
+      { variant: 'primary', text: 'Get FREE Quote', href: '/booking-2step', icon: 'tabler:calculator' },
+      { text: 'Call 01458 860339', href: 'tel:01458860339', icon: 'tabler:phone' },
+    ]}
+  >
     <Fragment slot="bg">
-      <Image src="~/assets/images/DJI_0007.JPG" alt="" width={1600} height={900} layout="cover" style="width:100%; height:100%; object-fit:cover; opacity:0.35;" />
+      <Image src="~/assets/images/DJI_0007.JPG" alt="Professional window cleaning service across Somerset - clean, reliable, fully insured exterior cleaning" width={1600} height={900} layout="cover" style="width:100%; height:100%; object-fit:cover; opacity:0.35;" loading="eager" decoding="sync" fetchpriority="high" />
       <div class="absolute inset-0 bg-black/40"></div>
     </Fragment>
     <Fragment slot="title">
-      Crystal‑clear windows. <span class="text-accent">Reliable</span> service.
+      Professional Window Cleaning <span class="text-accent">Somerset</span>
     </Fragment>
     <Fragment slot="subtitle">
-      Professional exterior cleaning across Somerset — <span class="text-accent">fully insured</span>, friendly and on‑time.
-    </Fragment>
-    <Fragment slot="content">
-      <div class="flex flex-wrap justify-center gap-4 mt-6 text-sm text-white/90">
-        <div class="flex items-center gap-2 bg-white/10 rounded-full px-3 py-1">
-          <svg class="w-4 h-4 text-accent" fill="currentColor" viewBox="0 0 20 20">
-            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-          </svg>
-          <span>4,000+ Happy Customers</span>
-        </div>
-        <div class="flex items-center gap-2 bg-white/10 rounded-full px-3 py-1">
-          <svg class="w-4 h-4 text-accent" fill="currentColor" viewBox="0 0 20 20">
-            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-          </svg>
-          <span>48-Hour Spot-Free Guarantee</span>
-        </div>
-        <div class="flex items-center gap-2 bg-white/10 rounded-full px-3 py-1">
-          <svg class="w-4 h-4 text-accent" fill="currentColor" viewBox="0 0 20 20">
-            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-          </svg>
-          <span>Established Since 2019</span>
-        </div>
-      </div>
+      Reliable, fully insured exterior cleaning across Somerset. 4,000+ happy customers since 2019.
     </Fragment>
   </Hero>
 
-  <!-- Features Widget *************** -->
+  <!-- Trust Bar ****************** -->
+  <TrustBar />
 
+  <!-- Services Widget *************** -->
   <Features
-    id="features"
-    tagline="Services"
-    title="Professional exterior cleaning"
-    subtitle="Reliable, fully insured cleaning across Somerset."
+    id="services"
+    title="Complete Exterior Cleaning Services"
+    subtitle="Professional, reliable, fully insured exterior cleaning across Somerset."
     items={[
       {
-        title: 'Window cleaning',
-        description: 'Pure water system for a streak‑free finish. Frames and sills included as standard.',
+        title: 'Window Cleaning',
+        description: 'Pure water system for streak-free windows. Frames and sills included.',
         icon: 'tabler:sparkles',
         callToAction: { text: 'Learn More', href: '/services/window-cleaning' },
       },
       {
-        title: 'Gutter clearing',
-        description: 'Vacuum system to safely remove moss and leaves.',
+        title: 'Gutter Clearing',
+        description: 'High-reach vacuum system removes leaves and debris safely.',
         icon: 'tabler:brand-abstract',
         callToAction: { text: 'Learn More', href: '/services/gutter-cleaning' },
       },
       {
-        title: 'Fascia & soffit',
-        description: 'Revive UPVC fascias, soffits and gutters with a gentle yet thorough exterior clean.',
+        title: 'Fascia & Soffit Cleaning',
+        description: 'Restore UPVC fascias and soffits to their original appearance.',
         icon: 'tabler:home',
         callToAction: { text: 'Learn More', href: '/services/fascia-soffit-cleaning' },
       },
       {
-        title: 'Conservatory roof cleaning',
-        description: 'Roof panels and frames carefully cleaned to bring back the sparkle.',
+        title: 'Conservatory Cleaning',
+        description: 'Roof panels and frames carefully cleaned to restore clarity.',
         icon: 'tabler:building',
         callToAction: { text: 'Learn More', href: '/services/conservatory-cleaning' },
       },
       {
-        title: 'Solar panels',
-        description: 'Specialist panel cleaning to help maintain efficiency and warranties.',
+        title: 'Solar Panel Cleaning',
+        description: 'Specialist cleaning to maintain efficiency and warranties.',
         icon: 'tabler:sun',
         callToAction: { text: 'Learn More', href: '/services/solar-panel-cleaning' },
       },
       {
-        title: 'Commercial',
-        description: 'Shops, offices and managed sites with minimal disruption and flexible scheduling.',
+        title: 'Commercial Cleaning',
+        description: 'Professional service for offices, shops and business premises.',
         icon: 'tabler:building-store',
         callToAction: { text: 'Get Quote', href: '/services/commercial-window-cleaning' },
       },
     ]}
   />
 
-  <!-- Trust bar ************************ -->
-  <Stats
-    stats={[
-      { title: 'Regular Customers', amount: '4,000+' },
-      { title: 'Professional Vans', amount: '6' },
-      { title: 'Google Rating', amount: '4.9★' },
-      { title: 'Established', amount: '2019' },
-    ]}
-  />
-
-  <!-- Process Widget ******************* -->
-
-  <Process
-    id="process"
-    tagline="How it works"
-    title="Book online in minutes"
-    subtitle="Get instant pricing and set up your regular cleaning service."
-    items={[
-      { title: 'Instant quote', description: 'Enter your details and get an instant quote. Book online and set up Direct Debit in minutes.', icon: 'tabler:calculator', callToAction: { variant: 'primary', text: 'Get instant quote', href: '/instant-quote', icon: 'tabler:calculator' } },
-      { title: 'We clean', description: 'Professional exterior cleaning with our 48‑hour spot‑free guarantee. We text before each visit.', icon: 'tabler:sparkles' },
-      { title: 'Automatic payment', description: 'Direct Debit takes payment automatically after each clean. Secure and hassle‑free.', icon: 'tabler:credit-card' },
-    ]}
-  />
-
-  <!-- Live Google Reviews ******************************* -->
+  <!-- Reviews ******************************* -->
   <LiveReviews 
     title="What our customers say"
     subtitle="Real reviews from verified Google customers"
@@ -138,69 +100,18 @@ const metadata = {
     autoRotate={true}
   />
 
-  <!-- FAQs Widget ******************* -->
-
-  <FAQs
-    title="Frequently Asked Questions"
-    subtitle="Answers to common questions about pricing, schedules and what’s included."
-    tagline="FAQs"
-    classes={{ container: 'max-w-6xl' }}
-    items={[
-      {
-        title: 'How much does window cleaning cost?',
-        description: 'Residential window cleaning starts from £20 for a 1-2 bedroom house. Prices vary by property size and frequency.',
-      },
-      {
-        title: 'Do I need to be home during cleaning?',
-        description: 'No. Exterior cleaning does not require you to be at home. For interior windows we’ll arrange a convenient time.',
-      },
-      {
-        title: 'How often should windows be cleaned?',
-        description: 'We recommend every 4–8 weeks to maintain clarity and prevent damage.',
-      },
-      {
-        title: 'Are you insured?',
-        description: 'Yes, we carry full public liability insurance and all team members are trained professionals.',
-      },
-      {
-        title: 'What areas do you cover?',
-        description: 'We serve customers across Somerset including Wells, Glastonbury, Street, Bridgwater, Taunton, Yeovil, Weston-Super-Mare, Cheddar, and surrounding areas. Contact us with your postcode to confirm coverage.',
-      },
-      {
-        title: 'Do you offer gutter, fascia/soffit and conservatory roof cleaning?',
-        description: 'Yes. We provide gutter clearing, fascia & soffit cleaning, conservatory roof cleaning and solar panel cleaning. Ask for a combined quote.',
-      },
-      {
-        title: 'Do you clean in the rain?',
-        description: 'Yes — light rain is fine with pure water systems. We offer a 48‑hour spot‑free guarantee: report issues within 48–72 hours and we’ll revisit free.',
-      },
-      {
-        title: 'How do I pay?',
-        description: 'Direct Debit via GoCardless is preferred (link below). We also accept card (Stripe) or bank transfer. For bank transfer details, please use the reference on your invoice or contact us and we’ll send them securely.',
-        callToAction: { text: 'Set up Direct Debit', href: '/contact?method=direct-debit' },
-      },
-      {
-        title: 'What if my gate is locked or I have dogs?',
-        description: 'Please ensure access on your clean day. If we cannot access, we’ll attempt to contact you. Skips/cancellations should follow rota rules/notice to avoid charges.',
-      },
-    ]}
-  />
-
-  <!-- CallToAction Widget *********** -->
-
+  <!-- CTA *********** -->
   <CallToAction
     actions={[
-      { variant: 'primary', text: 'Get Instant Quote & Book', href: '/instant-quote', icon: 'tabler:calculator' },
-      { variant: 'whatsapp', text: 'WhatsApp', href: 'https://wa.me/447415526331?text=Hi%20Somerset%20Window%20Cleaning%2C%20please%20can%20I%20get%20a%20quote%20for%20window%20cleaning%20at%20%5Byour%20address%5D', icon: 'tabler:brand-whatsapp' },
+      { variant: 'primary', text: 'Get FREE Quote', href: '/booking-2step', icon: 'tabler:calculator' },
       { text: 'Call 01458 860339', href: 'tel:01458860339', icon: 'tabler:phone' },
     ]}
   >
     <Fragment slot="title">
-      Ready for sparkling clean windows?
+      Ready for spotless windows?
     </Fragment>
-
     <Fragment slot="subtitle">
-      Get a fast, no‑obligation quote today. Fully insured. Reliable. Friendly.
+      Join 4,000+ satisfied customers across Somerset. Professional window cleaning with pure water technology.
     </Fragment>
   </CallToAction>
 </Layout>

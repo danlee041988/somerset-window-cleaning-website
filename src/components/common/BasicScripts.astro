@@ -173,6 +173,25 @@ import { UI } from 'astrowind:config';
   });
 </script>
 
+<!-- Defer noncritical scripts until idle -->
+<script is:inline>
+  (function() {
+    function runIdleTasks() {
+      // Defer analytics initialization to idle
+      document.dispatchEvent(new CustomEvent('idle:load-analytics'));
+
+      // Defer reviews auto-rotate init to idle
+      document.dispatchEvent(new CustomEvent('idle:init-reviews'));
+    }
+
+    if ('requestIdleCallback' in window) {
+      requestIdleCallback(runIdleTasks);
+    } else {
+      setTimeout(runIdleTasks, 200);
+    }
+  })();
+</script>
+
 <script is:inline>
   /* Inspired by: https://github.com/heidkaemper/tailwindcss-intersect */
   const Observer = {

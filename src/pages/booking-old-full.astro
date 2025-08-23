@@ -10,19 +10,22 @@ const metadata = {
   title: 'Book Window Cleaning Online - Somerset Window Cleaning | Instant Quote & Booking',
   description: 'Book professional window cleaning in Somerset online. Get instant pricing for residential and commercial properties. Fully insured service with transparent pricing.',
 };
+
+// Redirect to the primary booking form
+return Astro.redirect('/booking-2step', 301);
 ---
 
 <Layout metadata={metadata}>
   <!-- Hero Section -->
   <Hero>
     <Fragment slot="title">
-      Professional Window Cleaning <span class="text-accent">Book Online</span>
+      Professional Window Cleaning <span class="text-accent">Get Quote</span>
     </Fragment>
     <Fragment slot="subtitle">
-      Instant Quote & Book Online - Select your property type for transparent pricing
+      Get Instant Quote - Select your property type for transparent pricing
     </Fragment>
     <Fragment slot="bg">
-      <Image src="~/assets/images/solar-panels.jpeg" alt="" width={1600} height={900} layout="cover" style="width:100%; height:100%; object-fit:cover; opacity:0.35;" />
+      <Image src="~/assets/images/optimized/solar-panels-large.webp" alt="Book comprehensive window cleaning" width={1200} height={800} layout="cover" style="width:100%; height:100%; object-fit:cover; opacity:0.35;" />
       <div class="absolute inset-0 bg-gradient-to-br from-gray-800/60 via-gray-700/60 to-blue-900/60"></div>
     </Fragment>
   </Hero>
@@ -312,7 +315,7 @@ const metadata = {
                   </svg>
                   <div>
                     <div class="font-medium text-white">Fully Insured</div>
-                    <div class="text-sm text-gray-300">£2M public liability</div>
+                    <div class="text-sm text-gray-300">£5M public liability</div>
                   </div>
                 </div>
                 <div class="flex items-start space-x-3">
@@ -321,7 +324,7 @@ const metadata = {
                   </svg>
                   <div>
                     <div class="font-medium text-white">48-Hour Guarantee</div>
-                    <div class="text-sm text-gray-300">Spot-free guarantee</div>
+                    <div class="text-sm text-gray-300">48-hour guarantee</div>
                   </div>
                 </div>
                 <div class="flex items-start space-x-3">
@@ -389,7 +392,7 @@ const metadata = {
       },
       { 
         title: 'What if I\'m not satisfied?', 
-        description: 'We offer a 48-hour spot-free guarantee. Report any issues and we\'ll return to fix them free of charge.' 
+        description: 'We offer a 48-hour guarantee. Report any issues with your clean and we\'ll return to address them free of charge.' 
       },
       { 
         title: 'Do you provide equipment and materials?', 

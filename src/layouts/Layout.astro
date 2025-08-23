@@ -12,9 +12,13 @@ import SiteVerification from '~/components/common/SiteVerification.astro';
 import Analytics from '~/components/common/Analytics.astro';
 import BasicScripts from '~/components/common/BasicScripts.astro';
 // Temporarily disabled for compatibility
-// import StructuredData from '~/components/common/StructuredData.astro';
-// import AccessibilityEnhancements from '~/components/common/AccessibilityEnhancements.astro';
+import StructuredData from '~/components/common/StructuredData.astro';
+import AccessibilityEnhancements from '~/components/common/AccessibilityEnhancements.astro';
 import MobileOptimisations from '~/components/common/MobileOptimisations.astro';
+import TouchTargetOptimization from '~/components/common/TouchTargetOptimization.astro';
+import ColorContrastOptimizer from '~/components/common/ColorContrastOptimizer.astro';
+import AriaEnhancer from '~/components/common/AriaEnhancer.astro';
+import KeyboardNavigationEnhancer from '~/components/common/KeyboardNavigationEnhancer.astro';
 
 // View Transitions disabled to fix navigation  
 // import { ViewTransitions } from 'astro:transitions';
@@ -44,12 +48,26 @@ const { language, textDirection } = I18N;
     <!-- <StructuredData type={structuredDataType} /> -->
     <MobileOptimisations />
 
+    <!-- Performance: Preload primary hero image to improve LCP -->
+    <link rel="preload" as="image" imagesrcset="/src/assets/images/optimized/hero-main-lg.webp 1280w, /src/assets/images/optimized/hero-main-md.webp 1024w, /src/assets/images/optimized/hero-main-sm.webp 768w" imagesizes="(max-width: 768px) 100vw, 1280px" href="/src/assets/images/optimized/hero-main-lg.webp" />
+
+    <!-- Fonts: use swap and preload stylesheet -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"></noscript>
+
     <!-- View Transitions disabled to fix navigation -->
     <!-- <ViewTransitions /> -->
   </head>
 
   <body class="antialiased text-default bg-page tracking-tight">
-    <!-- <AccessibilityEnhancements /> -->
+    <AccessibilityEnhancements />
+    <TouchTargetOptimization />
+    <ColorContrastOptimizer />
+    <AriaEnhancer />
+    <KeyboardNavigationEnhancer />
     <slot />
 
     <BasicScripts />

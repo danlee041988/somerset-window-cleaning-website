@@ -10,6 +10,7 @@
  */
 
 import { SITE } from 'astrowind:config';
+import { siteConfig } from '~/config/site';
 
 interface Props {
   type?: 'homepage' | 'services' | 'about' | 'contact' | 'areas';
@@ -23,34 +24,31 @@ const { type = 'homepage', pageTitle, pageDescription } = Astro.props;
 const businessData = {
   '@context': 'https://schema.org',
   '@type': 'LocalBusiness',
-  '@id': 'https://somersetwindowcleaning.co.uk/#business',
-  name: 'Somerset Window Cleaning',
-  alternateName: 'Somerset Window Cleaning Ltd',
-  description: 'Professional window cleaning services across Somerset. Reliable, fully insured exterior cleaning including window cleaning, gutter clearing, fascia & soffit, conservatory roof and solar panel cleaning.',
-  url: 'https://somersetwindowcleaning.co.uk',
-  logo: 'https://somersetwindowcleaning.co.uk/brand/logo.png',
+  '@id': `${SITE.site}/#business`,
+  name: siteConfig.name,
+  alternateName: siteConfig.legalName,
+  description: 'Professional window cleaning services across Somerset. Reliable, fully insured exterior cleaning including window cleaning, internal gutter clearing, fascia & soffit with external gutter cleaning, conservatory roof and solar panel cleaning.',
+  url: SITE.site,
+  logo: `${SITE.site}/brand/logo.png`,
   image: [
-    'https://somersetwindowcleaning.co.uk/brand/logo.png',
-    'https://somersetwindowcleaning.co.uk/brand/home-hero.jpg'
+    `${SITE.site}/brand/logo.png`,
+    `${SITE.site}/brand/home-hero.jpg`
   ],
   
   // UK business registration and VAT details
-  vatID: 'GB359427172',
-  taxID: '359427172',
-  legalName: 'Somerset Window Cleaning Ltd',
-  foundingDate: '2019',
+  foundingDate: siteConfig.establishedYear.toString(),
   
   // Contact information with proper UK formatting
-  telephone: '+44 1458 860339',
-  email: 'info@somersetwindowcleaning.co.uk',
+  telephone: `+44 ${siteConfig.phone.slice(1)}`,
+  email: siteConfig.email,
   
   // Physical business address in UK format
   address: {
     '@type': 'PostalAddress',
-    streetAddress: '13 Rockhaven Business Centre, Gravenchon Way',
-    addressLocality: 'Highbridge',
-    addressRegion: 'Somerset',
-    postalCode: 'BA16 0HW',
+    streetAddress: `${siteConfig.address.line1}, ${siteConfig.address.line2}`,
+    addressLocality: siteConfig.address.city,
+    addressRegion: siteConfig.address.county,
+    postalCode: siteConfig.address.postcode,
     addressCountry: 'GB'
   },
   
@@ -167,7 +165,7 @@ const servicesData = {
           '@type': 'Service',
           name: 'Gutter Clearing',
           description: 'High-reach vacuum system for safe and thorough gutter clearing, removing moss and leaves.',
-          serviceType: 'Gutter Cleaning'
+          serviceType: 'Gutter Clearing'
         }
       },
       {
@@ -267,10 +265,8 @@ const breadcrumbData = (() => {
     items.push({ name: 'About', url: 'https://somersetwindowcleaning.co.uk/about' });
   } else if (type === 'contact') {
     items.push({ name: 'Contact', url: 'https://somersetwindowcleaning.co.uk/contact' });
-  } else if (type === 'areas') {
-    items.push({ name: 'Service Areas', url: 'https://somersetwindowcleaning.co.uk/areas' });
   }
-  
+
   return {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
@@ -301,7 +297,7 @@ const faqData = type === 'homepage' ? {
       name: 'Do I need to be home during cleaning?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'No. Exterior cleaning does not require you to be at home. For interior windows we\'ll arrange a convenient time.'
+        text: 'No. Exterior cleaning does not require you to be at home. For interior windows, we\'ll send you a reminder and complete the cleaning within the next two working days.'
       }
     },
     {

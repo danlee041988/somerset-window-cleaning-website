@@ -1,133 +1,214 @@
-#!/usr/bin/env node
-
 import sharp from 'sharp';
-import { existsSync, mkdirSync } from 'fs';
-import { join, dirname } from 'path';
+import fs from 'fs';
+import path from 'path';
 import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+const __dirname = path.dirname(__filename);
 
-const sourceDir = join(__dirname, '../src/assets/images');
-const outputDir = join(__dirname, '../src/assets/images/optimized');
+const imagesDir = path.join(__dirname, '../src/assets/images');
+const serviceImagesDir = path.join(imagesDir, 'services');
 
-// Ensure output directory exists
-if (!existsSync(outputDir)) {
-  mkdirSync(outputDir, { recursive: true });
-}
-
-// Configuration for different image types
-const imageConfigs = [
-  {
-    source: 'solar-panels.jpeg',
-    output: 'solar-panels',
-    sizes: [
-      { width: 400, suffix: '-sm' },
-      { width: 800, suffix: '-md' }, 
-      { width: 1200, suffix: '-lg' },
-      { width: 1920, suffix: '-xl' }
-    ],
-    quality: 85
+// Optimization settings
+const optimizations = {
+  jpeg: {
+    quality: 75,
+    progressive: true,
+    mozjpeg: true
   },
-  {
-    source: 'DJI_0007.JPG',
-    output: 'hero-aerial',
-    sizes: [
-      { width: 400, suffix: '-sm' },
-      { width: 800, suffix: '-md' },
-      { width: 1200, suffix: '-lg' },
-      { width: 1920, suffix: '-xl' }
-    ],
-    quality: 85
+  webp: {
+    quality: 75,
+    effort: 6
   },
-  {
-    source: 'hero-image.png',
-    output: 'hero-main',
-    sizes: [
-      { width: 400, suffix: '-sm' },
-      { width: 800, suffix: '-md' },
-      { width: 1200, suffix: '-lg' },
-      { width: 1920, suffix: '-xl' }
-    ],
-    quality: 90
+  resize: {
+    // Maximum dimensions for different image types
+    hero: { width: 1920, height: 1080 },
+    service: { width: 1200, height: 800 },
+    thumbnail: { width: 600, height: 400 }
   }
-];
+};
 
-async function optimizeImage(inputPath, outputPath, width, quality, format) {
-  let pipeline = sharp(inputPath);
-  
-  // Special handling for solar panels image - rotate 180 degrees
-  if (inputPath.includes('solar-panels.jpeg')) {
-    pipeline = pipeline.rotate(180);
-  } else {
-    pipeline = pipeline.rotate(); // Auto-rotate based on EXIF orientation for others
-  }
-  
-  pipeline = pipeline.resize(width, null, { 
-    withoutEnlargement: true,
-    fit: 'inside'
-  });
-
-  switch (format) {
-    case 'webp':
-      pipeline.webp({ quality, effort: 6 });
-      break;
-    case 'avif':
-      pipeline.avif({ quality, effort: 9 });
-      break;
-    case 'jpeg':
-      pipeline.jpeg({ quality, progressive: true, mozjpeg: true });
-      break;
-    default:
-      throw new Error(`Unsupported format: ${format}`);
-  }
-
-  await pipeline.toFile(outputPath);
-}
-
-async function processImages() {
-  console.log('🖼️  Starting image optimization...\n');
-
-  for (const config of imageConfigs) {
-    const inputPath = join(sourceDir, config.source);
+async function optimizeImage(inputPath, outputPath, options = {}) {
+  try {
+    const { width, height, quality = 75 } = options;
     
-    if (!existsSync(inputPath)) {
-      console.log(`⚠️  Skipping ${config.source} - file not found`);
+    let pipeline = sharp(inputPath);
+    
+    // Resize if dimensions provided
+    if (width || height) {
+      pipeline = pipeline.resize(width, height, {
+        fit: 'cover',
+        position: 'center'
+      });
+    }
+    
+    // Determine output format from file extension
+    const ext = path.extname(outputPath).toLowerCase();
+    
+    if (ext === '.webp') {
+      pipeline = pipeline.webp({ quality, effort: 6 });
+    } else if (ext === '.jpg' || ext === '.jpeg') {
+      pipeline = pipeline.jpeg({ quality, progressive: true, mozjpeg: true });
+    }
+    
+    await pipeline.toFile(outputPath);
+    
+    // Get file sizes
+    const inputStats = fs.statSync(inputPath);
+    const outputStats = fs.statSync(outputPath);
+    const savings = ((inputStats.size - outputStats.size) / inputStats.size * 100).toFixed(1);
+    
+    console.log(`✅ ${path.basename(inputPath)} -> ${path.basename(outputPath)}`);
+    console.log(`   ${formatBytes(inputStats.size)} -> ${formatBytes(outputStats.size)} (${savings}% smaller)`);
+    
+    return { inputSize: inputStats.size, outputSize: outputStats.size, savings };
+    
+  } catch (error) {
+    console.error(`❌ Error optimizing ${inputPath}:`, error.message);
+    return null;
+  }
+}
+
+function formatBytes(bytes) {
+  if (bytes === 0) return '0 Bytes';
+  const k = 1024;
+  const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+  const i = Math.floor(Math.log(bytes) / Math.log(k));
+  return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+}
+
+async function optimizeServicesImages() {
+  console.log('🚀 Optimizing service images...\n');
+  
+  const images = [
+    'IMG_0750.jpeg',
+    '20250318_163457~3-edited.jpg', 
+    'Image.jpg'
+  ];
+  
+  let totalInputSize = 0;
+  let totalOutputSize = 0;
+  
+  for (const image of images) {
+    const inputPath = path.join(serviceImagesDir, image);
+    
+    if (!fs.existsSync(inputPath)) {
+      console.log(`⚠️  Image not found: ${image}`);
       continue;
     }
-
-    console.log(`📸 Processing ${config.source}...`);
-
-    // Get original file size
-    const { size: originalSize } = await sharp(inputPath).metadata();
-    console.log(`   Original size: ${(originalSize / 1024 / 1024).toFixed(2)}MB`);
-
-    for (const size of config.sizes) {
-      // Generate WebP versions
-      const webpPath = join(outputDir, `${config.output}${size.suffix}.webp`);
-      await optimizeImage(inputPath, webpPath, size.width, config.quality, 'webp');
-
-      // Generate AVIF versions (smaller but newer format)
-      const avifPath = join(outputDir, `${config.output}${size.suffix}.avif`);
-      await optimizeImage(inputPath, avifPath, size.width, config.quality - 5, 'avif');
-
-      // Generate fallback JPEG versions
-      const jpegPath = join(outputDir, `${config.output}${size.suffix}.jpg`);
-      await optimizeImage(inputPath, jpegPath, size.width, config.quality, 'jpeg');
-
-      // Check compressed file sizes
-      const webpSize = (await sharp(webpPath).metadata()).size;
-      const avifSize = (await sharp(avifPath).metadata()).size;
-      const jpegSize = (await sharp(jpegPath).metadata()).size;
-
-      console.log(`   ${size.width}px: WebP ${(webpSize / 1024).toFixed(1)}KB | AVIF ${(avifSize / 1024).toFixed(1)}KB | JPEG ${(jpegSize / 1024).toFixed(1)}KB`);
+    
+    // Create optimized versions
+    const baseName = path.parse(image).name;
+    const outputDir = path.join(serviceImagesDir, 'optimized');
+    
+    // Create optimized directory if it doesn't exist
+    if (!fs.existsSync(outputDir)) {
+      fs.mkdirSync(outputDir, { recursive: true });
     }
-
-    console.log(`   ✅ ${config.source} optimized\n`);
+    
+    // Create multiple optimized versions
+    const variants = [
+      {
+        suffix: '-large.webp',
+        ...optimizations.resize.service,
+        quality: 75,
+        format: 'webp'
+      },
+      {
+        suffix: '-large.jpg',
+        ...optimizations.resize.service,
+        quality: 75,
+        format: 'jpeg'
+      },
+      {
+        suffix: '-medium.webp',
+        width: 800,
+        height: 600,
+        quality: 75,
+        format: 'webp'
+      },
+      {
+        suffix: '-small.webp',
+        width: 400,
+        height: 300,
+        quality: 70,
+        format: 'webp'
+      }
+    ];
+    
+    console.log(`\n📸 Processing: ${image}`);
+    
+    for (const variant of variants) {
+      const outputPath = path.join(outputDir, `${baseName}${variant.suffix}`);
+      const result = await optimizeImage(inputPath, outputPath, variant);
+      
+      if (result) {
+        totalInputSize += result.inputSize;
+        totalOutputSize += result.outputSize;
+      }
+    }
   }
-
-  console.log('🎉 Image optimization complete!');
+  
+  // Summary
+  const totalSavings = ((totalInputSize - totalOutputSize) / totalInputSize * 100).toFixed(1);
+  console.log(`\n📊 OPTIMIZATION SUMMARY:`);
+  console.log(`   Total input size: ${formatBytes(totalInputSize)}`);
+  console.log(`   Total output size: ${formatBytes(totalOutputSize)}`);
+  console.log(`   Total savings: ${totalSavings}%`);
 }
 
-// Run the optimization
-processImages().catch(console.error);
+async function optimizeMainImages() {
+  console.log('\n🚀 Optimizing main images...\n');
+  
+  const mainImages = [
+    {
+      input: 'solar-panels.jpeg',
+      outputs: [
+        { suffix: '-hero.webp', ...optimizations.resize.hero, quality: 75 },
+        { suffix: '-large.webp', ...optimizations.resize.service, quality: 75 },
+        { suffix: '-medium.webp', width: 800, height: 600, quality: 75 }
+      ]
+    },
+    {
+      input: 'DJI_0007.JPG',
+      outputs: [
+        { suffix: '-hero.webp', ...optimizations.resize.hero, quality: 75 },
+        { suffix: '-large.webp', ...optimizations.resize.service, quality: 75 }
+      ]
+    }
+  ];
+  
+  for (const imageSet of mainImages) {
+    const inputPath = path.join(imagesDir, imageSet.input);
+    
+    if (!fs.existsSync(inputPath)) {
+      console.log(`⚠️  Image not found: ${imageSet.input}`);
+      continue;
+    }
+    
+    console.log(`\n📸 Processing: ${imageSet.input}`);
+    const baseName = path.parse(imageSet.input).name;
+    
+    for (const output of imageSet.outputs) {
+      const outputPath = path.join(imagesDir, 'optimized', `${baseName}${output.suffix}`);
+      await optimizeImage(inputPath, outputPath, output);
+    }
+  }
+}
+
+// Run optimization
+async function main() {
+  console.log('🎯 SOMERSET WINDOW CLEANING - IMAGE OPTIMIZATION');
+  console.log('================================================\n');
+  
+  await optimizeServicesImages();
+  await optimizeMainImages();
+  
+  console.log('\n✅ Optimization complete!');
+  console.log('\n💡 Next steps:');
+  console.log('   1. Update image references to use optimized versions');
+  console.log('   2. Implement responsive image loading');
+  console.log('   3. Add lazy loading for better performance');
+}
+
+main().catch(console.error);

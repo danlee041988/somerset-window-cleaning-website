@@ -1,0 +1,208 @@
+---
+// PWAManager.astro - Handles PWA functionality and service worker registration
+---
+
+<script>
+// PWA Manager Class
+class PWAManager {
+  constructor() {
+    this.deferredPrompt = null;
+    this.isOnline = navigator.onLine;
+    this.init();
+  }
+
+  init() {
+    // Register service worker
+    this.registerServiceWorker();
+
+    // Handle PWA install prompt
+    this.handleInstallPrompt();
+
+    // Handle online/offline status
+    this.handleConnectivity();
+
+    // Handle updates
+    this.handleUpdates();
+  }
+
+  async registerServiceWorker() {
+    if ('serviceWorker' in navigator) {
+      try {
+        const registration = await navigator.serviceWorker.register('/sw.js');
+        console.log('Service worker registered:', registration);
+
+        // Handle updates
+        registration.addEventListener('updatefound', () => {
+          const newWorker = registration.installing;
+          if (newWorker) {
+            newWorker.addEventListener('statechange', () => {
+              if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                this.showUpdateNotification();
+              }
+            });
+          }
+        });
+
+      } catch (error) {
+        console.log('Service worker registration failed:', error);
+      }
+    }
+  }
+
+  handleInstallPrompt() {
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      this.deferredPrompt = e;
+      this.showInstallPrompt();
+    });
+
+    window.addEventListener('appinstalled', () => {
+      console.log('PWA was installed');
+      this.hideInstallPrompt();
+    });
+  }
+
+  handleConnectivity() {
+    window.addEventListener('online', () => {
+      this.isOnline = true;
+      this.showOnlineNotification();
+    });
+
+    window.addEventListener('offline', () => {
+      this.isOnline = false;
+      this.showOfflineNotification();
+    });
+  }
+
+  handleUpdates() {
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.addEventListener('controllerchange', () => {
+        window.location.reload();
+      });
+    }
+  }
+
+  showInstallPrompt() {
+    // Create install prompt
+    const prompt = document.createElement('div');
+    prompt.id = 'pwa-install-prompt';
+    prompt.className = 'fixed bottom-4 left-4 right-4 md:left-auto md:right-4 md:max-w-sm bg-white rounded-lg shadow-2xl border p-4 z-50';
+    prompt.innerHTML = `
+      <div class="flex items-start">
+        <div class="flex-shrink-0">
+          <svg class="w-8 h-8 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zm0 4a1 1 0 011-1h12a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1V8z" clip-rule="evenodd"/>
+          </svg>
+        </div>
+        <div class="ml-3 flex-1">
+          <h3 class="text-sm font-medium text-gray-900">Install Our App</h3>
+          <p class="mt-1 text-sm text-gray-500">Get offline access and book services anytime</p>
+          <div class="mt-3 flex space-x-2">
+            <button id="install-btn" class="bg-blue-600 text-white px-4 py-2 rounded text-sm font-medium hover:bg-blue-700 transition-colors">
+              Install
+            </button>
+            <button id="dismiss-btn" class="text-gray-500 px-4 py-2 rounded text-sm font-medium hover:text-gray-700 transition-colors">
+              Later
+            </button>
+          </div>
+        </div>
+      </div>
+    `;
+
+    document.body.appendChild(prompt);
+
+    // Handle install button
+    document.getElementById('install-btn').addEventListener('click', async () => {
+      if (this.deferredPrompt) {
+        this.deferredPrompt.prompt();
+        const { outcome } = await this.deferredPrompt.userChoice;
+
+        if (outcome === 'accepted') {
+          console.log('User accepted the install prompt');
+        } else {
+          console.log('User dismissed the install prompt');
+        }
+
+        this.deferredPrompt = null;
+        this.hideInstallPrompt();
+      }
+    });
+
+    // Handle dismiss button
+    document.getElementById('dismiss-btn').addEventListener('click', () => {
+      this.hideInstallPrompt();
+      // Remember user choice for 24 hours
+      localStorage.setItem('pwa-install-dismissed', Date.now().toString());
+    });
+  }
+
+  hideInstallPrompt() {
+    const prompt = document.getElementById('pwa-install-prompt');
+    if (prompt) {
+      prompt.remove();
+    }
+  }
+
+  showUpdateNotification() {
+    const notification = document.createElement('div');
+    notification.id = 'pwa-update-notification';
+    notification.className = 'fixed top-4 right-4 bg-green-500 text-white px-4 py-2 rounded-lg shadow-lg z-50';
+    notification.innerHTML = `
+      <div class="flex items-center space-x-2">
+        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+          <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+        </svg>
+        <span>Update available!</span>
+        <button id="update-btn" class="ml-2 bg-green-600 hover:bg-green-700 px-3 py-1 rounded text-sm">
+          Refresh
+        </button>
+      </div>
+    `;
+
+    document.body.appendChild(notification);
+
+    document.getElementById('update-btn').addEventListener('click', () => {
+      window.location.reload();
+    });
+
+    // Auto-hide after 10 seconds
+    setTimeout(() => {
+      notification.remove();
+    }, 10000);
+  }
+
+  showOnlineNotification() {
+    this.showConnectivityNotification('Online', 'green', 'Successfully reconnected');
+  }
+
+  showOfflineNotification() {
+    this.showConnectivityNotification('Offline', 'yellow', 'Working in offline mode');
+  }
+
+  showConnectivityNotification(status, color, message) {
+    const notification = document.createElement('div');
+    notification.className = `fixed top-4 left-4 bg-${color}-500 text-white px-4 py-2 rounded-lg shadow-lg z-50`;
+    notification.innerHTML = `
+      <div class="flex items-center space-x-2">
+        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+          <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+        </svg>
+        <span>${status}: ${message}</span>
+      </div>
+    `;
+
+    document.body.appendChild(notification);
+
+    // Auto-hide after 3 seconds
+    setTimeout(() => {
+      notification.remove();
+    }, 3000);
+  }
+}
+
+// Initialize PWA Manager when DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+  new PWAManager();
+});
+</script>
+

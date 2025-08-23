@@ -1,0 +1,124 @@
+---
+import { siteConfig } from '~/config/site';
+
+interface Props {
+  currentService?: string;
+  class?: string;
+}
+
+const { currentService, class: className = '' } = Astro.props;
+
+// Define all services with their page URLs and descriptions
+const allServices = [
+  {
+    name: 'Window Cleaning',
+    url: '/services/window-cleaning',
+    description: 'Pure water reach-and-wash system for streak-free results',
+    price: siteConfig.services.window.fromPrice,
+    icon: '🪟'
+  },
+  {
+    name: 'Gutter Clearing',
+    url: '/services/gutter-cleaning', 
+    description: 'High-reach vacuum system removes leaves and debris',
+    price: siteConfig.services.gutter.fromPrice,
+    icon: '🏠'
+  },
+  {
+    name: 'Fascia & Soffit Cleaning',
+    url: '/services/fascia-soffit-cleaning',
+    description: 'UPVC restoration for improved kerb appeal',
+    price: siteConfig.services.fascia.fromPrice,
+    icon: '🏗️'
+  },
+  {
+    name: 'Conservatory Roof Cleaning',
+    url: '/services/conservatory-cleaning',
+    description: 'Glass and polycarbonate roof cleaning',
+    price: siteConfig.services.conservatory.fromPrice,
+    icon: '🌿'
+  },
+  {
+    name: 'Solar Panel Cleaning',
+    url: '/services/solar-panel-cleaning',
+    description: 'Maintain efficiency and warranties',
+    price: siteConfig.services.solar.fromPrice,
+    icon: '☀️'
+  },
+  {
+    name: 'Commercial Window Cleaning',
+    url: '/services/commercial-window-cleaning',
+    description: 'Professional business cleaning services',
+    price: siteConfig.services.commercial.fromPrice,
+    icon: '🏢'
+  }
+];
+
+// Filter out the current service to show related ones
+const relatedServices = allServices.filter(service => service.name !== currentService);
+---
+
+<section class={`py-12 bg-gray-50 ${className}`}>
+  <div class="max-w-6xl mx-auto px-4">
+    <div class="text-center mb-8">
+      <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
+        Other Professional Cleaning Services
+      </h2>
+      <p class="text-gray-600 max-w-2xl mx-auto">
+        Complete your property maintenance with our comprehensive range of exterior cleaning services across Somerset.
+      </p>
+    </div>
+    
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {relatedServices.map((service) => (
+        <a 
+          href={service.url}
+          class="group bg-white rounded-lg shadow-sm border border-gray-200 hover:shadow-md hover:border-accent/20 transition-all duration-200 p-6"
+        >
+          <div class="flex items-start space-x-4">
+            <div class="text-2xl flex-shrink-0">
+              {service.icon}
+            </div>
+            <div class="flex-1 min-w-0">
+              <h3 class="font-semibold text-gray-900 group-hover:text-accent transition-colors mb-2">
+                {service.name}
+              </h3>
+              <p class="text-sm text-gray-600 mb-3 leading-relaxed">
+                {service.description}
+              </p>
+              <div class="flex items-center justify-between">
+                <span class="text-xs font-medium text-accent bg-accent/10 px-2 py-1 rounded-full">
+                  From {service.price}
+                </span>
+                <span class="text-xs text-gray-500 group-hover:text-accent transition-colors">
+                  Learn more →
+                </span>
+              </div>
+            </div>
+          </div>
+        </a>
+      ))}
+    </div>
+    
+    <!-- Call to action for multiple services -->
+    <div class="mt-8 text-center">
+      <div class="bg-primary/5 border border-primary/20 rounded-lg p-6">
+        <h3 class="text-lg font-semibold text-gray-900 mb-2">
+          💰 Bundle & Save
+        </h3>
+        <p class="text-gray-600 mb-4">
+          Combine multiple services for better value. Get a custom quote for your complete property maintenance needs.
+        </p>
+        <a 
+          href="/instant-quote"
+          class="inline-flex items-center gap-2 bg-primary hover:bg-primary/90 text-white font-medium px-6 py-3 rounded-lg transition-colors"
+        >
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+          </svg>
+          Get Bundle Quote
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

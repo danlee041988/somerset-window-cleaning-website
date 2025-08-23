@@ -1,0 +1,546 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
+import { siteConfig } from '~/config/site';
+import { Icon } from 'astro-icon/components';
+import Hero from '~/components/widgets/Hero.astro';
+
+const metadata = {
+  title: 'Terms & Conditions | Somerset Window Cleaning',
+  description: 'Terms and conditions for Somerset Window Cleaning services. Professional window cleaning, gutter clearing, and exterior cleaning across Somerset.',
+};
+---
+
+<Layout metadata={metadata}>
+  <!-- Hero Section -->
+  <Hero
+    tagline="Legal Information"
+    title="Terms & Conditions"
+    subtitle="Clear, transparent terms for our professional cleaning services across Somerset"
+  />
+
+  <WidgetWrapper>
+    <section class="py-8 max-w-6xl mx-auto px-4">
+      <!-- Last Updated Banner -->
+      <div class="bg-gradient-to-r from-slate-800 to-slate-900 border border-slate-700 rounded-xl p-6 mb-8 shadow-lg">
+        <div class="flex items-center gap-3 mb-3">
+          <Icon name="tabler:calendar" class="w-6 h-6 text-red-400" />
+          <h2 class="text-lg font-semibold text-white">Document Information</h2>
+        </div>
+        <p class="text-slate-300 mb-2"><strong>Last updated:</strong> {new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}</p>
+        <p class="text-slate-300">These terms apply to all services provided by Somerset Window Cleaning across Somerset, England.</p>
+      </div>
+
+      <!-- Terms Content -->
+      <div class="prose prose-lg max-w-none">
+        <!-- Introduction -->
+        <div class="bg-blue-50 dark:bg-blue-900/20 p-6 rounded-lg mb-8">
+          <h2 class="text-xl font-semibold text-blue-900 dark:text-blue-100 mb-3 flex items-center">
+            <Icon name="tabler:info-circle" class="w-6 h-6 mr-2" />
+            Terms and Conditions
+          </h2>
+          <p class="text-blue-800 dark:text-blue-200 mb-0">
+            These terms govern your use of Somerset Window Cleaning services. By booking our services, you agree to these terms and conditions.
+          </p>
+        </div>
+
+        <!-- 1. Who we are -->
+        <section class="mb-8">
+          <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
+            <span class="bg-blue-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-lg font-bold mr-3">1</span>
+            Who we are
+          </h2>
+          <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
+            <p class="text-gray-700 dark:text-gray-300">
+              "Somerset Window Cleaning" ("SWC", "we", "us") provides exterior cleaning services across Somerset, including window cleaning (water-fed pole and traditional), gutter clearing (including vacuum), fascia & soffit cleaning, conservatory roof cleaning, and solar panel cleaning.
+            </p>
+          </div>
+        </section>
+
+        <!-- 2. Making a contract with us -->
+        <section class="mb-8">
+          <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
+            <span class="bg-blue-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-lg font-bold mr-3">2</span>
+            Making a contract with us
+          </h2>
+          <div class="space-y-4">
+            <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
+              <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-3">2.1 Agreement to Terms</h3>
+              <p class="text-gray-700 dark:text-gray-300">
+                By booking online, by phone, WhatsApp or email, you agree to these Terms.
+              </p>
+            </div>
+            <div class="bg-yellow-50 dark:bg-yellow-900/20 p-6 rounded-lg">
+              <h3 class="text-lg font-semibold text-yellow-900 dark:text-yellow-100 mb-3">2.2 Consumer Rights - 14-day Cooling-off Period</h3>
+              <p class="text-yellow-800 dark:text-yellow-200">
+                For consumer customers, if your first booking is made at a distance (online/phone), you have a 14-day cooling-off period from the date of booking. If you ask us to carry out work within that period, you acknowledge the right to cancel ends once the service is fully provided and that a reasonable charge will apply for any work already completed.
+              </p>
+            </div>
+            <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
+              <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-3">2.3 Updates to Terms</h3>
+              <p class="text-gray-700 dark:text-gray-300">
+                We may update these Terms from time to time on reasonable notice. Continued use of our services after notice = acceptance.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- 3. Quotes, pricing & scope -->
+        <section class="mb-8">
+          <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
+            <span class="bg-blue-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-lg font-bold mr-3">3</span>
+            Quotes, pricing & scope
+          </h2>
+          <div class="space-y-4">
+            <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
+              <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-3">3.1 Quote Accuracy</h3>
+              <p class="text-gray-700 dark:text-gray-300">
+                Quotes are based on the information provided and an external assessment. We may revise the price on arrival if the property differs materially (e.g., extra elevations, extensions, access issues, heavy build-up). We'll agree changes with you before starting.
+              </p>
+            </div>
+            <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
+              <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-3">3.2 Quote Validity</h3>
+              <p class="text-gray-700 dark:text-gray-300">
+                Quotes are valid for 30 days.
+              </p>
+            </div>
+            <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
+              <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-3">3.3 Minimum Charges & Additional Fees</h3>
+              <p class="text-gray-700 dark:text-gray-300">
+                Minimum charge: £[insert]. Parking/permit/paid access fees (if required) are chargeable at cost.
+              </p>
+            </div>
+            <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
+              <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-3">3.4 Price Reviews</h3>
+              <p class="text-gray-700 dark:text-gray-300">
+                Recurring price reviews: we may adjust prices (e.g., inflation, costs, route density). We'll give at least 30 days' notice for recurring customers.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- 4. Scheduling & access -->
+        <section class="mb-8">
+          <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
+            <span class="bg-blue-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-lg font-bold mr-3">4</span>
+            Scheduling & access
+          </h2>
+          <div class="space-y-4">
+            <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
+              <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-3">4.1 Service Rounds</h3>
+              <p class="text-gray-700 dark:text-gray-300">
+                Rounds operate on a 4-weekly cycle by area (North/East/South/West). 8-weekly customers are served on the next cycle for their area.
+              </p>
+            </div>
+            <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
+              <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-3">4.2 Service Windows</h3>
+              <p class="text-gray-700 dark:text-gray-300">
+                We send SMS reminders with a two-day working window; weather and operational factors may shift the exact day/time.
+              </p>
+            </div>
+            <div class="bg-yellow-50 dark:bg-yellow-900/20 p-6 rounded-lg">
+              <h3 class="text-lg font-semibold text-yellow-900 dark:text-yellow-100 mb-3 flex items-center">
+                <Icon name="tabler:alert-triangle" class="w-5 h-5 mr-2" />
+                4.3 Access Requirements & Abortive Calls
+              </h3>
+              <p class="text-yellow-800 dark:text-yellow-200 mb-4">
+                You're responsible for clear and safe access (unlocked gates, moving obstacles, securing pets). If we attend and cannot gain access or it's unsafe to proceed, an abortive call-out fee of £[insert] (or [50]% of the booked job, whichever is higher) may apply.
+              </p>
+            </div>
+            <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
+              <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-3">4.4 Photography for Documentation</h3>
+              <p class="text-gray-700 dark:text-gray-300">
+                We may take time-stamped photos strictly to evidence completed work, condition, access issues, or for quality control. We'll only use images for marketing with your consent.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- 5. How we work -->
+        <section class="mb-8">
+          <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
+            <span class="bg-blue-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-lg font-bold mr-3">5</span>
+            How we work (important service notes)
+          </h2>
+          <div class="space-y-4">
+            <div class="bg-blue-50 dark:bg-blue-900/20 p-6 rounded-lg">
+              <h3 class="text-lg font-semibold text-blue-900 dark:text-blue-100 mb-3">5.1 Water-Fed Pole (WFP) & Pure Water</h3>
+              <p class="text-blue-800 dark:text-blue-200">
+                We use purified water. On first/second cleans or after long gaps, residues on frames/gaskets can cause "spotting" as they purge; this is normal and settles with regular service.
+              </p>
+            </div>
+            <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
+              <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-3">5.2 Frames, Sills, Seals & Vents</h3>
+              <p class="text-gray-700 dark:text-gray-300">
+                We clean frames/sills externally as part of a standard window clean. We do not dismantle, reseal, or clean inside trickle vents. Older/oxidised uPVC may release carbon run-off; we're not responsible for historic staining.
+              </p>
+            </div>
+            <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
+              <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-3">5.3 Leaded/Aged Glass & Wooden Frames</h3>
+              <p class="text-gray-700 dark:text-gray-300">
+                We clean these delicately (no abrasive pads/scrapers). Due to fragility/age, we cannot accept liability for pre-existing faults or movement of loose lead/putty.
+              </p>
+            </div>
+            <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
+              <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-3">5.4 Gutter Clearing</h3>
+              <p class="text-gray-700 dark:text-gray-300">
+                We clear gutters and visible above-ground downpipes as accessible. We do not rod underground drains. Where downpipes are blocked below ground or sections are broken/misaligned, we'll advise—further works may be needed by a roofer/drain specialist.
+              </p>
+            </div>
+            <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
+              <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-3">5.5 Conservatory & Polycarbonate Roofs</h3>
+              <p class="text-gray-700 dark:text-gray-300">
+                Ageing panels can become brittle. We clean from safe positions only (no roof walking) and may decline if risk is unacceptable.
+              </p>
+            </div>
+            <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
+              <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-3">5.6 Solar Panels</h3>
+              <p class="text-gray-700 dark:text-gray-300">
+                We clean where safe and permitted. You are responsible for ensuring cleaning won't affect your manufacturer/installer warranties. We do not interfere with electrical connectors or access under panels.
+              </p>
+            </div>
+            <div class="bg-orange-50 dark:bg-orange-900/20 p-6 rounded-lg">
+              <h3 class="text-lg font-semibold text-orange-900 dark:text-orange-100 mb-3 flex items-center">
+                <Icon name="tabler:helmet" class="w-5 h-5 mr-2" />
+                5.7 Working at Height & Safety
+              </h3>
+              <p class="text-orange-800 dark:text-orange-200">
+                We comply with H&S law. Ladders are used only where necessary and safe. We may refuse/stop unsafe work at our discretion.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- 6. Weather policy -->
+        <section class="mb-8">
+          <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
+            <span class="bg-blue-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-lg font-bold mr-3">6</span>
+            Weather policy
+          </h2>
+          <div class="space-y-4">
+            <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
+              <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-3">6.1 Working Conditions</h3>
+              <p class="text-gray-700 dark:text-gray-300">
+                We work in light rain. In severe weather or unsafe conditions (high winds, ice, storms), we'll reschedule at our earliest availability.
+              </p>
+            </div>
+            <div class="bg-blue-50 dark:bg-blue-900/20 p-6 rounded-lg">
+              <h3 class="text-lg font-semibold text-blue-900 dark:text-blue-100 mb-3">6.2 Rain After Cleaning</h3>
+              <p class="text-blue-800 dark:text-blue-200">
+                Rain after cleaning does not affect purified water results; our guarantee in clause 7 still applies.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- 7. Service guarantee -->
+        <section class="mb-8">
+          <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
+            <span class="bg-blue-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-lg font-bold mr-3">7</span>
+            Service guarantee (48-hour)
+          </h2>
+          <div class="space-y-4">
+            <div class="bg-green-50 dark:bg-green-900/20 p-6 rounded-lg">
+              <h3 class="text-lg font-semibold text-green-900 dark:text-green-100 mb-3 flex items-center">
+                <Icon name="tabler:shield-check" class="w-5 h-5 mr-2" />
+                7.1 48-Hour Guarantee
+              </h3>
+              <p class="text-green-800 dark:text-green-200">
+                If you report spotting/quality issues within 48 hours of completion (with photos if possible), we'll return and re-clean affected areas free of charge.
+              </p>
+            </div>
+            <div class="bg-red-50 dark:bg-red-900/20 p-6 rounded-lg">
+              <h3 class="text-lg font-semibold text-red-900 dark:text-red-100 mb-3">7.2 Guarantee Exclusions</h3>
+              <p class="text-red-800 dark:text-red-200 mb-3">The guarantee doesn't cover:</p>
+              <ul class="space-y-1 text-red-800 dark:text-red-200">
+                <li>• (a) windows we couldn't access</li>
+                <li>• (b) marks on the inside of glass</li>
+                <li>• (c) contamination from leaking frames, ongoing building works, or airborne debris after we leave</li>
+                <li>• (d) issues reported after 48 hours</li>
+        </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- 8. Customer responsibilities -->
+        <section class="mb-8">
+          <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
+            <span class="bg-blue-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-lg font-bold mr-3">8</span>
+            Customer responsibilities
+          </h2>
+          <div class="space-y-4">
+            <div class="bg-yellow-50 dark:bg-yellow-900/20 p-6 rounded-lg">
+              <h3 class="text-lg font-semibold text-yellow-900 dark:text-yellow-100 mb-3">8.1 Access & Safety</h3>
+              <p class="text-yellow-800 dark:text-yellow-200">
+                Provide safe access, remove fragile items/obstacles near work areas, secure pets, and advise of alarms/sensor lights.
+              </p>
+            </div>
+            <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
+              <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-3">8.2 Property Defects</h3>
+              <p class="text-gray-700 dark:text-gray-300">
+                Tell us about known defects (loose tiles, rotten frames, faulty seals, cracked panes, poorly fixed guttering) before we start.
+              </p>
+            </div>
+            <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
+              <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-3">8.3 Utilities</h3>
+              <p class="text-gray-700 dark:text-gray-300">
+                Water/electricity: our standard WFP/gutter vac work does not require your water/power. If a task specifically needs it (rare), we'll agree first.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- 9. Payment -->
+        <section class="mb-8">
+          <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
+            <span class="bg-blue-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-lg font-bold mr-3">9</span>
+            Payment
+          </h2>
+          <div class="space-y-4">
+            <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
+              <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-3">9.1 Payment Terms</h3>
+              <p class="text-gray-700 dark:text-gray-300">
+                Payment is due immediately after service completion.
+              </p>
+            </div>
+            <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
+              <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-3">9.2 Payment Methods</h3>
+              <p class="text-gray-700 dark:text-gray-300">
+                Methods: Direct Debit (preferred), card (Stripe), or bank transfer.
+              </p>
+            </div>
+            <div class="bg-blue-50 dark:bg-blue-900/20 p-6 rounded-lg">
+              <h3 class="text-lg font-semibold text-blue-900 dark:text-blue-100 mb-3">9.3 Direct Debit Protection</h3>
+              <p class="text-blue-800 dark:text-blue-200">
+                Direct Debit collections typically occur the same or next business day and are protected by the Direct Debit Guarantee.
+              </p>
+            </div>
+            <div class="bg-red-50 dark:bg-red-900/20 p-6 rounded-lg">
+              <h3 class="text-lg font-semibold text-red-900 dark:text-red-100 mb-3">9.4 Late/Failed Payments</h3>
+              <p class="text-red-800 dark:text-red-200">
+                Late/failed payments: we may suspend service until cleared and charge (a) a reasonable admin fee reflecting our direct cost of re-presentation/processing, and (b) interest on overdue sums at 3% above the Bank of England base rate (calculated daily).
+              </p>
+            </div>
+            <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
+              <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-3">9.5 No Card Surcharges</h3>
+              <p class="text-gray-700 dark:text-gray-300">
+                We do not add surcharges for consumer card payments.
+              </p>
+            </div>
+            <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
+              <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-3">9.6 Title in Goods</h3>
+              <p class="text-gray-700 dark:text-gray-300">
+                Title in goods (if any) does not apply; services are intangible.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- 10. Cancellations, skips & termination -->
+        <section class="mb-8">
+          <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
+            <span class="bg-blue-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-lg font-bold mr-3">10</span>
+            Cancellations, skips & termination
+          </h2>
+          <div class="space-y-4">
+            <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
+              <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-3">10.1 Skipping Services</h3>
+              <p class="text-gray-700 dark:text-gray-300">
+                You can skip an individual clean—please give at least 24 hours' notice. Frequent skips may result in a "first clean" price on the next visit or removal from the round.
+              </p>
+            </div>
+            <div class="bg-yellow-50 dark:bg-yellow-900/20 p-6 rounded-lg">
+              <h3 class="text-lg font-semibold text-yellow-900 dark:text-yellow-100 mb-3">10.2 Late Cancellations</h3>
+              <p class="text-yellow-800 dark:text-yellow-200">
+                If you cancel or reschedule with less than 24 hours' notice, or we cannot gain access on the day (clause 4.3), an abortive fee (clause 4.3) may apply.
+              </p>
+            </div>
+            <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
+              <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-3">10.3 Customer Termination</h3>
+              <p class="text-gray-700 dark:text-gray-300">
+                You may end recurring service at any time with 7 days' written notice (SMS/email acceptable).
+              </p>
+            </div>
+            <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
+              <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-3">10.4 Our Termination Rights</h3>
+              <p class="text-gray-700 dark:text-gray-300">
+                We may terminate or pause service with 7 days' notice (immediately if unsafe, abusive, persistently unpaid, or fraudulent activity).
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- 11. Damage & liability -->
+        <section class="mb-8">
+          <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
+            <span class="bg-blue-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-lg font-bold mr-3">11</span>
+            Damage & liability
+          </h2>
+          <div class="space-y-4">
+            <div class="bg-green-50 dark:bg-green-900/20 p-6 rounded-lg">
+              <h3 class="text-lg font-semibold text-green-900 dark:text-green-100 mb-3">11.1 Our Responsibility</h3>
+              <p class="text-green-800 dark:text-green-200">
+                We're responsible for damage directly caused by our negligence. Please report within 48 hours with photos.
+              </p>
+            </div>
+            <div class="bg-red-50 dark:bg-red-900/20 p-6 rounded-lg">
+              <h3 class="text-lg font-semibold text-red-900 dark:text-red-100 mb-3">11.2 Exclusions</h3>
+              <p class="text-red-800 dark:text-red-200 mb-3">We're not responsible for:</p>
+              <ul class="space-y-1 text-red-800 dark:text-red-200">
+                <li>• pre-existing defects</li>
+                <li>• dislodged items that were loose/corroded/perished</li>
+                <li>• water ingress through defective seals/vents</li>
+                <li>• consequential losses (lost profit, missed rent, etc.)</li>
+        </ul>
+            </div>
+            <div class="bg-orange-50 dark:bg-orange-900/20 p-6 rounded-lg">
+              <h3 class="text-lg font-semibold text-orange-900 dark:text-orange-100 mb-3">11.3 Liability Limits</h3>
+              <p class="text-orange-800 dark:text-orange-200">
+                Our maximum liability is limited to the price of the affected service visit. Nothing limits liability for death/personal injury caused by our negligence, fraud, or other liability that cannot be limited by law.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- 12. Data protection & communications -->
+        <section class="mb-8">
+          <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
+            <span class="bg-blue-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-lg font-bold mr-3">12</span>
+            Data protection & communications
+          </h2>
+          <div class="space-y-4">
+            <div class="bg-blue-50 dark:bg-blue-900/20 p-6 rounded-lg">
+              <h3 class="text-lg font-semibold text-blue-900 dark:text-blue-100 mb-3">12.1 Data Processing</h3>
+              <p class="text-blue-800 dark:text-blue-200">
+                We process personal data in accordance with UK GDPR. We use your details to schedule services, send reminders/invoices, and manage your account.
+              </p>
+            </div>
+            <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
+              <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-3">12.2 Privacy Policy</h3>
+              <p class="text-gray-700 dark:text-gray-300">
+                See our Privacy Policy at: <a href="/privacy" class="text-blue-600 hover:text-blue-700 underline">[insert URL]</a>
+              </p>
+            </div>
+            <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
+              <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-3">12.3 Communications</h3>
+              <p class="text-gray-700 dark:text-gray-300">
+                We may contact you about your service by SMS, phone, WhatsApp, or email. You can update preferences at any time.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- 13. Complaints -->
+        <section class="mb-8">
+          <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
+            <span class="bg-blue-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-lg font-bold mr-3">13</span>
+            Complaints
+          </h2>
+          <div class="space-y-4">
+            <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
+              <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-3">13.1 Quality Concerns</h3>
+              <p class="text-gray-700 dark:text-gray-300">
+                Tell us within 48 hours of service if there's a quality concern (clause 7).
+              </p>
+            </div>
+            <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
+              <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-3">13.2 Our Response</h3>
+              <p class="text-gray-700 dark:text-gray-300">
+                We aim to investigate and respond within 2 working days and remedy where appropriate.
+              </p>
+            </div>
+            <div class="bg-blue-50 dark:bg-blue-900/20 p-6 rounded-lg">
+              <h3 class="text-lg font-semibold text-blue-900 dark:text-blue-100 mb-3">13.3 Independent Resolution</h3>
+              <p class="text-blue-800 dark:text-blue-200">
+                If unresolved, we will consider independent Alternative Dispute Resolution via a CTSI-approved provider if you request it.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- 14. Force majeure -->
+        <section class="mb-8">
+          <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
+            <span class="bg-blue-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-lg font-bold mr-3">14</span>
+            Force majeure
+          </h2>
+          <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
+            <p class="text-gray-700 dark:text-gray-300">
+              We're not liable for delays or failures caused by events beyond our reasonable control (severe weather, accidents, illness, supply or equipment failure, road closures, strikes, emergency call-outs).
+            </p>
+          </div>
+        </section>
+
+        <!-- 15. Subcontracting -->
+        <section class="mb-8">
+          <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
+            <span class="bg-blue-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-lg font-bold mr-3">15</span>
+            Subcontracting
+          </h2>
+          <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
+            <p class="text-gray-700 dark:text-gray-300">
+              We may use vetted subcontractors. We remain responsible for the standard of work under these Terms.
+            </p>
+          </div>
+        </section>
+
+        <!-- 16. Governing law -->
+        <section class="mb-8">
+          <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
+            <span class="bg-blue-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-lg font-bold mr-3">16</span>
+            Governing law
+          </h2>
+          <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
+            <p class="text-gray-700 dark:text-gray-300">
+              These Terms are governed by the laws of England & Wales and disputes are subject to the exclusive jurisdiction of the English courts.
+            </p>
+          </div>
+        </section>
+
+        <!-- Contact Information -->
+        <div class="mt-12 bg-gradient-to-br from-slate-800 to-slate-900 border border-slate-700 rounded-xl p-8">
+          <div class="flex items-center gap-3 mb-6">
+            <Icon name="tabler:address-book" class="w-7 h-7 text-red-400" />
+            <h3 class="text-2xl font-bold text-white">Contact Information</h3>
+          </div>
+          <div class="grid md:grid-cols-3 gap-6">
+            <div class="space-y-2">
+              <h4 class="font-semibold text-white flex items-center gap-2">
+                <Icon name="tabler:building" class="w-4 h-4 text-red-400" />
+                Business Details
+              </h4>
+              <p class="text-slate-300"><strong>Name:</strong> {siteConfig.legalName}</p>
+              <p class="text-slate-300"><strong>Established:</strong> {siteConfig.establishedYear}</p>
+            </div>
+            <div class="space-y-2">
+              <h4 class="font-semibold text-white flex items-center gap-2">
+                <Icon name="tabler:phone" class="w-4 h-4 text-red-400" />
+                Contact Details
+              </h4>
+              <p class="text-slate-300"><strong>Phone:</strong> <a href="tel:07415526331" class="text-red-400 hover:text-red-300">07415 526331</a></p>
+              <p class="text-slate-300"><strong>Email:</strong> <a href="mailto:info@somersetwindowcleaning.com" class="text-red-400 hover:text-red-300">info@somersetwindowcleaning.com</a></p>
+            </div>
+            <div class="space-y-2">
+              <h4 class="font-semibold text-white flex items-center gap-2">
+                <Icon name="tabler:map-pin" class="w-4 h-4 text-red-400" />
+                Service Area
+              </h4>
+              <p class="text-slate-300"><strong>Coverage:</strong> Somerset, England</p>
+              <p class="text-slate-300"><strong>Insurance:</strong> £{siteConfig.publicLiabilityAmount} Public Liability</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Last Updated -->
+        <div class="text-center py-6 border-t border-gray-200 dark:border-gray-700 mt-12">
+          <p class="text-sm text-gray-600 dark:text-gray-400">
+            Last updated: <time datetime="2024-01-15">January 15, 2024</time>
+          </p>
+          <p class="text-sm text-gray-600 dark:text-gray-400 mt-2">
+            Somerset Window Cleaning - Professional Exterior Cleaning Services Across Somerset
+          </p>
+        </div>
+      </div>
+    </section>
+  </WidgetWrapper>
+</Layout>
