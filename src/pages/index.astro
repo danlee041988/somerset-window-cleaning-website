@@ -1,6 +1,7 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
 import Image from '~/components/common/Image.astro';
+import { Icon } from 'astro-icon/components';
 import { siteConfig, policyCopy } from '~/config/site';
 
 import Hero from '~/components/widgets/Hero.astro';
@@ -28,8 +29,7 @@ const metadata = {
 
   <Hero
     actions={[
-      { variant: 'primary', text: 'Get FREE Quote', href: '/booking-2step', icon: 'tabler:calculator' },
-      { text: 'Call 01458 860339', href: 'tel:01458860339', icon: 'tabler:phone' },
+      { variant: 'primary', text: 'Get FREE Quote', href: '/booking-2step', icon: 'tabler:calculator', class: 'text-white' },
     ]}
   >
     <Fragment slot="bg">
@@ -37,12 +37,33 @@ const metadata = {
       <div class="absolute inset-0 bg-black/40"></div>
     </Fragment>
     <Fragment slot="title">
-      Professional Window Cleaning <span class="text-accent">Somerset</span>
+      Professional Window Cleaning <span class="text-primary">Somerset</span>
     </Fragment>
     <Fragment slot="subtitle">
       Reliable, fully insured exterior cleaning across Somerset. 4,000+ happy customers since 2019.
     </Fragment>
   </Hero>
+
+  <!-- Secondary quick-contact row under hero -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 mt-4">
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-3">
+      <!-- Call (red outline) -->
+      <a href="tel:01458860339" class="inline-flex items-center gap-2 border-2 border-primary text-white px-4 py-2 rounded-lg hover:bg-primary/15 no-underline" style="color:#fff !important">
+        <Icon name="tabler:phone" class="w-5 h-5 text-primary" />
+        <span>Call 01458 860339</span>
+      </a>
+      <!-- WhatsApp (green solid) -->
+      <a href="https://wa.me/447415526331?text=Hi%20Somerset%20Window%20Cleaning%2C%20please%20can%20I%20get%20a%20quote%20for%20window%20cleaning%20at%20%5Byour%20address%5D" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-green-600 hover:bg-green-500 text-white px-4 py-2 rounded-lg no-underline">
+        <Icon name="tabler:brand-whatsapp" class="w-5 h-5" />
+        <span>WhatsApp</span>
+      </a>
+      <!-- Contact form (white outline) -->
+      <a href="/contact#form" class="inline-flex items-center gap-2 border-2 border-white text-white px-4 py-2 rounded-lg hover:bg-white/10 no-underline" style="color:#fff !important">
+        <Icon name="tabler:edit" class="w-5 h-5" />
+        <span>Contact Form</span>
+      </a>
+    </div>
+  </div>
 
   <!-- Trust Bar ****************** -->
   <TrustBar />
@@ -100,18 +121,5 @@ const metadata = {
     autoRotate={true}
   />
 
-  <!-- CTA *********** -->
-  <CallToAction
-    actions={[
-      { variant: 'primary', text: 'Get FREE Quote', href: '/booking-2step', icon: 'tabler:calculator' },
-      { text: 'Call 01458 860339', href: 'tel:01458860339', icon: 'tabler:phone' },
-    ]}
-  >
-    <Fragment slot="title">
-      Ready for spotless windows?
-    </Fragment>
-    <Fragment slot="subtitle">
-      Join 4,000+ satisfied customers across Somerset. Professional window cleaning with pure water technology.
-    </Fragment>
-  </CallToAction>
+  <!-- Removed mid-page CTA (duplicate of contact options) -->
 </Layout>

@@ -19,12 +19,12 @@ const metadata = {
   <!-- Hero Widget ******************* -->
   <Hero
     actions={[
-      { variant: 'primary', text: 'Get FREE Quote', href: '/booking-2step', icon: 'tabler:calculator' },
+      { variant: 'primary', text: 'Get FREE Quote', href: '/booking-2step', icon: 'tabler:calculator', class: 'text-white' },
       { text: 'Call 01458 860339', href: 'tel:01458860339', icon: 'tabler:phone' },
     ]}
   >
     <Fragment slot="title">
-      Professional <span class="text-accent">Solar Panel Cleaning</span> Somerset
+      Professional <span class="text-primary">Solar Panel</span> Cleaning Somerset
     </Fragment>
     <Fragment slot="subtitle">
       Maximize your solar panel performance and energy savings. Professional cleaning to restore efficiency and protect your investment.
@@ -265,19 +265,11 @@ const metadata = {
     ]}
   />
 
-  <!-- CTA Section -->
-  <CallToAction
-    actions={[
-      { variant: 'primary', text: 'Get FREE Quote', href: '/booking-2step', icon: 'tabler:calculator' },
-      { variant: 'whatsapp', text: 'FREE WhatsApp Quote', href: 'https://wa.me/447415526331?text=Hi%20Somerset%20Window%20Cleaning%2C%20I%27d%20like%20a%20FREE%20quote%20for%20solar%20panel%20cleaning%20at%20%5Byour%20address%5D', icon: 'tabler:brand-whatsapp' },
-      { text: 'Call 01458 860339', href: 'tel:01458860339', icon: 'tabler:phone' },
-    ]}
-  >
-    <Fragment slot="title">
-      Maximise Your Solar Investment
-    </Fragment>
-    <Fragment slot="subtitle">
-      Professional solar panel cleaning to maintain peak efficiency and protect your green energy investment. Increase energy output by up to 25% with expert maintenance.
-    </Fragment>
-  </CallToAction>
+  <!-- Service note (replaces duplicate CTA) -->
+  <WidgetWrapper>
+    <section class="py-10 text-center max-w-3xl mx-auto px-4">
+      <h3 class="text-2xl font-bold mb-3">Solar panel cleaning — next steps</h3>
+      <p class="text-lg text-gray-600">Protect warranties and regain 15–25% efficiency. Free quote and manufacturer‑safe methods.</p>
+    </section>
+  </WidgetWrapper>
 </Layout>

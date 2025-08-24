@@ -24,7 +24,7 @@ const metadata = {
     ]}
   >
     <Fragment slot="title">
-      <span class="text-accent">Commercial</span> Window Cleaning Somerset
+      <span class="text-primary">Commercial</span> Window Cleaning Somerset
     </Fragment>
     <Fragment slot="subtitle">
       Professional window cleaning for businesses across Somerset. Maintain your professional appearance with reliable, health & safety compliant service that works around your schedule.
@@ -283,19 +283,11 @@ const metadata = {
     ]}
   />
 
-  <!-- Strong CTA -->
-  <CallToAction
-    actions={[
-      { variant: 'primary', text: 'Get FREE Business Quote', href: '/booking-2step', icon: 'tabler:building' },
-      { variant: 'whatsapp', text: 'FREE WhatsApp Quote', href: 'https://wa.me/447415526331?text=Hi%20Somerset%20Window%20Cleaning%2C%20I%27d%20like%20a%20commercial%20window%20cleaning%20quote%20for%20%5Bbusiness%20name%20and%20location%5D', icon: 'tabler:brand-whatsapp' },
-      { text: 'Call 01458 860339', href: 'tel:01458860339', icon: 'tabler:phone' },
-    ]}
-  >
-    <Fragment slot="title">
-      Ready to Enhance Your Business Image?
-    </Fragment>
-    <Fragment slot="subtitle">
-      Professional commercial window cleaning across Somerset. Health & safety compliant, fully insured, flexible scheduling. Get your free quote today.
-    </Fragment>
-  </CallToAction>
+  <!-- Service note (replaces duplicate CTA) -->
+  <WidgetWrapper isDark={true}>
+    <section class="py-10 text-center max-w-3xl mx-auto px-4">
+      <h3 class="text-2xl font-bold mb-3">Commercial cleaning — next steps</h3>
+      <p class="text-lg text-gray-300">Free site assessment and tailored schedule options. Fully insured and health & safety compliant.</p>
+    </section>
+  </WidgetWrapper>
 </Layout>

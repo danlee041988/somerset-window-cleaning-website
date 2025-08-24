@@ -18,6 +18,12 @@
   .text-muted {
     color: var(--aw-color-text-muted);
   }
+
+  /* Force-white utility for footer text */
+  .footer-force-white,
+  .footer-force-white * {
+    color: #fff !important;
+  }
 }
 
 @layer components {
@@ -26,11 +32,11 @@
   }
 
   .btn-primary {
-    @apply btn font-semibold bg-primary text-white border-primary hover:bg-secondary hover:border-secondary hover:text-white dark:text-white dark:bg-primary dark:border-primary dark:hover:border-secondary dark:hover:bg-secondary shadow-lg hover:shadow-xl transform hover:-translate-y-0.5;
+    @apply btn font-semibold bg-primary text-white !text-white border-primary hover:bg-secondary hover:border-secondary hover:text-white dark:text-white dark:bg-primary dark:border-primary dark:hover:border-secondary dark:hover:bg-secondary shadow-lg hover:shadow-xl transform hover:-translate-y-0.5;
   }
 
   .btn-secondary {
-    @apply btn;
+    @apply btn text-white !text-white border-white hover:bg-white hover:text-primary dark:text-white dark:border-white;
   }
 
   .btn-tertiary {

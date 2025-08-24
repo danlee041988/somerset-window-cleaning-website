@@ -19,12 +19,12 @@ const metadata = {
   <!-- Hero Widget ******************* -->
   <Hero
     actions={[
-      { variant: 'primary', text: 'Get FREE Quote', href: '/booking-2step', icon: 'tabler:calculator' },
+      { variant: 'primary', text: 'Get FREE Quote', href: '/booking-2step', icon: 'tabler:calculator', class: 'text-white' },
       { text: 'Call 01458 860339', href: 'tel:01458860339', icon: 'tabler:phone' },
     ]}
   >
     <Fragment slot="title">
-      Professional <span class="text-accent">Conservatory Roof Cleaning</span>
+      Professional <span class="text-primary">Conservatory</span> Roof Cleaning
     </Fragment>
     <Fragment slot="subtitle">
       Transform your conservatory with crystal clear views. Remove algae and restore the natural light and beauty of your space.
@@ -315,19 +315,11 @@ const metadata = {
     ]}
   />
 
-  <!-- CTA Section -->
-  <CallToAction
-    actions={[
-      { variant: 'primary', text: 'Get FREE Quote', href: '/booking-2step', icon: 'tabler:calculator' },
-      { variant: 'whatsapp', text: 'FREE WhatsApp Quote', href: 'https://wa.me/447415526331?text=Hi%20Somerset%20Window%20Cleaning%2C%20I%27d%20like%20a%20quote%20for%20conservatory%20roof%20cleaning%20at%20%5Byour%20address%5D', icon: 'tabler:brand-whatsapp' },
-      { text: 'Call 01458 860339', href: 'tel:01458860339', icon: 'tabler:phone' },
-    ]}
-  >
-    <Fragment slot="title">
-      Bring Back the Light to Your Conservatory
-    </Fragment>
-    <Fragment slot="subtitle">
-      Professional conservatory roof cleaning to restore clarity and brightness. Transform your space with up to 60% more natural light. Safe, efficient service across Somerset.
-    </Fragment>
-  </CallToAction>
+  <!-- Service note (replaces duplicate CTA) -->
+  <WidgetWrapper>
+    <section class="py-10 text-center max-w-3xl mx-auto px-4">
+      <h3 class="text-2xl font-bold mb-3">Conservatory cleaning — next steps</h3>
+      <p class="text-lg text-gray-600">Restore clarity to glass or polycarbonate roofs. Free quote and safe methods that protect your conservatory.</p>
+    </section>
+  </WidgetWrapper>
 </Layout>

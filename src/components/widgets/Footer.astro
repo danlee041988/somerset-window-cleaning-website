@@ -26,27 +26,30 @@ export interface Props {
 const { socialLinks = [], secondaryLinks = [], links = [], footNote = '', theme = 'light' } = Astro.props;
 ---
 
-<footer class:list={[{ dark: theme === 'dark' }, 'relative border-t border-gray-200 dark:border-slate-800 not-prose text-slate-100']}>
+<footer class:list={[{ dark: theme === 'dark' }, 'relative border-t border-gray-200 dark:border-slate-800 not-prose text-white footer-force-white']}>
   <div class="dark:bg-dark absolute inset-0 pointer-events-none" aria-hidden="true"></div>
   <div
-    class="relative max-w-7xl mx-auto px-4 sm:px-6 text-slate-100 intersect-once intersect-quarter intersect-no-queue motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade"
+    class="relative max-w-7xl mx-auto px-4 sm:px-6 text-white intersect-once intersect-quarter intersect-no-queue motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade"
   >
     <!-- Contact Details Section -->
     <div class="py-8 md:py-12 border-b border-gray-200 dark:border-slate-700">
       <div class="text-center">
         <h3 class="text-2xl font-bold mb-6">Contact Somerset Window Cleaning</h3>
-        <div class="flex flex-col sm:flex-row items-center justify-center gap-6">
-          <!-- Landline -->
-          <div class="flex items-center gap-3">
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
+          <!-- Call button with red outline -->
+          <a
+            href="tel:01458860339"
+            class="inline-flex items-center gap-3 border-2 border-primary text-white font-semibold px-6 py-3 rounded-lg transition-all duration-200 hover:bg-primary/15 no-underline"
+            aria-label="Call Somerset Window Cleaning"
+            style="color:#fff !important"
+          >
             <Icon name="tabler:phone" class="w-6 h-6 text-primary" />
-            <div>
-              <p class="text-sm uppercase tracking-wide text-slate-200">Call Us</p>
-              <a href="tel:01458860339" class="text-xl font-semibold text-slate-100 no-underline hover:text-primary transition-colors">
-                01458 860339
-              </a>
+            <div class="text-left">
+              <p class="text-sm uppercase tracking-wide">Call Us</p>
+              <p class="text-lg font-bold">01458 860339</p>
             </div>
-          </div>
-          
+          </a>
+
           <!-- WhatsApp Button -->
           <a 
             href="https://wa.me/447458860339" 
@@ -60,6 +63,20 @@ const { socialLinks = [], secondaryLinks = [], links = [], footNote = '', theme 
               <p class="text-lg font-bold">WhatsApp</p>
             </div>
           </a>
+
+          <!-- Contact form button -->
+          <a
+            href="/contact#form"
+            class="inline-flex items-center gap-3 border-2 border-white text-white font-semibold px-6 py-3 rounded-lg transition-all duration-200 hover:bg-white/10 no-underline"
+            aria-label="Open contact form"
+            style="color:#fff !important"
+          >
+            <Icon name="tabler:edit" class="w-6 h-6" />
+            <div class="text-left">
+              <p class="text-sm uppercase tracking-wide">Contact</p>
+              <p class="text-lg font-bold">Contact Form</p>
+            </div>
+          </a>
         </div>
       </div>
     </div>
@@ -67,16 +84,17 @@ const { socialLinks = [], secondaryLinks = [], links = [], footNote = '', theme 
     <div class="grid grid-cols-12 gap-4 gap-y-8 sm:gap-8 py-8 md:py-12">
       <div class="col-span-12 lg:col-span-4">
         <div class="mb-2">
-          <a class="inline-block font-bold text-xl no-underline text-slate-100" href={getHomePermalink()}>{SITE?.name}</a>
+          <a class="inline-block font-bold text-xl no-underline text-white" href={getHomePermalink()} style="color:#fff !important">{SITE?.name}</a>
         </div>
-        <div class="text-sm text-slate-200 flex gap-1">
+        <div class="text-sm text-white flex gap-1">
           {
             secondaryLinks.map(({ text, href }, index) => (
               <>
                 {index !== 0 ? ' · ' : ''}
                 <a
-                  class="text-slate-200 hover:text-white no-underline hover:underline transition duration-150 ease-in-out"
+                  class="text-white hover:text-white no-underline hover:underline transition duration-150 ease-in-out"
                   href={href}
+                  style="color:#fff !important"
                   set:html={text}
                 />
               </>
@@ -87,15 +105,16 @@ const { socialLinks = [], secondaryLinks = [], links = [], footNote = '', theme 
       {
         links.map(({ title, links }) => (
           <div class="col-span-6 md:col-span-3 lg:col-span-2">
-            <div class="text-slate-100 font-medium mb-2">{title}</div>
+            <div class="text-white font-medium mb-2">{title}</div>
             {links && Array.isArray(links) && links.length > 0 && (
               <ul class="text-sm">
                 {links.map(({ text, href, ariaLabel }) => (
                   <li class="mb-2">
                     <a
-                      class="text-slate-200 hover:text-white transition duration-150 ease-in-out no-underline hover:underline"
+                      class="text-white hover:text-white transition duration-150 ease-in-out no-underline hover:underline"
                       href={href}
                       aria-label={ariaLabel}
+                      style="color:#fff !important"
                     >
                       <Fragment set:html={text} />
                     </a>
@@ -110,18 +129,17 @@ const { socialLinks = [], secondaryLinks = [], links = [], footNote = '', theme 
     <div class="md:flex md:items-center md:justify-between py-6 md:py-8">
       {
         socialLinks?.length ? (
-          <ul class="flex mb-4 md:order-1 -ml-2 md:ml-4 md:mb-0 rtl:ml-0 rtl:-mr-2 rtl:md:ml-0 rtl:md:mr-4 text-slate-100">
+          <ul class="flex mb-4 md:order-1 -ml-2 md:ml-4 md:mb-0 rtl:ml-0 rtl:-mr-2 rtl:md:ml-0 rtl:md:mr-4 text-white">
             {socialLinks.map(({ ariaLabel, href, text, icon }) => (
               <li>
                 <a
-                  class:list={[
+                  class:list=[
                     'hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 inline-flex items-center',
-                    (icon === 'tabler:brand-whatsapp' || (ariaLabel && ariaLabel.toLowerCase() === 'whatsapp'))
-                      ? 'text-green-500 hover:bg-green-600/10'
-                      : 'text-slate-200'
-                  ]}
+                    'text-white'
+                  ]
                   aria-label={ariaLabel}
                   href={href}
+                  style="color:#fff !important"
                 >
                   {icon && <Icon name={icon} class="w-5 h-5" />}
                   <Fragment set:html={text} />
@@ -134,7 +152,7 @@ const { socialLinks = [], secondaryLinks = [], links = [], footNote = '', theme 
         )
       }
 
-      <div class="text-sm mr-4 text-slate-200">
+      <div class="text-sm mr-4 text-white">
         <Fragment set:html={footNote} />
       </div>
     </div>

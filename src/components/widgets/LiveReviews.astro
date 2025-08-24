@@ -76,7 +76,7 @@ const fallbackReviews = [
       <p class="text-xl text-gray-700 dark:text-gray-200 mb-6">{subtitle}</p>
       
       <!-- Google Reviews Stats -->
-      <div class="flex items-center justify-center space-x-6 mb-8">
+      <div class="flex items-center justify-center space-x-6 mb-8" id="reviews-stats">
         <div class="flex items-center space-x-2">
           <div class="flex space-x-1">
             {Array.from({ length: 5 }, (_, i) => (
@@ -85,7 +85,7 @@ const fallbackReviews = [
               </svg>
             ))}
           </div>
-          <span class="font-semibold text-lg">4.9</span>
+          <span class="font-semibold text-lg" id="avg-rating">4.9</span>
         </div>
         
         <div class="text-gray-600">
@@ -169,5 +169,24 @@ const fallbackReviews = [
     transition: opacity 0.3s ease-in-out;
   }
 </style>
+
+<script is:inline>
+  // Update stats with live totals from API if available
+  fetch('/api/google-reviews')
+    .then(r => r.json())
+    .then(data => {
+      if (!data) return;
+      const count = document.getElementById('review-count');
+      const rating = document.getElementById('avg-rating');
+      if (typeof data.total === 'number' && count) {
+        // Keep marketing-friendly display
+        count.textContent = data.total >= 190 ? '190+' : String(data.total);
+      }
+      if (typeof data.rating === 'number' && rating) {
+        rating.textContent = data.rating.toFixed(1);
+      }
+    })
+    .catch(() => {});
+</script>
 
 <!-- Removed auto-rotating highlight. Cards now highlight on hover/focus for a cleaner look. -->

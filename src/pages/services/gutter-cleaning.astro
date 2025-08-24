@@ -20,12 +20,12 @@ const metadata = {
   <!-- Hero Widget ******************* -->
   <Hero
     actions={[
-      { variant: 'primary', text: 'Get FREE Quote', href: '/booking-2step', icon: 'tabler:calculator' },
+      { variant: 'primary', text: 'Get FREE Quote', href: '/booking-2step', icon: 'tabler:calculator', class: 'text-white' },
       { text: 'Call 01458 860339', href: 'tel:01458860339', icon: 'tabler:phone' },
     ]}
   >
     <Fragment slot="title">
-      Professional <span class="text-accent">Gutter Clearing</span> Somerset
+      Professional <span class="text-primary">Gutter Clearing</span> Somerset
     </Fragment>
     <Fragment slot="subtitle">
       Keep your gutters clear to prevent water damage and costly repairs. Safe, professional service with ground-level safety - no ladders required.
@@ -178,19 +178,5 @@ const metadata = {
   <!-- Related Services Section -->
   <RelatedServices currentService="Gutter Clearing" />
 
-  <!-- CTA Section -->
-  <CallToAction
-    actions={[
-      { variant: 'primary', text: 'Get FREE Quote', href: '/booking-2step', icon: 'tabler:calculator' },
-      { variant: 'whatsapp', text: 'WhatsApp Quote', href: 'https://wa.me/447415526331?text=Hi%20Somerset%20Window%20Cleaning%2C%20I%27d%20like%20a%20quote%20for%20gutter%20cleaning%20at%20%5Byour%20address%5D', icon: 'tabler:brand-whatsapp' },
-      { text: 'Call 01458 860339', href: 'tel:01458860339', icon: 'tabler:phone' },
-    ]}
-  >
-    <Fragment slot="title">
-      Ready for Professional Gutter Clearing?
-    </Fragment>
-    <Fragment slot="subtitle">
-      Protect your property investment with professional gutter clearing. High-reach vacuum system, ground-level safety, fully insured service across Somerset.
-    </Fragment>
-  </CallToAction>
+  
 </Layout>

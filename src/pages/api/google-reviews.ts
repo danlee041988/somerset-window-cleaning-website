@@ -31,7 +31,7 @@ export const GET: APIRoute = async () => {
   ];
 
   if (!key || !placeId) {
-    return new Response(JSON.stringify({ reviews: fallback }), {
+    return new Response(JSON.stringify({ reviews: fallback, rating: 4.9, total: 190 }), {
       status: 200,
       headers: { 'Content-Type': 'application/json', 'Cache-Control': 'no-store' },
     });
@@ -56,7 +56,10 @@ export const GET: APIRoute = async () => {
       date: formatMonthYear(r.time, r.relative_time_description),
     }));
 
-    return new Response(JSON.stringify({ reviews: mapped }), {
+    const total = Number(data?.result?.user_ratings_total ?? 0);
+    const rating = Number(data?.result?.rating ?? 0);
+
+    return new Response(JSON.stringify({ reviews: mapped, total, rating }), {
       status: 200,
       headers: {
         'Content-Type': 'application/json',
@@ -64,7 +67,7 @@ export const GET: APIRoute = async () => {
       },
     });
   } catch (err) {
-    return new Response(JSON.stringify({ reviews: fallback }), {
+    return new Response(JSON.stringify({ reviews: fallback, rating: 4.9, total: 190 }), {
       status: 200,
       headers: { 'Content-Type': 'application/json', 'Cache-Control': 'no-store' },
     });

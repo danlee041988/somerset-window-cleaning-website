@@ -19,12 +19,12 @@ const metadata = {
   <!-- Hero Widget ******************* -->
   <Hero
     actions={[
-      { variant: 'primary', text: 'Get FREE Quote', href: '/booking-2step', icon: 'tabler:calculator' },
+      { variant: 'primary', text: 'Get FREE Quote', href: '/booking-2step', icon: 'tabler:calculator', class: 'text-white' },
       { text: 'Call 01458 860339', href: 'tel:01458860339', icon: 'tabler:phone' },
     ]}
   >
     <Fragment slot="title">
-      Professional <span class="text-accent">Fascia & Soffit Cleaning</span> Somerset
+      Professional <span class="text-primary">Fascia & Soffit</span> Cleaning Somerset
     </Fragment>
     <Fragment slot="subtitle">
       Restore your home's exterior to its best. Remove algae and stains to enhance curb appeal and protect your property value.
@@ -284,19 +284,11 @@ const metadata = {
     ]}
   />
 
-  <!-- CTA Section -->
-  <CallToAction
-    actions={[
-      { variant: 'primary', text: 'Get FREE Quote', href: '/booking-2step', icon: 'tabler:calculator' },
-      { variant: 'whatsapp', text: 'WhatsApp Quote', href: 'https://wa.me/447415526331?text=Hi%20Somerset%20Window%20Cleaning%2C%20I%27d%20like%20a%20quote%20for%20fascia%20and%20soffit%20cleaning%20at%20%5Byour%20address%5D', icon: 'tabler:brand-whatsapp' },
-      { text: 'Call 01458 860339', href: 'tel:01458860339', icon: 'tabler:phone' },
-    ]}
-  >
-    <Fragment slot="title">
-      Restore Your Property's Roofline
-    </Fragment>
-    <Fragment slot="subtitle">
-      Professional fascia and soffit cleaning to restore that like-new appearance. Specialist UPVC cleaning, fully insured service, outstanding transformation results.
-    </Fragment>
-  </CallToAction>
+  <!-- Service note (replaces duplicate CTA) -->
+  <WidgetWrapper>
+    <section class="py-10 text-center max-w-3xl mx-auto px-4">
+      <h3 class="text-2xl font-bold mb-3">Fascia & soffit cleaning — next steps</h3>
+      <p class="text-lg text-gray-600">Restore UPVC to like‑new appearance. Free quote and specialist cleaning that avoids damage.</p>
+    </section>
+  </WidgetWrapper>
 </Layout>

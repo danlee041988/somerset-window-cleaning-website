@@ -91,7 +91,7 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
   <div class="absolute inset-0"></div>
   <div
     class:list={[
-      'relative text-default py-2 px-3 md:px-6 mx-auto w-full header-inner transition-all duration-300 ease-in-out',
+      'relative text-default py-1 px-3 md:px-6 mx-auto w-full header-inner transition-all duration-300 ease-in-out',
       {
         'md:flex md:justify-between': position !== 'center',
       },
@@ -197,33 +197,7 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
             )
           }
         </div>
-        {
-          actions?.length ? (
-            <div class="ml-4 rtl:ml-0 rtl:mr-4 flex flex-col items-end gap-2 main-actions">
-              {
-                [...actions]
-                  .sort((a, b) => (a.priority || 99) - (b.priority || 99))
-                  .map((btnProps) => {
-                    const label = (btnProps.text || '').toLowerCase();
-                    const visibility = label.includes('need')
-                      ? 'hidden xl:inline-flex'
-                      : label.includes('call')
-                      ? 'hidden lg:inline-flex'
-                      : '';
-                    return (
-                      <Button
-                        {...btnProps}
-                        class={`${visibility} py-1.5 md:py-2 px-4 md:px-6 font-semibold shadow-none text-sm w-auto ${btnProps.class || ''}`}
-                        style="color: white !important;"
-                      />
-                    );
-                  })
-              }
-            </div>
-          ) : (
-            ''
-          )
-        }
+        { '' }
       </div>
     </div>
   </div>
@@ -407,14 +381,14 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
 
   /* On scroll: subtle blur, compact height, slight shadow */
   #header.scroll {
-    background-color: rgba(0, 0, 0, 0.7) !important;
-    backdrop-filter: saturate(120%) blur(10px);
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+    background-color: #000 !important;
+    backdrop-filter: none !important;
+    box-shadow: none !important;
   }
 
   #header.scroll .header-inner {
-    padding-top: 0.25rem !important; /* 4px */
-    padding-bottom: 0.25rem !important;
+    padding-top: 0.2rem !important;
+    padding-bottom: 0.2rem !important;
   }
 
   /* Ensure CTAs remain visually prominent */
