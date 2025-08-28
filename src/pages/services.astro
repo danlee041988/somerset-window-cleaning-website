@@ -19,6 +19,19 @@ const metadata = {
   >
     <Fragment slot="title">Professional exterior cleaning <span class="text-accent">you can trust</span></Fragment>
     <Fragment slot="subtitle">Clean, safe and reliable across Somerset — <span class="text-accent">fully insured</span>.</Fragment>
+    <Fragment slot="content">
+      <!-- Services quick links: show all services offered -->
+      <nav aria-label="All services" class="mt-4">
+        <ul class="flex flex-wrap items-center justify-center gap-2 md:gap-3">
+          <li><a href="/services/window-cleaning" class="no-underline inline-flex items-center gap-2 px-3 py-2 md:px-4 md:py-2 rounded-full bg-white/10 text-white border border-white/15 hover:bg-white/20 transition">Window Cleaning</a></li>
+          <li><a href="/services/gutter-cleaning" class="no-underline inline-flex items-center gap-2 px-3 py-2 md:px-4 md:py-2 rounded-full bg-white/10 text-white border border-white/15 hover:bg-white/20 transition">Gutter Clearing</a></li>
+          <li><a href="/services/fascia-soffit-cleaning" class="no-underline inline-flex items-center gap-2 px-3 py-2 md:px-4 md:py-2 rounded-full bg-white/10 text-white border border-white/15 hover:bg-white/20 transition">Fascia &amp; Soffit</a></li>
+          <li><a href="/services/conservatory-cleaning" class="no-underline inline-flex items-center gap-2 px-3 py-2 md:px-4 md:py-2 rounded-full bg-white/10 text-white border border-white/15 hover:bg-white/20 transition">Conservatory Roof</a></li>
+          <li><a href="/services/solar-panel-cleaning" class="no-underline inline-flex items-center gap-2 px-3 py-2 md:px-4 md:py-2 rounded-full bg-white/10 text-white border border-white/15 hover:bg-white/20 transition">Solar Panel Cleaning</a></li>
+          <li><a href="/services/commercial-window-cleaning" class="no-underline inline-flex items-center gap-2 px-3 py-2 md:px-4 md:py-2 rounded-full bg-white/10 text-white border border-white/15 hover:bg-white/20 transition">Commercial</a></li>
+        </ul>
+      </nav>
+    </Fragment>
     <Fragment slot="bg">
       <Image src="~/assets/images/optimized/solar-panels-large.webp" alt="Professional exterior cleaning services in Somerset" width={1200} height={800} layout="cover" style="width:100%; height:100%; object-fit:cover; opacity:0.35;" />
       <div class="absolute inset-0 bg-black/40"></div>
