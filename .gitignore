@@ -11,6 +11,10 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 auto-deploy.log
+dev.log
+dev.pid
+preview.*
+tunnel*
 
 
 # environment variables
