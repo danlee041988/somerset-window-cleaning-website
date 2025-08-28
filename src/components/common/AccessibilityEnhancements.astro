@@ -50,7 +50,7 @@
     transition: all 0.2s ease;
   }
 
-  .skip-link:focus {
+  .skip-link:focus-visible {
     position: static;
     left: auto;
     width: auto;
@@ -96,30 +96,30 @@
     }
   }
 
-  /* Focus Indicators - Enhanced Visibility */
-  *:focus {
+  /* Focus Indicators - show for keyboard users only */
+  .keyboard-user *:focus-visible {
     outline: 2px solid #2563eb;
     outline-offset: 2px;
   }
 
   /* Button Focus Styles */
-  button:focus,
-  .btn-primary:focus,
-  .btn-secondary:focus,
-  .btn-whatsapp:focus {
+  button:focus-visible,
+  .btn-primary:focus-visible,
+  .btn-secondary:focus-visible,
+  .btn-whatsapp:focus-visible {
     box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.5);
   }
 
   /* Link Focus Styles */
-  a:focus {
+  a:focus-visible {
     background-color: rgba(37, 99, 235, 0.1);
     border-radius: 2px;
   }
 
   /* Input Focus Styles */
-  input:focus,
-  textarea:focus,
-  select:focus {
+  input:focus-visible,
+  textarea:focus-visible,
+  select:focus-visible {
     border-color: #2563eb;
     box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
   }

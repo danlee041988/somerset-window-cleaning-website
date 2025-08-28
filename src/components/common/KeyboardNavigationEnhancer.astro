@@ -16,9 +16,8 @@
 <style is:global>
   /* ===== ENHANCED FOCUS INDICATORS ===== */
   
-  /* High-visibility focus ring for all interactive elements */
-  *:focus,
-  *:focus-visible {
+  /* High-visibility focus ring only for keyboard users */
+  .keyboard-user *:focus-visible {
     outline: 3px solid #2563eb !important;
     outline-offset: 2px !important;
     border-radius: 4px;
@@ -26,26 +25,25 @@
   }
   
   /* Dark mode focus indicators */
-  .dark *:focus,
-  .dark *:focus-visible {
+  .dark .keyboard-user *:focus-visible {
     outline-color: #60a5fa !important;
   }
   
   /* Specific focus styles for different element types */
   
   /* Buttons */
-  button:focus,
-  [role="button"]:focus,
-  input[type="button"]:focus,
-  input[type="submit"]:focus,
-  input[type="reset"]:focus {
+  button:focus-visible,
+  [role="button"]:focus-visible,
+  input[type="button"]:focus-visible,
+  input[type="submit"]:focus-visible,
+  input[type="reset"]:focus-visible {
     outline: 3px solid #1d4ed8 !important;
     outline-offset: 2px !important;
     box-shadow: 0 0 0 6px rgba(37, 99, 235, 0.2) !important;
   }
   
   /* Links */
-  a:focus {
+  a:focus-visible {
     outline: 3px solid #2563eb !important;
     outline-offset: 2px !important;
     text-decoration: underline !important;
@@ -56,9 +54,9 @@
   }
   
   /* Form inputs */
-  input:focus,
-  textarea:focus,
-  select:focus {
+  input:focus-visible,
+  textarea:focus-visible,
+  select:focus-visible {
     outline: 3px solid #059669 !important;
     outline-offset: 2px !important;
     border-color: #059669 !important;
@@ -66,14 +64,14 @@
   }
   
   /* Radio buttons and checkboxes */
-  input[type="radio"]:focus,
-  input[type="checkbox"]:focus {
+  input[type="radio"]:focus-visible,
+  input[type="checkbox"]:focus-visible {
     outline: 3px solid #dc2626 !important;
     outline-offset: 3px !important;
   }
   
   /* Skip links - enhanced visibility */
-  .skip-link:focus {
+  .skip-link:focus-visible {
     position: absolute !important;
     top: 8px !important;
     left: 8px !important;
@@ -90,16 +88,16 @@
   }
   
   /* Navigation menu focus */
-  nav a:focus,
-  [role="navigation"] a:focus {
+  nav a:focus-visible,
+  [role="navigation"] a:focus-visible {
     background-color: rgba(37, 99, 235, 0.15) !important;
     outline: 3px solid #2563eb !important;
     outline-offset: 2px !important;
   }
   
   /* Dropdown menu focus */
-  [role="menu"] [role="menuitem"]:focus,
-  [role="listbox"] [role="option"]:focus {
+  [role="menu"] [role="menuitem"]:focus-visible,
+  [role="listbox"] [role="option"]:focus-visible {
     background-color: #2563eb !important;
     color: #ffffff !important;
     outline: 3px solid #1d4ed8 !important;
@@ -107,52 +105,44 @@
   }
   
   /* Tab focus for tabbed interfaces */
-  [role="tab"]:focus {
+  [role="tab"]:focus-visible {
     outline: 3px solid #7c3aed !important;
     outline-offset: 2px !important;
     background-color: rgba(124, 58, 237, 0.1) !important;
   }
   
-  [role="tab"][aria-selected="true"]:focus {
+  [role="tab"][aria-selected="true"]:focus-visible {
     background-color: #7c3aed !important;
     color: #ffffff !important;
   }
   
   /* Modal and dialog focus */
-  [role="dialog"]:focus,
-  .modal:focus {
+  [role="dialog"]:focus-visible,
+  .modal:focus-visible {
     outline: 3px solid #dc2626 !important;
     outline-offset: 4px !important;
   }
   
   /* Focus within containers */
-  .focus-within:focus-within {
+  .keyboard-user .focus-within:focus-within {
     outline: 2px solid #8b5cf6 !important;
     outline-offset: 4px !important;
   }
   
   /* High contrast mode - maximum visibility */
   @media (prefers-contrast: high) {
-    *:focus,
-    *:focus-visible {
-      outline: 4px solid #000000 !important;
+    .keyboard-user *:focus-visible {
+      outline: 4px solid currentColor !important;
       outline-offset: 2px !important;
-      background-color: #ffff00 !important;
-      color: #000000 !important;
     }
-    
-    .dark *:focus,
-    .dark *:focus-visible {
+    .dark .keyboard-user *:focus-visible {
       outline-color: #ffffff !important;
-      background-color: #000000 !important;
-      color: #ffffff !important;
     }
   }
   
   /* Reduced motion preferences */
   @media (prefers-reduced-motion: reduce) {
-    *:focus,
-    *:focus-visible {
+    .keyboard-user *:focus-visible {
       transition: none !important;
     }
   }
@@ -160,11 +150,12 @@
   /* ===== KEYBOARD NAVIGATION STATES ===== */
   
   /* Keyboard user indicator */
-  .keyboard-user *:focus {
+  .keyboard-user *:focus-visible {
     outline-style: solid !important;
   }
   
-  .mouse-user *:focus {
+  .mouse-user *:focus,
+  .mouse-user *:focus-visible {
     outline-style: none !important;
   }
   
@@ -176,13 +167,13 @@
   }
   
   /* Loading states */
-  .loading:focus {
+  .loading:focus-visible {
     outline-color: #6b7280 !important;
     cursor: wait !important;
   }
   
-  [aria-disabled="true"]:focus,
-  [disabled]:focus {
+  [aria-disabled="true"]:focus-visible,
+  [disabled]:focus-visible {
     outline-color: #9ca3af !important;
     opacity: 0.6 !important;
   }

@@ -204,15 +204,15 @@
     color: #f9fafb !important;
   }
   
-  /* ===== FOCUS INDICATORS - ENHANCED VISIBILITY ===== */
+  /* ===== FOCUS INDICATORS - ENHANCED VISIBILITY (keyboard only) ===== */
   
   /* High contrast focus rings */
-  *:focus {
+  .keyboard-user *:focus-visible {
     outline: 3px solid #2563eb !important;
     outline-offset: 2px !important;
   }
   
-  .dark *:focus {
+  .dark .keyboard-user *:focus-visible {
     outline-color: #60a5fa !important;
   }
   
@@ -406,12 +406,12 @@
     }
     
     /* High contrast focus indicators */
-    *:focus {
+    .keyboard-user *:focus-visible {
       outline: 4px solid #000000 !important;
       outline-offset: 2px !important;
     }
     
-    .dark *:focus {
+    .dark .keyboard-user *:focus-visible {
       outline-color: #ffffff !important;
     }
     
