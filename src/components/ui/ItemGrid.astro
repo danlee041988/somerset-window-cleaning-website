@@ -32,8 +32,8 @@ const {
         containerClass
       )}
     >
-      {items.map(({ title, description, icon, callToAction, price, classes: itemClasses = {} }) => (
-        <div class="intersect-once motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade">
+      {items.map(({ title, description, icon, callToAction, price, classes: itemClasses = {} }, index) => (
+        <div class="intersect-once motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade" style={`animation-delay: ${index * 80}ms`}>
           <div class={twMerge('flex flex-row max-w-md transition-all duration-300 hover:-translate-y-1 hover:shadow-lg', panelClass, itemClasses?.panel)}>
             <div class="flex justify-center">
               {(icon || defaultIcon) && (

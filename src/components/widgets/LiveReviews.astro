@@ -105,8 +105,8 @@ const fallbackReviews = [
 
     <!-- Reviews Grid -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" data-reviews-grid>
-      {fallbackReviews.slice(0, maxReviews).map(review => (
-        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-100 dark:border-gray-700 p-6 transition-all duration-200 hover:shadow-xl hover:-translate-y-0.5 hover:border-primary/40" data-review-card>
+      {fallbackReviews.slice(0, maxReviews).map((review, index) => (
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-100 dark:border-gray-700 p-6 transition-all duration-200 hover:shadow-xl hover:-translate-y-0.5 hover:border-primary/40 intersect-once motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade" style={`animation-delay: ${index * 90}ms`} data-review-card>
           <div class="flex items-center space-x-1 mb-3">
             {Array.from({ length: 5 }, (_, i) => (
               <svg class="w-4 h-4" viewBox="0 0 20 20" aria-hidden="true">
