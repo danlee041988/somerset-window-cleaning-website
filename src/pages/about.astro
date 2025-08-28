@@ -86,21 +86,28 @@ const metadata = {
     </div>
   </section>
 
-  <!-- Somerset Council Case Study -->
+  <!-- Somerset Council Case Study (Enhanced) -->
   <section class="max-w-6xl mx-auto px-4 sm:px-6 pb-20">
-    <div class="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl p-8 border border-gray-700">
-      <div class="text-center mb-8">
-        <h2 class="text-2xl md:text-3xl font-bold mb-4">Featured by Somerset Council</h2>
-        <p class="text-lg text-gray-300">Our growth story has been featured as a business case study by Somerset Council</p>
-      </div>
-      
-      <div class="grid md:grid-cols-2 gap-8 items-center">
-        <div>
-          <div class="mb-6">
-            <div class="flex items-center gap-3 mb-4">
-              <div class="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center">
-                <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M12 2L2 7v10c0 5.55 3.84 9.95 9 11 5.16-1.05 9-5.45 9-11V7l-10-5z"/>
+    <!-- Gradient frame with subtle glow -->
+    <div class="relative rounded-3xl p-[1px] bg-gradient-to-br from-[#60a5fa] via-[#3b82f6] to-[#8b5cf6] shadow-[0_10px_40px_-10px_rgba(59,130,246,0.45)]">
+      <div class="rounded-[calc(1.5rem-1px)] bg-gradient-to-br from-[#0b1220] via-[#0d1322] to-[#121827] border border-white/10 p-8">
+        <div class="text-center mb-8">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-sm text-white/80 mb-3">
+            <span class="inline-block w-2 h-2 rounded-full bg-[#60a5fa]"></span>
+            As featured by Somerset Council
+          </div>
+          <h2 class="text-2xl md:text-3xl font-extrabold tracking-tight text-white mb-2">Featured by Somerset Council</h2>
+          <p class="text-base md:text-lg text-gray-300">Our growth story was published as an official Somerset Council business case study.</p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8 items-stretch">
+          <!-- Left: story + stats + CTA -->
+          <div class="flex flex-col">
+            <!-- Heading row -->
+            <div class="flex items-center gap-3 mb-5">
+              <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-[#60a5fa] to-[#8b5cf6] flex items-center justify-center shadow-lg">
+                <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M12 2 2 7v10c0 5.55 3.84 9.95 9 11 5.16-1.05 9-5.45 9-11V7L12 2z"/>
                 </svg>
               </div>
               <div>
@@ -108,62 +115,72 @@ const metadata = {
                 <p class="text-sm text-gray-400">Somerset Council Case Study</p>
               </div>
             </div>
+
+            <!-- Quote -->
+            <div class="relative mb-6">
+              <div class="absolute -top-3 -left-3 text-[#60a5fa]/30" aria-hidden="true">❝</div>
+              <blockquote class="text-gray-200 italic bg-white/5 border border-white/10 rounded-xl p-5">
+                "From starting out with zero clients and embarking on the daunting task of filling a single round, I'm incredibly proud of the company we've become."
+                <cite class="block text-sm not-italic text-gray-400 mt-2">— Dan Lee, Company Owner</cite>
+              </blockquote>
+            </div>
+
+            <!-- Stats grid -->
+            <div class="grid grid-cols-2 gap-4 mb-6">
+              <div class="rounded-xl p-4 bg-gradient-to-br from-[#60a5fa]/10 to-[#8b5cf6]/10 border border-white/10">
+                <div class="text-sm text-gray-400">From humble start</div>
+                <div class="text-white font-semibold">Kitchen-table beginnings</div>
+              </div>
+              <div class="rounded-xl p-4 bg-gradient-to-br from-[#60a5fa]/10 to-[#8b5cf6]/10 border border-white/10">
+                <div class="text-sm text-gray-400">Team growth</div>
+                <div class="text-white font-semibold">6 staff in 3 years</div>
+              </div>
+              <div class="rounded-xl p-4 bg-gradient-to-br from-[#60a5fa]/10 to-[#8b5cf6]/10 border border-white/10">
+                <div class="text-sm text-gray-400">New HQ</div>
+                <div class="text-white font-semibold">Wells Enterprise Centre</div>
+              </div>
+              <div class="rounded-xl p-4 bg-gradient-to-br from-[#60a5fa]/10 to-[#8b5cf6]/10 border border-white/10">
+                <div class="text-sm text-gray-400">Investment</div>
+                <div class="text-white font-semibold">Modern kit & systems</div>
+              </div>
+            </div>
+
+            <!-- CTA -->
+            <div class="mt-auto">
+              <a 
+                href="https://www.somerset.gov.uk/business-economy-and-licences/somerset-enterprise-centres/case-studies/somerset-window-cleaning-company/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="btn inline-flex items-center gap-2 px-6 py-3 rounded-xl text-white font-semibold bg-gradient-to-r from-[#2563eb] to-[#4f46e5] hover:to-[#3730a3] transition-colors shadow-lg no-underline"
+              >
+                Read Full Case Study
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+                </svg>
+              </a>
+            </div>
           </div>
-          
-          <blockquote class="text-gray-300 mb-6 italic border-l-4 border-blue-600 pl-4">
-            "From starting out with zero clients and embarking on the daunting task of filling a single round, I'm incredibly proud of the company we've become."
-            <cite class="block text-sm text-gray-400 mt-2">— Dan Lee, Company Owner</cite>
-          </blockquote>
-          
-          <div class="space-y-3 text-sm text-gray-400 mb-6">
-            <div class="flex items-center gap-2">
-              <span class="w-2 h-2 bg-green-500 rounded-full"></span>
-              Started as a one-person operation from the kitchen table
-            </div>
-            <div class="flex items-center gap-2">
-              <span class="w-2 h-2 bg-green-500 rounded-full"></span>
-              Grew to a team of 6 in under 3 years
-            </div>
-            <div class="flex items-center gap-2">
-              <span class="w-2 h-2 bg-green-500 rounded-full"></span>
-              Relocated to professional office space at Wells Enterprise Centre
-            </div>
-            <div class="flex items-center gap-2">
-              <span class="w-2 h-2 bg-green-500 rounded-full"></span>
-              Invested in state-of-the-art equipment and technology
-            </div>
-          </div>
-          
-          <a 
-            href="https://www.somerset.gov.uk/business-economy-and-licences/somerset-enterprise-centres/case-studies/somerset-window-cleaning-company/"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-lg transition-colors duration-200"
-          >
-            Read Full Case Study
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
-            </svg>
-          </a>
-        </div>
-        
-        <div class="bg-gradient-to-br from-blue-900/20 to-blue-800/20 border border-blue-700 rounded-xl p-6">
-          <h4 class="text-lg font-semibold text-white mb-4">What Somerset Council said:</h4>
-          <blockquote class="text-gray-300 italic mb-4">
-            "The story of Dan, how the business started, right to where it is now, is a testament to his dedication and hard work... Dan's commitment to fantastic customer service and his willingness to innovate in a traditional industry are two huge factors in his meteoric growth."
-          </blockquote>
-          <cite class="text-sm text-gray-400">— Alan Smith, Somerset Business Advisor</cite>
-          
-          <div class="mt-6 pt-6 border-t border-blue-700">
-            <div class="flex items-center gap-3">
-              <img 
-                src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiByeD0iOCIgZmlsbD0iIzIwNjNFQiIvPgo8cGF0aCBkPSJNMTIgMTZIMjhWMjRIMTJWMTZaIiBmaWxsPSJ3aGl0ZSIvPgo8L3N2Zz4K" 
-                alt="Somerset Council Logo" 
-                class="w-10 h-10"
-              />
-              <div>
-                <p class="text-white font-medium">Somerset Council</p>
-                <p class="text-xs text-gray-400">Official Business Case Study</p>
+
+          <!-- Right: council quote card -->
+          <div class="relative rounded-2xl p-6 bg-gradient-to-br from-[#1b2540] to-[#0f172a] border border-white/10">
+            <h4 class="text-lg font-semibold text-white mb-4">What Somerset Council said</h4>
+            <blockquote class="relative text-gray-200 leading-relaxed">
+              <span class="absolute -top-3 -left-2 text-[#60a5fa]/30" aria-hidden="true">❝</span>
+              "The story of Dan, how the business started, right to where it is now, is a testament to his dedication and hard work... Dan's commitment to fantastic customer service and his willingness to innovate in a traditional industry are two huge factors in his meteoric growth."
+            </blockquote>
+            <cite class="block text-sm text-gray-400 mt-3">— Alan Smith, Somerset Business Advisor</cite>
+
+            <div class="mt-6 pt-6 border-t border-white/10">
+              <div class="flex items-center gap-3">
+                <img 
+                  src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiByeD0iOCIgZmlsbD0iIzYwYTVmYSIvPgo8cGF0aCBkPSJNMTIgMTZIMjhWMjRIMTJWMTZaIiBmaWxsPSJ3aGl0ZSIvPgo8L3N2Zz4K" 
+                  alt="Somerset Council Logo" 
+                  class="w-10 h-10 rounded-md ring-1 ring-white/10"
+                />
+                <div>
+                  <p class="text-white font-medium">Somerset Council</p>
+                  <p class="text-xs text-gray-400">Official Business Case Study</p>
+                </div>
               </div>
             </div>
           </div>
