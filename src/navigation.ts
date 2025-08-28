@@ -15,8 +15,7 @@ export const headerData = {
         { text: 'Fascia & Soffit Cleaning', href: getPermalink('/services/fascia-soffit-cleaning') },
         { text: 'Conservatory Roof Cleaning', href: getPermalink('/services/conservatory-cleaning') },
         { text: 'Solar Panel Cleaning', href: getPermalink('/services/solar-panel-cleaning') },
-        { text: 'Commercial Window Cleaning', href: getPermalink('/services/commercial-window-cleaning') },
-        { text: 'All Services →', href: getPermalink('/services') },
+        { text: 'Commercial Window Cleaning', href: getPermalink('/services/commercial-window-cleaning') }
       ],
     },
     {
