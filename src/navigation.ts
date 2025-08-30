@@ -62,7 +62,7 @@ export const footerData = {
     {
       title: 'Get Started',
       links: [
-        { text: 'Get FREE Quote', href: getPermalink('/booking-2step') },
+        { text: 'Book Now', href: getPermalink('/book-now') },
         { text: 'Call 01458 860339', href: 'tel:01458860339' },
         { text: 'WhatsApp Quote', href: 'https://wa.me/447415526331?text=Hi%20Somerset%20Window%20Cleaning%2C%20please%20can%20I%20get%20a%20quote%20for%20window%20cleaning' },
         { text: 'About Us', href: getPermalink('/about') },

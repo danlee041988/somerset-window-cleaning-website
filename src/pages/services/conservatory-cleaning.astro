@@ -8,6 +8,7 @@ import FAQs from '~/components/widgets/FAQs.astro';
 import Stats from '~/components/widgets/Stats.astro';
 import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
 import Image from '~/components/common/Image.astro';
+import LiveReviews from '~/components/widgets/LiveReviews.astro';
 
 const metadata = {
   title: 'Professional Conservatory Roof Cleaning Somerset | Glass & Polycarbonate',
@@ -19,7 +20,7 @@ const metadata = {
   <!-- Hero Widget ******************* -->
   <Hero
     actions={[
-      { variant: 'primary', text: 'Get FREE Quote', href: '/booking-2step', icon: 'tabler:calculator', class: 'text-white' },
+      { variant: 'primary', text: 'Book Now', href: '/book-now', icon: 'tabler:calendar-plus', class: 'text-white' },
       { text: 'Call 01458 860339', href: 'tel:01458860339', icon: 'tabler:phone' },
     ]}
   >
@@ -274,6 +275,9 @@ const metadata = {
       </div>
     </section>
   </WidgetWrapper>
+
+  <!-- Google Reviews -->
+  <LiveReviews />
 
   <!-- FAQs -->
   <FAQs

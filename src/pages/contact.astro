@@ -70,40 +70,46 @@ const metadata = {
   </section>
 
 
+  <!-- New Customer Notice -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 mb-8">
+    <div class="rounded-2xl border-2 border-red-600 bg-gradient-to-r from-red-600/10 to-red-500/5 p-6 text-center">
+      <h3 class="text-2xl font-bold text-red-600 mb-3">New Customer?</h3>
+      <p class="text-lg mb-4">Get instant pricing and book your first clean online in just 4 easy steps!</p>
+      <a href="/book-now" class="inline-flex items-center gap-2 px-8 py-3 bg-red-600 hover:bg-red-700 text-white font-bold rounded-full shadow-lg transform hover:scale-105 transition-all duration-300">
+        <Icon name="tabler:calendar-plus" class="w-5 h-5" />
+        Book Online Now
+      </a>
+    </div>
+  </div>
+
   <ContactUs
     id="form"
-    title="Tell us about your property"
-    subtitle="Send your details and we’ll confirm your price."
+    title="Quick Contact Form"
+    subtitle="For existing customers or general enquiries only"
     inputs={[
-      { type: 'text', name: 'fullName', label: 'Full name' },
-      { type: 'email', name: 'email', label: 'Email address' },
-      { type: 'tel', name: 'phone', label: 'Phone number' },
-      { type: 'text', name: 'address', label: 'Address' },
-      { type: 'text', name: 'postcode', label: 'Postcode', placeholder: postcode },
-      { type: 'select', name: 'propertyType', label: 'Property type', options: ['Terraced (2 bed)', 'Terraced (3 bed)', 'Semi-detached (2 bed)', 'Semi-detached (3 bed)', 'Semi-detached (4 bed)', 'Detached (3 bed)', 'Detached (4 bed)', 'Detached (5+ bed)', 'Bungalow', 'Flat/Apartment', 'Commercial'] },
-      { type: 'select', name: 'frequency', label: 'Frequency (window cleaning)', options: ['Every 4 weeks', 'Every 8 weeks', 'Every 12 weeks', 'One-time clean'] },
-      { type: 'checkbox', name: 'services', label: 'Gutter clearing' },
-      { type: 'checkbox', name: 'services', label: 'Fascia & soffit cleaning' },
-      { type: 'checkbox', name: 'services', label: 'Conservatory roof cleaning' },
-      { type: 'checkbox', name: 'services', label: 'Solar panel cleaning' },
-      { type: 'file', name: 'photos', label: 'Attach photos (optional)', multiple: true, accept: 'image/*' },
+      { type: 'text', name: 'fullName', label: 'Full name', required: true },
+      { type: 'email', name: 'email', label: 'Email address', required: true },
+      { type: 'tel', name: 'phone', label: 'Phone number (optional)' },
     ]}
-    textarea={{ label: 'Notes (optional)' }}
-    disclaimer={{ label: 'By submitting this form you agree to be contacted about your quote.' }}
-    description="Prefer to talk? Call 01458 860339 or email info@somersetwindowcleaning.co.uk"
+    textarea={{ label: 'Your message', required: true, rows: 4 }}
+    disclaimer={{ label: 'We\'ll respond within one working day.' }}
+    description=""
   >
     <Fragment slot="aside">
       <div class="space-y-5">
         <h3 class="text-lg font-semibold">Prefer to talk?</h3>
         <div class="grid grid-cols-1 gap-3">
-          <a href="tel:01458860339" class="inline-flex items-center justify-center rounded-md bg-primary !text-white px-4 py-2 hover:opacity-90">
+          <a href="tel:01458860339" class="inline-flex items-center justify-center rounded-md bg-red-600 text-white px-4 py-2 hover:bg-red-700 font-medium">
+            <Icon name="tabler:phone" class="w-4 h-4 mr-2" />
             Call 01458 860339
           </a>
-          <a href="mailto:info@somersetwindowcleaning.co.uk" class="inline-flex items-center justify-center rounded-md bg-white/10 text-white px-4 py-2 hover:bg-white/15 text-sm break-all">
+          <a href="mailto:info@somersetwindowcleaning.co.uk" class="inline-flex items-center justify-center rounded-md bg-gray-700 text-white px-4 py-2 hover:bg-gray-600 text-sm break-all">
+            <Icon name="tabler:mail" class="w-4 h-4 mr-2" />
             Email us
           </a>
-          <a href="/contact?method=direct-debit" class="inline-flex items-center justify-center rounded-md bg-green-600 text-white px-4 py-2 hover:opacity-90">
-            Set up Direct Debit (GoCardless)
+          <a href="https://wa.me/447415526331?text=Hi%20Somerset%20Window%20Cleaning%2C%20I%27d%20like%20to%20discuss%20my%20requirements" class="inline-flex items-center justify-center rounded-md bg-green-600 text-white px-4 py-2 hover:bg-green-700">
+            <Icon name="tabler:brand-whatsapp" class="w-4 h-4 mr-2" />
+            WhatsApp
           </a>
         </div>
 

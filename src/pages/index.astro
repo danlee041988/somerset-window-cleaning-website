@@ -29,7 +29,7 @@ const metadata = {
 
   <Hero
     actions={[
-      { variant: 'primary', text: 'Book Now', href: '/book-now', icon: 'tabler:calendar-plus', class: 'text-white' },
+      { variant: 'primary', text: 'Book Now', href: '/book-now', icon: 'tabler:calendar-plus', class: 'text-white text-lg px-8 py-4 animate-pulse shadow-2xl transform hover:scale-110 transition-all duration-300' },
     ]}
   >
     <Fragment slot="bg">
@@ -51,10 +51,10 @@ const metadata = {
       <div class="absolute inset-0 bg-black/40"></div>
     </Fragment>
     <Fragment slot="title">
-      Professional Window Cleaning <span class="text-primary">Somerset</span>
+      <span class="text-red-500">Professional</span> Window Cleaning <span class="text-red-500">Somerset</span>
     </Fragment>
     <Fragment slot="subtitle">
-      Reliable, fully insured exterior cleaning across Somerset. 4,000+ happy customers since 2019.
+      <span class="text-red-500">Reliable</span>, fully insured exterior cleaning across Somerset. <span class="text-red-500">4,000+ happy customers</span> since <span class="text-red-500">2019</span>.
     </Fragment>
   </Hero>
 
@@ -83,11 +83,11 @@ const metadata = {
   <TrustBar />
 
   <!-- Service Coverage Area Quick Check -->
-  <section class="py-8 bg-gray-50 intersect-once intersect-quarter motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade">
+  <section class="py-8 bg-gradient-to-br from-gray-900 to-black text-white intersect-once intersect-quarter motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade">
     <div class="max-w-6xl mx-auto px-4 sm:px-6">
       <div class="text-center">
-        <h2 class="text-2xl md:text-3xl font-bold mb-3">We Cover 38+ Postcodes Across Somerset</h2>
-        <p class="text-gray-600 mb-6">Professional window cleaning from Bath to Bridgwater, Wells to Weston-super-Mare</p>
+        <h2 class="text-2xl md:text-3xl font-bold mb-3">We Cover <span class="text-red-500">38+ Postcodes</span> Across Somerset</h2>
+        <p class="text-gray-300 mb-6">Professional window cleaning from <span class="text-red-400">Bath to Bridgwater</span>, <span class="text-red-400">Wells to Weston-super-Mare</span></p>
         
         <!-- Quick postcode checker -->
         <div class="max-w-md mx-auto mb-6">
@@ -96,11 +96,11 @@ const metadata = {
               type="text" 
               id="homepage-postcode" 
               placeholder="Enter your postcode (e.g. BA16 0HW)"
-              class="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-sm"
+              class="flex-1 px-4 py-2 border border-gray-600 bg-gray-800 text-white rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent text-sm placeholder-gray-400"
             >
             <button 
               id="homepage-check" 
-              class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors font-medium text-sm"
+              class="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors font-medium text-sm shadow-lg"
             >
               Check
             </button>
@@ -110,21 +110,21 @@ const metadata = {
 
         <!-- Coverage highlights -->
         <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center text-sm">
-          <div class="bg-white p-3 rounded-lg shadow-sm">
-            <div class="font-semibold text-primary">BS Postcodes</div>
-            <div class="text-gray-600">North Somerset</div>
+          <div class="bg-gray-800 border border-gray-700 p-3 rounded-lg shadow-sm">
+            <div class="font-semibold text-red-500">BS Postcodes</div>
+            <div class="text-gray-400">North Somerset</div>
           </div>
-          <div class="bg-white p-3 rounded-lg shadow-sm">
-            <div class="font-semibold text-primary">BA Postcodes</div>
-            <div class="text-gray-600">Bath & NE Somerset</div>
+          <div class="bg-gray-800 border border-gray-700 p-3 rounded-lg shadow-sm">
+            <div class="font-semibold text-red-500">BA Postcodes</div>
+            <div class="text-gray-400">Bath & NE Somerset</div>
           </div>
-          <div class="bg-white p-3 rounded-lg shadow-sm">
-            <div class="font-semibold text-primary">TA Postcodes</div>
-            <div class="text-gray-600">Somerset Levels</div>
+          <div class="bg-gray-800 border border-gray-700 p-3 rounded-lg shadow-sm">
+            <div class="font-semibold text-red-500">TA Postcodes</div>
+            <div class="text-gray-400">Somerset Levels</div>
           </div>
-          <div class="bg-white p-3 rounded-lg shadow-sm">
-            <div class="font-semibold text-primary">DT9 Postcode</div>
-            <div class="text-gray-600">West Dorset</div>
+          <div class="bg-gray-800 border border-gray-700 p-3 rounded-lg shadow-sm">
+            <div class="font-semibold text-red-500">DT9 Postcode</div>
+            <div class="text-gray-400">West Dorset</div>
           </div>
         </div>
 
@@ -228,10 +228,14 @@ const metadata = {
       }
 
       if (supportedPostcodes.includes(postcodePrefix)) {
-        result.className = 'mt-3 text-sm p-2 rounded bg-green-50 text-green-800 font-medium';
-        result.innerHTML = `✅ Yes! We cover ${postcodePrefix} - <a href="/booking-2step" class="underline hover:no-underline">Get Quote</a>`;
+        result.className = 'mt-3 text-sm p-2 rounded bg-green-800 text-green-200 font-medium';
+        result.innerHTML = `✅ Yes! We cover ${postcodePrefix} - Redirecting...`;
+        // Redirect to celebration page
+        setTimeout(() => {
+          window.location.href = `/postcode-celebration?postcode=${encodeURIComponent(postcode)}`;
+        }, 500);
       } else {
-        result.className = 'mt-3 text-sm p-2 rounded bg-orange-50 text-orange-800';
+        result.className = 'mt-3 text-sm p-2 rounded bg-orange-900 text-orange-200';
         result.innerHTML = `We don't cover ${postcodePrefix} yet - <a href="/areas" class="underline hover:no-underline">See full coverage</a>`;
       }
     }

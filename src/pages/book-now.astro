@@ -115,26 +115,134 @@ const metadata = {
                   <div class="property-type-section">
                     <label class="block text-lg font-semibold text-gray-700 mb-4">Property Type *</label>
                     <div class="error-message" id="propertyTypeError" style="display: none;"></div>
-                    <select name="propertyType" id="propertyType" required class="w-full p-4 border border-gray-300 rounded-lg text-lg focus:ring-2 focus:ring-red-500 focus:border-transparent">
+                    
+                    <!-- Hidden select for form compatibility -->
+                    <select name="propertyType" id="propertyType" required class="sr-only" aria-hidden="true">
                       <option value="">Select your property type...</option>
-                      <optgroup label="Residential Properties">
-                        <option value="semi-2">Semi-detached House (2 bed) - £20</option>
-                        <option value="semi-3">Semi-detached House (3 bed) - £25</option>
-                        <option value="semi-4">Semi-detached House (4 bed) - £28</option>
-                        <option value="semi-5">Semi-detached House (5 bed) - £32</option>
-                        <option value="detached-2">Detached House (2 bed) - £25</option>
-                        <option value="detached-3">Detached House (3 bed) - £30</option>
-                        <option value="detached-4">Detached House (4 bed) - £35</option>
-                        <option value="detached-5">Detached House (5 bed) - £40</option>
-                        <option value="custom">Large Property (6+ bed) - Quote Required</option>
-                      </optgroup>
-                      <optgroup label="Commercial Properties">
-                        <option value="commercial">Commercial Property - Quote Required</option>
-                      </optgroup>
-                      <optgroup label="Other">
-                        <option value="general">General Enquiry</option>
-                      </optgroup>
                     </select>
+                    
+                    <!-- Property Type Cards -->
+                    <div class="space-y-6">
+                      <!-- Semi-Detached Houses -->
+                      <div>
+                        <h4 class="text-md font-medium text-gray-600 mb-3">Semi-Detached Houses</h4>
+                        <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+                          <button type="button" class="property-card" data-property-type="semi-2" data-price="20">
+                            <div class="border-2 border-gray-300 rounded-lg p-4 hover:border-red-500 hover:bg-red-50 transition-all cursor-pointer text-center">
+                              <svg class="w-8 h-8 mx-auto mb-2 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+                              </svg>
+                              <div class="font-semibold">2 Bed</div>
+                              <div class="text-red-600 font-bold">£20</div>
+                            </div>
+                          </button>
+                          <button type="button" class="property-card" data-property-type="semi-3" data-price="25">
+                            <div class="border-2 border-gray-300 rounded-lg p-4 hover:border-red-500 hover:bg-red-50 transition-all cursor-pointer text-center">
+                              <svg class="w-8 h-8 mx-auto mb-2 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+                              </svg>
+                              <div class="font-semibold">3 Bed</div>
+                              <div class="text-red-600 font-bold">£25</div>
+                            </div>
+                          </button>
+                          <button type="button" class="property-card" data-property-type="semi-4" data-price="28">
+                            <div class="border-2 border-gray-300 rounded-lg p-4 hover:border-red-500 hover:bg-red-50 transition-all cursor-pointer text-center">
+                              <svg class="w-8 h-8 mx-auto mb-2 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+                              </svg>
+                              <div class="font-semibold">4 Bed</div>
+                              <div class="text-red-600 font-bold">£28</div>
+                            </div>
+                          </button>
+                          <button type="button" class="property-card" data-property-type="semi-5" data-price="32">
+                            <div class="border-2 border-gray-300 rounded-lg p-4 hover:border-red-500 hover:bg-red-50 transition-all cursor-pointer text-center">
+                              <svg class="w-8 h-8 mx-auto mb-2 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+                              </svg>
+                              <div class="font-semibold">5 Bed</div>
+                              <div class="text-red-600 font-bold">£32</div>
+                            </div>
+                          </button>
+                        </div>
+                      </div>
+
+                      <!-- Detached Houses -->
+                      <div>
+                        <h4 class="text-md font-medium text-gray-600 mb-3">Detached Houses</h4>
+                        <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+                          <button type="button" class="property-card" data-property-type="detached-2" data-price="25">
+                            <div class="border-2 border-gray-300 rounded-lg p-4 hover:border-red-500 hover:bg-red-50 transition-all cursor-pointer text-center">
+                              <svg class="w-8 h-8 mx-auto mb-2 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+                              </svg>
+                              <div class="font-semibold">2 Bed</div>
+                              <div class="text-red-600 font-bold">£25</div>
+                            </div>
+                          </button>
+                          <button type="button" class="property-card" data-property-type="detached-3" data-price="30">
+                            <div class="border-2 border-gray-300 rounded-lg p-4 hover:border-red-500 hover:bg-red-50 transition-all cursor-pointer text-center">
+                              <svg class="w-8 h-8 mx-auto mb-2 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+                              </svg>
+                              <div class="font-semibold">3 Bed</div>
+                              <div class="text-red-600 font-bold">£30</div>
+                            </div>
+                          </button>
+                          <button type="button" class="property-card" data-property-type="detached-4" data-price="35">
+                            <div class="border-2 border-gray-300 rounded-lg p-4 hover:border-red-500 hover:bg-red-50 transition-all cursor-pointer text-center">
+                              <svg class="w-8 h-8 mx-auto mb-2 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+                              </svg>
+                              <div class="font-semibold">4 Bed</div>
+                              <div class="text-red-600 font-bold">£35</div>
+                            </div>
+                          </button>
+                          <button type="button" class="property-card" data-property-type="detached-5" data-price="40">
+                            <div class="border-2 border-gray-300 rounded-lg p-4 hover:border-red-500 hover:bg-red-50 transition-all cursor-pointer text-center">
+                              <svg class="w-8 h-8 mx-auto mb-2 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+                              </svg>
+                              <div class="font-semibold">5 Bed</div>
+                              <div class="text-red-600 font-bold">£40</div>
+                            </div>
+                          </button>
+                        </div>
+                      </div>
+
+                      <!-- Other Property Types -->
+                      <div>
+                        <h4 class="text-md font-medium text-gray-600 mb-3">Other Property Types</h4>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+                          <button type="button" class="property-card" data-property-type="custom" data-price="0">
+                            <div class="border-2 border-gray-300 rounded-lg p-4 hover:border-red-500 hover:bg-red-50 transition-all cursor-pointer text-center">
+                              <svg class="w-8 h-8 mx-auto mb-2 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z"/>
+                              </svg>
+                              <div class="font-semibold">Large Property (6+ bed)</div>
+                              <div class="text-gray-600 text-sm">Quote Required</div>
+                            </div>
+                          </button>
+                          <button type="button" class="property-card" data-property-type="commercial" data-price="0">
+                            <div class="border-2 border-gray-300 rounded-lg p-4 hover:border-red-500 hover:bg-red-50 transition-all cursor-pointer text-center">
+                              <svg class="w-8 h-8 mx-auto mb-2 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+                              </svg>
+                              <div class="font-semibold">Commercial Property</div>
+                              <div class="text-gray-600 text-sm">Quote Required</div>
+                            </div>
+                          </button>
+                          <button type="button" class="property-card" data-property-type="general" data-price="0">
+                            <div class="border-2 border-gray-300 rounded-lg p-4 hover:border-red-500 hover:bg-red-50 transition-all cursor-pointer text-center">
+                              <svg class="w-8 h-8 mx-auto mb-2 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-4l-4 4z"/>
+                              </svg>
+                              <div class="font-semibold">General Enquiry</div>
+                              <div class="text-gray-600 text-sm">Contact us</div>
+                            </div>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                   
                   <!-- Frequency Section -->
@@ -455,6 +563,19 @@ const metadata = {
 
 <!-- Booking Form Styles -->
 <style>
+  /* Property card styles */
+  .property-card div {
+    transition: all 0.3s ease;
+  }
+  
+  .property-card:hover div svg {
+    color: #ef4444;
+  }
+  
+  .property-card div.border-red-500 svg {
+    color: #ef4444;
+  }
+  
   /* Error message styles */
   .error-message {
     color: #dc2626;
@@ -902,8 +1023,45 @@ function updateReviewSummary() {
 function initializeForm() {
     console.log('Initializing form...');
     
-    // Property type handler
+    // Property card handlers
+    const propertyCards = document.querySelectorAll('.property-card');
     const propertyTypeSelect = document.getElementById('propertyType');
+    
+    propertyCards.forEach(card => {
+        card.addEventListener('click', function() {
+            // Remove selected state from all cards
+            propertyCards.forEach(c => {
+                c.querySelector('div').classList.remove('border-red-500', 'bg-red-50');
+                c.querySelector('div').classList.add('border-gray-300');
+            });
+            
+            // Add selected state to clicked card
+            this.querySelector('div').classList.remove('border-gray-300');
+            this.querySelector('div').classList.add('border-red-500', 'bg-red-50');
+            
+            // Update hidden select
+            const propertyType = this.getAttribute('data-property-type');
+            const price = this.getAttribute('data-price');
+            
+            if (propertyTypeSelect) {
+                // Add the option if it doesn't exist
+                let option = propertyTypeSelect.querySelector(`option[value="${propertyType}"]`);
+                if (!option) {
+                    option = document.createElement('option');
+                    option.value = propertyType;
+                    option.text = propertyType;
+                    propertyTypeSelect.appendChild(option);
+                }
+                propertyTypeSelect.value = propertyType;
+                
+                // Trigger change event
+                const event = new Event('change', { bubbles: true });
+                propertyTypeSelect.dispatchEvent(event);
+            }
+        });
+    });
+    
+    // Property type handler
     if (propertyTypeSelect) {
         // Set initial value
         window.formState.propertyType = propertyTypeSelect.value;
