@@ -1,17 +1,14 @@
 import type { APIRoute } from 'astro';
-import bcrypt from 'bcryptjs';
 
-// In production, this should be in environment variables
-// For now, using a hashed version of a simple password
-// Default password: "SomersetStaff2024"
-const STAFF_PASSWORD_HASH = '$2a$10$YH5Ia8zXqgRvNxWxR8kpkuWvZTxXEKkmEw9V3vXzYK8GfIlImUVOq';
+// TEMPORARY: No password authentication - add back later
+// TODO: Re-enable password authentication before production
 
 export const POST: APIRoute = async ({ request, cookies }) => {
   try {
-    const { password, remember } = await request.json();
+    const { remember } = await request.json();
     
-    // Verify password
-    const isValid = await bcrypt.compare(password, STAFF_PASSWORD_HASH);
+    // TEMPORARY: Always allow login without password
+    const isValid = true;
     
     if (isValid) {
       // Set authentication cookie

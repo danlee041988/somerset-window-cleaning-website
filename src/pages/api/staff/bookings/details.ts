@@ -1,7 +1,7 @@
 import type { APIRoute } from 'astro';
 import { supabase } from '~/lib/supabase';
 
-export const GET: APIRoute = async ({ params, cookies }) => {
+export const GET: APIRoute = async ({ url, cookies }) => {
   // Check authentication
   const authCookie = cookies.get('staff-auth')?.value;
   if (!authCookie || authCookie !== 'authenticated') {
@@ -12,7 +12,7 @@ export const GET: APIRoute = async ({ params, cookies }) => {
   }
 
   try {
-    const bookingId = params.id;
+    const bookingId = url.searchParams.get('id');
     
     if (!supabase) {
       return new Response(JSON.stringify({ error: 'Database not configured' }), {

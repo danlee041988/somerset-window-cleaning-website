@@ -4,18 +4,16 @@
 
 ### Login URL
 - Go to: `https://your-website.com/staff/login`
-- Default Password: `SomersetStaff2024`
+- **TEMPORARY**: No password required - just click "Login to Dashboard"
 
 ### Important Security Note
-**Change the default password** before going live! Edit the password hash in `/src/pages/api/staff/auth.ts`
+**Password authentication is temporarily disabled for testing!**
 
-To generate a new password hash:
-```javascript
-const bcrypt = require('bcryptjs');
-const newPassword = 'YourNewSecurePassword';
-const hash = bcrypt.hashSync(newPassword, 10);
-console.log(hash); // Use this hash in the auth.ts file
-```
+Before going live:
+1. Install bcryptjs: `npm install bcryptjs @types/bcryptjs`
+2. Re-enable password verification in `/src/pages/api/staff/auth.ts`
+3. Add password field back to login form in `/src/pages/staff/login.astro`
+4. Set a secure password hash
 
 ## Using the Booking Tracker
 

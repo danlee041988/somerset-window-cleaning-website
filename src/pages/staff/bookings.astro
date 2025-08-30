@@ -408,7 +408,7 @@ function formatPhone(phone: string) {
     // Copy booking details for Squeegee
     async function copyForSqueegee(bookingId: string) {
       try {
-        const response = await fetch(`/api/staff/bookings/${bookingId}`);
+        const response = await fetch(`/api/staff/bookings/details?id=${bookingId}`);
         const booking = await response.json();
         
         const text = `${booking.first_name} ${booking.last_name}
@@ -455,7 +455,7 @@ ${booking.internal_notes ? `Notes: ${booking.internal_notes}` : ''}`;
     // Show booking details modal
     async function showBookingDetails(bookingId: string) {
       try {
-        const response = await fetch(`/api/staff/bookings/${bookingId}`);
+        const response = await fetch(`/api/staff/bookings/details?id=${bookingId}`);
         const booking = await response.json();
         
         const modalContent = document.getElementById('modal-content');
