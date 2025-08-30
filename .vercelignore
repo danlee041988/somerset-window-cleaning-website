@@ -1,0 +1,12 @@
+tests/
+test-results/
+playwright.config.ts
+*.spec.ts
+*.test.ts
+.env
+.env.local
+*.log
+monitor*.sh
+monitor*.cjs
+*.sql
+*.db
