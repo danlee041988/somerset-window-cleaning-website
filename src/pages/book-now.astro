@@ -4,8 +4,8 @@ import Image from '~/components/common/Image.astro';
 import { siteConfig } from '~/config/site';
 
 const metadata = {
-  title: 'Book Window Cleaning Online | Advanced Booking System | Somerset Window Cleaning',
-  description: 'Book your window cleaning service online with our advanced booking system. Get instant pricing, choose your frequency, and book additional services in just 4 easy steps.',
+  title: 'Book Cleaning Services Online | Advanced Booking System | Somerset Window Cleaning',
+  description: 'Book window cleaning, solar panel cleaning, conservatory roof cleaning, and more. Instant pricing for window cleaning, quotes for specialist services. 4 easy steps.',
   ignoreTitleTemplate: true,
 };
 ---
@@ -31,7 +31,7 @@ const metadata = {
         Book in 4 Easy Steps
       </div>
       <h1 class="text-4xl md:text-6xl font-bold text-white mb-4">
-        Book Your <span class="text-red-500">Window Cleaning</span> Online
+        Book Your <span class="text-red-500">Cleaning Service</span> Online
       </h1>
       <p class="text-gray-200 text-xl mb-8 max-w-3xl mx-auto">
         Advanced booking system with instant pricing, flexible scheduling, and secure online payments. 
@@ -107,13 +107,17 @@ const metadata = {
               <div class="max-w-4xl mx-auto p-6 md:p-8">
                 <div class="text-center mb-8">
                   <h2 class="text-3xl font-bold text-gray-800 mb-3">Select Your Service</h2>
-                  <p class="text-gray-600">Choose your property type and cleaning frequency for instant pricing</p>
+                  <p class="text-gray-600">Choose your property type for window cleaning or skip to additional services</p>
+                  <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-4 mb-6">
+                    <p class="text-sm text-blue-800"><strong>Note:</strong> Prices shown are for standard property sizes. Final pricing may be adjusted on-site based on actual property size and requirements, with your agreement.</p>
+                  </div>
                 </div>
 
                 <div class="space-y-8">
                   <!-- Property Type Section -->
                   <div class="property-type-section">
-                    <label class="block text-lg font-semibold text-gray-700 mb-4">Property Type *</label>
+                    <label class="block text-lg font-semibold text-gray-700 mb-4">Window Cleaning - Property Type</label>
+                    <p class="text-sm text-gray-600 mb-4 italic">Select if you want window cleaning, or skip to Step 2 for other services only</p>
                     <div class="error-message" id="propertyTypeError" style="display: none;"></div>
                     
                     <!-- Hidden select for form compatibility -->
@@ -132,7 +136,7 @@ const metadata = {
                               <svg class="w-8 h-8 mx-auto mb-2 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
                               </svg>
-                              <div class="font-semibold">2 Bed</div>
+                              <div class="font-semibold text-gray-800">2 Bed</div>
                               <div class="text-red-600 font-bold">£20</div>
                             </div>
                           </button>
@@ -141,7 +145,7 @@ const metadata = {
                               <svg class="w-8 h-8 mx-auto mb-2 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
                               </svg>
-                              <div class="font-semibold">3 Bed</div>
+                              <div class="font-semibold text-gray-800">3 Bed</div>
                               <div class="text-red-600 font-bold">£25</div>
                             </div>
                           </button>
@@ -150,7 +154,7 @@ const metadata = {
                               <svg class="w-8 h-8 mx-auto mb-2 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
                               </svg>
-                              <div class="font-semibold">4 Bed</div>
+                              <div class="font-semibold text-gray-800">4 Bed</div>
                               <div class="text-red-600 font-bold">£28</div>
                             </div>
                           </button>
@@ -159,7 +163,7 @@ const metadata = {
                               <svg class="w-8 h-8 mx-auto mb-2 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
                               </svg>
-                              <div class="font-semibold">5 Bed</div>
+                              <div class="font-semibold text-gray-800">5 Bed</div>
                               <div class="text-red-600 font-bold">£32</div>
                             </div>
                           </button>
@@ -175,7 +179,7 @@ const metadata = {
                               <svg class="w-8 h-8 mx-auto mb-2 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
                               </svg>
-                              <div class="font-semibold">2 Bed</div>
+                              <div class="font-semibold text-gray-800">2 Bed</div>
                               <div class="text-red-600 font-bold">£25</div>
                             </div>
                           </button>
@@ -193,7 +197,7 @@ const metadata = {
                               <svg class="w-8 h-8 mx-auto mb-2 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
                               </svg>
-                              <div class="font-semibold">4 Bed</div>
+                              <div class="font-semibold text-gray-800">4 Bed</div>
                               <div class="text-red-600 font-bold">£35</div>
                             </div>
                           </button>
@@ -202,7 +206,7 @@ const metadata = {
                               <svg class="w-8 h-8 mx-auto mb-2 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
                               </svg>
-                              <div class="font-semibold">5 Bed</div>
+                              <div class="font-semibold text-gray-800">5 Bed</div>
                               <div class="text-red-600 font-bold">£40</div>
                             </div>
                           </button>
@@ -218,7 +222,7 @@ const metadata = {
                               <svg class="w-8 h-8 mx-auto mb-2 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z"/>
                               </svg>
-                              <div class="font-semibold">Large Property (6+ bed)</div>
+                              <div class="font-semibold text-gray-800">Large Property (6+ bed)</div>
                               <div class="text-gray-600 text-sm">Quote Required</div>
                             </div>
                           </button>
@@ -227,7 +231,7 @@ const metadata = {
                               <svg class="w-8 h-8 mx-auto mb-2 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
                               </svg>
-                              <div class="font-semibold">Commercial Property</div>
+                              <div class="font-semibold text-gray-800">Commercial Property</div>
                               <div class="text-gray-600 text-sm">Quote Required</div>
                             </div>
                           </button>
@@ -236,7 +240,7 @@ const metadata = {
                               <svg class="w-8 h-8 mx-auto mb-2 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-4l-4 4z"/>
                               </svg>
-                              <div class="font-semibold">General Enquiry</div>
+                              <div class="font-semibold text-gray-800">General Enquiry</div>
                               <div class="text-gray-600 text-sm">Contact us</div>
                             </div>
                           </button>
@@ -253,7 +257,7 @@ const metadata = {
                         <input type="radio" name="frequency" value="4weekly" checked class="sr-only">
                         <div class="frequency-content border-2 border-gray-300 rounded-lg p-4 text-center hover:border-red-400 transition-colors">
                           <h4 class="font-semibold text-lg text-gray-800">Every 4 Weeks</h4>
-                          <p class="text-sm text-gray-600">Regular service</p>
+                          <p class="text-sm text-gray-700">Regular service</p>
                           <p class="text-lg font-bold text-red-600 mt-2">Base Price</p>
                         </div>
                       </label>
@@ -261,7 +265,7 @@ const metadata = {
                         <input type="radio" name="frequency" value="8weekly" class="sr-only">
                         <div class="frequency-content border-2 border-gray-300 rounded-lg p-4 text-center hover:border-red-400 transition-colors">
                           <h4 class="font-semibold text-lg text-gray-800">Every 8 Weeks</h4>
-                          <p class="text-sm text-gray-600">+£3 per clean</p>
+                          <p class="text-sm text-gray-700">+£3 per clean</p>
                           <p class="text-lg font-bold text-red-600 mt-2">+£3</p>
                         </div>
                       </label>
@@ -269,7 +273,7 @@ const metadata = {
                         <input type="radio" name="frequency" value="12weekly" class="sr-only">
                         <div class="frequency-content border-2 border-gray-300 rounded-lg p-4 text-center hover:border-red-400 transition-colors">
                           <h4 class="font-semibold text-lg text-gray-800">Every 12 Weeks</h4>
-                          <p class="text-sm text-gray-600">+£5 per clean</p>
+                          <p class="text-sm text-gray-700">+£5 per clean</p>
                           <p class="text-lg font-bold text-red-600 mt-2">+£5</p>
                         </div>
                       </label>
@@ -277,7 +281,7 @@ const metadata = {
                         <input type="radio" name="frequency" value="onetime" class="sr-only">
                         <div class="frequency-content border-2 border-gray-300 rounded-lg p-4 text-center hover:border-red-400 transition-colors">
                           <h4 class="font-semibold text-lg text-gray-800">One-time Clean</h4>
-                          <p class="text-sm text-gray-600">+£20 per clean</p>
+                          <p class="text-sm text-gray-700">+£20 per clean</p>
                           <p class="text-lg font-bold text-red-600 mt-2">+£20</p>
                         </div>
                       </label>
@@ -294,7 +298,9 @@ const metadata = {
                 
                 <div class="form-navigation mt-8 flex justify-between">
                   <button type="button" class="px-6 py-3 bg-gray-400 text-gray-200 rounded-lg font-medium cursor-not-allowed" disabled>Previous</button>
-                  <button type="button" class="px-8 py-3 bg-red-600 text-white rounded-lg font-medium hover:bg-red-700 transition-colors" onclick="nextStep()">Next Step →</button>
+                  <button type="button" class="px-8 py-3 bg-red-600 text-white rounded-lg font-medium hover:bg-red-700 transition-colors" onclick="nextStep()">
+                    <span id="step1NextText">Next Step →</span>
+                  </button>
                 </div>
               </div>
             </div>
@@ -304,7 +310,10 @@ const metadata = {
               <div class="max-w-4xl mx-auto p-6 md:p-8">
                 <div class="text-center mb-8">
                   <h2 class="text-3xl font-bold text-gray-800 mb-3">Additional Services</h2>
-                  <p class="text-gray-600">Enhance your service with our additional offerings</p>
+                  <p class="text-gray-600">Select any additional services you'd like to add</p>
+                  <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 mt-4">
+                    <p class="text-sm text-amber-800"><strong>Note:</strong> Solar Panel and Conservatory Roof cleaning require on-site assessment for accurate pricing. We'll provide a firm quote during our visit.</p>
+                  </div>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -314,7 +323,7 @@ const metadata = {
                       <div class="flex items-start justify-between">
                         <div>
                           <h4 class="font-semibold text-xl text-gray-800 mb-2">Gutter Clearing (Internal)</h4>
-                          <p class="text-gray-600 mb-4">Remove leaves and debris from inside gutters using our high-reach vacuum system</p>
+                          <p class="text-gray-700 mb-4">Remove leaves and debris from inside gutters using our high-reach vacuum system</p>
                           <span class="service-price text-2xl font-bold text-red-600">From £{siteConfig.services.gutter.fromPrice.replace('£', '')}</span>
                         </div>
                         <svg class="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -330,7 +339,7 @@ const metadata = {
                       <div class="flex items-start justify-between">
                         <div>
                           <h4 class="font-semibold text-xl text-gray-800 mb-2">Fascia & Soffit Cleaning</h4>
-                          <p class="text-gray-600 mb-4">Clean the outside of gutters, fascias and soffits to restore UPVC</p>
+                          <p class="text-gray-700 mb-4">Clean the outside of gutters, fascias and soffits to restore UPVC</p>
                           <span class="service-price text-2xl font-bold text-red-600">From £{siteConfig.services.fascia.fromPrice.replace('£', '')}</span>
                         </div>
                         <svg class="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -346,8 +355,8 @@ const metadata = {
                       <div class="flex items-start justify-between">
                         <div>
                           <h4 class="font-semibold text-xl text-gray-800 mb-2">Solar Panel Cleaning</h4>
-                          <p class="text-gray-600 mb-4">Specialist cleaning to maximize efficiency and maintain warranties</p>
-                          <span class="service-price text-2xl font-bold text-red-600">From £{siteConfig.services.solar.fromPrice.replace('£', '')}</span>
+                          <p class="text-gray-700 mb-4">Specialist cleaning to maximize efficiency and maintain warranties</p>
+                          <span class="service-price text-2xl font-bold text-gray-700">Quote Required</span>
                         </div>
                         <svg class="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
@@ -362,8 +371,8 @@ const metadata = {
                       <div class="flex items-start justify-between">
                         <div>
                           <h4 class="font-semibold text-xl text-gray-800 mb-2">Conservatory Roof Cleaning</h4>
-                          <p class="text-gray-600 mb-4">Complete conservatory roof cleaning service for glass and polycarbonate</p>
-                          <span class="service-price text-2xl font-bold text-red-600">From £{siteConfig.services.conservatory.fromPrice.replace('£', '')}</span>
+                          <p class="text-gray-700 mb-4">Complete conservatory roof cleaning service for glass and polycarbonate</p>
+                          <span class="service-price text-2xl font-bold text-gray-700">Quote Required</span>
                         </div>
                         <svg class="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/>
@@ -576,6 +585,14 @@ const metadata = {
     color: #ef4444;
   }
   
+  .property-card div.border-red-500 .font-semibold {
+    color: #1f2937;
+  }
+  
+  .property-card div.border-red-500 .text-red-600 {
+    color: #dc2626;
+  }
+  
   /* Error message styles */
   .error-message {
     color: #dc2626;
@@ -677,6 +694,14 @@ const metadata = {
     border-color: #dc2626;
     background: #fef2f2;
   }
+  
+  .frequency-option input:checked + .frequency-content h4 {
+    color: #1f2937;
+  }
+  
+  .frequency-option input:checked + .frequency-content p {
+    color: #374151;
+  }
 
   .service-card-option input:checked + .service-card-content {
     border-color: #dc2626;
@@ -685,6 +710,14 @@ const metadata = {
 
   .service-card-option input:checked + .service-card-content svg {
     color: #dc2626;
+  }
+  
+  .service-card-option input:checked + .service-card-content h4 {
+    color: #1f2937;
+  }
+  
+  .service-card-option input:checked + .service-card-content p {
+    color: #374151;
   }
 
   @media (max-width: 768px) {
@@ -847,33 +880,46 @@ function validateStep(step) {
     
     switch (step) {
         case 1:
+            // Allow skipping window cleaning selection - it's optional
             const propertyTypeSelect = document.getElementById('propertyType');
-            if (!window.formState.propertyType || window.formState.propertyType === '') {
-                // Show inline error instead of alert
-                if (typeof showInlineError === 'function' && propertyTypeSelect) {
-                    showInlineError(propertyTypeSelect, 'Please select a property type');
+            if (propertyTypeSelect && window.formState.propertyType && window.formState.propertyType !== '') {
+                // Clear any errors if property type is selected
+                if (typeof clearInlineError === 'function') {
+                    clearInlineError(propertyTypeSelect);
                 }
-                // Also show error message div
                 const errorDiv = document.getElementById('propertyTypeError');
                 if (errorDiv) {
-                    errorDiv.innerHTML = '<span class="flex items-center"><svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/></svg>Please select a property type</span>';
-                    errorDiv.style.display = 'block';
+                    errorDiv.style.display = 'none';
                 }
-                propertyTypeSelect.focus();
-                return false;
-            }
-            // Clear error if valid
-            if (typeof clearInlineError === 'function' && propertyTypeSelect) {
-                clearInlineError(propertyTypeSelect);
-            }
-            const errorDiv = document.getElementById('propertyTypeError');
-            if (errorDiv) {
-                errorDiv.style.display = 'none';
             }
             return true;
             
         case 2:
-            // Additional services are optional
+            // Check if at least one service is selected (window cleaning or additional)
+            const hasWindowCleaning = window.formState.propertyType && window.formState.propertyType !== '';
+            const hasAdditionalServices = window.formState.additionalServices && window.formState.additionalServices.length > 0;
+            
+            if (!hasWindowCleaning && !hasAdditionalServices) {
+                // Show error message
+                const formContainer = document.getElementById('step2');
+                const existingError = formContainer?.querySelector('.service-selection-error');
+                if (!existingError && formContainer) {
+                    const errorDiv = document.createElement('div');
+                    errorDiv.className = 'service-selection-error bg-red-50 border border-red-200 rounded-lg p-4 mb-4 text-red-700';
+                    errorDiv.innerHTML = '<svg class="w-5 h-5 inline mr-2" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/></svg>Please select at least one service (window cleaning or additional services)';
+                    const contentDiv = formContainer.querySelector('.max-w-4xl');
+                    if (contentDiv) {
+                        contentDiv.insertBefore(errorDiv, contentDiv.querySelector('.grid'));
+                    }
+                }
+                return false;
+            } else {
+                // Remove error if exists
+                const existingError = document.querySelector('.service-selection-error');
+                if (existingError) {
+                    existingError.remove();
+                }
+            }
             return true;
             
         case 3:
@@ -983,13 +1029,42 @@ function updateReviewSummary() {
     // Service summary
     const serviceSummary = document.getElementById('serviceSummary');
     if (serviceSummary) {
-        const propertyTypeSelect = document.getElementById('propertyType');
-        const propertyTypeText = propertyTypeSelect?.options[propertyTypeSelect.selectedIndex]?.text || '';
+        let html = '';
         
-        let html = `<p><strong>Property:</strong> ${propertyTypeText}</p>`;
-        if (window.formState.frequency) {
-            html += `<p><strong>Frequency:</strong> ${window.formState.frequency}</p>`;
+        // Window cleaning details if selected
+        if (window.formState.propertyType && window.formState.propertyType !== '') {
+            const propertyTypeSelect = document.getElementById('propertyType');
+            const propertyTypeText = propertyTypeSelect?.options[propertyTypeSelect.selectedIndex]?.text || '';
+            html += `<p><strong>Window Cleaning:</strong> ${propertyTypeText}</p>`;
+            if (window.formState.frequency) {
+                const freqText = {
+                    '4weekly': 'Every 4 weeks',
+                    '8weekly': 'Every 8 weeks',
+                    '12weekly': 'Every 12 weeks',
+                    'onetime': 'One-time clean'
+                }[window.formState.frequency] || window.formState.frequency;
+                html += `<p><strong>Frequency:</strong> ${freqText}</p>`;
+            }
         }
+        
+        // Additional services if selected
+        if (window.formState.additionalServices && window.formState.additionalServices.length > 0) {
+            html += '<p class="mt-3"><strong>Additional Services:</strong></p>';
+            const serviceNames = {
+                'gutterInternal': 'Gutter Clearing (Internal)',
+                'gutterExternal': 'Fascia & Soffit Cleaning',
+                'solar': 'Solar Panel Cleaning (Quote Required)',
+                'conservatory': 'Conservatory Roof Cleaning (Quote Required)'
+            };
+            window.formState.additionalServices.forEach(service => {
+                html += `<p class="ml-4">• ${serviceNames[service] || service}</p>`;
+            });
+        }
+        
+        if (!html) {
+            html = '<p class="text-gray-500">No services selected</p>';
+        }
+        
         serviceSummary.innerHTML = html;
     }
     
@@ -1007,21 +1082,41 @@ function updateReviewSummary() {
     // Price summary
     const priceSummary = document.getElementById('priceSummary');
     if (priceSummary) {
+        let priceHtml = '';
         const basePrice = propertyPrices[window.formState.propertyType] || 0;
         const adjustment = frequencyAdjustments[window.formState.frequency] || 0;
-        const totalPrice = basePrice + adjustment;
+        const windowCleaningPrice = basePrice + adjustment;
         
         if (basePrice > 0) {
-            priceSummary.innerHTML = `<div class="text-2xl font-bold text-red-600">£${totalPrice} per clean</div>`;
-        } else {
-            priceSummary.innerHTML = '<div class="text-lg font-semibold text-gray-700">Quote Required</div>';
+            priceHtml += `<div class="mb-2"><strong>Window Cleaning:</strong> <span class="text-xl font-bold text-red-600">£${windowCleaningPrice}</span> per clean</div>`;
         }
+        
+        // Check for additional services that need quotes
+        const needsQuote = window.formState.additionalServices && 
+            (window.formState.additionalServices.includes('solar') || 
+             window.formState.additionalServices.includes('conservatory'));
+        
+        if (needsQuote || (!basePrice && window.formState.additionalServices.length > 0)) {
+            priceHtml += '<div class="text-lg font-semibold text-gray-700 mt-2">Additional services require on-site quote</div>';
+        }
+        
+        if (!priceHtml) {
+            priceHtml = '<div class="text-lg font-semibold text-gray-700">Quote Required</div>';
+        }
+        
+        priceSummary.innerHTML = priceHtml;
     }
 }
 
 // Initialize form handlers
 function initializeForm() {
     console.log('Initializing form...');
+    
+    // Set initial button text
+    const step1NextText = document.getElementById('step1NextText');
+    if (step1NextText) {
+        step1NextText.textContent = 'Skip to Additional Services →';
+    }
     
     // Property card handlers
     const propertyCards = document.querySelectorAll('.property-card');
@@ -1073,6 +1168,7 @@ function initializeForm() {
             // Show/hide frequency section
             const frequencySection = document.querySelector('.frequency-section');
             const priceDisplay = document.querySelector('.price-display');
+            const step1NextText = document.getElementById('step1NextText');
             
             if (window.formState.propertyType && 
                 window.formState.propertyType !== 'custom' && 
@@ -1081,9 +1177,11 @@ function initializeForm() {
                 if (frequencySection) frequencySection.style.display = 'block';
                 if (priceDisplay) priceDisplay.style.display = 'block';
                 updatePriceDisplay();
+                if (step1NextText) step1NextText.textContent = 'Next Step →';
             } else {
                 if (frequencySection) frequencySection.style.display = 'none';
                 if (priceDisplay) priceDisplay.style.display = 'none';
+                if (step1NextText) step1NextText.textContent = 'Skip to Additional Services →';
             }
         });
     }
