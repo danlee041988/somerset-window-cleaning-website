@@ -40,7 +40,7 @@ export const headerData = {
     },
   ],
   actions: [
-    { text: 'Book Now', href: getPermalink('/book-now'), variant: 'red', icon: 'tabler:calendar-plus', priority: 1 },
+    { text: 'Book Now', href: getPermalink('/book-now'), variant: 'red', icon: 'tabler:calendar-plus', priority: 1, class: 'sparkle-button animate-pulse hover:animate-none shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105' },
   ],
 };
 

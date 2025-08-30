@@ -8,7 +8,6 @@ import FAQs from '~/components/widgets/FAQs.astro';
 import Stats from '~/components/widgets/Stats.astro';
 import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
 import Image from '~/components/common/Image.astro';
-import RelatedServices from '~/components/widgets/RelatedServices.astro';
 import LiveReviews from '~/components/widgets/LiveReviews.astro';
 
 const metadata = {
@@ -48,21 +47,6 @@ const metadata = {
     ]}
   />
 
-  <!-- Service Overview -->
-  <WidgetWrapper>
-    <section class="py-12 max-w-6xl mx-auto px-4">
-      <div class="text-center mb-12">
-        <h2 class="text-3xl font-bold mb-6">Why Professional Gutter Clearing Matters</h2>
-        <p class="text-lg text-gray-600 max-w-3xl mx-auto">Blocked gutters can cause serious damage to your property, leading to damp, structural issues, and costly repairs. Our high-reach vacuum system safely clears gutters from ground level.</p>
-      </div>
-      
-      <div class="prose prose-lg max-w-none text-gray-600">
-        <p>Our high-reach vacuum system safely clears gutters from ground level, eliminating ladder risks while providing superior cleaning results.</p>
-
-        <p>Every gutter clearing service includes: complete gutter clearance, downpipe clearing, debris removal and disposal, basic gutter inspection, before/after photos, ground-level safety, fully insured service, and professional equipment.</p>
-      </div>
-    </section>
-  </WidgetWrapper>
 
   <!-- Key Benefits -->
   <Features
@@ -146,7 +130,7 @@ const metadata = {
     items={[
       {
         title: 'How often should gutters be cleaned?',
-        description: 'We recommend twice yearly - in autumn after leaf fall and in spring before summer growth. Properties with many overhanging trees may need more frequent clearing.',
+        description: 'We recommend twice yearly - in autumn after leaf fall and in spring before summer growth. Properties with many overhanging trees may need more frequent clearing. <a href="/book-now" class="text-red-600 hover:underline font-semibold">Book your gutter clearing service online</a>.',
       },
       {
         title: 'Is your gutter clearing service safe?',
@@ -174,13 +158,11 @@ const metadata = {
       },
       {
         title: 'What if my gutters are too high or difficult to access?',
-        description: 'Our professional equipment can reach up to 4 storeys safely. For unusual access requirements, we\'ll assess each property individually and provide a custom solution.',
+        description: 'Our professional equipment can reach up to 4 storeys safely. For unusual access requirements, we\'ll assess each property individually and provide a custom solution. <a href="/book-now" class="text-red-600 hover:underline font-semibold">Get a quote for your property</a>.',
       },
     ]}
   />
 
-  <!-- Related Services Section -->
-  <RelatedServices currentService="Gutter Clearing" />
 
   
 </Layout>

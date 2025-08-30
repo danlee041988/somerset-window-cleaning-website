@@ -68,7 +68,8 @@ const { language, textDirection } = I18N;
   </head>
 
   <body class="antialiased text-default bg-page tracking-tight">
-    <AdvancedViewTransitions />
+    <!-- Temporarily disabled to fix transition errors -->
+    <!-- <AdvancedViewTransitions /> -->
     <AccessibilityEnhancements />
     <TouchTargetOptimization />
     <ColorContrastOptimizer />
@@ -77,5 +78,9 @@ const { language, textDirection } = I18N;
     <slot />
 
     <BasicScripts />
+    
+    <!-- Temporary fixes for development -->
+    <script src="/unregister-sw.js"></script>
+    <script src="/error-fix.js"></script>
   </body>
 </html>
