@@ -38,7 +38,7 @@ const metadata = {
 
   <!-- Default hero (shown by default) -->
   <div id="hero-default">
-    <HeroText tagline="Contact" title="Get a free quote" subtitle="We usually respond within one working day.">
+    <HeroText tagline="Contact" title="Contact Us" subtitle="We usually respond within one working day.">
       <Fragment slot="bg">
         <img src={heroImage.src} alt="Professional window cleaning service - get in touch for a free quote" width="1600" height="900" style="width:100%; height:100%; object-fit:cover; opacity:0.55;" />
         <div class="absolute inset-0 bg-black/40"></div>
@@ -71,16 +71,18 @@ const metadata = {
 
 
   <!-- New Customer Notice -->
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 mb-8">
-    <div class="rounded-2xl border-2 border-red-600 bg-gradient-to-r from-red-600/10 to-red-500/5 p-6 text-center">
-      <h3 class="text-2xl font-bold text-red-600 mb-3">New Customer?</h3>
-      <p class="text-lg mb-4">Get instant pricing and book your first clean online in just 4 easy steps!</p>
-      <a href="/book-now" class="inline-flex items-center gap-2 px-8 py-3 bg-red-600 hover:bg-red-700 text-white font-bold rounded-full shadow-lg transform hover:scale-105 transition-all duration-300">
-        <Icon name="tabler:calendar-plus" class="w-5 h-5" />
-        Book Online Now
-      </a>
+  <section class="py-8 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="rounded-2xl border-2 border-red-600 bg-gradient-to-r from-red-600/10 to-red-500/5 p-8 text-center">
+        <h3 class="text-3xl font-bold text-red-600 mb-4">New Customer?</h3>
+        <p class="text-lg text-gray-700 mb-6 max-w-2xl mx-auto">Get instant pricing and book your first clean online in just 4 easy steps!</p>
+        <a href="/book-now" class="inline-flex items-center gap-2 px-8 py-4 bg-red-600 hover:bg-red-700 text-white font-bold rounded-full shadow-lg transform hover:scale-105 transition-all duration-300">
+          <Icon name="tabler:calendar-plus" class="w-5 h-5" />
+          Book Online Now
+        </a>
+      </div>
     </div>
-  </div>
+  </section>
 
   <ContactUs
     id="form"
@@ -90,6 +92,8 @@ const metadata = {
       { type: 'text', name: 'fullName', label: 'Full name', required: true },
       { type: 'email', name: 'email', label: 'Email address', required: true },
       { type: 'tel', name: 'phone', label: 'Phone number (optional)' },
+      { type: 'select', name: 'customerType', label: 'Customer type', options: ['New Customer', 'Existing Customer'] },
+      { type: 'file', name: 'photos', label: 'Photos (optional)', multiple: true, accept: 'image/*' },
     ]}
     textarea={{ label: 'Your message', required: true, rows: 4 }}
     disclaimer={{ label: 'We\'ll respond within one working day.' }}
