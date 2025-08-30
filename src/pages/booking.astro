@@ -696,20 +696,20 @@ const metadata = {
         dealBanner.className = 'bg-gradient-to-r from-green-600 to-green-700 rounded-lg p-4 mb-4 border-2 border-green-400 animate-pulse';
         dealStatus.textContent = '✅ Deal Activated! First window clean is FREE!';
         dealStatus.className = 'text-green-200 text-xs mt-2 font-bold';
-        gutterLabel.classList.add('ring-2', 'ring-green-400', 'bg-green-900');
-        fasciaLabel.classList.add('ring-2', 'ring-green-400', 'bg-green-900');
+        gutterLabel.classList.add('ring-2', 'ring-green-400', 'bg-green-800');
+        fasciaLabel.classList.add('ring-2', 'ring-green-400', 'bg-green-800');
         formData.hasGutterDeal = true;
       } else if (gutterClearing || fasciaSoffit) {
         // One service selected - encourage to add the other
         dealBanner.className = 'bg-gradient-to-r from-orange-600 to-red-700 rounded-lg p-4 mb-4 border-2 border-yellow-400 animate-pulse';
         if (gutterClearing) {
           dealStatus.textContent = '⚡ Add Fascia/Soffit/Gutter Cleaning to get your first window clean FREE!';
-          gutterLabel.classList.add('ring-2', 'ring-orange-400', 'bg-orange-900');
-          fasciaLabel.classList.remove('ring-2', 'ring-green-400', 'bg-green-900', 'ring-orange-400', 'bg-orange-900');
+          gutterLabel.classList.add('ring-2', 'ring-orange-400', 'bg-orange-800');
+          fasciaLabel.classList.remove('ring-2', 'ring-green-400', 'bg-green-800', 'ring-orange-400', 'bg-orange-800');
         } else {
           dealStatus.textContent = '⚡ Add Gutter Clearing to get your first window clean FREE!';
-          fasciaLabel.classList.add('ring-2', 'ring-orange-400', 'bg-orange-900');
-          gutterLabel.classList.remove('ring-2', 'ring-green-400', 'bg-green-900', 'ring-orange-400', 'bg-orange-900');
+          fasciaLabel.classList.add('ring-2', 'ring-orange-400', 'bg-orange-800');
+          gutterLabel.classList.remove('ring-2', 'ring-green-400', 'bg-green-800', 'ring-orange-400', 'bg-orange-800');
         }
         dealStatus.className = 'text-yellow-200 text-xs mt-2 font-bold';
         formData.hasGutterDeal = false;
@@ -718,8 +718,8 @@ const metadata = {
         dealBanner.className = 'bg-gradient-to-r from-blue-600 to-purple-700 rounded-lg p-4 mb-4 border-2 border-yellow-400';
         dealStatus.textContent = 'Select both services below to activate this deal';
         dealStatus.className = 'text-yellow-200 text-xs mt-2 font-medium';
-        gutterLabel.classList.remove('ring-2', 'ring-red-400', 'bg-red-900', 'ring-green-400', 'bg-green-900', 'ring-orange-400', 'bg-orange-900');
-        fasciaLabel.classList.remove('ring-2', 'ring-red-400', 'bg-red-900', 'ring-green-400', 'bg-green-900', 'ring-orange-400', 'bg-orange-900');
+        gutterLabel.classList.remove('ring-2', 'ring-red-400', 'bg-red-900', 'ring-green-400', 'bg-green-800', 'ring-orange-400', 'bg-orange-800');
+        fasciaLabel.classList.remove('ring-2', 'ring-red-400', 'bg-red-900', 'ring-green-400', 'bg-green-800', 'ring-orange-400', 'bg-orange-800');
         formData.hasGutterDeal = false;
       }
     }
