@@ -17,11 +17,12 @@ const variants = {
   primary: 'btn-primary text-white',
   secondary: 'btn-secondary',
   tertiary: 'btn btn-tertiary',
+  red: 'text-white bg-red-600 hover:bg-red-700 border border-red-600/30 hover:border-red-500 font-medium px-3 py-1.5 rounded-md transition-all duration-200 shadow-sm hover:shadow-md text-sm',
   whatsapp: 'btn-whatsapp',
   link: 'cursor-pointer hover:text-primary',
 };
 
-const forceWhite = variant === 'primary' || variant === 'secondary' || variant === 'whatsapp';
+const forceWhite = variant === 'primary' || variant === 'secondary' || variant === 'whatsapp' || variant === 'red';
 ---
 
 {

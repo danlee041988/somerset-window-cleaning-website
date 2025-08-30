@@ -19,9 +19,11 @@ import TouchTargetOptimization from '~/components/common/TouchTargetOptimization
 import ColorContrastOptimizer from '~/components/common/ColorContrastOptimizer.astro';
 import AriaEnhancer from '~/components/common/AriaEnhancer.astro';
 import KeyboardNavigationEnhancer from '~/components/common/KeyboardNavigationEnhancer.astro';
+import AdvancedViewTransitions from '~/components/common/AdvancedViewTransitions.astro';
+import LocalBusinessSchema from '~/components/seo/LocalBusinessSchema.astro';
 
-// View Transitions disabled to fix navigation  
-// import { ViewTransitions } from 'astro:transitions';
+// Modern View Transitions using ClientRouter (Astro 5+)
+import { ClientRouter } from 'astro:transitions';
 
 import type { MetaData as MetaDataType } from '~/types';
 
@@ -58,11 +60,15 @@ const { language, textDirection } = I18N;
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" media="print" onload="this.media='all'">
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"></noscript>
 
-    <!-- View Transitions disabled to fix navigation -->
-    <!-- <ViewTransitions /> -->
+    <!-- Modern View Transitions with enhanced performance -->
+    <ClientRouter />
+    
+    <!-- Enhanced Local Business Schema -->
+    <LocalBusinessSchema type={structuredDataType} />
   </head>
 
   <body class="antialiased text-default bg-page tracking-tight">
+    <AdvancedViewTransitions />
     <AccessibilityEnhancements />
     <TouchTargetOptimization />
     <ColorContrastOptimizer />

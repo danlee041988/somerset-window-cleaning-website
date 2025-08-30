@@ -197,7 +197,17 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
             )
           }
         </div>
-        { '' }
+        {
+          actions?.length ? (
+            <div class="ml-2 rtl:ml-0 rtl:mr-2 flex gap-1 md:gap-2">
+              {actions.map((action) => (
+                <Button {...action} class={`text-sm ${action.class || ''}`} />
+              ))}
+            </div>
+          ) : (
+            ''
+          )
+        }
       </div>
     </div>
   </div>

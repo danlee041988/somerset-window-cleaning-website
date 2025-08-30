@@ -1,0 +1,228 @@
+---
+/**
+ * Enhanced Image Component for Astro 5.12+
+ * 
+ * Features:
+ * - AVIF/WebP/JPEG format cascade with automatic fallbacks
+ * - High-density display support (1x, 2x, 3x)
+ * - Progressive loading with blur-up effect
+ * - Critical path optimization
+ * - View Transitions integration
+ * - Core Web Vitals optimization
+ */
+
+import { Image, Picture } from 'astro:assets';
+
+export interface Props {
+  src: ImageMetadata | string;
+  alt: string;
+  width: number;
+  height: number;
+  class?: string;
+  quality?: number;
+  loading?: 'lazy' | 'eager';
+  decoding?: 'sync' | 'async' | 'auto';
+  fetchpriority?: 'high' | 'low' | 'auto';
+  transitionName?: string;
+  critical?: boolean;
+  blurUp?: boolean;
+  sizes?: string;
+}
+
+const {
+  src,
+  alt,
+  width,
+  height,
+  class: className = '',
+  quality = 85,
+  loading = 'lazy',
+  decoding = 'async',
+  fetchpriority = 'auto',
+  transitionName,
+  critical = false,
+  blurUp = false,
+  sizes = '(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw'
+} = Astro.props;
+
+// Generate responsive widths based on the base width
+const responsiveWidths = [
+  Math.round(width * 0.25),
+  Math.round(width * 0.5),
+  width,
+  Math.round(width * 1.5),
+  Math.round(width * 2)
+].filter(w => w >= 200); // Remove very small widths
+
+// Critical images get eager loading and high priority
+const finalLoading = critical ? 'eager' : loading;
+const finalDecoding = critical ? 'sync' : decoding;
+const finalFetchPriority = critical ? 'high' : fetchpriority;
+
+// Generate a low-quality placeholder for blur-up effect
+const placeholderWidth = Math.min(40, Math.round(width * 0.1));
+const placeholderHeight = Math.round((placeholderWidth * height) / width);
+---
+
+<div 
+  class={`enhanced-image ${className} ${blurUp ? 'blur-up' : ''}`}
+  style={`aspect-ratio: ${width}/${height};`}
+  data-enhanced-image
+>
+  {blurUp && (
+    <Image
+      src={src}
+      alt=""
+      width={placeholderWidth}
+      height={placeholderHeight}
+      quality={20}
+      format="webp"
+      loading="eager"
+      decoding="sync"
+      class="placeholder-image"
+      style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: blur(10px); opacity: 0.5; transition: opacity 0.3s ease;"
+    />
+  )}
+  
+  <Picture
+    src={src}
+    alt={alt}
+    width={width}
+    height={height}
+    widths={responsiveWidths}
+    sizes={sizes}
+    formats={['avif', 'webp', 'jpg']}
+    quality={quality}
+    loading={finalLoading}
+    decoding={finalDecoding}
+    fetchpriority={finalFetchPriority}
+    class="main-image"
+    {...(transitionName ? { 'transition:name': transitionName } : {})}
+    style="width: 100%; height: 100%; object-fit: cover; transition: opacity 0.3s ease;"
+  />
+  
+  {/* Intersection Observer for lazy loading optimization */}
+  {!critical && (
+    <noscript>
+      <Image
+        src={src}
+        alt={alt}
+        width={width}
+        height={height}
+        format="jpg"
+        quality={85}
+        style="width: 100%; height: 100%; object-fit: cover;"
+      />
+    </noscript>
+  )}
+</div>
+
+<style>
+  .enhanced-image {
+    position: relative;
+    overflow: hidden;
+    background-color: #f3f4f6;
+    background-image: linear-gradient(45deg, #f9fafb 25%, transparent 25%), 
+                      linear-gradient(-45deg, #f9fafb 25%, transparent 25%), 
+                      linear-gradient(45deg, transparent 75%, #f9fafb 75%), 
+                      linear-gradient(-45deg, transparent 75%, #f9fafb 75%);
+    background-size: 20px 20px;
+    background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+  }
+  
+  .enhanced-image.blur-up .main-image {
+    opacity: 0;
+  }
+  
+  .enhanced-image.loaded .placeholder-image {
+    opacity: 0;
+  }
+  
+  .enhanced-image.loaded .main-image {
+    opacity: 1;
+  }
+  
+  /* Dark mode support */
+  @media (prefers-color-scheme: dark) {
+    .enhanced-image {
+      background-color: #374151;
+      background-image: linear-gradient(45deg, #4b5563 25%, transparent 25%), 
+                        linear-gradient(-45deg, #4b5563 25%, transparent 25%), 
+                        linear-gradient(45deg, transparent 75%, #4b5563 75%), 
+                        linear-gradient(-45deg, transparent 75%, #4b5563 75%);
+    }
+  }
+  
+  /* Skeleton loading animation */
+  .enhanced-image:not(.loaded) {
+    animation: skeleton-pulse 1.5s ease-in-out infinite;
+  }
+  
+  @keyframes skeleton-pulse {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.7;
+    }
+  }
+  
+  /* Optimize for different connection types */
+  @media (prefers-reduced-data: reduce) {
+    .enhanced-image .main-image {
+      filter: none !important;
+    }
+  }
+</style>
+
+<script>
+  // Enhanced image loading with intersection observer
+  document.addEventListener('DOMContentLoaded', function() {
+    const enhancedImages = document.querySelectorAll('[data-enhanced-image]');
+    
+    if ('IntersectionObserver' in window) {
+      const imageObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const container = entry.target as HTMLElement;
+            const mainImage = container.querySelector('.main-image') as HTMLImageElement;
+            
+            if (mainImage) {
+              const onLoad = () => {
+                container.classList.add('loaded');
+                mainImage.removeEventListener('load', onLoad);
+              };
+              
+              if (mainImage.complete) {
+                container.classList.add('loaded');
+              } else {
+                mainImage.addEventListener('load', onLoad);
+              }
+            }
+            
+            observer.unobserve(container);
+          }
+        });
+      }, {
+        rootMargin: '50px 0px',
+        threshold: 0.1
+      });
+      
+      enhancedImages.forEach(img => {
+        // Skip critical images (they should load immediately)
+        const isCritical = img.querySelector('[loading="eager"]');
+        if (!isCritical) {
+          imageObserver.observe(img);
+        } else {
+          // Critical images load immediately
+          setTimeout(() => img.classList.add('loaded'), 50);
+        }
+      });
+    } else {
+      // Fallback for browsers without IntersectionObserver
+      enhancedImages.forEach(img => {
+        img.classList.add('loaded');
+      });
+    }
+  });
+</script>

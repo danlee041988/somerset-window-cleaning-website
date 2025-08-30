@@ -1,0 +1,250 @@
+---
+/**
+ * Advanced View Transitions Component
+ * 
+ * Implements modern View Transitions API with:
+ * - Browser-native transitions where supported (75%+ browsers)
+ * - Progressive enhancement for older browsers
+ * - Zero JavaScript fallback
+ * - Performance-optimized animations
+ * - Accessibility considerations
+ */
+---
+
+<!-- CSS for enhanced view transitions -->
+<style is:global>
+  /* Modern View Transitions CSS */
+  @view-transition {
+    navigation: auto;
+  }
+  
+  /* Root transition configuration */
+  ::view-transition {
+    background: transparent;
+  }
+  
+  /* Optimize transition performance */
+  ::view-transition-group(root) {
+    animation-duration: 0.25s;
+    animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  /* Header transitions */
+  ::view-transition-group(header) {
+    animation-duration: 0.2s;
+    z-index: 1000;
+  }
+  
+  /* Main content transitions */
+  ::view-transition-group(main) {
+    animation-duration: 0.3s;
+    animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  
+  /* Hero image morph transitions */
+  ::view-transition-group(hero-image) {
+    animation-duration: 0.4s;
+    z-index: 999;
+  }
+  
+  /* Smooth slide animations */
+  @keyframes slide-from-right {
+    from {
+      transform: translateX(30px);
+      opacity: 0;
+    }
+  }
+  
+  @keyframes slide-to-left {
+    to {
+      transform: translateX(-30px);
+      opacity: 0;
+    }
+  }
+  
+  /* Page-specific transitions */
+  ::view-transition-old(main):only-child {
+    animation: slide-to-left 0.25s ease-in;
+  }
+  
+  ::view-transition-new(main):only-child {
+    animation: slide-from-right 0.25s ease-out;
+  }
+  
+  /* Reduce motion for accessibility */
+  @media (prefers-reduced-motion: reduce) {
+    ::view-transition-group(*) {
+      animation-duration: 0.01ms !important;
+    }
+    
+    ::view-transition-old(*),
+    ::view-transition-new(*) {
+      animation: none !important;
+    }
+  }
+  
+  /* Loading state optimization */
+  html:not(.astro-route-ready) {
+    background-color: #ffffff;
+  }
+  
+  /* Dark mode support */
+  @media (prefers-color-scheme: dark) {
+    html:not(.astro-route-ready) {
+      background-color: #111827;
+    }
+  }
+  
+  /* Enhance focus visibility during transitions */
+  :focus-visible {
+    outline: 2px solid #2563eb;
+    outline-offset: 2px;
+    transition: outline-color 0.15s ease-out;
+  }
+  
+  /* Optimized cross-fade for images */
+  ::view-transition-group(hero-image),
+  ::view-transition-group(service-image) {
+    mix-blend-mode: normal;
+  }
+  
+  ::view-transition-old(hero-image) {
+    animation: fade-out 0.2s ease-out;
+  }
+  
+  ::view-transition-new(hero-image) {
+    animation: fade-in 0.3s 0.1s ease-in both;
+  }
+  
+  @keyframes fade-out {
+    to {
+      opacity: 0;
+      transform: scale(1.02);
+    }
+  }
+  
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+      transform: scale(0.98);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  
+  /* Prevent layout shift during transitions */
+  [astro-route-announcer] {
+    position: fixed !important;
+    left: -10000px !important;
+    width: 1px !important;
+    height: 1px !important;
+    top: auto !important;
+    overflow: hidden !important;
+  }
+</style>
+
+<!-- Enhanced JavaScript for progressive enhancement -->
+<script>
+  // Feature detection and progressive enhancement
+  document.addEventListener('DOMContentLoaded', function() {
+    // Check for native View Transition API support
+    const hasNativeViewTransitions = 'startViewTransition' in document;
+    
+    if (hasNativeViewTransitions) {
+      document.documentElement.classList.add('view-transitions-native');
+      
+      // Optimize view transitions for performance
+      const links = document.querySelectorAll('a[href^="/"], a[href^="./"], a[href^="../"]');
+      
+      links.forEach(link => {
+        link.addEventListener('click', (e) => {
+          const url = new URL(link.href);
+          
+          // Skip transitions for external links or different origins
+          if (url.origin !== location.origin) return;
+          
+          // Add transition classes for specific page types
+          const isServicePage = url.pathname.includes('/services/');
+          const isAreaPage = url.pathname.includes('/areas/');
+          
+          if (isServicePage) {
+            document.documentElement.classList.add('transitioning-to-service');
+          } else if (isAreaPage) {
+            document.documentElement.classList.add('transitioning-to-area');
+          }
+          
+          // Clean up classes after transition
+          setTimeout(() => {
+            document.documentElement.classList.remove(
+              'transitioning-to-service',
+              'transitioning-to-area'
+            );
+          }, 500);
+        });
+      });
+    }
+    
+    // Preload next likely page for instant navigation
+    function preloadLikelyPages() {
+      const currentPath = window.location.pathname;
+      let preloadUrls = [];
+      
+      // Homepage: preload services and booking
+      if (currentPath === '/') {
+        preloadUrls = ['/services', '/booking-2step'];
+      }
+      // Services: preload specific service pages
+      else if (currentPath === '/services') {
+        preloadUrls = ['/services/window-cleaning', '/booking-2step'];
+      }
+      // Service pages: preload booking
+      else if (currentPath.includes('/services/')) {
+        preloadUrls = ['/booking-2step', '/contact'];
+      }
+      
+      preloadUrls.forEach(url => {
+        const link = document.createElement('link');
+        link.rel = 'prefetch';
+        link.href = url;
+        document.head.appendChild(link);
+      });
+    }
+    
+    // Intelligent preloading after initial page load
+    if ('requestIdleCallback' in window) {
+      requestIdleCallback(preloadLikelyPages, { timeout: 2000 });
+    } else {
+      setTimeout(preloadLikelyPages, 1000);
+    }
+    
+    // Performance monitoring for view transitions
+    if ('PerformanceObserver' in window && hasNativeViewTransitions) {
+      const transitionObserver = new PerformanceObserver((entryList) => {
+        for (const entry of entryList.getEntries()) {
+          if (entry.entryType === 'navigation' && entry.duration > 1000) {
+            console.warn('Slow navigation detected:', entry.duration + 'ms');
+          }
+        }
+      });
+      
+      try {
+        transitionObserver.observe({ entryTypes: ['navigation'] });
+      } catch (e) {
+        // Ignore if navigation timing isn't supported
+      }
+    }
+  });
+  
+  // Enhanced error handling for view transitions
+  window.addEventListener('pageshow', function(event) {
+    if (event.persisted) {
+      // Page restored from cache, ensure clean state
+      document.documentElement.classList.remove(
+        'transitioning-to-service',
+        'transitioning-to-area'
+      );
+    }
+  });
+</script>

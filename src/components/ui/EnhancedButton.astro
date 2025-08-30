@@ -1,0 +1,422 @@
+---
+/**
+ * Enhanced Button Component with Modern Micro-interactions
+ * 
+ * Features:
+ * - Smooth animations with proper easing
+ * - Haptic feedback simulation
+ * - Loading states with skeleton animations
+ * - Accessibility optimized
+ * - Multiple variants and sizes
+ * - Dark mode support
+ */
+
+export interface Props {
+  variant?: 'primary' | 'secondary' | 'outline' | 'ghost' | 'destructive';
+  size?: 'sm' | 'md' | 'lg' | 'xl';
+  href?: string;
+  type?: 'button' | 'submit' | 'reset';
+  disabled?: boolean;
+  loading?: boolean;
+  icon?: string;
+  iconPosition?: 'left' | 'right';
+  fullWidth?: boolean;
+  class?: string;
+  target?: '_blank' | '_self' | '_parent' | '_top';
+  rel?: string;
+}
+
+const {
+  variant = 'primary',
+  size = 'md',
+  href,
+  type = 'button',
+  disabled = false,
+  loading = false,
+  icon,
+  iconPosition = 'left',
+  fullWidth = false,
+  class: className = '',
+  target,
+  rel,
+  ...rest
+} = Astro.props;
+
+const Tag = href ? 'a' : 'button';
+
+// Generate unique ID for ripple effect
+const rippleId = `ripple-${Math.random().toString(36).substr(2, 9)}`;
+---
+
+<Tag
+  {...href ? { href, target, rel } : { type, disabled }}
+  class={`enhanced-button enhanced-button--${variant} enhanced-button--${size} ${fullWidth ? 'enhanced-button--full' : ''} ${loading ? 'enhanced-button--loading' : ''} ${className}`}
+  data-ripple={rippleId}
+  {...rest}
+>
+  {loading && (
+    <span class="enhanced-button__loader" aria-hidden="true">
+      <svg class="enhanced-button__spinner" viewBox="0 0 24 24">
+        <circle class="enhanced-button__spinner-track" cx="12" cy="12" r="10" />
+        <circle class="enhanced-button__spinner-head" cx="12" cy="12" r="10" />
+      </svg>
+    </span>
+  )}
+  
+  {icon && iconPosition === 'left' && !loading && (
+    <span class="enhanced-button__icon enhanced-button__icon--left" aria-hidden="true">
+      <svg class="icon"><use href={`#${icon}`}></use></svg>
+    </span>
+  )}
+  
+  <span class="enhanced-button__text" class:list={[loading && 'sr-only']}>
+    <slot />
+  </span>
+  
+  {icon && iconPosition === 'right' && !loading && (
+    <span class="enhanced-button__icon enhanced-button__icon--right" aria-hidden="true">
+      <svg class="icon"><use href={`#${icon}`}></use></svg>
+    </span>
+  )}
+  
+  <span class="enhanced-button__ripple" aria-hidden="true"></span>
+</Tag>
+
+<style>
+  .enhanced-button {
+    /* Base styles */
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-family: inherit;
+    font-weight: 600;
+    text-decoration: none;
+    border: none;
+    border-radius: 0.75rem;
+    cursor: pointer;
+    overflow: hidden;
+    transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    isolation: isolate;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    
+    /* Focus styles */
+    &:focus-visible {
+      outline: 2px solid #2563eb;
+      outline-offset: 2px;
+    }
+    
+    /* Disabled styles */
+    &:disabled,
+    &[aria-disabled="true"] {
+      opacity: 0.5;
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+  }
+  
+  /* Size variants */
+  .enhanced-button--sm {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+    min-height: 2rem;
+  }
+  
+  .enhanced-button--md {
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    min-height: 2.75rem;
+  }
+  
+  .enhanced-button--lg {
+    padding: 1rem 2rem;
+    font-size: 1.125rem;
+    min-height: 3.5rem;
+  }
+  
+  .enhanced-button--xl {
+    padding: 1.25rem 2.5rem;
+    font-size: 1.25rem;
+    min-height: 4rem;
+  }
+  
+  .enhanced-button--full {
+    width: 100%;
+  }
+  
+  /* Color variants */
+  .enhanced-button--primary {
+    background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+    color: white;
+    box-shadow: 0 4px 14px 0 rgba(37, 99, 235, 0.25);
+    
+    &:hover:not(:disabled):not([aria-disabled="true"]) {
+      background: linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%);
+      box-shadow: 0 6px 20px 0 rgba(37, 99, 235, 0.35);
+      transform: translateY(-1px);
+    }
+    
+    &:active:not(:disabled):not([aria-disabled="true"]) {
+      transform: translateY(0);
+      box-shadow: 0 2px 8px 0 rgba(37, 99, 235, 0.3);
+    }
+  }
+  
+  .enhanced-button--secondary {
+    background: linear-gradient(135deg, #6b7280 0%, #4b5563 100%);
+    color: white;
+    box-shadow: 0 4px 14px 0 rgba(107, 114, 128, 0.25);
+    
+    &:hover:not(:disabled):not([aria-disabled="true"]) {
+      background: linear-gradient(135deg, #4b5563 0%, #374151 100%);
+      box-shadow: 0 6px 20px 0 rgba(107, 114, 128, 0.35);
+      transform: translateY(-1px);
+    }
+  }
+  
+  .enhanced-button--outline {
+    background: transparent;
+    color: #2563eb;
+    border: 2px solid #2563eb;
+    box-shadow: 0 2px 8px 0 rgba(37, 99, 235, 0.1);
+    
+    &:hover:not(:disabled):not([aria-disabled="true"]) {
+      background: #2563eb;
+      color: white;
+      box-shadow: 0 4px 14px 0 rgba(37, 99, 235, 0.25);
+      transform: translateY(-1px);
+    }
+  }
+  
+  .enhanced-button--ghost {
+    background: transparent;
+    color: #374151;
+    box-shadow: none;
+    
+    &:hover:not(:disabled):not([aria-disabled="true"]) {
+      background: rgba(37, 99, 235, 0.1);
+      color: #2563eb;
+    }
+  }
+  
+  .enhanced-button--destructive {
+    background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+    color: white;
+    box-shadow: 0 4px 14px 0 rgba(220, 38, 38, 0.25);
+    
+    &:hover:not(:disabled):not([aria-disabled="true"]) {
+      background: linear-gradient(135deg, #b91c1c 0%, #991b1b 100%);
+      box-shadow: 0 6px 20px 0 rgba(220, 38, 38, 0.35);
+      transform: translateY(-1px);
+    }
+  }
+  
+  /* Loading state */
+  .enhanced-button--loading {
+    pointer-events: none;
+    
+    .enhanced-button__text {
+      opacity: 0;
+    }
+  }
+  
+  .enhanced-button__loader {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  .enhanced-button__spinner {
+    width: 1.5rem;
+    height: 1.5rem;
+    animation: spin 1s linear infinite;
+  }
+  
+  .enhanced-button__spinner-track {
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    opacity: 0.25;
+  }
+  
+  .enhanced-button__spinner-head {
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-dasharray: 31.416;
+    stroke-dashoffset: 31.416;
+    transform-origin: 50% 50%;
+    animation: spin-head 1.5s ease-in-out infinite;
+  }
+  
+  /* Icons */
+  .enhanced-button__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    
+    .icon {
+      width: 1.25rem;
+      height: 1.25rem;
+    }
+  }
+  
+  .enhanced-button--sm .enhanced-button__icon .icon {
+    width: 1rem;
+    height: 1rem;
+  }
+  
+  .enhanced-button--lg .enhanced-button__icon .icon {
+    width: 1.375rem;
+    height: 1.375rem;
+  }
+  
+  .enhanced-button--xl .enhanced-button__icon .icon {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+  
+  /* Ripple effect */
+  .enhanced-button__ripple {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    border-radius: inherit;
+    overflow: hidden;
+  }
+  
+  .enhanced-button__ripple::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: currentColor;
+    opacity: 0.15;
+    transform: translate(-50%, -50%) scale(0);
+    transition: transform 0.6s ease-out, opacity 0.3s ease-out;
+  }
+  
+  .enhanced-button:active:not(:disabled):not([aria-disabled="true"]) .enhanced-button__ripple::before {
+    transform: translate(-50%, -50%) scale(10);
+    opacity: 0;
+    transition: transform 0s, opacity 0.6s ease-out;
+  }
+  
+  /* Dark mode support */
+  @media (prefers-color-scheme: dark) {
+    .enhanced-button--ghost {
+      color: #e5e7eb;
+      
+      &:hover:not(:disabled):not([aria-disabled="true"]) {
+        background: rgba(59, 130, 246, 0.1);
+        color: #60a5fa;
+      }
+    }
+    
+    .enhanced-button--outline {
+      color: #60a5fa;
+      border-color: #60a5fa;
+      
+      &:hover:not(:disabled):not([aria-disabled="true"]) {
+        background: #60a5fa;
+        color: #1e40af;
+      }
+    }
+  }
+  
+  /* Animations */
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  
+  @keyframes spin-head {
+    0% {
+      stroke-dashoffset: 31.416;
+    }
+    50% {
+      stroke-dashoffset: 7.854;
+      transform: rotate(180deg);
+    }
+    100% {
+      stroke-dashoffset: 31.416;
+      transform: rotate(360deg);
+    }
+  }
+  
+  /* Reduced motion support */
+  @media (prefers-reduced-motion: reduce) {
+    .enhanced-button {
+      transition: none;
+      
+      &:hover:not(:disabled):not([aria-disabled="true"]) {
+        transform: none;
+      }
+      
+      &:active:not(:disabled):not([aria-disabled="true"]) {
+        transform: none;
+      }
+    }
+    
+    .enhanced-button__spinner {
+      animation: none;
+    }
+    
+    .enhanced-button__spinner-head {
+      animation: none;
+      stroke-dasharray: none;
+      stroke-dashoffset: 0;
+    }
+    
+    .enhanced-button__ripple::before {
+      transition: none;
+    }
+  }
+  
+  /* Touch device optimizations */
+  @media (hover: none) {
+    .enhanced-button:hover:not(:disabled):not([aria-disabled="true"]) {
+      transform: none;
+    }
+  }
+</style>
+
+<script>
+  // Enhanced button interactions
+  document.addEventListener('DOMContentLoaded', function() {
+    const buttons = document.querySelectorAll('.enhanced-button');
+    
+    buttons.forEach(button => {
+      // Add haptic feedback simulation for supported devices
+      if ('vibrate' in navigator) {
+        button.addEventListener('click', () => {
+          navigator.vibrate(10); // Very light haptic feedback
+        });
+      }
+      
+      // Add keyboard interaction enhancements
+      button.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          button.classList.add('enhanced-button--active');
+          
+          setTimeout(() => {
+            button.classList.remove('enhanced-button--active');
+            if (e.key === 'Enter' || e.key === ' ') {
+              button.click();
+            }
+          }, 150);
+        }
+      });
+    });
+  });
+</script>

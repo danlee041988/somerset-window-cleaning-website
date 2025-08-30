@@ -1,0 +1,24 @@
+[07:37:50] Starting Astro Dev Server Monitor
+[07:37:50] Monitoring server at http://localhost:4322
+[07:37:50] Initial server health check: FAILED
+[07:37:50] Starting Astro dev server...
+[07:37:51] WEBSOCKET ERROR: 08:37:51 [ERROR] [vite] WebSocket server error: Port 4321 is already in use
+[07:37:51] Consider switching to a real browser if using embedded preview
+[07:37:57] Status Report:
+[07:37:57]   - Recent errors: 1
+[07:37:57]   - HMR issues: 1
+[07:38:00] Status Report:
+[07:38:00]   - Recent errors: 1
+[07:38:00]   - HMR issues: 1
+[07:38:05] Status Report:
+[07:38:05]   - Recent errors: 1
+[07:38:05]   - HMR issues: 1
+[07:38:10] Status Report:
+[07:38:10]   - Recent errors: 1
+[07:38:10]   - HMR issues: 1
+[07:38:15] Status Report:
+[07:38:15]   - Recent errors: 1
+[07:38:15]   - HMR issues: 1
+[07:38:20] Status Report:
+[07:38:20]   - Recent errors: 1
+[07:38:20]   - HMR issues: 1

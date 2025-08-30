@@ -19,6 +19,18 @@ export const headerData = {
       ],
     },
     {
+      text: 'Areas',
+      href: getPermalink('/areas'),
+      links: [
+        { text: 'All Coverage Areas', href: getPermalink('/areas') },
+        { text: 'Glastonbury (BA6)', href: getPermalink('/areas/glastonbury') },
+        { text: 'Wells (BA5)', href: getPermalink('/areas/wells') },
+        { text: 'Street (BA16)', href: getPermalink('/areas/street') },
+        { text: 'Taunton (TA)', href: getPermalink('/areas/taunton') },
+        { text: 'Yeovil (BA20-22)', href: getPermalink('/areas/yeovil') },
+      ],
+    },
+    {
       text: 'About',
       href: getPermalink('/about'),
     },
@@ -28,9 +40,7 @@ export const headerData = {
     },
   ],
   actions: [
-    { text: 'Get Quote', href: getPermalink('/booking-2step'), variant: 'primary', icon: 'tabler:calculator', priority: 1 },
-    { text: 'Call 01458 860339', href: 'tel:01458860339', variant: 'secondary', icon: 'tabler:phone', priority: 2 },
-    { text: 'WhatsApp', href: 'https://wa.me/447415526331?text=Hi%20Somerset%20Window%20Cleaning%2C%20please%20can%20I%20get%20a%20quote%20for%20window%20cleaning%20at%20%5Byour%20address%5D', variant: 'whatsapp', icon: 'tabler:brand-whatsapp', priority: 3 },
+    { text: 'Book Now', href: getPermalink('/book-now'), variant: 'red', icon: 'tabler:calendar-plus', priority: 1 },
   ],
 };
 

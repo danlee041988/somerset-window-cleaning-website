@@ -41,7 +41,16 @@ self.addEventListener('install', (event) => {
     caches.open(STATIC_CACHE_NAME)
       .then((cache) => {
         console.log('[SW] Caching static assets');
-        return cache.addAll(STATIC_ASSETS);
+        // Filter out any non-HTTPS resources in development
+        const httpsAssets = STATIC_ASSETS.filter(asset => {
+          try {
+            const url = new URL(asset, self.location.origin);
+            return url.protocol === 'https:' || url.protocol === 'http:' && url.hostname === 'localhost';
+          } catch {
+            return true; // Relative URLs are fine
+          }
+        });
+        return cache.addAll(httpsAssets);
       })
       .then(() => {
         // Skip waiting to activate immediately
@@ -81,8 +90,18 @@ self.addEventListener('fetch', (event) => {
   const { request } = event;
   const url = new URL(request.url);
   
+  // Skip non-HTTPS requests in production (except localhost)
+  if (url.protocol !== 'https:' && url.hostname !== 'localhost') {
+    return;
+  }
+  
   // Skip cross-origin requests
   if (url.origin !== location.origin) {
+    return;
+  }
+  
+  // Skip WebSocket connections (for HMR in development)
+  if (url.protocol === 'ws:' || url.protocol === 'wss:') {
     return;
   }
   
@@ -239,26 +258,28 @@ self.addEventListener('push', (event) => {
   );
 });
 
-// Clean up old caches periodically
-setInterval(() => {
-  caches.keys().then((cacheNames) => {
-    cacheNames.forEach((cacheName) => {
-      // Remove caches older than 7 days
-      if (cacheName.includes('dynamic') && Math.random() < 0.1) {
-        caches.open(cacheName).then((cache) => {
-          cache.keys().then((requests) => {
-            const oneWeekAgo = Date.now() - (7 * 24 * 60 * 60 * 1000);
-            requests.forEach((request) => {
-              cache.match(request).then((response) => {
-                const dateHeader = response?.headers.get('date');
-                if (dateHeader && new Date(dateHeader).getTime() < oneWeekAgo) {
-                  cache.delete(request);
-                }
+// Clean up old caches periodically - only in secure contexts
+if (self.isSecureContext) {
+  setInterval(() => {
+    caches.keys().then((cacheNames) => {
+      cacheNames.forEach((cacheName) => {
+        // Remove caches older than 7 days
+        if (cacheName.includes('dynamic') && Math.random() < 0.1) {
+          caches.open(cacheName).then((cache) => {
+            cache.keys().then((requests) => {
+              const oneWeekAgo = Date.now() - (7 * 24 * 60 * 60 * 1000);
+              requests.forEach((request) => {
+                cache.match(request).then((response) => {
+                  const dateHeader = response?.headers.get('date');
+                  if (dateHeader && new Date(dateHeader).getTime() < oneWeekAgo) {
+                    cache.delete(request);
+                  }
+                });
               });
             });
           });
-        });
-      }
+        }
+      });
     });
-  });
-}, 60000); // Check every minute
+  }, 60000); // Check every minute
+}

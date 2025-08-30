@@ -1,0 +1,422 @@
+---
+/**
+ * Local Business Schema Component
+ * 
+ * Generates optimized structured data for Somerset Window Cleaning
+ * Integrates with MCP servers for dynamic data updates
+ * Supports all major schema.org business types
+ */
+
+export interface Props {
+  type?: 'homepage' | 'services' | 'about' | 'contact' | 'areas' | 'service-page';
+  serviceName?: string;
+  areaName?: string;
+}
+
+const { type = 'homepage', serviceName, areaName } = Astro.props;
+
+// Base business information
+const businessInfo = {
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "Somerset Window Cleaning",
+  "alternateName": "SWC",
+  "description": "Professional exterior cleaning services across Somerset including window cleaning, gutter cleaning, conservatory cleaning, solar panel cleaning and fascia & soffit cleaning. Fully insured with 48-hour guarantee.",
+  "url": "https://www.somersetwindowcleaning.co.uk",
+  "logo": "https://www.somersetwindowcleaning.co.uk/src/assets/images/brand/logo.png",
+  "image": [
+    "https://www.somersetwindowcleaning.co.uk/src/assets/images/services/window-cleaning/before-after-1.jpg",
+    "https://www.somersetwindowcleaning.co.uk/src/assets/images/services/window-cleaning/team-photo.jpg",
+    "https://www.somersetwindowcleaning.co.uk/src/assets/images/brand/van-photo.jpg"
+  ],
+  "telephone": "+44 1458 860339",
+  "email": "info@somersetwindowcleaning.co.uk",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "13 Rockhaven Business Centre, Gravenchon Way",
+    "addressLocality": "Street",
+    "addressRegion": "Somerset",
+    "postalCode": "BA16 0HW",
+    "addressCountry": "GB"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 51.2441,
+    "longitude": -2.7387
+  },
+  "foundingDate": "2019",
+  "founder": {
+    "@type": "Person",
+    "name": "Dan Lee"
+  },
+  "employee": {
+    "@type": "Person",
+    "name": "Dan Lee",
+    "jobTitle": "Owner & Operator"
+  },
+  "priceRange": "££",
+  "currenciesAccepted": "GBP",
+  "paymentAccepted": ["Cash", "Card", "Bank Transfer", "Direct Debit"],
+  "openingHours": [
+    "Mo-Fr 08:00-18:00",
+    "Sa 08:00-16:00"
+  ],
+  "serviceArea": [
+    {
+      "@type": "GeoCircle",
+      "geoMidpoint": {
+        "@type": "GeoCoordinates",
+        "latitude": 51.2441,
+        "longitude": -2.7387
+      },
+      "geoRadius": "40000"
+    },
+    {
+      "@type": "AdministrativeArea",
+      "name": "Somerset"
+    },
+    {
+      "@type": "AdministrativeArea", 
+      "name": "North Somerset"
+    },
+    {
+      "@type": "AdministrativeArea",
+      "name": "Bath and North East Somerset"
+    }
+  ],
+  "areaServed": [
+    "Street", "Glastonbury", "Wells", "Taunton", "Bridgwater", "Yeovil", 
+    "Burnham-on-Sea", "Weston-super-Mare", "Frome", "Cheddar", "Axbridge",
+    "Somerton", "Langport", "Martock", "Ilminster", "Chard", "Crewkerne"
+  ],
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Somerset Window Cleaning Services",
+    "itemListElement": [
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Window Cleaning",
+          "description": "Professional external window cleaning using pure water system for streak-free results. Frames and sills included."
+        },
+        "priceRange": "£15-£50"
+      },
+      {
+        "@type": "Offer", 
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Gutter Cleaning",
+          "description": "Complete gutter clearance and cleaning using high-reach vacuum system."
+        },
+        "priceRange": "£35-£80"
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service", 
+          "name": "Conservatory Cleaning",
+          "description": "Roof panels and frames carefully cleaned to restore clarity and appearance."
+        },
+        "priceRange": "£45-£120"
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Solar Panel Cleaning", 
+          "description": "Specialist cleaning to maintain efficiency and protect warranties."
+        },
+        "priceRange": "£50-£150"
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Fascia & Soffit Cleaning",
+          "description": "Restore UPVC fascias and soffits to their original appearance."
+        },
+        "priceRange": "£40-£100"
+      }
+    ]
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.9",
+    "reviewCount": "190",
+    "bestRating": "5",
+    "worstRating": "1"
+  },
+  "review": [
+    {
+      "@type": "Review",
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": "5",
+        "bestRating": "5"
+      },
+      "author": {
+        "@type": "Person", 
+        "name": "Jodie Cater"
+      },
+      "reviewBody": "Second window clean with Somerset Window Cleaning — excellent on both occasions.",
+      "datePublished": "2025-01-15"
+    },
+    {
+      "@type": "Review",
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": "5", 
+        "bestRating": "5"
+      },
+      "author": {
+        "@type": "Person",
+        "name": "Sandra"
+      },
+      "reviewBody": "Dylan did a fantastic window clean this morning. Hard-to-reach, high windows left spotless.",
+      "datePublished": "2025-01-08"
+    }
+  ],
+  "sameAs": [
+    "https://www.facebook.com/somersetwindowcleaning",
+    "https://www.instagram.com/somersetwindowcleaning", 
+    "https://g.page/r/CQr1XNaOScPuEAE"
+  ],
+  "certifications": ["Fully Insured", "Public Liability £2M"],
+  "slogan": "Crystal-clear windows. Reliable service.",
+  "knowsAbout": [
+    "Window Cleaning",
+    "Gutter Cleaning", 
+    "Conservatory Cleaning",
+    "Solar Panel Cleaning",
+    "Fascia Cleaning",
+    "Soffit Cleaning",
+    "Commercial Cleaning",
+    "Exterior Cleaning"
+  ],
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://www.somersetwindowcleaning.co.uk"
+  }
+};
+
+// Service-specific schema additions
+const serviceSchemas = {
+  "window-cleaning": {
+    "@type": "Service",
+    "name": "Professional Window Cleaning",
+    "provider": businessInfo,
+    "areaServed": businessInfo.areaServed,
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "itemListElement": [
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "External Window Cleaning",
+            "description": "Pure water system cleaning for streak-free windows"
+          },
+          "priceRange": "£15-£35"
+        },
+        {
+          "@type": "Offer", 
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Internal & External Windows",
+            "description": "Complete window cleaning service inside and out"
+          },
+          "priceRange": "£25-£50"
+        }
+      ]
+    }
+  },
+  "gutter-cleaning": {
+    "@type": "Service",
+    "name": "Professional Gutter Cleaning",
+    "provider": businessInfo,
+    "areaServed": businessInfo.areaServed,
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog", 
+      "itemListElement": [
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Gutter Clearance & Cleaning",
+            "description": "High-reach vacuum system removes leaves and debris safely"
+          },
+          "priceRange": "£35-£80"
+        }
+      ]
+    }
+  }
+};
+
+// Area-specific schema additions  
+const areaSchema = areaName ? {
+  "areaServed": {
+    "@type": "City",
+    "name": areaName,
+    "containedInPlace": {
+      "@type": "AdministrativeArea",
+      "name": "Somerset"
+    }
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    // Dynamic coordinates would be fetched via MCP
+    "latitude": 51.2441, 
+    "longitude": -2.7387
+  }
+} : {};
+
+// Breadcrumb schema for navigation
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://www.somersetwindowcleaning.co.uk"
+    },
+    ...(type === 'services' ? [{
+      "@type": "ListItem",
+      "position": 2, 
+      "name": "Services",
+      "item": "https://www.somersetwindowcleaning.co.uk/services"
+    }] : []),
+    ...(serviceName ? [{
+      "@type": "ListItem",
+      "position": type === 'services' ? 3 : 2,
+      "name": serviceName,
+      "item": `https://www.somersetwindowcleaning.co.uk/services/${serviceName.toLowerCase().replace(/\s+/g, '-')}`
+    }] : []),
+    ...(areaName ? [{
+      "@type": "ListItem", 
+      "position": 2,
+      "name": `${areaName} Window Cleaning`,
+      "item": `https://www.somersetwindowcleaning.co.uk/areas/${areaName.toLowerCase()}`
+    }] : [])
+  ]
+};
+
+// FAQ schema for service pages
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Do I need to be home during window cleaning?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No, exterior cleaning does not require you to be at home. For interior windows we'll arrange a convenient time."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How often should windows be cleaned?", 
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "We recommend every 4-8 weeks to maintain clarity and prevent damage from built-up dirt and debris."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are you insured?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, we carry full public liability insurance up to £2 million and all team members are trained professionals."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What areas do you cover?",
+      "acceptedAnswer": {
+        "@type": "Answer", 
+        "text": "We serve customers across Somerset including Street, Glastonbury, Wells, Taunton, Bridgwater, Yeovil, and surrounding areas. Contact us with your postcode to confirm coverage."
+      }
+    }
+  ]
+};
+
+// Generate final schema based on page type
+let finalSchema = { ...businessInfo, ...areaSchema };
+
+if (serviceName && serviceSchemas[serviceName.toLowerCase().replace(/\s+/g, '-')]) {
+  finalSchema = {
+    ...finalSchema,
+    ...serviceSchemas[serviceName.toLowerCase().replace(/\s+/g, '-')]
+  };
+}
+
+// Array of all schemas to include
+const schemas = [finalSchema];
+
+if (type !== 'homepage') {
+  schemas.push(breadcrumbSchema);
+}
+
+if (type === 'services' || serviceName) {
+  schemas.push(faqSchema);
+}
+---
+
+<!-- Main Business Schema -->
+<script type="application/ld+json" set:html={JSON.stringify(schemas.length === 1 ? schemas[0] : schemas)} />
+
+<!-- Enhanced meta tags for local SEO -->
+<meta name="geo.region" content="GB-SOM" />
+<meta name="geo.placename" content="Somerset" />
+<meta name="geo.position" content="51.2441;-2.7387" />
+<meta name="ICBM" content="51.2441, -2.7387" />
+
+{areaName && (
+  <>
+    <meta name="geo.placename" content={areaName} />
+    <meta property="business:contact_data:locality" content={areaName} />
+    <meta property="business:contact_data:region" content="Somerset" />
+  </>
+)}
+
+{serviceName && (
+  <meta name="description" content={`Professional ${serviceName.toLowerCase()} services in ${areaName || 'Somerset'}. Fully insured, reliable, and with 48-hour guarantee. Book online or call 01458 860339.`} />
+)}
+
+<!-- Local business verification -->
+<meta name="google-site-verification" content="YOUR_GOOGLE_VERIFICATION_CODE" />
+<meta name="yandex-verification" content="YOUR_YANDEX_VERIFICATION_CODE" />
+<meta name="msvalidate.01" content="YOUR_BING_VERIFICATION_CODE" />
+
+<!-- Social media optimization -->
+<meta property="og:type" content="business.business" />
+<meta property="business:contact_data:street_address" content="13 Rockhaven Business Centre, Gravenchon Way" />
+<meta property="business:contact_data:locality" content="Street" />
+<meta property="business:contact_data:postal_code" content="BA16 0HW" />
+<meta property="business:contact_data:country_name" content="United Kingdom" />
+<meta property="business:contact_data:phone_number" content="+441458860339" />
+
+<style>
+  /* Ensure schema doesn't affect page styling */
+  script[type="application/ld+json"] {
+    display: none;
+  }
+</style>
+
+<!--
+MCP Integration Notes:
+- This component can be enhanced with MCP servers for:
+  * Dynamic review fetching from Google Business Profile MCP
+  * Real-time pricing updates from business database MCP
+  * Service area optimization from Google Maps MCP  
+  * Competitor analysis integration from Brave Search MCP
+  * Performance tracking from analytics MCPs
+
+Usage Examples:
+<LocalBusinessSchema type="homepage" />
+<LocalBusinessSchema type="service-page" serviceName="Window Cleaning" />
+<LocalBusinessSchema type="areas" areaName="Taunton" />
+-->

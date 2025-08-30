@@ -338,7 +338,33 @@ if (type === 'homepage') {
 }
 ---
 
+<!-- Add safety wrapper for JSON-LD parsing -->
+<script>
+  // Wrap JSON-LD parsing to prevent errors
+  (function() {
+    // Only run in browser context
+    if (typeof window === 'undefined') return;
+    
+    // Protect against undefined @context access
+    window.addEventListener('error', function(event) {
+      if (event.error && event.error.message && event.error.message.includes('@context')) {
+        console.warn('JSON-LD error caught and prevented:', event.error.message);
+        event.preventDefault();
+      }
+    });
+  })();
+</script>
+
 <!-- Structured Data for Local Business SEO -->
-{structuredDataItems.map((data) => (
-  <script type="application/ld+json" set:html={JSON.stringify(data)} />
-))}
+{structuredDataItems.filter(data => data && typeof data === 'object').map((data) => {
+  try {
+    // Ensure data has @context property
+    if (!data['@context']) {
+      data['@context'] = 'https://schema.org';
+    }
+    return <script type="application/ld+json" set:html={JSON.stringify(data, null, 0)} />;
+  } catch (error) {
+    console.error('Error serializing structured data:', error, data);
+    return null;
+  }
+})}

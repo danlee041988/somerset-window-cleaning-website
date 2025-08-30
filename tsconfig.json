@@ -6,7 +6,10 @@
     "baseUrl": ".",
     "paths": {
       "~/*": ["src/*"]
-    }
+    },
+    "sourceMap": false,
+    "inlineSourceMap": false,
+    "inlineSources": false
   },
   "include": [".astro/types.d.ts", "**/*"],
   "exclude": ["dist/"]

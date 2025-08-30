@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   ci: {
     collect: {
       url: ['http://localhost:4321/', 'http://localhost:4321/contact', 'http://localhost:4321/services'],

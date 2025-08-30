@@ -1,0 +1,413 @@
+---
+/**
+ * Enhanced Card Component with Modern Visual Hierarchy
+ * 
+ * Features:
+ * - Sophisticated hover effects with proper layering
+ * - Smart elevation system
+ * - Micro-interactions and animations
+ * - Modern glassmorphism effects
+ * - Accessibility optimized
+ * - Support for different layouts and content types
+ */
+
+export interface Props {
+  variant?: 'default' | 'glass' | 'elevated' | 'outlined' | 'interactive';
+  size?: 'sm' | 'md' | 'lg';
+  href?: string;
+  clickable?: boolean;
+  class?: string;
+  gradient?: boolean;
+  blur?: boolean;
+}
+
+const {
+  variant = 'default',
+  size = 'md',
+  href,
+  clickable = false,
+  class: className = '',
+  gradient = false,
+  blur = false
+} = Astro.props;
+
+const Tag = href || clickable ? 'a' : 'div';
+const isInteractive = href || clickable;
+---
+
+<Tag
+  {...(href ? { href } : {})}
+  class={`enhanced-card enhanced-card--${variant} enhanced-card--${size} ${gradient ? 'enhanced-card--gradient' : ''} ${blur ? 'enhanced-card--blur' : ''} ${isInteractive ? 'enhanced-card--interactive' : ''} ${className}`}
+  {...(isInteractive ? { tabindex: '0', role: href ? 'link' : 'button' } : {})}
+>
+  <div class="enhanced-card__background"></div>
+  <div class="enhanced-card__content">
+    <slot />
+  </div>
+  {isInteractive && (
+    <div class="enhanced-card__shine" aria-hidden="true"></div>
+  )}
+</Tag>
+
+<style>
+  .enhanced-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background: #ffffff;
+    border-radius: 1rem;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    isolation: isolate;
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  .enhanced-card__background {
+    position: absolute;
+    inset: 0;
+    background: inherit;
+    z-index: -1;
+    transition: all 0.3s ease;
+  }
+  
+  .enhanced-card__content {
+    position: relative;
+    z-index: 1;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .enhanced-card__shine {
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+      45deg,
+      transparent 30%,
+      rgba(255, 255, 255, 0.3) 50%,
+      transparent 70%
+    );
+    transform: translateX(-100%) translateY(-100%) rotate(45deg);
+    transition: transform 0.6s ease;
+    pointer-events: none;
+    z-index: 2;
+  }
+  
+  /* Size variants */
+  .enhanced-card--sm {
+    .enhanced-card__content {
+      padding: 1rem;
+      gap: 0.75rem;
+    }
+  }
+  
+  .enhanced-card--md {
+    .enhanced-card__content {
+      padding: 1.5rem;
+      gap: 1rem;
+    }
+  }
+  
+  .enhanced-card--lg {
+    .enhanced-card__content {
+      padding: 2rem;
+      gap: 1.5rem;
+    }
+  }
+  
+  /* Variant styles */
+  .enhanced-card--default {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+  }
+  
+  .enhanced-card--glass {
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  }
+  
+  .enhanced-card--elevated {
+    background: #ffffff;
+    border: none;
+    box-shadow: 
+      0 4px 6px -1px rgba(0, 0, 0, 0.1),
+      0 2px 4px -2px rgba(0, 0, 0, 0.1),
+      0 20px 25px -5px rgba(0, 0, 0, 0.1),
+      0 8px 10px -6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .enhanced-card--outlined {
+    background: transparent;
+    border: 2px solid #e5e7eb;
+    box-shadow: none;
+  }
+  
+  .enhanced-card--interactive {
+    cursor: pointer;
+    transform: translateY(0);
+    
+    &:hover,
+    &:focus-visible {
+      transform: translateY(-4px);
+    }
+    
+    &:focus-visible {
+      outline: 2px solid #2563eb;
+      outline-offset: 2px;
+    }
+    
+    &:active {
+      transform: translateY(-2px);
+    }
+  }
+  
+  /* Gradient background */
+  .enhanced-card--gradient {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    
+    &.enhanced-card--glass {
+      background: linear-gradient(
+        135deg,
+        rgba(102, 126, 234, 0.25) 0%,
+        rgba(118, 75, 162, 0.25) 100%
+      );
+    }
+  }
+  
+  /* Blur effect */
+  .enhanced-card--blur {
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+  }
+  
+  /* Interactive hover effects */
+  .enhanced-card--interactive.enhanced-card--default:hover {
+    box-shadow: 
+      0 10px 15px -3px rgba(0, 0, 0, 0.1),
+      0 4px 6px -4px rgba(0, 0, 0, 0.1),
+      0 20px 25px -5px rgba(0, 0, 0, 0.1);
+    border-color: #d1d5db;
+  }
+  
+  .enhanced-card--interactive.enhanced-card--glass:hover {
+    background: rgba(255, 255, 255, 0.35);
+    box-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.5);
+  }
+  
+  .enhanced-card--interactive.enhanced-card--elevated:hover {
+    box-shadow: 
+      0 25px 50px -12px rgba(0, 0, 0, 0.25),
+      0 20px 25px -5px rgba(0, 0, 0, 0.1),
+      0 8px 10px -6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .enhanced-card--interactive.enhanced-card--outlined:hover {
+    background: rgba(37, 99, 235, 0.05);
+    border-color: #2563eb;
+  }
+  
+  /* Shine effect on hover */
+  .enhanced-card--interactive:hover .enhanced-card__shine {
+    transform: translateX(100%) translateY(100%) rotate(45deg);
+  }
+  
+  /* Dark mode support */
+  @media (prefers-color-scheme: dark) {
+    .enhanced-card--default {
+      background: #1f2937;
+      border-color: #374151;
+      color: #f9fafb;
+    }
+    
+    .enhanced-card--glass {
+      background: rgba(31, 41, 55, 0.25);
+      border-color: rgba(255, 255, 255, 0.1);
+      color: #f9fafb;
+    }
+    
+    .enhanced-card--elevated {
+      background: #1f2937;
+      color: #f9fafb;
+    }
+    
+    .enhanced-card--outlined {
+      border-color: #374151;
+      color: #f9fafb;
+    }
+    
+    .enhanced-card--interactive.enhanced-card--default:hover {
+      border-color: #4b5563;
+    }
+    
+    .enhanced-card--interactive.enhanced-card--glass:hover {
+      background: rgba(31, 41, 55, 0.35);
+    }
+    
+    .enhanced-card--interactive.enhanced-card--outlined:hover {
+      background: rgba(59, 130, 246, 0.1);
+      border-color: #3b82f6;
+    }
+  }
+  
+  /* Reduced motion support */
+  @media (prefers-reduced-motion: reduce) {
+    .enhanced-card {
+      transition: none;
+    }
+    
+    .enhanced-card--interactive {
+      &:hover,
+      &:focus-visible,
+      &:active {
+        transform: none;
+      }
+    }
+    
+    .enhanced-card__shine {
+      transition: none;
+    }
+    
+    .enhanced-card--interactive:hover .enhanced-card__shine {
+      transform: none;
+    }
+  }
+  
+  /* High contrast mode */
+  @media (prefers-contrast: high) {
+    .enhanced-card--glass,
+    .enhanced-card--blur {
+      backdrop-filter: none;
+      background: #ffffff;
+      border: 2px solid #000000;
+    }
+    
+    @media (prefers-color-scheme: dark) {
+      .enhanced-card--glass,
+      .enhanced-card--blur {
+        background: #000000;
+        border-color: #ffffff;
+        color: #ffffff;
+      }
+    }
+  }
+  
+  /* Touch device optimizations */
+  @media (hover: none) and (pointer: coarse) {
+    .enhanced-card--interactive:hover {
+      transform: none;
+    }
+    
+    .enhanced-card--interactive:active {
+      transform: scale(0.98);
+    }
+    
+    .enhanced-card__shine {
+      display: none;
+    }
+  }
+  
+  /* Print styles */
+  @media print {
+    .enhanced-card {
+      background: white !important;
+      border: 1px solid #000000 !important;
+      box-shadow: none !important;
+      break-inside: avoid;
+    }
+    
+    .enhanced-card__shine {
+      display: none;
+    }
+  }
+</style>
+
+<script>
+  // Enhanced card interactions
+  document.addEventListener('DOMContentLoaded', function() {
+    const interactiveCards = document.querySelectorAll('.enhanced-card--interactive');
+    
+    interactiveCards.forEach(card => {
+      // Add keyboard support for non-link interactive cards
+      if (card.tagName !== 'A') {
+        card.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            card.click();
+          }
+        });
+      }
+      
+      // Add touch feedback for mobile devices
+      card.addEventListener('touchstart', () => {
+        card.classList.add('touch-active');
+      }, { passive: true });
+      
+      card.addEventListener('touchend', () => {
+        setTimeout(() => {
+          card.classList.remove('touch-active');
+        }, 150);
+      }, { passive: true });
+      
+      // Intersection observer for entrance animations
+      if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('in-view');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, {
+          threshold: 0.1,
+          rootMargin: '50px 0px'
+        });
+        
+        observer.observe(card);
+      }
+    });
+  });
+</script>
+
+<style is:global>
+  /* Entrance animations */
+  .enhanced-card--interactive {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  
+  .enhanced-card--interactive.in-view {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  /* Touch active state */
+  .enhanced-card--interactive.touch-active {
+    transform: scale(0.98);
+    transition: transform 0.1s ease;
+  }
+  
+  /* Stagger animation for multiple cards */
+  .enhanced-card--interactive:nth-child(1) { transition-delay: 0ms; }
+  .enhanced-card--interactive:nth-child(2) { transition-delay: 100ms; }
+  .enhanced-card--interactive:nth-child(3) { transition-delay: 200ms; }
+  .enhanced-card--interactive:nth-child(4) { transition-delay: 300ms; }
+  .enhanced-card--interactive:nth-child(5) { transition-delay: 400ms; }
+  .enhanced-card--interactive:nth-child(6) { transition-delay: 500ms; }
+  
+  @media (prefers-reduced-motion: reduce) {
+    .enhanced-card--interactive {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+  }
+</style>

@@ -29,11 +29,25 @@ const metadata = {
 
   <Hero
     actions={[
-      { variant: 'primary', text: 'Get FREE Quote', href: '/booking-2step', icon: 'tabler:calculator', class: 'text-white' },
+      { variant: 'primary', text: 'Book Now', href: '/book-now', icon: 'tabler:calendar-plus', class: 'text-white' },
     ]}
   >
     <Fragment slot="bg">
-      <Image src="~/assets/images/DJI_0007.JPG" alt="Professional window cleaning service across Somerset - clean, reliable, fully insured exterior cleaning" width={1600} height={900} layout="cover" style="width:100%; height:100%; object-fit:cover; opacity:0.35;" loading="eager" decoding="sync" fetchpriority="high" />
+      <Image 
+        src="~/assets/images/new-hero-image.jpg" 
+        alt="Professional window cleaning service across Somerset - aerial view of technician cleaning modern home windows with water-fed pole system" 
+        width={1600} 
+        height={900} 
+        quality={90}
+        format="webp"
+        fallbackFormat="jpg"
+        densities={[1, 2]}
+        loading="eager" 
+        decoding="sync" 
+        fetchpriority="high"
+        transition:name="hero-image"
+        style="width:100%; height:100%; object-fit:cover; opacity:0.35;" 
+      />
       <div class="absolute inset-0 bg-black/40"></div>
     </Fragment>
     <Fragment slot="title">
@@ -67,6 +81,67 @@ const metadata = {
 
   <!-- Trust Bar ****************** -->
   <TrustBar />
+
+  <!-- Service Coverage Area Quick Check -->
+  <section class="py-8 bg-gray-50 intersect-once intersect-quarter motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      <div class="text-center">
+        <h2 class="text-2xl md:text-3xl font-bold mb-3">We Cover 38+ Postcodes Across Somerset</h2>
+        <p class="text-gray-600 mb-6">Professional window cleaning from Bath to Bridgwater, Wells to Weston-super-Mare</p>
+        
+        <!-- Quick postcode checker -->
+        <div class="max-w-md mx-auto mb-6">
+          <div class="flex gap-2">
+            <input 
+              type="text" 
+              id="homepage-postcode" 
+              placeholder="Enter your postcode (e.g. BA16 0HW)"
+              class="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-sm"
+            >
+            <button 
+              id="homepage-check" 
+              class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors font-medium text-sm"
+            >
+              Check
+            </button>
+          </div>
+          <div id="homepage-result" class="mt-3 text-sm hidden"></div>
+        </div>
+
+        <!-- Coverage highlights -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center text-sm">
+          <div class="bg-white p-3 rounded-lg shadow-sm">
+            <div class="font-semibold text-primary">BS Postcodes</div>
+            <div class="text-gray-600">North Somerset</div>
+          </div>
+          <div class="bg-white p-3 rounded-lg shadow-sm">
+            <div class="font-semibold text-primary">BA Postcodes</div>
+            <div class="text-gray-600">Bath & NE Somerset</div>
+          </div>
+          <div class="bg-white p-3 rounded-lg shadow-sm">
+            <div class="font-semibold text-primary">TA Postcodes</div>
+            <div class="text-gray-600">Somerset Levels</div>
+          </div>
+          <div class="bg-white p-3 rounded-lg shadow-sm">
+            <div class="font-semibold text-primary">DT9 Postcode</div>
+            <div class="text-gray-600">West Dorset</div>
+          </div>
+        </div>
+
+        <div class="mt-6">
+          <a 
+            href="/areas" 
+            class="inline-flex items-center text-primary hover:text-primary/80 font-medium text-sm"
+          >
+            View All Coverage Areas
+            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- Services Widget *************** -->
   <Features
@@ -123,3 +198,47 @@ const metadata = {
 
   <!-- Removed mid-page CTA (duplicate of contact options) -->
 </Layout>
+
+<script>
+  // Homepage postcode checker
+  document.addEventListener('DOMContentLoaded', function() {
+    const supportedPostcodes = [
+      'BS21', 'BS23', 'BS24', 'BS25', 'BS26', 'BS27', 'BS28', 'BS29', 'BS39', 'BS40', 'BS49',
+      'BA3', 'BA4', 'BA5', 'BA6', 'BA7', 'BA8', 'BA9', 'BA10', 'BA11', 'BA16', 'BA20', 'BA21', 'BA22',
+      'TA2', 'TA6', 'TA7', 'TA8', 'TA9', 'TA10', 'TA11', 'TA12', 'TA13', 'TA14', 'TA18', 'TA19', 'TA20',
+      'DT9'
+    ];
+
+    const input = document.getElementById('homepage-postcode');
+    const button = document.getElementById('homepage-check');
+    const result = document.getElementById('homepage-result');
+
+    if (!input || !button || !result) return;
+
+    function checkPostcode() {
+      const postcode = input.value.toUpperCase().replace(/\s/g, '');
+      const postcodePrefix = postcode.match(/^[A-Z]{1,2}[0-9]{1,2}/)?.[0];
+      
+      result.classList.remove('hidden');
+      
+      if (!postcodePrefix) {
+        result.className = 'mt-3 text-sm p-2 rounded bg-gray-100 text-gray-600';
+        result.textContent = 'Please enter a valid postcode';
+        return;
+      }
+
+      if (supportedPostcodes.includes(postcodePrefix)) {
+        result.className = 'mt-3 text-sm p-2 rounded bg-green-50 text-green-800 font-medium';
+        result.innerHTML = `✅ Yes! We cover ${postcodePrefix} - <a href="/booking-2step" class="underline hover:no-underline">Get Quote</a>`;
+      } else {
+        result.className = 'mt-3 text-sm p-2 rounded bg-orange-50 text-orange-800';
+        result.innerHTML = `We don't cover ${postcodePrefix} yet - <a href="/areas" class="underline hover:no-underline">See full coverage</a>`;
+      }
+    }
+
+    button.addEventListener('click', checkPostcode);
+    input.addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') checkPostcode();
+    });
+  });
+</script>

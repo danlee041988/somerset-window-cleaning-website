@@ -778,8 +778,9 @@
   // Color contrast monitoring and reporting
   document.addEventListener('DOMContentLoaded', function() {
     
-    // Only run in development mode
-    if (import.meta.env.DEV) {
+    // Disable contrast checking to reduce console noise
+    // Enable by changing false to true if you need accessibility debugging
+    if (false && import.meta.env.DEV) {
       checkColorContrast();
     }
     
@@ -901,7 +902,7 @@
         }
       });
       
-      if (shouldRecheck && import.meta.env.DEV) {
+      if (false && shouldRecheck && import.meta.env.DEV) {
         setTimeout(checkColorContrast, 100);
       }
     });

@@ -1,25 +1,15 @@
-23:18:59 [astrowind] Astrowind `./src/config.yaml` has been loaded.
-23:18:59 [types] Generated 0ms
-23:18:59 [content] Syncing content
-23:18:59 [content] Synced content
 
- astro  v5.12.9 ready in 635 ms
+> curved-cloud@1.0.0-beta.52 dev
+> astro dev
+
+08:33:03 [astrowind] Astrowind `./src/config.yaml` has been loaded.
+08:33:03 [types] Generated 0ms
+08:33:03 [content] Syncing content
+08:33:03 [content] Synced content
+
+ astro  v5.12.9 ready in 455 ms
 
 ┃ Local    http://localhost:4321/
-┃ Network  use --host to expose
+┃ Network  http://192.168.1.35:4321/
 
-23:18:59 watching for file changes...
-23:19:02 [200] / 361ms
-23:23:12 [200] / 19ms
-23:23:13 [200] /_image 382ms
-23:23:13 [200] / 24ms
-23:23:14 [200] /_image 997ms
-23:23:15 [200] /_image 32ms
-23:23:15 [200] /_image 36ms
-23:23:15 [200] /_image 44ms
-23:23:15 [200] /_image 76ms
-23:23:15 [200] /_image 69ms
-23:23:15 [200] /_image 103ms
-23:23:41 [200] / 7ms
-23:23:42 [200] /_image 427ms
-23:23:43 [200] /_image 903ms
+08:33:03 watching for file changes...

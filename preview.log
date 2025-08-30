@@ -1,7 +1,6 @@
-23:30:09 [astrowind] Astrowind `./src/config.yaml` has been loaded.
+23:50:03 [astrowind] Astrowind `./src/config.yaml` has been loaded.
 
- astro  v5.13.3 ready in 3 ms
+ astro  v5.12.9 ready in 2 ms
 
-┃ Local    http://localhost:5555/
-┃ Network  use --host to expose
+┃ Local    http://127.0.0.1:5173/
 

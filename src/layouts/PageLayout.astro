@@ -20,9 +20,9 @@ const { metadata, structuredDataType } = Astro.props;
 <Layout metadata={metadata} structuredDataType={structuredDataType}>
   
   <slot name="header">
-    <Header {...headerData} isSticky />
+    <Header {...headerData} isSticky transition:name="header" />
   </slot>
-  <main>
+  <main transition:name="main">
     <slot />
   </main>
   <slot name="footer">

@@ -44,23 +44,23 @@ export default defineConfig({
         if (item.url.endsWith('/')) {
           // Homepage
           item.priority = 1.0;
-          item.changefreq = 'weekly';
+          item.changefreq = 'weekly' as const;
         } else if (item.url.includes('/booking') || item.url.includes('/services')) {
           // High priority pages
           item.priority = 0.9;
-          item.changefreq = 'weekly';
+          item.changefreq = 'weekly' as const;
         } else if (item.url.includes('/areas/')) {
           // Location pages
           item.priority = 0.8;
-          item.changefreq = 'monthly';
+          item.changefreq = 'monthly' as const;
         } else if (item.url.includes('/contact') || item.url.includes('/about')) {
           // Static pages
           item.priority = 0.7;
-          item.changefreq = 'monthly';
+          item.changefreq = 'monthly' as const;
         } else {
           // Other pages
           item.priority = 0.6;
-          item.changefreq = 'monthly';
+          item.changefreq = 'monthly' as const;
         }
         return item;
       },
@@ -119,20 +119,22 @@ export default defineConfig({
     },
   },
 
-  // Build optimisations for performance
+  // Build optimizations for performance
   build: {
     // Inline stylesheets smaller than 4KB for critical CSS
     inlineStylesheets: 'auto',
     // Enable code splitting for better caching
-    splitting: true,
-    // Generate source maps only in development
-    sourcemap: process.env.NODE_ENV === 'development',
+    // splitting: true, // Removed - not a valid Astro build option
+    // Disable source maps to prevent 404 errors
+    sourcemap: false,
   },
 
-  // Performance optimisations
+  // Performance optimizations
   server: {
     // Enable port reuse for faster dev starts
     port: 4321,
+    host: false, // Listen on all addresses
+    // HMR is now configured in vite config
   },
 
   markdown: {
@@ -141,6 +143,16 @@ export default defineConfig({
   },
 
   vite: {
+    // Fix WebSocket connection issues
+    server: {
+      hmr: {
+        protocol: 'ws',
+        host: 'localhost',
+      },
+      watch: {
+        usePolling: false, // Disable polling unless necessary
+      },
+    },
     build: {
       // Optimize chunk size for better caching
       rollupOptions: {
@@ -156,6 +168,8 @@ export default defineConfig({
       cssCodeSplit: true,
       // Minify for production
       minify: 'terser',
+      // Disable source maps completely
+      sourcemap: false,
     },
     resolve: {
       alias: {

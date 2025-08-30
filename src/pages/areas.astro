@@ -1,4 +1,280 @@
 ---
-// Redirect to contact page since service areas are not currently working
-return Astro.redirect('/contact', 301);
+import Layout from '~/layouts/PageLayout.astro';
+import Hero from '~/components/widgets/Hero.astro';
+import Features2 from '~/components/widgets/Features2.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+
+const metadata = {
+  title: 'Service Areas - Window Cleaning Across Somerset, North Somerset & Dorset | Somerset Window Cleaning',
+  description: 'Professional window cleaning across 38+ postcodes in Somerset, North Somerset, and Dorset. Check if we cover your area - BA, BS, TA, DT postcodes covered.',
+};
+
+// Our coverage areas organized by region
+const coverageAreas = {
+  'North Somerset (BS)': {
+    postcodes: ['BS21', 'BS23', 'BS24', 'BS25', 'BS26', 'BS27', 'BS28', 'BS29', 'BS39', 'BS40', 'BS49'],
+    description: 'Covering Weston-super-Mare, Clevedon, Portishead, and surrounding villages'
+  },
+  'Bath & North East Somerset (BA)': {
+    postcodes: ['BA3', 'BA4', 'BA5', 'BA6', 'BA7', 'BA8', 'BA9', 'BA10', 'BA11', 'BA16', 'BA20', 'BA21', 'BA22'],
+    description: 'Serving Wells, Glastonbury, Street, Shepton Mallet, and the Mendip Hills'
+  },
+  'Somerset Levels & Taunton (TA)': {
+    postcodes: ['TA2', 'TA6', 'TA7', 'TA8', 'TA9', 'TA10', 'TA11', 'TA12', 'TA13', 'TA14', 'TA18', 'TA19', 'TA20'],
+    description: 'Including Taunton, Bridgwater, Burnham-on-Sea, and the Somerset Levels'
+  },
+  'West Dorset (DT)': {
+    postcodes: ['DT9'],
+    description: 'Extending our service to Sherborne and surrounding Dorset villages'
+  }
+};
 ---
+
+<Layout metadata={metadata} structuredDataType="areas">
+  <!-- Hero Widget -->
+  <Hero
+    actions={[
+      { variant: 'primary', text: 'Get FREE Quote', href: '/booking-2step', icon: 'tabler:calculator', class: 'text-white' },
+      { text: 'Call 01458 860339', href: 'tel:01458860339', icon: 'tabler:phone', class: 'text-white' },
+    ]}
+  >
+    <Fragment slot="title">
+      We Cover <span class="text-primary">38+ Postcodes</span> Across Somerset
+    </Fragment>
+    <Fragment slot="subtitle">
+      Professional window cleaning across Somerset, North Somerset, and West Dorset. 
+      <strong>Fully insured service</strong> with 48-hour guarantee.
+    </Fragment>
+    <Fragment slot="content">
+      <div class="mt-6 p-4 bg-white/10 rounded-lg border border-white/20">
+        <div class="flex items-center justify-center space-x-4 text-white">
+          <div class="text-center">
+            <div class="text-2xl font-bold">38+</div>
+            <div class="text-sm opacity-90">Postcodes</div>
+          </div>
+          <div class="w-px h-12 bg-white/30"></div>
+          <div class="text-center">
+            <div class="text-2xl font-bold">4,000+</div>
+            <div class="text-sm opacity-90">Happy Customers</div>
+          </div>
+          <div class="w-px h-12 bg-white/30"></div>
+          <div class="text-center">
+            <div class="text-2xl font-bold">5 Years</div>
+            <div class="text-sm opacity-90">Experience</div>
+          </div>
+        </div>
+      </div>
+    </Fragment>
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-gradient-to-br from-blue-900 to-gray-900"></div>
+    </Fragment>
+  </Hero>
+
+  <!-- Postcode Checker Section -->
+  <section class="py-12 bg-gray-50">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+      <h2 class="text-3xl font-bold mb-4">Check Your Area</h2>
+      <p class="text-gray-600 mb-8">Enter your postcode to confirm we cover your area</p>
+      
+      <div class="max-w-md mx-auto">
+        <div class="flex gap-2">
+          <input 
+            type="text" 
+            id="postcode-checker" 
+            placeholder="Enter your postcode (e.g. BA16 0HW)"
+            class="flex-1 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
+            autocomplete="postal-code"
+          >
+          <button 
+            id="check-postcode" 
+            class="px-6 py-3 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors font-semibold"
+          >
+            Check
+          </button>
+        </div>
+        <div id="postcode-result" class="mt-4 p-3 rounded-lg hidden"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Coverage Areas Grid -->
+  <section class="py-16">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold mb-4">Our Service Areas</h2>
+        <p class="text-xl text-gray-600">Professional window cleaning across four counties</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        {Object.entries(coverageAreas).map(([region, data]) => (
+          <div class="bg-white rounded-lg shadow-lg border border-gray-100 p-6 hover:shadow-xl transition-shadow">
+            <h3 class="text-xl font-bold mb-3 text-gray-800">{region}</h3>
+            <p class="text-gray-600 text-sm mb-4">{data.description}</p>
+            
+            <div class="space-y-2">
+              <h4 class="font-semibold text-gray-700 text-sm">Postcodes Covered:</h4>
+              <div class="flex flex-wrap gap-1">
+                {data.postcodes.map(postcode => (
+                  <span class="inline-block bg-primary/10 text-primary text-xs px-2 py-1 rounded">
+                    {postcode}
+                  </span>
+                ))}
+              </div>
+            </div>
+            
+            <div class="mt-4 pt-4 border-t border-gray-100">
+              <a 
+                href="/booking-2step" 
+                class="inline-flex items-center text-primary hover:text-primary/80 font-medium text-sm"
+              >
+                Get Quote for This Area
+                <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Area Pages -->
+  <section class="py-12 bg-gray-50">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold mb-4">Explore Our Local Area Pages</h2>
+        <p class="text-gray-600">Detailed information for our key service locations</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <a href="/areas/glastonbury" class="group block bg-white rounded-lg shadow hover:shadow-lg transition-shadow p-6">
+          <h3 class="text-xl font-bold mb-2 group-hover:text-primary">Glastonbury (BA6)</h3>
+          <p class="text-gray-600 text-sm mb-3">Historic town with unique cleaning requirements for period properties</p>
+          <span class="text-primary text-sm font-medium">Learn more →</span>
+        </a>
+
+        <a href="/areas/wells" class="group block bg-white rounded-lg shadow hover:shadow-lg transition-shadow p-6">
+          <h3 class="text-xl font-bold mb-2 group-hover:text-primary">Wells (BA5)</h3>
+          <p class="text-gray-600 text-sm mb-3">England's smallest city - serving the cathedral city and surroundings</p>
+          <span class="text-primary text-sm font-medium">Learn more →</span>
+        </a>
+
+        <a href="/areas/street" class="group block bg-white rounded-lg shadow hover:shadow-lg transition-shadow p-6">
+          <h3 class="text-xl font-bold mb-2 group-hover:text-primary">Street (BA16)</h3>
+          <p class="text-gray-600 text-sm mb-3">Our home base - comprehensive coverage of Street and villages</p>
+          <span class="text-primary text-sm font-medium">Learn more →</span>
+        </a>
+
+        <a href="/areas/taunton" class="group block bg-white rounded-lg shadow hover:shadow-lg transition-shadow p-6">
+          <h3 class="text-xl font-bold mb-2 group-hover:text-primary">Taunton (TA1-TA4)</h3>
+          <p class="text-gray-600 text-sm mb-3">Somerset's county town - residential and commercial services</p>
+          <span class="text-primary text-sm font-medium">Learn more →</span>
+        </a>
+
+        <a href="/areas/yeovil" class="group block bg-white rounded-lg shadow hover:shadow-lg transition-shadow p-6">
+          <h3 class="text-xl font-bold mb-2 group-hover:text-primary">Yeovil (BA20-BA22)</h3>
+          <p class="text-gray-600 text-sm mb-3">South Somerset's largest town - serving all districts</p>
+          <span class="text-primary text-sm font-medium">Learn more →</span>
+        </a>
+
+        <div class="bg-primary/5 border-2 border-dashed border-primary/20 rounded-lg p-6 flex flex-col justify-center items-center text-center">
+          <h3 class="text-lg font-bold mb-2 text-primary">Your Area Next?</h3>
+          <p class="text-gray-600 text-sm mb-3">Don't see your specific town? We're always expanding!</p>
+          <a href="/contact" class="text-primary font-medium text-sm">Get in touch →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Call to Action -->
+  <CallToAction
+    title="Ready to Book Your Area?"
+    subtitle="Professional window cleaning with local knowledge and expertise"
+    actions={[
+      { variant: 'primary', text: 'Get FREE Quote', href: '/booking-2step', icon: 'tabler:calculator' },
+      { text: 'Call 01458 860339', href: 'tel:01458860339', icon: 'tabler:phone' },
+    ]}
+  />
+</Layout>
+
+<script>
+  // Postcode checker functionality
+  const supportedPostcodes = [
+    'BS21', 'BS23', 'BS24', 'BS25', 'BS26', 'BS27', 'BS28', 'BS29', 'BS39', 'BS40', 'BS49',
+    'BA3', 'BA4', 'BA5', 'BA6', 'BA7', 'BA8', 'BA9', 'BA10', 'BA11', 'BA16', 'BA20', 'BA21', 'BA22',
+    'TA2', 'TA6', 'TA7', 'TA8', 'TA9', 'TA10', 'TA11', 'TA12', 'TA13', 'TA14', 'TA18', 'TA19', 'TA20',
+    'DT9'
+  ];
+
+  document.addEventListener('DOMContentLoaded', function() {
+    const input = document.getElementById('postcode-checker');
+    const button = document.getElementById('check-postcode');
+    const result = document.getElementById('postcode-result');
+
+    function checkPostcode() {
+      const postcode = input.value.toUpperCase().replace(/\s/g, '');
+      const postcodePrefix = postcode.match(/^[A-Z]{1,2}[0-9]{1,2}/)?.[0];
+      
+      result.classList.remove('hidden');
+      
+      if (!postcodePrefix) {
+        result.className = 'mt-4 p-3 rounded-lg bg-gray-100 border border-gray-200';
+        result.innerHTML = '<p class="text-gray-600">Please enter a valid UK postcode (e.g., BA16 0HW)</p>';
+        return;
+      }
+
+      if (supportedPostcodes.includes(postcodePrefix)) {
+        result.className = 'mt-4 p-3 rounded-lg bg-green-50 border border-green-200';
+        result.innerHTML = `
+          <div class="flex items-center space-x-2">
+            <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+            <div>
+              <p class="text-green-800 font-semibold">✅ Yes! We cover ${postcodePrefix}</p>
+              <p class="text-green-700 text-sm">Professional window cleaning available in your area</p>
+            </div>
+          </div>
+          <div class="mt-3">
+            <a href="/booking-2step" class="inline-flex items-center px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition-colors text-sm font-medium">
+              Get Your Free Quote
+              <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+              </svg>
+            </a>
+          </div>
+        `;
+      } else {
+        result.className = 'mt-4 p-3 rounded-lg bg-orange-50 border border-orange-200';
+        result.innerHTML = `
+          <div class="flex items-center space-x-2">
+            <svg class="w-5 h-5 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.732-.833-2.5 0L4.232 15.5c-.77.833.192 2.5 1.732 2.5z"/>
+            </svg>
+            <div>
+              <p class="text-orange-800 font-semibold">We don't currently cover ${postcodePrefix}</p>
+              <p class="text-orange-700 text-sm">But we're always expanding! Get in touch to discuss your needs.</p>
+            </div>
+          </div>
+          <div class="mt-3">
+            <a href="/contact" class="inline-flex items-center px-4 py-2 bg-orange-600 text-white rounded hover:bg-orange-700 transition-colors text-sm font-medium">
+              Contact Us Anyway
+              <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+              </svg>
+            </a>
+          </div>
+        `;
+      }
+    }
+
+    button.addEventListener('click', checkPostcode);
+    
+    input.addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') {
+        checkPostcode();
+      }
+    });
+  });
+</script>

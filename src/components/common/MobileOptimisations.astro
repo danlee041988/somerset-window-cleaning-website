@@ -281,7 +281,7 @@
     });
     
     // Service Worker registration for caching
-    if ('serviceWorker' in navigator) {
+    if ('serviceWorker' in navigator && (location.protocol === 'https:' || location.hostname === 'localhost')) {
       window.addEventListener('load', function() {
         navigator.serviceWorker.register('/sw.js')
           .then(function(registration) {
@@ -372,49 +372,4 @@
   });
 </script>
 
-<!-- Service Worker for Caching -->
-<script is:inline>
-  // Inline service worker for critical caching
-  if ('serviceWorker' in navigator) {
-    const swContent = `
-      const CACHE_NAME = 'somerset-window-cleaning-v1';
-      const urlsToCache = [
-        '/',
-        '/services',
-        '/about',
-        '/contact',
-        '/assets/styles/tailwind.css',
-        '/assets/images/logo.png'
-      ];
-      
-      self.addEventListener('install', function(event) {
-        event.waitUntil(
-          caches.open(CACHE_NAME)
-            .then(function(cache) {
-              return cache.addAll(urlsToCache);
-            })
-        );
-      });
-      
-      self.addEventListener('fetch', function(event) {
-        event.respondWith(
-          caches.match(event.request)
-            .then(function(response) {
-              if (response) {
-                return response;
-              }
-              return fetch(event.request);
-            }
-          )
-        );
-      });
-    `;
-    
-    const blob = new Blob([swContent], { type: 'application/javascript' });
-    const swUrl = URL.createObjectURL(blob);
-    
-    window.addEventListener('load', function() {
-      navigator.serviceWorker.register(swUrl);
-    });
-  }
-</script>
+<!-- Service Worker registration is handled by PWAManager component -->
