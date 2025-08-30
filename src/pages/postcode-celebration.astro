@@ -48,7 +48,7 @@ const postcode = url.searchParams.get('postcode') || '';
 
       <!-- Main message -->
       <h1 class="text-5xl md:text-7xl font-bold text-white mb-6 animate-fade-in">
-        <span class="text-green-500">Great News!</span><br/>
+        <span class="text-red-500">Great News!</span><br/>
         We Cover Your Area!
       </h1>
 
@@ -62,22 +62,14 @@ const postcode = url.searchParams.get('postcode') || '';
         Join <span class="text-red-500 font-bold">4,000+ happy customers</span> across Somerset who trust us with their windows
       </p>
 
-      <!-- CTA Buttons -->
-      <div class="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-in-delay-3">
+      <!-- CTA Button -->
+      <div class="flex justify-center items-center animate-fade-in-delay-3">
         <a 
           href="/book-now" 
           class="inline-flex items-center gap-3 px-8 py-4 bg-red-600 hover:bg-red-700 text-white text-lg font-bold rounded-full shadow-2xl transform hover:scale-110 transition-all duration-300 animate-pulse"
         >
           <Icon name="tabler:calendar-plus" class="w-6 h-6" />
           Book Your First Clean
-        </a>
-        
-        <a 
-          href="/services" 
-          class="inline-flex items-center gap-3 px-8 py-4 bg-gray-800 hover:bg-gray-700 text-white text-lg font-medium rounded-full shadow-xl border border-gray-600 transition-all duration-300"
-        >
-          <Icon name="tabler:list-check" class="w-6 h-6" />
-          View Our Services
         </a>
       </div>
 
