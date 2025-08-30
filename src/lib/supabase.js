@@ -2,11 +2,13 @@ import { createClient } from '@supabase/supabase-js'
 import { EmailService } from './email-service.js'
 
 // Supabase configuration
-const supabaseUrl = import.meta.env.PUBLIC_SUPABASE_URL || 'your-supabase-url'
-const supabaseAnonKey = import.meta.env.PUBLIC_SUPABASE_ANON_KEY || 'your-supabase-anon-key'
+const supabaseUrl = import.meta.env.PUBLIC_SUPABASE_URL
+const supabaseAnonKey = import.meta.env.PUBLIC_SUPABASE_ANON_KEY
 
-// Create Supabase client
-export const supabase = createClient(supabaseUrl, supabaseAnonKey)
+// Create Supabase client only if credentials are provided
+export const supabase = (supabaseUrl && supabaseAnonKey && supabaseUrl !== 'your-supabase-url') 
+  ? createClient(supabaseUrl, supabaseAnonKey)
+  : null
 
 // Database operations for bookings
 export class BookingService {
@@ -15,6 +17,11 @@ export class BookingService {
    * Create or get existing customer by email
    */
   static async upsertCustomer(customerData) {
+    if (!supabase) {
+      console.warn('Supabase not configured - skipping database save')
+      return { data: null, error: null }
+    }
+    
     try {
       // First try to find existing customer by email
       const { data: existingCustomer } = await supabase
@@ -64,6 +71,11 @@ export class BookingService {
    * Create a new booking
    */
   static async createBooking(bookingData) {
+    if (!supabase) {
+      console.warn('Supabase not configured - skipping database save')
+      return null
+    }
+    
     try {
       const { data, error } = await supabase
         .from('bookings')
@@ -83,6 +95,11 @@ export class BookingService {
    * Get service by slug
    */
   static async getServiceBySlug(slug) {
+    if (!supabase) {
+      console.warn('Supabase not configured - returning default service')
+      return { id: 1, name: 'Window Cleaning', base_price: 20 }
+    }
+    
     try {
       const { data, error } = await supabase
         .from('services')

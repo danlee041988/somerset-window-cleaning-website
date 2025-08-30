@@ -10,3 +10,7 @@ monitor*.sh
 monitor*.cjs
 *.sql
 *.db
+test-*.js
+run-migration.js
+setup-database.js
+force-clear-errors.js
