@@ -35,12 +35,14 @@ const { socialLinks = [], secondaryLinks = [], links = [], footNote = '', theme 
     <div class="py-8 md:py-12 border-b border-gray-200 dark:border-slate-700">
       <div class="text-center">
         <h3 class="text-2xl font-bold mb-6">Contact Somerset Window Cleaning</h3>
-        <div class="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
+        
+        <!-- Primary Contact Methods -->
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 mb-8">
           <!-- Call button with red outline -->
           <a
             href="tel:01458860339"
             class="inline-flex items-center gap-3 border-2 border-primary text-white font-semibold px-6 py-3 rounded-lg transition-all duration-200 hover:bg-primary/15 no-underline"
-            aria-label="Call Somerset Window Cleaning"
+            aria-label="Call Somerset Window Cleaning on 01458 860339"
             style="color:#fff !important"
           >
             <Icon name="tabler:phone" class="w-6 h-6 text-primary" />
@@ -52,7 +54,7 @@ const { socialLinks = [], secondaryLinks = [], links = [], footNote = '', theme 
 
           <!-- WhatsApp Button -->
           <a 
-            href="https://wa.me/447415526331" 
+            href="https://wa.me/447415526331?text=Hi%20Somerset%20Window%20Cleaning%2C%20I%27d%20like%20a%20quote" 
             target="_blank" 
             rel="noopener noreferrer"
             class="inline-flex items-center gap-3 bg-green-500 hover:bg-green-600 text-white font-semibold px-6 py-3 rounded-lg transition-all duration-200 transform hover:scale-105 no-underline shadow-lg"
@@ -77,6 +79,39 @@ const { socialLinks = [], secondaryLinks = [], links = [], footNote = '', theme 
               <p class="text-lg font-bold">Contact Form</p>
             </div>
           </a>
+        </div>
+
+        <!-- Additional Contact Details -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-sm">
+          <!-- Business Hours -->
+          <div class="bg-white/10 rounded-lg p-4 border border-white/20">
+            <div class="flex items-center gap-2 mb-2">
+              <Icon name="tabler:clock" class="w-4 h-4 text-primary" />
+              <h4 class="font-semibold">Business Hours</h4>
+            </div>
+            <p class="text-gray-300">Monday - Friday: 9:00 - 16:00</p>
+            <p class="text-gray-300">We reply within 1 working day</p>
+          </div>
+
+          <!-- Service Areas -->
+          <div class="bg-white/10 rounded-lg p-4 border border-white/20">
+            <div class="flex items-center gap-2 mb-2">
+              <Icon name="tabler:map-pin" class="w-4 h-4 text-primary" />
+              <h4 class="font-semibold">Service Areas</h4>
+            </div>
+            <p class="text-gray-300">38+ postcodes across Somerset</p>
+            <p class="text-gray-300">Bath, Wells, Street, Glastonbury & more</p>
+          </div>
+
+          <!-- Professional Details -->
+          <div class="bg-white/10 rounded-lg p-4 border border-white/20">
+            <div class="flex items-center gap-2 mb-2">
+              <Icon name="tabler:shield-check" class="w-4 h-4 text-primary" />
+              <h4 class="font-semibold">Professional Service</h4>
+            </div>
+            <p class="text-gray-300">£5M Public Liability Insurance</p>
+            <p class="text-gray-300">48-hour guarantee</p>
+          </div>
         </div>
       </div>
     </div>
