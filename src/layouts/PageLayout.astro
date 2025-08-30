@@ -4,6 +4,8 @@ import Header from '~/components/widgets/Header.astro';
 import Footer from '~/components/widgets/Footer.astro';
 import Announcement from '~/components/widgets/Announcement.astro';
 import StickyMobileCTA from '~/components/widgets/StickyMobileCTA.astro';
+import FloatingWhatsApp from '~/components/widgets/FloatingWhatsApp.astro';
+import ScrollAnimations from '~/components/common/ScrollAnimations.astro';
 
 import { headerData, footerData } from '~/navigation';
 
@@ -31,4 +33,10 @@ const { metadata, structuredDataType } = Astro.props;
   
   <!-- Mobile-first sticky CTA bar -->
   <StickyMobileCTA />
+  
+  <!-- Floating WhatsApp button -->
+  <FloatingWhatsApp />
+  
+  <!-- Scroll animations -->
+  <ScrollAnimations />
 </Layout>

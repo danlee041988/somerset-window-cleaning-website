@@ -2,7 +2,7 @@
 import { Icon } from 'astro-icon/components';
 import type { Brands as Props } from '~/types';
 
-import Image from '~/components/common/Image.astro';
+import OptimizedImage from '~/components/common/OptimizedImage.astro';
 import Headline from '~/components/ui/Headline.astro';
 import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
 const {
@@ -29,7 +29,18 @@ const {
           (image) =>
             image.src && (
               <div class="flex justify-center col-span-1 my-2 lg:my-4 py-1 px-3 rounded-md dark:bg-gray-200">
-                <Image src={image.src} alt={image.alt || ''} class="max-h-12" width={120} height={48} layout="fixed" />
+                <OptimizedImage 
+                  src={image.src} 
+                  alt={image.alt || 'Brand logo'} 
+                  class="max-h-12" 
+                  width={120} 
+                  height={48} 
+                  quality={90}
+                  formats={['avif', 'webp', 'jpg']}
+                  loading="lazy"
+                  sizes="120px"
+                  widths={[120, 240]}
+                />
               </div>
             )
         )

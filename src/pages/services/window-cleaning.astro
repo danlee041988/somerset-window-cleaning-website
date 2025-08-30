@@ -1,13 +1,13 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
-import Hero from '~/components/widgets/Hero.astro';
+import ServiceHero from '~/components/widgets/ServiceHero.astro';
 import Features from '~/components/widgets/Features.astro';
 import Features2 from '~/components/widgets/Features2.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
 import FAQs from '~/components/widgets/FAQs.astro';
 import Stats from '~/components/widgets/Stats.astro';
 import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
-import Image from '~/components/common/Image.astro';
+import OptimizedImage from '~/components/common/OptimizedImage.astro';
 import LiveReviews from '~/components/widgets/LiveReviews.astro';
 
 const metadata = {
@@ -17,8 +17,9 @@ const metadata = {
 ---
 
 <Layout metadata={metadata} structuredDataType="service">
-  <!-- Hero Section -->
-  <Hero
+  <!-- Enhanced Hero Section with Water Droplet Effects -->
+  <ServiceHero
+    serviceType="window"
     actions={[
       { variant: 'primary', text: 'Book Now', href: '/book-now', icon: 'tabler:calendar-plus', class: 'text-white' },
       { text: 'Call 01458 860339', href: 'tel:01458860339', icon: 'tabler:phone' },
@@ -31,10 +32,22 @@ const metadata = {
       Sparkling clean windows with guaranteed streak-free results. Safe, professional service with minimal ladder use. Perfect for all window types and heights.
     </Fragment>
     <Fragment slot="bg">
-      <Image src="/images/services/Image.jpg" alt="Professional window cleaning van and equipment - Somerset Window Cleaning" width={1600} height={900} layout="cover" style="width:100%; height:100%; object-fit:cover; opacity:0.55;" />
-      <div class="absolute inset-0 bg-black/40"></div>
+      <OptimizedImage 
+        src="/images/services/Image.jpg" 
+        alt="Professional window cleaning technician using pure water system on residential windows - Somerset Window Cleaning"
+        width={1600} 
+        height={900} 
+        quality={85}
+        formats={['avif', 'webp', 'jpg']}
+        critical={true}
+        blurUp={false}
+        preload={true}
+        sizes="100vw"
+        widths={[640, 768, 1024, 1280, 1600]}
+        style="width:100%; height:100%; object-fit:cover;" 
+      />
     </Fragment>
-  </Hero>
+  </ServiceHero>
 
   <!-- Trust Stats -->
   <Stats

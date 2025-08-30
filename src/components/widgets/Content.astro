@@ -2,7 +2,7 @@
 import type { Content as Props } from '~/types';
 import Headline from '~/components/ui/Headline.astro';
 import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
-import Image from '~/components/common/Image.astro';
+import OptimizedImage from '~/components/common/OptimizedImage.astro';
 import Button from '~/components/ui/Button.astro';
 import ItemGrid from '~/components/ui/ItemGrid.astro';
 
@@ -75,13 +75,16 @@ const {
               {typeof image === 'string' ? (
                 <Fragment set:html={image} />
               ) : (
-                <Image
+                <OptimizedImage
                   class="mx-auto w-full rounded-lg bg-gray-500 shadow-lg"
                   width={500}
                   height={500}
-                  widths={[400, 768]}
-                  sizes="(max-width: 768px) 100vw, 432px"
-                  layout="responsive"
+                  widths={[400, 500, 768, 1000]}
+                  sizes="(max-width: 768px) 100vw, 500px"
+                  quality={85}
+                  formats={['avif', 'webp', 'jpg']}
+                  loading="lazy"
+                  blurUp={true}
                   {...image}
                 />
               )}

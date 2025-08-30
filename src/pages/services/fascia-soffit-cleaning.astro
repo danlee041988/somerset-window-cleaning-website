@@ -1,14 +1,17 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
-import Hero from '~/components/widgets/Hero.astro';
+import ServiceHero from '~/components/widgets/ServiceHero.astro';
 import Features from '~/components/widgets/Features.astro';
 import Features2 from '~/components/widgets/Features2.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
 import FAQs from '~/components/widgets/FAQs.astro';
 import Stats from '~/components/widgets/Stats.astro';
 import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
-import Image from '~/components/common/Image.astro';
+import OptimizedImage from '~/components/common/OptimizedImage.astro';
 import LiveReviews from '~/components/widgets/LiveReviews.astro';
+
+// Import hero image
+import aerialHeroImage from '~/assets/images/DJI_0007.JPG';
 
 const metadata = {
   title: 'Professional Fascia & Soffit Cleaning Somerset | UPVC Restoration | Somerset Window Cleaning',
@@ -17,8 +20,9 @@ const metadata = {
 ---
 
 <Layout metadata={metadata} structuredDataType="service">
-  <!-- Hero Widget ******************* -->
-  <Hero
+  <!-- Enhanced Hero Section with Shine Effects -->
+  <ServiceHero
+    serviceType="fascia"
     actions={[
       { variant: 'primary', text: 'Book Now', href: '/book-now', icon: 'tabler:calendar-plus', class: 'text-white' },
       { text: 'Call 01458 860339', href: 'tel:01458860339', icon: 'tabler:phone' },
@@ -31,10 +35,22 @@ const metadata = {
       Restore your home's exterior to its best. Remove algae and stains to enhance curb appeal and protect your property value.
     </Fragment>
     <Fragment slot="bg">
-      <Image src="~/assets/images/DJI_0007.JPG" alt="Professional fascia and soffit cleaning service" width={1600} height={900} layout="cover" style="width:100%; height:100%; object-fit:cover; opacity:0.55;" />
-      <div class="absolute inset-0 bg-black/40"></div>
+      <OptimizedImage 
+        src={aerialHeroImage} 
+        alt="Professional fascia and soffit cleaning service restoring UPVC exterior elements to pristine condition"
+        width={1600} 
+        height={900} 
+        quality={85}
+        formats={['avif', 'webp', 'jpg']}
+        critical={true}
+        blurUp={false}
+        preload={true}
+        sizes="100vw"
+        widths={[640, 768, 1024, 1280, 1600]}
+        style="width:100%; height:100%; object-fit:cover;" 
+      />
     </Fragment>
-  </Hero>
+  </ServiceHero>
 
   <!-- Impact Stats -->
   <Stats

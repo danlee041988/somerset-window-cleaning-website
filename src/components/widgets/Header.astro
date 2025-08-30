@@ -2,7 +2,7 @@
 import { Icon } from 'astro-icon/components';
 import Logo from '~/components/Logo.astro';
 import ToggleTheme from '~/components/common/ToggleTheme.astro';
-import AccessibleMobileNav from '~/components/widgets/AccessibleMobileNav.astro';
+import EnhancedMobileNav from '~/components/widgets/EnhancedMobileNav.astro';
 import Button from '~/components/ui/Button.astro';
 
 import { getHomePermalink } from '~/utils/permalinks';
@@ -108,7 +108,16 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
         <Logo />
       </a>
       <div class="flex items-center md:hidden">
-        <AccessibleMobileNav links={links} currentPath={currentPath} />
+        <!-- Mobile phone link -->
+        <a 
+          href="tel:01458860339" 
+          class="flex items-center text-white hover:text-white/80 mr-2 transition-colors duration-200
+            focus:outline-none focus:ring-2 focus:ring-white/20 rounded p-2"
+          aria-label="Call Somerset Window Cleaning at 01458 860339"
+        >
+          <Icon name="tabler:phone-filled" class="w-5 h-5" />
+        </a>
+        <EnhancedMobileNav links={links} currentPath={currentPath} />
       </div>
     </div>
     <nav
@@ -183,6 +192,17 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
       ]}
     >
       <div class="items-center flex justify-between w-full md:w-auto">
+        <!-- Phone number link -->
+        <a 
+          href="tel:01458860339" 
+          class="flex items-center text-white hover:text-white/80 mr-4 transition-colors duration-200
+            focus:outline-none focus:ring-2 focus:ring-white/20 rounded px-2 py-1"
+          aria-label="Call Somerset Window Cleaning at 01458 860339"
+        >
+          <Icon name="tabler:phone" class="w-5 h-5 mr-2" />
+          <span class="font-medium text-sm md:text-base whitespace-nowrap">01458 860339</span>
+        </a>
+        
         <div class="flex">
           {showToggleTheme && <ToggleTheme iconClass="w-6 h-6 md:w-5 md:h-5 md:inline-block" />}
           {

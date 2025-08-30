@@ -1,0 +1,545 @@
+---
+import Image from '~/components/common/Image.astro';
+import Button from '~/components/ui/Button.astro';
+import type { Hero as Props } from '~/types';
+
+const {
+  title = await Astro.slots.render('title'),
+  subtitle = await Astro.slots.render('subtitle'),
+  tagline,
+  content = await Astro.slots.render('content'),
+  actions = await Astro.slots.render('actions'),
+  image = await Astro.slots.render('image'),
+  serviceType = 'default', // window, gutter, solar, conservatory, fascia, commercial
+  id,
+  bg = await Astro.slots.render('bg'),
+} = Astro.props;
+
+// Service-specific decorative elements
+const serviceDecorations = {
+  window: 'water-droplets',
+  gutter: 'leaves',
+  solar: 'sparkles',
+  conservatory: 'bubbles',
+  fascia: 'shine',
+  commercial: 'professional',
+  default: 'water-droplets'
+};
+
+const decorationType = serviceDecorations[serviceType] || serviceDecorations.default;
+---
+
+<section class="relative md:-mt-[76px] not-prose overflow-hidden service-hero" {...id ? { id } : {}}>
+  <!-- Background with Ken Burns effect -->
+  <div class="absolute inset-0 pointer-events-none w-full hero-background" aria-hidden="true">
+    <slot name="bg">
+      {bg ? <Fragment set:html={bg} /> : null}
+    </slot>
+    
+    <!-- Gradient overlay for better text readability -->
+    <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/60"></div>
+    
+    <!-- Animated decorative elements -->
+    <div class="decorative-elements" data-decoration-type={decorationType}>
+      <!-- Water droplets for window cleaning -->
+      {decorationType === 'water-droplets' && (
+        <>
+          <div class="water-droplet droplet-1"></div>
+          <div class="water-droplet droplet-2"></div>
+          <div class="water-droplet droplet-3"></div>
+          <div class="water-droplet droplet-4"></div>
+          <div class="water-droplet droplet-5"></div>
+        </>
+      )}
+      
+      <!-- Floating leaves for gutter cleaning -->
+      {decorationType === 'leaves' && (
+        <>
+          <div class="leaf leaf-1">🍃</div>
+          <div class="leaf leaf-2">🍂</div>
+          <div class="leaf leaf-3">🍃</div>
+          <div class="leaf leaf-4">🍂</div>
+        </>
+      )}
+      
+      <!-- Sparkles for solar panel cleaning -->
+      {decorationType === 'sparkles' && (
+        <>
+          <div class="sparkle sparkle-1">✨</div>
+          <div class="sparkle sparkle-2">✨</div>
+          <div class="sparkle sparkle-3">✨</div>
+          <div class="sparkle sparkle-4">✨</div>
+          <div class="sparkle sparkle-5">✨</div>
+          <div class="sparkle sparkle-6">✨</div>
+        </>
+      )}
+      
+      <!-- Bubbles for conservatory cleaning -->
+      {decorationType === 'bubbles' && (
+        <>
+          <div class="bubble bubble-1"></div>
+          <div class="bubble bubble-2"></div>
+          <div class="bubble bubble-3"></div>
+          <div class="bubble bubble-4"></div>
+          <div class="bubble bubble-5"></div>
+          <div class="bubble bubble-6"></div>
+        </>
+      )}
+      
+      <!-- Shine effect for fascia cleaning -->
+      {decorationType === 'shine' && (
+        <div class="shine-effect"></div>
+      )}
+    </div>
+  </div>
+  
+  <!-- Content with parallax effect -->
+  <div class="relative max-w-7xl mx-auto px-4 sm:px-6 hero-content">
+    <div class="pt-0 md:pt-[76px] pointer-events-none"></div>
+    <div class="py-12 md:py-20">
+      <div class="text-center pb-10 md:pb-16 max-w-5xl mx-auto">
+        {tagline && (
+          <p
+            class="text-base text-red-400 font-bold tracking-wide uppercase drop-shadow-lg animate-fade-in-up"
+            style="animation-delay: 0.1s"
+            set:html={tagline}
+          />
+        )}
+        {title && (
+          <h1
+            class="text-5xl md:text-6xl font-bold leading-tighter tracking-tighter mb-4 font-heading text-white drop-shadow-2xl animate-fade-in-up"
+            style="animation-delay: 0.2s"
+            set:html={title}
+          />
+        )}
+        <div class="max-w-3xl mx-auto">
+          {subtitle && (
+            <p
+              class="text-xl text-white font-semibold mb-6 drop-shadow-lg animate-fade-in-up"
+              style="animation-delay: 0.3s"
+              set:html={subtitle}
+            />
+          )}
+          {actions && (
+            <div class="max-w-xs sm:max-w-sm m-auto flex flex-nowrap flex-col sm:flex-row sm:justify-center gap-3 animate-fade-in-up" style="animation-delay: 0.4s">
+              {Array.isArray(actions) ? (
+                actions.map((action) => (
+                  <div class="flex w-full sm:w-auto">
+                    <Button {...(action || {})} class="w-full sm:mb-0 hover-lift" />
+                  </div>
+                ))
+              ) : (
+                <Fragment set:html={actions} />
+              )}
+            </div>
+          )}
+        </div>
+        {content && <Fragment set:html={content} />}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Ken Burns effect for hero background */
+  @keyframes kenBurns {
+    0% {
+      transform: scale(1) translateZ(0);
+    }
+    100% {
+      transform: scale(1.1) translateZ(0);
+    }
+  }
+  
+  .hero-background :global(img) {
+    animation: kenBurns 25s ease-out infinite alternate;
+    will-change: transform;
+  }
+  
+  /* Parallax effect on scroll */
+  .hero-content {
+    transition: transform 0.5s ease-out;
+  }
+  
+  /* Fade in up animation */
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .animate-fade-in-up {
+    opacity: 0;
+    animation: fadeInUp 0.8s ease-out forwards;
+  }
+  
+  /* Hover lift effect for buttons */
+  .hover-lift {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .hover-lift:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Water droplet animation */
+  @keyframes dropletFall {
+    0% {
+      transform: translateY(-100px) rotate(0deg);
+      opacity: 0;
+    }
+    10% {
+      opacity: 1;
+    }
+    90% {
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(100vh) rotate(360deg);
+      opacity: 0;
+    }
+  }
+  
+  .water-droplet {
+    position: absolute;
+    width: 20px;
+    height: 25px;
+    background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.8), rgba(59, 130, 246, 0.6));
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    opacity: 0;
+    pointer-events: none;
+  }
+  
+  .droplet-1 {
+    left: 10%;
+    animation: dropletFall 8s linear infinite;
+  }
+  
+  .droplet-2 {
+    left: 30%;
+    animation: dropletFall 10s linear infinite 2s;
+  }
+  
+  .droplet-3 {
+    left: 50%;
+    animation: dropletFall 12s linear infinite 1s;
+  }
+  
+  .droplet-4 {
+    left: 70%;
+    animation: dropletFall 9s linear infinite 3s;
+  }
+  
+  .droplet-5 {
+    left: 90%;
+    animation: dropletFall 11s linear infinite 4s;
+  }
+  
+  /* Floating leaves animation */
+  @keyframes leafFloat {
+    0% {
+      transform: translateX(0) translateY(-100px) rotate(0deg);
+      opacity: 0;
+    }
+    10% {
+      opacity: 1;
+    }
+    100% {
+      transform: translateX(100px) translateY(100vh) rotate(360deg);
+      opacity: 0;
+    }
+  }
+  
+  .leaf {
+    position: absolute;
+    font-size: 30px;
+    opacity: 0;
+    pointer-events: none;
+  }
+  
+  .leaf-1 {
+    left: 15%;
+    animation: leafFloat 15s ease-in-out infinite;
+  }
+  
+  .leaf-2 {
+    left: 40%;
+    animation: leafFloat 18s ease-in-out infinite 3s;
+  }
+  
+  .leaf-3 {
+    left: 65%;
+    animation: leafFloat 20s ease-in-out infinite 5s;
+  }
+  
+  .leaf-4 {
+    left: 85%;
+    animation: leafFloat 16s ease-in-out infinite 2s;
+  }
+  
+  /* Sparkle animation */
+  @keyframes sparkle {
+    0%, 100% {
+      opacity: 0;
+      transform: scale(0) rotate(0deg);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(1) rotate(180deg);
+    }
+  }
+  
+  .sparkle {
+    position: absolute;
+    font-size: 20px;
+    pointer-events: none;
+  }
+  
+  .sparkle-1 {
+    top: 20%;
+    left: 15%;
+    animation: sparkle 3s ease-in-out infinite;
+  }
+  
+  .sparkle-2 {
+    top: 30%;
+    right: 20%;
+    animation: sparkle 3s ease-in-out infinite 0.5s;
+  }
+  
+  .sparkle-3 {
+    top: 50%;
+    left: 40%;
+    animation: sparkle 3s ease-in-out infinite 1s;
+  }
+  
+  .sparkle-4 {
+    top: 60%;
+    right: 30%;
+    animation: sparkle 3s ease-in-out infinite 1.5s;
+  }
+  
+  .sparkle-5 {
+    bottom: 30%;
+    left: 25%;
+    animation: sparkle 3s ease-in-out infinite 2s;
+  }
+  
+  .sparkle-6 {
+    bottom: 20%;
+    right: 15%;
+    animation: sparkle 3s ease-in-out infinite 2.5s;
+  }
+  
+  /* Bubble animation */
+  @keyframes bubbleFloat {
+    0% {
+      transform: translateY(100vh) scale(0);
+      opacity: 0;
+    }
+    10% {
+      opacity: 0.7;
+      transform: translateY(90vh) scale(1);
+    }
+    90% {
+      opacity: 0.7;
+    }
+    100% {
+      transform: translateY(-100px) scale(1.2);
+      opacity: 0;
+    }
+  }
+  
+  .bubble {
+    position: absolute;
+    background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.4), transparent);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+  
+  .bubble-1 {
+    width: 40px;
+    height: 40px;
+    left: 10%;
+    animation: bubbleFloat 10s ease-in-out infinite;
+  }
+  
+  .bubble-2 {
+    width: 25px;
+    height: 25px;
+    left: 25%;
+    animation: bubbleFloat 12s ease-in-out infinite 2s;
+  }
+  
+  .bubble-3 {
+    width: 35px;
+    height: 35px;
+    left: 45%;
+    animation: bubbleFloat 14s ease-in-out infinite 4s;
+  }
+  
+  .bubble-4 {
+    width: 20px;
+    height: 20px;
+    left: 65%;
+    animation: bubbleFloat 11s ease-in-out infinite 1s;
+  }
+  
+  .bubble-5 {
+    width: 30px;
+    height: 30px;
+    left: 80%;
+    animation: bubbleFloat 13s ease-in-out infinite 3s;
+  }
+  
+  .bubble-6 {
+    width: 45px;
+    height: 45px;
+    left: 90%;
+    animation: bubbleFloat 15s ease-in-out infinite 5s;
+  }
+  
+  /* Shine effect */
+  @keyframes shine {
+    0% {
+      transform: translateX(-100%) skewX(-25deg);
+    }
+    100% {
+      transform: translateX(200%) skewX(-25deg);
+    }
+  }
+  
+  .shine-effect {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transform: translateX(-100%) skewX(-25deg);
+    animation: shine 8s ease-in-out infinite;
+    pointer-events: none;
+  }
+  
+  /* Reduced motion support */
+  @media (prefers-reduced-motion: reduce) {
+    .hero-background :global(img),
+    .water-droplet,
+    .leaf,
+    .sparkle,
+    .bubble,
+    .shine-effect,
+    .animate-fade-in-up {
+      animation: none !important;
+    }
+    
+    .animate-fade-in-up {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Performance optimization for mobile */
+  @media (max-width: 768px) {
+    .decorative-elements > * {
+      animation-duration: calc(var(--animation-duration, 10s) * 1.5);
+    }
+    
+    /* Reduce number of decorative elements on mobile */
+    .droplet-4,
+    .droplet-5,
+    .leaf-3,
+    .leaf-4,
+    .sparkle-5,
+    .sparkle-6,
+    .bubble-5,
+    .bubble-6 {
+      display: none;
+    }
+    
+    /* Reduce Ken Burns effect on mobile for better performance */
+    .hero-background :global(img) {
+      animation-duration: 35s;
+    }
+  }
+  
+  /* Prevent layout shifts */
+  .service-hero {
+    contain: layout style paint;
+  }
+  
+  .decorative-elements {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    pointer-events: none;
+  }
+  
+  /* GPU acceleration for smooth animations */
+  .water-droplet,
+  .leaf,
+  .sparkle,
+  .bubble,
+  .shine-effect {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+  }
+</style>
+
+<script>
+  // Parallax effect on scroll
+  document.addEventListener('DOMContentLoaded', () => {
+    const heroSections = document.querySelectorAll('.service-hero');
+    
+    heroSections.forEach(hero => {
+      const content = hero.querySelector('.hero-content');
+      const background = hero.querySelector('.hero-background');
+      
+      if (!content || !background) return;
+      
+      // Throttled scroll handler for performance
+      let ticking = false;
+      
+      function updateParallax() {
+        const scrolled = window.pageYOffset;
+        const heroRect = hero.getBoundingClientRect();
+        const heroTop = heroRect.top + scrolled;
+        const heroHeight = heroRect.height;
+        
+        // Only apply parallax when hero is in viewport
+        if (scrolled + window.innerHeight > heroTop && scrolled < heroTop + heroHeight) {
+          const parallaxSpeed = 0.3;
+          const yPos = -(scrolled - heroTop) * parallaxSpeed;
+          
+          background.style.transform = `translateY(${yPos}px)`;
+        }
+        
+        ticking = false;
+      }
+      
+      function requestTick() {
+        if (!ticking) {
+          window.requestAnimationFrame(updateParallax);
+          ticking = true;
+        }
+      }
+      
+      // Check for reduced motion preference
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      
+      if (!prefersReducedMotion) {
+        window.addEventListener('scroll', requestTick, { passive: true });
+      }
+    });
+  });
+</script>

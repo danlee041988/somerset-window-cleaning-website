@@ -1,8 +1,11 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
-import Image from '~/components/common/Image.astro';
+import OptimizedImage from '~/components/common/OptimizedImage.astro';
 import { Icon } from 'astro-icon/components';
 import { siteConfig, policyCopy } from '~/config/site';
+
+// Import hero image
+import mainHeroImage from '~/assets/images/new-hero-image.jpg';
 
 import Hero from '~/components/widgets/Hero.astro';
 import Note from '~/components/widgets/Note.astro';
@@ -33,19 +36,18 @@ const metadata = {
     ]}
   >
     <Fragment slot="bg">
-      <Image 
-        src="~/assets/images/new-hero-image.jpg" 
+      <OptimizedImage 
+        src={mainHeroImage} 
         alt="Professional window cleaning service across Somerset - aerial view of technician cleaning modern home windows with water-fed pole system" 
         width={1600} 
         height={900} 
         quality={90}
-        format="webp"
-        fallbackFormat="jpg"
-        densities={[1, 2]}
-        loading="eager" 
-        decoding="sync" 
-        fetchpriority="high"
-        transition:name="hero-image"
+        formats={['avif', 'webp', 'jpg']}
+        critical={true}
+        blurUp={false}
+        preload={true}
+        sizes="100vw"
+        widths={[640, 768, 1024, 1280, 1600, 1920]}
         style="width:100%; height:100%; object-fit:cover; opacity:0.55;" 
       />
       <div class="absolute inset-0 bg-black/40"></div>

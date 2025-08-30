@@ -1,0 +1,630 @@
+---
+/**
+ * Enhanced Mobile Navigation Component
+ * 
+ * Features:
+ * - Smooth slide-in animation from the right
+ * - Backdrop blur overlay
+ * - Service icons for better visual hierarchy
+ * - Improved touch targets (48px minimum)
+ * - Active state indicators
+ * - Smooth animations and transitions
+ * - WCAG 2.1 AA compliant
+ */
+
+import { Icon } from 'astro-icon/components';
+
+interface Link {
+  text?: string;
+  href?: string;
+  ariaLabel?: string;
+  icon?: string;
+}
+
+interface MenuLink extends Link {
+  links?: Array<MenuLink>;
+}
+
+export interface Props {
+  links?: Array<MenuLink>;
+  currentPath?: string;
+}
+
+const { links = [], currentPath = '' } = Astro.props;
+
+// Service icon mapping
+const serviceIcons = {
+  'Window Cleaning': 'tabler:window',
+  'Commercial Window Cleaning': 'tabler:building',
+  'Gutter Clearing': 'tabler:home-bolt',
+  'Solar Panel Cleaning': 'tabler:solar-panel',
+  'Conservatory Roof Cleaning': 'tabler:home-2',
+  'Fascia & Soffit Cleaning': 'tabler:home-cog',
+  'Services': 'tabler:tools',
+  'About': 'tabler:users',
+  'Contact': 'tabler:mail',
+  'Areas': 'tabler:map-pin',
+  'All Coverage Areas': 'tabler:map-2',
+  'Glastonbury (BA6)': 'tabler:map-pin',
+  'Wells (BA5)': 'tabler:map-pin',
+  'Street (BA16)': 'tabler:map-pin',
+  'Taunton (TA)': 'tabler:map-pin',
+  'Yeovil (BA20-22)': 'tabler:map-pin',
+  'Home': 'tabler:home',
+  'Book Now': 'tabler:calendar-plus',
+  'Guides': 'tabler:book'
+};
+
+function getServiceIcon(text: string): string {
+  return serviceIcons[text] || 'tabler:chevron-right';
+}
+---
+
+<!-- Enhanced Mobile Navigation Overlay with backdrop blur -->
+<div 
+  id="mobile-nav-overlay" 
+  class="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 opacity-0 invisible transition-all duration-300 ease-out"
+  aria-hidden="true"
+  data-mobile-overlay
+>
+</div>
+
+<!-- Enhanced Mobile Navigation Menu -->
+<nav
+  id="mobile-nav"
+  class="fixed top-0 right-0 h-full w-80 max-w-[90vw] bg-white dark:bg-gray-900 z-50 transform translate-x-full transition-all duration-400 ease-out shadow-2xl border-l border-gray-200 dark:border-gray-700"
+  aria-label="Mobile navigation"
+  aria-hidden="true"
+  data-mobile-nav
+>
+  <!-- Mobile Nav Header with brand colors -->
+  <div class="flex items-center justify-between p-4 bg-black text-white border-b border-gray-600">
+    <div class="flex items-center space-x-3">
+      <Icon name="tabler:menu-2" class="w-6 h-6 text-red-500" />
+      <h2 class="text-lg font-bold">Somerset Window Cleaning</h2>
+    </div>
+    <button
+      type="button"
+      class="p-2 rounded-lg text-white hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/20 min-h-[48px] min-w-[48px] transition-all duration-200 hover:scale-105"
+      aria-label="Close navigation menu"
+      data-close-mobile-nav
+    >
+      <Icon name="tabler:x" class="w-6 h-6" />
+    </button>
+  </div>
+
+  <!-- Mobile Nav Content -->
+  <div class="flex flex-col h-full overflow-y-auto">
+    <!-- Emergency Contact Banner -->
+    <div class="p-4 bg-red-50 dark:bg-red-900/20 border-b border-red-200 dark:border-red-800">
+      <a
+        href="tel:01458860339"
+        class="flex items-center justify-center space-x-2 text-red-700 dark:text-red-400 font-semibold hover:text-red-800 dark:hover:text-red-300 transition-colors min-h-[48px]"
+        aria-label="Call Somerset Window Cleaning at 01458 860339"
+      >
+        <Icon name="tabler:phone-filled" class="w-5 h-5" />
+        <span>01458 860339</span>
+        <Icon name="tabler:urgent" class="w-4 h-4" />
+      </a>
+    </div>
+
+    <!-- Navigation Links with enhanced styling -->
+    <ul class="flex flex-col p-4 space-y-1" role="list">
+      {links.map(({ text, href, links: subLinks }, index) => (
+        <li class="nav-item">
+          {subLinks?.length ? (
+            <!-- Expandable Menu Item with service icon -->
+            <div class="space-y-1">
+              <button
+                type="button"
+                class="w-full flex items-center justify-between p-4 text-left text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-500 min-h-[48px] transition-all duration-200 group hover:shadow-sm"
+                aria-expanded="false"
+                aria-controls={`mobile-submenu-${index}`}
+                data-mobile-submenu-toggle={index}
+              >
+                <div class="flex items-center space-x-3">
+                  <Icon 
+                    name={getServiceIcon(text)} 
+                    class="w-5 h-5 text-red-500 group-hover:text-red-600 transition-colors"
+                  />
+                  <span class="font-medium">{text}</span>
+                </div>
+                <Icon 
+                  name="tabler:chevron-down" 
+                  class="w-5 h-5 text-gray-400 transition-transform duration-200 group-hover:text-gray-600"
+                  data-mobile-chevron={index}
+                />
+              </button>
+              
+              <!-- Enhanced Submenu -->
+              <ul
+                id={`mobile-submenu-${index}`}
+                class="hidden ml-8 space-y-1 submenu-container"
+                role="list"
+                data-mobile-submenu={index}
+              >
+                {subLinks.map(({ text: subText, href: subHref }) => (
+                  <li>
+                    <a
+                      href={subHref}
+                      class={`block p-3 text-gray-700 dark:text-gray-300 hover:text-red-600 dark:hover:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg min-h-[48px] flex items-center transition-all duration-200 ${subHref === currentPath ? 'text-red-600 dark:text-red-400 bg-red-50 dark:bg-red-900/20 font-medium border-l-4 border-red-500' : ''}`}
+                      aria-current={subHref === currentPath ? 'page' : undefined}
+                    >
+                      <Icon name="tabler:chevron-right" class="w-4 h-4 mr-2 flex-shrink-0" />
+                      <span class="truncate">{subText}</span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ) : (
+            <!-- Regular Menu Item with enhanced styling -->
+            <a
+              href={href}
+              class={`flex items-center space-x-3 p-4 text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800 rounded-xl min-h-[48px] transition-all duration-200 group hover:shadow-sm ${href === currentPath ? 'text-red-600 dark:text-red-400 bg-red-50 dark:bg-red-900/20 font-medium border-l-4 border-red-500' : ''}`}
+              aria-current={href === currentPath ? 'page' : undefined}
+            >
+              <Icon 
+                name={getServiceIcon(text)} 
+                class={`w-5 h-5 flex-shrink-0 transition-colors ${href === currentPath ? 'text-red-500' : 'text-gray-400 group-hover:text-red-500'}`}
+              />
+              <span class="truncate">{text}</span>
+              {href === currentPath && (
+                <Icon name="tabler:circle-check-filled" class="w-4 h-4 text-red-500 ml-auto flex-shrink-0" />
+              )}
+            </a>
+          )}
+        </li>
+      ))}
+    </ul>
+
+    <!-- Enhanced Quick Actions -->
+    <div class="mt-auto p-4 border-t border-gray-200 dark:border-gray-700 space-y-3 bg-gray-50 dark:bg-gray-800/50">
+      <a
+        href="/book-now"
+        class="w-full bg-red-600 hover:bg-red-700 text-white font-semibold py-4 px-4 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 min-h-[48px] flex items-center justify-center transition-all duration-200 hover:shadow-lg hover:scale-[1.02] active:scale-[0.98]"
+      >
+        <Icon name="tabler:calendar-plus" class="w-5 h-5 mr-2" />
+        Book Free Quote
+      </a>
+      
+      <a
+        href="tel:01458860339"
+        class="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-4 px-4 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 min-h-[48px] flex items-center justify-center transition-all duration-200 hover:shadow-lg hover:scale-[1.02] active:scale-[0.98]"
+      >
+        <Icon name="tabler:phone-filled" class="w-5 h-5 mr-2" />
+        Call 01458 860339
+      </a>
+      
+      <!-- WhatsApp link -->
+      <a
+        href="https://wa.me/447415526331"
+        class="w-full bg-gray-800 hover:bg-gray-900 text-white font-semibold py-4 px-4 rounded-xl focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 min-h-[48px] flex items-center justify-center transition-all duration-200 hover:shadow-lg hover:scale-[1.02] active:scale-[0.98]"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <Icon name="tabler:brand-whatsapp" class="w-5 h-5 mr-2" />
+        WhatsApp
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- Enhanced Mobile Menu Toggle Button -->
+<button
+  type="button"
+  id="mobile-menu-toggle"
+  class="md:hidden flex items-center justify-center w-12 h-12 rounded-lg text-white hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/20 transition-all duration-200 hover:scale-105 active:scale-95"
+  aria-label="Open navigation menu"
+  aria-expanded="false"
+  aria-controls="mobile-nav"
+  data-mobile-menu-toggle
+>
+  <span class="sr-only">Toggle navigation menu</span>
+  <!-- Enhanced Hamburger Icon -->
+  <div class="w-6 h-6 flex flex-col justify-center items-center space-y-1.5" aria-hidden="true">
+    <span class="block w-6 h-0.5 bg-white transition-all duration-300 ease-out origin-center" data-hamburger-line="1"></span>
+    <span class="block w-6 h-0.5 bg-white transition-all duration-300 ease-out" data-hamburger-line="2"></span>
+    <span class="block w-6 h-0.5 bg-white transition-all duration-300 ease-out origin-center" data-hamburger-line="3"></span>
+  </div>
+</button>
+
+<style>
+  /* Enhanced mobile nav slide-in animation */
+  .mobile-nav-open {
+    transform: translateX(0) !important;
+  }
+  
+  .mobile-overlay-visible {
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+  
+  /* Enhanced hamburger animation */
+  .hamburger-open [data-hamburger-line="1"] {
+    transform: rotate(45deg) translate(3px, 3px);
+  }
+  
+  .hamburger-open [data-hamburger-line="2"] {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+  
+  .hamburger-open [data-hamburger-line="3"] {
+    transform: rotate(-45deg) translate(3px, -3px);
+  }
+  
+  /* Submenu slide animation */
+  .submenu-container {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out, opacity 0.2s ease-out;
+    opacity: 0;
+  }
+  
+  .submenu-container.submenu-open {
+    max-height: 300px;
+    opacity: 1;
+  }
+  
+  /* Staggered animation for menu items */
+  .nav-item {
+    opacity: 0;
+    transform: translateX(20px);
+    animation: slideInRight 0.3s ease-out forwards;
+  }
+  
+  .nav-item:nth-child(1) { animation-delay: 0.1s; }
+  .nav-item:nth-child(2) { animation-delay: 0.15s; }
+  .nav-item:nth-child(3) { animation-delay: 0.2s; }
+  .nav-item:nth-child(4) { animation-delay: 0.25s; }
+  .nav-item:nth-child(5) { animation-delay: 0.3s; }
+  .nav-item:nth-child(6) { animation-delay: 0.35s; }
+  .nav-item:nth-child(7) { animation-delay: 0.4s; }
+  .nav-item:nth-child(8) { animation-delay: 0.45s; }
+  
+  @keyframes slideInRight {
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  /* Prevent body scroll when mobile nav is open */
+  .mobile-nav-active {
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
+  }
+  
+  /* Enhanced focus styles for better accessibility */
+  nav[data-mobile-nav] button:focus,
+  nav[data-mobile-nav] a:focus {
+    outline: 2px solid #ef4444;
+    outline-offset: 2px;
+  }
+  
+  /* High contrast mode support */
+  @media (prefers-contrast: high) {
+    nav[data-mobile-nav] {
+      border: 3px solid;
+    }
+    
+    .nav-item button,
+    .nav-item a {
+      border: 1px solid;
+    }
+  }
+  
+  /* Reduced motion support */
+  @media (prefers-reduced-motion: reduce) {
+    nav[data-mobile-nav],
+    .mobile-nav-overlay,
+    [data-hamburger-line],
+    .submenu-container,
+    .nav-item {
+      transition: none !important;
+      animation: none !important;
+    }
+    
+    .nav-item {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  /* Touch target optimization for better usability */
+  @media (max-width: 768px) {
+    nav[data-mobile-nav] button,
+    nav[data-mobile-nav] a {
+      min-height: 48px;
+      min-width: 48px;
+    }
+  }
+</style>
+
+<script>
+  // Enhanced Accessible Mobile Navigation Script
+  class EnhancedMobileNav {
+    constructor() {
+      this.mobileNav = document.querySelector('[data-mobile-nav]');
+      this.mobileOverlay = document.querySelector('[data-mobile-overlay]');
+      this.toggleButton = document.querySelector('[data-mobile-menu-toggle]');
+      this.closeButton = document.querySelector('[data-close-mobile-nav]');
+      this.isOpen = false;
+      this.focusableElements = [];
+      this.firstFocusableElement = null;
+      this.lastFocusableElement = null;
+      this.openSubmenus = new Set();
+      
+      this.init();
+    }
+    
+    init() {
+      // Bind event listeners
+      this.toggleButton?.addEventListener('click', (e) => this.toggleMenu(e));
+      this.closeButton?.addEventListener('click', (e) => this.closeMenu(e));
+      this.mobileOverlay?.addEventListener('click', (e) => this.closeMenu(e));
+      
+      // Keyboard event listeners
+      document.addEventListener('keydown', (e) => this.handleKeyDown(e));
+      
+      // Handle submenu toggles
+      this.initSubMenus();
+      
+      // Handle window resize
+      window.addEventListener('resize', () => this.handleResize());
+      
+      // Add swipe gesture support
+      this.initSwipeGestures();
+    }
+    
+    initSubMenus() {
+      const submenuToggles = document.querySelectorAll('[data-mobile-submenu-toggle]');
+      
+      submenuToggles.forEach((toggle) => {
+        toggle.addEventListener('click', (e) => {
+          e.preventDefault();
+          const index = toggle.getAttribute('data-mobile-submenu-toggle');
+          this.toggleSubMenu(index);
+        });
+      });
+    }
+    
+    initSwipeGestures() {
+      let startX = 0;
+      let currentX = 0;
+      let isDragging = false;
+      
+      this.mobileNav?.addEventListener('touchstart', (e) => {
+        startX = e.touches[0].clientX;
+        isDragging = true;
+      }, { passive: true });
+      
+      this.mobileNav?.addEventListener('touchmove', (e) => {
+        if (!isDragging) return;
+        currentX = e.touches[0].clientX;
+        const deltaX = currentX - startX;
+        
+        // Only allow swipe to close (swipe right)
+        if (deltaX > 0) {
+          const progress = Math.min(deltaX / 200, 1);
+          this.mobileNav.style.transform = `translateX(${deltaX}px)`;
+          this.mobileOverlay.style.opacity = 1 - progress;
+        }
+      }, { passive: true });
+      
+      this.mobileNav?.addEventListener('touchend', () => {
+        if (!isDragging) return;
+        isDragging = false;
+        
+        const deltaX = currentX - startX;
+        
+        if (deltaX > 100) {
+          // Close menu if swiped far enough
+          this.closeMenu();
+        } else {
+          // Snap back to open position
+          this.mobileNav.style.transform = '';
+          this.mobileOverlay.style.opacity = '';
+        }
+      }, { passive: true });
+    }
+    
+    toggleSubMenu(index) {
+      const toggle = document.querySelector(`[data-mobile-submenu-toggle="${index}"]`);
+      const submenu = document.querySelector(`[data-mobile-submenu="${index}"]`);
+      const chevron = document.querySelector(`[data-mobile-chevron="${index}"]`);
+      
+      if (!toggle || !submenu) return;
+      
+      const isExpanded = toggle.getAttribute('aria-expanded') === 'true';
+      
+      // Toggle submenu with smooth animation
+      toggle.setAttribute('aria-expanded', !isExpanded);
+      
+      if (isExpanded) {
+        submenu.classList.remove('submenu-open');
+        setTimeout(() => {
+          submenu.classList.add('hidden');
+        }, 300);
+        this.openSubmenus.delete(index);
+      } else {
+        submenu.classList.remove('hidden');
+        requestAnimationFrame(() => {
+          submenu.classList.add('submenu-open');
+        });
+        this.openSubmenus.add(index);
+      }
+      
+      chevron?.classList.toggle('rotate-180');
+      
+      // Update focusable elements
+      setTimeout(() => this.updateFocusableElements(), 300);
+    }
+    
+    toggleMenu(e) {
+      e.preventDefault();
+      
+      if (this.isOpen) {
+        this.closeMenu();
+      } else {
+        this.openMenu();
+      }
+    }
+    
+    openMenu() {
+      this.isOpen = true;
+      
+      // Update ARIA states
+      this.toggleButton?.setAttribute('aria-expanded', 'true');
+      this.toggleButton?.setAttribute('aria-label', 'Close navigation menu');
+      this.mobileNav?.setAttribute('aria-hidden', 'false');
+      
+      // Show overlay and nav with enhanced animations
+      this.mobileOverlay?.classList.add('mobile-overlay-visible');
+      this.mobileNav?.classList.add('mobile-nav-open');
+      this.toggleButton?.classList.add('hamburger-open');
+      
+      // Prevent body scroll
+      document.body.classList.add('mobile-nav-active');
+      
+      // Update focusable elements and set focus
+      this.updateFocusableElements();
+      
+      // Focus the close button for better UX
+      setTimeout(() => {
+        this.closeButton?.focus();
+      }, 400);
+      
+      // Announce to screen readers
+      this.announceToScreenReader('Navigation menu opened');
+    }
+    
+    closeMenu() {
+      this.isOpen = false;
+      
+      // Update ARIA states
+      this.toggleButton?.setAttribute('aria-expanded', 'false');
+      this.toggleButton?.setAttribute('aria-label', 'Open navigation menu');
+      this.mobileNav?.setAttribute('aria-hidden', 'true');
+      
+      // Hide overlay and nav
+      this.mobileOverlay?.classList.remove('mobile-overlay-visible');
+      this.mobileNav?.classList.remove('mobile-nav-open');
+      this.toggleButton?.classList.remove('hamburger-open');
+      
+      // Reset any transform from swipe gestures
+      this.mobileNav.style.transform = '';
+      this.mobileOverlay.style.opacity = '';
+      
+      // Restore body scroll
+      document.body.classList.remove('mobile-nav-active');
+      
+      // Return focus to toggle button
+      this.toggleButton?.focus();
+      
+      // Close any open submenus
+      this.closeAllSubMenus();
+      
+      // Announce to screen readers
+      this.announceToScreenReader('Navigation menu closed');
+    }
+    
+    closeAllSubMenus() {
+      this.openSubmenus.forEach(index => {
+        const toggle = document.querySelector(`[data-mobile-submenu-toggle="${index}"]`);
+        const submenu = document.querySelector(`[data-mobile-submenu="${index}"]`);
+        const chevron = document.querySelector(`[data-mobile-chevron="${index}"]`);
+        
+        toggle?.setAttribute('aria-expanded', 'false');
+        submenu?.classList.remove('submenu-open');
+        submenu?.classList.add('hidden');
+        chevron?.classList.remove('rotate-180');
+      });
+      
+      this.openSubmenus.clear();
+    }
+    
+    updateFocusableElements() {
+      if (!this.isOpen) return;
+      
+      const focusableSelectors = [
+        'button:not([disabled])',
+        'a[href]',
+        'input:not([disabled])',
+        'select:not([disabled])',
+        'textarea:not([disabled])',
+        '[tabindex]:not([tabindex="-1"])'
+      ];
+      
+      this.focusableElements = Array.from(
+        this.mobileNav?.querySelectorAll(focusableSelectors.join(',')) || []
+      ).filter(el => {
+        const parent = el.closest('[data-mobile-submenu]');
+        return !parent || !parent.classList.contains('hidden');
+      });
+      
+      this.firstFocusableElement = this.focusableElements[0];
+      this.lastFocusableElement = this.focusableElements[this.focusableElements.length - 1];
+    }
+    
+    handleKeyDown(e) {
+      if (!this.isOpen) return;
+      
+      switch (e.key) {
+        case 'Escape':
+          e.preventDefault();
+          this.closeMenu();
+          break;
+          
+        case 'Tab':
+          if (this.focusableElements.length === 0) {
+            e.preventDefault();
+            return;
+          }
+          
+          if (e.shiftKey) {
+            // Shift + Tab
+            if (document.activeElement === this.firstFocusableElement) {
+              e.preventDefault();
+              this.lastFocusableElement?.focus();
+            }
+          } else {
+            // Tab
+            if (document.activeElement === this.lastFocusableElement) {
+              e.preventDefault();
+              this.firstFocusableElement?.focus();
+            }
+          }
+          break;
+      }
+    }
+    
+    handleResize() {
+      // Close mobile nav if window becomes wide enough for desktop nav
+      if (window.innerWidth >= 768 && this.isOpen) {
+        this.closeMenu();
+      }
+    }
+    
+    announceToScreenReader(message) {
+      const announcement = document.createElement('div');
+      announcement.setAttribute('aria-live', 'polite');
+      announcement.setAttribute('aria-atomic', 'true');
+      announcement.className = 'sr-only';
+      announcement.textContent = message;
+      
+      document.body.appendChild(announcement);
+      
+      setTimeout(() => {
+        document.body.removeChild(announcement);
+      }, 1000);
+    }
+  }
+  
+  // Initialize when DOM is ready
+  document.addEventListener('DOMContentLoaded', () => {
+    new EnhancedMobileNav();
+  });
+</script>

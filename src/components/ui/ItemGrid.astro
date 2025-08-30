@@ -20,7 +20,7 @@ const {
   items && items.length > 0 && (
     <div
       class={twMerge(
-        `grid mx-auto gap-8 md:gap-y-12 ${
+        `grid mx-auto gap-8 md:gap-y-12 scroll-stagger ${
           columns === 4
             ? 'lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2'
             : columns === 3
@@ -33,7 +33,7 @@ const {
       )}
     >
       {items.map(({ title, description, icon, callToAction, price, classes: itemClasses = {} }, index) => (
-        <div class="intersect-once motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade" style={`animation-delay: ${index * 80}ms`}>
+        <div>
           <div class={twMerge('flex flex-row max-w-md transition-all duration-300 hover:-translate-y-1 hover:shadow-lg', panelClass, itemClasses?.panel)}>
             <div class="flex justify-center">
               {(icon || defaultIcon) && (

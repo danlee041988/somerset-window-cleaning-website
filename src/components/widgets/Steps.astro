@@ -2,7 +2,7 @@
 import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
 import Timeline from '~/components/ui/Timeline.astro';
 import Headline from '~/components/ui/Headline.astro';
-import Image from '~/components/common/Image.astro';
+import OptimizedImage from '~/components/common/OptimizedImage.astro';
 import type { Steps as Props } from '~/types';
 
 const {
@@ -41,15 +41,18 @@ const {
           {typeof image === 'string' ? (
             <Fragment set:html={image} />
           ) : (
-            <Image
+            <OptimizedImage
               class="inset-0 object-cover object-top w-full rounded-md shadow-lg md:absolute md:h-full bg-gray-400 dark:bg-slate-700"
-              widths={[400, 768]}
-              sizes="(max-width: 768px) 100vw, 432px"
               width={432}
               height={768}
-              layout="cover"
+              widths={[400, 432, 768, 864]}
+              sizes="(max-width: 768px) 100vw, 432px"
+              quality={80}
+              formats={['avif', 'webp', 'jpg']}
+              loading="lazy"
+              blurUp={true}
               src={image?.src}
-              alt={image?.alt || ''}
+              alt={image?.alt || 'Process step illustration'}
             />
           )}
         </div>
