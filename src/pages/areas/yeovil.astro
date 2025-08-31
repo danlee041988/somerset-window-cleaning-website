@@ -7,8 +7,8 @@ import Testimonials from '~/components/widgets/Testimonials.astro';
 import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
 
 const metadata = {
-  title: 'Window Cleaning Yeovil | Professional Service | Somerset Window Cleaning',
-  description: 'Professional window cleaning in Yeovil and surrounding areas. Serving BA20, BA21, BA22 postcodes. Reliable service for South Somerset homes and businesses.',
+  title: 'Window Cleaning Yeovil & South Somerset | Professional Service',
+  description: 'Professional window cleaning in Yeovil, Sherborne, Crewkerne, Ilminster & South Somerset. Pure water system, 48-hour guarantee. Local team serving South Somerset since 2019.',
 };
 ---
 
@@ -21,10 +21,10 @@ const metadata = {
     ]}
   >
     <Fragment slot="title">
-      Window Cleaning in <span class="text-accent">Yeovil</span>
+      Window Cleaning in <span class="text-accent">Yeovil & South Somerset</span>
     </Fragment>
     <Fragment slot="subtitle">
-      Professional window cleaning for Yeovil and South Somerset. Serving the area's largest town with reliable, insured service.
+      Professional window cleaning for homes and businesses across Yeovil, Sherborne, Crewkerne and South Somerset. Fully insured with a 48-hour guarantee.
     </Fragment>
   </Hero>
 
@@ -33,9 +33,10 @@ const metadata = {
     <section class="py-12 max-w-6xl mx-auto px-4">
       <div class="grid lg:grid-cols-2 gap-12">
         <div>
-          <h2 class="text-3xl font-bold mb-6">Yeovil Window Cleaning Services</h2>
+          <h2 class="text-3xl font-bold mb-6">Yeovil & South Somerset Window Cleaning Services</h2>
           <div class="space-y-4 text-gray-600">
-            <p>We provide professional window cleaning throughout Yeovil and South Somerset, including:</p>
+            <p>From the bustling town of Yeovil to the historic charm of Sherborne, we bring professional window cleaning to South Somerset's diverse communities. Our experienced team serves market towns, villages, and everything in between.</p>
+            <p class="font-semibold mt-4">Areas we cover include:</p>
             <div class="grid grid-cols-2 gap-2 text-sm">
               <div class="flex items-center space-x-2">
                 <svg class="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20">
@@ -85,6 +86,30 @@ const metadata = {
                 </svg>
                 <span>West Coker</span>
               </div>
+              <div class="flex items-center space-x-2">
+                <svg class="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+                <span>Sherborne (DT9)</span>
+              </div>
+              <div class="flex items-center space-x-2">
+                <svg class="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+                <span>Crewkerne (TA18)</span>
+              </div>
+              <div class="flex items-center space-x-2">
+                <svg class="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+                <span>Ilminster (TA19)</span>
+              </div>
+              <div class="flex items-center space-x-2">
+                <svg class="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+                <span>Castle Cary (BA7)</span>
+              </div>
             </div>
           </div>
         </div>
@@ -129,11 +154,11 @@ const metadata = {
     </section>
   </WidgetWrapper>
 
-  <!-- Services for Yeovil -->
+  <!-- Services for South Somerset -->
   <Features
-    id="yeovil-services"
-    title="Yeovil Area Window Cleaning"
-    subtitle="Professional service for South Somerset's largest town"
+    id="south-somerset-services"
+    title="South Somerset Window Cleaning Services"
+    subtitle="Professional service across Yeovil, Sherborne, Crewkerne and beyond"
     items={[
       {
         title: 'Town Centre Properties',

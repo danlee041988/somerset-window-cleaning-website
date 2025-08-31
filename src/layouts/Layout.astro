@@ -11,8 +11,6 @@ import Metadata from '~/components/common/Metadata.astro';
 import SiteVerification from '~/components/common/SiteVerification.astro';
 import Analytics from '~/components/common/Analytics.astro';
 import BasicScripts from '~/components/common/BasicScripts.astro';
-// Temporarily disabled for compatibility
-import StructuredData from '~/components/common/StructuredData.astro';
 import AccessibilityEnhancements from '~/components/common/AccessibilityEnhancements.astro';
 import MobileOptimisations from '~/components/common/MobileOptimisations.astro';
 import TouchTargetOptimization from '~/components/common/TouchTargetOptimization.astro';
@@ -46,8 +44,6 @@ const { language, textDirection } = I18N;
     <Metadata {...metadata} />
     <SiteVerification />
     <Analytics />
-    <!-- Temporarily disabled for compatibility -->
-    <!-- <StructuredData type={structuredDataType} /> -->
     <MobileOptimisations />
 
     <!-- Performance: Preload primary hero image to improve LCP -->

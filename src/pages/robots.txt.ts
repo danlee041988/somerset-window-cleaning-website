@@ -12,8 +12,9 @@ Allow: /areas
 Allow: /instant-quote
 Allow: /contact
 
-# Disallow admin/private areas if any
+# Disallow admin/private areas
 Disallow: /admin
+Disallow: /staff
 Disallow: /_astro
 Disallow: /api
 

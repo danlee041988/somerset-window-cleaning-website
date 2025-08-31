@@ -11,7 +11,7 @@ import OptimizedImage from '~/components/common/OptimizedImage.astro';
 import LiveReviews from '~/components/widgets/LiveReviews.astro';
 
 // Import hero image
-import aerialHeroImage from '~/assets/images/DJI_0007.JPG';
+import clarksHeroImage from '~/assets/images/Clarks.jpeg';
 
 const metadata = {
   title: 'Commercial Window Cleaning Somerset | Professional Business Service | Somerset Window Cleaning',
@@ -36,8 +36,8 @@ const metadata = {
     </Fragment>
     <Fragment slot="bg">
       <OptimizedImage 
-        src={aerialHeroImage} 
-        alt="Professional commercial window cleaning service for businesses across Somerset - office buildings and retail premises"
+        src={clarksHeroImage} 
+        alt="Professional commercial window cleaning service at Clarks headquarters - demonstrating our business cleaning expertise"
         width={1600} 
         height={900} 
         quality={85}
@@ -249,29 +249,48 @@ const metadata = {
 
 
 
-  <!-- Google Reviews -->
-  <LiveReviews />
-
   <!-- FAQs -->
   <FAQs
-    title="Commercial Window Cleaning Questions"
-    subtitle="Common questions about our business window cleaning service"
+    title="Keep Your Business Looking Its Best"
+    subtitle="Everything you need to know about our commercial cleaning service"
     isDark={true}
     items={[
       {
-        title: 'Can you work around our business hours?',
-        description: 'Yes, we offer flexible scheduling including early morning, evening, and weekend work to minimize disruption to your business operations. <a href="/book-now" class="text-red-600 hover:underline font-semibold">Get a quote for your business</a>.',
+        title: 'Will customers really notice if we skip a clean?',
+        description: 'Oh yes! We\'ve heard from shop owners who had customers comment "Finally, you cleaned your windows!" - embarrassing! First impressions count, and clean windows tell customers you care about details. One Taunton cafe saw foot traffic increase after we started their regular cleans.',
       },
       {
-        title: 'Do you provide insurance documentation?',
-        description: 'Yes, we carry full commercial liability insurance and provide certificates to all business customers before work commences.',
+        title: 'How do you not disrupt our business operations?',
+        description: 'We\'re ninjas! Early mornings, late evenings, weekends - whatever works for you. Many clients don\'t even know we\'ve been until they see the sparkling windows. We\'ve cleaned banks at 6am and restaurants at 10pm. Your business keeps running, we keep cleaning.',
       },
       {
-        title: 'How do you handle access to our premises?',
-        description: 'We work with you to arrange convenient access times and can coordinate with building management or security as needed.',
+        title: 'What about our insurance requirements?',
+        description: 'Sorted! We carry £5 million public liability insurance and provide certificates before we start. We\'ve worked with councils, NHS sites, and major chains - we know exactly what paperwork you need. Your compliance team will love us!',
       },
-
+      {
+        title: 'We\'re on a busy high street - is that safe?',
+        description: 'High streets are our specialty! From Bridgwater to Yeovil, we\'ve cleaned every type of shopfront safely. We use barriers, signage, and work efficiently to protect pedestrians. Never had an incident in 5 years - your customers stay safe, your windows get clean.',
+      },
+      {
+        title: 'Can you handle our multi-site requirements?',
+        description: 'Absolutely! We clean chains of estate agents, veterinary practices with multiple locations, and retail groups across Somerset. Same quality, same reliability at every site. We\'ll even provide consolidated invoicing to keep your accounts team happy. <a href="/book-now" class="text-red-600 hover:underline font-semibold">Get a multi-site quote</a>.',
+      },
+      {
+        title: 'What if we need an emergency clean before an inspection?',
+        description: 'We\'ve saved many businesses before important visits! Health inspections, head office visits, grand openings - we\'ll prioritize your emergency. One restaurant called us the day before their hygiene inspection - passed with flying colors! Just call and we\'ll sort it.',
+      },
+      {
+        title: 'How much will this cost compared to employing someone?',
+        description: 'Much less! No equipment costs, no insurance worries, no sick days or holiday cover needed. Most businesses save 60-70% versus in-house cleaning. Plus, we\'re professionals - better results in less time. Your accountant will thank you.',
+      },
+      {
+        title: 'Do you really understand different business needs?',
+        description: 'We clean for dentists (hygiene critical), schools (safeguarding essential), shops (appearance vital), and factories (efficiency key). Each business is different - we adapt. After 200+ commercial clients, we\'ve seen it all! <a href="/book-now" class="text-red-600 hover:underline font-semibold">Join Somerset\'s satisfied businesses</a>.',
+      },
     ]}
   />
+
+  <!-- Google Reviews -->
+  <LiveReviews />
 
 </Layout>

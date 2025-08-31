@@ -7,8 +7,8 @@ const pages = [
   { url: 'about', changefreq: 'monthly', priority: '0.8' },
   { url: 'areas', changefreq: 'monthly', priority: '0.8' },
   { url: 'contact', changefreq: 'monthly', priority: '0.7' },
-  { url: 'instant-quote', changefreq: 'weekly', priority: '0.9' },
-  { url: 'booking-2step', changefreq: 'weekly', priority: '0.9' },
+  { url: 'book-now', changefreq: 'weekly', priority: '0.9' },
+  { url: 'services', changefreq: 'weekly', priority: '0.9' },
   
   // Service pages - high priority for SEO
   { url: 'services/window-cleaning', changefreq: 'monthly', priority: '0.9' },
@@ -17,6 +17,27 @@ const pages = [
   { url: 'services/conservatory-cleaning', changefreq: 'monthly', priority: '0.9' },
   { url: 'services/solar-panel-cleaning', changefreq: 'monthly', priority: '0.9' },
   { url: 'services/commercial-window-cleaning', changefreq: 'monthly', priority: '0.8' },
+  
+  // Area pages - important for local SEO
+  { url: 'areas/ba-areas', changefreq: 'monthly', priority: '0.8' },
+  { url: 'areas/bs-areas', changefreq: 'monthly', priority: '0.8' },
+  { url: 'areas/ta-areas', changefreq: 'monthly', priority: '0.8' },
+  
+  // Individual town pages (if still active)
+  { url: 'areas/bridgwater', changefreq: 'monthly', priority: '0.7' },
+  { url: 'areas/glastonbury', changefreq: 'monthly', priority: '0.7' },
+  { url: 'areas/street', changefreq: 'monthly', priority: '0.7' },
+  { url: 'areas/taunton', changefreq: 'monthly', priority: '0.7' },
+  { url: 'areas/wells', changefreq: 'monthly', priority: '0.7' },
+  { url: 'areas/yeovil', changefreq: 'monthly', priority: '0.7' },
+  
+  // Guide pages
+  { url: 'guides', changefreq: 'monthly', priority: '0.6' },
+  { url: 'guides/domestic-window-cleaning', changefreq: 'yearly', priority: '0.5' },
+  
+  // Legal pages
+  { url: 'terms', changefreq: 'yearly', priority: '0.3' },
+  { url: 'privacy', changefreq: 'yearly', priority: '0.3' },
 ];
 
 export const GET: APIRoute = async ({ site }) => {

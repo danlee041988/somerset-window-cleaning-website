@@ -1,0 +1,280 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import Hero from '~/components/widgets/Hero.astro';
+import Features from '~/components/widgets/Features.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+import Testimonials from '~/components/widgets/Testimonials.astro';
+import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
+
+const metadata = {
+  title: 'Window Cleaning Bridgwater & Somerset Levels | Professional Service',
+  description: 'Professional window cleaning in Bridgwater, Burnham-on-Sea, Highbridge & the Somerset Levels. Pure water system, 48-hour guarantee. Reliable local team serving TA postcodes since 2019.',
+};
+---
+
+<Layout metadata={metadata}>
+  <!-- Hero Widget ******************* -->
+  <Hero
+    actions={[
+      { variant: 'primary', text: 'Book Now', href: '/book-now', icon: 'tabler:calendar-plus' },
+      { text: 'Call 01458 860339', href: 'tel:01458860339', icon: 'tabler:phone' },
+    ]}
+  >
+    <Fragment slot="title">
+      Professional Window Cleaning in <span class="text-accent">Bridgwater & The Levels</span>
+    </Fragment>
+    <Fragment slot="subtitle">
+      Reliable window cleaning service for homes and businesses across Bridgwater, Burnham-on-Sea, and the Somerset Levels. Fully insured with a 48-hour guarantee.
+    </Fragment>
+  </Hero>
+
+  <!-- Local Area Info -->
+  <WidgetWrapper>
+    <section class="py-12 max-w-6xl mx-auto px-4">
+      <div class="grid lg:grid-cols-2 gap-12">
+        <div>
+          <h2 class="text-3xl font-bold mb-6">Professional Window Cleaning Bridgwater & Somerset Levels</h2>
+          <div class="space-y-4 text-gray-600">
+            <p>From the historic market town of Bridgwater to the coastal charm of Burnham-on-Sea, we bring professional window cleaning to the heart of the Somerset Levels. With over 4,000 satisfied customers across Somerset, our experienced team understands the unique challenges of this beautiful region.</p>
+
+            <p>Our local team serves the entire Levels area, from bustling Bridgwater town centre to the peaceful villages dotting the landscape. We're familiar with everything from Victorian terraces near the River Parrett to modern seafront properties in Burnham-on-Sea.</p>
+
+            <div class="bg-blue-50 rounded-lg p-4 mb-4">
+              <h4 class="font-semibold text-blue-900 mb-2">🏛️ Bridgwater & Levels Landmarks We Serve</h4>
+              <ul class="text-sm text-blue-800 space-y-1">
+                <li>• Bridgwater Docks and Town Centre</li>
+                <li>• Blake Museum and Castle Street</li>
+                <li>• Burnham-on-Sea Seafront and Pier</li>
+                <li>• Apex Leisure and Wildlife Park</li>
+                <li>• Bridgwater Retail Park</li>
+                <li>• Somerset Levels villages</li>
+                <li>• M5 Business Parks</li>
+                <li>• Celebration Park</li>
+              </ul>
+            </div>
+
+            <div class="bg-green-50 rounded-lg p-4 mb-4">
+              <h4 class="font-semibold text-green-900 mb-2">🏘️ Areas We Cover</h4>
+              <div class="grid grid-cols-2 gap-2 text-sm">
+                <div class="flex items-center space-x-2">
+                  <svg class="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                  </svg>
+                  <span>Bridgwater Town (TA6)</span>
+                </div>
+                <div class="flex items-center space-x-2">
+                  <svg class="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                  </svg>
+                  <span>Burnham-on-Sea (TA8)</span>
+                </div>
+                <div class="flex items-center space-x-2">
+                  <svg class="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                  </svg>
+                  <span>Highbridge (TA9)</span>
+                </div>
+                <div class="flex items-center space-x-2">
+                  <svg class="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                  </svg>
+                  <span>Westonzoyland</span>
+                </div>
+                <div class="flex items-center space-x-2">
+                  <svg class="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                  </svg>
+                  <span>North Petherton</span>
+                </div>
+                <div class="flex items-center space-x-2">
+                  <svg class="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                  </svg>
+                  <span>Puriton & Woolavington</span>
+                </div>
+                <div class="flex items-center space-x-2">
+                  <svg class="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                  </svg>
+                  <span>Chilton Trinity</span>
+                </div>
+                <div class="flex items-center space-x-2">
+                  <svg class="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                  </svg>
+                  <span>Somerset Levels Villages</span>
+                </div>
+              </div>
+            </div>
+
+            <p>Whether you're in need of regular window cleaning for your Bridgwater business, seasonal cleaning for your Burnham-on-Sea holiday home, or a one-off clean for your Somerset Levels cottage, we've got you covered with our professional, reliable service.</p>
+          </div>
+        </div>
+
+        <div>
+          <!-- Service Features -->
+          <div class="bg-gray-50 rounded-lg p-6 mb-6">
+            <h3 class="text-xl font-bold mb-4">Why Choose Us for Bridgwater & The Levels?</h3>
+            <ul class="space-y-3">
+              <li class="flex items-start">
+                <svg class="w-5 h-5 text-primary mt-1 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                </svg>
+                <span><strong>Local Knowledge:</strong> We know the area from carnival routes to tide times</span>
+              </li>
+              <li class="flex items-start">
+                <svg class="w-5 h-5 text-primary mt-1 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                </svg>
+                <span><strong>Weather Ready:</strong> Experienced with coastal conditions and Levels mist</span>
+              </li>
+              <li class="flex items-start">
+                <svg class="w-5 h-5 text-primary mt-1 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                </svg>
+                <span><strong>All Properties:</strong> From town centre shops to rural farmhouses</span>
+              </li>
+              <li class="flex items-start">
+                <svg class="w-5 h-5 text-primary mt-1 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                </svg>
+                <span><strong>Regular Routes:</strong> Scheduled service throughout TA6-TA9 postcodes</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- CTA Box -->
+          <div class="bg-primary text-white rounded-lg p-6">
+            <h3 class="text-xl font-bold mb-3">Get Your Free Quote Today</h3>
+            <p class="mb-4">Join over 4,000 happy customers across Somerset. Professional window cleaning with a 48-hour rain guarantee.</p>
+            <div class="space-y-3">
+              <a href="/book-now" class="block w-full text-center bg-white text-primary font-bold py-3 px-6 rounded-lg hover:bg-gray-100 transition-colors">
+                Book Online Now
+              </a>
+              <a href="tel:01458860339" class="block w-full text-center bg-primary-dark text-white font-bold py-3 px-6 rounded-lg hover:bg-primary-darker transition-colors border border-white">
+                Call 01458 860339
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </WidgetWrapper>
+
+  <!-- Features for SEO -->
+  <Features
+    id="services-bridgwater"
+    title="Our Window Cleaning Services in Bridgwater & The Levels"
+    subtitle="Professional cleaning solutions for every property type"
+    items={[
+      {
+        title: 'Residential Window Cleaning',
+        description: 'Regular window cleaning for homes across Bridgwater, Burnham-on-Sea, and surrounding villages. Pure water system for streak-free results.',
+        icon: 'tabler:home',
+      },
+      {
+        title: 'Commercial Window Cleaning',
+        description: 'Reliable service for Bridgwater businesses, shops, and offices. Flexible scheduling to minimize disruption.',
+        icon: 'tabler:building',
+      },
+      {
+        title: 'Gutter Clearing',
+        description: 'Essential gutter maintenance for Somerset Levels properties. Prevent water damage with our professional clearing service.',
+        icon: 'tabler:tool',
+      },
+      {
+        title: 'Conservatory Cleaning',
+        description: 'Complete conservatory roof and frame cleaning. Perfect for coastal properties dealing with salt spray.',
+        icon: 'tabler:home-2',
+      },
+    ]}
+  />
+
+  <!-- Local Testimonials -->
+  <Testimonials
+    title="What Bridgwater & Burnham Customers Say"
+    testimonials={[
+      {
+        testimonial: `Brilliant service! They've been cleaning our windows in Bridgwater for 2 years now. Always reliable, even during carnival season when the town is busy.`,
+        name: 'Sarah Mitchell',
+        job: 'Bridgwater Town Centre',
+      },
+      {
+        testimonial: `Living right on Burnham seafront, our windows get covered in salt spray. Somerset Window Cleaning keeps them crystal clear - highly recommend!`,
+        name: 'David Thompson',
+        job: 'Burnham-on-Sea',
+      },
+      {
+        testimonial: `Professional, punctual, and fairly priced. They clean several properties on our street in Highbridge. Great to have a reliable local service.`,
+        name: 'Emma Wilson',
+        job: 'Highbridge',
+      },
+    ]}
+  />
+
+  <!-- Final CTA -->
+  <CallToAction
+    actions={[
+      {
+        variant: 'primary',
+        text: 'Get Your Free Quote',
+        href: '/book-now',
+        icon: 'tabler:calendar-plus',
+      },
+    ]}
+  >
+    <Fragment slot="title">
+      Ready for Sparkling Clean Windows in <span class="text-accent">Bridgwater & The Levels?</span>
+    </Fragment>
+    <Fragment slot="subtitle">
+      Join thousands of satisfied customers across Somerset. Professional service with a 48-hour guarantee.
+    </Fragment>
+  </CallToAction>
+
+  <!-- Structured Data for Local SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "Window Cleaning Bridgwater",
+    "provider": {
+      "@type": "LocalBusiness",
+      "name": "Somerset Window Cleaning",
+      "telephone": "01458860339",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Street",
+        "addressRegion": "Somerset",
+        "postalCode": "BA16 0HW",
+        "addressCountry": "GB"
+      }
+    },
+    "areaServed": [
+      {
+        "@type": "City",
+        "name": "Bridgwater",
+        "containedInPlace": {
+          "@type": "AdministrativeArea",
+          "name": "Somerset"
+        }
+      },
+      {
+        "@type": "City", 
+        "name": "Burnham-on-Sea",
+        "containedInPlace": {
+          "@type": "AdministrativeArea",
+          "name": "Somerset"
+        }
+      },
+      {
+        "@type": "City",
+        "name": "Highbridge",
+        "containedInPlace": {
+          "@type": "AdministrativeArea",
+          "name": "Somerset"
+        }
+      }
+    ],
+    "url": "https://somersetwindowcleaning.co.uk/areas/bridgwater",
+    "description": "Professional window cleaning service in Bridgwater, Burnham-on-Sea, Highbridge and the Somerset Levels. Reliable service with 48-hour guarantee."
+  })} />
+</Layout>

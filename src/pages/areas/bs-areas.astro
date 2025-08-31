@@ -1,0 +1,246 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import Hero from '~/components/widgets/Hero.astro';
+import Features from '~/components/widgets/Features.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
+
+const metadata = {
+  title: 'Window Cleaning BS Postcodes | North Somerset Areas | Somerset Window Cleaning',
+  description: 'Professional window cleaning across all BS postcode areas including Weston-super-Mare, Clevedon, Portishead, Burnham-on-Sea. Covering BS21, BS23-BS29, BS39, BS40, BS49.',
+};
+
+// BS postcode areas we cover
+const bsPostcodes = [
+  { code: 'BS21', area: 'Clevedon, Walton-in-Gordano', major: true },
+  { code: 'BS23', area: 'Weston-super-Mare (North), Uphill', major: true },
+  { code: 'BS24', area: 'Weston-super-Mare (South), Hutton', major: true },
+  { code: 'BS25', area: 'Winscombe, Churchill, Sandford', major: false },
+  { code: 'BS26', area: 'Axbridge, Cheddar, Draycott', major: true },
+  { code: 'BS27', area: 'Cheddar, Wedmore, Theale', major: true },
+  { code: 'BS28', area: 'Wedmore, Mark, Blackford', major: false },
+  { code: 'BS29', area: 'Banwell, Locking, Weston Villages', major: false },
+  { code: 'BS39', area: 'Blagdon, Ubley, Compton Martin', major: false },
+  { code: 'BS40', area: 'Chew Valley, Chew Magna, Chew Stoke', major: false },
+  { code: 'BS49', area: 'Portishead, Portbury, Easton-in-Gordano', major: true },
+];
+---
+
+<Layout metadata={metadata}>
+  <!-- Hero Widget -->
+  <Hero
+    actions={[
+      { variant: 'primary', text: 'Book Now', href: '/book-now', icon: 'tabler:calendar-plus' },
+      { text: 'Call 01458 860339', href: 'tel:01458860339', icon: 'tabler:phone' },
+    ]}
+  >
+    <Fragment slot="title">
+      Window Cleaning <span class="text-accent">BS Postcode Areas</span>
+    </Fragment>
+    <Fragment slot="subtitle">
+      Professional window cleaning across North Somerset BS postcodes. From coastal Weston-super-Mare to the Mendip villages, we cover BS21 through BS49.
+    </Fragment>
+  </Hero>
+
+  <!-- Coverage Overview -->
+  <WidgetWrapper>
+    <section class="py-12 max-w-7xl mx-auto px-4">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold mb-4">BS Postcode Coverage</h2>
+        <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+          Our BS area coverage spans North Somerset's coastal towns, Mendip villages, and rural communities, bringing professional window cleaning to every corner of the region.
+        </p>
+      </div>
+
+      <!-- Major Towns Grid -->
+      <div class="mb-12">
+        <h3 class="text-2xl font-bold text-center mb-6">Major Towns We Serve</h3>
+        <div class="grid md:grid-cols-3 lg:grid-cols-4 gap-4 max-w-5xl mx-auto">
+          <div class="bg-primary/10 text-center p-4 rounded-lg border border-primary/20">
+            <h4 class="font-bold text-lg">Weston-super-Mare</h4>
+            <p class="text-sm text-gray-600">BS23-24 • Seaside resort</p>
+          </div>
+          <div class="bg-primary/10 text-center p-4 rounded-lg border border-primary/20">
+            <h4 class="font-bold text-lg">Clevedon</h4>
+            <p class="text-sm text-gray-600">BS21 • Victorian seaside</p>
+          </div>
+          <div class="bg-primary/10 text-center p-4 rounded-lg border border-primary/20">
+            <h4 class="font-bold text-lg">Portishead</h4>
+            <p class="text-sm text-gray-600">BS49 • Marina town</p>
+          </div>
+          <div class="bg-primary/10 text-center p-4 rounded-lg border border-primary/20">
+            <h4 class="font-bold text-lg">Cheddar</h4>
+            <p class="text-sm text-gray-600">BS26-27 • Gorge village</p>
+          </div>
+          <div class="bg-primary/10 text-center p-4 rounded-lg border border-primary/20">
+            <h4 class="font-bold text-lg">Axbridge</h4>
+            <p class="text-sm text-gray-600">BS26 • Historic town</p>
+          </div>
+          <div class="bg-primary/10 text-center p-4 rounded-lg border border-primary/20">
+            <h4 class="font-bold text-lg">Wedmore</h4>
+            <p class="text-sm text-gray-600">BS28 • Isle village</p>
+          </div>
+          <div class="bg-primary/10 text-center p-4 rounded-lg border border-primary/20">
+            <h4 class="font-bold text-lg">Winscombe</h4>
+            <p class="text-sm text-gray-600">BS25 • Mendip village</p>
+          </div>
+          <div class="bg-primary/10 text-center p-4 rounded-lg border border-primary/20">
+            <h4 class="font-bold text-lg">Banwell</h4>
+            <p class="text-sm text-gray-600">BS29 • Growing village</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Complete Postcode List -->
+      <div class="bg-gray-50 rounded-xl p-8">
+        <h3 class="text-2xl font-bold mb-6">All BS Postcodes We Cover</h3>
+        <div class="grid md:grid-cols-2 gap-6">
+          {bsPostcodes.map((postcode) => (
+            <div class={`flex items-start space-x-3 p-3 rounded-lg ${postcode.major ? 'bg-white border border-primary/20' : ''}`}>
+              <span class={`font-bold ${postcode.major ? 'text-primary' : 'text-gray-700'} min-w-[50px]`}>
+                {postcode.code}
+              </span>
+              <div class="flex-1">
+                <p class="text-gray-700">{postcode.area}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Service Info -->
+      <div class="grid lg:grid-cols-2 gap-12 mt-12">
+        <div>
+          <h3 class="text-2xl font-bold mb-6">Why Choose Us for BS Areas?</h3>
+          <div class="space-y-4 text-gray-600">
+            <p>Our teams are experienced with North Somerset's unique challenges - from salt spray on coastal properties to rural access in Mendip villages. We schedule our routes efficiently to serve all BS postcodes regularly.</p>
+            
+            <p>Whether you're in a seafront apartment in Weston, a period property in Clevedon, or a rural cottage in the Chew Valley, we have the expertise and equipment to keep your windows sparkling.</p>
+
+            <div class="bg-blue-50 rounded-lg p-4">
+              <h4 class="font-semibold text-blue-900 mb-2">BS Area Expertise</h4>
+              <ul class="text-sm text-blue-800 space-y-1">
+                <li>• Coastal property specialists (salt spray removal)</li>
+                <li>• High-rise apartment experience (Portishead Marina)</li>
+                <li>• Period property care (Victorian Clevedon)</li>
+                <li>• Rural access capability (Mendip villages)</li>
+                <li>• Weather-flexible scheduling (coastal conditions)</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="bg-white rounded-lg shadow-lg p-6 border border-gray-100">
+            <h3 class="text-xl font-bold mb-4">Quick Quote Calculator</h3>
+            <p class="text-gray-600 mb-4">Typical prices for BS postcode areas:</p>
+            <div class="space-y-3">
+              <div class="flex justify-between items-center py-2 border-b">
+                <span>Seafront apartment</span>
+                <span class="font-semibold text-primary">From £15</span>
+              </div>
+              <div class="flex justify-between items-center py-2 border-b">
+                <span>3-bed semi-detached</span>
+                <span class="font-semibold text-primary">From £22</span>
+              </div>
+              <div class="flex justify-between items-center py-2 border-b">
+                <span>4-bed detached</span>
+                <span class="font-semibold text-primary">From £32</span>
+              </div>
+              <div class="flex justify-between items-center py-2 border-b">
+                <span>Large coastal property</span>
+                <span class="font-semibold text-primary">From £45</span>
+              </div>
+            </div>
+            <p class="text-sm text-gray-500 mt-3">* Coastal properties may require more frequent cleaning</p>
+            <div class="mt-6 space-y-3">
+              <a href="/book-now" class="block w-full text-center bg-primary text-white font-bold py-3 px-6 rounded-lg hover:bg-primary/90 transition-colors">
+                Get Your Exact Quote
+              </a>
+              <a href="tel:01458860339" class="block w-full text-center bg-gray-100 text-gray-800 font-bold py-3 px-6 rounded-lg hover:bg-gray-200 transition-colors">
+                Call 01458 860339
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </WidgetWrapper>
+
+  <!-- Services -->
+  <Features
+    id="bs-services"
+    title="Services Available in BS Postcodes"
+    subtitle="Complete exterior cleaning solutions across North Somerset"
+    items={[
+      {
+        title: 'Residential Window Cleaning',
+        description: 'Regular service for homes from seafront apartments to rural cottages. Salt-resistant cleaning for coastal properties.',
+        icon: 'tabler:home',
+      },
+      {
+        title: 'Commercial Window Cleaning',
+        description: 'Reliable service for shops, hotels, and businesses. Early morning and weekend slots available.',
+        icon: 'tabler:building',
+      },
+      {
+        title: 'Gutter Clearing',
+        description: 'Essential for coastal properties dealing with sand and debris. High-reach vacuum system for safe clearing.',
+        icon: 'tabler:tool',
+      },
+      {
+        title: 'Specialist Services',
+        description: 'Solar panel cleaning, conservatory roofs, fascia & soffits - everything to maintain your property exterior.',
+        icon: 'tabler:sparkles',
+      },
+    ]}
+  />
+
+  <!-- Final CTA -->
+  <CallToAction
+    actions={[
+      {
+        variant: 'primary',
+        text: 'Book Your BS Postcode',
+        href: '/book-now',
+        icon: 'tabler:calendar-plus',
+      },
+    ]}
+  >
+    <Fragment slot="title">
+      Ready for <span class="text-accent">Crystal Clear Windows</span> in Your BS Postcode?
+    </Fragment>
+    <Fragment slot="subtitle">
+      Join thousands of satisfied customers across North Somerset. Professional service with a 48-hour guarantee.
+    </Fragment>
+  </CallToAction>
+
+  <!-- Structured Data for Local SEO -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "Window Cleaning BS Postcodes",
+    "provider": {
+      "@type": "LocalBusiness",
+      "name": "Somerset Window Cleaning",
+      "telephone": "01458860339",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Street",
+        "addressRegion": "Somerset",
+        "postalCode": "BA16 0HW",
+        "addressCountry": "GB"
+      }
+    },
+    "areaServed": [
+      "BS21", "BS23", "BS24", "BS25", "BS26", "BS27", "BS28", "BS29", 
+      "BS39", "BS40", "BS49"
+    ].map(postcode => ({
+      "@type": "PostalAddress",
+      "postalCode": postcode,
+      "addressCountry": "GB"
+    })),
+    "url": "https://somersetwindowcleaning.co.uk/areas/bs-areas",
+    "description": "Professional window cleaning service covering all BS postcode areas in North Somerset."
+  })} />
+</Layout>

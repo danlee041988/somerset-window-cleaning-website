@@ -22,12 +22,10 @@ export const headerData = {
       text: 'Areas',
       href: getPermalink('/areas'),
       links: [
-        { text: 'All Coverage Areas', href: getPermalink('/areas') },
-        { text: 'Glastonbury (BA6)', href: getPermalink('/areas/glastonbury') },
-        { text: 'Wells (BA5)', href: getPermalink('/areas/wells') },
-        { text: 'Street (BA16)', href: getPermalink('/areas/street') },
-        { text: 'Taunton (TA)', href: getPermalink('/areas/taunton') },
-        { text: 'Yeovil (BA20-22)', href: getPermalink('/areas/yeovil') },
+        { text: 'All Service Areas', href: getPermalink('/areas') },
+        { text: 'BA Postcodes', href: getPermalink('/areas/ba-areas') },
+        { text: 'BS Postcodes', href: getPermalink('/areas/bs-areas') },
+        { text: 'TA Postcodes', href: getPermalink('/areas/ta-areas') },
       ],
     },
     {
