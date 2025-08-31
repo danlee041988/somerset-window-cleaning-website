@@ -9,6 +9,8 @@ import Stats from '~/components/widgets/Stats.astro';
 import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
 import OptimizedImage from '~/components/common/OptimizedImage.astro';
 import LiveReviews from '~/components/widgets/LiveReviews.astro';
+import ServiceSchema from '~/components/seo/ServiceSchema.astro';
+import ReviewsSchema from '~/components/seo/ReviewsSchema.astro';
 
 const metadata = {
   title: 'Professional Window Cleaning Somerset | Pure Water System | Somerset Window Cleaning',
@@ -21,8 +23,9 @@ const metadata = {
   <ServiceHero
     serviceType="window"
     actions={[
-      { variant: 'primary', text: 'Book Now', href: '/book-now', icon: 'tabler:calendar-plus', class: 'text-white' },
-      { text: 'Call 01458 860339', href: 'tel:01458860339', icon: 'tabler:phone' },
+      { variant: 'primary', text: 'Book Now', href: '/book-now', icon: 'tabler:calendar-plus', class: 'text-white text-lg px-8 py-4 animate-pulse shadow-2xl transform hover:scale-110 transition-all duration-300' },
+      { variant: 'secondary', text: 'Call 01458 860339', href: 'tel:01458860339', icon: 'tabler:phone', class: 'text-white text-lg px-6 py-4 border-2 border-primary hover:bg-primary/15 transition-all duration-300' },
+      { variant: 'whatsapp', text: 'WhatsApp', href: 'https://wa.me/447415526331?text=Hi%20Somerset%20Window%20Cleaning%2C%20please%20can%20I%20get%20a%20quote%20for%20window%20cleaning%20at%20%5Byour%20address%5D', icon: 'tabler:brand-whatsapp', class: 'text-white text-lg px-6 py-4', target: '_blank' },
     ]}
   >
     <Fragment slot="title">
@@ -147,5 +150,53 @@ const metadata = {
 
   <!-- Google Reviews -->
   <LiveReviews />
+  
+  <!-- Service-specific structured data -->
+  <ServiceSchema
+    serviceName="Professional Window Cleaning"
+    serviceDescription="Professional residential and commercial window cleaning using pure water reach-and-wash system for streak-free results. Includes frames and sills."
+    priceRange="£15-£50"
+    minPrice={15}
+    maxPrice={50}
+    duration="PT30M"
+    serviceType="Window Cleaning"
+    features={[
+      'Pure Water System',
+      'Streak-Free Results',
+      'Frames & Sills Included',
+      'Eco-Friendly Cleaning',
+      '48-Hour Guarantee',
+      'No Contracts Required'
+    ]}
+    certifications={[
+      'Fully Insured',
+      'Public Liability £2M',
+      'Working at Height Certified',
+      'Professional Equipment'
+    ]}
+    faqs={[
+      {
+        question: 'How often should I have my windows cleaned?',
+        answer: 'We recommend cleaning residential windows every 4-8 weeks and commercial windows every 2-4 weeks to maintain clarity and prevent damage from dirt buildup.'
+      },
+      {
+        question: 'Do I need to be home during the window cleaning?',
+        answer: 'No, you don\'t need to be home for external window cleaning. We can clean the outside of your windows while you\'re out. For internal cleaning, we\'ll arrange a convenient time.'
+      },
+      {
+        question: 'What is the pure water system?',
+        answer: 'Our pure water system uses deionized water that dries without leaving spots or streaks. It\'s eco-friendly, requires no chemicals, and allows us to clean windows safely from the ground.'
+      }
+    ]}
+  />
+  
+  <!-- Reviews structured data -->
+  <ReviewsSchema
+    itemReviewed={{
+      type: 'Service',
+      name: 'Window Cleaning Service',
+      description: 'Professional window cleaning service in Somerset'
+    }}
+  />
 
 </Layout>

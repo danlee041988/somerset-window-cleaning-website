@@ -1,0 +1,324 @@
+---
+/**
+ * Error Announcer Component
+ * 
+ * Provides accessible error announcements for forms and interactive elements
+ * WCAG 2.1 AA compliant with proper ARIA live regions
+ */
+
+export interface Props {
+  id?: string;
+  class?: string;
+}
+
+const { id = 'error-announcer', class: className = '' } = Astro.props;
+---
+
+<!-- Screen reader announcement region -->
+<div 
+  id={id}
+  class={`sr-only ${className}`}
+  aria-live="polite"
+  aria-atomic="true"
+  aria-relevant="additions text"
+  role="status"
+>
+  <!-- Error messages will be dynamically inserted here -->
+</div>
+
+<!-- Visual error summary for forms -->
+<div 
+  id={`${id}-summary`}
+  class="error-summary hidden"
+  role="alert"
+  aria-labelledby={`${id}-summary-heading`}
+  tabindex="-1"
+>
+  <h2 id={`${id}-summary-heading`} class="error-summary-heading">
+    There are errors in your form
+  </h2>
+  <p class="error-summary-description">
+    Please review and correct the following errors:
+  </p>
+  <ul id={`${id}-summary-list`} class="error-summary-list">
+    <!-- Error links will be dynamically inserted here -->
+  </ul>
+</div>
+
+<style>
+  /* Screen reader only styles */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+  
+  /* Error summary styles */
+  .error-summary {
+    background-color: #fee;
+    border: 2px solid #dc2626;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    color: #991b1b;
+  }
+  
+  .error-summary:focus {
+    outline: 3px solid #3b82f6;
+    outline-offset: 2px;
+  }
+  
+  .error-summary-heading {
+    font-size: 1.125rem;
+    font-weight: 700;
+    margin: 0 0 0.5rem 0;
+    color: #dc2626;
+  }
+  
+  .error-summary-description {
+    margin: 0 0 0.75rem 0;
+    font-size: 0.95rem;
+  }
+  
+  .error-summary-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .error-summary-list li {
+    margin-bottom: 0.5rem;
+  }
+  
+  .error-summary-list a {
+    color: #dc2626;
+    text-decoration: underline;
+    font-weight: 500;
+  }
+  
+  .error-summary-list a:hover {
+    text-decoration: none;
+  }
+  
+  .error-summary-list a:focus {
+    outline: 2px solid #3b82f6;
+    outline-offset: 2px;
+    text-decoration: none;
+  }
+  
+  /* Hidden state */
+  .hidden {
+    display: none;
+  }
+  
+  /* Dark mode support */
+  @media (prefers-color-scheme: dark) {
+    .error-summary {
+      background-color: #7f1d1d;
+      border-color: #ef4444;
+      color: #fecaca;
+    }
+    
+    .error-summary-heading {
+      color: #fca5a5;
+    }
+    
+    .error-summary-list a {
+      color: #fca5a5;
+    }
+  }
+</style>
+
+<script>
+  class ErrorAnnouncer {
+    constructor() {
+      this.announcer = document.getElementById('error-announcer');
+      this.summary = document.getElementById('error-announcer-summary');
+      this.summaryList = document.getElementById('error-announcer-summary-list');
+      this.errors = new Map();
+      
+      // Set up global error announcement handler
+      this.setupGlobalHandler();
+    }
+    
+    setupGlobalHandler() {
+      // Listen for custom error events
+      document.addEventListener('form:error', (e) => {
+        const { fieldId, message, fieldLabel } = e.detail;
+        this.announceError(fieldId, message, fieldLabel);
+      });
+      
+      document.addEventListener('form:errors-cleared', () => {
+        this.clearAllErrors();
+      });
+      
+      document.addEventListener('form:validation-complete', (e) => {
+        const { errors } = e.detail;
+        if (errors && errors.length > 0) {
+          this.showErrorSummary(errors);
+        } else {
+          this.hideErrorSummary();
+        }
+      });
+    }
+    
+    announceError(fieldId, message, fieldLabel) {
+      // Store error
+      this.errors.set(fieldId, { message, fieldLabel });
+      
+      // Announce to screen readers
+      if (this.announcer) {
+        // Clear previous announcement
+        this.announcer.textContent = '';
+        
+        // Use setTimeout to ensure screen readers pick up the change
+        setTimeout(() => {
+          this.announcer.textContent = `Error: ${fieldLabel || fieldId}: ${message}`;
+        }, 100);
+      }
+      
+      // Update visual error for the field
+      this.updateFieldError(fieldId, message);
+    }
+    
+    updateFieldError(fieldId, message) {
+      const field = document.getElementById(fieldId);
+      const errorEl = document.getElementById(`${fieldId}-error`);
+      
+      if (field && errorEl) {
+        // Update error message
+        errorEl.textContent = message;
+        errorEl.classList.remove('hidden');
+        
+        // Update field state
+        field.setAttribute('aria-invalid', 'true');
+        field.setAttribute('aria-describedby', `${fieldId}-error`);
+        
+        // Add visual error state
+        field.classList.add('error');
+      }
+    }
+    
+    clearError(fieldId) {
+      // Remove from errors map
+      this.errors.delete(fieldId);
+      
+      // Clear visual error
+      const field = document.getElementById(fieldId);
+      const errorEl = document.getElementById(`${fieldId}-error`);
+      
+      if (field && errorEl) {
+        errorEl.textContent = '';
+        errorEl.classList.add('hidden');
+        field.removeAttribute('aria-invalid');
+        field.classList.remove('error');
+      }
+      
+      // Update summary if needed
+      if (this.errors.size === 0) {
+        this.hideErrorSummary();
+      }
+    }
+    
+    clearAllErrors() {
+      this.errors.clear();
+      
+      // Clear announcer
+      if (this.announcer) {
+        this.announcer.textContent = '';
+      }
+      
+      // Hide summary
+      this.hideErrorSummary();
+      
+      // Clear all field errors
+      document.querySelectorAll('[aria-invalid="true"]').forEach(field => {
+        field.removeAttribute('aria-invalid');
+        field.classList.remove('error');
+      });
+      
+      document.querySelectorAll('.error-message').forEach(errorEl => {
+        errorEl.textContent = '';
+        errorEl.classList.add('hidden');
+      });
+    }
+    
+    showErrorSummary(errors) {
+      if (!this.summary || !this.summaryList) return;
+      
+      // Clear existing summary
+      this.summaryList.innerHTML = '';
+      
+      // Add error links
+      errors.forEach(({ fieldId, message, fieldLabel }) => {
+        const li = document.createElement('li');
+        const link = document.createElement('a');
+        link.href = `#${fieldId}`;
+        link.textContent = `${fieldLabel || fieldId}: ${message}`;
+        
+        // Focus field on click
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          const field = document.getElementById(fieldId);
+          if (field) {
+            field.focus();
+            field.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }
+        });
+        
+        li.appendChild(link);
+        this.summaryList.appendChild(li);
+      });
+      
+      // Show summary
+      this.summary.classList.remove('hidden');
+      
+      // Announce to screen readers
+      if (this.announcer) {
+        const errorCount = errors.length;
+        const pluralText = errorCount === 1 ? 'error' : 'errors';
+        this.announcer.textContent = `There ${errorCount === 1 ? 'is' : 'are'} ${errorCount} ${pluralText} in the form. Please review and correct them.`;
+      }
+      
+      // Focus summary for keyboard users
+      setTimeout(() => {
+        this.summary.focus();
+        this.summary.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 100);
+    }
+    
+    hideErrorSummary() {
+      if (this.summary) {
+        this.summary.classList.add('hidden');
+      }
+    }
+  }
+  
+  // Initialize error announcer when DOM is ready
+  document.addEventListener('DOMContentLoaded', () => {
+    window.errorAnnouncer = new ErrorAnnouncer();
+  });
+  
+  // Helper function for forms to use
+  window.announceFormError = (fieldId, message, fieldLabel) => {
+    document.dispatchEvent(new CustomEvent('form:error', {
+      detail: { fieldId, message, fieldLabel }
+    }));
+  };
+  
+  window.announceFormValidation = (errors) => {
+    document.dispatchEvent(new CustomEvent('form:validation-complete', {
+      detail: { errors }
+    }));
+  };
+  
+  window.clearFormErrors = () => {
+    document.dispatchEvent(new CustomEvent('form:errors-cleared'));
+  };
+</script>

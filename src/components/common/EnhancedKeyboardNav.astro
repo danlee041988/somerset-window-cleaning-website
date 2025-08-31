@@ -1,0 +1,423 @@
+---
+/**
+ * Enhanced Keyboard Navigation Component
+ * 
+ * Provides comprehensive keyboard navigation support:
+ * - Focus trap for modals/dialogs
+ * - Roving tabindex for menu navigation
+ * - Keyboard shortcuts
+ * - Focus indicators
+ */
+---
+
+<style>
+  /* Enhanced focus indicators */
+  :focus-visible {
+    outline: 3px solid #3b82f6 !important;
+    outline-offset: 2px !important;
+    border-radius: 0.25rem;
+  }
+  
+  /* High contrast mode support */
+  @media (prefers-contrast: high) {
+    :focus-visible {
+      outline: 4px solid currentColor !important;
+      outline-offset: 4px !important;
+    }
+  }
+  
+  /* Remove default browser focus styles */
+  :focus:not(:focus-visible) {
+    outline: none;
+  }
+  
+  /* Skip links container */
+  .skip-links {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+  }
+  
+  .skip-links a {
+    position: absolute;
+    left: -9999px;
+    top: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    background-color: #dc2626;
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: 0 0.5rem 0.5rem 0;
+  }
+  
+  .skip-links a:focus {
+    left: 0;
+  }
+  
+  /* Focus trap indicator */
+  .focus-trap-active {
+    position: relative;
+  }
+  
+  .focus-trap-active::before {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    border: 2px dashed #3b82f6;
+    border-radius: 0.5rem;
+    pointer-events: none;
+    opacity: 0.5;
+  }
+  
+  /* Keyboard hint overlay */
+  .keyboard-hints {
+    position: fixed;
+    bottom: 1rem;
+    right: 1rem;
+    background-color: rgba(0, 0, 0, 0.9);
+    color: white;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+    max-width: 300px;
+    z-index: 9998;
+    display: none;
+  }
+  
+  .keyboard-hints.show {
+    display: block;
+  }
+  
+  .keyboard-hints h3 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1rem;
+    font-weight: 600;
+  }
+  
+  .keyboard-hints ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .keyboard-hints li {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.25rem;
+  }
+  
+  .keyboard-hints kbd {
+    background-color: #374151;
+    padding: 0.125rem 0.375rem;
+    border-radius: 0.25rem;
+    font-family: monospace;
+    font-size: 0.875rem;
+    border: 1px solid #4b5563;
+  }
+</style>
+
+<!-- Keyboard hints overlay -->
+<div class="keyboard-hints" id="keyboard-hints" role="complementary" aria-label="Keyboard shortcuts">
+  <h3>Keyboard Shortcuts</h3>
+  <ul>
+    <li><kbd>Tab</kbd> Navigate forward</li>
+    <li><kbd>Shift + Tab</kbd> Navigate backward</li>
+    <li><kbd>Enter</kbd> Activate button/link</li>
+    <li><kbd>Space</kbd> Check/uncheck boxes</li>
+    <li><kbd>Esc</kbd> Close dialogs</li>
+    <li><kbd>?</kbd> Show/hide this help</li>
+  </ul>
+</div>
+
+<script>
+  class EnhancedKeyboardNav {
+    constructor() {
+      this.focusTrap = null;
+      this.lastFocusedElement = null;
+      this.keyboardHints = document.getElementById('keyboard-hints');
+      
+      this.init();
+    }
+    
+    init() {
+      // Set up global keyboard shortcuts
+      this.setupKeyboardShortcuts();
+      
+      // Enhance tab navigation
+      this.enhanceTabNavigation();
+      
+      // Set up focus trap for modals
+      this.setupFocusTrap();
+      
+      // Add roving tabindex to menus
+      this.setupRovingTabindex();
+      
+      // Monitor focus for analytics
+      this.monitorFocus();
+    }
+    
+    setupKeyboardShortcuts() {
+      document.addEventListener('keydown', (e) => {
+        // Show/hide keyboard hints with ?
+        if (e.key === '?' && !this.isInInput(e.target)) {
+          e.preventDefault();
+          this.toggleKeyboardHints();
+        }
+        
+        // Close modals/dialogs with Escape
+        if (e.key === 'Escape') {
+          this.closeActiveModal();
+        }
+        
+        // Quick navigation shortcuts
+        if (e.ctrlKey || e.metaKey) {
+          switch(e.key) {
+            case '1': // Go to home
+              e.preventDefault();
+              window.location.href = '/';
+              break;
+            case '2': // Go to services
+              e.preventDefault();
+              window.location.href = '/services';
+              break;
+            case '3': // Go to booking
+              e.preventDefault();
+              window.location.href = '/book-now';
+              break;
+            case '4': // Go to contact
+              e.preventDefault();
+              window.location.href = '/contact';
+              break;
+          }
+        }
+      });
+    }
+    
+    enhanceTabNavigation() {
+      // Add visible focus indicator to body when tab is pressed
+      let isTabbing = false;
+      
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Tab') {
+          isTabbing = true;
+          document.body.classList.add('keyboard-nav');
+        }
+      });
+      
+      document.addEventListener('mousedown', () => {
+        isTabbing = false;
+        document.body.classList.remove('keyboard-nav');
+      });
+      
+      // Improve tab order for better flow
+      this.optimizeTabOrder();
+    }
+    
+    optimizeTabOrder() {
+      // Find all interactive elements
+      const interactiveElements = document.querySelectorAll(
+        'a, button, input, textarea, select, [tabindex]:not([tabindex="-1"])'
+      );
+      
+      // Group by section
+      const sections = new Map();
+      
+      interactiveElements.forEach(el => {
+        const section = el.closest('section, header, footer, main, aside');
+        if (section) {
+          if (!sections.has(section)) {
+            sections.set(section, []);
+          }
+          sections.get(section).push(el);
+        }
+      });
+      
+      // Ensure logical tab order within sections
+      sections.forEach((elements, section) => {
+        elements.sort((a, b) => {
+          const aRect = a.getBoundingClientRect();
+          const bRect = b.getBoundingClientRect();
+          
+          // Sort by vertical position first, then horizontal
+          if (Math.abs(aRect.top - bRect.top) > 10) {
+            return aRect.top - bRect.top;
+          }
+          return aRect.left - bRect.left;
+        });
+      });
+    }
+    
+    setupFocusTrap() {
+      // Listen for modal/dialog open events
+      document.addEventListener('modal:open', (e) => {
+        const modal = e.detail.modal;
+        if (modal) {
+          this.activateFocusTrap(modal);
+        }
+      });
+      
+      document.addEventListener('modal:close', () => {
+        this.deactivateFocusTrap();
+      });
+    }
+    
+    activateFocusTrap(container) {
+      this.lastFocusedElement = document.activeElement;
+      this.focusTrap = container;
+      container.classList.add('focus-trap-active');
+      
+      // Find all focusable elements
+      const focusableElements = container.querySelectorAll(
+        'a[href], button, textarea, input, select, [tabindex]:not([tabindex="-1"])'
+      );
+      
+      const firstFocusable = focusableElements[0];
+      const lastFocusable = focusableElements[focusableElements.length - 1];
+      
+      // Focus first element
+      if (firstFocusable) {
+        firstFocusable.focus();
+      }
+      
+      // Trap focus
+      container.addEventListener('keydown', (e) => {
+        if (e.key === 'Tab') {
+          if (e.shiftKey && document.activeElement === firstFocusable) {
+            e.preventDefault();
+            lastFocusable.focus();
+          } else if (!e.shiftKey && document.activeElement === lastFocusable) {
+            e.preventDefault();
+            firstFocusable.focus();
+          }
+        }
+      });
+    }
+    
+    deactivateFocusTrap() {
+      if (this.focusTrap) {
+        this.focusTrap.classList.remove('focus-trap-active');
+        this.focusTrap = null;
+      }
+      
+      if (this.lastFocusedElement) {
+        this.lastFocusedElement.focus();
+        this.lastFocusedElement = null;
+      }
+    }
+    
+    setupRovingTabindex() {
+      // Find all menus and lists that should have roving tabindex
+      const menus = document.querySelectorAll('[role="menu"], [role="menubar"], nav ul');
+      
+      menus.forEach(menu => {
+        const items = menu.querySelectorAll('li, [role="menuitem"]');
+        if (items.length === 0) return;
+        
+        // Set initial tabindex
+        items.forEach((item, index) => {
+          item.setAttribute('tabindex', index === 0 ? '0' : '-1');
+        });
+        
+        // Handle arrow key navigation
+        menu.addEventListener('keydown', (e) => {
+          const currentItem = document.activeElement.closest('li, [role="menuitem"]');
+          if (!currentItem) return;
+          
+          let nextItem;
+          
+          switch(e.key) {
+            case 'ArrowDown':
+            case 'ArrowRight':
+              e.preventDefault();
+              nextItem = currentItem.nextElementSibling || items[0];
+              break;
+              
+            case 'ArrowUp':
+            case 'ArrowLeft':
+              e.preventDefault();
+              nextItem = currentItem.previousElementSibling || items[items.length - 1];
+              break;
+              
+            case 'Home':
+              e.preventDefault();
+              nextItem = items[0];
+              break;
+              
+            case 'End':
+              e.preventDefault();
+              nextItem = items[items.length - 1];
+              break;
+              
+            default:
+              return;
+          }
+          
+          // Update tabindex
+          currentItem.setAttribute('tabindex', '-1');
+          nextItem.setAttribute('tabindex', '0');
+          nextItem.focus();
+        });
+      });
+    }
+    
+    monitorFocus() {
+      // Track focus for analytics and debugging
+      let focusPath = [];
+      
+      document.addEventListener('focusin', (e) => {
+        focusPath.push({
+          element: e.target.tagName,
+          id: e.target.id,
+          class: e.target.className,
+          timestamp: Date.now()
+        });
+        
+        // Keep only last 20 focus events
+        if (focusPath.length > 20) {
+          focusPath.shift();
+        }
+        
+        // Store for debugging
+        window.__focusPath = focusPath;
+      });
+    }
+    
+    toggleKeyboardHints() {
+      if (this.keyboardHints) {
+        this.keyboardHints.classList.toggle('show');
+      }
+    }
+    
+    closeActiveModal() {
+      const modal = document.querySelector('[role="dialog"]:not([hidden]), .modal.active');
+      if (modal) {
+        // Dispatch close event
+        modal.dispatchEvent(new CustomEvent('close'));
+      }
+    }
+    
+    isInInput(element) {
+      return element.matches('input, textarea, select, [contenteditable]');
+    }
+  }
+  
+  // Initialize when DOM is ready
+  document.addEventListener('DOMContentLoaded', () => {
+    window.enhancedKeyboardNav = new EnhancedKeyboardNav();
+  });
+  
+  // Announce keyboard navigation availability to screen readers
+  document.addEventListener('DOMContentLoaded', () => {
+    const announcement = document.createElement('div');
+    announcement.className = 'sr-only';
+    announcement.setAttribute('aria-live', 'polite');
+    announcement.textContent = 'Keyboard navigation is available. Press question mark for shortcuts.';
+    document.body.appendChild(announcement);
+    
+    setTimeout(() => {
+      announcement.remove();
+    }, 5000);
+  });
+</script>

@@ -19,6 +19,7 @@ import Testimonials from '~/components/widgets/Testimonials.astro';
 import LiveReviews from '~/components/widgets/LiveReviews.astro';
 import Process from '~/components/widgets/Process.astro';
 import TrustBar from '~/components/widgets/TrustBar.astro';
+import ReviewsSchema from '~/components/seo/ReviewsSchema.astro';
 
 const metadata = {
   title: 'Window Cleaning Somerset | Instant Online Quotes & Booking | Somerset Window Cleaning',
@@ -33,6 +34,8 @@ const metadata = {
   <Hero
     actions={[
       { variant: 'primary', text: 'Book Now', href: '/book-now', icon: 'tabler:calendar-plus', class: 'text-white text-lg px-8 py-4 animate-pulse shadow-2xl transform hover:scale-110 transition-all duration-300' },
+      { variant: 'secondary', text: 'Call 01458 860339', href: 'tel:01458860339', icon: 'tabler:phone', class: 'text-white text-lg px-6 py-4 border-2 border-primary hover:bg-primary/15 transition-all duration-300' },
+      { variant: 'whatsapp', text: 'WhatsApp', href: 'https://wa.me/447415526331?text=Hi%20Somerset%20Window%20Cleaning%2C%20please%20can%20I%20get%20a%20quote%20for%20window%20cleaning%20at%20%5Byour%20address%5D', icon: 'tabler:brand-whatsapp', class: 'text-white text-lg px-6 py-4', target: '_blank' },
     ]}
   >
     <Fragment slot="bg">
@@ -60,29 +63,32 @@ const metadata = {
     </Fragment>
   </Hero>
 
-  <!-- Secondary quick-contact row under hero -->
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 mt-4 intersect-once intersect-quarter motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade">
-    <div class="flex flex-col sm:flex-row items-center justify-center gap-3">
-      <!-- Call (red outline) -->
-      <a href="tel:01458860339" class="inline-flex items-center gap-2 border-2 border-primary text-white px-4 py-2 rounded-lg hover:bg-primary/15 no-underline" style="color:#fff !important">
-        <Icon name="tabler:phone" class="w-5 h-5 text-primary" />
-        <span>Call 01458 860339</span>
-      </a>
-      <!-- WhatsApp (green solid) -->
-      <a href="https://wa.me/447415526331?text=Hi%20Somerset%20Window%20Cleaning%2C%20please%20can%20I%20get%20a%20quote%20for%20window%20cleaning%20at%20%5Byour%20address%5D" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-green-600 hover:bg-green-500 text-white px-4 py-2 rounded-lg no-underline">
-        <Icon name="tabler:brand-whatsapp" class="w-5 h-5" />
-        <span>WhatsApp</span>
-      </a>
-      <!-- Contact form (white outline) -->
-      <a href="/contact#form" class="inline-flex items-center gap-2 border-2 border-white text-white px-4 py-2 rounded-lg hover:bg-white/10 no-underline" style="color:#fff !important">
-        <Icon name="tabler:edit" class="w-5 h-5" />
-        <span>Contact Form</span>
-      </a>
-    </div>
-  </div>
-
-  <!-- Trust Bar ****************** -->
-  <TrustBar />
+  <!-- Stats Bar ****************** -->
+  <Stats 
+    isDark={true}
+    stats={[
+      {
+        amount: 'Fully',
+        title: 'INSURED',
+        description: '£5M Public Liability'
+      },
+      {
+        amount: 'Online',
+        title: 'PAYMENTS',
+        description: 'Card & Direct Debit'
+      },
+      {
+        amount: '190+',
+        title: 'GOOGLE REVIEWS',
+        description: '4.9★ Rating'
+      },
+      {
+        amount: '48hr',
+        title: 'GUARANTEE',
+        description: 'Spot-free Promise'
+      },
+    ]}
+  />
 
   <!-- Services Widget *************** -->
   <Features
@@ -199,6 +205,9 @@ const metadata = {
   />
 
   <!-- Removed mid-page CTA (duplicate of contact options) -->
+  
+  <!-- Reviews structured data for homepage -->
+  <ReviewsSchema />
 </Layout>
 
 <script>

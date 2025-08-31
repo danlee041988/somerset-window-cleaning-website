@@ -1,0 +1,228 @@
+---
+/**
+ * Area Schema Component
+ * 
+ * Generates location-specific structured data for area landing pages
+ * Helps with local SEO and "near me" searches
+ */
+
+export interface Props {
+  areaName: string;
+  areaType?: 'City' | 'Town' | 'Village' | 'Region';
+  parentArea?: string;
+  postcode?: string;
+  coordinates?: { latitude: number; longitude: number };
+  nearbyAreas?: string[];
+  localPhone?: string;
+  serviceRadius?: number;
+  landmarks?: string[];
+  population?: number;
+}
+
+const {
+  areaName,
+  areaType = 'Town',
+  parentArea = 'Somerset',
+  postcode,
+  coordinates = { latitude: 51.2441, longitude: -2.7387 },
+  nearbyAreas = [],
+  localPhone = '+441458860339',
+  serviceRadius = 15,
+  landmarks = [],
+  population
+} = Astro.props;
+
+// Main area schema
+const areaSchema = {
+  "@context": "https://schema.org",
+  "@type": "Place",
+  "name": areaName,
+  "alternateName": `${areaName} ${parentArea}`,
+  "description": `Professional window cleaning services in ${areaName}, ${parentArea}. Reliable, insured, and affordable exterior cleaning for homes and businesses.`,
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": coordinates.latitude,
+    "longitude": coordinates.longitude
+  },
+  "containedInPlace": {
+    "@type": "AdministrativeArea",
+    "name": parentArea
+  },
+  ...(population && { "population": population })
+};
+
+// Service area schema
+const serviceAreaSchema = {
+  "@context": "https://schema.org",
+  "@type": "ServiceArea",
+  "name": `${areaName} Window Cleaning Service Area`,
+  "description": `Somerset Window Cleaning provides professional window cleaning services to ${areaName} and surrounding areas within ${serviceRadius} miles.`,
+  "areaServed": {
+    "@type": "GeoCircle",
+    "geoMidpoint": {
+      "@type": "GeoCoordinates",
+      "latitude": coordinates.latitude,
+      "longitude": coordinates.longitude
+    },
+    "geoRadius": `${serviceRadius}mi`
+  },
+  "provider": {
+    "@type": "LocalBusiness",
+    "name": "Somerset Window Cleaning",
+    "url": "https://www.somersetwindowcleaning.co.uk",
+    "telephone": localPhone,
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "13 Rockhaven Business Centre, Gravenchon Way",
+      "addressLocality": "Street",
+      "addressRegion": "Somerset",
+      "postalCode": "BA16 0HW",
+      "addressCountry": "GB"
+    }
+  }
+};
+
+// Local business location schema
+const localBusinessSchema = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": `Somerset Window Cleaning - ${areaName}`,
+  "description": `Professional window cleaning services serving ${areaName} and nearby areas. Fully insured, eco-friendly, and reliable.`,
+  "url": `https://www.somersetwindowcleaning.co.uk/areas/${areaName.toLowerCase().replace(/\s+/g, '-')}`,
+  "telephone": localPhone,
+  "priceRange": "££",
+  "areaServed": [
+    {
+      "@type": areaType,
+      "name": areaName,
+      ...(postcode && { "postalCode": postcode })
+    },
+    ...nearbyAreas.map(area => ({
+      "@type": "City",
+      "name": area
+    }))
+  ],
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": coordinates.latitude,
+    "longitude": coordinates.longitude
+  },
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": `Window Cleaning Services in ${areaName}`,
+    "itemListElement": [
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Residential Window Cleaning",
+          "description": `Professional window cleaning for homes in ${areaName}`
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Commercial Window Cleaning",
+          "description": `Regular window cleaning for businesses in ${areaName}`
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Gutter Cleaning",
+          "description": `Gutter clearance and cleaning services in ${areaName}`
+        }
+      }
+    ]
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.9",
+    "reviewCount": "190"
+  }
+};
+
+// Breadcrumb schema
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://www.somersetwindowcleaning.co.uk"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Service Areas",
+      "item": "https://www.somersetwindowcleaning.co.uk/areas"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": `${areaName} Window Cleaning`,
+      "item": `https://www.somersetwindowcleaning.co.uk/areas/${areaName.toLowerCase().replace(/\s+/g, '-')}`
+    }
+  ]
+};
+
+// Nearby places schema for local relevance
+const nearbyPlacesSchema = nearbyAreas.length > 0 ? {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": `Areas Near ${areaName} We Serve`,
+  "description": `Somerset Window Cleaning also provides services to these areas near ${areaName}`,
+  "numberOfItems": nearbyAreas.length,
+  "itemListElement": nearbyAreas.map((area, index) => ({
+    "@type": "ListItem",
+    "position": index + 1,
+    "item": {
+      "@type": "Place",
+      "name": area,
+      "url": `https://www.somersetwindowcleaning.co.uk/areas/${area.toLowerCase().replace(/\s+/g, '-')}`
+    }
+  }))
+} : null;
+
+// Combine all schemas
+const schemas = [
+  areaSchema,
+  serviceAreaSchema,
+  localBusinessSchema,
+  breadcrumbSchema,
+  ...(nearbyPlacesSchema ? [nearbyPlacesSchema] : [])
+];
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(schemas)} />
+
+<!-- Location-specific meta tags -->
+<meta name="geo.region" content={`GB-${parentArea.substring(0, 3).toUpperCase()}`} />
+<meta name="geo.placename" content={areaName} />
+<meta name="geo.position" content={`${coordinates.latitude};${coordinates.longitude}`} />
+<meta name="ICBM" content={`${coordinates.latitude}, ${coordinates.longitude}`} />
+
+<!-- Local business meta tags -->
+<meta property="business:contact_data:locality" content={areaName} />
+<meta property="business:contact_data:region" content={parentArea} />
+<meta property="business:contact_data:country_name" content="United Kingdom" />
+{postcode && <meta property="business:contact_data:postal_code" content={postcode} />}
+
+<!-- Service area meta tags -->
+<meta name="service:areas" content={[areaName, ...nearbyAreas].join(', ')} />
+<meta name="service:radius" content={`${serviceRadius} miles`} />
+
+<!-- Local landmarks for relevance -->
+{landmarks.length > 0 && (
+  <meta name="local:landmarks" content={landmarks.join(', ')} />
+)}
+
+<style>
+  script[type="application/ld+json"] {
+    display: none;
+  }
+</style>

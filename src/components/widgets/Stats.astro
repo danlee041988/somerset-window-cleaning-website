@@ -17,30 +17,35 @@ const {
 } = Astro.props;
 ---
 
-<WidgetWrapper id={id} isDark={isDark} containerClass={`max-w-6xl mx-auto ${classes?.container ?? ''}`} bg={bg}>
+<WidgetWrapper id={id} isDark={isDark} containerClass={`${classes?.container ?? ''}`} bg={bg}>
   <Headline title={title} subtitle={subtitle} tagline={tagline} />
-  <div class="flex flex-wrap justify-center -m-4 text-center">
-    {
-      stats &&
-        stats.map(({ amount, title, icon }) => (
-          <div class="p-4 md:w-1/4 sm:w-1/2 w-full min-w-[220px] text-center intersect-once motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade intersect-quarter transition-transform duration-300 hover:-translate-y-1">
-            {icon && (
-              <div class="flex items-center justify-center mx-auto mb-4 text-primary">
-                <Icon name={icon} class="w-10 h-10 animate-[fadeIn_0.6s_ease_forwards]" />
+  <div class="bg-black py-12 px-4">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+        {
+          stats &&
+            stats.map(({ amount, title, description }, index) => (
+              <div class="text-white group transition-transform duration-300 hover:scale-105 intersect-once motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade" style={`animation-delay: ${index * 100}ms`}>
+                {amount && (
+                  <div class="text-4xl md:text-5xl lg:text-6xl font-bold mb-2 tracking-tight">
+                    {amount}
+                    {title === 'GOOGLE RATING' && <span class="text-yellow-400">★</span>}
+                  </div>
+                )}
+                {title && (
+                  <div class="text-sm md:text-base font-medium uppercase tracking-wider text-gray-300 group-hover:text-white transition-colors">
+                    {title}
+                  </div>
+                )}
+                {description && (
+                  <div class="text-xs text-gray-500 mt-1">
+                    {description}
+                  </div>
+                )}
               </div>
-            )}
-            {amount && (
-              <div class="font-heading text-primary text-[2.6rem] font-bold dark:text-white lg:text-5xl xl:text-6xl">
-                {amount}
-              </div>
-            )}
-            {title && (
-              <div class="text-sm font-medium uppercase tracking-widest text-default lg:text-base">
-                {title}
-              </div>
-            )}
-          </div>
-        ))
-    }
+            ))
+        }
+      </div>
+    </div>
   </div>
 </WidgetWrapper>

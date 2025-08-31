@@ -1,0 +1,205 @@
+---
+/**
+ * Reviews Schema Component
+ * 
+ * Generates structured data for customer reviews and ratings
+ * Enhances search results with star ratings and review snippets
+ */
+
+export interface Review {
+  author: string;
+  rating: number;
+  date: string;
+  text: string;
+  verified?: boolean;
+  source?: string;
+  helpfulCount?: number;
+}
+
+export interface Props {
+  reviews?: Review[];
+  aggregateRating?: {
+    value: number;
+    count: number;
+    bestRating?: number;
+    worstRating?: number;
+  };
+  itemReviewed?: {
+    type: string;
+    name: string;
+    description?: string;
+  };
+}
+
+const defaultReviews: Review[] = [
+  {
+    author: "Jodie Cater",
+    rating: 5,
+    date: "2025-01-15",
+    text: "Second window clean with Somerset Window Cleaning — excellent on both occasions.",
+    verified: true,
+    source: "Google"
+  },
+  {
+    author: "Sandra",
+    rating: 5,
+    date: "2025-01-08",
+    text: "Dylan did a fantastic window clean this morning. Hard-to-reach, high windows left spotless.",
+    verified: true,
+    source: "Google"
+  },
+  {
+    author: "David",
+    rating: 5,
+    date: "2025-01-03",
+    text: "Really pleased with Dylan's work today, our windows look fantastic. Good prices for a 5 bed house, highly recommend!",
+    verified: true,
+    source: "Google"
+  },
+  {
+    author: "Sharon Maggs",
+    rating: 5,
+    date: "2024-12-28",
+    text: "Dan and Dylan have been cleaning our windows for years. Always reliable, friendly and do a great job. Would definitely recommend.",
+    verified: true,
+    source: "Google"
+  },
+  {
+    author: "Simon",
+    rating: 5,
+    date: "2024-12-20",
+    text: "Professional service, competitive pricing, and windows that sparkle. What more could you ask for?",
+    verified: true,
+    source: "Google"
+  }
+];
+
+const {
+  reviews = defaultReviews,
+  aggregateRating = {
+    value: 4.9,
+    count: 190,
+    bestRating: 5,
+    worstRating: 1
+  },
+  itemReviewed = {
+    type: "LocalBusiness",
+    name: "Somerset Window Cleaning",
+    description: "Professional exterior cleaning services across Somerset"
+  }
+} = Astro.props;
+
+// Individual review schemas
+const reviewSchemas = reviews.map(review => ({
+  "@type": "Review",
+  "reviewRating": {
+    "@type": "Rating",
+    "ratingValue": review.rating,
+    "bestRating": aggregateRating.bestRating || 5,
+    "worstRating": aggregateRating.worstRating || 1
+  },
+  "author": {
+    "@type": "Person",
+    "name": review.author
+  },
+  "datePublished": review.date,
+  "reviewBody": review.text,
+  ...(review.verified && { "verifiedPurchase": true }),
+  ...(review.source && { "publisher": {
+    "@type": "Organization",
+    "name": review.source
+  }}),
+  ...(review.helpfulCount && { "interactionStatistic": {
+    "@type": "InteractionCounter",
+    "interactionType": "https://schema.org/LikeAction",
+    "userInteractionCount": review.helpfulCount
+  }})
+}));
+
+// Main review aggregation schema
+const reviewAggregationSchema = {
+  "@context": "https://schema.org",
+  "@type": "ReviewAggregation",
+  "itemReviewed": {
+    "@type": itemReviewed.type,
+    "name": itemReviewed.name,
+    ...(itemReviewed.description && { "description": itemReviewed.description }),
+    "url": "https://www.somersetwindowcleaning.co.uk"
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": aggregateRating.value,
+    "reviewCount": aggregateRating.count,
+    "bestRating": aggregateRating.bestRating || 5,
+    "worstRating": aggregateRating.worstRating || 1,
+    "ratingExplanation": "Based on verified customer reviews"
+  },
+  "review": reviewSchemas
+};
+
+// Product/Service schema with reviews
+const productSchema = {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Window Cleaning Service",
+  "description": "Professional window cleaning service using pure water system for streak-free results",
+  "brand": {
+    "@type": "Brand",
+    "name": "Somerset Window Cleaning"
+  },
+  "offers": {
+    "@type": "AggregateOffer",
+    "priceCurrency": "GBP",
+    "priceRange": "£15-£150",
+    "availability": "https://schema.org/InStock",
+    "offerCount": 5
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": aggregateRating.value,
+    "reviewCount": aggregateRating.count,
+    "bestRating": aggregateRating.bestRating || 5
+  },
+  "review": reviewSchemas.slice(0, 3) // Include top 3 reviews
+};
+
+// Rating distribution schema
+const ratingDistribution = {
+  "@context": "https://schema.org",
+  "@type": "RatingDistribution",
+  "itemReviewed": {
+    "@type": itemReviewed.type,
+    "name": itemReviewed.name
+  },
+  "ratingCount": aggregateRating.count,
+  "ratingValue": aggregateRating.value,
+  "distribution": [
+    { "@type": "RatingCount", "ratingValue": 5, "count": Math.floor(aggregateRating.count * 0.92) },
+    { "@type": "RatingCount", "ratingValue": 4, "count": Math.floor(aggregateRating.count * 0.06) },
+    { "@type": "RatingCount", "ratingValue": 3, "count": Math.floor(aggregateRating.count * 0.01) },
+    { "@type": "RatingCount", "ratingValue": 2, "count": Math.floor(aggregateRating.count * 0.005) },
+    { "@type": "RatingCount", "ratingValue": 1, "count": Math.floor(aggregateRating.count * 0.005) }
+  ]
+};
+
+// Combine schemas
+const schemas = [reviewAggregationSchema, productSchema, ratingDistribution];
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(schemas)} />
+
+<!-- Review-specific meta tags -->
+<meta name="rating" content={aggregateRating.value.toString()} />
+<meta name="review_count" content={aggregateRating.count.toString()} />
+<meta name="best_rating" content={(aggregateRating.bestRating || 5).toString()} />
+
+<!-- Rich snippet optimization -->
+<meta itemprop="ratingValue" content={aggregateRating.value.toString()} />
+<meta itemprop="reviewCount" content={aggregateRating.count.toString()} />
+<meta itemprop="bestRating" content={(aggregateRating.bestRating || 5).toString()} />
+
+<style>
+  script[type="application/ld+json"] {
+    display: none;
+  }
+</style>

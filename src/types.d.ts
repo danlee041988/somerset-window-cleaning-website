@@ -183,11 +183,17 @@ export interface Disclaimer {
 
 // COMPONENTS
 export interface CallToAction extends Omit<HTMLAttributes<'a'>, 'slot'> {
-  variant?: 'primary' | 'secondary' | 'tertiary' | 'link';
+  variant?: 'primary' | 'secondary' | 'tertiary' | 'link' | 'whatsapp' | 'red';
   text?: string;
   icon?: string;
   classes?: Record<string, string>;
   type?: 'button' | 'submit' | 'reset';
+  ariaLabel?: string;
+  ariaPressed?: boolean | 'true' | 'false' | 'mixed';
+  ariaExpanded?: boolean | 'true' | 'false';
+  ariaControls?: string;
+  ariaHaspopup?: boolean | 'true' | 'false' | 'menu' | 'listbox' | 'tree' | 'grid' | 'dialog';
+  ariaDescribedby?: string;
 }
 
 export interface ItemGrid {

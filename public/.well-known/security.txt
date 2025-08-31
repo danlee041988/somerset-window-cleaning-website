@@ -1,0 +1,18 @@
+# Security Policy for Somerset Window Cleaning
+# Last updated: January 2025
+
+Contact: security@somersetwindowcleaning.co.uk
+Expires: 2026-01-01T00:00:00.000Z
+Preferred-Languages: en
+Canonical: https://somersetwindowcleaning.co.uk/.well-known/security.txt
+
+# Security Measures
+# - Content Security Policy (CSP) implemented
+# - HSTS enabled with preload
+# - XSS protection headers
+# - Rate limiting on all forms
+# - Input sanitization on all user inputs
+
+# Reporting Security Issues
+# Please report security vulnerabilities responsibly
+# Allow 48 hours for initial response

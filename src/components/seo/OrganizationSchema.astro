@@ -1,0 +1,278 @@
+---
+/**
+ * Organization Schema Component
+ * 
+ * Comprehensive organization/company structured data
+ * Enhances brand presence in search results and knowledge panels
+ */
+
+export interface Props {
+  showFullSchema?: boolean;
+  includeFounder?: boolean;
+  includeSocialProfiles?: boolean;
+  includeAwards?: boolean;
+}
+
+const {
+  showFullSchema = true,
+  includeFounder = true,
+  includeSocialProfiles = true,
+  includeAwards = true
+} = Astro.props;
+
+// Base organization schema
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": "https://www.somersetwindowcleaning.co.uk/#organization",
+  "name": "Somerset Window Cleaning",
+  "alternateName": ["SWC", "Somerset Window Cleaning Services"],
+  "url": "https://www.somersetwindowcleaning.co.uk",
+  "logo": {
+    "@type": "ImageObject",
+    "url": "https://www.somersetwindowcleaning.co.uk/src/assets/images/brand/logo.png",
+    "width": 200,
+    "height": 60,
+    "caption": "Somerset Window Cleaning Logo"
+  },
+  "image": [
+    {
+      "@type": "ImageObject",
+      "url": "https://www.somersetwindowcleaning.co.uk/src/assets/images/brand/team-photo.jpg",
+      "width": 1200,
+      "height": 800,
+      "caption": "Somerset Window Cleaning Team"
+    },
+    {
+      "@type": "ImageObject",
+      "url": "https://www.somersetwindowcleaning.co.uk/src/assets/images/brand/van-photo.jpg",
+      "width": 1200,
+      "height": 800,
+      "caption": "Somerset Window Cleaning Service Vehicle"
+    }
+  ],
+  "description": "Professional exterior cleaning services across Somerset. Specializing in window cleaning, gutter cleaning, conservatory cleaning, and more. Fully insured with 48-hour guarantee.",
+  "telephone": "+441458860339",
+  "email": "info@somersetwindowcleaning.co.uk",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "13 Rockhaven Business Centre, Gravenchon Way",
+    "addressLocality": "Street",
+    "addressRegion": "Somerset",
+    "postalCode": "BA16 0HW",
+    "addressCountry": "GB"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 51.2441,
+    "longitude": -2.7387
+  },
+  ...(includeFounder && {
+    "founder": {
+      "@type": "Person",
+      "name": "Dan Lee",
+      "jobTitle": "Founder & Director",
+      "image": "https://www.somersetwindowcleaning.co.uk/src/assets/images/team/dan-lee.jpg"
+    },
+    "foundingDate": "2019",
+    "foundingLocation": {
+      "@type": "Place",
+      "name": "Street, Somerset"
+    }
+  }),
+  "numberOfEmployees": {
+    "@type": "QuantitativeValue",
+    "value": 5,
+    "unitText": "employees"
+  },
+  "slogan": "Crystal-clear windows. Reliable service.",
+  "legalName": "Somerset Window Cleaning Ltd",
+  "vatID": "GB359427172",
+  "taxID": "359427172",
+  ...(includeSocialProfiles && {
+    "sameAs": [
+      "https://www.facebook.com/somersetwindowcleaning",
+      "https://www.instagram.com/somersetwindowcleaning",
+      "https://uk.linkedin.com/company/somerset-window-cleaning",
+      "https://twitter.com/SomersetWindow",
+      "https://g.page/r/CQr1XNaOScPuEAE"
+    ]
+  }),
+  "contactPoint": [
+    {
+      "@type": "ContactPoint",
+      "telephone": "+44-1458-860339",
+      "contactType": "customer service",
+      "areaServed": "GB",
+      "availableLanguage": ["English"],
+      "contactOption": ["TollFree"],
+      "hoursAvailable": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+        "opens": "08:00",
+        "closes": "18:00"
+      }
+    },
+    {
+      "@type": "ContactPoint",
+      "telephone": "+44-7415-526331",
+      "contactType": "sales",
+      "contactOption": ["WhatsApp"],
+      "areaServed": "GB",
+      "availableLanguage": ["English"]
+    }
+  ],
+  "memberOf": [
+    {
+      "@type": "Organization",
+      "name": "Federation of Window Cleaners"
+    },
+    {
+      "@type": "Organization", 
+      "name": "Somerset Business Association"
+    }
+  ],
+  ...(includeAwards && {
+    "award": [
+      {
+        "@type": "CreativeWork",
+        "name": "Best Local Service Business 2024",
+        "dateReceived": "2024-12-01",
+        "provider": {
+          "@type": "Organization",
+          "name": "Somerset Business Awards"
+        }
+      }
+    ]
+  }),
+  "knowsAbout": [
+    "Window Cleaning",
+    "Gutter Cleaning",
+    "Conservatory Cleaning", 
+    "Solar Panel Cleaning",
+    "Fascia and Soffit Cleaning",
+    "Commercial Cleaning",
+    "Pure Water Systems",
+    "Eco-Friendly Cleaning"
+  ],
+  "hasCredential": [
+    {
+      "@type": "EducationalOccupationalCredential",
+      "credentialCategory": "certification",
+      "name": "Public Liability Insurance",
+      "description": "£2 Million Coverage",
+      "expires": "2025-12-31"
+    },
+    {
+      "@type": "EducationalOccupationalCredential",
+      "credentialCategory": "certification", 
+      "name": "Working at Height Certificate",
+      "expires": "2025-06-30"
+    }
+  ],
+  "publishingPrinciples": "https://www.somersetwindowcleaning.co.uk/about#quality-standards",
+  "ethicsPolicy": "https://www.somersetwindowcleaning.co.uk/about#environmental-policy",
+  "diversityPolicy": "https://www.somersetwindowcleaning.co.uk/about#diversity"
+};
+
+// Brand schema
+const brandSchema = {
+  "@context": "https://schema.org",
+  "@type": "Brand",
+  "@id": "https://www.somersetwindowcleaning.co.uk/#brand",
+  "name": "Somerset Window Cleaning",
+  "logo": organizationSchema.logo,
+  "slogan": organizationSchema.slogan,
+  "description": "Trusted window cleaning brand serving Somerset since 2019",
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.9",
+    "reviewCount": "190"
+  }
+};
+
+// Service catalog schema
+const serviceCatalogSchema = {
+  "@context": "https://schema.org",
+  "@type": "ServiceCatalog",
+  "name": "Somerset Window Cleaning Services",
+  "provider": {
+    "@id": "https://www.somersetwindowcleaning.co.uk/#organization"
+  },
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Professional Cleaning Services",
+    "itemListElement": [
+      {
+        "@type": "Service",
+        "name": "Window Cleaning",
+        "description": "External window cleaning using pure water system"
+      },
+      {
+        "@type": "Service",
+        "name": "Gutter Cleaning",
+        "description": "Gutter clearance and cleaning with high-reach vacuum"
+      },
+      {
+        "@type": "Service",
+        "name": "Conservatory Cleaning",
+        "description": "Complete conservatory roof and frame cleaning"
+      },
+      {
+        "@type": "Service",
+        "name": "Solar Panel Cleaning",
+        "description": "Specialist solar panel cleaning to maintain efficiency"
+      },
+      {
+        "@type": "Service",
+        "name": "Fascia & Soffit Cleaning",
+        "description": "UPVC fascia and soffit restoration"
+      }
+    ]
+  }
+};
+
+// Combine schemas based on options
+const schemas = showFullSchema 
+  ? [organizationSchema, brandSchema, serviceCatalogSchema]
+  : [organizationSchema];
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(schemas)} />
+
+<!-- Organization meta tags -->
+<meta property="og:type" content="business.business" />
+<meta property="business:contact_data:street_address" content="13 Rockhaven Business Centre, Gravenchon Way" />
+<meta property="business:contact_data:locality" content="Street" />
+<meta property="business:contact_data:region" content="Somerset" />
+<meta property="business:contact_data:postal_code" content="BA16 0HW" />
+<meta property="business:contact_data:country_name" content="United Kingdom" />
+<meta property="business:contact_data:email" content="info@somersetwindowcleaning.co.uk" />
+<meta property="business:contact_data:phone_number" content="+441458860339" />
+<meta property="business:contact_data:website" content="https://www.somersetwindowcleaning.co.uk" />
+
+<!-- Business hours -->
+<meta property="business:hours:day" content="monday" />
+<meta property="business:hours:start" content="08:00" />
+<meta property="business:hours:end" content="18:00" />
+<meta property="business:hours:day" content="tuesday" />
+<meta property="business:hours:start" content="08:00" />
+<meta property="business:hours:end" content="18:00" />
+<meta property="business:hours:day" content="wednesday" />
+<meta property="business:hours:start" content="08:00" />
+<meta property="business:hours:end" content="18:00" />
+<meta property="business:hours:day" content="thursday" />
+<meta property="business:hours:start" content="08:00" />
+<meta property="business:hours:end" content="18:00" />
+<meta property="business:hours:day" content="friday" />
+<meta property="business:hours:start" content="08:00" />
+<meta property="business:hours:end" content="18:00" />
+<meta property="business:hours:day" content="saturday" />
+<meta property="business:hours:start" content="08:00" />
+<meta property="business:hours:end" content="16:00" />
+
+<style>
+  script[type="application/ld+json"] {
+    display: none;
+  }
+</style>

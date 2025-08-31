@@ -10,6 +10,12 @@ const {
   icon = '',
   class: className = '',
   type,
+  ariaLabel,
+  ariaPressed,
+  ariaExpanded,
+  ariaControls,
+  ariaHaspopup,
+  ariaDescribedby,
   ...rest
 } = Astro.props;
 
@@ -23,23 +29,43 @@ const variants = {
 };
 
 const forceWhite = variant === 'primary' || variant === 'secondary' || variant === 'whatsapp' || variant === 'red';
+
+// Generate appropriate aria-label if not provided
+const computedAriaLabel = ariaLabel || (icon && !text ? `Button with ${icon} icon` : undefined);
 ---
 
 {
   type === 'button' || type === 'submit' || type === 'reset' ? (
-    <button type={type} class={twMerge(variants[variant] || '', className)} {...rest} style={forceWhite ? 'color:#fff !important' : undefined}>
+    <button 
+      type={type} 
+      class={twMerge(variants[variant] || '', className)} 
+      aria-label={computedAriaLabel}
+      aria-pressed={ariaPressed}
+      aria-expanded={ariaExpanded}
+      aria-controls={ariaControls}
+      aria-haspopup={ariaHaspopup}
+      aria-describedby={ariaDescribedby}
+      {...rest} 
+      style={forceWhite ? 'color:#fff !important' : undefined}
+    >
       <Fragment set:html={text} />
-      {icon && <Icon name={icon} class="w-5 h-5 ml-1 -mr-1.5 rtl:mr-1 rtl:-ml-1.5 inline-block" />}
+      {icon && <Icon name={icon} class="w-5 h-5 ml-1 -mr-1.5 rtl:mr-1 rtl:-ml-1.5 inline-block" aria-hidden="true" />}
     </button>
   ) : (
     <a
       class={twMerge(variants[variant] || '', className)}
       {...(target ? { target: target, rel: 'noopener noreferrer' } : {})}
+      aria-label={computedAriaLabel}
+      aria-pressed={ariaPressed}
+      aria-expanded={ariaExpanded}
+      aria-controls={ariaControls}
+      aria-haspopup={ariaHaspopup}
+      aria-describedby={ariaDescribedby}
       {...rest}
       style={forceWhite ? 'color:#fff !important' : undefined}
     >
       <Fragment set:html={text} />
-      {icon && <Icon name={icon} class="w-5 h-5 ml-1 -mr-1.5 rtl:mr-1 rtl:-ml-1.5 inline-block" />}
+      {icon && <Icon name={icon} class="w-5 h-5 ml-1 -mr-1.5 rtl:mr-1 rtl:-ml-1.5 inline-block" aria-hidden="true" />}
     </a>
   )
 }

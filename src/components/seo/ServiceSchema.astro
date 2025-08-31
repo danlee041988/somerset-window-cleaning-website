@@ -1,0 +1,193 @@
+---
+/**
+ * Service Schema Component
+ * 
+ * Generates specialized structured data for service pages
+ * Includes pricing, availability, and service area information
+ */
+
+export interface Props {
+  serviceName: string;
+  serviceDescription: string;
+  priceRange?: string;
+  minPrice?: number;
+  maxPrice?: number;
+  duration?: string;
+  availability?: string[];
+  serviceAreas?: string[];
+  serviceType?: string;
+  certifications?: string[];
+  features?: string[];
+  faqs?: Array<{ question: string; answer: string }>;
+}
+
+const {
+  serviceName,
+  serviceDescription,
+  priceRange = '£15-£150',
+  minPrice,
+  maxPrice,
+  duration = 'PT30M',
+  availability = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+  serviceAreas = ['Somerset', 'North Somerset', 'Bath and North East Somerset'],
+  serviceType = 'Window Cleaning',
+  certifications = ['Fully Insured', 'Public Liability £2M', 'Professional Equipment'],
+  features = ['Pure Water System', 'Eco-Friendly', '48-Hour Guarantee', 'No Contracts'],
+  faqs = []
+} = Astro.props;
+
+// Service schema
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": serviceName,
+  "description": serviceDescription,
+  "provider": {
+    "@type": "LocalBusiness",
+    "name": "Somerset Window Cleaning",
+    "url": "https://www.somersetwindowcleaning.co.uk",
+    "telephone": "+441458860339",
+    "email": "info@somersetwindowcleaning.co.uk",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "13 Rockhaven Business Centre, Gravenchon Way",
+      "addressLocality": "Street",
+      "addressRegion": "Somerset",
+      "postalCode": "BA16 0HW",
+      "addressCountry": "GB"
+    },
+    "priceRange": priceRange,
+    "paymentAccepted": ["Cash", "Card", "Bank Transfer", "Direct Debit"],
+    "currenciesAccepted": "GBP"
+  },
+  "areaServed": serviceAreas.map(area => ({
+    "@type": "AdministrativeArea",
+    "name": area
+  })),
+  "availableChannel": {
+    "@type": "ServiceChannel",
+    "serviceUrl": `https://www.somersetwindowcleaning.co.uk/book-now`,
+    "servicePhone": "+441458860339",
+    "availableLanguage": {
+      "@type": "Language",
+      "name": "English"
+    }
+  },
+  "hoursAvailable": availability.map(day => ({
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": day,
+    "opens": "08:00",
+    "closes": day === "Saturday" ? "16:00" : "18:00"
+  })),
+  "offers": {
+    "@type": "AggregateOffer",
+    "priceRange": priceRange,
+    "priceCurrency": "GBP",
+    ...(minPrice && { "lowPrice": minPrice }),
+    ...(maxPrice && { "highPrice": maxPrice }),
+    "availability": "https://schema.org/InStock",
+    "validFrom": new Date().toISOString(),
+    "priceValidUntil": new Date(Date.now() + 365 * 24 * 60 * 60 * 1000).toISOString()
+  },
+  "serviceType": serviceType,
+  "termsOfService": "https://www.somersetwindowcleaning.co.uk/terms",
+  ...(duration && { "estimatedDuration": duration }),
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": `${serviceName} Options`,
+    "itemListElement": features.map((feature, index) => ({
+      "@type": "Offer",
+      "itemOffered": {
+        "@type": "Service",
+        "name": feature,
+        "description": `Included with ${serviceName} service`
+      }
+    }))
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.9",
+    "reviewCount": "190",
+    "bestRating": "5",
+    "worstRating": "1"
+  },
+  "additionalProperty": certifications.map(cert => ({
+    "@type": "PropertyValue",
+    "name": "Certification",
+    "value": cert
+  }))
+};
+
+// FAQ schema if FAQs provided
+const faqSchema = faqs.length > 0 ? {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map(faq => ({
+    "@type": "Question",
+    "name": faq.question,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": faq.answer
+    }
+  }))
+} : null;
+
+// How-to schema for service process
+const howToSchema = {
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": `How to Book ${serviceName}`,
+  "description": `Simple steps to book professional ${serviceName.toLowerCase()} with Somerset Window Cleaning`,
+  "estimatedCost": {
+    "@type": "MonetaryAmount",
+    "currency": "GBP",
+    "value": priceRange
+  },
+  "supply": [],
+  "tool": [],
+  "step": [
+    {
+      "@type": "HowToStep",
+      "name": "Get Quote",
+      "text": "Visit our website or call 01458 860339 for an instant quote",
+      "url": "https://www.somersetwindowcleaning.co.uk/book-now"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Book Service",
+      "text": "Choose your preferred date and frequency (one-off or regular)",
+      "url": "https://www.somersetwindowcleaning.co.uk/book-now"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Service Delivery",
+      "text": "Our professional team arrives on schedule and completes the service"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Payment",
+      "text": "Pay by your preferred method - cash, card, or bank transfer"
+    }
+  ],
+  "totalTime": "PT5M",
+  "performTime": duration
+};
+
+// Combine all schemas
+const schemas = [serviceSchema, howToSchema, ...(faqSchema ? [faqSchema] : [])];
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(schemas)} />
+
+<!-- Service-specific meta tags -->
+<meta name="service:name" content={serviceName} />
+<meta name="service:type" content={serviceType} />
+<meta name="service:price_range" content={priceRange} />
+<meta name="service:availability" content={availability.join(', ')} />
+<meta name="service:areas" content={serviceAreas.join(', ')} />
+
+<style>
+  script[type="application/ld+json"] {
+    display: none;
+  }
+</style>

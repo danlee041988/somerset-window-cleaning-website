@@ -1,0 +1,241 @@
+---
+/**
+ * Enhanced Metadata Component
+ * 
+ * Provides comprehensive meta tags for SEO optimization including:
+ * - Standard meta tags
+ * - Open Graph
+ * - Twitter Card
+ * - Schema.org JSON-LD
+ * - Robots directives
+ * - Canonical URLs
+ * - Language alternatives
+ */
+
+import merge from 'lodash.merge';
+import { AstroSeo } from '@astrolib/seo';
+import type { Props as AstroSeoProps } from '@astrolib/seo';
+
+import { SITE, METADATA, I18N } from 'astrowind:config';
+import type { MetaData } from '~/types';
+import { getCanonical } from '~/utils/permalinks';
+import { adaptOpenGraphImages } from '~/utils/images';
+
+export interface Props extends MetaData {
+  dontUseTitleTemplate?: boolean;
+  pageType?: 'website' | 'article' | 'product' | 'profile' | 'place';
+  publishedTime?: Date | string;
+  modifiedTime?: Date | string;
+  author?: string;
+  section?: string;
+  tags?: string[];
+  phoneNumber?: string;
+  priceRange?: string;
+  geoCoordinates?: { latitude: number; longitude: number };
+  alternateLanguages?: Array<{ lang: string; href: string }>;
+  jsonLd?: Record<string, any> | Array<Record<string, any>>;
+}
+
+const {
+  title,
+  ignoreTitleTemplate = false,
+  canonical = String(getCanonical(String(Astro.url.pathname))),
+  robots = {},
+  description,
+  openGraph = {},
+  twitter = {},
+  pageType = 'website',
+  publishedTime,
+  modifiedTime,
+  author = 'Somerset Window Cleaning',
+  section,
+  tags = [],
+  phoneNumber = '+441458860339',
+  priceRange = '££',
+  geoCoordinates = { latitude: 51.2441, longitude: -2.7387 },
+  alternateLanguages = [],
+  jsonLd,
+} = Astro.props;
+
+// Enhanced SEO properties
+const seoProps: AstroSeoProps = merge(
+  {
+    title: '',
+    titleTemplate: '%s',
+    canonical: canonical,
+    noindex: false,
+    nofollow: false,
+    description: undefined,
+    openGraph: {
+      url: canonical,
+      site_name: SITE?.name,
+      images: [],
+      locale: I18N?.language || 'en_GB',
+      type: pageType,
+    },
+    twitter: {
+      cardType: openGraph?.images?.length ? 'summary_large_image' : 'summary',
+      site: '@SomersetWindow',
+      creator: '@SomersetWindow',
+    },
+  },
+  {
+    title: METADATA?.title?.default,
+    titleTemplate: METADATA?.title?.template,
+    noindex: typeof METADATA?.robots?.index !== 'undefined' ? !METADATA.robots.index : undefined,
+    nofollow: typeof METADATA?.robots?.follow !== 'undefined' ? !METADATA.robots.follow : undefined,
+    description: METADATA?.description,
+    openGraph: METADATA?.openGraph,
+    twitter: METADATA?.twitter,
+  },
+  {
+    title: title,
+    titleTemplate: ignoreTitleTemplate ? '%s' : undefined,
+    canonical: canonical,
+    noindex: typeof robots?.index !== 'undefined' ? !robots.index : undefined,
+    nofollow: typeof robots?.follow !== 'undefined' ? !robots.follow : undefined,
+    description: description,
+    openGraph: { 
+      url: canonical, 
+      ...openGraph,
+      ...(pageType === 'article' && {
+        article: {
+          publishedTime: publishedTime ? new Date(publishedTime).toISOString() : undefined,
+          modifiedTime: modifiedTime ? new Date(modifiedTime).toISOString() : undefined,
+          author: author,
+          section: section,
+          tags: tags,
+        }
+      })
+    },
+    twitter: twitter,
+  }
+);
+
+// Default image if none provided
+const defaultImage = {
+  url: `${Astro.site}src/assets/images/brand/og-image-default.jpg`,
+  width: 1200,
+  height: 630,
+  alt: 'Somerset Window Cleaning - Professional exterior cleaning services',
+};
+
+// Ensure at least one image for Open Graph
+if (!seoProps.openGraph?.images?.length) {
+  seoProps.openGraph.images = [defaultImage];
+}
+
+// Generate article schema for blog posts
+const articleSchema = pageType === 'article' ? {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": title,
+  "description": description,
+  "author": {
+    "@type": "Organization",
+    "name": author,
+    "url": SITE?.url
+  },
+  "datePublished": publishedTime ? new Date(publishedTime).toISOString() : new Date().toISOString(),
+  "dateModified": modifiedTime ? new Date(modifiedTime).toISOString() : new Date().toISOString(),
+  "publisher": {
+    "@type": "Organization",
+    "name": SITE?.name,
+    "logo": {
+      "@type": "ImageObject",
+      "url": `${SITE?.url}src/assets/images/brand/logo.png`
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": canonical
+  },
+  "image": seoProps.openGraph?.images?.[0]?.url || defaultImage.url
+} : null;
+
+// Combine all JSON-LD schemas
+const allJsonLd = [
+  ...(jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : []),
+  ...(articleSchema ? [articleSchema] : [])
+].filter(Boolean);
+---
+
+<!-- Base SEO tags -->
+<AstroSeo {...{ ...seoProps, openGraph: await adaptOpenGraphImages(seoProps?.openGraph, Astro.site) }} />
+
+<!-- Additional meta tags for local business -->
+<meta name="geo.region" content="GB-SOM" />
+<meta name="geo.placename" content="Somerset" />
+<meta name="geo.position" content={`${geoCoordinates.latitude};${geoCoordinates.longitude}`} />
+<meta name="ICBM" content={`${geoCoordinates.latitude}, ${geoCoordinates.longitude}`} />
+
+<!-- Business contact info -->
+<meta property="business:contact_data:phone_number" content={phoneNumber} />
+<meta property="business:contact_data:website" content={SITE?.url} />
+<meta property="business:contact_data:price_range" content={priceRange} />
+
+<!-- Language alternatives -->
+{alternateLanguages.map(({ lang, href }) => (
+  <link rel="alternate" hreflang={lang} href={href} />
+))}
+
+<!-- Default language -->
+<link rel="alternate" hreflang="x-default" href={canonical} />
+
+<!-- Additional robot directives -->
+<meta name="robots" content="max-image-preview:large, max-video-preview:-1, max-snippet:-1" />
+
+<!-- Verification tags (if needed) -->
+<meta name="p:domain_verify" content="your-pinterest-verification" />
+
+<!-- Mobile web app capable -->
+<meta name="mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+<!-- Theme color for mobile browsers -->
+<meta name="theme-color" content="#dc2626" media="(prefers-color-scheme: light)" />
+<meta name="theme-color" content="#7f1d1d" media="(prefers-color-scheme: dark)" />
+
+<!-- Windows tile -->
+<meta name="msapplication-TileColor" content="#dc2626" />
+<meta name="msapplication-config" content="/browserconfig.xml" />
+
+<!-- Article specific tags -->
+{pageType === 'article' && (
+  <>
+    <meta property="article:author" content={author} />
+    {publishedTime && <meta property="article:published_time" content={new Date(publishedTime).toISOString()} />}
+    {modifiedTime && <meta property="article:modified_time" content={new Date(modifiedTime).toISOString()} />}
+    {section && <meta property="article:section" content={section} />}
+    {tags.map(tag => <meta property="article:tag" content={tag} />)}
+  </>
+)}
+
+<!-- Twitter specific enhancements -->
+<meta name="twitter:site" content="@SomersetWindow" />
+<meta name="twitter:creator" content="@SomersetWindow" />
+{phoneNumber && <meta name="twitter:app:country" content="GB" />}
+
+<!-- Preconnect to external domains for performance -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="preconnect" href="https://www.googletagmanager.com" />
+<link rel="preconnect" href="https://www.google-analytics.com" />
+
+<!-- DNS prefetch for additional performance -->
+<link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+<link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+<link rel="dns-prefetch" href="https://www.google-analytics.com" />
+
+<!-- Combined JSON-LD -->
+{allJsonLd.length > 0 && (
+  <script type="application/ld+json" set:html={JSON.stringify(allJsonLd.length === 1 ? allJsonLd[0] : allJsonLd)} />
+)}
+
+<style>
+  /* Ensure structured data doesn't affect styling */
+  script[type="application/ld+json"] {
+    display: none;
+  }
+</style>

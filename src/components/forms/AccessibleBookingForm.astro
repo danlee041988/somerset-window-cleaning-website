@@ -10,7 +10,12 @@
  * - Keyboard navigation support
  * - Screen reader friendly
  * - Auto-completion and input validation
+ * - Input sanitization and validation
+ * - Honeypot and rate limiting protection
  */
+import { sanitizeBookingForm } from '~/lib/sanitizer';
+import { validateBookingForm, isFormValid } from '~/lib/validation';
+import ErrorAnnouncer from '~/components/common/ErrorAnnouncer.astro';
 
 export interface Props {
   title?: string;
@@ -24,6 +29,9 @@ const {
   showSteps = true 
 } = Astro.props;
 ---
+
+<!-- Error announcer for screen readers -->
+<ErrorAnnouncer />
 
 <form 
   id="accessible-booking-form"
@@ -443,9 +451,25 @@ const {
     <h2>Quote Request Sent!</h2>
     <p>Thank you! We'll contact you within 1 hour to discuss your requirements and provide your free quote.</p>
   </div>
+  
+  <!-- Honeypot field - hidden from users but visible to bots -->
+  <div class="visually-hidden" aria-hidden="true">
+    <label for="website">Leave this field empty</label>
+    <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+  </div>
 </form>
 
 <style>
+  /* Honeypot field - hidden from users but visible to bots */
+  .visually-hidden {
+    position: absolute;
+    left: -10000px;
+    top: auto;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
+  
   /* Mobile-First Accessible Form Styles */
   .accessible-booking-form {
     max-width: 100%;
@@ -902,6 +926,8 @@ const {
 </style>
 
 <script>
+  import { sanitizeBookingForm } from '~/lib/sanitizer';
+  import { validateBookingForm, isFormValid, getValidationErrors } from '~/lib/validation';
   // Accessible Booking Form Script
   class AccessibleBookingForm {
     constructor() {
@@ -1141,22 +1167,73 @@ const {
       if (!this.validateCurrentStep()) {
         return;
       }
+      
+      // Check honeypot field
+      const honeypot = this.form.querySelector('input[name="website"]');
+      if (honeypot && honeypot.value !== '') {
+        // Bot detected, silently fail
+        console.warn('Honeypot triggered - potential bot submission');
+        this.showSuccess(); // Show success to fool the bot
+        return;
+      }
+      
+      // Rate limiting check
+      const lastSubmit = sessionStorage.getItem('lastFormSubmit');
+      const now = Date.now();
+      if (lastSubmit && now - parseInt(lastSubmit) < 30000) { // 30 seconds
+        this.showError('Please wait a moment before submitting again.');
+        return;
+      }
+      sessionStorage.setItem('lastFormSubmit', now.toString());
 
       this.showLoading();
 
       // Collect form data
       const formData = new FormData(this.form);
       const data = Object.fromEntries(formData.entries());
+      
+      // Remove honeypot field from data
+      delete data.website;
 
       // Collect checkbox values
       const services = Array.from(this.form.querySelectorAll('input[name="services"]:checked'))
         .map(cb => cb.value);
       data.services = services;
+      
+      // Sanitize all form data
+      const sanitizedData = sanitizeBookingForm(data);
+      
+      // Validate sanitized data
+      const validation = validateBookingForm(sanitizedData);
+      if (!isFormValid(validation)) {
+        // Collect all errors for announcement
+        const formErrors = [];
+        for (const [field, result] of Object.entries(validation)) {
+          if (!result.isValid && result.error) {
+            const fieldEl = this.form.querySelector(`[name="${field}"]`);
+            const label = fieldEl?.closest('.form-group')?.querySelector('label')?.textContent || field;
+            formErrors.push({
+              fieldId: fieldEl?.id || field,
+              message: result.error,
+              fieldLabel: label
+            });
+          }
+        }
+        
+        // Announce errors to screen readers
+        if (window.announceFormValidation) {
+          window.announceFormValidation(formErrors);
+        }
+        
+        const errors = getValidationErrors(validation);
+        this.showError('Please correct the errors in your form.');
+        return;
+      }
 
       try {
-        // Here you would send the data to your backend
+        // Here you would send the sanitized data to your backend
         // For now, we'll simulate a successful submission
-        await this.simulateSubmission(data);
+        await this.simulateSubmission(sanitizedData);
         this.showSuccess();
       } catch (error) {
         this.showError('Sorry, there was a problem submitting your quote request. Please try again.');

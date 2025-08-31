@@ -1,5 +1,6 @@
 ---
 import '~/assets/styles/tailwind.css';
+import criticalCSS from '~/styles/critical.css?raw';
 
 import { I18N } from 'astrowind:config';
 
@@ -16,9 +17,11 @@ import MobileOptimisations from '~/components/common/MobileOptimisations.astro';
 import TouchTargetOptimization from '~/components/common/TouchTargetOptimization.astro';
 import ColorContrastOptimizer from '~/components/common/ColorContrastOptimizer.astro';
 import AriaEnhancer from '~/components/common/AriaEnhancer.astro';
-import KeyboardNavigationEnhancer from '~/components/common/KeyboardNavigationEnhancer.astro';
+import EnhancedKeyboardNav from '~/components/common/EnhancedKeyboardNav.astro';
 import AdvancedViewTransitions from '~/components/common/AdvancedViewTransitions.astro';
 import LocalBusinessSchema from '~/components/seo/LocalBusinessSchema.astro';
+import OrganizationSchema from '~/components/seo/OrganizationSchema.astro';
+import OptimizedFonts from '~/components/common/OptimizedFonts.astro';
 
 // Modern View Transitions using ClientRouter (Astro 5+)
 import { ClientRouter } from 'astro:transitions';
@@ -45,32 +48,66 @@ const { language, textDirection } = I18N;
     <SiteVerification />
     <Analytics />
     <MobileOptimisations />
+    
+    <!-- Critical CSS for faster initial render -->
+    <style set:html={criticalCSS}></style>
+    
+    <!-- Skip link styles -->
+    <style>
+      .skip-link {
+        position: absolute;
+        left: -9999px;
+        top: 0.5rem;
+        z-index: 999;
+        padding: 0.75rem 1.5rem;
+        background-color: #dc2626;
+        color: white;
+        text-decoration: none;
+        font-weight: 600;
+        border-radius: 0 0.5rem 0.5rem 0;
+        transition: left 0.2s ease;
+      }
+      
+      .skip-link:focus {
+        left: 0;
+        outline: 3px solid #3b82f6;
+        outline-offset: 2px;
+      }
+      
+      .skip-link:hover {
+        background-color: #b91c1c;
+      }
+    </style>
 
     <!-- Performance: Preload primary hero image to improve LCP -->
     <link rel="preload" as="image" imagesrcset="/src/assets/images/optimized/hero-main-lg.webp 1280w, /src/assets/images/optimized/hero-main-md.webp 1024w, /src/assets/images/optimized/hero-main-sm.webp 768w" imagesizes="(max-width: 768px) 100vw, 1280px" href="/src/assets/images/optimized/hero-main-lg.webp" />
 
-    <!-- Fonts: use swap and preload stylesheet -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" media="print" onload="this.media='all'">
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"></noscript>
+    <!-- Optimized self-hosted fonts for better performance -->
+    <OptimizedFonts />
 
     <!-- Modern View Transitions with enhanced performance -->
     <ClientRouter />
     
     <!-- Enhanced Local Business Schema -->
     <LocalBusinessSchema type={structuredDataType} />
+    
+    <!-- Organization Schema for brand presence -->
+    <OrganizationSchema showFullSchema={structuredDataType === 'homepage'} />
   </head>
 
   <body class="antialiased text-default bg-page tracking-tight">
+    <!-- Skip to main content link for keyboard navigation -->
+    <a href="#main-content" class="skip-link">
+      Skip to main content
+    </a>
+    
     <!-- Temporarily disabled to fix transition errors -->
     <!-- <AdvancedViewTransitions /> -->
     <AccessibilityEnhancements />
     <TouchTargetOptimization />
     <ColorContrastOptimizer />
     <AriaEnhancer />
-    <KeyboardNavigationEnhancer />
+    <EnhancedKeyboardNav />
     <slot />
 
     <BasicScripts />

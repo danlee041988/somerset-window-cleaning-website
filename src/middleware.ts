@@ -1,9 +1,37 @@
 import type { MiddlewareHandler } from 'astro';
+import { checkRateLimit, getClientIP } from './middleware/security';
 
 const protectedRoutes = ['/staff/bookings', '/staff/dashboard'];
 
 export const onRequest: MiddlewareHandler = async ({ request, cookies, redirect, url }, next) => {
   const pathname = url.pathname;
+  
+  // Apply rate limiting to API routes and form endpoints
+  if (pathname.startsWith('/api/') || pathname.includes('/booking') || pathname.includes('/contact')) {
+    const clientIP = getClientIP(request);
+    
+    // Different rate limits for different endpoints
+    let limit = 10; // Default: 10 requests per minute
+    let windowMs = 60000; // 1 minute
+    
+    if (pathname.includes('/booking') || pathname.includes('/contact')) {
+      limit = 5; // Forms: 5 submissions per 5 minutes
+      windowMs = 300000; // 5 minutes
+    } else if (pathname.startsWith('/api/auth')) {
+      limit = 3; // Auth endpoints: 3 attempts per 5 minutes
+      windowMs = 300000; // 5 minutes
+    }
+    
+    if (!checkRateLimit(clientIP, limit, windowMs)) {
+      return new Response('Too many requests. Please try again later.', {
+        status: 429,
+        headers: {
+          'Retry-After': '60',
+          'Content-Type': 'text/plain'
+        }
+      });
+    }
+  }
   
   // Check if this is a protected route
   const isProtectedRoute = protectedRoutes.some(route => pathname.startsWith(route));

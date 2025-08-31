@@ -59,7 +59,14 @@
   }
 
   .btn-whatsapp {
-    @apply btn bg-green-600 text-white border-green-600 hover:bg-green-500;
+    @apply btn text-white;
+    background-color: #25D366 !important;
+    border-color: #25D366 !important;
+  }
+  
+  .btn-whatsapp:hover {
+    background-color: #128C7E !important;
+    border-color: #128C7E !important;
   }
 }
 

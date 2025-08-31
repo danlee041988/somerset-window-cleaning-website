@@ -5,6 +5,8 @@ import Features from '~/components/widgets/Features.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
 import Testimonials from '~/components/widgets/Testimonials.astro';
 import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
+import AreaSchema from '~/components/seo/AreaSchema.astro';
+import ReviewsSchema from '~/components/seo/ReviewsSchema.astro';
 
 const metadata = {
   title: 'Window Cleaning Taunton & West Somerset | Professional Service',
@@ -256,89 +258,20 @@ const metadata = {
       Get an instant quote and book your Taunton window cleaning service online in minutes.
     </Fragment>
   </CallToAction>
+  
+  <!-- Area-specific structured data -->
+  <AreaSchema
+    areaName="Taunton"
+    areaType="Town"
+    parentArea="Somerset"
+    postcode="TA1"
+    coordinates={{ latitude: 51.0154, longitude: -3.1069 }}
+    nearbyAreas={['Wellington', 'Wiveliscombe', 'Bishop\'s Lydeard', 'Norton Fitzwarren', 'Trull']}
+    serviceRadius={15}
+    population={64621}
+    landmarks={['Somerset County Cricket Ground', 'Vivary Park', 'The Museum of Somerset']}
+  />
+  
+  <!-- Reviews structured data -->
+  <ReviewsSchema />
 </Layout>
-
-<!-- Local Business Schema for Bath -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "LocalBusiness",
-  "name": "Somerset Window Cleaning - Taunton",
-  "image": "https://somersetwindowcleaning.co.uk/brand/logo.png",
-  "telephone": "01458860339",
-  "email": "info@somersetwindowcleaning.co.uk",
-  "url": "https://somersetwindowcleaning.co.uk/areas/taunton",
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "13 Rockhaven Business Centre, Gravenchon Way",
-    "addressLocality": "Street",
-    "addressRegion": "Somerset",
-    "postalCode": "BA16 0HW",
-    "addressCountry": "GB"
-  },
-  "areaServed": [
-    {
-      "@type": "Place",
-      "name": "Taunton Town Centre",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Taunton",
-        "addressRegion": "Somerset",
-        "postalCode": "TA1",
-        "addressCountry": "GB"
-      }
-    },
-    {
-      "@type": "Place",
-      "name": "Priorswood",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Taunton",
-        "addressRegion": "Somerset",
-        "postalCode": "TA1",
-        "addressCountry": "GB"
-      }
-    },
-    {
-      "@type": "Place",
-      "name": "Comeytrowe",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Taunton",
-        "addressRegion": "Somerset",
-        "postalCode": "TA1",
-        "addressCountry": "GB"
-      }
-    },
-    {
-      "@type": "Place",
-      "name": "Trull",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Taunton",
-        "addressRegion": "Somerset",
-        "postalCode": "TA3",
-        "addressCountry": "GB"
-      }
-    },
-    {
-      "@type": "Place",
-      "name": "Vivary",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Taunton",
-        "addressRegion": "Somerset",
-        "postalCode": "TA1",
-        "addressCountry": "GB"
-      }
-    }
-  ],
-  "service": {
-    "@type": "Service",
-    "name": "Window Cleaning Taunton",
-    "description": "Professional window cleaning services in Taunton and surrounding areas"
-  },
-  "priceRange": "££",
-  "openingHours": "Mo-Fr 09:00-16:00"
-}
-</script>
