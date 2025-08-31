@@ -19,10 +19,6 @@
   document.addEventListener('DOMContentLoaded', function() {
     console.log('🏷️ Initializing ARIA enhancements...');
     
-    // Initialize ARIA enhancer
-    const ariaEnhancer = new ARIAEnhancer();
-    ariaEnhancer.enhanceDocument();
-    
     class ARIAEnhancer {
       constructor() {
         this.enhanced = new Set();
@@ -674,6 +670,10 @@
         }
       }
     }
+    
+    // Initialize ARIA enhancer
+    const ariaEnhancer = new ARIAEnhancer();
+    ariaEnhancer.enhanceDocument();
     
     // Expose announce function globally
     window.announceToScreenReader = function(message, priority = 'polite') {

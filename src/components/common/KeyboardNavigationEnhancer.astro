@@ -241,10 +241,6 @@
   document.addEventListener('DOMContentLoaded', function() {
     console.log('⌨️ Initializing comprehensive keyboard navigation...');
     
-    // Initialize keyboard navigation enhancer
-    const keyboardNav = new KeyboardNavigationEnhancer();
-    keyboardNav.init();
-    
     class KeyboardNavigationEnhancer {
       constructor() {
         this.isKeyboardUser = false;
@@ -828,6 +824,10 @@
         }
       }
     }
+    
+    // Initialize keyboard navigation enhancer
+    const keyboardNav = new KeyboardNavigationEnhancer();
+    keyboardNav.init();
     
     // Expose utilities globally
     window.keyboardNav = {

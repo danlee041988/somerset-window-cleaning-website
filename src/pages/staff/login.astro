@@ -1,5 +1,5 @@
 ---
-import Layout from '~/layouts/PageLayout.astro';
+import StaffLayout from '~/layouts/StaffLayout.astro';
 import { Icon } from 'astro-icon/components';
 
 const metadata = {
@@ -17,7 +17,7 @@ if (isLoggedIn && Astro.request.method === 'GET') {
 }
 ---
 
-<Layout metadata={metadata}>
+<StaffLayout metadata={metadata}>
   <div class="min-h-screen flex items-center justify-center bg-gray-900 px-4">
     <div class="max-w-md w-full">
       <!-- Logo and Title -->
@@ -108,4 +108,4 @@ if (isLoggedIn && Astro.request.method === 'GET') {
       }
     });
   </script>
-</Layout>
+</StaffLayout>
