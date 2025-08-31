@@ -63,7 +63,7 @@ function getServiceIcon(text: string): string {
 <!-- Enhanced Mobile Navigation Overlay with backdrop blur -->
 <div 
   id="mobile-nav-overlay" 
-  class="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 opacity-0 invisible transition-all duration-300 ease-out"
+  class="fixed inset-0 bg-black/60 backdrop-blur-sm z-[998] opacity-0 invisible transition-all duration-300 ease-out"
   aria-hidden="true"
   data-mobile-overlay
 >
@@ -72,7 +72,7 @@ function getServiceIcon(text: string): string {
 <!-- Enhanced Mobile Navigation Menu -->
 <nav
   id="mobile-nav"
-  class="fixed top-0 right-0 h-full w-80 max-w-[90vw] bg-white dark:bg-gray-900 z-50 transform translate-x-full transition-all duration-400 ease-out shadow-2xl border-l border-gray-200 dark:border-gray-700"
+  class="fixed top-0 right-0 h-full w-80 max-w-[90vw] bg-gray-900 dark:bg-gray-900 z-[999] transform translate-x-full transition-all duration-400 ease-out shadow-2xl border-l border-gray-700"
   aria-label="Mobile navigation"
   aria-hidden="true"
   data-mobile-nav
@@ -117,7 +117,7 @@ function getServiceIcon(text: string): string {
             <div class="space-y-1">
               <button
                 type="button"
-                class="w-full flex items-center justify-between p-4 text-left text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-500 min-h-[48px] transition-all duration-200 group hover:shadow-sm"
+                class="w-full flex items-center justify-between p-4 text-left text-white hover:bg-gray-800 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-500 min-h-[48px] transition-all duration-200 group hover:shadow-sm"
                 aria-expanded="false"
                 aria-controls={`mobile-submenu-${index}`}
                 data-mobile-submenu-toggle={index}
@@ -131,7 +131,7 @@ function getServiceIcon(text: string): string {
                 </div>
                 <Icon 
                   name="tabler:chevron-down" 
-                  class="w-5 h-5 text-gray-400 transition-transform duration-200 group-hover:text-gray-600"
+                  class="w-5 h-5 text-gray-400 transition-transform duration-200 group-hover:text-gray-300"
                   data-mobile-chevron={index}
                 />
               </button>
@@ -147,7 +147,7 @@ function getServiceIcon(text: string): string {
                   <li>
                     <a
                       href={subHref}
-                      class={`block p-3 text-gray-700 dark:text-gray-300 hover:text-red-600 dark:hover:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg min-h-[48px] flex items-center transition-all duration-200 ${subHref === currentPath ? 'text-red-600 dark:text-red-400 bg-red-50 dark:bg-red-900/20 font-medium border-l-4 border-red-500' : ''}`}
+                      class={`block p-3 text-gray-300 hover:text-red-400 hover:bg-red-900/20 rounded-lg min-h-[48px] flex items-center transition-all duration-200 ${subHref === currentPath ? 'text-red-400 bg-red-900/20 font-medium border-l-4 border-red-500' : ''}`}
                       aria-current={subHref === currentPath ? 'page' : undefined}
                     >
                       <Icon name="tabler:chevron-right" class="w-4 h-4 mr-2 flex-shrink-0" />
@@ -161,7 +161,7 @@ function getServiceIcon(text: string): string {
             <!-- Regular Menu Item with enhanced styling -->
             <a
               href={href}
-              class={`flex items-center space-x-3 p-4 text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800 rounded-xl min-h-[48px] transition-all duration-200 group hover:shadow-sm ${href === currentPath ? 'text-red-600 dark:text-red-400 bg-red-50 dark:bg-red-900/20 font-medium border-l-4 border-red-500' : ''}`}
+              class={`flex items-center space-x-3 p-4 text-white hover:bg-gray-800 rounded-xl min-h-[48px] transition-all duration-200 group hover:shadow-sm ${href === currentPath ? 'text-red-400 bg-red-900/20 font-medium border-l-4 border-red-500' : ''}`}
               aria-current={href === currentPath ? 'page' : undefined}
             >
               <Icon 
@@ -179,7 +179,7 @@ function getServiceIcon(text: string): string {
     </ul>
 
     <!-- Enhanced Quick Actions -->
-    <div class="mt-auto p-4 border-t border-gray-200 dark:border-gray-700 space-y-3 bg-gray-50 dark:bg-gray-800/50">
+    <div class="mt-auto p-4 border-t border-gray-700 space-y-3 bg-gray-800/50">
       <a
         href="/book-now"
         class="w-full bg-red-600 hover:bg-red-700 text-white font-semibold py-4 px-4 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 min-h-[48px] flex items-center justify-center transition-all duration-200 hover:shadow-lg hover:scale-[1.02] active:scale-[0.98]"
@@ -239,6 +239,15 @@ function getServiceIcon(text: string): string {
     opacity: 1 !important;
     visibility: visible !important;
   }
+
+  /* Ensure mobile nav is visible when open */
+  nav[data-mobile-nav] {
+    background-color: #111827; /* gray-900 */
+  }
+  
+  nav[data-mobile-nav].mobile-nav-open {
+    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
+  }
   
   /* Enhanced hamburger animation */
   .hamburger-open [data-hamburger-line="1"] {
@@ -291,10 +300,16 @@ function getServiceIcon(text: string): string {
   }
   
   /* Prevent body scroll when mobile nav is open */
-  .mobile-nav-active {
+  body.mobile-nav-active {
     overflow: hidden;
     position: fixed;
     width: 100%;
+    height: 100vh;
+  }
+  
+  /* Ensure main content doesn't block nav */
+  body.mobile-nav-active main {
+    z-index: 1;
   }
   
   /* Enhanced focus styles for better accessibility */

@@ -84,8 +84,53 @@ const metadata = {
   <!-- Trust Bar ****************** -->
   <TrustBar />
 
+  <!-- Services Widget *************** -->
+  <Features
+    id="services"
+    title="Complete Exterior Cleaning Services"
+    subtitle="Professional, reliable, fully insured exterior cleaning across Somerset."
+    items={[
+      {
+        title: 'Window Cleaning',
+        description: 'Pure water system for streak-free windows. Frames and sills included.',
+        icon: 'tabler:sparkles',
+        callToAction: { text: 'Learn More', href: '/services/window-cleaning' },
+      },
+      {
+        title: 'Gutter Clearing',
+        description: 'High-reach vacuum system removes leaves and debris safely.',
+        icon: 'tabler:brand-abstract',
+        callToAction: { text: 'Learn More', href: '/services/gutter-cleaning' },
+      },
+      {
+        title: 'Fascia & Soffit Cleaning',
+        description: 'Restore UPVC fascias and soffits to their original appearance.',
+        icon: 'tabler:home',
+        callToAction: { text: 'Learn More', href: '/services/fascia-soffit-cleaning' },
+      },
+      {
+        title: 'Conservatory Cleaning',
+        description: 'Roof panels and frames carefully cleaned to restore clarity.',
+        icon: 'tabler:building',
+        callToAction: { text: 'Learn More', href: '/services/conservatory-cleaning' },
+      },
+      {
+        title: 'Solar Panel Cleaning',
+        description: 'Specialist cleaning to maintain efficiency and warranties.',
+        icon: 'tabler:sun',
+        callToAction: { text: 'Learn More', href: '/services/solar-panel-cleaning' },
+      },
+      {
+        title: 'Commercial Cleaning',
+        description: 'Professional service for offices, shops and business premises.',
+        icon: 'tabler:building-store',
+        callToAction: { text: 'Get Quote', href: '/services/commercial-window-cleaning' },
+      },
+    ]}
+  />
+
   <!-- Service Coverage Area Quick Check -->
-  <section class="py-8 bg-gradient-to-br from-gray-900 to-black text-white intersect-once intersect-quarter motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade">
+  <section class="py-8 bg-black text-white intersect-once intersect-quarter motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade">
     <div class="max-w-6xl mx-auto px-4 sm:px-6">
       <div class="text-center">
         <h2 class="text-2xl md:text-3xl font-bold mb-3">We Cover <span class="text-red-500">38+ Postcodes</span> Across Somerset</h2>
@@ -144,51 +189,6 @@ const metadata = {
       </div>
     </div>
   </section>
-
-  <!-- Services Widget *************** -->
-  <Features
-    id="services"
-    title="Complete Exterior Cleaning Services"
-    subtitle="Professional, reliable, fully insured exterior cleaning across Somerset."
-    items={[
-      {
-        title: 'Window Cleaning',
-        description: 'Pure water system for streak-free windows. Frames and sills included.',
-        icon: 'tabler:sparkles',
-        callToAction: { text: 'Learn More', href: '/services/window-cleaning' },
-      },
-      {
-        title: 'Gutter Clearing',
-        description: 'High-reach vacuum system removes leaves and debris safely.',
-        icon: 'tabler:brand-abstract',
-        callToAction: { text: 'Learn More', href: '/services/gutter-cleaning' },
-      },
-      {
-        title: 'Fascia & Soffit Cleaning',
-        description: 'Restore UPVC fascias and soffits to their original appearance.',
-        icon: 'tabler:home',
-        callToAction: { text: 'Learn More', href: '/services/fascia-soffit-cleaning' },
-      },
-      {
-        title: 'Conservatory Cleaning',
-        description: 'Roof panels and frames carefully cleaned to restore clarity.',
-        icon: 'tabler:building',
-        callToAction: { text: 'Learn More', href: '/services/conservatory-cleaning' },
-      },
-      {
-        title: 'Solar Panel Cleaning',
-        description: 'Specialist cleaning to maintain efficiency and warranties.',
-        icon: 'tabler:sun',
-        callToAction: { text: 'Learn More', href: '/services/solar-panel-cleaning' },
-      },
-      {
-        title: 'Commercial Cleaning',
-        description: 'Professional service for offices, shops and business premises.',
-        icon: 'tabler:building-store',
-        callToAction: { text: 'Get Quote', href: '/services/commercial-window-cleaning' },
-      },
-    ]}
-  />
 
   <!-- Reviews ******************************* -->
   <LiveReviews 

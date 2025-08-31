@@ -25,7 +25,7 @@ const metadata = {
   </div>
 
   <!-- Compact Multi-Step Booking Form -->
-  <div class="bg-gray-900 min-h-screen">
+  <div class="bg-black min-h-screen">
     <div class="max-w-7xl mx-auto px-4 py-6">
       
       <!-- Compact Progress Steps -->
@@ -61,72 +61,131 @@ const metadata = {
         <!-- Left Column: Form Steps (3/4 width) -->
         <div class="lg:col-span-3">
           
-          <!-- Step 1: Bedroom Selection First -->
-          <div id="step-1" class="bg-gray-800 rounded-lg border border-gray-700 p-4 mb-4">
-            <h2 class="text-lg font-bold text-white mb-3">Step 1: How many bedrooms?</h2>
-            <p class="text-sm text-gray-300 mb-4">Select your property size - prices are based on standard property sizes. Any price changes will be confirmed before work begins.</p>
+          <!-- Step 1: Property Type Selection -->
+          <div id="step-1" class="bg-black rounded-lg border border-gray-800 p-4 mb-4">
+            <h2 class="text-lg font-bold text-white mb-3">Step 1: Select Property Type</h2>
+            <p class="text-sm text-gray-300 mb-4">Choose your property size for accurate pricing. Organized from most affordable to premium services.</p>
             
-            <!-- Mobile-Optimized Property Grid -->
+            <!-- Standardized Property Grid -->
             <div class="mb-6">
-              <p class="text-sm text-gray-300 mb-4">Select your property type for accurate pricing</p>
-              <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                <!-- Residential Properties -->
-                <button class="bedroom-option bg-gray-700 border-2 border-gray-600 p-3 rounded-lg hover:border-red-500 hover:bg-gray-600 transition-all duration-300" data-bedrooms="1-2 Bed">
+              <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 mb-4 auto-rows-fr">
+                <!-- Residential Properties (Cheapest to Most Expensive) -->
+                <button class="bedroom-option bg-black border-2 border-gray-800 rounded-lg hover:border-red-500 hover:bg-gray-900 transition-all duration-300 h-24 w-full min-w-0 flex flex-col items-center justify-center" data-bedrooms="2 Beds">
                   <div class="text-center">
-                    <div class="w-8 h-8 bg-red-600 rounded-full flex items-center justify-center mx-auto mb-2">
-                      <span class="text-white text-sm font-bold">1-2</span>
+                    <!-- Bed Icons -->
+                    <div class="flex justify-center space-x-1 mb-2">
+                      <svg class="w-4 h-4 text-red-500" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M7 13c1.66 0 3-1.34 3-3S8.66 7 7 7s-3 1.34-3 3 1.34 3 3 3zm12-6h-8v7H3V6H1v15h2v-3h18v3h2v-9c0-2.21-1.79-4-4-4z"/>
+                      </svg>
+                      <svg class="w-4 h-4 text-red-500" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M7 13c1.66 0 3-1.34 3-3S8.66 7 7 7s-3 1.34-3 3 1.34 3 3 3zm12-6h-8v7H3V6H1v15h2v-3h18v3h2v-9c0-2.21-1.79-4-4-4z"/>
+                      </svg>
                     </div>
-                    <div class="text-sm font-medium text-white">1-2 Bed</div>
+                    <div class="text-sm font-medium text-white">2 Beds</div>
                   </div>
                 </button>
                 
-                <button class="bedroom-option bg-gray-700 border-2 border-gray-600 p-3 rounded-lg hover:border-red-500 hover:bg-gray-600 transition-all duration-300" data-bedrooms="2-3 Bed">
+                <button class="bedroom-option bg-black border-2 border-gray-800 rounded-lg hover:border-red-500 hover:bg-gray-900 transition-all duration-300 h-24 w-full min-w-0 flex flex-col items-center justify-center" data-bedrooms="3 Beds">
                   <div class="text-center">
-                    <div class="w-8 h-8 bg-red-600 rounded-full flex items-center justify-center mx-auto mb-2">
-                      <span class="text-white text-sm font-bold">2-3</span>
+                    <!-- Bed Icons -->
+                    <div class="flex justify-center space-x-1 mb-2">
+                      <svg class="w-4 h-4 text-red-500" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M7 13c1.66 0 3-1.34 3-3S8.66 7 7 7s-3 1.34-3 3 1.34 3 3 3zm12-6h-8v7H3V6H1v15h2v-3h18v3h2v-9c0-2.21-1.79-4-4-4z"/>
+                      </svg>
+                      <svg class="w-4 h-4 text-red-500" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M7 13c1.66 0 3-1.34 3-3S8.66 7 7 7s-3 1.34-3 3 1.34 3 3 3zm12-6h-8v7H3V6H1v15h2v-3h18v3h2v-9c0-2.21-1.79-4-4-4z"/>
+                      </svg>
+                      <svg class="w-4 h-4 text-red-500" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M7 13c1.66 0 3-1.34 3-3S8.66 7 7 7s-3 1.34-3 3 1.34 3 3 3zm12-6h-8v7H3V6H1v15h2v-3h18v3h2v-9c0-2.21-1.79-4-4-4z"/>
+                      </svg>
                     </div>
-                    <div class="text-sm font-medium text-white">2-3 Bed</div>
+                    <div class="text-sm font-medium text-white">3 Beds</div>
                   </div>
                 </button>
                 
-                <button class="bedroom-option bg-gray-700 border-2 border-gray-600 p-3 rounded-lg hover:border-red-500 hover:bg-gray-600 transition-all duration-300" data-bedrooms="4 Bed">
+                <button class="bedroom-option bg-black border-2 border-gray-800 rounded-lg hover:border-red-500 hover:bg-gray-900 transition-all duration-300 h-24 w-full min-w-0 flex flex-col items-center justify-center" data-bedrooms="4 Beds">
                   <div class="text-center">
-                    <div class="w-8 h-8 bg-red-600 rounded-full flex items-center justify-center mx-auto mb-2">
-                      <span class="text-white text-sm font-bold">4</span>
+                    <!-- Bed Icons -->
+                    <div class="flex justify-center space-x-1 mb-2">
+                      <svg class="w-4 h-4 text-red-500" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M7 13c1.66 0 3-1.34 3-3S8.66 7 7 7s-3 1.34-3 3 1.34 3 3 3zm12-6h-8v7H3V6H1v15h2v-3h18v3h2v-9c0-2.21-1.79-4-4-4z"/>
+                      </svg>
+                      <svg class="w-4 h-4 text-red-500" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M7 13c1.66 0 3-1.34 3-3S8.66 7 7 7s-3 1.34-3 3 1.34 3 3 3zm12-6h-8v7H3V6H1v15h2v-3h18v3h2v-9c0-2.21-1.79-4-4-4z"/>
+                      </svg>
+                      <svg class="w-4 h-4 text-red-500" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M7 13c1.66 0 3-1.34 3-3S8.66 7 7 7s-3 1.34-3 3 1.34 3 3 3zm12-6h-8v7H3V6H1v15h2v-3h18v3h2v-9c0-2.21-1.79-4-4-4z"/>
+                      </svg>
+                      <svg class="w-4 h-4 text-red-500" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M7 13c1.66 0 3-1.34 3-3S8.66 7 7 7s-3 1.34-3 3 1.34 3 3 3zm12-6h-8v7H3V6H1v15h2v-3h18v3h2v-9c0-2.21-1.79-4-4-4z"/>
+                      </svg>
                     </div>
-                    <div class="text-sm font-medium text-white">4 Bed</div>
-                    <div class="text-xs text-gray-400 mt-1">From £30*</div>
+                    <div class="text-sm font-medium text-white">4 Beds</div>
                   </div>
                 </button>
                 
-                <button class="bedroom-option bg-gray-700 border-2 border-gray-600 p-3 rounded-lg hover:border-red-500 hover:bg-gray-600 transition-all duration-300" data-bedrooms="5 Bed">
+                <button class="bedroom-option bg-black border-2 border-gray-800 rounded-lg hover:border-red-500 hover:bg-gray-900 transition-all duration-300 h-24 w-full min-w-0 flex flex-col items-center justify-center" data-bedrooms="5 Beds">
                   <div class="text-center">
-                    <div class="w-8 h-8 bg-red-600 rounded-full flex items-center justify-center mx-auto mb-2">
-                      <span class="text-white text-sm font-bold">5</span>
+                    <!-- Bed Icons -->
+                    <div class="flex justify-center space-x-1 mb-2">
+                      <svg class="w-3 h-3 text-red-500" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M7 13c1.66 0 3-1.34 3-3S8.66 7 7 7s-3 1.34-3 3 1.34 3 3 3zm12-6h-8v7H3V6H1v15h2v-3h18v3h2v-9c0-2.21-1.79-4-4-4z"/>
+                      </svg>
+                      <svg class="w-3 h-3 text-red-500" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M7 13c1.66 0 3-1.34 3-3S8.66 7 7 7s-3 1.34-3 3 1.34 3 3 3zm12-6h-8v7H3V6H1v15h2v-3h18v3h2v-9c0-2.21-1.79-4-4-4z"/>
+                      </svg>
+                      <svg class="w-3 h-3 text-red-500" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M7 13c1.66 0 3-1.34 3-3S8.66 7 7 7s-3 1.34-3 3 1.34 3 3 3zm12-6h-8v7H3V6H1v15h2v-3h18v3h2v-9c0-2.21-1.79-4-4-4z"/>
+                      </svg>
+                      <svg class="w-3 h-3 text-red-500" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M7 13c1.66 0 3-1.34 3-3S8.66 7 7 7s-3 1.34-3 3 1.34 3 3 3zm12-6h-8v7H3V6H1v15h2v-3h18v3h2v-9c0-2.21-1.79-4-4-4z"/>
+                      </svg>
+                      <svg class="w-3 h-3 text-red-500" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M7 13c1.66 0 3-1.34 3-3S8.66 7 7 7s-3 1.34-3 3 1.34 3 3 3zm12-6h-8v7H3V6H1v15h2v-3h18v3h2v-9c0-2.21-1.79-4-4-4z"/>
+                      </svg>
                     </div>
-                    <div class="text-sm font-medium text-white">5 Bed</div>
-                    <div class="text-xs text-gray-400 mt-1">From £35*</div>
+                    <div class="text-sm font-medium text-white">5 Beds</div>
                   </div>
                 </button>
                 
-                <!-- Commercial Properties -->
-                <button class="bedroom-option bg-gray-700 border-2 border-gray-600 p-3 rounded-lg hover:border-blue-500 hover:bg-gray-600 transition-all duration-300" data-bedrooms="6+ Beds" data-is-commercial="true">
+                <!-- Commercial/Bespoke Properties -->
+                <button class="bedroom-option bg-black border-2 border-gray-800 rounded-lg hover:border-red-500 hover:bg-gray-900 transition-all duration-300 h-24 w-full min-w-0 flex flex-col items-center justify-center" data-bedrooms="6+ Beds" data-is-commercial="true">
                   <div class="text-center">
-                    <div class="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-2">
-                      <span class="text-white text-sm font-bold">6+</span>
+                    <!-- Multiple Bed Icon -->
+                    <div class="flex justify-center mb-2">
+                      <svg class="w-5 h-5 text-red-500" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M7 13c1.66 0 3-1.34 3-3S8.66 7 7 7s-3 1.34-3 3 1.34 3 3 3zm12-6h-8v7H3V6H1v15h2v-3h18v3h2v-9c0-2.21-1.79-4-4-4z"/>
+                      </svg>
+                      <span class="text-red-500 text-sm font-bold">6+</span>
                     </div>
-                    <div class="text-sm font-medium text-white">6+ Bed</div>
+                    <div class="text-sm font-medium text-white">6+ Beds</div>
                   </div>
                 </button>
-                
-                <button class="bedroom-option bg-gray-700 border-2 border-gray-600 p-3 rounded-lg hover:border-blue-500 hover:bg-gray-600 transition-all duration-300" data-bedrooms="Commercial" data-is-commercial="true">
+              </div>
+              
+              <!-- Commercial/Bespoke Options Row -->
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <button class="bedroom-option bg-black border-2 border-gray-800 rounded-lg hover:border-red-500 hover:bg-gray-900 transition-all duration-300 h-24 w-full min-w-0 flex items-center justify-center" data-bedrooms="Commercial" data-is-commercial="true">
                   <div class="text-center">
-                    <div class="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-2">
-                      <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24">
+                    <div class="flex justify-center mb-2">
+                      <svg class="w-5 h-5 text-red-500" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M12 7V3H2v18h20V7H12zM6 19H4v-2h2v2zm0-4H4v-2h2v2zm0-4H4V9h2v2zm0-4H4V5h2v2zm4 12H8v-2h2v2zm0-4H8v-2h2v2zm0-4H8V9h2v2zm0-4H8V5h2v2zm10 12h-8v-2h2v-2h-2v-2h2v-2h-2V9h8v10z"/>
                       </svg>
                     </div>
-                    <div class="text-sm font-medium text-white">Commercial</div>
+                    <div class="text-sm font-medium text-white">Commercial Property</div>
+                    <div class="text-xs text-red-400">Site visit required</div>
+                  </div>
+                </button>
+                
+                <button class="bedroom-option bg-black border-2 border-gray-800 rounded-lg hover:border-red-500 hover:bg-gray-900 transition-all duration-300 h-24 w-full min-w-0 flex items-center justify-center" data-bedrooms="Bespoke" data-is-commercial="true">
+                  <div class="text-center">
+                    <div class="flex justify-center mb-2">
+                      <svg class="w-5 h-5 text-red-500" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                      </svg>
+                    </div>
+                    <div class="text-sm font-medium text-white">Bespoke Service</div>
+                    <div class="text-xs text-red-400">Custom quotation</div>
                   </div>
                 </button>
               </div>
@@ -137,33 +196,62 @@ const metadata = {
               <h3 class="text-sm font-medium text-white mb-2">What type of property?</h3>
               <p class="text-xs text-gray-400 mb-3">*Detached houses add £5 to the base price</p>
               <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-6">
-                <button class="property-type-option bg-gray-700 border-2 border-gray-600 p-4 rounded-lg hover:border-red-500 hover:bg-gray-600 transition-all duration-300" data-property-type="Terraced House">
+                <button class="property-type-option bg-black border-2 border-gray-800 p-4 rounded-lg hover:border-red-500 hover:bg-gray-900 transition-all duration-300" data-property-type="Terraced House">
                   <div class="text-center">
                     <div class="w-10 h-10 bg-red-600 rounded-full flex items-center justify-center mx-auto mb-2">
-                      <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M19 9.3V4h-3v2.6L12 3 2 12h3v8h5v-6h4v6h5v-8h3l-3-2.7z"/>
+                      <!-- Terraced: Three houses touching, middle one highlighted -->
+                      <svg class="w-6 h-5 text-white" fill="currentColor" viewBox="0 0 32 20">
+                        <rect x="0" y="8" width="8" height="10" fill="currentColor" opacity="0.4"/>
+                        <rect x="0" y="6" width="8" height="2" fill="currentColor" opacity="0.4"/>
+                        <polygon points="4,6 0,2 8,2" fill="currentColor" opacity="0.4"/>
+                        
+                        <rect x="8" y="8" width="8" height="10" fill="currentColor"/>
+                        <rect x="8" y="6" width="8" height="2" fill="currentColor"/>
+                        <polygon points="12,6 8,2 16,2" fill="currentColor"/>
+                        
+                        <rect x="16" y="8" width="8" height="10" fill="currentColor" opacity="0.4"/>
+                        <rect x="16" y="6" width="8" height="2" fill="currentColor" opacity="0.4"/>
+                        <polygon points="20,6 16,2 24,2" fill="currentColor" opacity="0.4"/>
                       </svg>
                     </div>
                     <div class="text-sm font-medium text-white">Terraced</div>
                   </div>
                 </button>
                 
-                <button class="property-type-option bg-gray-700 border-2 border-gray-600 p-4 rounded-lg hover:border-red-500 hover:bg-gray-600 transition-all duration-300" data-property-type="Semi-Detached House">
+                <button class="property-type-option bg-black border-2 border-gray-800 p-4 rounded-lg hover:border-red-500 hover:bg-gray-900 transition-all duration-300" data-property-type="Semi-Detached House">
                   <div class="text-center">
                     <div class="w-10 h-10 bg-red-600 rounded-full flex items-center justify-center mx-auto mb-2">
-                      <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+                      <!-- Semi-Detached: Two houses next to each other, right one highlighted -->
+                      <svg class="w-6 h-5 text-white" fill="currentColor" viewBox="0 0 28 20">
+                        <rect x="0" y="8" width="10" height="10" fill="currentColor" opacity="0.4"/>
+                        <rect x="0" y="6" width="10" height="2" fill="currentColor" opacity="0.4"/>
+                        <polygon points="5,6 0,2 10,2" fill="currentColor" opacity="0.4"/>
+                        
+                        <rect x="12" y="8" width="10" height="10" fill="currentColor"/>
+                        <rect x="12" y="6" width="10" height="2" fill="currentColor"/>
+                        <polygon points="17,6 12,2 22,2" fill="currentColor"/>
                       </svg>
                     </div>
                     <div class="text-sm font-medium text-white">Semi-Detached</div>
                   </div>
                 </button>
                 
-                <button class="property-type-option bg-gray-700 border-2 border-gray-600 p-4 rounded-lg hover:border-red-500 hover:bg-gray-600 transition-all duration-300" data-property-type="Detached House">
+                <button class="property-type-option bg-black border-2 border-gray-800 p-4 rounded-lg hover:border-red-500 hover:bg-gray-900 transition-all duration-300" data-property-type="Detached House">
                   <div class="text-center">
                     <div class="w-10 h-10 bg-red-600 rounded-full flex items-center justify-center mx-auto mb-2">
-                      <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M12 3l10 9h-3v8h-5v-6H10v6H5v-8H2L12 3z"/>
+                      <!-- Detached: Three houses with gaps, middle one highlighted -->
+                      <svg class="w-6 h-5 text-white" fill="currentColor" viewBox="0 0 32 20">
+                        <rect x="0" y="8" width="6" height="10" fill="currentColor" opacity="0.4"/>
+                        <rect x="0" y="6" width="6" height="2" fill="currentColor" opacity="0.4"/>
+                        <polygon points="3,6 0,2 6,2" fill="currentColor" opacity="0.4"/>
+                        
+                        <rect x="10" y="8" width="8" height="10" fill="currentColor"/>
+                        <rect x="10" y="6" width="8" height="2" fill="currentColor"/>
+                        <polygon points="14,6 10,2 18,2" fill="currentColor"/>
+                        
+                        <rect x="22" y="8" width="6" height="10" fill="currentColor" opacity="0.4"/>
+                        <rect x="22" y="6" width="6" height="2" fill="currentColor" opacity="0.4"/>
+                        <polygon points="25,6 22,2 28,2" fill="currentColor" opacity="0.4"/>
                       </svg>
                     </div>
                     <div class="text-sm font-medium text-white">Detached</div>
@@ -176,10 +264,10 @@ const metadata = {
             <div class="mt-4" id="frequency-section" style="display: none;">
               <h3 class="text-sm font-medium text-white mb-2">How often would you like us to clean?</h3>
               <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 mb-6">
-                <button class="frequency-option bg-gray-700 border border-gray-600 px-3 py-2 rounded text-sm text-white hover:border-red-500 hover:bg-gray-600 transition-all duration-300" data-frequency="4-weekly">Every 4 weeks</button>
-                <button class="frequency-option bg-gray-700 border border-gray-600 px-3 py-2 rounded text-sm text-white hover:border-red-500 hover:bg-gray-600 transition-all duration-300" data-frequency="8-weekly">Every 8 weeks</button>
-                <button class="frequency-option bg-gray-700 border border-gray-600 px-3 py-2 rounded text-sm text-white hover:border-red-500 hover:bg-gray-600 transition-all duration-300" data-frequency="12-weekly">Every 12 weeks</button>
-                <button class="frequency-option bg-gray-700 border border-gray-600 px-3 py-2 rounded text-sm text-white hover:border-red-500 hover:bg-gray-600 transition-all duration-300" data-frequency="adhoc">One-off clean</button>
+                <button class="frequency-option bg-black border border-gray-800 px-3 py-2 rounded text-sm text-white hover:border-red-500 hover:bg-gray-900 transition-all duration-300" data-frequency="4-weekly">Every 4 weeks</button>
+                <button class="frequency-option bg-black border border-gray-800 px-3 py-2 rounded text-sm text-white hover:border-red-500 hover:bg-gray-900 transition-all duration-300" data-frequency="8-weekly">Every 8 weeks</button>
+                <button class="frequency-option bg-black border border-gray-800 px-3 py-2 rounded text-sm text-white hover:border-red-500 hover:bg-gray-900 transition-all duration-300" data-frequency="12-weekly">Every 12 weeks</button>
+                <button class="frequency-option bg-black border border-gray-800 px-3 py-2 rounded text-sm text-white hover:border-red-500 hover:bg-gray-900 transition-all duration-300" data-frequency="adhoc">One-off clean</button>
               </div>
             </div>
             
@@ -221,9 +309,9 @@ const metadata = {
             </div>
           </div>
 
-          <!-- Step 1B: Commercial/Bespoke Info -->  
-          <div id="step-1b-commercial" class="bg-gray-800 rounded-lg border border-gray-700 p-4 mb-4 hidden">
-            <h2 class="text-lg font-bold text-white mb-3">Commercial & Bespoke Properties</h2>
+          <!-- Step 1B: Commercial Info -->  
+          <div id="step-1b-commercial" class="bg-black rounded-lg border border-gray-700 p-4 mb-4 hidden">
+            <h2 class="text-lg font-bold text-white mb-3">Commercial Properties</h2>
             <p class="text-gray-300 mb-4">We'll need some additional information to provide you with an accurate quote.</p>
             
             <div class="space-y-4">
@@ -290,7 +378,91 @@ const metadata = {
             
             <!-- Continue Button for Commercial -->
             <div class="mt-6">
-              <button id="continue-commercial" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-lg transition-all duration-300 flex items-center justify-center space-x-2">
+              <button id="continue-commercial" class="w-full bg-gray-700 hover:bg-gray-600 text-white font-medium py-3 px-6 rounded-lg transition-all duration-300 flex items-center justify-center space-x-2">
+                <span>Continue to Contact Details</span>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- Step 1C: Bespoke Service Info -->  
+          <div id="step-1c-bespoke" class="bg-black rounded-lg border border-gray-700 p-4 mb-4 hidden">
+            <h2 class="text-lg font-bold text-white mb-3">Bespoke Service Requirements</h2>
+            <p class="text-gray-300 mb-4">Tell us about your unique cleaning needs and we'll design a custom service package just for you.</p>
+            
+            <div class="space-y-4">
+              <div>
+                <label class="block text-sm font-medium text-white mb-1">Property Description</label>
+                <input type="text" id="bespokePropertyDesc" class="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white focus:border-purple-500 focus:outline-none" placeholder="e.g., Historic manor house, unique architectural features, solar installations">
+              </div>
+              
+              <div>
+                <label class="block text-sm font-medium text-white mb-1">Specific Cleaning Requirements</label>
+                <div class="space-y-2">
+                  <label class="flex items-center">
+                    <input type="checkbox" id="bespoke-windows" class="mr-2 text-purple-600">
+                    <span class="text-sm text-white">Specialty Windows (stained glass, lead-lined, etc.)</span>
+                  </label>
+                  <label class="flex items-center">
+                    <input type="checkbox" id="bespoke-height" class="mr-2 text-purple-600">
+                    <span class="text-sm text-white">High Access Work (above 3 stories)</span>
+                  </label>
+                  <label class="flex items-center">
+                    <input type="checkbox" id="bespoke-solar" class="mr-2 text-purple-600">
+                    <span class="text-sm text-white">Solar Panel Cleaning</span>
+                  </label>
+                  <label class="flex items-center">
+                    <input type="checkbox" id="bespoke-restoration" class="mr-2 text-purple-600">
+                    <span class="text-sm text-white">Window Restoration Services</span>
+                  </label>
+                  <label class="flex items-center">
+                    <input type="checkbox" id="bespoke-emergency" class="mr-2 text-purple-600">
+                    <span class="text-sm text-white">Emergency/After-Hours Service</span>
+                  </label>
+                  <label class="flex items-center">
+                    <input type="checkbox" id="bespoke-other" class="mr-2 text-purple-600">
+                    <span class="text-sm text-white">Other (please describe below)</span>
+                  </label>
+                </div>
+              </div>
+              
+              <div>
+                <label class="block text-sm font-medium text-white mb-1">Frequency Requirements</label>
+                <select id="bespokeFrequency" class="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white focus:border-purple-500 focus:outline-none">
+                  <option value="">Select frequency...</option>
+                  <option value="One-off">One-off Project</option>
+                  <option value="Seasonal">Seasonal (3-4 times per year)</option>
+                  <option value="Quarterly">Quarterly</option>
+                  <option value="Monthly">Monthly</option>
+                  <option value="Flexible">Flexible Schedule</option>
+                  <option value="Contract">Long-term Contract</option>
+                </select>
+              </div>
+              
+              <div>
+                <label class="block text-sm font-medium text-white mb-1">Budget Range (Optional)</label>
+                <select id="bespokeBudget" class="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white focus:border-purple-500 focus:outline-none">
+                  <option value="">Select range...</option>
+                  <option value="Under £500">Under £500</option>
+                  <option value="£500 - £1,000">£500 - £1,000</option>
+                  <option value="£1,000 - £2,500">£1,000 - £2,500</option>
+                  <option value="£2,500 - £5,000">£2,500 - £5,000</option>
+                  <option value="Over £5,000">Over £5,000</option>
+                  <option value="Prefer not to say">Prefer not to say</option>
+                </select>
+              </div>
+              
+              <div>
+                <label class="block text-sm font-medium text-white mb-1">Additional Details</label>
+                <textarea id="bespokeDetails" rows="4" class="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white focus:border-purple-500 focus:outline-none" placeholder="Describe your unique requirements, access constraints, timing preferences, or any special considerations..."></textarea>
+              </div>
+            </div>
+            
+            <!-- Continue Button for Bespoke -->
+            <div class="mt-6">
+              <button id="continue-bespoke" class="w-full bg-purple-600 hover:bg-purple-700 text-white font-medium py-3 px-6 rounded-lg transition-all duration-300 flex items-center justify-center space-x-2">
                 <span>Continue to Contact Details</span>
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
@@ -300,11 +472,11 @@ const metadata = {
           </div>
 
           <!-- Step 2: Additional Services -->
-          <div id="step-2" class="bg-gray-800 rounded-lg border border-gray-700 p-4 mb-4 hidden">
+          <div id="step-2" class="bg-black rounded-lg border border-gray-700 p-4 mb-4 hidden">
             <h2 class="text-lg font-bold text-white mb-3">Step 2: Additional services (optional)</h2>
             
             <!-- Special Deal Banner -->
-            <div id="gutter-deal-banner" class="bg-gradient-to-r from-blue-600 to-purple-700 rounded-lg p-4 mb-4 border-2 border-yellow-400">
+            <div id="gutter-deal-banner" class="bg-gradient-to-r from-gray-700 to-gray-800 rounded-lg p-4 mb-4 border-2 border-gray-600">
               <div class="flex items-center justify-center text-center">
                 <div>
                   <div class="text-white font-bold text-lg">🎉 SPECIAL OFFER!</div>
@@ -360,7 +532,7 @@ const metadata = {
           </div>
 
           <!-- Step 3: Property Details -->
-          <div id="step-3" class="bg-gray-800 rounded-lg border border-gray-700 p-4 mb-4 hidden">
+          <div id="step-3" class="bg-black rounded-lg border border-gray-700 p-4 mb-4 hidden">
             <h2 class="text-lg font-bold text-white mb-3">Step 3: Your details</h2>
             
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
@@ -405,7 +577,7 @@ const metadata = {
           </div>
 
           <!-- Step 4: Review & Submit -->
-          <div id="step-4" class="bg-gray-800 rounded-lg border border-gray-700 p-4 mb-4 hidden">
+          <div id="step-4" class="bg-black rounded-lg border border-gray-700 p-4 mb-4 hidden">
             <h2 class="text-lg font-bold text-white mb-3">Step 4: Review your booking</h2>
             
             <div id="review-content" class="space-y-3 text-white">
@@ -435,7 +607,7 @@ const metadata = {
         
         <!-- Right Column: Fixed Quote Section (1/4 width) -->
         <div class="lg:col-span-1">
-          <div class="bg-gray-800 rounded-lg border border-gray-700 p-4 sticky top-4">
+          <div class="bg-black rounded-lg border border-gray-700 p-4 sticky top-4">
             <h3 class="text-lg font-bold text-white mb-3">Your Quote</h3>
             
             <div id="quote-content" class="space-y-2 text-sm">
@@ -468,22 +640,22 @@ const metadata = {
     const PRICING_CONFIG = {
       residential: {
         'Terraced House': {
-          '1-2 Bed': { base: 20, frequency: { '4-weekly': 20, '8-weekly': 23, '12-weekly': 25, 'adhoc': 25 } },
-          '2-3 Bed': { base: 25, frequency: { '4-weekly': 25, '8-weekly': 28, '12-weekly': 30, 'adhoc': 30 } },
-          '4 Bed': { base: 30, frequency: { '4-weekly': 30, '8-weekly': 33, '12-weekly': 35, 'adhoc': 35 } },
-          '5 Bed': { base: 35, frequency: { '4-weekly': 35, '8-weekly': 38, '12-weekly': 40, 'adhoc': 40 } }
+          '2 Beds': { base: 20, frequency: { '4-weekly': 20, '8-weekly': 23, '12-weekly': 25, 'adhoc': 25 } },
+          '3 Beds': { base: 25, frequency: { '4-weekly': 25, '8-weekly': 28, '12-weekly': 30, 'adhoc': 30 } },
+          '4 Beds': { base: 30, frequency: { '4-weekly': 30, '8-weekly': 33, '12-weekly': 35, 'adhoc': 35 } },
+          '5 Beds': { base: 35, frequency: { '4-weekly': 35, '8-weekly': 38, '12-weekly': 40, 'adhoc': 40 } }
         },
         'Semi-Detached House': {
-          '1-2 Bed': { base: 20, frequency: { '4-weekly': 20, '8-weekly': 23, '12-weekly': 25, 'adhoc': 25 } },
-          '2-3 Bed': { base: 25, frequency: { '4-weekly': 25, '8-weekly': 28, '12-weekly': 30, 'adhoc': 30 } },
-          '4 Bed': { base: 30, frequency: { '4-weekly': 30, '8-weekly': 33, '12-weekly': 35, 'adhoc': 35 } },
-          '5 Bed': { base: 35, frequency: { '4-weekly': 35, '8-weekly': 38, '12-weekly': 40, 'adhoc': 40 } }
+          '2 Beds': { base: 20, frequency: { '4-weekly': 20, '8-weekly': 23, '12-weekly': 25, 'adhoc': 25 } },
+          '3 Beds': { base: 25, frequency: { '4-weekly': 25, '8-weekly': 28, '12-weekly': 30, 'adhoc': 30 } },
+          '4 Beds': { base: 30, frequency: { '4-weekly': 30, '8-weekly': 33, '12-weekly': 35, 'adhoc': 35 } },
+          '5 Beds': { base: 35, frequency: { '4-weekly': 35, '8-weekly': 38, '12-weekly': 40, 'adhoc': 40 } }
         },
         'Detached House': {
-          '1-2 Bed': { base: 25, frequency: { '4-weekly': 25, '8-weekly': 28, '12-weekly': 30, 'adhoc': 30 } },
-          '2-3 Bed': { base: 30, frequency: { '4-weekly': 30, '8-weekly': 33, '12-weekly': 35, 'adhoc': 35 } },
-          '4 Bed': { base: 35, frequency: { '4-weekly': 35, '8-weekly': 38, '12-weekly': 40, 'adhoc': 40 } },
-          '5 Bed': { base: 40, frequency: { '4-weekly': 40, '8-weekly': 43, '12-weekly': 45, 'adhoc': 45 } }
+          '2 Beds': { base: 25, frequency: { '4-weekly': 25, '8-weekly': 28, '12-weekly': 30, 'adhoc': 30 } },
+          '3 Beds': { base: 30, frequency: { '4-weekly': 30, '8-weekly': 33, '12-weekly': 35, 'adhoc': 35 } },
+          '4 Beds': { base: 35, frequency: { '4-weekly': 35, '8-weekly': 38, '12-weekly': 40, 'adhoc': 40 } },
+          '5 Beds': { base: 40, frequency: { '4-weekly': 40, '8-weekly': 43, '12-weekly': 45, 'adhoc': 45 } }
         }
       }
     };
@@ -497,7 +669,9 @@ const metadata = {
       addons: {},
       extensions: {},
       isCommercial: false,
+      isBespoke: false,
       commercial: {},
+      bespoke: {},
       details: {},
       totalPrice: 0,
       hasGutterDeal: false
@@ -572,6 +746,7 @@ const metadata = {
       document.getElementById('submit-booking').addEventListener('click', submitBooking);
       document.getElementById('continue-to-details').addEventListener('click', nextStep);
       document.getElementById('continue-commercial').addEventListener('click', nextStep);
+      document.getElementById('continue-bespoke').addEventListener('click', nextStep);
     }
 
     function selectBedroom(bedrooms, isCommercial) {
@@ -579,16 +754,24 @@ const metadata = {
       
       formData.bedrooms = bedrooms;
       formData.isCommercial = isCommercial;
+      formData.isBespoke = (bedrooms === 'Bespoke');
       
       // Update UI - keep bedroom selection highlighted
       document.querySelectorAll('.bedroom-option').forEach(btn => {
-        btn.classList.remove('border-red-500', 'bg-red-600', 'border-blue-500', 'bg-blue-600');
+        btn.classList.remove('border-red-500', 'bg-red-600', 'border-gray-600', 'bg-gray-700', 'border-purple-500', 'bg-purple-600');
         btn.classList.add('border-gray-600', 'bg-gray-700');
       });
       
-      if (isCommercial) {
+      if (formData.isBespoke) {
         selectedButton.classList.remove('border-gray-600', 'bg-gray-700');
-        selectedButton.classList.add('border-blue-500', 'bg-blue-600');
+        selectedButton.classList.add('border-purple-500', 'bg-purple-600');
+        // Hide property type section for bespoke
+        document.getElementById('property-type-section').style.display = 'none';
+        document.getElementById('frequency-section').style.display = 'none';
+        document.getElementById('extensions-section').style.display = 'none';
+      } else if (isCommercial) {
+        selectedButton.classList.remove('border-gray-600', 'bg-gray-700');
+        selectedButton.classList.add('border-gray-500', 'bg-gray-600');
         // Hide property type section for commercial
         document.getElementById('property-type-section').style.display = 'none';
         document.getElementById('frequency-section').style.display = 'none';
@@ -715,7 +898,7 @@ const metadata = {
         formData.hasGutterDeal = false;
       } else {
         // No services selected - initial upsell state
-        dealBanner.className = 'bg-gradient-to-r from-blue-600 to-purple-700 rounded-lg p-4 mb-4 border-2 border-yellow-400';
+        dealBanner.className = 'bg-gradient-to-r from-gray-700 to-gray-800 rounded-lg p-4 mb-4 border-2 border-gray-600';
         dealStatus.textContent = 'Select both services below to activate this deal';
         dealStatus.className = 'text-yellow-200 text-xs mt-2 font-medium';
         gutterLabel.classList.remove('ring-2', 'ring-red-400', 'bg-red-900', 'ring-green-400', 'bg-green-800', 'ring-orange-400', 'bg-orange-800');
@@ -764,6 +947,38 @@ const metadata = {
       
       return true;
     }
+    
+    function validateBespokeDetails() {
+      const propertyDesc = document.getElementById('bespokePropertyDesc').value;
+      const frequency = document.getElementById('bespokeFrequency').value;
+      const details = document.getElementById('bespokeDetails').value;
+      
+      if (!propertyDesc || !frequency || !details) {
+        alert('Please fill in property description, frequency, and additional details for your bespoke service');
+        return false;
+      }
+      
+      // Save bespoke data
+      formData.bespoke = {
+        propertyDesc: propertyDesc,
+        frequency: frequency,
+        budget: document.getElementById('bespokeBudget').value,
+        details: details,
+        services: []
+      };
+      
+      // Collect selected services
+      const serviceCheckboxes = ['bespoke-windows', 'bespoke-height', 'bespoke-solar', 'bespoke-restoration', 'bespoke-emergency', 'bespoke-other'];
+      serviceCheckboxes.forEach(id => {
+        const checkbox = document.getElementById(id);
+        if (checkbox && checkbox.checked) {
+          const serviceName = checkbox.nextElementSibling.textContent.trim();
+          formData.bespoke.services.push(serviceName);
+        }
+      });
+      
+      return true;
+    }
 
     function calculateAddonPrice(addonId) {
       switch (addonId) {
@@ -773,8 +988,8 @@ const metadata = {
           const isDetached = formData.propertyType?.toLowerCase().includes('detached');
           let basePrice = 60;
           
-          if (formData.bedrooms === '4 Bed') basePrice += 20;
-          else if (formData.bedrooms === '5 Bed') basePrice += 40;
+          if (formData.bedrooms === '4 Beds') basePrice += 20;
+          else if (formData.bedrooms === '5 Beds') basePrice += 40;
           
           return isDetached ? basePrice + 20 : basePrice;
         case 'conservatoryRoof':
@@ -790,11 +1005,11 @@ const metadata = {
       if (propertyType && bedrooms) {
         const isDetached = propertyType.toLowerCase().includes('detached');
         
-        if (bedrooms === '2-3 Bed') {
+        if (bedrooms === '2 Beds' || bedrooms === '3 Beds') {
           price = isDetached ? 100 : 80;
-        } else if (bedrooms === '4 Bed') {
+        } else if (bedrooms === '4 Beds') {
           price = isDetached ? 120 : 100;
-        } else if (bedrooms === '5 Bed') {
+        } else if (bedrooms === '5 Beds') {
           price = isDetached ? 140 : 120;
         }
       }
@@ -822,9 +1037,17 @@ const metadata = {
       let total = 0;
       
       if (formData.bedrooms) {
-        if (formData.isCommercial) {
-          content += `<div class="flex justify-between text-gray-300"><span>Property:</span><span>${formData.bedrooms === 'Commercial' ? 'Commercial' : '6+ Bed Property'}</span></div>`;
-          content += `<div class="text-center text-yellow-400 font-medium mt-3 mb-2">Physical Quotation Required</div>`;
+        if (formData.isBespoke) {
+          content += `<div class="flex justify-between text-gray-300"><span>Service:</span><span>Bespoke Service</span></div>`;
+          content += `<div class="text-center text-purple-400 font-medium mt-3 mb-2">Custom Quotation Required</div>`;
+          content += `<div class="text-center text-gray-400 text-sm">We'll design a bespoke service package for your specific needs</div>`;
+        } else if (formData.isCommercial) {
+          let propertyLabel = formData.bedrooms;
+          if (formData.bedrooms === 'Commercial') propertyLabel = 'Commercial Property';
+          else if (formData.bedrooms === '6+ Beds') propertyLabel = '6+ Bedroom Property';
+          
+          content += `<div class="flex justify-between text-gray-300"><span>Property:</span><span>${propertyLabel}</span></div>`;
+          content += `<div class="text-center text-yellow-400 font-medium mt-3 mb-2">Site Visit Required</div>`;
           content += `<div class="text-center text-gray-400 text-sm">We'll visit your property to provide an accurate quote</div>`;
         } else {
           content += `<div class="flex justify-between text-gray-300"><span>Property:</span><span>${formData.bedrooms}</span></div>`;
@@ -886,7 +1109,7 @@ const metadata = {
       }
       
       quoteContent.innerHTML = content;
-      totalPriceElement.textContent = formData.isCommercial ? '' : `£${total}`;
+      totalPriceElement.textContent = (formData.isCommercial || formData.isBespoke) ? '' : `£${total}`;
       formData.totalPrice = total;
     }
 
@@ -896,7 +1119,17 @@ const metadata = {
         return;
       }
       
-      // Handle commercial vs residential flow
+      // Handle commercial vs bespoke vs residential flow
+      if (currentStep === 1 && formData.isBespoke) {
+        // Skip to bespoke info step
+        document.getElementById('step-1').classList.add('hidden');
+        document.getElementById('step-1c-bespoke').classList.remove('hidden');
+        currentStep = 1.6; // Special step for bespoke
+        updateStepIndicators();
+        updateNavigationButtons();
+        return;
+      }
+      
       if (currentStep === 1 && formData.isCommercial) {
         // Skip to commercial info step
         document.getElementById('step-1').classList.add('hidden');
@@ -926,6 +1159,17 @@ const metadata = {
         // Coming from commercial step, validate and go to details
         if (!validateCommercialDetails()) return;
         document.getElementById('step-1b-commercial').classList.add('hidden');
+        document.getElementById('step-3').classList.remove('hidden');
+        currentStep = 3;
+        updateStepIndicators();
+        updateNavigationButtons();
+        return;
+      }
+      
+      if (currentStep === 1.6) {
+        // Coming from bespoke step, validate and go to details
+        if (!validateBespokeDetails()) return;
+        document.getElementById('step-1c-bespoke').classList.add('hidden');
         document.getElementById('step-3').classList.remove('hidden');
         currentStep = 3;
         updateStepIndicators();
@@ -964,6 +1208,16 @@ const metadata = {
         return;
       }
       
+      if (currentStep === 1.6) {
+        // Going back from bespoke step to main selection
+        document.getElementById('step-1c-bespoke').classList.add('hidden');
+        document.getElementById('step-1').classList.remove('hidden');
+        currentStep = 1;
+        updateStepIndicators();
+        updateNavigationButtons();
+        return;
+      }
+      
       if (currentStep > 1) {
         document.getElementById(`step-${currentStep}`).classList.add('hidden');
         currentStep--;
@@ -985,9 +1239,9 @@ const metadata = {
         const progress = document.getElementById(`progress-${i}`);
         
         let effectiveStep = currentStep;
-        if (currentStep === 1.5) effectiveStep = 1; // Commercial substep
+        if (currentStep === 1.5 || currentStep === 1.6) effectiveStep = 1; // Commercial/Bespoke substeps
         
-        if (i < effectiveStep || (currentStep === 1.5 && i === 1)) {
+        if (i < effectiveStep || ((currentStep === 1.5 || currentStep === 1.6) && i === 1)) {
           indicator.classList.remove('bg-gray-600', 'text-gray-300');
           indicator.classList.add('bg-green-600', 'text-white');
           if (progress) progress.style.width = '100%';

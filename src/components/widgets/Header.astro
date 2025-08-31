@@ -78,6 +78,22 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
   header .hover\:text-red-400:hover {
     color: white !important;
   }
+
+  /* Prevent header content overlap on medium screens */
+  @media (min-width: 768px) and (max-width: 1280px) {
+    #header .header-inner {
+      gap: 0.5rem;
+    }
+    
+    #header nav {
+      flex: 1 1 auto;
+      margin: 0 0.5rem;
+    }
+    
+    #header nav ul {
+      gap: 0;
+    }
+  }
 </style>
 
 <header
@@ -91,20 +107,20 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
   <div class="absolute inset-0"></div>
   <div
     class:list={[
-      'relative text-default py-1 px-3 md:px-6 mx-auto w-full header-inner transition-all duration-300 ease-in-out',
+      'relative text-default py-2 px-3 md:px-4 lg:px-6 mx-auto w-full header-inner transition-all duration-300 ease-in-out',
       {
-        'md:flex md:justify-between': position !== 'center',
+        'md:flex md:justify-between md:items-center': position !== 'center',
       },
       {
-        'md:grid md:grid-cols-3 md:items-center': position === 'center',
+        'md:flex md:justify-between md:items-center': position === 'center',
       },
       {
-        'max-w-5xl': !isFullWidth,
+        'max-w-7xl': !isFullWidth,
       },
     ]}
   >
-    <div class:list={[{ 'mr-auto rtl:mr-0 rtl:ml-auto': position === 'right' }, 'flex justify-between']}>
-      <a class="flex items-center" href={getHomePermalink()}>
+    <div class:list={[{ 'mr-auto rtl:mr-0 rtl:ml-auto': position === 'right' }, 'flex justify-between items-center']}>
+      <a class="flex items-center flex-shrink-0" href={getHomePermalink()}>
         <Logo />
       </a>
       <div class="flex items-center md:hidden">
@@ -112,7 +128,7 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
         <a 
           href="tel:01458860339" 
           class="flex items-center text-white hover:text-white/80 mr-2 transition-colors duration-200
-            focus:outline-none focus:ring-2 focus:ring-white/20 rounded p-2"
+            focus:outline-none focus:ring-2 focus:ring-white/20 rounded p-1"
           aria-label="Call Somerset Window Cleaning at 01458 860339"
         >
           <Icon name="tabler:phone-filled" class="w-5 h-5" />
@@ -121,11 +137,11 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
       </div>
     </div>
     <nav
-      class="items-center w-full md:w-auto hidden md:flex md:mx-5 text-slate-100 overflow-y-auto overflow-x-hidden md:overflow-y-visible md:overflow-x-auto md:justify-self-center"
+      class="items-center w-full md:w-auto hidden md:flex md:mx-2 lg:mx-5 text-slate-100 md:justify-self-center"
       aria-label="Main navigation"
     >
       <ul
-        class="flex flex-col md:flex-row md:self-center w-full md:w-auto text-xl md:text-[0.9375rem] tracking-[0.01rem] font-medium md:justify-center"
+        class="flex flex-col md:flex-row md:self-center w-full md:w-auto text-sm lg:text-[0.9375rem] tracking-[0.01rem] font-medium md:justify-center md:gap-0 lg:gap-1"
       >
         {
           links.map(({ text, href, links }) => (
@@ -134,7 +150,7 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
                 <>
                   <button
                     type="button"
-                    class="px-3 py-2 flex items-center whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-white/20 rounded min-h-[44px]"
+                    class="px-1 md:px-2 lg:px-3 py-2 flex items-center whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-white/20 rounded min-h-[44px]"
                     style="color: white !important;"
                     aria-expanded="false"
                     aria-haspopup="true"
@@ -170,7 +186,7 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
               ) : (
                 <a
                   class:list={[
-                    'px-3 py-2 flex items-center whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-white/20 rounded min-h-[44px] transition-colors',
+                    'px-1 md:px-2 lg:px-3 py-2 flex items-center whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-white/20 rounded min-h-[44px] transition-colors',
                     { 'aw-link-active font-medium': href === currentPath },
                   ]}
                   style="color: white !important;"
@@ -188,19 +204,19 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
     <div
       class:list={[
         { 'ml-auto rtl:ml-0 rtl:mr-auto': position === 'left' },
-        'hidden md:self-center md:flex items-center md:mb-0 fixed w-full md:w-auto md:static justify-end left-0 rtl:left-auto rtl:right-0 bottom-0 p-3 md:p-0 md:justify-self-end',
+        'hidden md:flex items-center md:mb-0 fixed w-full md:w-auto md:static justify-end left-0 rtl:left-auto rtl:right-0 bottom-0 p-3 md:p-0 flex-shrink-0',
       ]}
     >
       <div class="items-center flex justify-between w-full md:w-auto">
         <!-- Phone number link -->
         <a 
           href="tel:01458860339" 
-          class="flex items-center text-white hover:text-white/80 mr-4 transition-colors duration-200
+          class="hidden sm:flex items-center text-white hover:text-white/80 mr-4 transition-colors duration-200
             focus:outline-none focus:ring-2 focus:ring-white/20 rounded px-2 py-1"
           aria-label="Call Somerset Window Cleaning at 01458 860339"
         >
-          <Icon name="tabler:phone" class="w-5 h-5 mr-2" />
-          <span class="font-medium text-sm md:text-base whitespace-nowrap">01458 860339</span>
+          <Icon name="tabler:phone" class="w-5 h-5 mr-1 lg:mr-2" />
+          <span class="font-medium text-sm lg:text-base whitespace-nowrap">01458 860339</span>
         </a>
         
         <div class="flex">
@@ -219,9 +235,9 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
         </div>
         {
           actions?.length ? (
-            <div class="ml-2 rtl:ml-0 rtl:mr-2 flex gap-1 md:gap-2">
+            <div class="ml-2 rtl:ml-0 rtl:mr-2 flex gap-1 md:gap-2 flex-shrink-0">
               {actions.map((action) => (
-                <Button {...action} class={`text-sm ${action.class || ''}`} />
+                <Button {...action} class={`text-xs md:text-sm whitespace-nowrap ${action.class || ''}`} />
               ))}
             </div>
           ) : (

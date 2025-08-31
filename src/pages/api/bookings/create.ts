@@ -161,9 +161,21 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
       .single();
 
     if (error) {
-      console.error('Database error:', error);
+      console.error('Database error details:', {
+        message: error.message,
+        code: error.code,
+        details: error.details,
+        hint: error.hint,
+        supabaseUrl: !!supabaseUrl,
+        supabaseKey: !!supabaseKey,
+        supabaseKeyType: supabaseKey?.substring(0, 20) + '...'
+      });
       return new Response(JSON.stringify({ 
-        error: 'Failed to create booking. Please try again later.' 
+        error: 'Failed to create booking. Please try again later.',
+        debug: process.env.NODE_ENV === 'development' ? {
+          message: error.message,
+          code: error.code
+        } : undefined
       }), {
         status: 500,
         headers: { 'Content-Type': 'application/json' }
