@@ -6,15 +6,12 @@ A modern, high-performance website for Somerset Window Cleaning built with **[As
 
 - ✅ **Performance Optimized** - Lighthouse scores >90 across all metrics
 - ✅ **WCAG 2.1 AA Compliant** - Full accessibility with screen reader support
-- ✅ **Booking System** - Multi-step form with real-time pricing and EmailJS integration
+- ✅ **Booking System** - Multi-step form with real-time pricing and secure server-side email
 - ✅ **Local SEO** - Service area pages optimized for Somerset locations
 - ✅ **Responsive Design** - Mobile-first approach with touch-optimized interfaces
 - ✅ **Progressive Enhancement** - Works without JavaScript enabled
 - ✅ **Database Integration** - Supabase for secure data storage and analytics
-
-## ⚠️ Security Notice
-
-**IMPORTANT**: The current implementation has exposed EmailJS credentials in the client-side code. These should be moved to server-side environment variables or edge functions for production use. See `claude.md` for migration guide.
+- ✅ **Security Hardened** - Server-side email handling, input sanitization, and secure headers
 
 <br>
 
@@ -91,7 +88,9 @@ A modern, high-performance website for Somerset Window Cleaning built with **[As
 │   │   └── widgets/    # Page sections
 │   ├── layouts/        # Page layouts
 │   ├── lib/            # Utilities and services
-│   │   ├── emailjs-service.js  # EmailJS integration
+│   │   ├── server-email.ts     # Server-side email service
+│   │   ├── sanitizer.ts        # Input sanitization utilities
+│   │   ├── validation.ts       # Form validation helpers
 │   │   └── supabase.js         # Database client
 │   ├── pages/          # Route pages
 │   │   ├── areas/      # Service area pages
@@ -182,10 +181,11 @@ PUBLIC_SUPABASE_URL=https://your-project-id.supabase.co
 PUBLIC_SUPABASE_ANON_KEY=your-supabase-anon-key
 SUPABASE_SERVICE_ROLE_KEY=your-service-role-key  # For server-side operations
 
-# EmailJS Configuration (REQUIRED for booking form)
-NEXT_PUBLIC_EMAILJS_SERVICE_ID=service_9lcbgop  # ⚠️ Currently exposed - needs migration
-NEXT_PUBLIC_EMAILJS_PUBLIC_KEY=__gzsbn4ENCZhFT0z8zV9  # ⚠️ Currently exposed - needs migration
-NEXT_PUBLIC_EMAILJS_TEMPLATE_ID=template_booking  # Set this to your template ID
+# EmailJS Configuration (REQUIRED for booking form - server-side only)
+EMAILJS_SERVICE_ID=your-service-id        # Keep secret - server-side only
+EMAILJS_PUBLIC_KEY=your-public-key        # Keep secret - server-side only
+EMAILJS_TEMPLATE_ID=template_booking      # Your EmailJS template ID
+EMAILJS_CONTACT_TEMPLATE_ID=template_contact  # Contact form template ID
 
 # Site Configuration
 PUBLIC_SITE_URL=https://somersetwindowcleaning.co.uk
@@ -203,21 +203,24 @@ NODE_ENV=production  # Set to 'development' for local dev
 
 ### Security Configuration
 
-✅ **SECURITY UPDATES IMPLEMENTED**:
+✅ **SECURITY FEATURES IMPLEMENTED**:
 
-1. **EmailJS Credentials**
-   - Moved to server-side API endpoint at `/api/booking`
-   - Credentials now stored as server-only environment variables
-   - CSRF protection implemented for all form submissions
+1. **Server-Side Email Handling**
+   - EmailJS credentials moved to server-side API endpoints
+   - `/api/booking-submit` - Secure booking form submission
+   - `/api/contact` - Secure contact form submission
+   - All credentials stored as server-only environment variables
 
-2. **Secure Form Handling**
-   - New `secure-booking-service.js` replaces direct EmailJS integration
-   - Server-side validation and sanitization
-   - Session-based CSRF token generation
+2. **Input Sanitization & Validation**
+   - Server-side validation for all form inputs
+   - HTML/script tag sanitization
+   - Email and phone number validation
+   - Honeypot fields for bot protection
 
-3. **Supabase Security**
-   - Anon key is safe for client-side use
-   - Ensure RLS policies are properly configured in Supabase dashboard
+3. **Database Security**
+   - Supabase RLS (Row Level Security) policies configured
+   - Service role key kept server-side only
+   - Anon key safe for client-side use with proper RLS
 
 ## Deployment
 
@@ -232,17 +235,17 @@ NODE_ENV=production  # Set to 'development' for local dev
 - [ ] Copy `.env.example` to `.env` and fill in all values
 - [ ] Ensure all `PUBLIC_` prefixed variables are safe for client exposure
 - [ ] Move sensitive credentials to server-side only variables:
-  - [ ] `EMAILJS_SERVICE_ID` (not PUBLIC_)
-  - [ ] `EMAILJS_TEMPLATE_ID` (not PUBLIC_)
-  - [ ] `EMAILJS_PRIVATE_KEY` (not PUBLIC_)
-  - [ ] `CSRF_SECRET` - generate secure random string
-  - [ ] `SESSION_SECRET` - generate secure random string
+  - [ ] `EMAILJS_SERVICE_ID` (server-side only)
+  - [ ] `EMAILJS_PUBLIC_KEY` (server-side only)
+  - [ ] `EMAILJS_TEMPLATE_ID` (server-side only)
+  - [ ] `EMAILJS_CONTACT_TEMPLATE_ID` (server-side only)
+  - [ ] `SUPABASE_SERVICE_ROLE_KEY` (server-side only)
 
-#### 3. Security Updates
-- [ ] Update booking forms to use `/api/booking` endpoint
-- [ ] Replace `emailjs-service.js` imports with `secure-booking-service.js`
-- [ ] Verify CSRF protection is active on all forms
-- [ ] Test form submissions with server-side API
+#### 3. Security Verification
+- [ ] Verify booking forms use `/api/booking-submit` endpoint
+- [ ] Verify contact forms use `/api/contact` endpoint
+- [ ] Ensure no EmailJS credentials in client-side code
+- [ ] Test form submissions with server-side APIs
 
 #### 4. Database Configuration
 - [ ] Verify Supabase connection with correct credentials
@@ -282,10 +285,10 @@ NODE_ENV=production  # Set to 'development' for local dev
    
    # Server-side only (secure)
    vercel env add EMAILJS_SERVICE_ID
+   vercel env add EMAILJS_PUBLIC_KEY
    vercel env add EMAILJS_TEMPLATE_ID
-   vercel env add EMAILJS_PRIVATE_KEY
-   vercel env add CSRF_SECRET
-   vercel env add SESSION_SECRET
+   vercel env add EMAILJS_CONTACT_TEMPLATE_ID
+   vercel env add SUPABASE_SERVICE_ROLE_KEY
    
    # Optional
    vercel env add PUBLIC_GA_MEASUREMENT_ID
@@ -323,12 +326,12 @@ The `vercel.json` configuration includes:
 
 ## Security
 
-### Current Security Issues
+### Security Implementation
 
-1. **Exposed EmailJS Credentials**
-   - **Risk**: API keys visible in client-side code
-   - **Impact**: Potential abuse of email service
-   - **Solution**: Migrate to server-side API routes
+1. **✅ EmailJS Security (Resolved)**
+   - **Previous Issue**: API keys were visible in client-side code
+   - **Solution Implemented**: Migrated to server-side API routes
+   - **Current Status**: All credentials securely stored server-side
 
 2. **Required Security Headers**
    ```json
@@ -341,31 +344,14 @@ The `vercel.json` configuration includes:
    }
    ```
 
-### Recommended Security Improvements
+### Implemented Security Features
 
-1. **Move EmailJS to Edge Functions**
-   ```javascript
-   // api/send-email.js (Vercel Edge Function)
-   export default async function handler(req, res) {
-     const { formData } = await req.json();
-     
-     // Server-side EmailJS implementation
-     const response = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
-       method: 'POST',
-       headers: {
-         'Content-Type': 'application/json',
-       },
-       body: JSON.stringify({
-         service_id: process.env.EMAILJS_SERVICE_ID,
-         template_id: process.env.EMAILJS_TEMPLATE_ID,
-         user_id: process.env.EMAILJS_USER_ID,
-         template_params: formData
-       })
-     });
-     
-     return res.json({ success: response.ok });
-   }
-   ```
+1. **✅ Server-Side Email API**
+   - Booking submissions: `/api/booking-submit`
+   - Contact form: `/api/contact`
+   - Input sanitization and validation
+   - Bot protection with honeypot fields
+   - Secure credential storage
 
 2. **Implement Rate Limiting**
    - Use Vercel's built-in rate limiting
@@ -385,10 +371,10 @@ The `vercel.json` configuration includes:
 
 ### Recent Changes (January 2025)
 
-1. **EmailJS Integration**
-   - Added EmailJS for booking form submissions
-   - Configured with service ID and template
-   - ⚠️ Credentials currently exposed (needs fix)
+1. **Secure Email Integration**
+   - Implemented server-side email handling via API routes
+   - EmailJS credentials moved to environment variables
+   - Added input sanitization and validation
 
 2. **Supabase Authentication**
    - Implemented RLS policies for secure data access
@@ -406,17 +392,18 @@ The `vercel.json` configuration includes:
    - `simple-monitor.cjs` - Node.js monitor with error detection
    - `astro-monitor.cjs` - Advanced log analysis
 
-### Known Vulnerabilities
+### Security Best Practices
 
 1. **Dependencies**
    - Regular `npm audit` checks recommended
    - Update Sharp library for security patches
    - Monitor Astro security advisories
 
-2. **Configuration**
-   - Exposed API keys in client code
-   - Missing CSRF protection on forms
-   - No rate limiting on API endpoints
+2. **Implemented Protections**
+   - ✅ API keys secured server-side
+   - ✅ Input sanitization on all forms
+   - ✅ Bot protection with honeypot fields
+   - ⚠️ Rate limiting (recommended for production)
 
 ## Troubleshooting
 

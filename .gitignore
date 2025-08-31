@@ -1,30 +1,103 @@
 # build output
 dist/
 .output/
+.cache/
 
 # dependencies
 node_modules/
 
-# logs
+# logs & debug files
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
+*.log
+*.pid
 auto-deploy.log
 dev.log
 dev.pid
 preview.*
 tunnel*
+astro-dev.log
+astro-monitor.log
+dev-output.log
+dev-server.log
 
+# test artifacts
+playwright-report/
+test-results/
+lighthouse-report.html
+lighthouse-mobile-report.html
+coverage/
 
-# environment variables
+# local/dev files
+*.db
+*.sqlite
+*.sqlite3
+business-data.db
 .env
+.env.*
+.env.local
 .env.production
 
-# macOS-specific files
+# temporary files
+*.tmp
+*.temp
+*.swp
+*.swo
+*~
+.idea/
+.vscode/
+*.sublime-*
+
+# OS files
 .DS_Store
+Thumbs.db
 
+# package managers
 pnpm-lock.yaml
+package-lock.json
+yarn.lock
 
+# build tools
 .astro
 .vercel
+.netlify
+
+# monitoring & debug scripts
+monitor*.sh
+monitor*.cjs
+monitor*.js
+auto-deploy.sh
+debug-*.js
+test-*.js
+*-test.js
+setup-*.js
+fix-*.js
+force-*.js
+simple-*.js
+run-*.js
+update-*.js
+
+# database scripts & migrations
+*.sql
+create_*.sql
+insert_*.sql
+update_*.sql
+fix_*.sql
+supabase_*.sql
+
+# sensitive or unnecessary files
+emailjs-template.md
+SUPABASE_*.md
+MCP_*.md
+TEST-*.md
+BOOKING_*.md
+STAFF_*.md
+DATABASE_*.md
+SEO-*.md
+README-*.md
+claude.md
+
+# vendor files
+vendor/

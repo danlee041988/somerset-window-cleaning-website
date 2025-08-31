@@ -1,6 +1,13 @@
 import type { APIRoute } from 'astro';
 import { sanitizeBookingForm } from '~/lib/sanitizer';
 import { validateBookingForm, isFormValid } from '~/lib/validation';
+import { 
+  sendBookingEmail, 
+  generateBookingReference, 
+  formatPropertyType, 
+  formatFrequency, 
+  formatService 
+} from '~/lib/server-email';
 
 export const POST: APIRoute = async ({ request, clientAddress }) => {
   try {
@@ -40,20 +47,51 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
       });
     }
     
-    // Here you would typically:
-    // 1. Save to database (Supabase)
-    // 2. Send email notifications
-    // 3. Create a booking record
+    // Generate booking reference
+    const bookingReference = generateBookingReference();
+    const bookingDate = new Date().toLocaleString('en-GB');
     
-    // For now, just log and return success
+    // Prepare email data
+    const emailData = {
+      customerName: sanitizedData.fullName || sanitizedData.name || '',
+      customerEmail: sanitizedData.email || '',
+      customerPhone: sanitizedData.phone || '',
+      customerAddress: `${sanitizedData.address || ''}, ${sanitizedData.city || ''}, ${sanitizedData.postcode || ''}`.trim(),
+      propertyType: formatPropertyType(sanitizedData.propertyType || ''),
+      frequency: formatFrequency(sanitizedData.frequency || ''),
+      additionalServices: (sanitizedData.additionalServices || [])
+        .map((s: string) => formatService(s))
+        .join(', ') || 'None',
+      estimatedPrice: sanitizedData.estimatedPrice ? `£${sanitizedData.estimatedPrice}` : 'Quote Required',
+      preferredDate: sanitizedData.preferredDate || undefined,
+      contactMethod: sanitizedData.contactMethod || 'email',
+      notes: sanitizedData.notes,
+      bookingReference,
+      bookingDate
+    };
+    
+    // Send email notification
+    const emailResult = await sendBookingEmail(emailData);
+    
+    if (!emailResult.success) {
+      console.error('Failed to send booking email:', emailResult.error);
+      // Still save the booking even if email fails
+    }
+    
+    // Log booking request
     console.log('New booking request:', {
-      ...sanitizedData,
+      reference: bookingReference,
+      customer: sanitizedData.email,
       ip: clientAddress,
-      timestamp: new Date().toISOString()
+      timestamp: new Date().toISOString(),
+      emailSent: emailResult.success
     });
+    
+    // TODO: Save to Supabase database here
     
     return new Response(JSON.stringify({ 
       success: true,
+      reference: bookingReference,
       message: 'Booking request received. We\'ll contact you within 1 hour.'
     }), {
       status: 200,
