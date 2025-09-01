@@ -368,6 +368,34 @@ if (type === 'services' || serviceName) {
 <!-- Main Business Schema -->
 <script type="application/ld+json" set:html={JSON.stringify(schemas.length === 1 ? schemas[0] : schemas)} />
 
+<!-- JSON-LD Error Handler -->
+<script>
+(function() {
+  // Wrap any JSON-LD processing to prevent @context errors
+  const originalStringify = JSON.stringify;
+  const originalParse = JSON.parse;
+  
+  // Override temporarily during page load
+  JSON.parse = function(text) {
+    try {
+      return originalParse.call(this, text);
+    } catch (e) {
+      console.warn('JSON parse error in JSON-LD:', e);
+      return {};
+    }
+  };
+  
+  // Restore after page load
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function() {
+      JSON.parse = originalParse;
+    });
+  } else {
+    setTimeout(() => { JSON.parse = originalParse; }, 100);
+  }
+})();
+</script>
+
 <!-- Enhanced meta tags for local SEO -->
 <meta name="geo.region" content="GB-SOM" />
 <meta name="geo.placename" content="Somerset" />

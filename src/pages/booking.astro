@@ -70,7 +70,8 @@ const metadata = {
             <div class="mb-6">
               <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 mb-4 auto-rows-fr">
                 <!-- Residential Properties (Cheapest to Most Expensive) -->
-                <button class="bedroom-option bg-black border-2 border-gray-800 rounded-lg hover:border-red-500 hover:bg-gray-900 transition-all duration-300 h-24 w-full min-w-0 flex flex-col items-center justify-center" data-bedrooms="2 Beds">
+                <label class="bedroom-option bg-black border-2 border-gray-800 rounded-lg hover:border-red-500 hover:bg-gray-900 transition-all duration-300 h-24 w-full min-w-0 flex flex-col items-center justify-center cursor-pointer relative" data-bedrooms="2 Beds">
+                  <input type="radio" name="bedrooms" value="2 Beds" class="sr-only bedroom-radio" />
                   <div class="text-center">
                     <!-- Bed Icons -->
                     <div class="flex justify-center space-x-1 mb-2">
@@ -83,9 +84,10 @@ const metadata = {
                     </div>
                     <div class="text-sm font-medium text-white">2 Beds</div>
                   </div>
-                </button>
+                </label>
                 
-                <button class="bedroom-option bg-black border-2 border-gray-800 rounded-lg hover:border-red-500 hover:bg-gray-900 transition-all duration-300 h-24 w-full min-w-0 flex flex-col items-center justify-center" data-bedrooms="3 Beds">
+                <label class="bedroom-option bg-black border-2 border-gray-800 rounded-lg hover:border-red-500 hover:bg-gray-900 transition-all duration-300 h-24 w-full min-w-0 flex flex-col items-center justify-center cursor-pointer relative" data-bedrooms="3 Beds">
+                  <input type="radio" name="bedrooms" value="3 Beds" class="sr-only bedroom-radio" />
                   <div class="text-center">
                     <!-- Bed Icons -->
                     <div class="flex justify-center space-x-1 mb-2">
@@ -101,9 +103,10 @@ const metadata = {
                     </div>
                     <div class="text-sm font-medium text-white">3 Beds</div>
                   </div>
-                </button>
+                </label>
                 
-                <button class="bedroom-option bg-black border-2 border-gray-800 rounded-lg hover:border-red-500 hover:bg-gray-900 transition-all duration-300 h-24 w-full min-w-0 flex flex-col items-center justify-center" data-bedrooms="4 Beds">
+                <label class="bedroom-option bg-black border-2 border-gray-800 rounded-lg hover:border-red-500 hover:bg-gray-900 transition-all duration-300 h-24 w-full min-w-0 flex flex-col items-center justify-center cursor-pointer relative" data-bedrooms="4 Beds">
+                  <input type="radio" name="bedrooms" value="4 Beds" class="sr-only bedroom-radio" />
                   <div class="text-center">
                     <!-- Bed Icons -->
                     <div class="flex justify-center space-x-1 mb-2">
@@ -122,9 +125,10 @@ const metadata = {
                     </div>
                     <div class="text-sm font-medium text-white">4 Beds</div>
                   </div>
-                </button>
+                </label>
                 
-                <button class="bedroom-option bg-black border-2 border-gray-800 rounded-lg hover:border-red-500 hover:bg-gray-900 transition-all duration-300 h-24 w-full min-w-0 flex flex-col items-center justify-center" data-bedrooms="5 Beds">
+                <label class="bedroom-option bg-black border-2 border-gray-800 rounded-lg hover:border-red-500 hover:bg-gray-900 transition-all duration-300 h-24 w-full min-w-0 flex flex-col items-center justify-center cursor-pointer relative" data-bedrooms="5 Beds">
+                  <input type="radio" name="bedrooms" value="5 Beds" class="sr-only bedroom-radio" />
                   <div class="text-center">
                     <!-- Bed Icons -->
                     <div class="flex justify-center space-x-1 mb-2">
@@ -146,10 +150,11 @@ const metadata = {
                     </div>
                     <div class="text-sm font-medium text-white">5 Beds</div>
                   </div>
-                </button>
+                </label>
                 
                 <!-- Commercial/Bespoke Properties -->
-                <button class="bedroom-option bg-black border-2 border-gray-800 rounded-lg hover:border-red-500 hover:bg-gray-900 transition-all duration-300 h-24 w-full min-w-0 flex flex-col items-center justify-center" data-bedrooms="6+ Beds" data-is-commercial="true">
+                <label class="bedroom-option bg-black border-2 border-gray-800 rounded-lg hover:border-red-500 hover:bg-gray-900 transition-all duration-300 h-24 w-full min-w-0 flex flex-col items-center justify-center cursor-pointer relative" data-bedrooms="6+ Beds" data-is-commercial="true">
+                  <input type="radio" name="bedrooms" value="6+ Beds" class="sr-only bedroom-radio" />
                   <div class="text-center">
                     <!-- Multiple Bed Icon -->
                     <div class="flex justify-center mb-2">
@@ -160,12 +165,13 @@ const metadata = {
                     </div>
                     <div class="text-sm font-medium text-white">6+ Beds</div>
                   </div>
-                </button>
+                </label>
               </div>
               
               <!-- Commercial/Bespoke Options Row -->
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                <button class="bedroom-option bg-black border-2 border-gray-800 rounded-lg hover:border-red-500 hover:bg-gray-900 transition-all duration-300 h-24 w-full min-w-0 flex items-center justify-center" data-bedrooms="Commercial" data-is-commercial="true">
+                <label class="bedroom-option bg-black border-2 border-gray-800 rounded-lg hover:border-red-500 hover:bg-gray-900 transition-all duration-300 h-24 w-full min-w-0 flex items-center justify-center cursor-pointer relative" data-bedrooms="Commercial" data-is-commercial="true">
+                  <input type="radio" name="bedrooms" value="Commercial" class="sr-only bedroom-radio" />
                   <div class="text-center">
                     <div class="flex justify-center mb-2">
                       <svg class="w-5 h-5 text-red-500" fill="currentColor" viewBox="0 0 24 24">
@@ -175,9 +181,10 @@ const metadata = {
                     <div class="text-sm font-medium text-white">Commercial Property</div>
                     <div class="text-xs text-red-400">Site visit required</div>
                   </div>
-                </button>
+                </label>
                 
-                <button class="bedroom-option bg-black border-2 border-gray-800 rounded-lg hover:border-red-500 hover:bg-gray-900 transition-all duration-300 h-24 w-full min-w-0 flex items-center justify-center" data-bedrooms="Bespoke" data-is-commercial="true">
+                <label class="bedroom-option bg-black border-2 border-gray-800 rounded-lg hover:border-red-500 hover:bg-gray-900 transition-all duration-300 h-24 w-full min-w-0 flex items-center justify-center cursor-pointer relative" data-bedrooms="Bespoke" data-is-commercial="true">
+                  <input type="radio" name="bedrooms" value="Bespoke" class="sr-only bedroom-radio" />
                   <div class="text-center">
                     <div class="flex justify-center mb-2">
                       <svg class="w-5 h-5 text-red-500" fill="currentColor" viewBox="0 0 24 24">
@@ -187,7 +194,7 @@ const metadata = {
                     <div class="text-sm font-medium text-white">Bespoke Service</div>
                     <div class="text-xs text-red-400">Custom quotation</div>
                   </div>
-                </button>
+                </label>
               </div>
             </div>
             
@@ -196,7 +203,8 @@ const metadata = {
               <h3 class="text-sm font-medium text-white mb-2">What type of property?</h3>
               <p class="text-xs text-gray-400 mb-3">*Detached houses add £5 to the base price</p>
               <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-6">
-                <button class="property-type-option bg-black border-2 border-gray-800 p-4 rounded-lg hover:border-red-500 hover:bg-gray-900 transition-all duration-300" data-property-type="Terraced House">
+                <label class="property-type-option bg-black border-2 border-gray-800 p-4 rounded-lg hover:border-red-500 hover:bg-gray-900 transition-all duration-300 cursor-pointer relative" data-property-type="Terraced House">
+                  <input type="radio" name="propertyType" value="Terraced House" class="sr-only property-radio" />
                   <div class="text-center">
                     <div class="w-10 h-10 bg-red-600 rounded-full flex items-center justify-center mx-auto mb-2">
                       <!-- Terraced: Three houses touching, middle one highlighted -->
@@ -234,9 +242,10 @@ const metadata = {
                     </div>
                     <div class="text-sm font-medium text-white">Semi-Detached</div>
                   </div>
-                </button>
+                </label>
                 
-                <button class="property-type-option bg-black border-2 border-gray-800 p-4 rounded-lg hover:border-red-500 hover:bg-gray-900 transition-all duration-300" data-property-type="Detached House">
+                <label class="property-type-option bg-black border-2 border-gray-800 p-4 rounded-lg hover:border-red-500 hover:bg-gray-900 transition-all duration-300 cursor-pointer relative" data-property-type="Detached House">
+                  <input type="radio" name="propertyType" value="Detached House" class="sr-only property-radio" />
                   <div class="text-center">
                     <div class="w-10 h-10 bg-red-600 rounded-full flex items-center justify-center mx-auto mb-2">
                       <!-- Detached: Three houses with gaps, middle one highlighted -->
@@ -256,7 +265,7 @@ const metadata = {
                     </div>
                     <div class="text-sm font-medium text-white">Detached</div>
                   </div>
-                </button>
+                </label>
               </div>
             </div>
             
@@ -588,7 +597,7 @@ const metadata = {
               <div class="text-center mb-4">
                 <div class="g-recaptcha" data-sitekey="6LdYsQATAAAAAO5QsgCpuMlQ0jF2U9yjV5jTlcjG"></div>
               </div>
-              <button id="submit-booking" class="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-4 rounded-lg transition-all duration-300">
+              <button id="submit-booking" type="submit" class="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-4 rounded-lg transition-all duration-300">
                 Submit Booking Request
               </button>
             </div>
@@ -596,10 +605,10 @@ const metadata = {
 
           <!-- Navigation Buttons -->
           <div class="flex justify-between mt-4">
-            <button id="prev-step" class="bg-gray-700 hover:bg-gray-600 text-white font-medium py-2 px-4 rounded-lg transition-all duration-300 hidden">
+            <button id="prev-step" type="button" class="bg-gray-700 hover:bg-gray-600 text-white font-medium py-2 px-4 rounded-lg transition-all duration-300 hidden">
               Previous
             </button>
-            <button id="next-step" class="bg-red-600 hover:bg-red-700 text-white font-medium py-2 px-4 rounded-lg transition-all duration-300 ml-auto hidden">
+            <button id="next-step" type="button" class="bg-red-600 hover:bg-red-700 text-white font-medium py-2 px-4 rounded-lg transition-all duration-300 ml-auto hidden">
               Continue
             </button>
           </div>
@@ -748,27 +757,33 @@ const metadata = {
     }
 
     function initializeEventListeners() {
-      // Bedroom selection
-      document.querySelectorAll('.bedroom-option').forEach(button => {
-        button.addEventListener('click', function(e) {
-          e.preventDefault();
-          selectBedroom(this.dataset.bedrooms, this.dataset.isCommercial === 'true');
+      // Bedroom selection - using radio inputs
+      document.querySelectorAll('.bedroom-radio').forEach(radio => {
+        radio.addEventListener('change', function() {
+          if (this.checked) {
+            const label = this.closest('.bedroom-option');
+            selectBedroom(label.dataset.bedrooms, label.dataset.isCommercial === 'true');
+          }
         });
       });
 
-      // Property type selection
-      document.querySelectorAll('.property-type-option').forEach(button => {
-        button.addEventListener('click', function(e) {
-          e.preventDefault();
-          selectPropertyType(this.dataset.propertyType);
+      // Property type selection - using radio inputs
+      document.querySelectorAll('.property-radio').forEach(radio => {
+        radio.addEventListener('change', function() {
+          if (this.checked) {
+            const label = this.closest('.property-type-option');
+            selectPropertyType(label.dataset.propertyType);
+          }
         });
       });
 
-      // Frequency selection
-      document.querySelectorAll('.frequency-option').forEach(button => {
-        button.addEventListener('click', function(e) {
-          e.preventDefault();
-          selectFrequency(this.dataset.frequency);
+      // Frequency selection - using radio inputs
+      document.querySelectorAll('.frequency-radio').forEach(radio => {
+        radio.addEventListener('change', function() {
+          if (this.checked) {
+            const label = this.closest('.frequency-option');
+            selectFrequency(label.dataset.frequency);
+          }
         });
       });
 
@@ -837,12 +852,19 @@ const metadata = {
       
       document.getElementById('postcode')?.addEventListener('blur', function() {
         const value = this.value.trim();
-        if (value && !isValidPostcode(value)) {
-          this.classList.add('border-red-500');
-          showFieldError(this, 'Please enter a valid UK postcode');
-        } else {
-          this.classList.remove('border-red-500');
-          removeFieldError(this);
+        if (value) {
+          // Normalize the postcode
+          const normalized = normalizePostcode(value);
+          this.value = normalized;
+          
+          // Validate the normalized postcode
+          if (!isValidPostcode(normalized)) {
+            this.classList.add('border-red-500');
+            showFieldError(this, 'Please enter a valid UK postcode');
+          } else {
+            this.classList.remove('border-red-500');
+            removeFieldError(this);
+          }
         }
       });
     }
@@ -1457,14 +1479,14 @@ const metadata = {
         return false;
       }
       
-      // Save details to formData
+      // Save details to formData (with normalized postcode)
       formData.details = {
         firstName: document.getElementById('firstName').value.trim(),
         lastName: document.getElementById('lastName').value.trim(),
         email: document.getElementById('email').value.trim(),
         phone: document.getElementById('phone').value.trim(),
         address: document.getElementById('address').value.trim(),
-        postcode: document.getElementById('postcode').value.trim(),
+        postcode: normalizePostcode(document.getElementById('postcode').value.trim()),
         accessInfo: document.getElementById('accessInfo').value.trim(),
         additionalInfo: document.getElementById('additionalInfo').value.trim()
       };
@@ -1487,6 +1509,23 @@ const metadata = {
     function isValidPostcode(postcode) {
       const postcodeRegex = /^[A-Z]{1,2}[0-9][A-Z0-9]?\s?[0-9][A-Z]{2}$/i;
       return postcodeRegex.test(postcode);
+    }
+    
+    // Normalize postcode to standard format (uppercase with space before last 3 characters)
+    function normalizePostcode(postcode) {
+      if (!postcode) return '';
+      
+      // Remove all spaces and convert to uppercase
+      const cleaned = postcode.replace(/\s/g, '').toUpperCase();
+      
+      // Insert space before the last 3 characters if valid format
+      if (cleaned.length >= 5) {
+        const outward = cleaned.slice(0, -3);
+        const inward = cleaned.slice(-3);
+        return `${outward} ${inward}`;
+      }
+      
+      return cleaned;
     }
 
     function populateReviewStep() {
@@ -1547,8 +1586,24 @@ const metadata = {
       reviewContent.innerHTML = content;
     }
 
+    // Debug mode helper
+    function isDebugMode() {
+      return window.location.search.includes('debug=true') || 
+             window.location.hostname === 'localhost' || 
+             window.location.hostname === '127.0.0.1';
+    }
+    
     async function submitBooking() {
+      const debugMode = isDebugMode();
+      
       try {
+        // Log debug info
+        if (debugMode) {
+          console.log('=== BOOKING SUBMISSION DEBUG ===');
+          console.log('Form Data:', formData);
+          console.log('Additional Services before conversion:', formData.additionalServices);
+        }
+        
         // Ensure additionalServices is an array
         ensureAdditionalServicesArray();
         
@@ -1612,12 +1667,31 @@ const metadata = {
           city: formData.details.city || 'Somerset',
           postcode: formData.details.postcode,
           contactMethod: 'email',
-          preferredDate: formData.details.preferredDate || '',
+          preferredDate: formData.details.preferredDate || null,
           notes: formData.details.additionalInfo || '',
           specialOffer: formData.hasGutterDeal ? 'Free window clean with both gutter services' : ''
         };
         
-        console.log('Submitting booking data:', apiData);
+        if (debugMode) {
+          console.log('API Data to submit:', apiData);
+          
+          // Check API health first in debug mode
+          try {
+            const healthResponse = await fetch('/api/bookings/health');
+            const healthData = await healthResponse.json();
+            console.log('API Health Check:', healthData);
+            
+            if (healthData.status !== 'healthy') {
+              console.error('API Health Check Failed:', healthData);
+              if (healthData.database?.error?.details?.includes('does not exist')) {
+                showError('Database configuration error. Please contact support.');
+                return;
+              }
+            }
+          } catch (healthError) {
+            console.error('Health check failed:', healthError);
+          }
+        }
         
         // Submit to API endpoint
         const response = await fetch('/api/bookings/create', {
@@ -1628,7 +1702,19 @@ const metadata = {
           body: JSON.stringify(apiData)
         });
         
-        const result = await response.json();
+        let result;
+        try {
+          const responseText = await response.text();
+          if (debugMode) {
+            console.log('API Response Status:', response.status);
+            console.log('API Response Text:', responseText);
+          }
+          result = JSON.parse(responseText);
+        } catch (parseError) {
+          console.error('Failed to parse API response:', parseError);
+          console.error('Raw response:', responseText);
+          throw new Error('Invalid response from server');
+        }
         
         if (response.ok && result.success) {
           // Success - also try EmailJS as backup notification
@@ -1675,7 +1761,14 @@ const metadata = {
           // Handle error
           const errorMessage = result.error || 'There was an error submitting your request';
           console.error('Booking submission error:', result);
-          showError(errorMessage);
+          
+          // Show debug info if available
+          if (debugMode && result.debug) {
+            console.error('Debug info:', result.debug);
+            showError(errorMessage + ' (Debug: ' + JSON.stringify(result.debug) + ')');
+          } else {
+            showError(errorMessage);
+          }
           
           // Restore button
           submitBtn.disabled = false;
@@ -1684,12 +1777,37 @@ const metadata = {
         
       } catch (error) {
         console.error('Booking submission error:', error);
-        showError('There was an error submitting your request. Please try again or contact us directly at 01458 860339.');
+        console.error('Error details:', {
+          message: error.message,
+          stack: error.stack,
+          name: error.name
+        });
+        
+        // Show more specific error message
+        let errorMessage = 'There was an error submitting your request. ';
+        if (error.message && error.message.includes('fetch')) {
+          errorMessage += 'Network error - please check your connection.';
+        } else if (error.message && error.message.includes('Invalid response')) {
+          errorMessage += 'Server error - please try again later.';
+        } else {
+          errorMessage += 'Please try again or contact us directly at 01458 860339.';
+        }
+        
+        showError(errorMessage);
         
         // Restore button
         const submitBtn = document.getElementById('submit-booking');
         submitBtn.disabled = false;
         submitBtn.innerHTML = 'Submit Booking Request';
+        
+        // Reset reCAPTCHA if available
+        if (typeof grecaptcha !== 'undefined') {
+          try {
+            grecaptcha.reset();
+          } catch (e) {
+            console.warn('Could not reset reCAPTCHA:', e);
+          }
+        }
       }
     }
     
@@ -1730,5 +1848,29 @@ const metadata = {
     (function(){
       emailjs.init("2wsYktgc6yRwHKQyN");
     })();
+  </script>
+  
+  <!-- Global Error Handler for Debugging -->
+  <script>
+    window.addEventListener('error', function(event) {
+      console.error('Global error caught:', {
+        message: event.message,
+        filename: event.filename,
+        lineno: event.lineno,
+        colno: event.colno,
+        error: event.error
+      });
+      
+      // Check if it's the @context error
+      if (event.message && event.message.includes('@context')) {
+        console.warn('Ignoring @context error - likely from JSON-LD processing');
+        event.preventDefault(); // Prevent the error from showing in console
+      }
+    });
+    
+    // Also catch unhandled promise rejections
+    window.addEventListener('unhandledrejection', function(event) {
+      console.error('Unhandled promise rejection:', event.reason);
+    });
   </script>
 </Layout>

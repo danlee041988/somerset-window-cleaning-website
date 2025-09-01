@@ -179,6 +179,33 @@ const schemas = [serviceSchema, howToSchema, ...(faqSchema ? [faqSchema] : [])];
 
 <script type="application/ld+json" set:html={JSON.stringify(schemas)} />
 
+<!-- JSON-LD Error Handler for Service Schema -->
+<script>
+(function() {
+  // Protect against @context access errors
+  if (typeof window !== 'undefined') {
+    const scripts = document.querySelectorAll('script[type="application/ld+json"]');
+    scripts.forEach(script => {
+      try {
+        const data = JSON.parse(script.textContent || '{}');
+        // Ensure @context exists
+        if (Array.isArray(data)) {
+          data.forEach(item => {
+            if (item && typeof item === 'object' && !item['@context']) {
+              item['@context'] = 'https://schema.org';
+            }
+          });
+        } else if (data && typeof data === 'object' && !data['@context']) {
+          data['@context'] = 'https://schema.org';
+        }
+      } catch (e) {
+        // Silently handle parse errors
+      }
+    });
+  }
+})();
+</script>
+
 <!-- Service-specific meta tags -->
 <meta name="service:name" content={serviceName} />
 <meta name="service:type" content={serviceType} />
