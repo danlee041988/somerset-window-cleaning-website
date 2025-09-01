@@ -39,6 +39,23 @@
   .footer-force-white * {
     color: #fff !important;
   }
+  
+  /* Force white text on all red backgrounds */
+  .bg-red-600,
+  .bg-red-700,
+  .bg-red-500,
+  .bg-primary,
+  [class*="bg-red-"] {
+    color: #fff !important;
+  }
+  
+  .bg-red-600 *,
+  .bg-red-700 *,
+  .bg-red-500 *,
+  .bg-primary *,
+  [class*="bg-red-"] * {
+    color: #fff !important;
+  }
 }
 
 @layer components {
