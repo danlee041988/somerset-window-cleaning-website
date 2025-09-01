@@ -1,6 +1,6 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
-import OptimizedImage from '~/components/common/OptimizedImage.astro';
+import { Picture } from 'astro:assets';
 import { Icon } from 'astro-icon/components';
 import { siteConfig, policyCopy } from '~/config/site';
 
@@ -39,20 +39,27 @@ const metadata = {
     ]}
   >
     <Fragment slot="bg">
-      <OptimizedImage 
-        src={mainHeroImage} 
-        alt="Professional window cleaning service across Somerset - aerial view of technician cleaning modern home windows with water-fed pole system" 
-        width={1600} 
-        height={900} 
-        quality={90}
-        formats={['avif', 'webp', 'jpg']}
-        critical={true}
-        blurUp={false}
-        preload={true}
-        sizes="100vw"
+      <Picture
+        src={mainHeroImage}
+        alt="Professional window cleaning service across Somerset - aerial view of technician cleaning modern home windows with water-fed pole system"
+        width={1920}
+        height={1080}
         widths={[640, 768, 1024, 1280, 1600, 1920]}
-        style="width:100%; height:100%; object-fit:cover; opacity:0.55;" 
+        sizes="100vw"
+        formats={['avif', 'webp', 'jpg']}
+        loading="eager"
+        decoding="async"
+        quality={85}
+        style="width:100%; height:100%; object-fit:cover; opacity:0.55; position:absolute; inset:0;"
       />
+      <noscript>
+        <img 
+          src={mainHeroImage.src} 
+          alt="Professional window cleaning service across Somerset" 
+          style="width:100%; height:100%; object-fit:cover; opacity:0.55; position:absolute; inset:0;"
+          loading="eager"
+        />
+      </noscript>
       <div class="absolute inset-0 bg-black/40"></div>
     </Fragment>
     <Fragment slot="title">

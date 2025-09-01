@@ -7,7 +7,8 @@ import CallToAction from '~/components/widgets/CallToAction.astro';
 import FAQs from '~/components/widgets/FAQs.astro';
 import Stats from '~/components/widgets/Stats.astro';
 import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
-import OptimizedImage from '~/components/common/OptimizedImage.astro';
+import HeroImage from '~/components/common/HeroImage.astro';
+import windowCleaningHero from '~/assets/images/services/Image.jpg';
 import LiveReviews from '~/components/widgets/LiveReviews.astro';
 import ServiceSchema from '~/components/seo/ServiceSchema.astro';
 import ReviewsSchema from '~/components/seo/ReviewsSchema.astro';
@@ -35,19 +36,15 @@ const metadata = {
       Sparkling clean windows with guaranteed streak-free results. Safe, professional service with minimal ladder use. Perfect for all window types and heights.
     </Fragment>
     <Fragment slot="bg">
-      <OptimizedImage 
-        src="/images/services/Image.jpg" 
+      <HeroImage
+        src={windowCleaningHero}
         alt="Professional window cleaning technician using pure water system on residential windows - Somerset Window Cleaning"
-        width={1600} 
-        height={900} 
-        quality={85}
-        formats={['avif', 'webp', 'jpg']}
-        critical={true}
-        blurUp={false}
-        preload={true}
+        width={1920}
+        height={1080}
+        priority={true}
         sizes="100vw"
-        widths={[640, 768, 1024, 1280, 1600]}
-        style="width:100%; height:100%; object-fit:cover;" 
+        widths={[640, 768, 1024, 1280, 1600, 1920]}
+        class="absolute inset-0"
       />
     </Fragment>
   </ServiceHero>

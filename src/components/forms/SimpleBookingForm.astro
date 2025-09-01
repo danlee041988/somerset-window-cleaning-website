@@ -1,0 +1,492 @@
+---
+/**
+ * Simple Booking Form Component
+ * Replaces external Noteforms with secure internal API
+ * 
+ * Features:
+ * - Mobile-optimized with 44px+ touch targets
+ * - WCAG 2.1 AA compliant
+ * - Honeypot protection
+ * - Client and server-side validation
+ * - Secure internal API submission
+ */
+
+export interface Props {
+  formId?: string;
+  className?: string;
+}
+
+const { 
+  formId = "simple-booking-form",
+  className = ""
+} = Astro.props;
+---
+
+<form 
+  id={formId}
+  class={`simple-booking-form ${className}`}
+  method="POST"
+  action="/api/booking-submit"
+  novalidate
+  aria-label="Quick booking form"
+>
+  <!-- Honeypot field -->
+  <input 
+    type="text" 
+    name="website" 
+    class="sr-only" 
+    tabindex="-1" 
+    autocomplete="off"
+    aria-hidden="true"
+  />
+  
+  <div class="space-y-6">
+    <!-- Name Field -->
+    <div>
+      <label for="fullName" class="block text-sm font-medium text-gray-700 mb-2">
+        Full Name <span class="text-red-500">*</span>
+      </label>
+      <input
+        type="text"
+        id="fullName"
+        name="fullName"
+        required
+        autocomplete="name"
+        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors text-base"
+        placeholder="John Smith"
+        aria-required="true"
+        aria-describedby="fullName-error"
+      />
+      <div id="fullName-error" class="error-message text-red-600 text-sm mt-1" role="alert" aria-live="polite"></div>
+    </div>
+
+    <!-- Email Field -->
+    <div>
+      <label for="email" class="block text-sm font-medium text-gray-700 mb-2">
+        Email Address <span class="text-red-500">*</span>
+      </label>
+      <input
+        type="email"
+        id="email"
+        name="email"
+        required
+        autocomplete="email"
+        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors text-base"
+        placeholder="john@example.com"
+        aria-required="true"
+        aria-describedby="email-help email-error"
+      />
+      <div id="email-help" class="text-gray-500 text-xs mt-1">We'll send your quote confirmation here</div>
+      <div id="email-error" class="error-message text-red-600 text-sm mt-1" role="alert" aria-live="polite"></div>
+    </div>
+
+    <!-- Phone Field -->
+    <div>
+      <label for="phone" class="block text-sm font-medium text-gray-700 mb-2">
+        Phone Number <span class="text-red-500">*</span>
+      </label>
+      <input
+        type="tel"
+        id="phone"
+        name="phone"
+        required
+        autocomplete="tel"
+        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors text-base"
+        placeholder="07123 456789"
+        aria-required="true"
+        aria-describedby="phone-error"
+      />
+      <div id="phone-error" class="error-message text-red-600 text-sm mt-1" role="alert" aria-live="polite"></div>
+    </div>
+
+    <!-- Address Field -->
+    <div>
+      <label for="address" class="block text-sm font-medium text-gray-700 mb-2">
+        Property Address <span class="text-red-500">*</span>
+      </label>
+      <input
+        type="text"
+        id="address"
+        name="address"
+        required
+        autocomplete="street-address"
+        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors text-base"
+        placeholder="123 Main Street"
+        aria-required="true"
+        aria-describedby="address-error"
+      />
+      <div id="address-error" class="error-message text-red-600 text-sm mt-1" role="alert" aria-live="polite"></div>
+    </div>
+
+    <!-- Postcode Field -->
+    <div>
+      <label for="postcode" class="block text-sm font-medium text-gray-700 mb-2">
+        Postcode <span class="text-red-500">*</span>
+      </label>
+      <input
+        type="text"
+        id="postcode"
+        name="postcode"
+        required
+        autocomplete="postal-code"
+        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors text-base"
+        placeholder="BA16 0HW"
+        aria-required="true"
+        aria-describedby="postcode-help postcode-error"
+      />
+      <div id="postcode-help" class="text-gray-500 text-xs mt-1">Somerset area postcodes only</div>
+      <div id="postcode-error" class="error-message text-red-600 text-sm mt-1" role="alert" aria-live="polite"></div>
+    </div>
+
+    <!-- Property Type -->
+    <div>
+      <label for="propertyType" class="block text-sm font-medium text-gray-700 mb-2">
+        Property Type
+      </label>
+      <select
+        id="propertyType"
+        name="propertyType"
+        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors text-base"
+        aria-describedby="propertyType-error"
+      >
+        <option value="">Select property type</option>
+        <option value="terraced">Terraced House</option>
+        <option value="semi-detached">Semi-Detached House</option>
+        <option value="detached">Detached House</option>
+        <option value="bungalow">Bungalow</option>
+        <option value="flat">Flat/Apartment</option>
+        <option value="other">Other</option>
+      </select>
+      <div id="propertyType-error" class="error-message text-red-600 text-sm mt-1" role="alert" aria-live="polite"></div>
+    </div>
+
+    <!-- Service Frequency -->
+    <div>
+      <label for="frequency" class="block text-sm font-medium text-gray-700 mb-2">
+        Preferred Service Frequency
+      </label>
+      <select
+        id="frequency"
+        name="frequency"
+        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors text-base"
+        aria-describedby="frequency-error"
+      >
+        <option value="">Select frequency</option>
+        <option value="4-weekly">Every 4 weeks (Recommended)</option>
+        <option value="8-weekly">Every 8 weeks</option>
+        <option value="one-off">One-off clean</option>
+      </select>
+      <div id="frequency-error" class="error-message text-red-600 text-sm mt-1" role="alert" aria-live="polite"></div>
+    </div>
+
+    <!-- Additional Services -->
+    <fieldset>
+      <legend class="block text-sm font-medium text-gray-700 mb-2">
+        Additional Services
+      </legend>
+      <div class="space-y-2">
+        <label class="flex items-center p-3 border border-gray-200 rounded-lg hover:bg-gray-50 cursor-pointer">
+          <input
+            type="checkbox"
+            name="additionalServices"
+            value="gutter"
+            class="mr-3 w-5 h-5 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+          />
+          <span>Gutter Clearing</span>
+        </label>
+        <label class="flex items-center p-3 border border-gray-200 rounded-lg hover:bg-gray-50 cursor-pointer">
+          <input
+            type="checkbox"
+            name="additionalServices"
+            value="fascia"
+            class="mr-3 w-5 h-5 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+          />
+          <span>Fascia & Soffit Cleaning</span>
+        </label>
+        <label class="flex items-center p-3 border border-gray-200 rounded-lg hover:bg-gray-50 cursor-pointer">
+          <input
+            type="checkbox"
+            name="additionalServices"
+            value="conservatory"
+            class="mr-3 w-5 h-5 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+          />
+          <span>Conservatory Cleaning</span>
+        </label>
+      </div>
+    </fieldset>
+
+    <!-- Notes Field -->
+    <div>
+      <label for="notes" class="block text-sm font-medium text-gray-700 mb-2">
+        Additional Notes (Optional)
+      </label>
+      <textarea
+        id="notes"
+        name="notes"
+        rows="3"
+        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors text-base"
+        placeholder="Any special requirements or access information..."
+        aria-describedby="notes-error"
+      ></textarea>
+      <div id="notes-error" class="error-message text-red-600 text-sm mt-1" role="alert" aria-live="polite"></div>
+    </div>
+
+    <!-- Submit Button -->
+    <div class="pt-4">
+      <button
+        type="submit"
+        class="w-full bg-red-600 text-white font-semibold py-4 px-6 rounded-lg hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transition-colors min-h-[48px] text-lg"
+        aria-label="Submit booking request"
+      >
+        Get Your Free Quote
+      </button>
+    </div>
+
+    <!-- Success Message (hidden by default) -->
+    <div id="form-success" class="hidden bg-green-50 border border-green-300 text-green-800 p-4 rounded-lg" role="alert">
+      <h3 class="font-semibold mb-1">Quote Request Submitted!</h3>
+      <p>We'll contact you within 1 hour to discuss your requirements.</p>
+    </div>
+
+    <!-- Error Message (hidden by default) -->
+    <div id="form-error" class="hidden bg-red-50 border border-red-300 text-red-800 p-4 rounded-lg" role="alert">
+      <h3 class="font-semibold mb-1">Submission Error</h3>
+      <p>Please check your details and try again, or call us on 01458 860339.</p>
+    </div>
+  </div>
+</form>
+
+<style>
+  .simple-booking-form {
+    max-width: 100%;
+  }
+  
+  /* Ensure all touch targets are at least 44px */
+  .simple-booking-form input,
+  .simple-booking-form select,
+  .simple-booking-form textarea,
+  .simple-booking-form button {
+    min-height: 44px;
+  }
+  
+  /* Error message styling */
+  .error-message:empty {
+    display: none;
+  }
+  
+  /* Focus styles for accessibility */
+  .simple-booking-form input:focus,
+  .simple-booking-form select:focus,
+  .simple-booking-form textarea:focus {
+    outline: 2px solid #3b82f6;
+    outline-offset: 2px;
+  }
+  
+  /* Loading state */
+  .simple-booking-form.loading {
+    opacity: 0.6;
+    pointer-events: none;
+  }
+  
+  /* Checkbox styling */
+  input[type="checkbox"] {
+    cursor: pointer;
+  }
+  
+  /* Mobile optimizations */
+  @media (max-width: 640px) {
+    .simple-booking-form input,
+    .simple-booking-form select,
+    .simple-booking-form textarea {
+      font-size: 16px; /* Prevent zoom on iOS */
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('simple-booking-form') as HTMLFormElement;
+    if (!form) return;
+    
+    // Check for postcode parameter in URL and prefill
+    const urlParams = new URLSearchParams(window.location.search);
+    const postcodeParam = urlParams.get('postcode');
+    
+    if (postcodeParam) {
+      const postcodeInput = document.getElementById('postcode') as HTMLInputElement;
+      if (postcodeInput) {
+        postcodeInput.value = postcodeParam;
+        // Add visual indicator that it was prefilled
+        postcodeInput.classList.add('prefilled');
+        postcodeInput.style.backgroundColor = '#f0f9ff';
+        
+        // Announce to screen readers
+        const announcement = document.createElement('div');
+        announcement.setAttribute('aria-live', 'polite');
+        announcement.className = 'sr-only';
+        announcement.textContent = `Postcode ${postcodeParam} has been prefilled for your area`;
+        document.body.appendChild(announcement);
+        
+        setTimeout(() => {
+          document.body.removeChild(announcement);
+        }, 1000);
+      }
+    }
+    
+    // Form validation patterns
+    const patterns = {
+      email: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+      phone: /^[\d\s()+.-]+$/,
+      postcode: /^[A-Z]{1,2}\d[A-Z\d]?\s*\d[A-Z]{2}$/i
+    };
+    
+    // Validate individual field
+    function validateField(field: HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement): boolean {
+      const errorEl = document.getElementById(`${field.id}-error`);
+      if (!errorEl) return true;
+      
+      errorEl.textContent = '';
+      
+      // Required field check
+      if (field.hasAttribute('required') && !field.value.trim()) {
+        errorEl.textContent = 'This field is required';
+        return false;
+      }
+      
+      // Pattern validation
+      if (field.value.trim()) {
+        switch (field.type) {
+          case 'email':
+            if (!patterns.email.test(field.value)) {
+              errorEl.textContent = 'Please enter a valid email address';
+              return false;
+            }
+            break;
+          case 'tel':
+            if (!patterns.phone.test(field.value)) {
+              errorEl.textContent = 'Please enter a valid phone number';
+              return false;
+            }
+            break;
+        }
+        
+        // Postcode validation
+        if (field.id === 'postcode' && !patterns.postcode.test(field.value)) {
+          errorEl.textContent = 'Please enter a valid UK postcode';
+          return false;
+        }
+      }
+      
+      return true;
+    }
+    
+    // Add blur validation to all fields
+    const fields = form.querySelectorAll('input, select, textarea');
+    fields.forEach(field => {
+      field.addEventListener('blur', () => {
+        validateField(field as HTMLInputElement);
+      });
+    });
+    
+    // Handle form submission
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      // Clear previous messages
+      const successEl = document.getElementById('form-success');
+      const errorEl = document.getElementById('form-error');
+      if (successEl) successEl.classList.add('hidden');
+      if (errorEl) errorEl.classList.add('hidden');
+      
+      // Validate all fields
+      let isValid = true;
+      fields.forEach(field => {
+        if (!validateField(field as HTMLInputElement)) {
+          isValid = false;
+        }
+      });
+      
+      if (!isValid) {
+        // Focus first error field
+        const firstError = form.querySelector('.error-message:not(:empty)');
+        if (firstError) {
+          const field = form.querySelector(`#${firstError.id.replace('-error', '')}`) as HTMLElement;
+          field?.focus();
+        }
+        return;
+      }
+      
+      // Show loading state
+      form.classList.add('loading');
+      const submitBtn = form.querySelector('button[type="submit"]') as HTMLButtonElement;
+      const originalText = submitBtn.textContent;
+      submitBtn.textContent = 'Submitting...';
+      submitBtn.disabled = true;
+      
+      try {
+        // Prepare form data
+        const formData = new FormData(form);
+        const data: any = {};
+        
+        // Convert FormData to object
+        formData.forEach((value, key) => {
+          if (key === 'additionalServices') {
+            if (!data.additionalServices) data.additionalServices = [];
+            data.additionalServices.push(value);
+          } else {
+            data[key] = value;
+          }
+        });
+        
+        // Add city based on postcode
+        data.city = 'Somerset';
+        
+        // Submit to API
+        const response = await fetch('/api/booking-submit', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(data)
+        });
+        
+        const result = await response.json();
+        
+        if (response.ok && result.success) {
+          // Show success message
+          if (successEl) {
+            successEl.classList.remove('hidden');
+            successEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }
+          
+          // Reset form
+          form.reset();
+          
+          // Track conversion event
+          if (typeof gtag !== 'undefined') {
+            gtag('event', 'conversion', {
+              'send_to': 'AW-CONVERSION_ID/CONVERSION_LABEL',
+              'value': 1.0,
+              'currency': 'GBP'
+            });
+          }
+        } else {
+          throw new Error(result.error || 'Submission failed');
+        }
+      } catch (error) {
+        console.error('Form submission error:', error);
+        
+        // Show error message
+        if (errorEl) {
+          errorEl.classList.remove('hidden');
+          errorEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+      } finally {
+        // Reset button state
+        form.classList.remove('loading');
+        submitBtn.textContent = originalText;
+        submitBtn.disabled = false;
+      }
+    });
+  });
+</script>

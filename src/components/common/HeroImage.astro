@@ -1,0 +1,137 @@
+---
+/**
+ * Robust Hero Image Component
+ * 
+ * Features:
+ * - Uses Astro's built-in Picture component for reliability
+ * - Static fallback for non-JS environments
+ * - Proper error handling
+ * - No client-side JavaScript required for basic functionality
+ * - Preload support for critical images
+ */
+
+import { Picture, getImage } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
+export interface Props {
+  src: ImageMetadata | string;
+  alt: string;
+  width?: number;
+  height?: number;
+  class?: string;
+  loading?: 'lazy' | 'eager';
+  priority?: boolean;
+  sizes?: string;
+  widths?: number[];
+  formats?: ('avif' | 'webp' | 'jpg')[];
+  quality?: number;
+}
+
+const {
+  src,
+  alt,
+  width = 1920,
+  height = 1080,
+  class: className = '',
+  loading = 'eager',
+  priority = false,
+  sizes = '100vw',
+  widths = [640, 768, 1024, 1280, 1600, 1920],
+  formats = ['avif', 'webp', 'jpg'],
+  quality = 85,
+} = Astro.props;
+
+// Generate optimized fallback image
+let fallbackSrc: string;
+let fallbackSrcset: string = '';
+
+if (typeof src === 'string') {
+  fallbackSrc = src;
+} else {
+  const optimizedImg = await getImage({ src, format: 'jpg', quality });
+  fallbackSrc = optimizedImg.src;
+  
+  // Generate srcset for picture element
+  const srcsetPromises = widths.map(async (w) => {
+    const img = await getImage({ src, width: w, format: 'jpg', quality });
+    return `${img.src} ${w}w`;
+  });
+  
+  const srcsetArray = await Promise.all(srcsetPromises);
+  fallbackSrcset = srcsetArray.join(', ');
+}
+
+// Ensure alt text for accessibility
+if (!alt) {
+  throw new Error('Alt text is required for hero images');
+}
+---
+
+<div class={`hero-image-wrapper ${className}`}>
+  <!-- Main picture element with multiple formats -->
+  <Picture
+    src={src}
+    alt={alt}
+    width={width}
+    height={height}
+    widths={widths}
+    sizes={sizes}
+    formats={formats}
+    quality={quality}
+    loading={loading}
+    decoding="async"
+    class="hero-image"
+    style="width: 100%; height: 100%; object-fit: cover;"
+  />
+  
+  <!-- Fallback for browsers without picture element support -->
+  <noscript>
+    <img 
+      src={fallbackSrc}
+      srcset={fallbackSrcset}
+      sizes={sizes}
+      alt={alt}
+      width={width}
+      height={height}
+      loading={loading}
+      decoding="async"
+      style="width: 100%; height: 100%; object-fit: cover;"
+      class="hero-image-fallback"
+    />
+  </noscript>
+</div>
+
+<!-- Preload hint for critical hero images -->
+{priority && (
+  <link
+    rel="preload"
+    as="image"
+    href={fallbackSrc}
+    imagesrcset={fallbackSrcset}
+    imagesizes={sizes}
+    type="image/jpeg"
+  />
+)}
+
+<style>
+  .hero-image-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+  
+  .hero-image,
+  .hero-image-fallback {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  /* Ensure images don't cause layout shifts */
+  .hero-image-wrapper img {
+    max-width: 100%;
+    height: auto;
+  }
+</style>

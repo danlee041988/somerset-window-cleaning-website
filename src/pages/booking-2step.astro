@@ -1,6 +1,7 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
 import Image from '~/components/common/Image.astro';
+import SimpleBookingForm from '~/components/forms/SimpleBookingForm.astro';
 
 const metadata = {
   title: 'Book Window Cleaning Online - Quick Booking | Somerset Window Cleaning',
@@ -72,28 +73,8 @@ const metadata = {
           </ul>
         </div>
         
-        <iframe 
-          style="border:none;width:100%;min-height:650px;" 
-          id="noteform-45skqy" 
-          src="https://noteforms.com/forms/noteform-45skqy"
-          title="Window cleaning booking form"
-          loading="lazy"
-          sandbox="allow-forms allow-scripts allow-same-origin"
-          aria-label="Booking form for window cleaning services"
-        >
-          <p>
-            <strong>Form not loading?</strong> 
-            <a href="#alternative-contact" class="text-blue-600 underline">
-              Use our alternative contact methods below
-            </a>
-          </p>
-        </iframe>
-        
-        <script 
-          type="text/javascript" 
-          onload="initEmbed('noteform-45skqy')" 
-          src="https://noteforms.com/widgets/iframe.min.js">
-        </script>
+        <!-- Secure Internal Booking Form -->
+        <SimpleBookingForm formId="booking-2step-form" />
         
         <!-- Alternative Contact Methods -->
         <div id="alternative-contact" class="mt-6 p-4 bg-gray-50 rounded-lg">
@@ -359,54 +340,20 @@ const metadata = {
 <script>
   // Enhanced mobile booking form functionality
   document.addEventListener('DOMContentLoaded', function() {
-    const iframe = document.getElementById('noteform-45skqy');
+    const form = document.getElementById('booking-2step-form');
     const container = document.querySelector('.mobile-form-container');
     
-    if (iframe && container) {
-      // Handle iframe loading states
-      iframe.addEventListener('load', function() {
-        iframe.removeAttribute('data-loading');
-        
-        // Announce to screen readers that form is ready
-        const announcement = document.createElement('div');
-        announcement.setAttribute('aria-live', 'polite');
-        announcement.className = 'sr-only';
-        announcement.textContent = 'Booking form loaded and ready to use';
-        document.body.appendChild(announcement);
-        
-        setTimeout(() => {
-          document.body.removeChild(announcement);
-        }, 1000);
-      });
+    if (form && container) {
+      // Announce to screen readers that form is ready
+      const announcement = document.createElement('div');
+      announcement.setAttribute('aria-live', 'polite');
+      announcement.className = 'sr-only';
+      announcement.textContent = 'Booking form loaded and ready to use';
+      document.body.appendChild(announcement);
       
-      // Set loading state initially
-      iframe.setAttribute('data-loading', 'true');
-      
-      // Handle iframe errors
-      iframe.addEventListener('error', function() {
-        showFormError();
-      });
-      
-      // Handle window messages from iframe (if the form provider supports it)
-      window.addEventListener('message', function(event) {
-        // Validate origin for security
-        if (event.origin !== 'https://noteforms.com') return;
-        
-        try {
-          const data = JSON.parse(event.data);
-          
-          if (data.type === 'form_submit_success') {
-            showSuccessMessage();
-          } else if (data.type === 'form_resize') {
-            // Adjust iframe height based on content
-            if (data.height && data.height > 400) {
-              iframe.style.minHeight = data.height + 'px';
-            }
-          }
-        } catch (e) {
-          // Invalid message data, ignore
-        }
-      });
+      setTimeout(() => {
+        document.body.removeChild(announcement);
+      }, 1000);
     }
     
     // Mobile-specific optimizations
@@ -440,71 +387,7 @@ const metadata = {
       });
     }
     
-    function showFormError() {
-      const existingError = container?.querySelector('.form-error-banner');
-      if (existingError) return;
-      
-      const errorBanner = document.createElement('div');
-      errorBanner.className = 'form-error-banner';
-      errorBanner.setAttribute('role', 'alert');
-      errorBanner.innerHTML = `
-        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.732-.833-2.5 0L4.232 15.5c-.77.833.192 2.5 1.732 2.5z"/>
-        </svg>
-        <span>Form temporarily unavailable. Please use the contact methods below.</span>
-      `;
-      
-      container?.insertBefore(errorBanner, iframe);
-      
-      // Hide iframe
-      iframe.style.display = 'none';
-      
-      // Show alternative contact methods
-      const altContact = document.getElementById('alternative-contact');
-      if (altContact) {
-        altContact.style.display = 'block';
-        altContact.style.marginTop = '16px';
-        altContact.style.padding = '24px';
-        altContact.style.backgroundColor = '#f3f4f6';
-        altContact.style.borderRadius = '8px';
-      }
-    }
-    
-    function showSuccessMessage() {
-      const successBanner = document.createElement('div');
-      successBanner.className = 'bg-green-50 border border-green-200 text-green-800 p-4 rounded-lg mb-4';
-      successBanner.setAttribute('role', 'alert');
-      successBanner.innerHTML = `
-        <div class="flex items-center">
-          <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
-          </svg>
-          <span class="font-semibold">Quote request submitted successfully!</span>
-        </div>
-        <p class="mt-2 text-sm">We'll contact you within 1 hour to discuss your requirements.</p>
-      `;
-      
-      container?.insertBefore(successBanner, iframe);
-      
-      // Hide the form
-      iframe.style.display = 'none';
-      
-      // Focus the success message for accessibility
-      successBanner.focus();
-      successBanner.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }
-    
-    // Improve iframe accessibility
-    if (iframe) {
-      // Add keyboard event handling
-      iframe.addEventListener('keydown', function(e) {
-        // Allow escape to exit iframe focus
-        if (e.key === 'Escape') {
-          e.preventDefault();
-          const nextFocusable = container?.querySelector('a, button');
-          nextFocusable?.focus();
-        }
-      });
-    }
+    // Form submission is now handled by the SimpleBookingForm component
+    // Additional mobile optimizations and accessibility handled there
   });
 </script>

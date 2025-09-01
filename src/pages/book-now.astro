@@ -525,6 +525,7 @@ const metadata = {
                       <h4 class="font-bold text-green-800 text-xl mb-1">🎁 SPECIAL BUNDLE OFFER!</h4>
                       <p class="text-green-700 font-semibold">Add both Gutter Clearing AND Fascia & Soffit Cleaning and get your window cleaning absolutely FREE!</p>
                       <p class="text-green-600 text-sm mt-1">Save up to £40 on your first clean!</p>
+                      <p class="text-green-600 text-xs mt-1">(first visit only; min 3-bed property; T&Cs apply)</p>
                     </div>
                   </div>
                 </div>
@@ -943,6 +944,31 @@ const metadata = {
       el.style.display = 'none';
     });
     
+    // Check for postcode parameter in URL and prefill
+    const urlParams = new URLSearchParams(window.location.search);
+    const postcodeParam = urlParams.get('postcode');
+    
+    if (postcodeParam) {
+      const postcodeInput = document.querySelector('input[name="postcode"]');
+      if (postcodeInput) {
+        postcodeInput.value = postcodeParam;
+        // Add visual indicator that it was prefilled
+        postcodeInput.classList.add('prefilled');
+        postcodeInput.style.backgroundColor = '#f0f9ff';
+        
+        // Announce to screen readers
+        const announcement = document.createElement('div');
+        announcement.setAttribute('aria-live', 'polite');
+        announcement.className = 'sr-only';
+        announcement.textContent = `Postcode ${postcodeParam} has been prefilled for your area`;
+        document.body.appendChild(announcement);
+        
+        setTimeout(() => {
+          document.body.removeChild(announcement);
+        }, 1000);
+      }
+    }
+    
     // Remove error styling from inputs
     document.querySelectorAll('input, select, textarea').forEach(el => {
       el.classList.remove('border-red-500');
@@ -1272,6 +1298,7 @@ function updateReviewSummary() {
             priceHtml += '<div class="text-green-800 font-bold text-lg mb-2">🎉 SPECIAL OFFER APPLIED!</div>';
             priceHtml += `<div class="mb-2"><strong>Window Cleaning:</strong> <span class="text-xl font-bold text-green-600 line-through">£${windowCleaningPrice}</span> <span class="text-2xl font-bold text-green-700">FREE!</span></div>`;
             priceHtml += '<div class="text-sm text-green-700">You\'ve selected both gutter services - window cleaning is included free!</div>';
+            priceHtml += '<div class="text-xs text-green-600 mt-1">(first visit only; min 3-bed property; T&Cs apply)</div>';
             priceHtml += '</div>';
         } else if (basePrice > 0) {
             priceHtml += `<div class="mb-2"><strong>Window Cleaning:</strong> <span class="text-xl font-bold text-green-700">£${windowCleaningPrice}</span> per clean</div>`;
