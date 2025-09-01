@@ -87,8 +87,10 @@ const { socialLinks = [], secondaryLinks = [], links = [], footNote = '', theme 
 
     <div class="grid grid-cols-12 gap-4 gap-y-8 sm:gap-8 py-8 md:py-12">
       <div class="col-span-12 lg:col-span-4">
-        <div class="mb-2">
-          <a class="inline-block font-bold text-xl no-underline text-white" href={getHomePermalink()} style="color:#fff !important">{SITE?.name}</a>
+        <div class="mb-4">
+          <a href={getHomePermalink()} class="inline-block" aria-label="Somerset Window Cleaning - Home">
+            <Logo />
+          </a>
         </div>
         <div class="text-sm text-white flex gap-1">
           {
@@ -159,12 +161,6 @@ const { socialLinks = [], secondaryLinks = [], links = [], footNote = '', theme 
       <div class="text-sm mr-4 text-white">
         <Fragment set:html={footNote} />
       </div>
-    </div>
-    <!-- Logo Section -->
-    <div class="flex justify-center items-center py-8 border-t border-gray-700">
-      <a href={getHomePermalink()} class="inline-block" aria-label="Somerset Window Cleaning - Home">
-        <Logo />
-      </a>
     </div>
   </div>
 </footer>

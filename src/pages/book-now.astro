@@ -729,6 +729,20 @@ const metadata = {
   }
   
   /* New bedroom and property type card styles */
+  .bedroom-card-content {
+    min-height: 140px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  .bedroom-card-content > div:first-child {
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
   .bedroom-card-content.selected,
   .property-type-card-content.selected {
     background-color: #dc2626 !important;
