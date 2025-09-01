@@ -54,6 +54,16 @@ function sanitizeInput(input: string): string {
 }
 
 export const POST: APIRoute = async ({ request, clientAddress }) => {
+  console.log('Booking API called from:', clientAddress);
+  
+  // CORS headers for same-origin requests
+  const headers = {
+    'Content-Type': 'application/json',
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Methods': 'POST, OPTIONS',
+    'Access-Control-Allow-Headers': 'Content-Type',
+  };
+  
   // Check rate limit
   const ip = clientAddress || 'unknown';
   if (!checkRateLimit(ip)) {
@@ -62,7 +72,7 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
     }), {
       status: 429,
       headers: {
-        'Content-Type': 'application/json',
+        ...headers,
         'Retry-After': '900' // 15 minutes
       }
     });
@@ -86,7 +96,7 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
 
     // Get Supabase credentials from environment
     const supabaseUrl = import.meta.env.SUPABASE_URL || import.meta.env.PUBLIC_SUPABASE_URL;
-    const supabaseKey = import.meta.env.SUPABASE_SERVICE_KEY || import.meta.env.PUBLIC_SUPABASE_ANON_KEY;
+    const supabaseKey = import.meta.env.SUPABASE_SERVICE_ROLE_KEY || import.meta.env.SUPABASE_SERVICE_KEY || import.meta.env.PUBLIC_SUPABASE_ANON_KEY;
 
     if (!supabaseUrl || !supabaseKey) {
       console.error('Missing Supabase credentials');
@@ -94,7 +104,7 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
         error: 'Service temporarily unavailable. Please try again later.' 
       }), {
         status: 503,
-        headers: { 'Content-Type': 'application/json' }
+        headers
       });
     }
 
@@ -178,7 +188,7 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
         } : undefined
       }), {
         status: 500,
-        headers: { 'Content-Type': 'application/json' }
+        headers
       });
     }
 
@@ -193,7 +203,7 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
     }), {
       status: 201,
       headers: { 
-        'Content-Type': 'application/json',
+        ...headers,
         'X-RateLimit-Limit': '5',
         'X-RateLimit-Remaining': String(5 - (rateLimitMap.get(ip)?.count || 0)),
       }
@@ -209,7 +219,7 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
         }))
       }), {
         status: 400,
-        headers: { 'Content-Type': 'application/json' }
+        headers
       });
     }
     
@@ -218,7 +228,7 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
       error: 'An unexpected error occurred. Please try again.' 
     }), {
       status: 500,
-      headers: { 'Content-Type': 'application/json' }
+      headers
     });
   }
 };

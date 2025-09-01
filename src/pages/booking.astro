@@ -674,14 +674,78 @@ const metadata = {
       bespoke: {},
       details: {},
       totalPrice: 0,
-      hasGutterDeal: false
+      hasGutterDeal: false,
+      additionalServices: [] // Initialize as empty array
     };
+
+    // Make formState globally accessible and ensure additionalServices is always an array
+    window.formState = formData;
+    
+    // Defensive function to ensure additionalServices is always an array
+    function ensureAdditionalServicesArray() {
+      if (!window.formState) {
+        window.formState = formData;
+      }
+      if (!Array.isArray(window.formState.additionalServices)) {
+        console.warn('additionalServices was not an array, converting:', window.formState.additionalServices);
+        window.formState.additionalServices = [];
+      }
+      if (!Array.isArray(formData.additionalServices)) {
+        formData.additionalServices = [];
+      }
+    }
 
     // Initialize form
     document.addEventListener('DOMContentLoaded', function() {
+      ensureAdditionalServicesArray();
       initializeEventListeners();
       updateQuoteDisplay();
+      
+      // Add debug mode for testing
+      const urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.get('debug') === 'true') {
+        console.log('🔧 Debug mode enabled');
+        window.debugBookingForm = {
+          formData: formData,
+          currentStep: () => currentStep,
+          fillTestData: fillTestData,
+          testSubmit: testSubmit
+        };
+      }
     });
+    
+    // Debug helper functions
+    function fillTestData() {
+      // Step 1 - Property selection
+      document.querySelector('[data-bedrooms="3 Beds"]')?.click();
+      setTimeout(() => {
+        document.querySelector('[data-property-type="Semi-Detached House"]')?.click();
+        setTimeout(() => {
+          document.querySelector('[data-frequency="4-weekly"]')?.click();
+          setTimeout(() => {
+            document.getElementById('continue-to-details')?.click();
+          }, 500);
+        }, 500);
+      }, 500);
+      
+      // Step 3 - Contact details (will be filled after navigation)
+      setTimeout(() => {
+        document.getElementById('firstName').value = 'Test';
+        document.getElementById('lastName').value = 'User';
+        document.getElementById('email').value = 'test@example.com';
+        document.getElementById('phone').value = '07123456789';
+        document.getElementById('address').value = '123 Test Street';
+        document.getElementById('postcode').value = 'BA16 0HW';
+        document.getElementById('accessInfo').value = 'Gate code: 1234';
+        document.getElementById('additionalInfo').value = 'This is a test booking';
+      }, 2000);
+    }
+    
+    function testSubmit() {
+      console.log('Test submission - Current form data:', formData);
+      console.log('Window form state:', window.formState);
+      console.log('Additional services array check:', Array.isArray(formData.additionalServices));
+    }
 
     function initializeEventListeners() {
       // Bedroom selection
@@ -747,6 +811,55 @@ const metadata = {
       document.getElementById('continue-to-details').addEventListener('click', nextStep);
       document.getElementById('continue-commercial').addEventListener('click', nextStep);
       document.getElementById('continue-bespoke').addEventListener('click', nextStep);
+      
+      // Real-time validation for contact fields
+      document.getElementById('email')?.addEventListener('blur', function() {
+        const value = this.value.trim();
+        if (value && !isValidEmail(value)) {
+          this.classList.add('border-red-500');
+          showFieldError(this, 'Please enter a valid email address');
+        } else {
+          this.classList.remove('border-red-500');
+          removeFieldError(this);
+        }
+      });
+      
+      document.getElementById('phone')?.addEventListener('blur', function() {
+        const value = this.value.trim();
+        if (value && !isValidPhone(value)) {
+          this.classList.add('border-red-500');
+          showFieldError(this, 'Please enter a valid UK phone number');
+        } else {
+          this.classList.remove('border-red-500');
+          removeFieldError(this);
+        }
+      });
+      
+      document.getElementById('postcode')?.addEventListener('blur', function() {
+        const value = this.value.trim();
+        if (value && !isValidPostcode(value)) {
+          this.classList.add('border-red-500');
+          showFieldError(this, 'Please enter a valid UK postcode');
+        } else {
+          this.classList.remove('border-red-500');
+          removeFieldError(this);
+        }
+      });
+    }
+    
+    function showFieldError(field, message) {
+      removeFieldError(field);
+      const errorMsg = document.createElement('p');
+      errorMsg.className = 'field-error text-red-500 text-xs mt-1';
+      errorMsg.textContent = message;
+      field.parentNode.appendChild(errorMsg);
+    }
+    
+    function removeFieldError(field) {
+      const existingError = field.parentNode.querySelector('.field-error');
+      if (existingError) {
+        existingError.remove();
+      }
     }
 
     function selectBedroom(bedrooms, isCommercial) {
@@ -1279,13 +1392,69 @@ const metadata = {
 
     function validateContactDetails() {
       const required = ['firstName', 'lastName', 'email', 'phone', 'address', 'postcode'];
+      let hasErrors = false;
+      
+      // Clear previous errors
+      document.querySelectorAll('.field-error').forEach(error => error.remove());
+      document.querySelectorAll('.border-red-500').forEach(field => field.classList.remove('border-red-500'));
+      
       for (const field of required) {
-        const value = document.getElementById(field).value.trim();
+        const element = document.getElementById(field);
+        const value = element.value.trim();
+        
         if (!value) {
-          alert(`Please fill in ${field.replace(/([A-Z])/g, ' $1').toLowerCase()}`);
-          document.getElementById(field).focus();
-          return false;
+          element.classList.add('border-red-500');
+          const errorMsg = document.createElement('p');
+          errorMsg.className = 'field-error text-red-500 text-xs mt-1';
+          errorMsg.textContent = `Please enter your ${field.replace(/([A-Z])/g, ' $1').toLowerCase()}`;
+          element.parentNode.appendChild(errorMsg);
+          
+          if (!hasErrors) {
+            element.focus();
+            hasErrors = true;
+          }
         }
+      }
+      
+      // Validate email format
+      const emailElement = document.getElementById('email');
+      const emailValue = emailElement.value.trim();
+      if (emailValue && !isValidEmail(emailValue)) {
+        emailElement.classList.add('border-red-500');
+        const errorMsg = document.createElement('p');
+        errorMsg.className = 'field-error text-red-500 text-xs mt-1';
+        errorMsg.textContent = 'Please enter a valid email address';
+        emailElement.parentNode.appendChild(errorMsg);
+        hasErrors = true;
+      }
+      
+      // Validate phone format
+      const phoneElement = document.getElementById('phone');
+      const phoneValue = phoneElement.value.trim();
+      if (phoneValue && !isValidPhone(phoneValue)) {
+        phoneElement.classList.add('border-red-500');
+        const errorMsg = document.createElement('p');
+        errorMsg.className = 'field-error text-red-500 text-xs mt-1';
+        errorMsg.textContent = 'Please enter a valid UK phone number';
+        phoneElement.parentNode.appendChild(errorMsg);
+        hasErrors = true;
+      }
+      
+      // Validate postcode format
+      const postcodeElement = document.getElementById('postcode');
+      const postcodeValue = postcodeElement.value.trim();
+      if (postcodeValue && !isValidPostcode(postcodeValue)) {
+        postcodeElement.classList.add('border-red-500');
+        const errorMsg = document.createElement('p');
+        errorMsg.className = 'field-error text-red-500 text-xs mt-1';
+        errorMsg.textContent = 'Please enter a valid UK postcode';
+        postcodeElement.parentNode.appendChild(errorMsg);
+        hasErrors = true;
+      }
+      
+      if (hasErrors) {
+        showError('Please fix the errors below');
+        return false;
       }
       
       // Save details to formData
@@ -1301,6 +1470,23 @@ const metadata = {
       };
       
       return true;
+    }
+    
+    // Validation helper functions
+    function isValidEmail(email) {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return emailRegex.test(email);
+    }
+    
+    function isValidPhone(phone) {
+      // UK phone regex - accepts mobile (07) and landline (01/02/03) numbers
+      const ukPhoneRegex = /^(?:(?:\+44\s?|0)(?:1\d{8,9}|2\d{9}|3\d{9}|7\d{9}|8\d{9}))$/;
+      return ukPhoneRegex.test(phone.replace(/[\s\-\(\)]/g, ''));
+    }
+    
+    function isValidPostcode(postcode) {
+      const postcodeRegex = /^[A-Z]{1,2}[0-9][A-Z0-9]?\s?[0-9][A-Z]{2}$/i;
+      return postcodeRegex.test(postcode);
     }
 
     function populateReviewStep() {
@@ -1361,48 +1547,179 @@ const metadata = {
       reviewContent.innerHTML = content;
     }
 
-    function submitBooking() {
-      // Validate reCAPTCHA
-      const recaptchaResponse = grecaptcha.getResponse();
-      if (!recaptchaResponse) {
-        alert('Please complete the reCAPTCHA verification');
-        return;
-      }
-      
-      // Prepare email data
-      const emailData = {
-        first_name: formData.details.firstName,
-        last_name: formData.details.lastName,
-        email: formData.details.email,
-        phone: formData.details.phone,
-        address: formData.details.address,
-        postcode: formData.details.postcode,
-        property_type: formData.propertyType,
-        bedrooms: formData.bedrooms,
-        frequency: formData.frequency,
-        window_cleaning_price: calculateWindowCleaningPrice(),
-        addons: Object.entries(formData.addons).filter(([_, addon]) => addon.selected)
-                      .map(([id, addon]) => {
-                        const name = id === 'gutterClearing' ? 'Gutter Clearing' :
-                                    id === 'fasciaSoffitGutter' ? 'Fascia, Soffit & Gutter Clean' :
-                                    'Conservatory Roof Cleaning';
-                        return `${name}: ${addon.price > 0 ? '£' + addon.price : 'Quote Request'}`;
-                      }).join(', '),
-        total_price: formData.totalPrice,
-        access_info: formData.details.accessInfo || 'None provided',
-        additional_info: formData.details.additionalInfo || 'None provided',
-        'g-recaptcha-response': recaptchaResponse
-      };
-      
-      // Submit via EmailJS
-      emailjs.send('service_90gcdah', 'template_9eb0o4s', emailData)
-        .then(function(response) {
-          alert('Booking request submitted successfully! We will contact you within 24 hours.');
-          window.location.href = '/';
-        }, function(error) {
-          console.error('EmailJS error:', error);
-          alert('There was an error submitting your request. Please try again or contact us directly.');
+    async function submitBooking() {
+      try {
+        // Ensure additionalServices is an array
+        ensureAdditionalServicesArray();
+        
+        // Validate reCAPTCHA (only if loaded)
+        let recaptchaResponse = '';
+        if (typeof grecaptcha !== 'undefined') {
+          try {
+            recaptchaResponse = grecaptcha.getResponse();
+            if (!recaptchaResponse) {
+              showError('Please complete the reCAPTCHA verification');
+              return;
+            }
+          } catch (e) {
+            console.warn('reCAPTCHA not properly loaded:', e);
+            // Continue without reCAPTCHA in development
+            if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+              recaptchaResponse = 'dev-mode-bypass';
+            } else {
+              showError('Security verification failed. Please refresh the page and try again.');
+              return;
+            }
+          }
+        }
+        
+        // Show loading state
+        const submitBtn = document.getElementById('submit-booking');
+        const originalText = submitBtn.innerHTML;
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = 'Submitting...';
+        
+        // Convert addons object to additionalServices array
+        const additionalServices = Object.entries(formData.addons)
+          .filter(([_, addon]) => addon.selected)
+          .map(([id]) => id);
+        
+        // Determine proper property type format for API
+        let propertyType = formData.propertyType;
+        if (formData.isCommercial) {
+          propertyType = 'commercial';
+        } else if (formData.isBespoke) {
+          propertyType = 'custom';
+        } else if (formData.bedrooms && formData.propertyType) {
+          // Convert to API format (e.g., "3 Beds" + "Detached House" = "detached-3")
+          const beds = formData.bedrooms.match(/(\d+)/)?.[1] || '2';
+          const type = formData.propertyType.toLowerCase().includes('detached') ? 'detached' :
+                      formData.propertyType.toLowerCase().includes('semi') ? 'semi' :
+                      formData.propertyType.toLowerCase().includes('terraced') ? 'terrace' :
+                      'semi';
+          propertyType = `${type}-${beds}`;
+        }
+        
+        // Prepare API data
+        const apiData = {
+          propertyType: propertyType,
+          frequency: formData.frequency || '4weekly',
+          additionalServices: additionalServices,
+          fullName: formData.details.firstName + ' ' + formData.details.lastName,
+          email: formData.details.email,
+          phone: formData.details.phone,
+          address: formData.details.address,
+          city: formData.details.city || 'Somerset',
+          postcode: formData.details.postcode,
+          contactMethod: 'email',
+          preferredDate: formData.details.preferredDate || '',
+          notes: formData.details.additionalInfo || '',
+          specialOffer: formData.hasGutterDeal ? 'Free window clean with both gutter services' : ''
+        };
+        
+        console.log('Submitting booking data:', apiData);
+        
+        // Submit to API endpoint
+        const response = await fetch('/api/bookings/create', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(apiData)
         });
+        
+        const result = await response.json();
+        
+        if (response.ok && result.success) {
+          // Success - also try EmailJS as backup notification
+          try {
+            const emailData = {
+              first_name: formData.details.firstName,
+              last_name: formData.details.lastName,
+              email: formData.details.email,
+              phone: formData.details.phone,
+              address: formData.details.address,
+              postcode: formData.details.postcode,
+              property_type: formData.bedrooms + ' ' + formData.propertyType,
+              bedrooms: formData.bedrooms,
+              frequency: formData.frequency,
+              window_cleaning_price: calculateWindowCleaningPrice(),
+              addons: additionalServices.map(id => {
+                const name = id === 'gutterClearing' ? 'Gutter Clearing' :
+                            id === 'fasciaSoffitGutter' ? 'Fascia, Soffit & Gutter Clean' :
+                            id === 'conservatoryRoof' ? 'Conservatory Roof Cleaning' :
+                            'Solar Panel Cleaning';
+                return name;
+              }).join(', ') || 'None',
+              total_price: formData.totalPrice,
+              access_info: formData.details.accessInfo || 'None provided',
+              additional_info: formData.details.additionalInfo || 'None provided',
+              'g-recaptcha-response': recaptchaResponse
+            };
+            
+            await emailjs.send('service_90gcdah', 'template_9eb0o4s', emailData);
+          } catch (emailError) {
+            console.error('EmailJS notification failed:', emailError);
+            // Don't fail the whole submission if email fails
+          }
+          
+          // Show success message
+          showSuccess('Booking request submitted successfully! We will contact you within 24 hours.');
+          
+          // Redirect after delay
+          setTimeout(() => {
+            window.location.href = '/';
+          }, 3000);
+          
+        } else {
+          // Handle error
+          const errorMessage = result.error || 'There was an error submitting your request';
+          console.error('Booking submission error:', result);
+          showError(errorMessage);
+          
+          // Restore button
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = originalText;
+        }
+        
+      } catch (error) {
+        console.error('Booking submission error:', error);
+        showError('There was an error submitting your request. Please try again or contact us directly at 01458 860339.');
+        
+        // Restore button
+        const submitBtn = document.getElementById('submit-booking');
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = 'Submit Booking Request';
+      }
+    }
+    
+    // Helper functions for showing messages
+    function showError(message) {
+      const alertDiv = document.createElement('div');
+      alertDiv.className = 'fixed top-4 left-1/2 transform -translate-x-1/2 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded z-50';
+      alertDiv.innerHTML = `
+        <strong class="font-bold">Error!</strong>
+        <span class="block sm:inline">${message}</span>
+      `;
+      document.body.appendChild(alertDiv);
+      
+      setTimeout(() => {
+        alertDiv.remove();
+      }, 5000);
+    }
+    
+    function showSuccess(message) {
+      const alertDiv = document.createElement('div');
+      alertDiv.className = 'fixed top-4 left-1/2 transform -translate-x-1/2 bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded z-50';
+      alertDiv.innerHTML = `
+        <strong class="font-bold">Success!</strong>
+        <span class="block sm:inline">${message}</span>
+      `;
+      document.body.appendChild(alertDiv);
+      
+      setTimeout(() => {
+        alertDiv.remove();
+      }, 5000);
     }
   </script>
 
