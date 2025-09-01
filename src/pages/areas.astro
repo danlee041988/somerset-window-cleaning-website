@@ -39,11 +39,11 @@ const coverageAreas = {
     ]}
   >
     <Fragment slot="title">
-      We Cover <span class="text-red-500">38+ Postcodes</span> Across <span class="text-red-500">Somerset</span>
+      We Cover <span class="text-white">38+ Postcodes</span> Across <span class="text-white">Somerset</span>
     </Fragment>
     <Fragment slot="subtitle">
-      <span class="text-red-500">Professional</span> window cleaning across <span class="text-red-500">Somerset</span>, <span class="text-red-500">North Somerset</span>, and <span class="text-red-500">West Dorset</span>. 
-      <span class="text-red-500">Fully insured service</span> with <span class="text-red-500">48-hour guarantee</span>.
+      <span class="text-white">Professional</span> window cleaning across <span class="text-white">Somerset</span>, <span class="text-white">North Somerset</span>, and <span class="text-white">West Dorset</span>. 
+      <span class="text-white">Fully insured service</span> with <span class="text-white">48-hour guarantee</span>.
     </Fragment>
     <Fragment slot="content">
       <div class="mt-6 p-4 bg-white/10 rounded-lg border border-white/20">
@@ -66,15 +66,15 @@ const coverageAreas = {
       </div>
     </Fragment>
     <Fragment slot="bg">
-      <div class="absolute inset-0 bg-gradient-to-br from-blue-900 to-gray-900"></div>
+      <div class="absolute inset-0 bg-gradient-to-br from-gray-900 to-black"></div>
     </Fragment>
   </Hero>
 
   <!-- Postcode Checker Section -->
-  <section class="py-12 bg-gray-50">
+  <section class="py-12 bg-gray-900">
     <div class="max-w-4xl mx-auto px-4 text-center">
-      <h2 class="text-3xl font-bold mb-4">Check Your Area</h2>
-      <p class="text-gray-600 mb-8">Enter your postcode to confirm we cover your area</p>
+      <h2 class="text-3xl font-bold mb-4 text-white">Check Your Area</h2>
+      <p class="text-gray-300 mb-8">Enter your postcode to confirm we cover your area</p>
       
       <div class="max-w-md mx-auto">
         <div class="flex gap-2">
@@ -98,34 +98,34 @@ const coverageAreas = {
   </section>
 
   <!-- Coverage Areas Grid -->
-  <section class="py-16">
+  <section class="py-16 bg-black">
     <div class="max-w-7xl mx-auto px-4">
       <div class="text-center mb-12">
-        <h2 class="text-3xl font-bold mb-4">Our Service Areas</h2>
-        <p class="text-xl text-gray-600">Professional window cleaning across four counties</p>
+        <h2 class="text-3xl font-bold mb-4 text-white">Our Service Areas</h2>
+        <p class="text-xl text-gray-300">Professional window cleaning across four counties</p>
       </div>
 
       <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
         {Object.entries(coverageAreas).map(([region, data]) => (
-          <div class="bg-white rounded-lg shadow-lg border border-gray-100 p-6 hover:shadow-xl transition-shadow">
-            <h3 class="text-xl font-bold mb-3 text-gray-800">{region}</h3>
-            <p class="text-gray-600 text-sm mb-4">{data.description}</p>
+          <div class="bg-gray-800 rounded-lg shadow-lg border border-gray-700 p-6 hover:shadow-xl transition-shadow">
+            <h3 class="text-xl font-bold mb-3 text-white">{region}</h3>
+            <p class="text-gray-300 text-sm mb-4">{data.description}</p>
             
             <div class="space-y-2">
-              <h4 class="font-semibold text-gray-700 text-sm">Postcodes Covered:</h4>
+              <h4 class="font-semibold text-gray-200 text-sm">Postcodes Covered:</h4>
               <div class="flex flex-wrap gap-1">
                 {data.postcodes.map(postcode => (
-                  <span class="inline-block bg-primary/10 text-primary text-xs px-2 py-1 rounded">
+                  <span class="inline-block bg-gray-700 text-gray-200 text-xs px-2 py-1 rounded hover:bg-gray-600 transition-colors">
                     {postcode}
                   </span>
                 ))}
               </div>
             </div>
             
-            <div class="mt-4 pt-4 border-t border-gray-100">
+            <div class="mt-4 pt-4 border-t border-gray-700">
               <a 
                 href="/booking-2step" 
-                class="inline-flex items-center text-primary hover:text-primary/80 font-medium text-sm"
+                class="inline-flex items-center text-red-500 hover:text-red-400 font-medium text-sm transition-colors"
               >
                 Book Now for This Area
                 <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -140,42 +140,42 @@ const coverageAreas = {
   </section>
 
   <!-- Featured Area Pages -->
-  <section class="py-12 bg-gray-50">
+  <section class="py-12 bg-gray-900">
     <div class="max-w-6xl mx-auto px-4">
       <div class="text-center mb-12">
-        <h2 class="text-3xl font-bold mb-4">Find Your Postcode Area</h2>
-        <p class="text-gray-600">We organize our service by postcode for easy navigation</p>
+        <h2 class="text-3xl font-bold mb-4 text-white">Find Your Postcode Area</h2>
+        <p class="text-gray-300">We organize our service by postcode for easy navigation</p>
       </div>
 
       <div class="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-        <a href="/areas/ba-areas" class="group block bg-white rounded-lg shadow hover:shadow-lg transition-shadow p-8 text-center">
-          <div class="text-4xl font-bold text-primary mb-4">BA</div>
-          <h3 class="text-xl font-bold mb-2 group-hover:text-primary">Bath & Somerset Areas</h3>
-          <p class="text-gray-600 text-sm mb-3">Wells, Glastonbury, Street, Yeovil, Frome, Shepton Mallet and more</p>
-          <div class="text-xs text-gray-500 mb-3">BA3-BA11, BA16, BA20-BA22, DT9</div>
-          <span class="text-primary text-sm font-medium">View BA postcodes →</span>
+        <a href="/areas/ba-areas" class="group block bg-gray-800 rounded-lg shadow hover:shadow-lg transition-shadow p-8 text-center border border-gray-700 hover:border-gray-600">
+          <div class="text-4xl font-bold text-red-500 mb-4">BA</div>
+          <h3 class="text-xl font-bold mb-2 text-white group-hover:text-red-400">Bath & Somerset Areas</h3>
+          <p class="text-gray-300 text-sm mb-3">Wells, Glastonbury, Street, Yeovil, Frome, Shepton Mallet and more</p>
+          <div class="text-xs text-gray-400 mb-3">BA3-BA11, BA16, BA20-BA22, DT9</div>
+          <span class="text-red-500 text-sm font-medium">View BA postcodes →</span>
         </a>
 
-        <a href="/areas/bs-areas" class="group block bg-white rounded-lg shadow hover:shadow-lg transition-shadow p-8 text-center">
-          <div class="text-4xl font-bold text-primary mb-4">BS</div>
-          <h3 class="text-xl font-bold mb-2 group-hover:text-primary">North Somerset Areas</h3>
-          <p class="text-gray-600 text-sm mb-3">Weston-super-Mare, Clevedon, Portishead, Cheddar, Wedmore and more</p>
-          <div class="text-xs text-gray-500 mb-3">BS21, BS23-BS29, BS39, BS40, BS49</div>
-          <span class="text-primary text-sm font-medium">View BS postcodes →</span>
+        <a href="/areas/bs-areas" class="group block bg-gray-800 rounded-lg shadow hover:shadow-lg transition-shadow p-8 text-center border border-gray-700 hover:border-gray-600">
+          <div class="text-4xl font-bold text-red-500 mb-4">BS</div>
+          <h3 class="text-xl font-bold mb-2 text-white group-hover:text-red-400">North Somerset Areas</h3>
+          <p class="text-gray-300 text-sm mb-3">Weston-super-Mare, Clevedon, Portishead, Cheddar, Wedmore and more</p>
+          <div class="text-xs text-gray-400 mb-3">BS21, BS23-BS29, BS39, BS40, BS49</div>
+          <span class="text-red-500 text-sm font-medium">View BS postcodes →</span>
         </a>
 
-        <a href="/areas/ta-areas" class="group block bg-white rounded-lg shadow hover:shadow-lg transition-shadow p-8 text-center">
-          <div class="text-4xl font-bold text-primary mb-4">TA</div>
-          <h3 class="text-xl font-bold mb-2 group-hover:text-primary">Taunton & Somerset Areas</h3>
-          <p class="text-gray-600 text-sm mb-3">Taunton, Bridgwater, Wellington, Chard, Ilminster, Burnham-on-Sea and more</p>
-          <div class="text-xs text-gray-500 mb-3">TA1-TA24</div>
-          <span class="text-primary text-sm font-medium">View TA postcodes →</span>
+        <a href="/areas/ta-areas" class="group block bg-gray-800 rounded-lg shadow hover:shadow-lg transition-shadow p-8 text-center border border-gray-700 hover:border-gray-600">
+          <div class="text-4xl font-bold text-red-500 mb-4">TA</div>
+          <h3 class="text-xl font-bold mb-2 text-white group-hover:text-red-400">Taunton & Somerset Areas</h3>
+          <p class="text-gray-300 text-sm mb-3">Taunton, Bridgwater, Wellington, Chard, Ilminster, Burnham-on-Sea and more</p>
+          <div class="text-xs text-gray-400 mb-3">TA1-TA24</div>
+          <span class="text-red-500 text-sm font-medium">View TA postcodes →</span>
         </a>
       </div>
 
       <div class="mt-8 text-center">
-        <p class="text-gray-600 mb-4">Not sure which postcode area you're in? Use the postcode checker above or give us a call</p>
-        <a href="tel:01458860339" class="text-primary font-medium">Call 01458 860339 →</a>
+        <p class="text-gray-300 mb-4">Not sure which postcode area you're in? Use the postcode checker above or give us a call</p>
+        <a href="tel:01458860339" class="text-red-500 font-medium hover:text-red-400 transition-colors">Call 01458 860339 →</a>
       </div>
     </div>
   </section>
