@@ -374,34 +374,34 @@ const metadata = {
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                       <label class="frequency-option cursor-pointer">
                         <input type="radio" name="frequency" value="4weekly" checked class="sr-only">
-                        <div class="frequency-content border-2 border-gray-300 rounded-lg p-4 text-center hover:border-red-400 transition-colors">
-                          <h4 class="font-semibold text-lg text-gray-800">Every 4 Weeks</h4>
-                          <p class="text-sm text-gray-700">Regular service</p>
-                          <p class="text-lg font-bold text-green-700 mt-2">Base Price</p>
+                        <div class="frequency-content border-2 border-gray-600 bg-gray-800 rounded-lg p-4 text-center hover:border-red-500 transition-all">
+                          <h4 class="font-semibold text-lg text-white">Every 4 Weeks</h4>
+                          <p class="text-sm text-gray-400">Regular service</p>
+                          <p class="text-lg font-bold text-red-500 mt-2">Base Price</p>
                         </div>
                       </label>
                       <label class="frequency-option cursor-pointer">
                         <input type="radio" name="frequency" value="8weekly" class="sr-only">
-                        <div class="frequency-content border-2 border-gray-300 rounded-lg p-4 text-center hover:border-red-400 transition-colors">
-                          <h4 class="font-semibold text-lg text-gray-800">Every 8 Weeks</h4>
-                          <p class="text-sm text-gray-700">+£3 per clean</p>
-                          <p class="text-lg font-bold text-green-700 mt-2">+£3</p>
+                        <div class="frequency-content border-2 border-gray-600 bg-gray-800 rounded-lg p-4 text-center hover:border-red-500 transition-all">
+                          <h4 class="font-semibold text-lg text-white">Every 8 Weeks</h4>
+                          <p class="text-sm text-gray-400">+£3 per clean</p>
+                          <p class="text-lg font-bold text-red-500 mt-2">+£3</p>
                         </div>
                       </label>
                       <label class="frequency-option cursor-pointer">
                         <input type="radio" name="frequency" value="12weekly" class="sr-only">
-                        <div class="frequency-content border-2 border-gray-300 rounded-lg p-4 text-center hover:border-red-400 transition-colors">
-                          <h4 class="font-semibold text-lg text-gray-800">Every 12 Weeks</h4>
-                          <p class="text-sm text-gray-700">+£5 per clean</p>
-                          <p class="text-lg font-bold text-green-700 mt-2">+£5</p>
+                        <div class="frequency-content border-2 border-gray-600 bg-gray-800 rounded-lg p-4 text-center hover:border-red-500 transition-all">
+                          <h4 class="font-semibold text-lg text-white">Every 12 Weeks</h4>
+                          <p class="text-sm text-gray-400">+£5 per clean</p>
+                          <p class="text-lg font-bold text-red-500 mt-2">+£5</p>
                         </div>
                       </label>
                       <label class="frequency-option cursor-pointer">
                         <input type="radio" name="frequency" value="onetime" class="sr-only">
-                        <div class="frequency-content border-2 border-gray-300 rounded-lg p-4 text-center hover:border-red-400 transition-colors">
-                          <h4 class="font-semibold text-lg text-gray-800">One-time Clean</h4>
-                          <p class="text-sm text-gray-700">+£20 per clean</p>
-                          <p class="text-lg font-bold text-green-700 mt-2">+£20</p>
+                        <div class="frequency-content border-2 border-gray-600 bg-gray-800 rounded-lg p-4 text-center hover:border-red-500 transition-all">
+                          <h4 class="font-semibold text-lg text-white">One-time Clean</h4>
+                          <p class="text-sm text-gray-400">+£20 per clean</p>
+                          <p class="text-lg font-bold text-red-500 mt-2">+£20</p>
                         </div>
                       </label>
                     </div>
@@ -871,15 +871,15 @@ const metadata = {
   }
   
   .frequency-option input:checked + .frequency-content h4 {
-    color: white;
+    color: white !important;
   }
   
-  .frequency-option input:checked + .frequency-content p:first-of-type {
-    color: #fecaca;
+  .frequency-option input:checked + .frequency-content p {
+    color: white !important;
   }
   
-  .frequency-option input:checked + .frequency-content p:last-of-type {
-    color: white;
+  .frequency-option input:checked + .frequency-content p.text-gray-400 {
+    color: #fecaca !important;
   }
 
   .service-card-option input:checked + .service-card-content {
@@ -999,6 +999,11 @@ window.formState = {
     notes: '',
     termsAgreed: false
 };
+
+// Ensure additionalServices is always an array
+if (!Array.isArray(window.formState.additionalServices)) {
+    window.formState.additionalServices = [];
+}
 
 let currentStep = 1;
 const totalSteps = 4;
@@ -1581,10 +1586,10 @@ function initializeForm() {
                 if (input && content) {
                     if (input.checked) {
                         content.style.borderColor = '#dc2626';
-                        content.style.backgroundColor = '#fee2e2';
+                        content.style.backgroundColor = '#dc2626';
                     } else {
-                        content.style.borderColor = '#d1d5db';
-                        content.style.backgroundColor = 'white';
+                        content.style.borderColor = '#4b5563';
+                        content.style.backgroundColor = '#1f2937';
                     }
                 }
             });
@@ -1594,6 +1599,11 @@ function initializeForm() {
     // Additional services handler
     document.querySelectorAll('input[name="additionalServices"]').forEach(checkbox => {
         checkbox.addEventListener('change', (e) => {
+            // Ensure additionalServices is an array
+            if (!Array.isArray(window.formState.additionalServices)) {
+                window.formState.additionalServices = [];
+            }
+            
             if (e.target.checked) {
                 if (!window.formState.additionalServices.includes(e.target.value)) {
                     window.formState.additionalServices.push(e.target.value);
@@ -1631,12 +1641,12 @@ function initializeForm() {
             if (content) {
                 if (e.target.checked) {
                     content.style.borderColor = '#dc2626';
-                    content.style.backgroundColor = '#fee2e2';
+                    content.style.backgroundColor = '#dc2626';
                     const icon = content.querySelector('svg');
-                    if (icon) icon.style.color = '#dc2626';
+                    if (icon) icon.style.color = '#ffffff';
                 } else {
-                    content.style.borderColor = '#d1d5db';
-                    content.style.backgroundColor = 'white';
+                    content.style.borderColor = '#4b5563';
+                    content.style.backgroundColor = '#1f2937';
                     const icon = content.querySelector('svg');
                     if (icon) icon.style.color = '#9ca3af';
                 }
@@ -1686,18 +1696,18 @@ function initializeForm() {
                         step4.innerHTML = `
                             <div class="max-w-4xl mx-auto p-6 md:p-8 text-center">
                                 <div class="mb-8">
-                                    <svg class="w-24 h-24 mx-auto text-green-600 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <svg class="w-24 h-24 mx-auto text-green-500 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
                                     </svg>
-                                    <h2 class="text-3xl font-bold text-gray-800 mb-4">Booking Submitted Successfully!</h2>
-                                    <p class="text-xl text-gray-600 mb-2">${result.message}</p>
-                                    ${result.estimatedPrice ? `<p class="text-2xl font-bold text-green-700 mb-4">Estimated Price: ${result.estimatedPrice}</p>` : ''}
-                                    <p class="text-gray-600 mb-8">Booking Reference: #${result.bookingId || 'PENDING'}</p>
+                                    <h2 class="text-3xl font-bold text-white mb-4">Booking Submitted Successfully!</h2>
+                                    <p class="text-xl text-gray-300 mb-2">${result.message}</p>
+                                    ${result.estimatedPrice ? `<p class="text-2xl font-bold text-green-500 mb-4">Estimated Price: ${result.estimatedPrice}</p>` : ''}
+                                    <p class="text-gray-400 mb-8">Booking Reference: #${result.bookingId || 'PENDING'}</p>
                                 </div>
                                 <div class="space-y-4 max-w-2xl mx-auto">
-                                    <div class="bg-gray-50 rounded-lg p-6 text-left">
-                                        <h3 class="font-semibold text-gray-800 mb-3">What happens next?</h3>
-                                        <ul class="space-y-2 text-gray-600">
+                                    <div class="bg-gray-800 rounded-lg p-6 text-left">
+                                        <h3 class="font-semibold text-white mb-3">What happens next?</h3>
+                                        <ul class="space-y-2 text-gray-300">
                                             <li class="flex items-start">
                                                 <svg class="w-5 h-5 text-green-600 mt-0.5 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4"></path>
