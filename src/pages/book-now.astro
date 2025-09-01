@@ -937,8 +937,18 @@ const metadata = {
 <!-- Enhanced error handling and validation -->
 <script>
   // Define inline validation functions
-  function showInlineError(field, message) {
-    const errorElement = field.parentElement.querySelector('.error-message, .field-error');
+  window.showInlineError = function(field, message) {
+    // Try to find error element in parent
+    let errorElement = field.parentElement.querySelector('.error-message, .field-error');
+    
+    // If not found, try the parent's parent (for nested structures)
+    if (!errorElement) {
+      const formGroup = field.closest('.form-group');
+      if (formGroup) {
+        errorElement = formGroup.querySelector('.error-message, .field-error');
+      }
+    }
+    
     if (errorElement) {
       errorElement.textContent = message;
       errorElement.style.display = 'block';
@@ -946,8 +956,18 @@ const metadata = {
     field.classList.add('border-red-500');
   }
   
-  function clearInlineError(field) {
-    const errorElement = field.parentElement.querySelector('.error-message, .field-error');
+  window.clearInlineError = function(field) {
+    // Try to find error element in parent
+    let errorElement = field.parentElement.querySelector('.error-message, .field-error');
+    
+    // If not found, try the parent's parent (for nested structures)
+    if (!errorElement) {
+      const formGroup = field.closest('.form-group');
+      if (formGroup) {
+        errorElement = formGroup.querySelector('.error-message, .field-error');
+      }
+    }
+    
     if (errorElement) {
       errorElement.style.display = 'none';
     }
@@ -1109,8 +1129,8 @@ function validateStep(step) {
             const propertyTypeSelect = document.getElementById('propertyType');
             if (propertyTypeSelect && window.formState.propertyType && window.formState.propertyType !== '') {
                 // Clear any errors if property type is selected
-                if (typeof clearInlineError === 'function') {
-                    clearInlineError(propertyTypeSelect);
+                if (typeof window.clearInlineError === 'function') {
+                    window.clearInlineError(propertyTypeSelect);
                 }
                 const errorDiv = document.getElementById('propertyTypeError');
                 if (errorDiv) {
@@ -1148,6 +1168,7 @@ function validateStep(step) {
             return true;
             
         case 3:
+            console.log('Validating step 3 - Details page');
             // Validate each field individually with inline errors
             const fields = {
                 fullName: { required: true, message: 'Please enter your full name' },
@@ -1155,27 +1176,29 @@ function validateStep(step) {
                 address: { required: true, message: 'Please enter your address' },
                 city: { required: true, message: 'Please enter your city' },
                 postcode: { required: true, pattern: /^[A-Z]{1,2}[0-9][A-Z0-9]?\s?[0-9][A-Z]{2}$/i, message: 'Please enter a valid UK postcode' },
-                phone: { required: true, pattern: /^(?:(?:\+44\s?|0)(?:1\d{8,9}|2\d{9}|3\d{9}|7\d{9}|8\d{9}))$/, message: 'Please enter a valid UK phone number' }
+                phone: { required: true, pattern: /^[\d\s\-\+\(\)]+$/, message: 'Please enter a valid phone number' }
             };
             
             Object.entries(fields).forEach(([fieldName, validation]) => {
                 const input = document.querySelector(`[name="${fieldName}"]`);
+                console.log(`Checking field: ${fieldName}`, input);
                 if (input) {
                     const value = input.value.trim();
+                    console.log(`Field ${fieldName} value:`, value);
                     
                     if (validation.required && !value) {
-                        if (typeof showInlineError === 'function') {
-                            showInlineError(input, validation.message);
+                        if (typeof window.showInlineError === 'function') {
+                            window.showInlineError(input, validation.message);
                         }
                         isValid = false;
                     } else if (validation.pattern && value && !validation.pattern.test(value)) {
-                        if (typeof showInlineError === 'function') {
-                            showInlineError(input, validation.message);
+                        if (typeof window.showInlineError === 'function') {
+                            window.showInlineError(input, validation.message);
                         }
                         isValid = false;
                     } else {
-                        if (typeof clearInlineError === 'function') {
-                            clearInlineError(input);
+                        if (typeof window.clearInlineError === 'function') {
+                            window.clearInlineError(input);
                         }
                     }
                 }
@@ -1189,6 +1212,7 @@ function validateStep(step) {
                 }
             }
             
+            console.log('Step 3 validation result:', isValid);
             return isValid;
             
         case 4:
