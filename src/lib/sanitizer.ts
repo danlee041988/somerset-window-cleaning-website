@@ -114,10 +114,17 @@ export function sanitizePostcode(postcode: string): string {
   if (typeof postcode !== 'string') return '';
   
   // Remove all non-alphanumeric characters and convert to uppercase
-  return postcode
+  const cleaned = postcode
     .replace(/[^a-zA-Z0-9]/g, '')
     .toUpperCase()
     .substring(0, 8); // UK postcodes are max 7 chars without spaces
+  
+  // Normalize to standard UK postcode format (e.g., "SW1A 1AA")
+  if (cleaned.length >= 5) {
+    return cleaned.slice(0, -3) + ' ' + cleaned.slice(-3);
+  }
+  
+  return cleaned;
 }
 
 /**

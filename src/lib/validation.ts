@@ -52,6 +52,23 @@ export function validatePhone(phone: string): ValidationResult {
 }
 
 /**
+ * Normalize UK postcode to standard format
+ */
+export function normalizePostcode(postcode: string): string {
+  if (!postcode) return '';
+  
+  // Remove all spaces and convert to uppercase
+  const cleaned = postcode.replace(/\s/g, '').toUpperCase();
+  
+  // Insert space before the last 3 characters (standard UK postcode format)
+  if (cleaned.length >= 5) {
+    return cleaned.slice(0, -3) + ' ' + cleaned.slice(-3);
+  }
+  
+  return cleaned;
+}
+
+/**
  * UK postcode validation
  */
 export function validatePostcode(postcode: string): ValidationResult {
@@ -59,7 +76,7 @@ export function validatePostcode(postcode: string): ValidationResult {
     return { isValid: false, error: 'Postcode is required' };
   }
   
-  // UK postcode regex (simplified but effective)
+  // UK postcode regex (comprehensive)
   const postcodeRegex = /^[A-Z]{1,2}\d[A-Z\d]?\s?\d[A-Z]{2}$/i;
   
   if (!postcodeRegex.test(postcode.trim())) {

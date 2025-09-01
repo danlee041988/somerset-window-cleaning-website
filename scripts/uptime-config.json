@@ -1,0 +1,40 @@
+{
+  "monitors": [
+    {
+      "name": "Somerset Window Cleaning - Homepage",
+      "url": "https://somersetwindowcleaning.co.uk",
+      "interval": 300,
+      "expectedStatusCode": 200,
+      "timeout": 30
+    },
+    {
+      "name": "Somerset Window Cleaning - Health Check",
+      "url": "https://somersetwindowcleaning.co.uk/api/health",
+      "interval": 60,
+      "expectedStatusCode": 200,
+      "timeout": 10,
+      "expectedResponse": {
+        "status": "healthy"
+      }
+    },
+    {
+      "name": "Somerset Window Cleaning - Booking Form",
+      "url": "https://somersetwindowcleaning.co.uk/booking-2step",
+      "interval": 300,
+      "expectedStatusCode": 200,
+      "timeout": 30
+    },
+    {
+      "name": "Somerset Window Cleaning - Contact Page",
+      "url": "https://somersetwindowcleaning.co.uk/contact",
+      "interval": 300,
+      "expectedStatusCode": 200,
+      "timeout": 30
+    }
+  ],
+  "notifications": {
+    "email": "info@somersetwindowcleaning.co.uk",
+    "webhook": null
+  },
+  "alertThreshold": 2
+}

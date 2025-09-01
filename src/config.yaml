@@ -39,7 +39,7 @@ metadata:
     creator: '@SomersetWindowC'
 
 i18n:
-  language: en
+  language: en-GB
   textDirection: ltr
   locale: en_GB
 

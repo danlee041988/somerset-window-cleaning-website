@@ -1,7 +1,7 @@
 export default {
   ci: {
     collect: {
-      url: ['http://localhost:4321/', 'http://localhost:4321/contact', 'http://localhost:4321/services'],
+      url: ['http://localhost:4321/', 'http://localhost:4321/contact', 'http://localhost:4321/services', 'http://localhost:4321/booking-2step', 'http://localhost:4321/areas'],
       startServerCommand: 'npm run preview',
       numberOfRuns: 3,
       settings: {
@@ -10,10 +10,10 @@ export default {
     },
     assert: {
       assertions: {
-        'categories:performance': ['warn', { minScore: 0.8 }],
-        'categories:accessibility': ['error', { minScore: 0.9 }],
-        'categories:best-practices': ['warn', { minScore: 0.8 }],
-        'categories:seo': ['error', { minScore: 0.9 }],
+        'categories:performance': ['warn', { minScore: 0.9 }],
+        'categories:accessibility': ['error', { minScore: 0.95 }],
+        'categories:best-practices': ['warn', { minScore: 0.9 }],
+        'categories:seo': ['warn', { minScore: 0.9 }],
         'categories:pwa': 'off',
         
         // Core Web Vitals

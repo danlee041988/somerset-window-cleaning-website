@@ -69,7 +69,7 @@ export const onRequest: MiddlewareHandler = async ({ request, cookies, redirect,
   const response = await next();
   
   // Add security headers to all responses
-  response.headers.set('X-Frame-Options', 'DENY');
+  response.headers.set('X-Frame-Options', 'SAMEORIGIN');
   response.headers.set('X-Content-Type-Options', 'nosniff');
   response.headers.set('Referrer-Policy', 'strict-origin-when-cross-origin');
   response.headers.set('X-XSS-Protection', '1; mode=block');
@@ -82,7 +82,7 @@ export const onRequest: MiddlewareHandler = async ({ request, cookies, redirect,
     "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
     "font-src 'self' https://fonts.gstatic.com",
     "img-src 'self' data: https: blob:",
-    "connect-src 'self' https://*.supabase.co https://api.emailjs.com https://www.google-analytics.com wss://*.supabase.co",
+    "connect-src 'self' https://*.supabase.co https://api.emailjs.com https://www.google-analytics.com wss://*.supabase.co https://vitals.vercel-insights.com https://vercel.live",
     "frame-src 'self' https://www.google.com",
     "object-src 'none'",
     "base-uri 'self'",
@@ -93,7 +93,7 @@ export const onRequest: MiddlewareHandler = async ({ request, cookies, redirect,
   response.headers.set('Content-Security-Policy', cspDirectives.join('; '));
   
   // Permissions Policy
-  response.headers.set('Permissions-Policy', 'camera=(), microphone=(), geolocation=()');
+  response.headers.set('Permissions-Policy', 'camera=(), microphone=(), geolocation=(), interest-cohort=(), payment=(), usb=(), magnetometer=(), gyroscope=(), accelerometer=()');
   
   // CORS headers for API routes
   if (pathname.startsWith('/api/')) {
