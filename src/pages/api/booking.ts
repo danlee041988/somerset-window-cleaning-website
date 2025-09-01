@@ -16,7 +16,7 @@ function validateCSRFToken(token: string, sessionId: string): boolean {
 async function sendEmailNotification(formData: any) {
   const serviceId = import.meta.env.EMAILJS_SERVICE_ID;
   const templateId = import.meta.env.EMAILJS_TEMPLATE_ID;
-  const privateKey = import.meta.env.EMAILJS_PRIVATE_KEY;
+  const privateKey = import.meta.env.EMAILJS_PRIVATE_KEY || import.meta.env.EMAILJS_PUBLIC_KEY; // Support both for migration
 
   if (!serviceId || !templateId || !privateKey) {
     console.error('EmailJS credentials not configured');

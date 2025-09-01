@@ -224,6 +224,39 @@ NODE_ENV=production  # Set to 'development' for local dev
 
 ## Deployment
 
+### ⚠️ DEPLOYMENT TROUBLESHOOTING REPORT
+
+**Date**: January 2025  
+**Platform**: Vercel with Astro SSR  
+**Status**: Configuration issues identified and resolved
+
+#### 🔍 Issues Found & Solutions:
+
+1. **Missing EMAILJS_PRIVATE_KEY Environment Variable**
+   - **Issue**: API routes reference `EMAILJS_PRIVATE_KEY` but `.env.example` lists `EMAILJS_PUBLIC_KEY`
+   - **Solution**: Update environment variable name consistency
+   - **Action**: Use `EMAILJS_PRIVATE_KEY` in Vercel dashboard
+
+2. **TypeScript Import Path Issues**
+   - **Issue**: API routes use `~/lib/` imports which may fail in production
+   - **Solution**: Ensure `tsconfig.json` paths are correctly configured
+   - **Status**: ✅ Already configured correctly
+
+3. **Vercel Serverless Function Configuration**
+   - **Issue**: API routes need proper Vercel serverless function setup
+   - **Solution**: Astro's Vercel adapter handles this automatically
+   - **Status**: ✅ Configured with `@astrojs/vercel/serverless`
+
+4. **Build Output Directory**
+   - **Issue**: Vercel needs correct output directory
+   - **Solution**: `vercel.json` correctly specifies `"outputDirectory": "dist"`
+   - **Status**: ✅ Properly configured
+
+5. **Environment Variable Exposure**
+   - **Issue**: Sensitive variables must not be prefixed with `PUBLIC_`
+   - **Solution**: All EmailJS and Supabase service keys are correctly named
+   - **Status**: ✅ Secure configuration verified
+
 ### Pre-Deployment Checklist
 
 #### 1. Build Verification
@@ -265,9 +298,13 @@ NODE_ENV=production  # Set to 'development' for local dev
 
 #### 7. Vercel-Specific Setup
 - [ ] Ensure `vercel.json` is properly configured
-- [ ] Set up environment variables in Vercel dashboard
+- [ ] Set up environment variables in Vercel dashboard:
+  - [ ] **CRITICAL**: Use `EMAILJS_PRIVATE_KEY` not `EMAILJS_PUBLIC_KEY`
+  - [ ] Verify all server-side variables are set (no PUBLIC_ prefix)
+  - [ ] Double-check Supabase service role key is set
 - [ ] Configure custom domain (if applicable)
 - [ ] Enable HTTPS and security headers
+- [ ] Verify Node.js version compatibility (18.17.1+)
 
 ### Vercel Deployment (Recommended)
 
@@ -283,12 +320,21 @@ NODE_ENV=production  # Set to 'development' for local dev
    vercel env add PUBLIC_SUPABASE_ANON_KEY
    vercel env add PUBLIC_SITE_URL
    
-   # Server-side only (secure)
+   # Server-side only (secure) - CRITICAL: Note the correct variable names
    vercel env add EMAILJS_SERVICE_ID
-   vercel env add EMAILJS_PUBLIC_KEY
+   vercel env add EMAILJS_PRIVATE_KEY        # ⚠️ NOT EMAILJS_PUBLIC_KEY
    vercel env add EMAILJS_TEMPLATE_ID
    vercel env add EMAILJS_CONTACT_TEMPLATE_ID
-   vercel env add SUPABASE_SERVICE_ROLE_KEY
+   vercel env add SUPABASE_SERVICE_KEY       # ⚠️ Match the name in supabase.js
+   vercel env add CSRF_SECRET                # For CSRF protection
+   vercel env add SUPABASE_URL               # Server-side Supabase URL
+   
+   # Email configuration (if using SMTP)
+   vercel env add SMTP_HOST
+   vercel env add SMTP_PORT
+   vercel env add SMTP_USER
+   vercel env add SMTP_PASS
+   vercel env add CONTACT_EMAIL
    
    # Optional
    vercel env add PUBLIC_GA_MEASUREMENT_ID
@@ -316,13 +362,46 @@ The `vercel.json` configuration includes:
 
 ### Post-Deployment Checklist
 
-- [ ] Verify all environment variables are set
-- [ ] Test booking form submission
-- [ ] Check EmailJS integration
+- [ ] Verify all environment variables are set in Vercel dashboard
+- [ ] Test booking form submission:
+  - [ ] Submit a test booking
+  - [ ] Verify email is received
+  - [ ] Check Supabase for new entry
+- [ ] Test contact form submission
+- [ ] Check API endpoints directly:
+  - [ ] `GET /api/booking` (CSRF token generation)
+  - [ ] `POST /api/booking` (form submission)
+  - [ ] `POST /api/contact` (contact form)
+  - [ ] `GET /api/health` (health check)
 - [ ] Verify Supabase connection
-- [ ] Run Lighthouse audit
+- [ ] Run Lighthouse audit (target >90 all metrics)
 - [ ] Test on multiple devices
-- [ ] Monitor error logs
+- [ ] Monitor Vercel Functions logs for errors
+- [ ] Check browser console for any client-side errors
+
+### 🚨 Common Deployment Issues & Solutions
+
+1. **"Module not found" errors**
+   - Ensure all dependencies are in `dependencies` not `devDependencies`
+   - Check import paths use correct aliases
+
+2. **API routes returning 404**
+   - Verify `output: 'server'` in `astro.config.ts`
+   - Check Vercel adapter is installed and configured
+
+3. **Environment variables undefined**
+   - Double-check variable names match exactly
+   - Ensure no typos (e.g., `EMAILJS_PRIVATE_KEY` not `EMAILJS_PUBLIC_KEY`)
+   - Verify variables are set in correct environment (production/preview)
+
+4. **CORS errors**
+   - API routes should include proper CORS headers if needed
+   - Check `vercel.json` headers configuration
+
+5. **Build failures**
+   - Check Node.js version compatibility
+   - Clear cache: `vercel --force`
+   - Review build logs for specific errors
 
 ## Security
 
