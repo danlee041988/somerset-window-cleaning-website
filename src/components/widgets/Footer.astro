@@ -2,6 +2,7 @@
 import { Icon } from 'astro-icon/components';
 import { SITE } from 'astrowind:config';
 import { getHomePermalink } from '~/utils/permalinks';
+import Logo from '~/components/Logo.astro';
 
 interface Link {
   text?: string;
@@ -158,6 +159,12 @@ const { socialLinks = [], secondaryLinks = [], links = [], footNote = '', theme 
       <div class="text-sm mr-4 text-white">
         <Fragment set:html={footNote} />
       </div>
+    </div>
+    <!-- Logo Section -->
+    <div class="flex justify-center items-center py-8 border-t border-gray-700">
+      <a href={getHomePermalink()} class="inline-block" aria-label="Somerset Window Cleaning - Home">
+        <Logo />
+      </a>
     </div>
   </div>
 </footer>
