@@ -80,7 +80,8 @@ const { language, textDirection } = I18N;
     </style>
 
     <!-- Performance: Preload primary hero image to improve LCP -->
-    <link rel="preload" as="image" imagesrcset="/src/assets/images/optimized/hero-main-lg.webp 1280w, /src/assets/images/optimized/hero-main-md.webp 1024w, /src/assets/images/optimized/hero-main-sm.webp 768w" imagesizes="(max-width: 768px) 100vw, 1280px" href="/src/assets/images/optimized/hero-main-lg.webp" />
+    <!-- Disabled for now as it causes 404 errors -->
+    <!-- <link rel="preload" as="image" imagesrcset="/src/assets/images/optimized/hero-main-lg.webp 1280w, /src/assets/images/optimized/hero-main-md.webp 1024w, /src/assets/images/optimized/hero-main-sm.webp 768w" imagesizes="(max-width: 768px) 100vw, 1280px" href="/src/assets/images/optimized/hero-main-lg.webp" /> -->
 
     <!-- Optimized self-hosted fonts for better performance -->
     <OptimizedFonts />

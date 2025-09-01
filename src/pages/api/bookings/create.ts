@@ -131,6 +131,26 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
     console.log('- additionalServices value:', body.additionalServices);
     console.log('- specialOffer type:', typeof body.specialOffer);
     console.log('- specialOffer value:', body.specialOffer);
+    console.log('- propertyType:', body.propertyType);
+    console.log('- bedrooms:', body.bedrooms);
+    
+    // Handle book-now page format where propertyType includes bedrooms (e.g., "detached-3")
+    if (body.propertyType && body.propertyType.includes('-') && !body.bedrooms) {
+      const parts = body.propertyType.split('-');
+      const propertyStyle = parts[0]; // e.g., "detached", "semi", "terrace"
+      const bedroomNumber = parts[1]; // e.g., "3"
+      
+      // Convert to the expected format
+      body.propertyType = `${propertyStyle}-${bedroomNumber}`;
+      console.log('Converted propertyType to:', body.propertyType);
+    } else if (body.propertyType === 'detached' && body.bedrooms) {
+      // Handle booking.astro format with separate fields
+      body.propertyType = `detached-${body.bedrooms}`;
+    } else if (body.propertyType === 'semi' && body.bedrooms) {
+      body.propertyType = `semi-${body.bedrooms}`;
+    } else if (body.propertyType === 'terrace' && body.bedrooms) {
+      body.propertyType = `terrace-${body.bedrooms}`;
+    }
     
     // Ensure additionalServices is an array
     if (body.additionalServices && !Array.isArray(body.additionalServices)) {

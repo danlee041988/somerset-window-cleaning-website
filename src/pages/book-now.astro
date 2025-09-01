@@ -1036,9 +1036,12 @@ window.formState = {
 };
 
 // Ensure additionalServices is always an array
-if (!Array.isArray(window.formState.additionalServices)) {
-    window.formState.additionalServices = [];
+function ensureAdditionalServicesArray() {
+    if (!window.formState.additionalServices || !Array.isArray(window.formState.additionalServices)) {
+        window.formState.additionalServices = [];
+    }
 }
+ensureAdditionalServicesArray();
 
 let currentStep = 1;
 const totalSteps = 4;
@@ -1306,6 +1309,7 @@ function updateReviewSummary() {
                 'solar': 'Solar Panel Cleaning (Quote Required)',
                 'conservatory': 'Conservatory Roof Cleaning (Quote Required)'
             };
+            ensureAdditionalServicesArray();
             window.formState.additionalServices.forEach(service => {
                 html += `<p class="ml-4">• ${serviceNames[service] || service}</p>`;
             });
@@ -1351,6 +1355,7 @@ function updateReviewSummary() {
         }
         
         // Check for additional services that need quotes
+        ensureAdditionalServicesArray();
         const needsQuote = window.formState.additionalServices && 
             (window.formState.additionalServices.includes('solar') || 
              window.formState.additionalServices.includes('conservatory'));
