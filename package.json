@@ -32,6 +32,8 @@
     "lighthouse:dev": "lhci autorun --collect.url=http://localhost:4321",
     "lighthouse:build": "npm run build && lhci autorun",
     "lighthouse:ci": "lhci autorun",
+    "lighthouse:summary": "node -e \"const fs=require('fs'),path=require('path');const dir='.lighthouseci';if(!fs.existsSync(dir)){console.log('No lighthouse results found. Run: npm run lighthouse:dev');process.exit(1);}const files=fs.readdirSync(dir).filter(f=>f.endsWith('.json')&&!f.includes('assertion')).sort();if(!files.length){console.log('No lighthouse JSON results found');process.exit(1);}const latest=files[files.length-1];const results=JSON.parse(fs.readFileSync(path.join(dir,latest)));const scores={performance:Math.round(results.categories.performance.score*100),accessibility:Math.round(results.categories.accessibility.score*100),'best-practices':Math.round(results.categories['best-practices'].score*100),seo:Math.round(results.categories.seo.score*100)};console.log('🔍 LIGHTHOUSE SUMMARY:');console.log('======================');Object.entries(scores).forEach(([cat,score])=>{const emoji=score>=90?'🟢':score>=70?'🟡':'🔴';console.log(\\`\\${cat.toUpperCase().replace('-',' ')}: \\${score}/100 \\${emoji}\\`)});console.log('\\nDetailed report: open .lighthouseci/'+latest.replace('.json','.html'));\"",
+    "lighthouse:open": "find .lighthouseci -name '*.html' | head -1 | xargs open",
     "test:install": "playwright install",
     "test:links": "playwright test tests/specs/link-validation.spec.ts",
     "test:performance": "playwright test tests/specs/performance.spec.ts",
