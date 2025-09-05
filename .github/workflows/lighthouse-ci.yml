@@ -1,0 +1,122 @@
+name: 🔍 Lighthouse CI
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  lighthouse:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 📦 Checkout repository
+        uses: actions/checkout@v4
+
+      - name: 🟢 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: 📥 Install dependencies
+        run: npm ci
+
+      - name: 🏗️ Build site
+        run: npm run build
+
+      - name: 🔍 Install Lighthouse CI
+        run: npm install -g @lhci/cli
+
+      - name: 🚀 Run Lighthouse CI
+        run: lhci autorun
+        env:
+          LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
+
+      - name: 📊 Comment PR with results
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const path = require('path');
+            
+            // Try to find the lighthouse results
+            try {
+              const resultsPath = '.lighthouseci';
+              if (fs.existsSync(resultsPath)) {
+                const files = fs.readdirSync(resultsPath);
+                const jsonFiles = files.filter(f => f.endsWith('.json') && !f.includes('assertion'));
+                
+                if (jsonFiles.length > 0) {
+                  const latestResult = jsonFiles[jsonFiles.length - 1];
+                  const results = JSON.parse(fs.readFileSync(path.join(resultsPath, latestResult)));
+                  
+                  const scores = {
+                    performance: Math.round(results.categories.performance.score * 100),
+                    accessibility: Math.round(results.categories.accessibility.score * 100),
+                    'best-practices': Math.round(results.categories['best-practices'].score * 100),
+                    seo: Math.round(results.categories.seo.score * 100)
+                  };
+                  
+                  const metrics = {
+                    fcp: Math.round(results.audits['first-contentful-paint'].numericValue),
+                    lcp: Math.round(results.audits['largest-contentful-paint'].numericValue),
+                    cls: results.audits['cumulative-layout-shift'].numericValue.toFixed(3),
+                    si: Math.round(results.audits['speed-index'].numericValue),
+                    tti: Math.round(results.audits['interactive'].numericValue)
+                  };
+                  
+                  const getScoreEmoji = (score) => {
+                    if (score >= 90) return '🟢';
+                    if (score >= 50) return '🟡';
+                    return '🔴';
+                  };
+                  
+                  const comment = `## 🔍 Lighthouse CI Results
+            
+            ### 📊 Overall Scores
+            | Category | Score | Status |
+            |----------|--------|--------|
+            | Performance | ${scores.performance}/100 | ${getScoreEmoji(scores.performance)} |
+            | Accessibility | ${scores.accessibility}/100 | ${getScoreEmoji(scores.accessibility)} |
+            | Best Practices | ${scores['best-practices']}/100 | ${getScoreEmoji(scores['best-practices'])} |
+            | SEO | ${scores.seo}/100 | ${getScoreEmoji(scores.seo)} |
+            
+            ### ⚡ Core Web Vitals
+            | Metric | Value | Target |
+            |--------|--------|---------|
+            | First Contentful Paint | ${metrics.fcp}ms | < 2000ms |
+            | Largest Contentful Paint | ${metrics.lcp}ms | < 3000ms |
+            | Cumulative Layout Shift | ${metrics.cls} | < 0.1 |
+            | Speed Index | ${metrics.si}ms | < 3500ms |
+            | Time to Interactive | ${metrics.tti}ms | < 4000ms |
+            
+            ### 🎯 Business Impact (SWC)
+            ${scores.performance >= 85 ? '✅' : '⚠️'} **Performance**: ${scores.performance >= 85 ? 'Good for conversions' : 'May impact booking rates'}
+            ${scores.accessibility >= 95 ? '✅' : '⚠️'} **Accessibility**: ${scores.accessibility >= 95 ? 'WCAG compliant' : 'Needs improvement for compliance'}
+            ${metrics.lcp <= 3000 ? '✅' : '⚠️'} **LCP**: ${metrics.lcp <= 3000 ? 'Fast hero loading' : 'Slow hero may lose customers'}
+            ${parseFloat(metrics.cls) <= 0.1 ? '✅' : '⚠️'} **Layout Shift**: ${parseFloat(metrics.cls) <= 0.1 ? 'Stable layout' : 'May impact user experience'}
+            
+            ---
+            *Lighthouse CI automatically monitors your site performance. Keep scores high for better customer experience and SEO rankings.*`;
+                  
+                  github.rest.issues.createComment({
+                    issue_number: context.issue.number,
+                    owner: context.repo.owner,
+                    repo: context.repo.repo,
+                    body: comment
+                  });
+                }
+              }
+            } catch (error) {
+              console.log('Could not find lighthouse results to comment');
+            }
+
+      - name: 📈 Upload Lighthouse results
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lighthouse-results
+          path: .lighthouseci/
