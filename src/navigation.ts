@@ -21,29 +21,13 @@ export const headerData = {
       ],
     },
     {
-      text: 'Areas',
-      href: getPermalink('/areas'),
-      ariaLabel: 'View service areas',
-      links: [
-        { text: 'All Service Areas', href: getPermalink('/areas'), ariaLabel: 'View all service areas' },
-        { text: 'BA Postcodes', href: getPermalink('/areas/ba-areas'), ariaLabel: 'View BA postcode areas' },
-        { text: 'BS Postcodes', href: getPermalink('/areas/bs-areas'), ariaLabel: 'View BS postcode areas' },
-        { text: 'TA Postcodes', href: getPermalink('/areas/ta-areas'), ariaLabel: 'View TA postcode areas' },
-      ],
-    },
-    {
-      text: 'About',
+      text: 'Meet the Team',
       href: getPermalink('/about'),
-      ariaLabel: 'Learn about Somerset Window Cleaning',
-    },
-    {
-      text: 'Contact',
-      href: getPermalink('/contact'),
-      ariaLabel: 'Contact Somerset Window Cleaning',
+      ariaLabel: 'Meet the Somerset Window Cleaning team',
     },
   ],
   actions: [
-    { text: 'Book Now', href: getPermalink('/book-now'), variant: 'red', icon: 'tabler:calendar-plus', priority: 1, class: 'sparkle-button animate-pulse hover:animate-none shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105', ariaLabel: 'Book window cleaning service' },
+    { text: 'Request Free Quote', href: getPermalink('/book-now'), variant: 'red', icon: 'tabler:file-text', priority: 1, class: 'sparkle-button animate-pulse hover:animate-none shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105', ariaLabel: 'Request free quote for window cleaning service' },
   ],
 };
 
@@ -65,11 +49,10 @@ export const footerData = {
     {
       title: 'Get Started',
       links: [
-        { text: 'Book Now', href: getPermalink('/book-now'), ariaLabel: 'Book window cleaning service online' },
+        { text: 'Request Free Quote', href: getPermalink('/book-now'), ariaLabel: 'Request free quote online' },
         { text: 'Call 01458 860339', href: 'tel:01458860339', ariaLabel: 'Call Somerset Window Cleaning on 01458 860339' },
         { text: 'WhatsApp Quote', href: 'https://wa.me/447415526331?text=Hi%20Somerset%20Window%20Cleaning%2C%20please%20can%20I%20get%20a%20quote%20for%20window%20cleaning', ariaLabel: 'Get a quote via WhatsApp' },
-        { text: 'About Us', href: getPermalink('/about'), ariaLabel: 'Learn about Somerset Window Cleaning' },
-        { text: 'Contact', href: getPermalink('/contact'), ariaLabel: 'Contact Somerset Window Cleaning' },
+        { text: 'Meet the Team', href: getPermalink('/about'), ariaLabel: 'Meet the Somerset Window Cleaning team' },
       ],
     },
     {

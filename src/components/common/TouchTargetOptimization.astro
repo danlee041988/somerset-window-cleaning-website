@@ -25,9 +25,14 @@
   label,
   input[type="checkbox"],
   input[type="radio"],
-  select {
-    min-height: 44px;
-    min-width: 44px;
+  select,
+  .dropdown button,
+  nav a,
+  footer a,
+  .social-link,
+  .card-link {
+    min-height: 44px !important;
+    min-width: 44px !important;
     
     /* Ensure clickable area includes padding */
     position: relative;
@@ -35,13 +40,24 @@
   
   /* Special handling for small icons/buttons */
   .icon-button,
-  .small-button {
-    min-height: 44px;
-    min-width: 44px;
+  .small-button,
+  nav svg,
+  footer svg,
+  .header svg,
+  [class*="icon"] {
+    min-height: 44px !important;
+    min-width: 44px !important;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 8px;
+    padding: 12px !important;
+  }
+  
+  /* Fix for very small text links */
+  a:not([class*="btn"]):not([class*="button"]) {
+    padding: 8px 4px !important;
+    margin: 4px 0 !important;
+    min-height: 32px !important;
   }
   
   /* Extend touch target for small elements using pseudo-elements */

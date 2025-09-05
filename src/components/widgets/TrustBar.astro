@@ -9,44 +9,44 @@ const { class: className = '' } = Astro.props;
 ---
 
 <div class={`relative intersect-once intersect-quarter motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade ${className}`}>
-  <div class="absolute inset-0 bg-black"></div>
+  <div class="absolute inset-0 bg-custom-dark-brown"></div>
   <div class="relative py-8 px-4">
     <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 text-sm">
       <!-- Fully Insured -->
-      <div class="group rounded-2xl border-2 border-red-600/40 bg-gradient-to-br from-black/60 to-red-900/10 hover:from-red-900/20 hover:to-black/60 hover:border-red-600/80 transition-all duration-300 p-4 text-center hover:scale-105 hover:shadow-lg hover:shadow-red-600/20">
-        <div class="text-white font-bold text-lg mb-2 group-hover:text-red-100 transition-colors duration-300">
-          <span class="text-red-500 text-xl">✓</span> Fully Insured
+      <div class="group rounded-2xl border-2 border-custom-red/40 bg-gradient-to-br from-custom-dark-brown/60 to-custom-dark-red/10 hover:from-custom-dark-red/20 hover:to-custom-dark-brown/60 hover:border-custom-red/80 transition-all duration-300 p-4 text-center hover:scale-105 hover:shadow-lg hover:shadow-custom-red/20">
+        <div class="text-white font-bold text-lg mb-2 group-hover:text-custom-light transition-colors duration-300">
+          <span class="text-custom-red text-xl">✓</span> Fully Insured
         </div>
-        <div class="text-sm text-white/80 font-medium">£5M public liability</div>
+        <div class="text-sm text-custom-light font-medium">£5M public liability</div>
       </div>
 
       <!-- Easy Payment -->
-      <div class="group rounded-2xl border-2 border-red-600/40 bg-gradient-to-br from-black/60 to-red-900/10 hover:from-red-900/20 hover:to-black/60 hover:border-red-600/80 transition-all duration-300 p-4 text-center hover:scale-105 hover:shadow-lg hover:shadow-red-600/20">
-        <div class="text-white font-bold text-lg mb-2 group-hover:text-red-100 transition-colors duration-300">
-          <span class="text-red-500 text-xl">💳</span> Easy Payment
+      <div class="group rounded-2xl border-2 border-custom-red/40 bg-gradient-to-br from-custom-dark-brown/60 to-custom-dark-red/10 hover:from-custom-dark-red/20 hover:to-custom-dark-brown/60 hover:border-custom-red/80 transition-all duration-300 p-4 text-center hover:scale-105 hover:shadow-lg hover:shadow-custom-red/20">
+        <div class="text-white font-bold text-lg mb-2 group-hover:text-custom-light transition-colors duration-300">
+          <span class="text-custom-red text-xl">💳</span> Easy Payment
         </div>
-        <div class="text-sm text-white/80 font-medium">Card & Direct Debit</div>
+        <div class="text-sm text-custom-light font-medium">Card & Direct Debit</div>
       </div>
 
       <!-- Reviews -->
       <a
         href={siteConfig.social.google}
         target="_blank"
-        class="group rounded-2xl border-2 border-red-600/40 bg-gradient-to-br from-black/60 to-red-900/10 hover:from-red-900/20 hover:to-black/60 hover:border-red-600/80 transition-all duration-300 p-4 text-center hover:scale-105 hover:shadow-lg hover:shadow-red-600/20 cursor-pointer"
+        class="group rounded-2xl border-2 border-custom-red/40 bg-gradient-to-br from-custom-dark-brown/60 to-custom-dark-red/10 hover:from-custom-dark-red/20 hover:to-custom-dark-brown/60 hover:border-custom-red/80 transition-all duration-300 p-4 text-center hover:scale-105 hover:shadow-lg hover:shadow-custom-red/20 cursor-pointer"
       >
-        <div class="text-white font-bold text-lg mb-2 group-hover:text-red-100 transition-colors duration-300 inline-flex items-center justify-center gap-2">
-          <svg class="w-5 h-5" viewBox="0 0 20 20" aria-hidden="true"><path fill="#FFD700" d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+        <div class="text-white font-bold text-lg mb-2 group-hover:text-custom-light transition-colors duration-300 inline-flex items-center justify-center gap-2">
+          <svg class="w-5 h-5" viewBox="0 0 20 20" aria-hidden="true"><path fill="#D84040" d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
           <span>4.9/5 Reviews</span>
         </div>
-        <div class="text-sm text-white/80 font-medium">Google verified</div>
+        <div class="text-sm text-custom-light font-medium">Google verified</div>
       </a>
 
       <!-- Guarantee -->
-      <div class="group rounded-2xl border-2 border-red-600/40 bg-gradient-to-br from-black/60 to-red-900/10 hover:from-red-900/20 hover:to-black/60 hover:border-red-600/80 transition-all duration-300 p-4 text-center hover:scale-105 hover:shadow-lg hover:shadow-red-600/20">
-        <div class="text-white font-bold text-lg mb-2 group-hover:text-red-100 transition-colors duration-300">
-          <span class="text-red-500 text-xl">🛡️</span> {siteConfig.guaranteeHours}hr Guarantee
+      <div class="group rounded-2xl border-2 border-custom-red/40 bg-gradient-to-br from-custom-dark-brown/60 to-custom-dark-red/10 hover:from-custom-dark-red/20 hover:to-custom-dark-brown/60 hover:border-custom-red/80 transition-all duration-300 p-4 text-center hover:scale-105 hover:shadow-lg hover:shadow-custom-red/20">
+        <div class="text-white font-bold text-lg mb-2 group-hover:text-custom-light transition-colors duration-300">
+          <span class="text-custom-red text-xl">🛡️</span> {siteConfig.guaranteeHours}hr Guarantee
         </div>
-        <div class="text-sm text-white/80 font-medium">Spot-free promise</div>
+        <div class="text-sm text-custom-light font-medium">Spot-free promise</div>
       </div>
     </div>
   </div>

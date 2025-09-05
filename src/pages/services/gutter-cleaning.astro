@@ -9,6 +9,7 @@ import Stats from '~/components/widgets/Stats.astro';
 import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
 import OptimizedImage from '~/components/common/OptimizedImage.astro';
 import LiveReviews from '~/components/widgets/LiveReviews.astro';
+import PostcodeChecker from '~/components/widgets/PostcodeChecker.astro';
 
 // Import hero image
 import gutterClearHeroImage from '~/assets/images/Gutter Clear.jpeg';
@@ -24,13 +25,13 @@ const metadata = {
   <ServiceHero
     serviceType="gutter"
     actions={[
-      { variant: 'primary', text: 'Book Now', href: '/book-now', icon: 'tabler:calendar-plus', class: 'text-white text-lg px-8 py-4 animate-pulse shadow-2xl transform hover:scale-110 transition-all duration-300' },
+      { variant: 'primary', text: 'Request a Free Quote', href: '/book-now', icon: 'tabler:file-text', class: 'text-white text-lg px-8 py-4 animate-pulse shadow-2xl transform hover:scale-110 transition-all duration-300' },
       { variant: 'secondary', text: 'Call 01458 860339', href: 'tel:01458860339', icon: 'tabler:phone', class: 'text-white text-lg px-6 py-4 border-2 border-primary hover:bg-primary/15 transition-all duration-300' },
       { variant: 'whatsapp', text: 'WhatsApp', href: 'https://wa.me/447415526331?text=Hi%20Somerset%20Window%20Cleaning%2C%20please%20can%20I%20get%20a%20quote%20for%20gutter%20clearing%20at%20%5Byour%20address%5D', icon: 'tabler:brand-whatsapp', class: 'text-white text-lg px-6 py-4', target: '_blank' },
     ]}
   >
     <Fragment slot="title">
-      <span style="color: #dc2626 !important;">Professional</span> Gutter Clearing <span style="color: #dc2626 !important;">Somerset</span>
+      <span style="color: #D84040 !important;">Professional</span> Gutter Clearing <span style="color: #D84040 !important;">Somerset</span>
     </Fragment>
     <Fragment slot="subtitle">
       Keep your gutters clear to prevent water damage and costly repairs. Safe, professional service with modern high-reach equipment for enhanced safety.
@@ -147,6 +148,13 @@ const metadata = {
         description: 'You bet! We provide before and after photos as standard - partly for your peace of mind, partly because we\'re proud of our work. It\'s quite shocking seeing what comes out! <a href="/book-now" class="text-red-600 hover:underline font-semibold">Book your gutter clear with photo proof</a>.',
       },
     ]}
+  />
+  
+  <!-- Postcode Checker -->
+  <PostcodeChecker 
+    heading="Protect your property today"
+    subheading="Check if we cover your area and book your gutter clearing service"
+    buttonText="Check My Area"
   />
 
   <!-- Google Reviews -->

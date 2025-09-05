@@ -9,6 +9,7 @@ import Stats from '~/components/widgets/Stats.astro';
 import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
 import OptimizedImage from '~/components/common/OptimizedImage.astro';
 import LiveReviews from '~/components/widgets/LiveReviews.astro';
+import PostcodeChecker from '~/components/widgets/PostcodeChecker.astro';
 
 // Import hero image
 import clarksHeroImage from '~/assets/images/Clarks.jpeg';
@@ -30,7 +31,7 @@ const metadata = {
     ]}
   >
     <Fragment slot="title">
-      <span style="color: #dc2626 !important;">Commercial</span> Window Cleaning <span style="color: #dc2626 !important;">Somerset</span>
+      <span style="color: #B91C1C !important;">Commercial</span> Window Cleaning <span style="color: #B91C1C !important;">Somerset</span>
     </Fragment>
     <Fragment slot="subtitle">
       Professional window cleaning for businesses across Somerset. Maintain your professional appearance with reliable, health & safety compliant service that works around your schedule.
@@ -101,7 +102,7 @@ const metadata = {
 
       <div class="grid md:grid-cols-3 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
         <!-- Office & Professional -->
-        <div class="bg-gradient-to-br from-red-50 to-red-100 dark:from-gray-800 dark:to-gray-700 p-6 rounded-xl shadow-lg border border-red-200 dark:border-gray-600 hover:shadow-xl transition-shadow duration-300">
+        <div class="bg-gradient-to-br from-gray-900 to-black p-6 rounded-xl shadow-lg border border-gray-700 hover:shadow-xl transition-shadow duration-300">
           <div class="w-12 h-12 bg-red-600 rounded-lg flex items-center justify-center mb-4 mx-auto">
             <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
@@ -112,7 +113,7 @@ const metadata = {
         </div>
 
         <!-- Retail & Shops -->
-        <div class="bg-gradient-to-br from-red-50 to-red-100 dark:from-gray-800 dark:to-gray-700 p-6 rounded-xl shadow-lg border border-red-200 dark:border-gray-600 hover:shadow-xl transition-shadow duration-300">
+        <div class="bg-gradient-to-br from-gray-900 to-black p-6 rounded-xl shadow-lg border border-gray-700 hover:shadow-xl transition-shadow duration-300">
           <div class="w-12 h-12 bg-red-600 rounded-lg flex items-center justify-center mb-4 mx-auto">
             <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/>
@@ -123,7 +124,7 @@ const metadata = {
         </div>
 
         <!-- Restaurants & Hospitality -->
-        <div class="bg-gradient-to-br from-red-50 to-red-100 dark:from-gray-800 dark:to-gray-700 p-6 rounded-xl shadow-lg border border-red-200 dark:border-gray-600 hover:shadow-xl transition-shadow duration-300">
+        <div class="bg-gradient-to-br from-gray-900 to-black p-6 rounded-xl shadow-lg border border-gray-700 hover:shadow-xl transition-shadow duration-300">
           <div class="w-12 h-12 bg-red-600 rounded-lg flex items-center justify-center mb-4 mx-auto">
             <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
@@ -134,7 +135,7 @@ const metadata = {
         </div>
 
         <!-- Healthcare -->
-        <div class="bg-gradient-to-br from-red-50 to-red-100 dark:from-gray-800 dark:to-gray-700 p-6 rounded-xl shadow-lg border border-red-200 dark:border-gray-600 hover:shadow-xl transition-shadow duration-300">
+        <div class="bg-gradient-to-br from-gray-900 to-black p-6 rounded-xl shadow-lg border border-gray-700 hover:shadow-xl transition-shadow duration-300">
           <div class="w-12 h-12 bg-red-600 rounded-lg flex items-center justify-center mb-4 mx-auto">
             <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
@@ -145,7 +146,7 @@ const metadata = {
         </div>
 
         <!-- Education -->
-        <div class="bg-gradient-to-br from-red-50 to-red-100 dark:from-gray-800 dark:to-gray-700 p-6 rounded-xl shadow-lg border border-red-200 dark:border-gray-600 hover:shadow-xl transition-shadow duration-300">
+        <div class="bg-gradient-to-br from-gray-900 to-black p-6 rounded-xl shadow-lg border border-gray-700 hover:shadow-xl transition-shadow duration-300">
           <div class="w-12 h-12 bg-red-600 rounded-lg flex items-center justify-center mb-4 mx-auto">
             <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
@@ -156,7 +157,7 @@ const metadata = {
         </div>
 
         <!-- Industrial & Manufacturing -->
-        <div class="bg-gradient-to-br from-red-50 to-red-100 dark:from-gray-800 dark:to-gray-700 p-6 rounded-xl shadow-lg border border-red-200 dark:border-gray-600 hover:shadow-xl transition-shadow duration-300">
+        <div class="bg-gradient-to-br from-gray-900 to-black p-6 rounded-xl shadow-lg border border-gray-700 hover:shadow-xl transition-shadow duration-300">
           <div class="w-12 h-12 bg-red-600 rounded-lg flex items-center justify-center mb-4 mx-auto">
             <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
@@ -167,7 +168,7 @@ const metadata = {
         </div>
 
         <!-- Professional Services -->
-        <div class="bg-gradient-to-br from-red-50 to-red-100 dark:from-gray-800 dark:to-gray-700 p-6 rounded-xl shadow-lg border border-red-200 dark:border-gray-600 hover:shadow-xl transition-shadow duration-300">
+        <div class="bg-gradient-to-br from-gray-900 to-black p-6 rounded-xl shadow-lg border border-gray-700 hover:shadow-xl transition-shadow duration-300">
           <div class="w-12 h-12 bg-red-600 rounded-lg flex items-center justify-center mb-4 mx-auto">
             <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
@@ -178,7 +179,7 @@ const metadata = {
         </div>
 
         <!-- Gyms & Leisure -->
-        <div class="bg-gradient-to-br from-red-50 to-red-100 dark:from-gray-800 dark:to-gray-700 p-6 rounded-xl shadow-lg border border-red-200 dark:border-gray-600 hover:shadow-xl transition-shadow duration-300">
+        <div class="bg-gradient-to-br from-gray-900 to-black p-6 rounded-xl shadow-lg border border-gray-700 hover:shadow-xl transition-shadow duration-300">
           <div class="w-12 h-12 bg-red-600 rounded-lg flex items-center justify-center mb-4 mx-auto">
             <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
@@ -189,7 +190,7 @@ const metadata = {
         </div>
 
         <!-- Veterinary & Animal Care -->
-        <div class="bg-gradient-to-br from-red-50 to-red-100 dark:from-gray-800 dark:to-gray-700 p-6 rounded-xl shadow-lg border border-red-200 dark:border-gray-600 hover:shadow-xl transition-shadow duration-300">
+        <div class="bg-gradient-to-br from-gray-900 to-black p-6 rounded-xl shadow-lg border border-gray-700 hover:shadow-xl transition-shadow duration-300">
           <div class="w-12 h-12 bg-red-600 rounded-lg flex items-center justify-center mb-4 mx-auto">
             <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
@@ -200,7 +201,7 @@ const metadata = {
         </div>
 
         <!-- Financial Services -->
-        <div class="bg-gradient-to-br from-red-50 to-red-100 dark:from-gray-800 dark:to-gray-700 p-6 rounded-xl shadow-lg border border-red-200 dark:border-gray-600 hover:shadow-xl transition-shadow duration-300">
+        <div class="bg-gradient-to-br from-gray-900 to-black p-6 rounded-xl shadow-lg border border-gray-700 hover:shadow-xl transition-shadow duration-300">
           <div class="w-12 h-12 bg-red-600 rounded-lg flex items-center justify-center mb-4 mx-auto">
             <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"/>
@@ -211,7 +212,7 @@ const metadata = {
         </div>
 
         <!-- Public Buildings -->
-        <div class="bg-gradient-to-br from-red-50 to-red-100 dark:from-gray-800 dark:to-gray-700 p-6 rounded-xl shadow-lg border border-red-200 dark:border-gray-600 hover:shadow-xl transition-shadow duration-300">
+        <div class="bg-gradient-to-br from-gray-900 to-black p-6 rounded-xl shadow-lg border border-gray-700 hover:shadow-xl transition-shadow duration-300">
           <div class="w-12 h-12 bg-red-600 rounded-lg flex items-center justify-center mb-4 mx-auto">
             <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z"/>
@@ -222,7 +223,7 @@ const metadata = {
         </div>
 
         <!-- Automotive -->
-        <div class="bg-gradient-to-br from-red-50 to-red-100 dark:from-gray-800 dark:to-gray-700 p-6 rounded-xl shadow-lg border border-red-200 dark:border-gray-600 hover:shadow-xl transition-shadow duration-300">
+        <div class="bg-gradient-to-br from-gray-900 to-black p-6 rounded-xl shadow-lg border border-gray-700 hover:shadow-xl transition-shadow duration-300">
           <div class="w-12 h-12 bg-red-600 rounded-lg flex items-center justify-center mb-4 mx-auto">
             <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
@@ -235,11 +236,11 @@ const metadata = {
 
       <div class="mt-12 text-center">
         <p class="text-gray-300 mb-4">Don't see your industry? We serve all types of commercial premises across Somerset.</p>
-        <a href="/contact" class="inline-flex items-center px-6 py-3 bg-red-600 hover:bg-red-700 text-white font-semibold rounded-lg transition-colors" style="color: white !important;">
+        <a href="/book-now" class="inline-flex items-center px-6 py-3 bg-red-600 hover:bg-red-700 text-white font-semibold rounded-lg transition-colors" style="color: white !important;">
           <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="color: white !important;">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v6a2 2 0 002 2h2m5 0h2a2 2 0 002-2V7a2 2 0 00-2-2h-2m-5 4v6m1.5-3H9"/>
           </svg>
-          Contact Us for Your Industry
+          Get Quote for Your Industry
         </a>
       </div>
     </section>
@@ -289,6 +290,13 @@ const metadata = {
         description: 'We clean for dentists (hygiene critical), schools (safeguarding essential), shops (appearance vital), and factories (efficiency key). Each business is different - we adapt. After 200+ commercial clients, we\'ve seen it all! <a href="/book-now" class="text-red-600 hover:underline font-semibold">Join Somerset\'s satisfied businesses</a>.',
       },
     ]}
+  />
+  
+  <!-- Postcode Checker -->
+  <PostcodeChecker 
+    heading="Ready to impress your customers?"
+    subheading="Check if we cover your business location and get a commercial quote today"
+    buttonText="Check Coverage"
   />
 
   <!-- Google Reviews -->

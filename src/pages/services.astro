@@ -1,5 +1,7 @@
 ---
 import Features2 from '~/components/widgets/Features2.astro';
+import ServicesBoxed from '~/components/widgets/ServicesBoxed.astro';
+import ServicesFlashcards from '~/components/widgets/ServicesFlashcards.astro';
 import Hero from '~/components/widgets/Hero.astro';
 import Layout from '~/layouts/PageLayout.astro';
 import Image from '~/components/common/Image.astro';
@@ -16,13 +18,13 @@ const metadata = {
   <Hero
     tagline="Our services"
     actions={[
-      { variant: 'primary', text: 'Book Now', href: '/book-now', icon: 'tabler:calendar-plus', class: 'text-white text-lg px-8 py-4 animate-pulse shadow-2xl transform hover:scale-110 transition-all duration-300' },
+      { variant: 'primary', text: 'Request a Free Quote', href: '/book-now', icon: 'tabler:file-text', class: 'text-white text-lg px-8 py-4 animate-pulse shadow-2xl transform hover:scale-110 transition-all duration-300' },
       { variant: 'secondary', text: 'Call 01458 860339', href: 'tel:01458860339', icon: 'tabler:phone', class: 'text-white text-lg px-6 py-4 border-2 border-primary hover:bg-primary/15 transition-all duration-300' },
       { variant: 'whatsapp', text: 'WhatsApp', href: 'https://wa.me/447415526331?text=Hi%20Somerset%20Window%20Cleaning%2C%20please%20can%20I%20get%20a%20quote%20for%20window%20cleaning%20at%20%5Byour%20address%5D', icon: 'tabler:brand-whatsapp', class: 'text-white text-lg px-6 py-4', target: '_blank' },
     ]}
   >
-    <Fragment slot="title"><span class="text-red-500">Professional</span> exterior cleaning <span class="text-red-500">you can trust</span></Fragment>
-    <Fragment slot="subtitle"><span class="text-red-500">Clean</span>, <span class="text-red-500">safe</span> and <span class="text-red-500">reliable</span> across <span class="text-red-500">Somerset</span> — <span class="text-red-500">fully insured</span>.</Fragment>
+    <Fragment slot="title"><span class="text-blue-primary">Professional</span> exterior cleaning <span class="text-blue-primary">you can trust</span></Fragment>
+    <Fragment slot="subtitle"><span class="text-blue-primary">Clean</span>, <span class="text-blue-primary">safe</span> and <span class="text-blue-primary">reliable</span> across <span class="text-blue-primary">Somerset</span> — <span class="text-blue-primary">fully insured</span>.</Fragment>
     <Fragment slot="content">
       <!-- Services quick links: show all services offered -->
       <nav aria-label="All services" class="mt-4">
@@ -38,13 +40,13 @@ const metadata = {
     </Fragment>
     <Fragment slot="bg">
       <Image src="~/assets/images/optimized/solar-panels-large.webp" alt="Professional exterior cleaning services in Somerset" width={1200} height={800} layout="cover" style="width:100%; height:100%; object-fit:cover; opacity:0.55;" />
-      <div class="absolute inset-0 bg-black/40"></div>
+      <div class="absolute inset-0 bg-gradient-to-b from-black/50 to-black/70"></div>
     </Fragment>
   </Hero>
 
-  <!-- Features2 Widget ************** -->
+  <!-- Services Widget ************** -->
 
-  <Features2
+  <ServicesFlashcards
     id="services"
     title="What we do"
     subtitle="Comprehensive exterior cleaning for homes and businesses."
@@ -54,40 +56,83 @@ const metadata = {
     }}
     items={[
       {
-        title: 'Window cleaning',
-        description: 'Pure water, reach-and-wash for a sparkling, streak‑free finish. Frames and sills included.',
-        icon: 'tabler:sparkles',
+        title: 'Window Cleaning',
+        description: 'Crystal-clear windows make your whole property shine. Our pure water system leaves no streaks or spots, just perfectly clean glass every time. Regular service means you never have to think about dirty windows again.',
+        details: [
+          'Pure water reach & wash system',
+          'All external windows cleaned',
+          'Window frames & sills included',
+          'Streak-free finish guaranteed',
+          '4, 8, or 12-week schedules',
+          'Text reminders before visits'
+        ],
         callToAction: { text: 'Learn More', href: '/services/window-cleaning' },
       },
       {
-        title: 'Gutter clearing',
-        description: 'High‑reach vacuum system removes moss and leaves.',
-        icon: 'tabler:brand-abstract',
+        title: 'Gutter Clearing',
+        description: 'Blocked gutters cause expensive damage - we prevent that. Our powerful vacuum system reaches up to 4 storeys from the ground, removing all debris safely. You\'ll see before & after photos for peace of mind.',
+        details: [
+          'Professional vacuum system',
+          'Reaches up to 4 storeys',
+          'Before & after photos',
+          'All debris removed',
+          'Downpipes checked',
+          'No ladders on your property'
+        ],
         callToAction: { text: 'Learn More', href: '/services/gutter-cleaning' },
       },
       {
-        title: 'Fascia & soffit',
-        description: 'UPVC fascia, soffit and gutter exterior cleaned to restore kerb appeal.',
-        icon: 'tabler:home',
+        title: 'Fascia & Soffit Cleaning',
+        description: 'Those green-stained soffits make your home look tired. We restore UPVC to brilliant white, transforming your property\'s appearance instantly. It\'s like giving your home a facelift for a fraction of the cost.',
+        details: [
+          'Deep clean UPVC surfaces',
+          'Removes algae & dirt buildup',
+          'Restore original color',
+          'Includes gutter exteriors',
+          'Eco-friendly products',
+          'Instant curb appeal boost'
+        ],
         callToAction: { text: 'Learn More', href: '/services/fascia-soffit-cleaning' },
       },
       {
-        title: 'Conservatory roof cleaning',
-        description: 'Roof panels and frames carefully cleaned to bring back the sparkle.',
-        icon: 'tabler:building',
+        title: 'Conservatory Roof Cleaning',
+        description: 'Transform your dark, algae-covered conservatory back to its former glory. Our specialist cleaning removes years of green buildup, letting light flood back into your home. Most customers are amazed at the difference.',
+        details: [
+          'Specialist roof cleaning equipment',
+          'Safe for polycarbonate & glass',
+          'Removes stubborn green algae',
+          'Restores up to 60% more light',
+          'Framework & gutters included',
+          'Annual service keeps it pristine'
+        ],
         callToAction: { text: 'Learn More', href: '/services/conservatory-cleaning' },
       },
       {
-        title: 'Solar panel cleaning',
-        description: 'Specialist cleaning to help maintain panel efficiency and warranties.',
-        icon: 'tabler:sun',
+        title: 'Solar Panel Cleaning',
+        description: 'Dirty panels lose 15-25% efficiency - that\'s money down the drain! Our specialist cleaning maximizes your energy production while protecting your warranty. Most customers see immediate improvements on their monitoring apps.',
+        details: [
+          'Manufacturer approved methods',
+          'Deionized water only',
+          'Soft brush system',
+          'Maintains warranties',
+          'Improves efficiency 15-25%',
+          'Annual or bi-annual service'
+        ],
         callToAction: { text: 'Learn More', href: '/services/solar-panel-cleaning' },
       },
       {
-        title: 'Commercial window cleaning',
-        description: 'Professional service for businesses with health & safety compliance and flexible scheduling.',
-        icon: 'tabler:building-store',
-        callToAction: { text: 'Get FREE Quote', href: '/services/commercial-window-cleaning' },
+        title: 'Commercial Cleaning',
+        description: 'First impressions matter for business. We keep your premises looking professional with flexible scheduling that works around you. Fully compliant service with all documentation provided for your records.',
+        price: 'Quote on request',
+        details: [
+          'Flexible scheduling',
+          'Health & Safety compliant',
+          '£5M public liability',
+          'Risk assessments provided',
+          'All business types',
+          'Monthly invoicing available'
+        ],
+        callToAction: { text: 'Get Quote', href: '/services/commercial-window-cleaning' },
       },
     ]}
   />

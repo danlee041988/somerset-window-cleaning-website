@@ -49,6 +49,11 @@ const { language, textDirection } = I18N;
     <Analytics />
     <MobileOptimisations />
     
+    <!-- Inter Font for Modern Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
     <!-- Critical CSS for faster initial render -->
     <style set:html={criticalCSS}></style>
     
@@ -79,9 +84,7 @@ const { language, textDirection } = I18N;
       }
     </style>
 
-    <!-- Performance: Preload primary hero image to improve LCP -->
-    <!-- Disabled for now as it causes 404 errors -->
-    <!-- <link rel="preload" as="image" imagesrcset="/src/assets/images/optimized/hero-main-lg.webp 1280w, /src/assets/images/optimized/hero-main-md.webp 1024w, /src/assets/images/optimized/hero-main-sm.webp 768w" imagesizes="(max-width: 768px) 100vw, 1280px" href="/src/assets/images/optimized/hero-main-lg.webp" /> -->
+    <!-- Performance: Hero image preload removed - handled by Astro Assets automatically -->
 
     <!-- Optimized self-hosted fonts for better performance -->
     <OptimizedFonts />

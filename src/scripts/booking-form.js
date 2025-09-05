@@ -34,7 +34,7 @@ const totalSteps = 4;
 const propertyPrices = {
     'semi-2': 20,
     'semi-3': 25,
-    'semi-4': 28,
+    'semi-4': 30,
     'semi-5': 32,
     'detached-2': 25,
     'detached-3': 30,

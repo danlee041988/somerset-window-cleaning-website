@@ -232,18 +232,7 @@
     
     // Preload critical resources
     function preloadCriticalResources() {
-      // Preload fonts
-      const fontUrls = [
-        'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap'
-      ];
-      
-      fontUrls.forEach(url => {
-        const link = document.createElement('link');
-        link.rel = 'preload';
-        link.as = 'style';
-        link.href = url;
-        document.head.appendChild(link);
-      });
+      // Font preloading removed - using self-hosted fonts from OptimizedFonts.astro
       
       // Preload optimized hero image - disabled for now
       // const heroImg = new Image();
@@ -280,7 +269,9 @@
       });
     });
     
-    // Service Worker registration for caching
+    // Service Worker registration for caching - DISABLED for now
+    // TODO: Re-enable after fixing service worker issues
+    /*
     if ('serviceWorker' in navigator && (location.protocol === 'https:' || location.hostname === 'localhost')) {
       window.addEventListener('load', function() {
         navigator.serviceWorker.register('/sw.js')
@@ -297,6 +288,7 @@
           });
       });
     }
+    */
     
     // Connection-aware loading
     if ('connection' in navigator) {

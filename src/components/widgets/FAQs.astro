@@ -26,11 +26,11 @@ const {
       const panelId = `faq-panel-${index}`;
       const buttonId = `faq-button-${index}`;
       return (
-        <div class="faq-item bg-gray-900 rounded-lg overflow-hidden border border-gray-800 hover:border-red-900/50 transition-all duration-300 shadow-lg hover:shadow-red-900/20" data-faq-item>
+        <div class="faq-item bg-custom-dark-red rounded-lg overflow-hidden border border-custom-dark-brown hover:border-custom-red/50 transition-all duration-300 shadow-lg hover:shadow-custom-red/20" data-faq-item>
           <h3 class="m-0">
             <button
               id={buttonId}
-              class="faq-button w-full text-left px-6 py-5 flex items-center justify-between gap-4 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-500 min-h-[64px] group transition-all duration-300 hover:bg-gray-800/50"
+              class="faq-button w-full text-left px-6 py-5 flex items-center justify-between gap-4 focus:outline-none focus-visible:ring-2 focus-visible:ring-custom-red min-h-[64px] group transition-all duration-300 hover:bg-custom-dark-brown/50"
               type="button"
               aria-controls={panelId}
               aria-expanded="false"
@@ -54,7 +54,7 @@ const {
             class="faq-panel hidden" 
             data-accordion-panel
           >
-            <div class="px-6 pb-6 pt-2 text-gray-300 leading-relaxed border-t border-gray-800/50">
+            <div class="px-6 pb-6 pt-2 text-custom-light leading-relaxed border-t border-custom-dark-brown/50">
               <div class="faq-content" set:html={item.description} />
             </div>
           </div>

@@ -24,13 +24,13 @@ const metadata = {
   <ServiceHero
     serviceType="solar"
     actions={[
-      { variant: 'primary', text: 'Book Now', href: '/book-now', icon: 'tabler:calendar-plus', class: 'text-white text-lg px-8 py-4 animate-pulse shadow-2xl transform hover:scale-110 transition-all duration-300' },
+      { variant: 'primary', text: 'Request a Free Quote', href: '/book-now', icon: 'tabler:file-text', class: 'text-white text-lg px-8 py-4 animate-pulse shadow-2xl transform hover:scale-110 transition-all duration-300' },
       { variant: 'secondary', text: 'Call 01458 860339', href: 'tel:01458860339', icon: 'tabler:phone', class: 'text-white text-lg px-6 py-4 border-2 border-primary hover:bg-primary/15 transition-all duration-300' },
       { variant: 'whatsapp', text: 'WhatsApp', href: 'https://wa.me/447415526331?text=Hi%20Somerset%20Window%20Cleaning%2C%20please%20can%20I%20get%20a%20quote%20for%20solar%20panel%20cleaning%20at%20%5Byour%20address%5D', icon: 'tabler:brand-whatsapp', class: 'text-white text-lg px-6 py-4', target: '_blank' },
     ]}
   >
     <Fragment slot="title">
-      <span style="color: #dc2626 !important;">Professional</span> Solar Panel Cleaning <span style="color: #dc2626 !important;">Somerset</span>
+      <span style="color: #D84040 !important;">Professional</span> Solar Panel Cleaning <span style="color: #D84040 !important;">Somerset</span>
     </Fragment>
     <Fragment slot="subtitle">
       Maximize your solar panel performance and energy savings. Professional cleaning to restore efficiency and protect your investment.
@@ -146,6 +146,13 @@ const metadata = {
         description: 'Most customers see the difference on their monitoring app the same day! It\'s quite satisfying watching those production numbers climb. <a href="/book-now" class="text-red-600 hover:underline font-semibold">Book your clean and watch your savings grow</a>.',
       },
     ]}
+  />
+  
+  <!-- Postcode Checker -->
+  <PostcodeChecker 
+    heading="Maximize your solar investment"
+    subheading="Check if we cover your area and book your solar panel cleaning"
+    buttonText="Check My Area"
   />
 
   <!-- Google Reviews -->

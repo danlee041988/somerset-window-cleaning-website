@@ -61,12 +61,32 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
   console.log('Request URL:', request.url);
   console.log('Headers:', Object.fromEntries(request.headers.entries()));
   
+  // CSRF Protection - Check origin header
+  const origin = request.headers.get('origin');
+  const allowedOrigins = [
+    'https://somersetwindowcleaning.co.uk',
+    'https://www.somersetwindowcleaning.co.uk',
+    'http://localhost:4321',
+    'http://localhost:3000'
+  ];
+  
+  if (origin && !allowedOrigins.includes(origin)) {
+    console.error('CSRF protection: Invalid origin:', origin);
+    return new Response(JSON.stringify({ 
+      error: 'Forbidden: Invalid request origin' 
+    }), {
+      status: 403,
+      headers: { 'Content-Type': 'application/json' }
+    });
+  }
+  
   // CORS headers for same-origin requests
   const headers = {
     'Content-Type': 'application/json',
-    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Origin': origin || '*',
     'Access-Control-Allow-Methods': 'POST, OPTIONS',
     'Access-Control-Allow-Headers': 'Content-Type',
+    'Access-Control-Allow-Credentials': 'true',
   };
   
   // Validate environment variables first
@@ -229,7 +249,7 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
       'detached-5': 40,
       'semi-2': 20,
       'semi-3': 25,
-      'semi-4': 28,
+      'semi-4': 30,
       'semi-5': 32,
       'terrace-2': 20,
       'terrace-3': 25,

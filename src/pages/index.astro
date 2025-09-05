@@ -11,6 +11,8 @@ import Hero from '~/components/widgets/Hero.astro';
 import Note from '~/components/widgets/Note.astro';
 import Features from '~/components/widgets/Features.astro';
 import Features2 from '~/components/widgets/Features2.astro';
+import ServicesBoxed from '~/components/widgets/ServicesBoxed.astro';
+import ServicesFlashcards from '~/components/widgets/ServicesFlashcards.astro';
 // Removed template filler widgets for a clean marketing page
 import FAQs from '~/components/widgets/FAQs.astro';
 import Stats from '~/components/widgets/Stats.astro';
@@ -20,6 +22,7 @@ import LiveReviews from '~/components/widgets/LiveReviews.astro';
 import Process from '~/components/widgets/Process.astro';
 import TrustBar from '~/components/widgets/TrustBar.astro';
 import ReviewsSchema from '~/components/seo/ReviewsSchema.astro';
+import PostcodeChecker from '~/components/widgets/PostcodeChecker.astro';
 
 const metadata = {
   title: 'Window Cleaning Somerset | Instant Online Quotes & Booking | Somerset Window Cleaning',
@@ -33,7 +36,7 @@ const metadata = {
 
   <Hero
     actions={[
-      { variant: 'primary', text: 'Book Now', href: '/book-now', icon: 'tabler:calendar-plus', class: 'text-white text-lg px-8 py-4 animate-pulse shadow-2xl transform hover:scale-110 transition-all duration-300' },
+      { variant: 'primary', text: 'Request a Free Quote', href: '/book-now', icon: 'tabler:file-text', class: 'text-white text-lg px-8 py-4 animate-pulse shadow-2xl transform hover:scale-110 transition-all duration-300' },
       { variant: 'secondary', text: 'Call 01458 860339', href: 'tel:01458860339', icon: 'tabler:phone', class: 'text-white text-lg px-6 py-4 border-2 border-primary hover:bg-primary/15 transition-all duration-300' },
       { variant: 'whatsapp', text: 'WhatsApp', href: 'https://wa.me/447415526331?text=Hi%20Somerset%20Window%20Cleaning%2C%20please%20can%20I%20get%20a%20quote%20for%20window%20cleaning%20at%20%5Byour%20address%5D', icon: 'tabler:brand-whatsapp', class: 'text-white text-lg px-6 py-4', target: '_blank' },
     ]}
@@ -46,11 +49,12 @@ const metadata = {
         height={1080}
         widths={[640, 768, 1024, 1280, 1600, 1920]}
         sizes="100vw"
-        formats={['avif', 'webp', 'jpg']}
+        formats={['webp', 'jpg']}
         loading="eager"
+        fetchpriority="high"
         decoding="async"
-        quality={85}
-        style="width:100%; height:100%; object-fit:cover; opacity:0.55; position:absolute; inset:0;"
+        quality={75}
+        style="width:100%; height:100%; object-fit:cover; opacity:0.4; position:absolute; inset:0;"
       />
       <noscript>
         <img 
@@ -60,10 +64,10 @@ const metadata = {
           loading="eager"
         />
       </noscript>
-      <div class="absolute inset-0 bg-black/40"></div>
+      <div class="absolute inset-0 bg-gradient-to-b from-black/50 to-black/70"></div>
     </Fragment>
     <Fragment slot="title">
-      <span style="color: #dc2626 !important;">Professional</span> Window Cleaning <span style="color: #dc2626 !important;">Somerset</span>
+      <span style="color: #2563EB !important;">Professional</span> Window Cleaning <span style="color: #2563EB !important;">Somerset</span>
     </Fragment>
     <Fragment slot="subtitle">
       <span class="text-white">Reliable, fully insured exterior cleaning across Somerset. 4,000+ happy customers since 2019.</span>
@@ -98,110 +102,99 @@ const metadata = {
   />
 
   <!-- Services Widget *************** -->
-  <Features
+  <ServicesFlashcards
     id="services"
     title="Complete Exterior Cleaning Services"
     subtitle="Professional, reliable, fully insured exterior cleaning across Somerset."
+    columns={3}
     items={[
       {
+        title: 'Conservatory Roof Cleaning',
+        description: 'Transform your dark, algae-covered conservatory back to its former glory. Our specialist cleaning removes years of green buildup, letting light flood back into your home. Most customers are amazed at the difference.',
+        details: [
+          'Specialist roof cleaning equipment',
+          'Safe for polycarbonate & glass',
+          'Removes stubborn green algae',
+          'Restores up to 60% more light',
+          'Framework & gutters included',
+          'Annual service keeps it pristine'
+        ],
+        callToAction: { text: 'Learn More', href: '/services/conservatory-cleaning' },
+      },
+      {
         title: 'Window Cleaning',
-        description: 'Pure water system for streak-free windows. Frames and sills included.',
-        icon: 'tabler:sparkles',
+        description: 'Crystal-clear windows make your whole property shine. Our pure water system leaves no streaks or spots, just perfectly clean glass every time. Regular service means you never have to think about dirty windows again.',
+        details: [
+          'Pure water reach & wash system',
+          'All external windows cleaned',
+          'Window frames & sills included',
+          'Streak-free finish guaranteed',
+          '4, 8, or 12-week schedules',
+          'Text reminders before visits'
+        ],
         callToAction: { text: 'Learn More', href: '/services/window-cleaning' },
       },
       {
         title: 'Gutter Clearing',
-        description: 'High-reach vacuum system removes leaves and debris safely.',
-        icon: 'tabler:brand-abstract',
+        description: 'Blocked gutters cause expensive damage - we prevent that. Our powerful vacuum system reaches up to 4 storeys from the ground, removing all debris safely. You\'ll see before & after photos for peace of mind.',
+        details: [
+          'Professional vacuum system',
+          'Reaches up to 4 storeys',
+          'Before & after photos',
+          'All debris removed',
+          'Downpipes checked',
+          'No ladders on your property'
+        ],
         callToAction: { text: 'Learn More', href: '/services/gutter-cleaning' },
       },
       {
         title: 'Fascia & Soffit Cleaning',
-        description: 'Restore UPVC fascias and soffits to their original appearance.',
-        icon: 'tabler:home',
+        description: 'Those green-stained soffits make your home look tired. We restore UPVC to brilliant white, transforming your property\'s appearance instantly. It\'s like giving your home a facelift for a fraction of the cost.',
+        details: [
+          'Deep clean UPVC surfaces',
+          'Removes algae & dirt buildup',
+          'Restore original color',
+          'Includes gutter exteriors',
+          'Eco-friendly products',
+          'Instant curb appeal boost'
+        ],
         callToAction: { text: 'Learn More', href: '/services/fascia-soffit-cleaning' },
       },
       {
-        title: 'Conservatory Cleaning',
-        description: 'Roof panels and frames carefully cleaned to restore clarity.',
-        icon: 'tabler:building',
-        callToAction: { text: 'Learn More', href: '/services/conservatory-cleaning' },
-      },
-      {
         title: 'Solar Panel Cleaning',
-        description: 'Specialist cleaning to maintain efficiency and warranties.',
-        icon: 'tabler:sun',
+        description: 'Dirty panels lose 15-25% efficiency - that\'s money down the drain! Our specialist cleaning maximizes your energy production while protecting your warranty. Most customers see immediate improvements on their monitoring apps.',
+        details: [
+          'Manufacturer approved methods',
+          'Deionized water only',
+          'Soft brush system',
+          'Maintains warranties',
+          'Improves efficiency 15-25%',
+          'Annual or bi-annual service'
+        ],
         callToAction: { text: 'Learn More', href: '/services/solar-panel-cleaning' },
       },
       {
         title: 'Commercial Cleaning',
-        description: 'Professional service for offices, shops and business premises.',
-        icon: 'tabler:building-store',
+        description: 'First impressions matter for business. We keep your premises looking professional with flexible scheduling that works around you. Fully compliant service with all documentation provided for your records.',
+        details: [
+          'Flexible scheduling',
+          'Health & Safety compliant',
+          '£5M public liability',
+          'Risk assessments provided',
+          'All business types',
+          'Monthly invoicing available'
+        ],
         callToAction: { text: 'Get Quote', href: '/services/commercial-window-cleaning' },
       },
     ]}
   />
 
-  <!-- Service Coverage Area Quick Check -->
-  <section class="py-8 bg-black text-white intersect-once intersect-quarter motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6">
-      <div class="text-center">
-        <h2 class="text-2xl md:text-3xl font-bold mb-3">We Cover <span class="text-red-500">38+ Postcodes</span> Across Somerset</h2>
-        <p class="text-gray-300 mb-6">Professional window cleaning from <span class="text-red-400">Bath to Bridgwater</span>, <span class="text-red-400">Wells to Weston-super-Mare</span></p>
-        
-        <!-- Quick postcode checker -->
-        <div class="max-w-md mx-auto mb-6">
-          <div class="flex gap-2">
-            <input 
-              type="text" 
-              id="homepage-postcode" 
-              placeholder="Enter your postcode (e.g. BA16 0HW)"
-              class="flex-1 px-4 py-2 border border-gray-600 bg-gray-800 text-white rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent text-sm placeholder-gray-400"
-            >
-            <button 
-              id="homepage-check" 
-              class="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors font-medium text-sm shadow-lg"
-            >
-              Check
-            </button>
-          </div>
-          <div id="homepage-result" class="mt-3 text-sm hidden"></div>
-        </div>
-
-        <!-- Coverage highlights -->
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center text-sm">
-          <div class="bg-gray-800 border border-gray-700 p-3 rounded-lg shadow-sm">
-            <div class="font-semibold text-red-500">BS Postcodes</div>
-            <div class="text-gray-400">North Somerset</div>
-          </div>
-          <div class="bg-gray-800 border border-gray-700 p-3 rounded-lg shadow-sm">
-            <div class="font-semibold text-red-500">BA Postcodes</div>
-            <div class="text-gray-400">Bath & NE Somerset</div>
-          </div>
-          <div class="bg-gray-800 border border-gray-700 p-3 rounded-lg shadow-sm">
-            <div class="font-semibold text-red-500">TA Postcodes</div>
-            <div class="text-gray-400">Somerset Levels</div>
-          </div>
-          <div class="bg-gray-800 border border-gray-700 p-3 rounded-lg shadow-sm">
-            <div class="font-semibold text-red-500">DT9 Postcode</div>
-            <div class="text-gray-400">West Dorset</div>
-          </div>
-        </div>
-
-        <div class="mt-6">
-          <a 
-            href="/areas" 
-            class="inline-flex items-center text-primary hover:text-primary/80 font-medium text-sm"
-          >
-            View All Coverage Areas
-            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-            </svg>
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
+  <!-- Postcode Checker -->
+  <PostcodeChecker 
+    heading="Ready to get started?"
+    subheading="Check if we cover your area and book your window cleaning service today"
+    buttonText="Check My Area"
+  />
 
   <!-- Reviews ******************************* -->
   <LiveReviews 
@@ -211,56 +204,40 @@ const metadata = {
     autoRotate={true}
   />
 
-  <!-- Removed mid-page CTA (duplicate of contact options) -->
-  
+  <!-- Dark Brand Band Section -->
+  <section class="relative bg-neutral-900 text-white py-16 md:py-20 overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-r from-neutral-900 via-black to-neutral-900"></div>
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 text-center">
+      <div class="max-w-4xl mx-auto">
+        <h2 class="text-3xl md:text-4xl font-bold mb-6 text-white">
+          The Somerset Window Cleaning Difference
+        </h2>
+        <p class="text-xl text-gray-300 mb-8 leading-relaxed content-width mx-auto">
+          Since 2019, we've built our reputation on reliability, quality, and exceptional customer service. 
+          Our professional team uses the latest equipment and techniques to deliver outstanding results every time.
+        </p>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+          <div>
+            <div class="text-3xl font-bold text-blue-primary mb-2">4000+</div>
+            <div class="text-gray-300">Happy Customers</div>
+          </div>
+          <div>
+            <div class="text-3xl font-bold text-blue-primary mb-2">190+</div>
+            <div class="text-gray-300">5★ Reviews</div>
+          </div>
+          <div>
+            <div class="text-3xl font-bold text-blue-primary mb-2">5 Years</div>
+            <div class="text-gray-300">Experience</div>
+          </div>
+          <div>
+            <div class="text-3xl font-bold text-blue-primary mb-2">£5M</div>
+            <div class="text-gray-300">Insurance</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Reviews structured data for homepage -->
   <ReviewsSchema />
 </Layout>
-
-<script>
-  // Homepage postcode checker
-  document.addEventListener('DOMContentLoaded', function() {
-    const supportedPostcodes = [
-      'BS21', 'BS23', 'BS24', 'BS25', 'BS26', 'BS27', 'BS28', 'BS29', 'BS39', 'BS40', 'BS49',
-      'BA3', 'BA4', 'BA5', 'BA6', 'BA7', 'BA8', 'BA9', 'BA10', 'BA11', 'BA16', 'BA20', 'BA21', 'BA22',
-      'TA2', 'TA6', 'TA7', 'TA8', 'TA9', 'TA10', 'TA11', 'TA12', 'TA13', 'TA14', 'TA18', 'TA19', 'TA20',
-      'DT9'
-    ];
-
-    const input = document.getElementById('homepage-postcode');
-    const button = document.getElementById('homepage-check');
-    const result = document.getElementById('homepage-result');
-
-    if (!input || !button || !result) return;
-
-    function checkPostcode() {
-      const postcode = input.value.toUpperCase().replace(/\s/g, '');
-      const postcodePrefix = postcode.match(/^[A-Z]{1,2}[0-9]{1,2}/)?.[0];
-      
-      result.classList.remove('hidden');
-      
-      if (!postcodePrefix) {
-        result.className = 'mt-3 text-sm p-2 rounded bg-gray-100 text-gray-600';
-        result.textContent = 'Please enter a valid postcode';
-        return;
-      }
-
-      if (supportedPostcodes.includes(postcodePrefix)) {
-        result.className = 'mt-3 text-sm p-2 rounded bg-green-800 text-green-200 font-medium';
-        result.innerHTML = `✅ Yes! We cover ${postcodePrefix} - Redirecting...`;
-        // Redirect to celebration page
-        setTimeout(() => {
-          window.location.href = `/postcode-celebration?postcode=${encodeURIComponent(postcode)}`;
-        }, 500);
-      } else {
-        result.className = 'mt-3 text-sm p-2 rounded bg-orange-900 text-orange-200';
-        result.innerHTML = `We don't cover ${postcodePrefix} yet - <a href="/areas" class="underline hover:no-underline">See full coverage</a>`;
-      }
-    }
-
-    button.addEventListener('click', checkPostcode);
-    input.addEventListener('keypress', function(e) {
-      if (e.key === 'Enter') checkPostcode();
-    });
-  });
-</script>

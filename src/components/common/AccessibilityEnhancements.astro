@@ -348,12 +348,20 @@
       const headings = document.querySelectorAll('h1, h2, h3, h4, h5, h6');
       let lastLevel = 0;
       
-      headings.forEach(heading => {
+      headings.forEach((heading, index) => {
         const level = parseInt(heading.tagName.charAt(1));
-        if (level > lastLevel + 1) {
+        
+        // Only check for level skipping after the first heading
+        if (index > 0 && level > lastLevel + 1) {
           console.warn(`Heading level skipped: ${heading.tagName} follows h${lastLevel}`, heading);
         }
-        lastLevel = level;
+        
+        // Set initial level if this is the first heading
+        if (index === 0) {
+          lastLevel = level;
+        } else {
+          lastLevel = level;
+        }
       });
     }
   });

@@ -31,7 +31,7 @@ const {
         {
           tagline && (
             <p
-              class="text-base text-red-400 font-bold tracking-wide uppercase drop-shadow-lg intersect-once intersect-quarter motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade"
+              class="text-base text-blue-primary font-bold tracking-wide uppercase drop-shadow-lg intersect-once intersect-quarter motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade"
               set:html={tagline}
             />
           )
@@ -39,7 +39,8 @@ const {
         {
           title && (
             <h1
-              class="text-5xl md:text-6xl font-bold leading-tighter tracking-tighter mb-4 font-heading text-white drop-shadow-2xl intersect-once intersect-quarter motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade"
+              class="text-5xl md:text-6xl font-bold leading-tighter tracking-tighter mb-4 font-heading text-white intersect-once intersect-quarter motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade"
+              style="text-shadow: 2px 2px 4px rgba(0,0,0,0.8), 0 0 20px rgba(0,0,0,0.5);"
               set:html={title}
             />
           )
@@ -48,7 +49,8 @@ const {
           {
             subtitle && (
               <p
-                class="text-xl text-white font-semibold mb-6 drop-shadow-lg intersect-once intersect-quarter motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade"
+                class="text-xl text-white font-semibold mb-6 intersect-once intersect-quarter motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade"
+                style="text-shadow: 1px 1px 2px rgba(0,0,0,0.7);"
                 set:html={subtitle}
               />
             )

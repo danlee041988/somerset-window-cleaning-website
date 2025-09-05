@@ -7,7 +7,7 @@ import OptimizedImage from '~/components/common/OptimizedImage.astro';
   <OptimizedImage
     src="/brand/logo.png"
     alt={SITE?.name ?? 'Somerset Window Cleaning Logo'}
-    class="logo-img h-[50px] sm:h-[60px] md:h-[80px] lg:h-[100px] w-auto object-contain transition-all duration-300 ease-out"
+    class="logo-img h-[100px] sm:h-[120px] md:h-[160px] lg:h-[200px] w-auto object-contain transition-all duration-300 ease-out border-0 outline-0 bg-transparent"
     width={500}
     height={500}
     quality={95}
@@ -15,7 +15,7 @@ import OptimizedImage from '~/components/common/OptimizedImage.astro';
     critical={true}
     blurUp={false}
     preload={true}
-    sizes="(max-width: 640px) 50px, (max-width: 768px) 60px, (max-width: 1024px) 80px, 100px"
-    widths={[50, 60, 80, 100, 150, 200]}
+    sizes="(max-width: 640px) 100px, (max-width: 768px) 120px, (max-width: 1024px) 160px, 200px"
+    widths={[100, 120, 160, 200, 250, 300, 400]}
   />
 </div>
