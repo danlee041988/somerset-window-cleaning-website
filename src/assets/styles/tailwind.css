@@ -35,6 +35,143 @@ main section:nth-child(odd) {
   background-color: #ffffff !important;
 }
 
+/* SERVICE CARDS - PROFESSIONAL DEPTH WITH BOX SHADOWS */
+/* Target service cards using REF best practices */
+[class*="flip"],
+.service-card,
+.card,
+[role="button"][class*="flip"],
+button[class*="flip"] {
+  /* REF Best Practice: Layered shadow system */
+  box-shadow: 
+    0 1px 3px rgba(0, 0, 0, 0.12),
+    0 1px 2px rgba(0, 0, 0, 0.24) !important;
+  border-radius: 12px !important;
+  transition-property: box-shadow, transform !important;
+  transition-duration: 300ms !important;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1) !important;
+  background-color: #ffffff !important;
+  border: 1px solid rgba(0, 0, 0, 0.05) !important;
+}
+
+/* Service card hover effects - enhanced depth */
+[class*="flip"]:hover,
+.service-card:hover,
+.card:hover,
+[role="button"][class*="flip"]:hover,
+button[class*="flip"]:hover {
+  /* REF Best Practice: Enhanced shadow on hover */
+  box-shadow: 
+    0 10px 25px rgba(0, 0, 0, 0.15),
+    0 4px 10px rgba(0, 0, 0, 0.12) !important;
+  transform: translateY(-4px) !important;
+  border-color: rgba(220, 38, 38, 0.2) !important; /* Subtle Somerset red border */
+}
+
+/* Service card active/pressed state */
+[class*="flip"]:active,
+.service-card:active,
+.card:active,
+[role="button"][class*="flip"]:active,
+button[class*="flip"]:active {
+  box-shadow: 
+    0 2px 8px rgba(0, 0, 0, 0.15),
+    0 1px 4px rgba(0, 0, 0, 0.12) !important;
+  transform: translateY(-1px) !important;
+}
+
+/* Service card content styling */
+[class*="flip"] *,
+.service-card *,
+.card * {
+  position: relative !important;
+  z-index: 2 !important;
+}
+
+/* Service card images - subtle shadow */
+[class*="flip"] img,
+.service-card img,
+.card img {
+  border-radius: 8px !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+  transition: transform 250ms ease-out !important;
+}
+
+[class*="flip"]:hover img,
+.service-card:hover img,
+.card:hover img {
+  transform: scale(1.02) !important;
+}
+
+/* Accessibility - reduce motion support */
+@media (prefers-reduced-motion: reduce) {
+  [class*="flip"],
+  .service-card,
+  .card,
+  [role="button"][class*="flip"],
+  button[class*="flip"] {
+    transition: none !important;
+  }
+  
+  [class*="flip"]:hover,
+  .service-card:hover,
+  .card:hover,
+  [role="button"][class*="flip"]:hover,
+  button[class*="flip"]:hover {
+    transform: none !important;
+  }
+  
+  [class*="flip"] img,
+  .service-card img,
+  .card img {
+    transition: none !important;
+  }
+  
+  [class*="flip"]:hover img,
+  .service-card:hover img,
+  .card:hover img {
+    transform: none !important;
+  }
+}
+
+/* REVIEW CARDS & TESTIMONIALS - ENHANCED DEPTH */
+[class*="review"],
+.testimonial,
+.review-card,
+blockquote {
+  background-color: #ffffff !important;
+  border-radius: 8px !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08) !important;
+  border: 1px solid rgba(0, 0, 0, 0.04) !important;
+  transition: box-shadow 250ms ease-out !important;
+}
+
+[class*="review"]:hover,
+.testimonial:hover,
+.review-card:hover,
+blockquote:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12) !important;
+}
+
+/* STATISTICS/FEATURE CARDS - SUBTLE DEPTH */
+[class*="stat"],
+[class*="feature"],
+.feature-card,
+.stat-card {
+  background-color: #ffffff !important;
+  border-radius: 6px !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06) !important;
+  transition: transform 200ms ease-out !important;
+}
+
+[class*="stat"]:hover,
+[class*="feature"]:hover,
+.feature-card:hover,
+.stat-card:hover {
+  transform: translateY(-1px) !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+}
+
 /* COMPREHENSIVE LIGHT TEXT CLASS OVERRIDES */
 /* Using maximum CSS specificity to override Tailwind utilities */
 .text-slate-50,
@@ -141,26 +278,109 @@ header a:hover {
   background-color: rgba(255, 255, 255, 0.8) !important; /* Light overlay */
 }
 
-/* Buttons and CTAs - Somerset red theme */
+/* ENHANCED CTAs - SOMERSET RED WITH SMOOTH ANIMATIONS */
+/* Primary CTAs - using REF best practices for transitions */
 .bg-red-600,
 .bg-red-700, 
 .bg-red-500,
-.bg-red-50,
 .bg-primary,
 .btn-primary,
 button[type="submit"],
 [class*="btn-primary"],
-[class*="bg-red"] {
+[class*="bg-red"],
+button,
+a[class*="bg-red"] {
   background-color: #dc2626 !important; /* Somerset red */
   color: #ffffff !important; /* White text */
   border-color: #dc2626 !important;
+  /* REF Best Practice: Comprehensive transition properties */
+  transition-property: all !important;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1) !important;
+  transition-duration: 300ms !important;
+  /* Professional hover effects */
+  transform: translateY(0) scale(1) !important;
+  box-shadow: 0 4px 6px rgba(220, 38, 38, 0.25) !important;
 }
 
-/* Secondary/accent buttons */
+/* CTA Hover States - REF recommended smooth animations */
+.bg-red-600:hover,
+.bg-red-700:hover, 
+.bg-red-500:hover,
+.bg-primary:hover,
+.btn-primary:hover,
+button[type="submit"]:hover,
+[class*="btn-primary"]:hover,
+[class*="bg-red"]:hover,
+button:hover,
+a[class*="bg-red"]:hover {
+  background-color: #b91c1c !important; /* Darker red on hover */
+  border-color: #b91c1c !important;
+  /* Subtle lift and scale effect */
+  transform: translateY(-2px) scale(1.02) !important;
+  box-shadow: 0 10px 20px rgba(220, 38, 38, 0.4) !important;
+}
+
+/* CTA Active States */
+.bg-red-600:active,
+.bg-red-700:active, 
+.bg-red-500:active,
+.bg-primary:active,
+.btn-primary:active,
+button[type="submit"]:active,
+[class*="btn-primary"]:active,
+[class*="bg-red"]:active,
+button:active,
+a[class*="bg-red"]:active {
+  transform: translateY(0) scale(0.98) !important;
+  box-shadow: 0 2px 4px rgba(220, 38, 38, 0.3) !important;
+}
+
+/* Secondary/accent buttons - enhanced */
 .bg-red-50 {
   background-color: #fef2f2 !important; /* Very light red background */
   color: #dc2626 !important; /* Red text */
   border-color: #fecaca !important; /* Light red border */
+  transition-property: all !important;
+  transition-duration: 250ms !important;
+  transition-timing-function: ease-out !important;
+}
+
+.bg-red-50:hover {
+  background-color: #fee2e2 !important;
+  color: #b91c1c !important;
+  border-color: #f87171 !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 4px 8px rgba(220, 38, 38, 0.15) !important;
+}
+
+/* Reduce motion for accessibility - REF best practice */
+@media (prefers-reduced-motion: reduce) {
+  .bg-red-600,
+  .bg-red-700, 
+  .bg-red-500,
+  .bg-primary,
+  .btn-primary,
+  button[type="submit"],
+  [class*="btn-primary"],
+  [class*="bg-red"],
+  button,
+  a[class*="bg-red"] {
+    transition: none !important;
+    transform: none !important;
+  }
+  
+  .bg-red-600:hover,
+  .bg-red-700:hover, 
+  .bg-red-500:hover,
+  .bg-primary:hover,
+  .btn-primary:hover,
+  button[type="submit"]:hover,
+  [class*="btn-primary"]:hover,
+  [class*="bg-red"]:hover,
+  button:hover,
+  a[class*="bg-red"]:hover {
+    transform: none !important;
+  }
 }
 
 /* FOOTER - PROFESSIONAL SOMERSET BRANDING */
