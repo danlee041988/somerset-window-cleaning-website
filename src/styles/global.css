@@ -1,0 +1,33 @@
+/* Aggressive text contrast fix - Override ALL text to be black */
+* {
+  color: #000000 !important;
+}
+
+/* Ensure headings are black */
+h1, h2, h3, h4, h5, h6 {
+  color: #000000 !important;
+}
+
+/* Ensure paragraphs and spans are black */
+p, span, div, a, li {
+  color: #000000 !important;
+}
+
+/* Override any Tailwind gray classes */
+.text-gray-800,
+.text-gray-600,
+.text-gray-500,
+.text-gray-400,
+.text-gray-300 {
+  color: #000000 !important;
+}
+
+/* Ensure navigation links are black */
+nav a, nav span, nav div {
+  color: #000000 !important;
+}
+
+/* Ensure button text is readable */
+button {
+  color: #000000 !important;
+}

@@ -2,6 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
+/* FORCE ALL TEXT TO BE DARK - MAXIMUM SPECIFICITY OVERRIDE */
+body, html {
+  color: #000000 !important;
+}
+
+body *, html * {
+  color: #000000 !important;
+}
+
+h1, h2, h3, h4, h5, h6, p, span, div, a, button, input, textarea, select, label, li, td, th, .text-gray-400, .text-gray-500, .text-gray-600, .text-slate-400, .text-slate-500, .text-slate-600 {
+  color: #000000 !important;
+}
+
 /* FORCE LIGHT MODE ONLY - DISABLE ALL DARK MODE */
 html.dark,
 html[data-theme="dark"],
