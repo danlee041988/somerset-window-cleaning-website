@@ -4,31 +4,40 @@ import { UI } from 'astrowind:config';
 // TODO: This code is temporary
 ---
 
-<script is:inline define:vars={{ defaultTheme: UI.theme || 'dark' }}>
-  function applyTheme(theme) {
-    if (theme === 'dark') {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-    }
+<script is:inline define:vars={{ defaultTheme: 'light:only' }}>
+  // Force light mode only - disable all dark mode functionality
+  function forceLight() {
+    // Always remove dark class from html and body
+    document.documentElement.classList.remove('dark');
+    document.body.classList.remove('dark');
+    
+    // Remove any data attributes that might trigger dark mode
+    document.documentElement.removeAttribute('data-theme');
+    
+    // Clear any dark mode preferences from localStorage
+    localStorage.removeItem('theme');
+    localStorage.theme = 'light';
+    
+    // Force light mode styles
+    document.documentElement.style.backgroundColor = '#ffffff';
+    document.documentElement.style.color = '#111827';
+    
+    // Update any theme toggle switches
     const matches = document.querySelectorAll('[data-aw-toggle-color-scheme] > input');
-
     if (matches && matches.length) {
       matches.forEach((elem) => {
-        elem.checked = theme !== 'dark';
+        elem.checked = true; // Light mode selected
+        elem.disabled = true; // Disable theme switching
       });
     }
   }
 
-  if ((defaultTheme && defaultTheme.endsWith(':only')) || (!localStorage.theme && defaultTheme !== 'system')) {
-    applyTheme(defaultTheme.replace(':only', ''));
-  } else if (
-    localStorage.theme === 'dark' ||
-    (!('theme' in localStorage) && defaultTheme === 'dark') ||
-    (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
-  ) {
-    applyTheme('dark');
-  } else {
-    applyTheme('light');
-  }
+  // Execute immediately - don't wait for DOM
+  forceLight();
+  
+  // Also force light mode when DOM is ready
+  document.addEventListener('DOMContentLoaded', forceLight);
+  
+  // Force light mode on any page visibility change
+  document.addEventListener('visibilitychange', forceLight);
 </script>

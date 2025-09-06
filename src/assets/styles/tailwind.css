@@ -2,6 +2,247 @@
 @tailwind components;
 @tailwind utilities;
 
+/* FORCE LIGHT MODE ONLY - DISABLE ALL DARK MODE */
+html.dark,
+html[data-theme="dark"],
+.dark {
+  background-color: #ffffff !important;
+  color: #111827 !important;
+}
+
+/* ROOT LIGHT MODE DEFAULTS */
+html,
+body {
+  color: #111827 !important; /* Gray-900 - maximum contrast */
+  background-color: #ffffff !important; /* Pure white background */
+}
+
+/* CONTENT SECTIONS - PROFESSIONAL LAYOUT */
+main section,
+article,
+.content-section {
+  background-color: #ffffff !important;
+  padding: 3rem 0 !important;
+  border-radius: 0 !important;
+}
+
+/* Alternating section backgrounds for visual interest */
+main section:nth-child(even) {
+  background-color: #f8fafc !important;
+}
+
+main section:nth-child(odd) {
+  background-color: #ffffff !important;
+}
+
+/* COMPREHENSIVE LIGHT TEXT CLASS OVERRIDES */
+/* Using maximum CSS specificity to override Tailwind utilities */
+.text-slate-50,
+.text-slate-100, 
+.text-slate-200,
+.text-slate-300,
+.text-slate-400,
+.text-slate-500,
+.text-gray-50,
+.text-gray-100,
+.text-gray-200,
+.text-gray-300,
+.text-gray-400,
+.text-gray-500,
+.text-neutral-50,
+.text-neutral-100,
+.text-neutral-200,
+.text-neutral-300,
+.text-neutral-400,
+.text-neutral-500,
+.text-stone-50,
+.text-stone-100,
+.text-stone-200,
+.text-stone-300,
+.text-stone-400,
+.text-stone-500,
+.text-zinc-50,
+.text-zinc-100,
+.text-zinc-200,
+.text-zinc-300,
+.text-zinc-400,
+.text-zinc-500,
+.text-muted,
+.text-muted-foreground,
+[data-muted] {
+  color: #111827 !important; /* Force dark gray for maximum readability */
+}
+
+/* Dark mode overrides */
+.dark\:text-slate-50,
+.dark\:text-slate-100,
+.dark\:text-slate-200,
+.dark\:text-slate-300,
+.dark\:text-slate-400,
+.dark\:text-slate-500,
+.dark\:text-gray-50,
+.dark\:text-gray-100,
+.dark\:text-gray-200,
+.dark\:text-gray-300,
+.dark\:text-gray-400,
+.dark\:text-gray-500 {
+  color: #111827 !important;
+}
+
+/* Inline style overrides for light colors */
+*[style*="color: rgb(203"],
+*[style*="color: rgb(209"],
+*[style*="color: rgb(156"],
+*[style*="color: rgb(107"],
+*[style*="color: rgb(148"],
+*[style*="color: rgb(241"],
+*[style*="color: rgb(249"] {
+  color: #111827 !important;
+}
+
+/* TARGETED FIXES FOR SPECIFIC DARK ELEMENTS */
+
+/* HEADER/NAVIGATION - PROFESSIONAL LIGHT THEME */
+header,
+nav,
+[role="banner"],
+.bg-neutral-900,
+.bg-gray-900,
+.bg-black,
+[class*="sticky top-"],
+[class*="z-40"] {
+  background-color: #ffffff !important; /* Clean white background */
+  color: #111827 !important; /* Dark text for readability */
+  border-bottom: 1px solid #e5e7eb !important; /* Subtle border */
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) !important; /* Professional shadow */
+}
+
+/* Header text and links */
+header *,
+nav *,
+[role="banner"] *,
+.bg-neutral-900 *,
+.bg-gray-900 *,
+.bg-black * {
+  color: #111827 !important; /* Dark text on light background */
+}
+
+/* Navigation links hover states */
+nav a:hover,
+header a:hover {
+  color: #dc2626 !important; /* Somerset red on hover */
+  background-color: #fef2f2 !important; /* Light red background */
+}
+
+/* Overlays - Make them light with transparency */
+.bg-black\/60,
+[class*="bg-black/"],
+.backdrop-blur-sm {
+  background-color: rgba(255, 255, 255, 0.8) !important; /* Light overlay */
+}
+
+/* Buttons and CTAs - Somerset red theme */
+.bg-red-600,
+.bg-red-700, 
+.bg-red-500,
+.bg-red-50,
+.bg-primary,
+.btn-primary,
+button[type="submit"],
+[class*="btn-primary"],
+[class*="bg-red"] {
+  background-color: #dc2626 !important; /* Somerset red */
+  color: #ffffff !important; /* White text */
+  border-color: #dc2626 !important;
+}
+
+/* Secondary/accent buttons */
+.bg-red-50 {
+  background-color: #fef2f2 !important; /* Very light red background */
+  color: #dc2626 !important; /* Red text */
+  border-color: #fecaca !important; /* Light red border */
+}
+
+/* FOOTER - PROFESSIONAL SOMERSET BRANDING */
+footer,
+[role="contentinfo"] {
+  background: linear-gradient(135deg, #1f2937 0%, #111827 100%) !important;
+  color: #ffffff !important;
+  border-top: 3px solid #dc2626 !important; /* Somerset red accent */
+  padding: 4rem 0 2rem 0 !important;
+  position: relative !important;
+}
+
+footer *,
+[role="contentinfo"] * {
+  color: #ffffff !important;
+}
+
+/* Footer links hover effect */
+footer a:hover,
+[role="contentinfo"] a:hover {
+  color: #fca5a5 !important; /* Light red on hover */
+  text-decoration: underline !important;
+}
+
+/* Footer headings */
+footer h3,
+[role="contentinfo"] h3 {
+  color: #ffffff !important;
+  font-weight: 600 !important;
+  margin-bottom: 1rem !important;
+}
+
+/* Footer sections spacing */
+footer section,
+[role="contentinfo"] section {
+  margin-bottom: 2rem !important;
+}
+
+/* HERO SECTION - PROFESSIONAL BRIGHT DESIGN */
+.hero-section,
+[class*="hero"],
+main > section:first-child,
+[role="region"]:first-child,
+.bg-gradient-to-r,
+[style*="background: linear-gradient"] {
+  background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%) !important;
+  color: #111827 !important;
+  padding: 4rem 0 !important;
+  border-bottom: 1px solid #e2e8f0 !important;
+  position: relative !important;
+}
+
+/* Hero content overlay for better readability */
+.hero-section::before,
+main > section:first-child::before {
+  content: '' !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  background: rgba(255, 255, 255, 0.9) !important;
+  z-index: 1 !important;
+}
+
+/* Hero text - ensure it's above overlay */
+.hero-section *,
+[class*="hero"] *,
+main > section:first-child * {
+  color: #111827 !important;
+  position: relative !important;
+  z-index: 2 !important;
+}
+
+/* Hero headings - make them stand out */
+.hero-section h1,
+main > section:first-child h1 {
+  color: #1f2937 !important;
+  font-weight: 800 !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) !important;
+}
+
 /* Prevent horizontal scrolling */
 @layer base {
   html,
@@ -28,10 +269,14 @@
     background-color: var(--aw-color-bg-page);
   }
   .text-page {
-    color: var(--aw-color-text-page);
+    color: #000000 !important; /* Force black text */
   }
-  .text-muted {
-    color: var(--aw-color-text-muted);
+  .text-muted,
+  .text-muted *,
+  p.text-muted,
+  span.text-muted,
+  [class*="text-muted"] {
+    color: #1F2937 !important; /* Darker gray for better contrast and readability */
   }
 
   /* Force-white utility for footer text */
@@ -49,21 +294,29 @@
     color: #fff !important;
   }
   
-  /* New Material Design Color Scheme */
+  /* Light Theme Color Variables */
   :root {
-    --color-blue-primary: #2563EB;     /* Primary blue for links/CTAs */
-    --color-ink: #0B0F19;              /* Text color */
-    --color-surface: #FFFFFF;          /* White surface */
-    --color-surface-light: #F8FAFC;    /* Light surface */
-    --color-success: #22C55E;          /* Success/accent green */
-    --color-muted: #64748B;            /* Muted text */
+    --color-text-primary: #000000;      /* Pure black for main text */
+    --color-text-secondary: #374151;    /* Dark gray for secondary text */
+    --color-text-muted: #1F2937;        /* Darker gray for better readability */
+    --color-surface: #FFFFFF;           /* Pure white surface */
+    --color-surface-light: #F9FAFB;     /* Very light gray surface */
+    --color-accent-blue: #3B82F6;       /* Blue for accents and links */
+    --color-success: #059669;           /* Green for success states */
+    --color-border: #E5E7EB;            /* Light gray for borders */
   }
   
-  /* New Material Design Color Overrides */
+  /* Additional keyboard and accessibility elements */
+  html body .skip-links,
+  html body .skip-link,
+  html body kbd {
+    color: #111827 !important; /* Ensure accessibility elements are readable */
+  }
+  
+  /* Light Theme Base Styles */
   
   /* Enhanced Typography Scale and Readability */
-  body {
-    color: #0B0F19;
+  html body {
     font-size: 1.125rem; /* 18px base */
     line-height: 1.7;
     font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -72,40 +325,40 @@
   }
   
   @media (min-width: 768px) {
-    body {
+    html body {
       font-size: 1.25rem; /* 20px on desktop */
       line-height: 1.8;
     }
   }
   
   /* Modern Type Scale with Fluid Typography */
-  h1 {
+  html body h1 {
     font-size: clamp(2.5rem, 5vw, 3.5rem); /* 40px → 56px */
     line-height: 1.2;
     font-weight: 800;
     letter-spacing: -0.02em;
   }
   
-  h2 {
+  html body h2 {
     font-size: clamp(2rem, 4vw, 2.5rem); /* 32px → 40px */
     line-height: 1.3;
     font-weight: 700;
     letter-spacing: -0.01em;
   }
   
-  h3 {
+  html body h3 {
     font-size: clamp(1.5rem, 3vw, 1.75rem); /* 24px → 28px */
     line-height: 1.4;
     font-weight: 600;
   }
   
-  h4 {
+  html body h4 {
     font-size: clamp(1.25rem, 2.5vw, 1.5rem); /* 20px → 24px */
     line-height: 1.5;
     font-weight: 600;
   }
   
-  p {
+  html body p {
     margin-bottom: 1.5rem;
   }
   
@@ -122,35 +375,35 @@
     padding: 12px;
   }
   
-  /* Primary CTAs - black buttons with white text */
+  /* Primary CTAs - dark gray buttons with white text */
   .btn-primary,
   .bg-primary {
-    background-color: #000000 !important;
+    background-color: #1F2937 !important; /* Dark gray */
     color: #FFFFFF !important;
-    border-color: #000000 !important;
+    border-color: #1F2937 !important;
   }
   
   /* Secondary CTAs - blue buttons */
   .btn-secondary,
   .bg-btn-secondary {
-    background-color: #2563EB !important;
+    background-color: #3B82F6 !important; /* Blue */
     color: #FFFFFF !important;
-    border-color: #2563EB !important;
+    border-color: #3B82F6 !important;
   }
   
-  /* Links - primary blue */
+  /* Links - accent blue */
   a:not(.btn):not([class*="btn-"]) {
-    color: #2563EB;
+    color: #3B82F6; /* Blue links */
   }
   
   a:not(.btn):not([class*="btn-"]):hover {
-    color: #1D4ED8;
+    color: #2563EB; /* Darker blue on hover */
   }
   
   /* Success/accent colors */
   .text-success,
   .bg-success {
-    color: #22C55E !important;
+    color: #059669 !important; /* Green */
   }
   
   /* Standardized Modern Spacing Rhythm */
@@ -214,9 +467,9 @@
   textarea:focus,
   select:focus,
   [tabindex]:focus {
-    outline: 2px solid #2563EB !important; /* Blue-600 */
+    outline: 2px solid #3B82F6 !important; /* Accent blue */
     outline-offset: 2px !important;
-    box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2) !important;
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2) !important;
   }
   
   /* Special focus for buttons on dark backgrounds */
@@ -239,15 +492,15 @@
 
 @layer components {
   .btn {
-    @apply inline-flex items-center justify-center rounded-xl border-gray-200 border bg-transparent font-medium text-center text-base text-page leading-snug transition-all py-3 px-8 md:px-10 ease-out duration-300 focus:ring-blue-500 focus:ring-offset-white focus:ring-2 focus:ring-offset-2 hover:bg-gray-50 hover:border-gray-300 hover:-translate-y-0.5 hover:shadow-light-md dark:text-slate-300 dark:border-slate-500 dark:hover:bg-slate-800 dark:hover:border-slate-800 cursor-pointer min-h-[48px] min-w-[48px];
+    @apply inline-flex items-center justify-center rounded-xl border-gray-200 border bg-surface font-medium text-center text-base text-text-primary leading-snug transition-all py-3 px-8 md:px-10 ease-out duration-300 focus:ring-accent-blue focus:ring-offset-white focus:ring-2 focus:ring-offset-2 hover:bg-surface-light hover:border-border-strong hover:-translate-y-0.5 hover:shadow-light-md cursor-pointer min-h-[48px] min-w-[48px];
   }
 
   .btn-primary {
-    @apply btn font-semibold bg-black text-white !text-white border-black hover:bg-gray-900 hover:border-gray-900 hover:!text-white shadow-light-md hover:shadow-light-lg transform hover:-translate-y-1 transition-all duration-300;
+    @apply btn font-semibold bg-btn-primary text-btn-primary-text !text-white border-btn-primary hover:bg-gray-900 hover:border-gray-900 hover:!text-white shadow-light-md hover:shadow-light-lg transform hover:-translate-y-1 transition-all duration-300;
   }
 
   .btn-secondary {
-    @apply btn bg-blue-primary text-white !text-white border-blue-primary hover:bg-blue-600 hover:border-blue-600 hover:!text-white shadow-light-md hover:shadow-light-lg transform hover:-translate-y-1 transition-all duration-300;
+    @apply btn bg-btn-accent text-btn-accent-text !text-white border-btn-accent hover:bg-blue-600 hover:border-blue-600 hover:!text-white shadow-light-md hover:shadow-light-lg transform hover:-translate-y-1 transition-all duration-300;
   }
 
   .btn-tertiary {
@@ -504,8 +757,8 @@ input:focus,
 textarea:focus,
 select:focus {
   outline: none !important;
-  border-color: #2563EB !important;
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1) !important;
+  border-color: #3B82F6 !important; /* Accent blue */
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1) !important;
 }
 
 /* Floating label styles */
@@ -538,5 +791,5 @@ select:focus {
 .form-group select:not([value=""]) ~ label {
   top: 4px;
   font-size: 0.75rem;
-  color: #2563EB;
+  color: #3B82F6; /* Accent blue */
 }
