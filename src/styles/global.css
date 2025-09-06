@@ -1,10 +1,31 @@
-/* Aggressive text contrast fix - Override ALL text to be black */
-* {
-  color: #000000 !important;
+/* WHITE TEXT SHADOW FIX - For text over backgrounds */
+h1, .hero-title, .hero-text {
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8) !important;
 }
 
-/* Ensure headings are black */
-h1, h2, h3, h4, h5, h6 {
+nav a, nav span, nav div {
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.9) !important;
+}
+
+/* White text elements need strong shadows */
+.text-white, [style*="color: white"], [style*="color: rgb(255"] {
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8) !important;
+}
+
+/* SPECIFIC TEXT COLOR FIXES - Not blanket override */
+/* Keep headers and nav as white with shadows */
+h1, .hero-title {
+  color: #ffffff !important;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9) !important;
+}
+
+nav a, nav span {
+  color: #ffffff !important;  
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.9) !important;
+}
+
+/* Force body text to be dark for readability */
+p, span:not(nav span), div:not(nav div), .text-gray-400, .text-gray-500, .text-gray-600 {
   color: #000000 !important;
 }
 
