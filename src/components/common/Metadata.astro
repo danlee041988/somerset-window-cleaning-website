@@ -42,6 +42,24 @@ const seoProps: AstroSeoProps = merge(
     twitter: {
       cardType: openGraph?.images?.length ? 'summary_large_image' : 'summary',
     },
+    extend: {
+      // Additional meta tags for better SEO
+      meta: [
+        { name: 'geo.region', content: 'GB-SOM' },
+        { name: 'geo.placename', content: 'Somerset, United Kingdom' },
+        { name: 'geo.position', content: '51.15;-2.8' }, // Somerset coordinates
+        { name: 'ICBM', content: '51.15, -2.8' },
+        { name: 'DC.coverage', content: 'Somerset, Bath, Wells, Glastonbury, Street, Burnham-on-Sea, Bridgwater' },
+        { name: 'DC.subject', content: 'Window Cleaning, Gutter Cleaning, Conservatory Cleaning, Somerset' },
+        { property: 'business:contact_data:street_address', content: '13 Rockhaven Business Centre, Gravenchon Way' },
+        { property: 'business:contact_data:locality', content: 'Highbridge' },
+        { property: 'business:contact_data:region', content: 'Somerset' },
+        { property: 'business:contact_data:postal_code', content: 'BA16 0HW' },
+        { property: 'business:contact_data:country_name', content: 'United Kingdom' },
+        { property: 'place:location:latitude', content: '51.15' },
+        { property: 'place:location:longitude', content: '-2.8' },
+      ],
+    },
   },
   {
     title: METADATA?.title?.default,

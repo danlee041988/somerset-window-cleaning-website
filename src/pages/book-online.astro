@@ -1,0 +1,170 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import SupabaseBookingForm from '~/components/forms/SupabaseBookingForm.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+import Features2 from '~/components/widgets/Features2.astro';
+
+const metadata = {
+  title: 'Book Window Cleaning Online | Somerset Window Cleaning',
+  description: 'Book professional window cleaning services online. Quick quotes for homes and businesses across Somerset, Bath, and Bristol. Same-day booking available.',
+};
+
+const benefits = [
+  {
+    title: 'Quick Response',
+    description: 'Get your quote within 24 hours',
+    icon: 'tabler:clock',
+  },
+  {
+    title: 'Transparent Pricing',
+    description: 'No hidden fees or surprises',
+    icon: 'tabler:currency-pound',
+  },
+  {
+    title: 'Flexible Scheduling',
+    description: 'Book one-off or regular service',
+    icon: 'tabler:calendar',
+  },
+  {
+    title: 'Fully Insured',
+    description: '£5m public liability coverage',
+    icon: 'tabler:shield-check',
+  }
+];
+---
+
+<Layout metadata={metadata}>
+  <!-- Hero Section -->
+  <section class="relative bg-primary-50 py-12 md:py-16">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="text-center mb-8">
+        <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+          Book Your <span class="text-primary-600">Window Cleaning</span> Service
+        </h1>
+        <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+          Professional window cleaning across Somerset. Get an instant quote and book online in minutes.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Booking Section -->
+  <section class="py-12 md:py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="grid md:grid-cols-2 gap-12 items-start">
+        <!-- Form Column -->
+        <div class="bg-gray-50 rounded-xl p-6 md:p-8">
+          <h2 class="text-2xl font-bold text-gray-900 mb-6">Get Your Free Quote</h2>
+          <SupabaseBookingForm formId="main-booking-form" />
+        </div>
+
+        <!-- Benefits Column -->
+        <div>
+          <h2 class="text-2xl font-bold text-gray-900 mb-6">Why Choose Somerset Window Cleaning?</h2>
+          <Features2
+            items={benefits}
+            columns={1}
+          />
+          
+          <!-- Trust Badges -->
+          <div class="mt-8 p-6 bg-primary-50 rounded-lg">
+            <h3 class="font-semibold text-gray-900 mb-4">Our Guarantees:</h3>
+            <ul class="space-y-2 text-gray-700">
+              <li class="flex items-start">
+                <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                </svg>
+                100% Satisfaction Guarantee
+              </li>
+              <li class="flex items-start">
+                <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                </svg>
+                Fully Insured & DBS Checked
+              </li>
+              <li class="flex items-start">
+                <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                </svg>
+                Eco-Friendly Pure Water System
+              </li>
+              <li class="flex items-start">
+                <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                </svg>
+                No Contract Required
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Service Areas -->
+  <section class="py-12 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 text-center">
+      <h2 class="text-2xl font-bold text-gray-900 mb-4">Areas We Cover</h2>
+      <p class="text-gray-600 mb-8">Professional window cleaning services across Somerset and surrounding areas</p>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
+        <div class="bg-white p-4 rounded-lg shadow-sm">
+          <h3 class="font-semibold">Bath</h3>
+          <p class="text-sm text-gray-600">BA1 - BA3</p>
+        </div>
+        <div class="bg-white p-4 rounded-lg shadow-sm">
+          <h3 class="font-semibold">Bristol</h3>
+          <p class="text-sm text-gray-600">BS1 - BS48</p>
+        </div>
+        <div class="bg-white p-4 rounded-lg shadow-sm">
+          <h3 class="font-semibold">Taunton</h3>
+          <p class="text-sm text-gray-600">TA1 - TA24</p>
+        </div>
+        <div class="bg-white p-4 rounded-lg shadow-sm">
+          <h3 class="font-semibold">Frome</h3>
+          <p class="text-sm text-gray-600">BA11</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="py-12 bg-white">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="text-2xl font-bold text-gray-900 mb-8 text-center">Frequently Asked Questions</h2>
+      <div class="space-y-6">
+        <div class="bg-gray-50 p-6 rounded-lg">
+          <h3 class="font-semibold text-gray-900 mb-2">How quickly can you provide a quote?</h3>
+          <p class="text-gray-600">We aim to respond to all quote requests within 24 hours. For urgent requests, please call us directly on 07450 227851.</p>
+        </div>
+        <div class="bg-gray-50 p-6 rounded-lg">
+          <h3 class="font-semibold text-gray-900 mb-2">Do I need to be home during the service?</h3>
+          <p class="text-gray-600">No, as long as we have access to all windows. Many customers prefer to schedule service while they're at work.</p>
+        </div>
+        <div class="bg-gray-50 p-6 rounded-lg">
+          <h3 class="font-semibold text-gray-900 mb-2">What payment methods do you accept?</h3>
+          <p class="text-gray-600">We accept bank transfer, cash, and card payments. Payment is due after service completion.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <CallToAction
+    title="Need Help Booking?"
+    subtitle="Our friendly team is here to assist you"
+    actions={[
+      {
+        variant: 'primary',
+        text: 'Call Now',
+        href: 'tel:07450227851',
+        icon: 'tabler:phone',
+      },
+      {
+        variant: 'secondary',
+        text: 'WhatsApp',
+        href: 'https://wa.me/447450227851',
+        icon: 'tabler:brand-whatsapp',
+      }
+    ]}
+  />
+</Layout>

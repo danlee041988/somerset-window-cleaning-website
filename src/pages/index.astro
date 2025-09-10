@@ -22,6 +22,7 @@ import LiveReviews from '~/components/widgets/LiveReviews.astro';
 import Process from '~/components/widgets/Process.astro';
 import TrustBar from '~/components/widgets/TrustBar.astro';
 import ReviewsSchema from '~/components/seo/ReviewsSchema.astro';
+import HomepageSchema from '~/components/seo/HomepageSchema.astro';
 import PostcodeChecker from '~/components/widgets/PostcodeChecker.astro';
 
 const metadata = {
@@ -64,7 +65,7 @@ const metadata = {
           loading="eager"
         />
       </noscript>
-      <div class="absolute inset-0 bg-gradient-to-b from-black/50 to-black/70"></div>
+      <div class="absolute inset-0 bg-gradient-to-b from-black/40 to-black/60"></div>
     </Fragment>
     <Fragment slot="title">
       <span style="color: #FF0000 !important;">Professional</span> Window Cleaning <span style="color: #FF0000 !important;">Somerset</span>
@@ -89,7 +90,7 @@ const metadata = {
         description: 'Card & Direct Debit'
       },
       {
-        amount: '190+',
+        amount: '200+',
         title: 'GOOGLE REVIEWS',
         description: '4.9★ Rating'
       },
@@ -108,19 +109,6 @@ const metadata = {
     subtitle="Professional, reliable, fully insured exterior cleaning across Somerset."
     columns={3}
     items={[
-      {
-        title: 'Conservatory Roof Cleaning',
-        description: 'Transform your dark, algae-covered conservatory back to its former glory. Our specialist cleaning removes years of green buildup, letting light flood back into your home. Most customers are amazed at the difference.',
-        details: [
-          'Specialist roof cleaning equipment',
-          'Safe for polycarbonate & glass',
-          'Removes stubborn green algae',
-          'Restores up to 60% more light',
-          'Framework & gutters included',
-          'Annual service keeps it pristine'
-        ],
-        callToAction: { text: 'Learn More', href: '/services/conservatory-cleaning' },
-      },
       {
         title: 'Window Cleaning',
         description: 'Crystal-clear windows make your whole property shine. Our pure water system leaves no streaks or spots, just perfectly clean glass every time. Regular service means you never have to think about dirty windows again.',
@@ -142,7 +130,6 @@ const metadata = {
           'Reaches up to 4 storeys',
           'Before & after photos',
           'All debris removed',
-          'Downpipes checked',
           'No ladders on your property'
         ],
         callToAction: { text: 'Learn More', href: '/services/gutter-cleaning' },
@@ -159,6 +146,19 @@ const metadata = {
           'Instant curb appeal boost'
         ],
         callToAction: { text: 'Learn More', href: '/services/fascia-soffit-cleaning' },
+      },
+      {
+        title: 'Conservatory Roof Cleaning',
+        description: 'Transform your dark, algae-covered conservatory back to its former glory. Our specialist cleaning removes years of green buildup, letting light flood back into your home. Most customers are amazed at the difference.',
+        details: [
+          'Specialist roof cleaning equipment',
+          'Safe for polycarbonate & glass',
+          'Removes stubborn green algae',
+          'Restores up to 60% more light',
+          'Framework & gutters included',
+          'Annual service keeps it pristine'
+        ],
+        callToAction: { text: 'Learn More', href: '/services/conservatory-cleaning' },
       },
       {
         title: 'Solar Panel Cleaning',
@@ -205,8 +205,8 @@ const metadata = {
   />
 
   <!-- Dark Brand Band Section -->
-  <section class="relative bg-neutral-900 text-white py-16 md:py-20 overflow-hidden">
-    <div class="absolute inset-0 bg-gradient-to-r from-neutral-900 via-black to-neutral-900"></div>
+  <section class="relative bg-black text-white py-16 md:py-20 overflow-hidden">
+    <div class="absolute inset-0 bg-black"></div>
     <div class="relative max-w-7xl mx-auto px-4 sm:px-6 text-center">
       <div class="max-w-4xl mx-auto">
         <h2 class="text-3xl md:text-4xl font-bold mb-6 text-white">
@@ -218,19 +218,19 @@ const metadata = {
         </p>
         <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
           <div>
-            <div class="text-3xl font-bold text-blue-primary mb-2">4000+</div>
+            <div class="text-3xl font-bold text-brand-red mb-2">4000+</div>
             <div class="text-gray-300">Happy Customers</div>
           </div>
           <div>
-            <div class="text-3xl font-bold text-blue-primary mb-2">190+</div>
+            <div class="text-3xl font-bold text-brand-red mb-2">200+</div>
             <div class="text-gray-300">5★ Reviews</div>
           </div>
           <div>
-            <div class="text-3xl font-bold text-blue-primary mb-2">5 Years</div>
+            <div class="text-3xl font-bold text-brand-red mb-2">7 Years</div>
             <div class="text-gray-300">Experience</div>
           </div>
           <div>
-            <div class="text-3xl font-bold text-blue-primary mb-2">£5M</div>
+            <div class="text-3xl font-bold text-brand-red mb-2">£5M</div>
             <div class="text-gray-300">Insurance</div>
           </div>
         </div>
@@ -240,4 +240,7 @@ const metadata = {
 
   <!-- Reviews structured data for homepage -->
   <ReviewsSchema />
+  
+  <!-- Homepage structured data for SEO -->
+  <HomepageSchema />
 </Layout>

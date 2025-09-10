@@ -1,0 +1,333 @@
+---
+// Comprehensive accessibility enhancements for Lighthouse compliance
+---
+
+<!-- Screen reader skip links -->
+<style>
+  .sr-skip-link {
+    position: absolute;
+    left: -10000px;
+    top: auto;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
+
+  .sr-skip-link:focus {
+    position: static;
+    width: auto;
+    height: auto;
+    padding: 8px 16px;
+    background: #000;
+    color: #fff;
+    text-decoration: none;
+    z-index: 9999;
+    display: inline-block;
+    margin: 4px;
+    border-radius: 4px;
+  }
+
+  /* Enhanced focus indicators for better accessibility */
+  *:focus-visible {
+    outline: 2px solid #0066cc !important;
+    outline-offset: 2px !important;
+    box-shadow: 0 0 0 4px rgba(0, 102, 204, 0.2) !important;
+  }
+
+  /* High contrast mode support */
+  @media (prefers-contrast: high) {
+    * {
+      border-color: ButtonText !important;
+    }
+    
+    button, 
+    .btn {
+      background: ButtonFace !important;
+      color: ButtonText !important;
+      border: 2px solid ButtonText !important;
+    }
+    
+    button:hover,
+    .btn:hover {
+      background: Highlight !important;
+      color: HighlightText !important;
+    }
+  }
+
+  /* Reduced motion support */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
+  /* Color contrast enhancements */
+  .text-muted {
+    color: #4a5568 !important; /* Darker gray for better contrast */
+  }
+
+  .dark .text-muted {
+    color: #cbd5e0 !important; /* Lighter gray for dark mode */
+  }
+
+  /* Enhanced button accessibility */
+  button:not([aria-label]):not([aria-labelledby])::after,
+  .btn:not([aria-label]):not([aria-labelledby])::after {
+    content: attr(title);
+    position: absolute;
+    left: -10000px;
+  }
+
+  /* Table accessibility enhancements */
+  table {
+    border-collapse: collapse;
+  }
+
+  th {
+    background-color: #f7fafc;
+    font-weight: 600;
+  }
+
+  th, td {
+    border: 1px solid #e2e8f0;
+    padding: 8px 12px;
+    text-align: left;
+  }
+
+  /* Form accessibility enhancements */
+  .form-group {
+    position: relative;
+    margin-bottom: 1rem;
+  }
+
+  .form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: #2d3748;
+  }
+
+  .form-group .required::after {
+    content: " *";
+    color: #e53e3e;
+    font-weight: bold;
+  }
+
+  .form-group .error {
+    color: #e53e3e;
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+    display: block;
+  }
+
+  .form-group input:invalid,
+  .form-group textarea:invalid,
+  .form-group select:invalid {
+    border-color: #e53e3e;
+    box-shadow: 0 0 0 3px rgba(229, 62, 62, 0.1);
+  }
+
+  .form-group input:valid,
+  .form-group textarea:valid,
+  .form-group select:valid {
+    border-color: #38a169;
+  }
+
+  /* Image accessibility */
+  img:not([alt]) {
+    outline: 2px solid red;
+  }
+
+  img:not([alt])::after {
+    content: "Missing alt text";
+    position: absolute;
+    background: red;
+    color: white;
+    padding: 2px 4px;
+    font-size: 12px;
+    z-index: 1000;
+  }
+
+  /* Link accessibility */
+  a:not([href]) {
+    color: #718096;
+    cursor: not-allowed;
+  }
+
+  /* Heading hierarchy validation */
+  h1:not(:first-of-type) {
+    outline: 2px dotted orange;
+  }
+
+  /* Landmark regions for screen readers */
+  main:not([role]),
+  nav:not([role]),
+  aside:not([role]),
+  section:not([role]),
+  article:not([role]) {
+    /* Visual indicator for missing roles in dev */
+  }
+
+  /* Print accessibility */
+  @media print {
+    .sr-only,
+    .skip-link {
+      display: none !important;
+    }
+    
+    a[href]::after {
+      content: " (" attr(href) ")";
+      font-size: 0.8em;
+    }
+    
+    a[href^="#"]::after,
+    a[href^="javascript:"]::after {
+      content: "";
+    }
+  }
+</style>
+
+<!-- Accessibility enhancement script -->
+<script>
+  // Enhanced keyboard navigation
+  document.addEventListener('DOMContentLoaded', function() {
+    // Add skip links to top of page
+    const skipLinksContainer = document.createElement('div');
+    skipLinksContainer.className = 'sr-only';
+    skipLinksContainer.innerHTML = `
+      <a href="#main-content" class="sr-skip-link">Skip to main content</a>
+      <a href="#navigation" class="sr-skip-link">Skip to navigation</a>
+      <a href="#footer" class="sr-skip-link">Skip to footer</a>
+    `;
+    document.body.insertBefore(skipLinksContainer, document.body.firstChild);
+
+    // Enhance focus management
+    let focusOutlineStyleSheet = null;
+    
+    function addFocusOutlines() {
+      if (focusOutlineStyleSheet) return;
+      focusOutlineStyleSheet = document.createElement('style');
+      focusOutlineStyleSheet.textContent = `
+        *:focus-visible {
+          outline: 2px solid #0066cc !important;
+          outline-offset: 2px !important;
+        }
+      `;
+      document.head.appendChild(focusOutlineStyleSheet);
+    }
+
+    function removeFocusOutlines() {
+      if (focusOutlineStyleSheet) {
+        focusOutlineStyleSheet.remove();
+        focusOutlineStyleSheet = null;
+      }
+    }
+
+    // Show focus outlines when using keyboard
+    document.addEventListener('keydown', addFocusOutlines);
+    document.addEventListener('mousedown', removeFocusOutlines);
+
+    // Improve form validation announcements
+    const forms = document.querySelectorAll('form');
+    forms.forEach(form => {
+      const errorContainer = document.createElement('div');
+      errorContainer.setAttribute('aria-live', 'polite');
+      errorContainer.setAttribute('aria-atomic', 'true');
+      errorContainer.className = 'sr-only';
+      errorContainer.id = `${form.id || 'form'}-errors`;
+      form.appendChild(errorContainer);
+
+      form.addEventListener('invalid', function(e) {
+        e.preventDefault();
+        const invalidField = e.target;
+        const errorMessage = invalidField.validationMessage || 'This field has an error';
+        errorContainer.textContent = `${invalidField.labels?.[0]?.textContent || invalidField.name}: ${errorMessage}`;
+        invalidField.focus();
+      }, true);
+    });
+
+    // Add ARIA labels to buttons without accessible names
+    const buttons = document.querySelectorAll('button:not([aria-label]):not([aria-labelledby])');
+    buttons.forEach(button => {
+      if (!button.textContent.trim() && !button.title) {
+        button.setAttribute('aria-label', 'Button');
+        console.warn('Button without accessible name found:', button);
+      }
+    });
+
+    // Add role="button" to clickable elements that aren't buttons
+    const clickableElements = document.querySelectorAll('[onclick], [data-onclick]');
+    clickableElements.forEach(element => {
+      if (element.tagName !== 'BUTTON' && element.tagName !== 'A') {
+        element.setAttribute('role', 'button');
+        element.setAttribute('tabindex', '0');
+        
+        // Add keyboard support
+        element.addEventListener('keydown', function(e) {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            element.click();
+          }
+        });
+      }
+    });
+
+    // Announce page changes for SPAs
+    let lastUrl = location.href;
+    const observer = new MutationObserver(() => {
+      const currentUrl = location.href;
+      if (currentUrl !== lastUrl) {
+        lastUrl = currentUrl;
+        const pageTitle = document.title;
+        const announcement = document.createElement('div');
+        announcement.setAttribute('aria-live', 'assertive');
+        announcement.setAttribute('aria-atomic', 'true');
+        announcement.className = 'sr-only';
+        announcement.textContent = `Page changed to ${pageTitle}`;
+        document.body.appendChild(announcement);
+        
+        setTimeout(() => {
+          document.body.removeChild(announcement);
+        }, 1000);
+      }
+    });
+    
+    observer.observe(document, { subtree: true, childList: true });
+
+    // Manage focus for modals and overlays
+    const modals = document.querySelectorAll('[role="dialog"], .modal');
+    modals.forEach(modal => {
+      modal.addEventListener('show', function() {
+        const focusableElements = modal.querySelectorAll(
+          'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+        );
+        if (focusableElements.length > 0) {
+          focusableElements[0].focus();
+        }
+      });
+    });
+
+    // Color contrast checker (development only)
+    if (window.location.hostname === 'localhost' || window.location.hostname.includes('dev')) {
+      const elements = document.querySelectorAll('*');
+      elements.forEach(element => {
+        const styles = window.getComputedStyle(element);
+        const backgroundColor = styles.backgroundColor;
+        const color = styles.color;
+        
+        // Simple contrast check (would need full implementation)
+        if (color === 'rgb(128, 128, 128)' && backgroundColor === 'rgb(255, 255, 255)') {
+          console.warn('Potential contrast issue:', element);
+        }
+      });
+    }
+  });
+</script>
+
+<!-- Screen reader announcements container -->
+<div id="sr-announcements" aria-live="polite" aria-atomic="true" class="sr-only"></div>

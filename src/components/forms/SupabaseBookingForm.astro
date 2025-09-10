@@ -1,0 +1,299 @@
+---
+/**
+ * Supabase + EmailJS Booking Form
+ * Direct client-side submission with real-time validation
+ * 
+ * Features:
+ * - Direct Supabase integration (no backend needed)
+ * - EmailJS for instant notifications
+ * - WCAG 2.1 AA compliant
+ * - Real-time validation
+ * - Mobile-optimized touch targets
+ */
+
+export interface Props {
+  formId?: string;
+  className?: string;
+}
+
+const { 
+  formId = "supabase-booking-form",
+  className = ""
+} = Astro.props;
+---
+
+<form 
+  id={formId}
+  class={`booking-form ${className}`}
+  aria-label="Service booking form"
+>
+  <div class="space-y-6">
+    <!-- Name Field -->
+    <div>
+      <label for={`${formId}-name`} class="block text-sm font-medium text-gray-700 mb-2">
+        Full Name <span class="text-red-500" aria-label="required">*</span>
+      </label>
+      <input
+        type="text"
+        id={`${formId}-name`}
+        name="name"
+        required
+        minlength="2"
+        maxlength="100"
+        class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors"
+        aria-describedby={`${formId}-name-error`}
+      />
+      <span id={`${formId}-name-error`} class="error-message text-red-500 text-sm mt-1 hidden" role="alert"></span>
+    </div>
+
+    <!-- Email Field -->
+    <div>
+      <label for={`${formId}-email`} class="block text-sm font-medium text-gray-700 mb-2">
+        Email <span class="text-red-500" aria-label="required">*</span>
+      </label>
+      <input
+        type="email"
+        id={`${formId}-email`}
+        name="email"
+        required
+        class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors"
+        aria-describedby={`${formId}-email-error`}
+      />
+      <span id={`${formId}-email-error`} class="error-message text-red-500 text-sm mt-1 hidden" role="alert"></span>
+    </div>
+
+    <!-- Phone Field -->
+    <div>
+      <label for={`${formId}-phone`} class="block text-sm font-medium text-gray-700 mb-2">
+        Phone Number <span class="text-red-500" aria-label="required">*</span>
+      </label>
+      <input
+        type="tel"
+        id={`${formId}-phone`}
+        name="phone"
+        required
+        pattern="[0-9+\-\s()]{10,20}"
+        class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors"
+        aria-describedby={`${formId}-phone-error`}
+      />
+      <span id={`${formId}-phone-error`} class="error-message text-red-500 text-sm mt-1 hidden" role="alert"></span>
+    </div>
+
+    <!-- Service Field -->
+    <div>
+      <label for={`${formId}-service`} class="block text-sm font-medium text-gray-700 mb-2">
+        Service Required <span class="text-red-500" aria-label="required">*</span>
+      </label>
+      <select
+        id={`${formId}-service`}
+        name="service"
+        required
+        class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors"
+        aria-describedby={`${formId}-service-error`}
+      >
+        <option value="">Select a service</option>
+        <option value="window-cleaning">Window Cleaning</option>
+        <option value="gutter-cleaning">Gutter Cleaning</option>
+        <option value="solar-panel-cleaning">Solar Panel Cleaning</option>
+        <option value="conservatory-cleaning">Conservatory Cleaning</option>
+        <option value="fascia-soffit-cleaning">Fascia & Soffit Cleaning</option>
+      </select>
+      <span id={`${formId}-service-error`} class="error-message text-red-500 text-sm mt-1 hidden" role="alert"></span>
+    </div>
+
+    <!-- Property Type -->
+    <div>
+      <label for={`${formId}-property`} class="block text-sm font-medium text-gray-700 mb-2">
+        Property Type
+      </label>
+      <select
+        id={`${formId}-property`}
+        name="property_type"
+        class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors"
+      >
+        <option value="">Select property type</option>
+        <option value="terraced">Terraced House</option>
+        <option value="semi-detached">Semi-Detached House</option>
+        <option value="detached">Detached House</option>
+        <option value="bungalow">Bungalow</option>
+        <option value="flat">Flat/Apartment</option>
+        <option value="commercial">Commercial Property</option>
+      </select>
+    </div>
+
+    <!-- Postcode Field -->
+    <div>
+      <label for={`${formId}-postcode`} class="block text-sm font-medium text-gray-700 mb-2">
+        Postcode <span class="text-red-500" aria-label="required">*</span>
+      </label>
+      <input
+        type="text"
+        id={`${formId}-postcode`}
+        name="postcode"
+        required
+        pattern="[A-Za-z]{1,2}[0-9]{1,2}[A-Za-z]?\s?[0-9][A-Za-z]{2}"
+        placeholder="e.g., BA1 1AA"
+        class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors uppercase"
+        aria-describedby={`${formId}-postcode-error`}
+      />
+      <span id={`${formId}-postcode-error`} class="error-message text-red-500 text-sm mt-1 hidden" role="alert"></span>
+    </div>
+
+    <!-- Message Field -->
+    <div>
+      <label for={`${formId}-message`} class="block text-sm font-medium text-gray-700 mb-2">
+        Additional Information
+      </label>
+      <textarea
+        id={`${formId}-message`}
+        name="message"
+        rows="4"
+        maxlength="500"
+        class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors resize-none"
+        placeholder="Any specific requirements or access information..."
+      ></textarea>
+    </div>
+
+    <!-- Submit Button -->
+    <button
+      type="submit"
+      class="w-full bg-primary-600 text-white font-semibold py-4 px-6 rounded-lg hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+      aria-label="Submit booking request"
+    >
+      <span class="button-text">Get Free Quote</span>
+      <span class="loading-text hidden">Submitting...</span>
+    </button>
+
+    <!-- Success/Error Messages -->
+    <div id={`${formId}-success`} class="hidden bg-green-50 border border-green-200 text-green-800 px-4 py-3 rounded-lg" role="alert">
+      <strong>Thank you!</strong> We'll be in touch within 24 hours with your quote.
+    </div>
+    
+    <div id={`${formId}-error`} class="hidden bg-red-50 border border-red-200 text-red-800 px-4 py-3 rounded-lg" role="alert">
+      <strong>Sorry!</strong> <span class="error-detail">There was an error submitting your request. Please try again.</span>
+    </div>
+  </div>
+</form>
+
+<script>
+  // Import Supabase and EmailJS utilities
+  import { submitBooking } from '../../lib/supabase';
+  import { sendBookingConfirmation, sendAdminNotification } from '../../lib/emailjs';
+  
+  // Get form element
+  const forms = document.querySelectorAll('.booking-form');
+  
+  forms.forEach(form => {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      const formEl = e.target as HTMLFormElement;
+      const formData = new FormData(formEl);
+      const submitBtn = formEl.querySelector('button[type="submit"]') as HTMLButtonElement;
+      const successMsg = formEl.querySelector(`#${formEl.id}-success`) as HTMLElement;
+      const errorMsg = formEl.querySelector(`#${formEl.id}-error`) as HTMLElement;
+      
+      // Hide messages
+      successMsg.classList.add('hidden');
+      errorMsg.classList.add('hidden');
+      
+      // Disable button and show loading
+      submitBtn.disabled = true;
+      submitBtn.querySelector('.button-text')?.classList.add('hidden');
+      submitBtn.querySelector('.loading-text')?.classList.remove('hidden');
+      
+      try {
+        // Validate form
+        if (!formEl.checkValidity()) {
+          formEl.reportValidity();
+          throw new Error('Please fill in all required fields');
+        }
+        
+        // Prepare booking data
+        const bookingData = {
+          name: formData.get('name') as string,
+          email: formData.get('email') as string,
+          phone: formData.get('phone') as string,
+          service: formData.get('service') as string,
+          property_type: formData.get('property_type') as string || '',
+          postcode: formData.get('postcode') as string,
+          message: formData.get('message') as string || ''
+        };
+        
+        // Submit to Supabase
+        const booking = await submitBooking(bookingData);
+        
+        // Send email notifications
+        await Promise.all([
+          sendBookingConfirmation(bookingData),
+          sendAdminNotification(bookingData)
+        ]).catch(err => {
+          console.error('Email notification error:', err);
+          // Don't fail the booking if email fails
+        });
+        
+        // Show success
+        successMsg.classList.remove('hidden');
+        formEl.reset();
+        
+        // Track conversion
+        if (window.gtag) {
+          window.gtag('event', 'conversion', {
+            'send_to': 'AW-CONVERSION_ID/CONVERSION_LABEL',
+            'value': 1.0,
+            'currency': 'GBP'
+          });
+        }
+        
+      } catch (error) {
+        console.error('Booking error:', error);
+        const errorDetail = errorMsg.querySelector('.error-detail');
+        if (errorDetail) {
+          errorDetail.textContent = error instanceof Error ? error.message : 'Please try again or call us directly.';
+        }
+        errorMsg.classList.remove('hidden');
+      } finally {
+        // Re-enable button
+        submitBtn.disabled = false;
+        submitBtn.querySelector('.button-text')?.classList.remove('hidden');
+        submitBtn.querySelector('.loading-text')?.classList.add('hidden');
+      }
+    });
+  });
+</script>
+
+<style>
+  /* Ensure minimum touch target size */
+  input, select, textarea, button {
+    min-height: 44px;
+  }
+  
+  /* Focus styles for accessibility */
+  input:focus, select:focus, textarea:focus {
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+  }
+  
+  /* Error state styling */
+  input:invalid:not(:focus):not(:placeholder-shown),
+  select:invalid:not(:focus):not(:placeholder-shown) {
+    border-color: #ef4444;
+  }
+  
+  /* Loading animation */
+  .loading-text::after {
+    content: '';
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    margin-left: 0.5em;
+    border: 2px solid #ffffff;
+    border-radius: 50%;
+    border-top-color: transparent;
+    animation: spin 0.8s linear infinite;
+  }
+  
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+</style>

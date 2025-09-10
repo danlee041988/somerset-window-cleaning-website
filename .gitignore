@@ -64,7 +64,7 @@ yarn.lock
 .vercel
 .netlify
 
-# monitoring & debug scripts
+# monitoring & debug scripts - DO NOT COMMIT
 monitor*.sh
 monitor*.cjs
 monitor*.js
@@ -76,8 +76,16 @@ setup-*.js
 fix-*.js
 force-*.js
 simple-*.js
+simple-*.cjs
 run-*.js
 update-*.js
+find-*.js
+find-*.cjs
+screenshot-*.js
+scroll-*.cjs
+git-setup.sh
+start-dev.sh
+complete-*.js
 
 # database scripts & migrations
 *.sql
@@ -86,6 +94,18 @@ insert_*.sql
 update_*.sql
 fix_*.sql
 supabase_*.sql
+
+# screenshots and test outputs
+*.png
+*.jpg
+*.jpeg
+!public/**/*.png
+!public/**/*.jpg
+!public/**/*.jpeg
+!frontend/public/**/*.png
+!frontend/public/**/*.jpg
+!frontend/src/assets/**/*.png
+!frontend/src/assets/**/*.jpg
 
 # sensitive or unnecessary files
 emailjs-template.md
@@ -97,7 +117,12 @@ STAFF_*.md
 DATABASE_*.md
 SEO-*.md
 README-*.md
-claude.md
+
+# backup files
+*.backup
+*.old
+*.bak
+*~
 
 # vendor files
 vendor/

@@ -1,7 +1,7 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
 import ServiceHero from '~/components/widgets/ServiceHero.astro';
-import Features from '~/components/widgets/Features.astro';
+import ServiceFeatures from '~/components/widgets/ServiceFeatures.astro';
 import Features2 from '~/components/widgets/Features2.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
 import FAQs from '~/components/widgets/FAQs.astro';
@@ -55,7 +55,7 @@ const metadata = {
     title="Trusted by Somerset Families"
     stats={[
       { title: 'Happy Customers', amount: '4,000+', description: 'Across Somerset' },
-      { title: 'Years Experience', amount: '5+', description: 'Since 2019' },
+      { title: 'Years Experience', amount: '7+', description: 'Since 2019' },
       { title: 'Guarantee', amount: '48hr', description: 'Spot-free promise' },
       { title: 'Google Rating', amount: '4.9★', description: 'Customer reviews' },
     ]}
@@ -64,10 +64,11 @@ const metadata = {
 
 
   <!-- Key Benefits -->
-  <Features
+  <ServiceFeatures
     id="benefits"
     title="The Somerset Window Cleaning Difference"
     subtitle="Why thousands of Somerset homeowners trust us with their windows"
+    columns={3}
     items={[
       {
         title: 'Pure Water System',

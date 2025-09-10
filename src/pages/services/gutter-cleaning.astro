@@ -1,7 +1,7 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
 import ServiceHero from '~/components/widgets/ServiceHero.astro';
-import Features from '~/components/widgets/Features.astro';
+import ServiceFeatures from '~/components/widgets/ServiceFeatures.astro';
 import Features2 from '~/components/widgets/Features2.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
 import FAQs from '~/components/widgets/FAQs.astro';
@@ -59,7 +59,7 @@ const metadata = {
     title="Trusted Gutter Clearing Service"
     stats={[
       { title: 'Properties Protected', amount: '4,000+', description: 'Across Somerset' },
-      { title: 'Years Experience', amount: '5+', description: 'Since 2019' },
+      { title: 'Years Experience', amount: '7+', description: 'Since 2019' },
       { title: 'Safe Equipment', amount: '4+', description: 'Storey reach' },
       { title: 'Guarantee', amount: '48hr', description: 'Service promise' },
     ]}
@@ -67,10 +67,11 @@ const metadata = {
 
 
   <!-- Key Benefits -->
-  <Features
+  <ServiceFeatures
     id="benefits"
     title="Gutter Clearing — What You Get"
     subtitle="Clear, on-brand benefits in a simple layout"
+    columns={3}
     items={[
       {
         title: 'High-Reach Vacuum System',

@@ -26,6 +26,25 @@ export default defineConfig({
   output: 'server',
   site: 'https://www.somersetwindowcleaning.co.uk',
   adapter: vercel(),
+  
+  // Development server configuration
+  server: {
+    port: 4321,
+    host: true
+  },
+  
+  // Proxy API requests to backend during development
+  vite: {
+    server: {
+      proxy: {
+        '/api': {
+          target: 'http://localhost:3001',
+          changeOrigin: true,
+          rewrite: (path) => path
+        }
+      }
+    }
+  },
 
   integrations: [
     tailwind({

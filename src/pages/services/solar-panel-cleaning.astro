@@ -1,7 +1,7 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
 import ServiceHero from '~/components/widgets/ServiceHero.astro';
-import Features from '~/components/widgets/Features.astro';
+import ServiceFeatures from '~/components/widgets/ServiceFeatures.astro';
 import Features2 from '~/components/widgets/Features2.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
 import FAQs from '~/components/widgets/FAQs.astro';
@@ -9,6 +9,7 @@ import Stats from '~/components/widgets/Stats.astro';
 import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
 import OptimizedImage from '~/components/common/OptimizedImage.astro';
 import LiveReviews from '~/components/widgets/LiveReviews.astro';
+import PostcodeChecker from '~/components/widgets/PostcodeChecker.astro';
 
 // Import hero image
 import solarPanelHeroImage from '~/assets/images/optimized/solar-panels-lg.jpg';
@@ -67,10 +68,11 @@ const metadata = {
 
 
   <!-- Why Choose Us -->
-  <Features
+  <ServiceFeatures
     id="why-choose-us"
     title="Why Trust Somerset Window Cleaning with Your Solar Investment?"
     subtitle="We help you get the most from your solar panels - safely and effectively"
+    columns={3}
     items={[
       {
         title: 'Protect Your Warranty',

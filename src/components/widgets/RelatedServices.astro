@@ -61,10 +61,10 @@ const relatedServices = allServices.filter(service => service.name !== currentSe
 <section class={`py-12 ${className}`}>
   <div class="max-w-6xl mx-auto px-4">
     <div class="text-center mb-8">
-      <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
+      <h2 class="text-2xl md:text-3xl font-bold text-white mb-4">
         Other Professional Cleaning Services
       </h2>
-      <p class="text-gray-600 max-w-2xl mx-auto">
+      <p class="text-gray-300 max-w-2xl mx-auto">
         Complete your property maintenance with our comprehensive range of exterior cleaning services across Somerset.
       </p>
     </div>
@@ -73,24 +73,24 @@ const relatedServices = allServices.filter(service => service.name !== currentSe
       {relatedServices.map((service) => (
         <a 
           href={service.url}
-          class="group bg-white rounded-lg shadow-sm border border-gray-200 hover:shadow-md hover:border-accent/20 transition-all duration-200 p-6"
+          class="group bg-secondary rounded-lg shadow-sm border border-gray-700 hover:shadow-md hover:border-red-500/50 transition-all duration-200 p-6"
         >
           <div class="flex items-start space-x-4">
             <div class="text-2xl flex-shrink-0">
               {service.icon}
             </div>
             <div class="flex-1 min-w-0">
-              <h3 class="font-semibold text-gray-900 group-hover:text-accent transition-colors mb-2">
+              <h3 class="font-semibold text-white group-hover:text-red-400 transition-colors mb-2">
                 {service.name}
               </h3>
-              <p class="text-sm text-gray-600 mb-3 leading-relaxed">
+              <p class="text-sm text-gray-200 mb-3 leading-relaxed">
                 {service.description}
               </p>
               <div class="flex items-center justify-between">
-                <span class="text-xs font-medium text-accent bg-accent/10 px-2 py-1 rounded-full">
+                <span class="text-xs font-medium text-red-400 bg-red-600/20 px-2 py-1 rounded-full">
                   From {service.price}
                 </span>
-                <span class="text-xs text-gray-500 group-hover:text-accent transition-colors">
+                <span class="text-xs text-gray-400 group-hover:text-red-400 transition-colors">
                   Learn more →
                 </span>
               </div>

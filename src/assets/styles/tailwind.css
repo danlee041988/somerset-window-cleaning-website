@@ -130,12 +130,12 @@
     border-color: #000000 !important;
   }
   
-  /* Secondary CTAs - blue buttons */
+  /* Secondary CTAs - black buttons */
   .btn-secondary,
   .bg-btn-secondary {
-    background-color: #2563EB !important;
+    background-color: #000000 !important;
     color: #FFFFFF !important;
-    border-color: #2563EB !important;
+    border-color: #000000 !important;
   }
   
   /* Links - primary blue */
@@ -223,9 +223,18 @@
   .bg-black button:focus,
   .bg-gray-900 button:focus,
   [class*="bg-red-"] button:focus {
-    outline: 2px solid #FFF !important;
+    outline: 3px solid #FFF !important;
     outline-offset: 2px !important;
-    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.3) !important;
+    box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.4) !important;
+  }
+  
+  /* Enhanced focus for brand-red elements */
+  [class*="brand-red"] button:focus,
+  .bg-brand-red:focus,
+  .text-brand-red:focus {
+    outline: 3px solid #000 !important;
+    outline-offset: 2px !important;
+    box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.3) !important;
   }
   
   .bg-red-600 *,
@@ -247,7 +256,7 @@
   }
 
   .btn-secondary {
-    @apply btn bg-blue-primary text-white !text-white border-blue-primary hover:bg-blue-600 hover:border-blue-600 hover:!text-white shadow-light-md hover:shadow-light-lg transform hover:-translate-y-1 transition-all duration-300;
+    @apply btn bg-black text-white !text-white border-black hover:bg-gray-800 hover:border-gray-800 hover:!text-white shadow-light-md hover:shadow-light-lg transform hover:-translate-y-1 transition-all duration-300;
   }
 
   .btn-tertiary {
@@ -538,5 +547,5 @@ select:focus {
 .form-group select:not([value=""]) ~ label {
   top: 4px;
   font-size: 0.75rem;
-  color: #2563EB;
+  color: #DC2626;
 }

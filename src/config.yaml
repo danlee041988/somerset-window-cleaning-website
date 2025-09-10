@@ -11,7 +11,7 @@ metadata:
   title:
     default: Somerset Window Cleaning
     template: '%s — Somerset Window Cleaning'
-  description: "Professional window cleaning across Somerset. Reliable, fully insured, and friendly. Get a quote."
+  description: "Professional window cleaning across Somerset. Reliable, fully insured service with 48-hour guarantee. Get instant quotes online. Serving Bath, Wells, Glastonbury & more since 2019."
   robots:
     index: true
     follow: true

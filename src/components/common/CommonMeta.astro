@@ -1,8 +1,29 @@
 ---
 import { getAsset } from '~/utils/permalinks';
+import { SITE, METADATA } from 'astrowind:config';
 ---
 
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+<!-- Critical SEO Meta Tags -->
+<meta name="theme-color" content="#000000" />
+<meta name="msapplication-TileColor" content="#000000" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="format-detection" content="telephone=yes" />
+
+<!-- Site Verification -->
+<meta name="google-site-verification" content="orcPxI47GSa-cRvY11tUe6iGg2IO_RPvnA1q95iEM3M" />
+
+<!-- Language and Locale -->
+<meta name="language" content="en-GB" />
+<meta property="og:locale" content="en_GB" />
+
+<!-- Author and Business Info -->
+<meta name="author" content="Somerset Window Cleaning" />
+<meta name="copyright" content="Somerset Window Cleaning" />
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+
 <link rel="sitemap" href={getAsset('/sitemap-index.xml')} />
+<link rel="canonical" href={SITE?.site || 'https://somersetwindowcleaning.co.uk'} />

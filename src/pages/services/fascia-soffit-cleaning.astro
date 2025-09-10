@@ -1,7 +1,7 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
 import ServiceHero from '~/components/widgets/ServiceHero.astro';
-import Features from '~/components/widgets/Features.astro';
+import ServiceFeatures from '~/components/widgets/ServiceFeatures.astro';
 import Features2 from '~/components/widgets/Features2.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
 import FAQs from '~/components/widgets/FAQs.astro';
@@ -67,10 +67,11 @@ const metadata = {
 
 
   <!-- Before & After Benefits -->
-  <Features
+  <ServiceFeatures
     id="benefits"
     title="Transform Your Property's Roofline"
     subtitle="See the dramatic difference professional fascia and soffit cleaning makes"
+    columns={3}
     items={[
       {
         title: 'Remove Green Algae Staining',

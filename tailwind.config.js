@@ -14,24 +14,24 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary: '#2563EB',              // Primary blue for links/CTAs
+        primary: '#DC2626',              // Primary red for links/CTAs (changed from blue)
         secondary: '#0B0F19',            // Ink for text
         accent: '#22C55E',               // Success highlights
         default: '#0B0F19',              // Default text color
         muted: '#64748B',                // Muted text
-        // Extended Material Design palette with depth
-        'blue': {
-          50: '#EFF6FF',
-          100: '#DBEAFE',
-          200: '#BFDBFE',
-          300: '#93C5FD',
-          400: '#60A5FA',
-          500: '#3B82F6',
-          600: '#2563EB',
-          700: '#1D4ED8',
-          800: '#1E40AF',
-          900: '#1E3A8A',
-          950: '#172554'
+        // Extended red palette (replaced blue)
+        'red': {
+          50: '#FEF2F2',
+          100: '#FEE2E2',
+          200: '#FECACA',
+          300: '#FCA5A5',
+          400: '#F87171',
+          500: '#EF4444',
+          600: '#DC2626',
+          700: '#B91C1C',
+          800: '#991B1B',
+          900: '#7F1D1D',
+          950: '#450A0A'
         },
         'gray': {
           50: '#F9FAFB',
@@ -47,18 +47,18 @@ export default {
           950: '#030712'
         },
         // Named colors for consistency
-        'blue-primary': '#2563EB',       // Primary blue
+        'blue-primary': '#DC2626',       // Primary red (renamed from blue for compatibility)
         'ink': '#0B0F19',                // Text color
         'surface': '#FFFFFF',            // White surface
         'surface-light': '#F8FAFC',      // Light surface
         'success': '#22C55E',            // Success/accent green
         // Button colors
         'btn-primary': '#000000',        // Black for primary buttons
-        'btn-secondary': '#2563EB',      // Blue for secondary buttons
-        // Legacy compatibility (will be phased out)
-        'brand-red': '#2563EB',          // Map to blue now
-        'brand-red-medium': '#64748B',   // Map to muted
-        'brand-red-dark': '#0B0F19',     // Map to ink
+        'btn-secondary': '#DC2626',      // Red for secondary buttons (changed from blue)
+        // Brand red colors - matching logo
+        'brand-red': '#FF0000',          // Bright red to match logo
+        'brand-red-medium': '#DC2626',   // Medium red (red-600)
+        'brand-red-dark': '#991B1B',     // Dark red (red-800)
         'brand-black': '#000000',        // True black
       },
       fontFamily: {

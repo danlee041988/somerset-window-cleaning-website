@@ -1,7 +1,7 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
 import ServiceHero from '~/components/widgets/ServiceHero.astro';
-import Features from '~/components/widgets/Features.astro';
+import ServiceFeatures from '~/components/widgets/ServiceFeatures.astro';
 import Features2 from '~/components/widgets/Features2.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
 import FAQs from '~/components/widgets/FAQs.astro';
@@ -66,10 +66,11 @@ const metadata = {
   />
 
   <!-- Key Benefits -->
-  <Features
+  <ServiceFeatures
     id="commercial-benefits"
     title="Why Businesses Choose Us"
     subtitle="Professional window cleaning that enhances your business image"
+    columns={2}
     items={[
       {
         title: 'Professional Appearance',
