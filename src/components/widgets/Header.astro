@@ -1,12 +1,10 @@
 ---
 import { Icon } from 'astro-icon/components';
 import Logo from '~/components/Logo.astro';
-import ToggleTheme from '~/components/common/ToggleTheme.astro';
-import EnhancedMobileNav from '~/components/widgets/EnhancedMobileNav.astro';
 import Button from '~/components/ui/Button.astro';
 
 import { getHomePermalink } from '~/utils/permalinks';
-import { trimSlash, getAsset } from '~/utils/permalinks';
+import { trimSlash } from '~/utils/permalinks';
 import type { CallToAction } from '~/types';
 
 interface Link {
@@ -47,512 +45,243 @@ const {
 const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
 ---
 
-<style>
-  /* Force all header navigation text to be white with highest specificity */
-  #header nav ul li a,
-  #header nav ul li button,
-  #header nav a,
-  #header nav button,
-  #header .aw-link-active,
-  #header a[aria-current="page"],
-  header nav ul li a,
-  header nav ul li button,
-  header nav a,
-  header nav button {
-    color: white !important;
-  }
-  
-  #header nav ul li a:hover,
-  #header nav ul li button:hover,
-  #header nav a:hover,
-  #header nav button:hover,
-  header nav ul li a:hover,
-  header nav ul li button:hover {
-    color: rgba(255, 255, 255, 0.8) !important;
-  }
-
-  /* Override any red color classes specifically */
-  #header .text-red-400,
-  #header .hover\:text-red-400:hover,
-  header .text-red-400,
-  header .hover\:text-red-400:hover,
-  #header .aw-link-active,
-  #header a:hover,
-  #header button:hover {
-    color: white !important;
-  }
-  
-  /* Custom focus styles with red instead of blue */
-  #header a:focus,
-  #header button:focus,
-  header a:focus,
-  header button:focus {
-    outline: 2px solid #D84040 !important;
-    outline-offset: 2px;
-  }
-  
-  #header a:focus-visible,
-  #header button:focus-visible,
-  header a:focus-visible,
-  header button:focus-visible {
-    outline: 2px solid #D84040 !important;
-    outline-offset: 2px;
-  }
-
-  /* Aggressive spacing fixes for different screen sizes */
-  
-  /* Large laptops - slight reduction */
-  @media (min-width: 1200px) and (max-width: 1400px) {
-    #header nav ul li a,
-    #header nav ul li button {
-      padding: 0.5rem 0.625rem;
-      font-size: 0.875rem;
-    }
-  }
-  
-  /* Standard laptops - more aggressive */
-  @media (min-width: 1024px) and (max-width: 1199px) {
-    #header nav ul li a,
-    #header nav ul li button {
-      padding: 0.375rem 0.5rem;
-      font-size: 0.8125rem;
-    }
-  }
-
-  /* Tablets and small laptops - very compact */
-  @media (min-width: 768px) and (max-width: 1023px) {
-    #header .header-inner {
-      gap: 0.125rem;
-      padding-left: 0.5rem;
-      padding-right: 0.5rem;
-    }
-    
-    #header nav {
-      flex: 0 1 auto;
-      margin: 0 0.125rem;
-    }
-    
-    #header nav ul {
-      gap: 0.125rem;
-    }
-    
-    #header nav ul li a,
-    #header nav ul li button {
-      padding: 0.375rem 0.5rem;
-      font-size: 0.75rem;
-      white-space: nowrap;
-    }
-    
-    /* Hide icons on medium screens to save space */
-    #header .btn Icon {
-      display: none;
-    }
-  }
-  
-  /* Critical fix for problematic screen widths */
-  @media (min-width: 950px) and (max-width: 1150px) {
-    #header nav ul li a,
-    #header nav ul li button {
-      padding: 0.25rem 0.375rem;
-      font-size: 0.7rem;
-      letter-spacing: -0.025em;
-    }
-    
-    #header nav ul {
-      gap: 0;
-    }
-    
-    /* Make Get Free Quote button more compact */
-    #header .btn {
-      padding: 0.375rem 0.75rem;
-      font-size: 0.75rem;
-    }
-  }
-  
-  /* Extra small screens - prevent overflow */
-  @media (max-width: 640px) {
-    #header {
-      overflow-x: hidden;
-    }
-    
-    #header .header-inner {
-      padding-left: 0.5rem;
-      padding-right: 0.5rem;
-    }
-  }
-</style>
-
 <header
-  class:list={[
-    { sticky: isSticky, relative: !isSticky, dark: isDark },
-    'top-0 z-40 flex-none mx-auto w-full border-b border-gray-50/0 transition-[opacity] ease-in-out bg-neutral-900 text-white overflow-x-hidden',
-  ]}
-  {...isSticky ? { 'data-aw-sticky-header': true } : {}}
+  class="fixed top-0 left-0 right-0 z-50 bg-black/95 backdrop-blur-md border-b border-gray-800"
   {...id ? { id } : {}}
 >
-  <div class="absolute inset-0"></div>
-  <div
-    class:list={[
-      'relative text-default py-2 px-2 sm:px-3 md:px-4 lg:px-6 mx-auto w-full header-inner transition-all duration-300 ease-in-out',
-      {
-        'md:flex md:justify-between md:items-center': position !== 'center',
-      },
-      {
-        'md:flex md:justify-between md:items-center': position === 'center',
-      },
-      {
-        'max-w-7xl': !isFullWidth,
-      },
-    ]}
-  >
-    <div class:list={[{ 'mr-auto rtl:mr-0 rtl:ml-auto': position === 'right' }, 'flex justify-between items-center']}>
-      <a class="flex items-center flex-shrink-0" href={getHomePermalink()}>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6">
+    <!-- Mobile Header -->
+    <div class="flex items-center justify-between h-16 lg:hidden">
+      <!-- Logo -->
+      <a href={getHomePermalink()} class="flex-shrink-0">
         <Logo />
       </a>
-      <div class="flex items-center md:hidden">
-        <!-- Mobile phone link -->
+      
+      <!-- Mobile Actions -->
+      <div class="flex items-center gap-3">
         <a 
           href="tel:01458860339" 
-          class="flex items-center text-white hover:text-white/80 mr-2 transition-colors duration-200
-            focus:outline-none focus:ring-2 focus:ring-brand-red/50 rounded p-1"
-          aria-label="Call Somerset Window Cleaning at 01458 860339"
+          class="flex items-center justify-center w-10 h-10 rounded-lg bg-white/10 hover:bg-white/20 text-white transition-colors"
+          aria-label="Call us"
         >
-          <Icon name="tabler:phone-filled" class="w-5 h-5" />
+          <Icon name="tabler:phone" class="w-5 h-5" />
         </a>
-        <EnhancedMobileNav links={links} currentPath={currentPath} />
+        <button
+          id="mobile-menu-toggle"
+          class="flex items-center justify-center w-10 h-10 rounded-lg bg-white/10 hover:bg-white/20 text-white transition-colors"
+          aria-label="Toggle menu"
+        >
+          <Icon name="tabler:menu-2" class="w-5 h-5" />
+        </button>
       </div>
     </div>
-    <nav
-      class="items-center w-full md:w-auto hidden md:block md:mx-1 lg:mx-5 text-slate-100 md:justify-self-center overflow-x-auto"
-      aria-label="Main navigation"
-    >
-      <ul
-        class="flex flex-col md:flex-row md:self-center w-full md:w-auto text-xs md:text-sm lg:text-[0.9375rem] tracking-[0.01rem] font-medium md:justify-center gap-0 md:gap-0 lg:gap-1 xl:gap-2"
-      >
-        {
-          links.map(({ text, href, links }) => (
-            <li class={links?.length ? 'dropdown' : ''}>
-              {links?.length ? (
-                <>
-                  <button
-                    type="button"
-                    class="px-1 md:px-2 lg:px-3 py-2 flex items-center whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-brand-red/50 rounded min-h-[44px]"
-                    style="color: white !important;"
-                    aria-expanded="false"
-                    aria-haspopup="true"
-                    aria-label={`${text} submenu`}
-                    data-dropdown-toggle
-                  >
-                    {text}{' '}
-                    <Icon name="tabler:chevron-down" class="w-3.5 h-3.5 ml-0.5 rtl:ml-0 rtl:mr-0.5 hidden md:inline transition-transform duration-200" data-dropdown-chevron />
-                  </button>
-                  <ul 
-                    class="dropdown-menu md:backdrop-blur-md rounded md:absolute pl-4 md:pl-0 md:hidden font-medium md:bg-black/95 md:min-w-[200px] drop-shadow-xl md:border md:border-white/10"
-                    role="menu"
-                    aria-label={`${text} submenu`}
-                    data-dropdown-menu
-                  >
-                    {links.map(({ text: text2, href: href2 }) => (
-                      <li role="none">
-                        <a
-                          class:list={[
-                            'first:rounded-t last:rounded-b md:hover:bg-white/10 py-2 px-5 block whitespace-no-wrap focus:outline-none focus:ring-2 focus:ring-brand-red/50 min-h-[44px] flex items-center transition-colors',
-                          ]}
-                          style="color: white !important;"
-                          onmouseover="this.style.color='white'"
-                          onmouseout="this.style.color='white'"
-                          href={href2}
-                          role="menuitem"
-                          aria-current={href2 === currentPath ? 'page' : undefined}
-                        >
-                          {text2}
-                        </a>
-                      </li>
+
+    <!-- Desktop Header -->
+    <div class="hidden lg:flex items-center justify-between h-20">
+      <!-- Logo -->
+      <a href={getHomePermalink()} class="flex-shrink-0">
+        <Logo />
+      </a>
+      
+      <!-- Navigation -->
+      <nav class="flex items-center gap-8">
+        {links.map(({ text, href, links: subLinks }) => (
+          <div class="relative group">
+            {subLinks?.length ? (
+              <>
+                <button class="text-white hover:text-red-400 transition-colors py-2 flex items-center gap-1">
+                  {text}
+                  <Icon name="tabler:chevron-down" class="w-4 h-4 transition-transform group-hover:rotate-180" />
+                </button>
+                <div class="absolute top-full left-0 mt-2 w-64 bg-black/95 backdrop-blur-md border border-gray-800 rounded-xl shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+                  <div class="p-2">
+                    {subLinks.map(({ text: subText, href: subHref }) => (
+                      <a
+                        href={subHref}
+                        class="block px-4 py-3 text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors"
+                      >
+                        {subText}
+                      </a>
                     ))}
-                  </ul>
-                </>
+                  </div>
+                </div>
+              </>
+            ) : (
+              <a
+                href={href}
+                class="text-white hover:text-red-400 transition-colors py-2"
+                aria-current={href === currentPath ? 'page' : undefined}
+              >
+                {text}
+              </a>
+            )}
+          </div>
+        ))}
+      </nav>
+      
+      <!-- Actions -->
+      <div class="flex items-center gap-4 flex-shrink-0">
+        <a 
+          href="tel:01458860339" 
+          class="hidden xl:flex items-center gap-2 text-white hover:text-red-400 transition-colors"
+        >
+          <Icon name="tabler:phone" class="w-5 h-5" />
+          <span class="font-medium">01458 860339</span>
+        </a>
+        
+        {actions.map((action) => (
+          <Button {...action} class="text-sm px-6 py-2" />
+        ))}
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Menu Overlay -->
+  <div
+    id="mobile-menu"
+    class="lg:hidden fixed inset-0 bg-black/95 backdrop-blur-md opacity-0 invisible transition-all duration-300 z-40"
+  >
+    <div class="flex flex-col h-full">
+      <!-- Header -->
+      <div class="flex items-center justify-between h-16 px-4 border-b border-gray-800">
+        <Logo />
+        <button
+          id="mobile-menu-close"
+          class="flex items-center justify-center w-10 h-10 rounded-lg bg-white/10 hover:bg-white/20 text-white transition-colors"
+          aria-label="Close menu"
+        >
+          <Icon name="tabler:x" class="w-5 h-5" />
+        </button>
+      </div>
+      
+      <!-- Navigation -->
+      <nav class="flex-1 overflow-y-auto p-4">
+        <div class="space-y-2">
+          {links.map(({ text, href, links: subLinks }) => (
+            <div>
+              {subLinks?.length ? (
+                <div class="mobile-dropdown">
+                  <button class="w-full text-left px-4 py-3 text-white hover:bg-white/10 rounded-lg transition-colors flex items-center justify-between">
+                    {text}
+                    <Icon name="tabler:chevron-down" class="w-4 h-4 transition-transform" />
+                  </button>
+                  <div class="mobile-submenu pl-4 space-y-1 max-h-0 overflow-hidden transition-all duration-200">
+                    {subLinks.map(({ text: subText, href: subHref }) => (
+                      <a
+                        href={subHref}
+                        class="block px-4 py-2 text-gray-300 hover:text-white hover:bg-white/5 rounded-lg transition-colors"
+                      >
+                        {subText}
+                      </a>
+                    ))}
+                  </div>
+                </div>
               ) : (
                 <a
-                  class:list={[
-                    'px-1 md:px-2 lg:px-3 py-2 flex items-center whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-brand-red/50 rounded min-h-[44px] transition-colors',
-                  ]}
-                  style="color: white !important;"
                   href={href}
-                  aria-current={href === currentPath ? 'page' : undefined}
+                  class="block px-4 py-3 text-white hover:bg-white/10 rounded-lg transition-colors"
                 >
                   {text}
                 </a>
               )}
-            </li>
-          ))
-        }
-      </ul>
-    </nav>
-    <div
-      class:list={[
-        { 'ml-auto rtl:ml-0 rtl:mr-auto': position === 'left' },
-        'hidden md:flex items-center md:mb-0 fixed w-full md:w-auto md:static justify-end left-0 rtl:left-auto rtl:right-0 bottom-0 p-3 md:p-0 flex-shrink-0',
-      ]}
-    >
-      <div class="items-center flex justify-between w-full md:w-auto">
-        <!-- Phone number link -->
-        <a 
-          href="tel:01458860339" 
-          class="hidden sm:flex items-center text-white hover:text-white/80 mr-2 lg:mr-4 transition-colors duration-200
-            focus:outline-none focus:ring-2 focus:ring-brand-red/50 rounded px-1 sm:px-2 py-1"
-          aria-label="Call Somerset Window Cleaning at 01458 860339"
-        >
-          <Icon name="tabler:phone" class="w-5 h-5 mr-1" />
-          <span class="font-medium text-xs sm:text-sm lg:text-base whitespace-nowrap">01458 860339</span>
-        </a>
-        
-        <div class="flex">
-          {showToggleTheme && <ToggleTheme iconClass="w-6 h-6 md:w-5 md:h-5 md:inline-block" />}
-          {
-            showRssFeed && (
-              <a
-                class="text-white hover:bg-white/10 focus:outline-none focus:ring-4 focus:ring-brand-red/20 rounded-lg text-sm p-2.5 inline-flex items-center"
-                aria-label="RSS Feed"
-                href={getAsset('/rss.xml')}
-              >
-                <Icon name="tabler:rss" class="w-5 h-5" />
-              </a>
-            )
-          }
-        </div>
-        {
-          actions?.length ? (
-            <div class="ml-1 rtl:ml-0 rtl:mr-1 lg:ml-2 flex gap-1 md:gap-2 flex-shrink-0">
-              {actions.map((action) => (
-                <Button {...action} class={`text-xs md:text-sm whitespace-nowrap ${action.class || ''}`} />
-              ))}
             </div>
-          ) : (
-            ''
-          )
-        }
+          ))}
+        </div>
+      </nav>
+      
+      <!-- Footer -->
+      <div class="p-4 border-t border-gray-800">
+        <div class="space-y-3">
+          <a 
+            href="tel:01458860339" 
+            class="flex items-center gap-3 px-4 py-3 bg-white/10 rounded-lg text-white hover:bg-white/20 transition-colors"
+          >
+            <Icon name="tabler:phone" class="w-5 h-5" />
+            <span class="font-medium">01458 860339</span>
+          </a>
+          
+          {actions.map((action) => (
+            <Button {...action} class="w-full justify-center" />
+          ))}
+        </div>
       </div>
     </div>
   </div>
 </header>
 
 <script>
-  // Ensure navigation is visible on desktop
-  if (typeof window !== 'undefined') {
-    const nav = document.querySelector('#header nav');
-    if (nav && window.innerWidth >= 768) {
-      nav.style.display = '';
+  // Mobile menu functionality
+  document.addEventListener('DOMContentLoaded', () => {
+    const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+    const mobileMenuClose = document.getElementById('mobile-menu-close');
+    const mobileMenu = document.getElementById('mobile-menu');
+    
+    function openMobileMenu() {
+      mobileMenu?.classList.remove('opacity-0', 'invisible');
+      mobileMenu?.classList.add('opacity-100', 'visible');
+      document.body.style.overflow = 'hidden';
     }
-  }
-</script>
-
-<script>
-  // Enhanced accessible header with dropdown functionality
-  document.addEventListener('DOMContentLoaded', function() {
-    const header = document.querySelector('[data-aw-sticky-header]');
-
-    if (header) {
-      // Simple sticky behavior without visual changes
-      let lastScrollY = 0;
-
-      function handleScroll() {
-        const scrollY = window.pageYOffset || document.documentElement.scrollTop;
-        lastScrollY = scrollY;
-      }
-
-      window.addEventListener('scroll', handleScroll, { passive: true });
-      handleScroll();
+    
+    function closeMobileMenu() {
+      mobileMenu?.classList.remove('opacity-100', 'visible');
+      mobileMenu?.classList.add('opacity-0', 'invisible');
+      document.body.style.overflow = '';
     }
-
-    // Enhanced accessible dropdown functionality
-    class AccessibleDropdown {
-      constructor() {
-        this.dropdowns = document.querySelectorAll('[data-dropdown-toggle]');
-        this.activeDropdown = null;
-        this.init();
+    
+    mobileMenuToggle?.addEventListener('click', openMobileMenu);
+    mobileMenuClose?.addEventListener('click', closeMobileMenu);
+    
+    // Close on overlay click
+    mobileMenu?.addEventListener('click', (e) => {
+      if (e.target === mobileMenu) {
+        closeMobileMenu();
       }
-
-      init() {
-        this.dropdowns.forEach(toggle => {
-          const menu = toggle.nextElementSibling;
-          if (menu && menu.hasAttribute('data-dropdown-menu')) {
-            // Click events
-            toggle.addEventListener('click', (e) => this.toggleDropdown(e, toggle, menu));
-            
-            // Hover events for desktop
-            toggle.parentElement.addEventListener('mouseenter', () => {
-              if (window.innerWidth >= 768) {
-                this.openDropdown(toggle, menu);
-              }
-            });
-            
-            toggle.parentElement.addEventListener('mouseleave', () => {
-              if (window.innerWidth >= 768) {
-                this.closeDropdown(toggle, menu);
-              }
-            });
-
-            // Keyboard events
-            toggle.addEventListener('keydown', (e) => this.handleKeyDown(e, toggle, menu));
-            
-            // Focus events
-            menu.addEventListener('focusout', (e) => {
-              // Close dropdown if focus moves outside
-              setTimeout(() => {
-                if (!toggle.parentElement.contains(document.activeElement)) {
-                  this.closeDropdown(toggle, menu);
-                }
-              }, 100);
-            });
-          }
-        });
-
-        // Close dropdowns when clicking outside
-        document.addEventListener('click', (e) => {
-          if (!e.target.closest('.dropdown')) {
-            this.closeAllDropdowns();
-          }
-        });
-
-        // Close dropdowns on escape
-        document.addEventListener('keydown', (e) => {
-          if (e.key === 'Escape') {
-            this.closeAllDropdowns();
-            this.activeDropdown?.focus();
-          }
-        });
+    });
+    
+    // Close on escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeMobileMenu();
       }
-
-      toggleDropdown(e, toggle, menu) {
-        e.preventDefault();
-        const isOpen = toggle.getAttribute('aria-expanded') === 'true';
+    });
+    
+    // Mobile dropdown functionality
+    document.querySelectorAll('.mobile-dropdown button').forEach(button => {
+      button.addEventListener('click', () => {
+        const dropdown = button.parentElement;
+        const submenu = dropdown?.querySelector('.mobile-submenu');
+        const chevron = button.querySelector('svg');
         
-        if (isOpen) {
-          this.closeDropdown(toggle, menu);
-        } else {
-          this.closeAllDropdowns();
-          this.openDropdown(toggle, menu);
+        if (submenu) {
+          const isOpen = submenu.style.maxHeight && submenu.style.maxHeight !== '0px';
+          
+          if (isOpen) {
+            submenu.style.maxHeight = '0px';
+            chevron?.classList.remove('rotate-180');
+          } else {
+            submenu.style.maxHeight = submenu.scrollHeight + 'px';
+            chevron?.classList.add('rotate-180');
+          }
         }
-      }
-
-      openDropdown(toggle, menu) {
-        // Update ARIA states
-        toggle.setAttribute('aria-expanded', 'true');
-        
-        // Show menu
-        menu.classList.remove('md:hidden');
-        menu.classList.add('md:block');
-        
-        // Rotate chevron
-        const chevron = toggle.querySelector('[data-dropdown-chevron]');
-        chevron?.classList.add('rotate-180');
-        
-        this.activeDropdown = toggle;
-      }
-
-      closeDropdown(toggle, menu) {
-        // Update ARIA states
-        toggle.setAttribute('aria-expanded', 'false');
-        
-        // Hide menu
-        menu.classList.add('md:hidden');
-        menu.classList.remove('md:block');
-        
-        // Reset chevron
-        const chevron = toggle.querySelector('[data-dropdown-chevron]');
-        chevron?.classList.remove('rotate-180');
-        
-        if (this.activeDropdown === toggle) {
-          this.activeDropdown = null;
-        }
-      }
-
-      closeAllDropdowns() {
-        this.dropdowns.forEach(toggle => {
-          const menu = toggle.nextElementSibling;
-          if (menu && menu.hasAttribute('data-dropdown-menu')) {
-            this.closeDropdown(toggle, menu);
-          }
-        });
-      }
-
-      handleKeyDown(e, toggle, menu) {
-        const isOpen = toggle.getAttribute('aria-expanded') === 'true';
-        
-        switch (e.key) {
-          case 'ArrowDown':
-            e.preventDefault();
-            if (!isOpen) {
-              this.openDropdown(toggle, menu);
-            }
-            // Focus first menu item
-            const firstItem = menu.querySelector('[role="menuitem"]');
-            firstItem?.focus();
-            break;
-            
-          case 'ArrowUp':
-            e.preventDefault();
-            if (isOpen) {
-              this.closeDropdown(toggle, menu);
-            }
-            break;
-            
-          case 'Enter':
-          case ' ':
-            e.preventDefault();
-            this.toggleDropdown(e, toggle, menu);
-            break;
-        }
-      }
-    }
-
-    // Initialize accessible dropdowns
-    new AccessibleDropdown();
+      });
+    });
   });
 </script>
 
 <style>
-  /* Smooth header transition on scroll */
-  #header[data-aw-sticky-header] {
-    transition: background-color 200ms ease, backdrop-filter 200ms ease, box-shadow 200ms ease;
-  }
-
-  /* Reduce inner padding when scrolled */
-  #header .header-inner {
-    transition: padding 200ms ease;
-  }
-
-  /* On scroll: subtle blur, compact height, slight shadow */
-  #header.scroll {
-    background-color: #000 !important;
-    backdrop-filter: none !important;
-    box-shadow: none !important;
-  }
-
-  #header.scroll .header-inner {
-    padding-top: 0.2rem !important;
-    padding-bottom: 0.2rem !important;
-  }
-
-  /* Ensure CTAs remain visually prominent */
-  #header.scroll .main-actions .btn-primary {
-    box-shadow: 0 6px 20px rgba(239, 68, 68, 0.35);
+  /* Ensure header doesn't cause layout shifts */
+  body {
+    padding-top: 4rem; /* 64px for mobile header */
   }
   
-  /* Header button alignment */
-  #header .btn,
-  #header .btn-primary,
-  #header [class*="btn-"] {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    white-space: nowrap;
-    vertical-align: middle;
+  @media (min-width: 1024px) {
+    body {
+      padding-top: 5rem; /* 80px for desktop header */
+    }
   }
   
-  /* Ensure proper spacing for action buttons */
-  #header [class*="flex"] > .btn,
-  #header [class*="flex"] > .btn-primary {
-    flex-shrink: 0;
+  /* Smooth transitions for mobile menu */
+  .mobile-submenu {
+    transition: max-height 0.2s ease-in-out;
   }
 </style>
