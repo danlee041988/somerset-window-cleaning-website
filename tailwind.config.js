@@ -57,6 +57,7 @@ export default {
         'btn-secondary': '#DC2626',      // Red for secondary buttons (changed from blue)
         // Brand red colors - matching logo
         'brand-red': '#FF0000',          // Bright red to match logo
+        'brand-red-light': '#FF3333',    // Light red for hover states
         'brand-red-medium': '#DC2626',   // Medium red (red-600)
         'brand-red-dark': '#991B1B',     // Dark red (red-800)
         'brand-black': '#000000',        // True black

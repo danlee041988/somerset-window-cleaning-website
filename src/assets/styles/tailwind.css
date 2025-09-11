@@ -49,8 +49,25 @@
     color: #fff !important;
   }
   
-  /* New Material Design Color Scheme */
+  /* Somerset Window Cleaning Brand Color Scheme */
   :root {
+    /* Primary Colors */
+    --color-brand-red: #FF0000;         /* Somerset red accent */
+    --color-brand-red-medium: #DC2626;  /* Medium red */
+    --color-brand-red-dark: #991B1B;    /* Dark red */
+    
+    /* Dark Blue/Gray Theme Colors */
+    --color-dark-blue-900: #1F2937;     /* from-gray-800 equivalent */
+    --color-dark-blue-800: #111827;     /* to-gray-900 equivalent */
+    --color-dark-blue-700: #374151;     /* Border/accent dark blue */
+    
+    /* Base Colors */
+    --color-black: #000000;             /* True black backgrounds */
+    --color-white: #FFFFFF;             /* White text */
+    --color-gray-400: #9CA3AF;          /* Secondary text */
+    --color-gray-500: #6B7280;          /* Placeholder text */
+    
+    /* Legacy Support */
     --color-blue-primary: #2563EB;     /* Primary blue for links/CTAs */
     --color-ink: #0B0F19;              /* Text color */
     --color-surface: #FFFFFF;          /* White surface */
@@ -194,6 +211,27 @@
   /* Content max width for readability */
   .content-width {
     max-width: 65ch;
+  }
+  
+  /* Somerset Brand Color Utilities */
+  .bg-somerset-dark {
+    @apply bg-gradient-to-br from-gray-800 to-gray-900;
+  }
+  
+  .bg-somerset-card {
+    @apply bg-gradient-to-br from-gray-800 to-gray-900 border border-gray-700/50;
+  }
+  
+  .text-somerset-gray {
+    @apply text-gray-400;
+  }
+  
+  .shadow-somerset {
+    @apply shadow-xl hover:shadow-2xl;
+  }
+  
+  .btn-somerset-red {
+    @apply bg-gradient-to-br from-brand-red to-red-700 hover:from-red-700 hover:to-red-800 text-white;
   }
   
   /* Remove all borders and outlines from logo images */
