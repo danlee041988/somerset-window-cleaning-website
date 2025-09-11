@@ -1,0 +1,291 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import Hero2 from '~/components/widgets/Hero2.astro';
+import Stats from '~/components/widgets/Stats.astro';
+import Features2 from '~/components/widgets/Features2.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+import Testimonials from '~/components/widgets/Testimonials.astro';
+import TrustSignals from '~/components/widgets/TrustSignals.astro';
+import PostcodeChecker from '~/components/widgets/PostcodeChecker.astro';
+
+const metadata = {
+  title: 'Window Cleaning Street & Glastonbury | Somerset Window Cleaning | Same Day Quotes',
+  description: 'Professional window cleaning services in Street and Glastonbury. 4-weekly cleaning from £12. Fully insured, 48-hour guarantee. Serving BA16, BA6 postcodes.',
+  ignoreTitleTemplate: true,
+};
+
+const localTestimonials = [
+  {
+    testimonial: "Best window cleaners we've had! They turn up when they say they will, do an excellent job every time, and the online payment system is really convenient.",
+    name: 'Sarah Mitchell',
+    job: 'Street, BA16',
+    image: {
+      alt: 'Sarah Mitchell testimonial'
+    },
+  },
+  {
+    testimonial: "Dan and his team cleaned our conservatory roof - it looks brand new! The difference is incredible, so much more light coming in now. Highly recommend.",
+    name: 'John Davies',
+    job: 'Glastonbury, BA6',
+    image: {
+      alt: 'John Davies testimonial'
+    },
+  },
+  {
+    testimonial: "Reliable, professional, and great value. They've been cleaning our shop windows for 2 years now and we couldn't be happier with the service.",
+    name: 'Emma Thompson',
+    job: 'High Street, Street',
+    image: {
+      alt: 'Emma Thompson testimonial'
+    },
+  },
+];
+
+const serviceAreas = [
+  'Street Town Centre',
+  'Glastonbury Town Centre',
+  'Walton',
+  'Compton Dundon',
+  'West Pennard',
+  'Baltonsborough',
+  'Barton St David',
+  'Butleigh',
+  'Meare',
+  'Ashcott',
+];
+---
+
+<Layout metadata={metadata} structuredDataType="areas">
+  <!-- Hero Section -->
+  <Hero2>
+    <Fragment slot="title">
+      Window Cleaning <span class="text-red-600">Street & Glastonbury</span>
+    </Fragment>
+    <Fragment slot="subtitle">
+      Professional exterior cleaning services across Street, Glastonbury and surrounding villages. 
+      Trusted by 500+ local customers since 2019.
+    </Fragment>
+  </Hero2>
+
+  <!-- Trust Signals -->
+  <TrustSignals />
+
+  <!-- Local Stats -->
+  <Stats 
+    isDark={true}
+    stats={[
+      { title: 'Customers in BA16/BA6', amount: '500+' },
+      { title: 'Years Serving Area', amount: '7+' },
+      { title: 'Response Time', amount: '24hrs' },
+      { title: 'Starting Price', amount: '£12' },
+    ]} 
+  />
+
+  <!-- Service Areas -->
+  <Features2
+    title="Areas We Cover Around Street & Glastonbury"
+    subtitle="Regular window cleaning routes throughout BA16 and BA6 postcodes"
+    items={[
+      {
+        title: 'Street & Surrounding Villages',
+        description: 'Complete coverage of Street town centre, residential estates, and nearby villages including Walton and Compton Dundon.',
+        icon: 'tabler:map-pin',
+      },
+      {
+        title: 'Glastonbury & Rural Areas',
+        description: 'From Glastonbury High Street to rural properties in West Pennard, Baltonsborough, and Barton St David.',
+        icon: 'tabler:home',
+      },
+      {
+        title: 'Commercial Properties',
+        description: 'Shops on Street High Street, Glastonbury businesses, schools, and office buildings throughout the area.',
+        icon: 'tabler:building-store',
+      },
+    ]}
+    columns={3}
+  >
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
+    </Fragment>
+  </Features2>
+
+  <!-- Services Offered -->
+  <Features2
+    title="Our Services in Street & Glastonbury"
+    subtitle="Professional exterior cleaning tailored to Somerset properties"
+    items={[
+      {
+        title: 'Residential Window Cleaning',
+        description: 'Regular 4, 8, or 12-weekly cleaning for homes across Street and Glastonbury. Pure water system ensures streak-free results.',
+        icon: 'tabler:home',
+      },
+      {
+        title: 'Gutter Clearing',
+        description: 'Essential autumn and spring gutter cleaning. Our vacuum system reaches Victorian townhouses and modern estates safely.',
+        icon: 'tabler:droplet',
+      },
+      {
+        title: 'Conservatory Cleaning',
+        description: 'Restore your conservatory to new. Popular service for Street\'s many conservatory owners.',
+        icon: 'tabler:building',
+      },
+      {
+        title: 'Commercial Services',
+        description: 'Reliable service for High Street shops, offices, and schools. Flexible scheduling to suit your business.',
+        icon: 'tabler:briefcase',
+      },
+      {
+        title: 'Fascia & Soffit Cleaning',
+        description: 'Remove green algae and dirt from UPVC. Transform your property\'s appearance.',
+        icon: 'tabler:brush',
+      },
+      {
+        title: 'Solar Panel Cleaning',
+        description: 'Maximize efficiency of your panels. Safe, manufacturer-approved cleaning methods.',
+        icon: 'tabler:solar-panel',
+      },
+    ]}
+    columns={3}
+  />
+
+  <!-- Why Choose Us -->
+  <Features2
+    title="Why Street & Glastonbury Choose Us"
+    items={[
+      {
+        title: 'Local Knowledge',
+        description: 'Based nearby in Street, we understand local properties from Victorian terraces to modern estates.',
+        icon: 'tabler:map-2',
+      },
+      {
+        title: 'Reliable Schedule',
+        description: 'Same cleaner, same schedule. We organize efficient routes through Street and Glastonbury.',
+        icon: 'tabler:calendar-check',
+      },
+      {
+        title: 'Weather Adapted',
+        description: 'We work in Somerset weather! Light rain doesn\'t stop us - pure water cleans perfectly.',
+        icon: 'tabler:cloud-rain',
+      },
+      {
+        title: 'Fair Pricing',
+        description: 'Competitive rates starting from £12. No hidden charges, clear pricing for every property.',
+        icon: 'tabler:currency-pound',
+      },
+    ]}
+    columns={2}
+  >
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
+    </Fragment>
+  </Features2>
+
+  <!-- Local Testimonials -->
+  <Testimonials
+    title="What Street & Glastonbury Customers Say"
+    subtitle="Real reviews from your neighbors"
+    testimonials={localTestimonials}
+  />
+
+  <!-- Service Areas List -->
+  <section class="py-16 bg-gray-50 dark:bg-gray-900">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold mb-4">Complete Coverage Across BA16 & BA6</h2>
+        <p class="text-lg text-gray-600 dark:text-gray-300">Regular window cleaning routes in these areas:</p>
+      </div>
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+        {serviceAreas.map((area) => (
+          <div class="bg-white dark:bg-gray-800 rounded-lg p-4 text-center shadow-sm hover:shadow-md transition-shadow">
+            <span class="font-semibold text-gray-700 dark:text-gray-200">{area}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Postcode Checker -->
+  <PostcodeChecker 
+    heading="Check Your Street or Glastonbury Address"
+    subheading="Enter your postcode for an instant quote"
+    buttonText="Get Free Quote"
+  />
+
+  <!-- CTA -->
+  <CallToAction
+    actions={[
+      {
+        variant: 'primary',
+        text: 'Get Free Quote',
+        href: '/book-online',
+        icon: 'tabler:file-text',
+      },
+      {
+        variant: 'secondary',
+        text: 'Call 01458 860339',
+        href: 'tel:01458860339',
+        icon: 'tabler:phone',
+      },
+    ]}
+  >
+    <Fragment slot="title">Ready for Spotless Windows in Street & Glastonbury?</Fragment>
+    <Fragment slot="subtitle">
+      Join 500+ happy customers across BA16 and BA6. Get your free quote in 60 seconds.
+    </Fragment>
+  </CallToAction>
+
+  <!-- Local Business Schema -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Somerset Window Cleaning - Street & Glastonbury",
+    "image": "https://somersetwindowcleaning.co.uk/brand/logo.svg",
+    "@id": "https://somersetwindowcleaning.co.uk/areas/street-glastonbury",
+    "url": "https://somersetwindowcleaning.co.uk/areas/street-glastonbury",
+    "telephone": "01458860339",
+    "priceRange": "££",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "13 Rockhaven Business Centre",
+      "addressLocality": "Street",
+      "postalCode": "BA16 0HW",
+      "addressCountry": "GB"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 51.1251,
+      "longitude": -2.7364
+    },
+    "openingHoursSpecification": {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      "opens": "08:00",
+      "closes": "18:00"
+    },
+    "sameAs": [
+      "https://www.facebook.com/somersetwindowcleaning",
+      "https://instagram.com/somersetwindowcleaning"
+    ],
+    "areaServed": [
+      {
+        "@type": "City",
+        "name": "Street",
+        "sameAs": "https://en.wikipedia.org/wiki/Street,_Somerset"
+      },
+      {
+        "@type": "City", 
+        "name": "Glastonbury",
+        "sameAs": "https://en.wikipedia.org/wiki/Glastonbury"
+      }
+    ],
+    "serviceArea": {
+      "@type": "GeoCircle",
+      "geoMidpoint": {
+        "@type": "GeoCoordinates",
+        "latitude": 51.1251,
+        "longitude": -2.7364
+      },
+      "geoRadius": "10000"
+    }
+  })} />
+</Layout>

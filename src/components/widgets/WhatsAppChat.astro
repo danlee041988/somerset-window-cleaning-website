@@ -1,0 +1,93 @@
+---
+import { Icon } from 'astro-icon/components';
+
+export interface Props {
+  phoneNumber?: string;
+  defaultMessage?: string;
+}
+
+const { 
+  phoneNumber = '447415526331',
+  defaultMessage = 'Hi Somerset Window Cleaning, please can I get a quote for window cleaning'
+} = Astro.props;
+
+const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(defaultMessage)}`;
+---
+
+<div class="whatsapp-chat-widget">
+  <a
+    href={whatsappUrl}
+    target="_blank"
+    rel="noopener noreferrer"
+    class="whatsapp-button"
+    aria-label="Chat with us on WhatsApp"
+  >
+    <Icon name="tabler:brand-whatsapp" class="w-7 h-7" />
+    <span class="whatsapp-text">Chat with us</span>
+  </a>
+</div>
+
+<style>
+  .whatsapp-chat-widget {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 40;
+  }
+
+  .whatsapp-button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: #25d366;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 50px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  .whatsapp-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 30px rgba(0, 0, 0, 0.2);
+    background-color: #22c55e;
+  }
+
+  .whatsapp-text {
+    display: none;
+  }
+
+  @media (min-width: 768px) {
+    .whatsapp-chat-widget {
+      bottom: 30px;
+      right: 30px;
+    }
+
+    .whatsapp-text {
+      display: inline;
+    }
+  }
+
+  /* Pulse animation for attention */
+  @keyframes pulse {
+    0% {
+      box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.4);
+    }
+    70% {
+      box-shadow: 0 0 0 20px rgba(37, 211, 102, 0);
+    }
+    100% {
+      box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+    }
+  }
+
+  .whatsapp-button {
+    animation: pulse 2s infinite;
+  }
+
+  .whatsapp-button:hover {
+    animation: none;
+  }
+</style>
