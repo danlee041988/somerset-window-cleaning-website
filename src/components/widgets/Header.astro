@@ -51,7 +51,7 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
 >
   <div class="max-w-7xl mx-auto px-4 sm:px-6">
     <!-- Mobile Header -->
-    <div class="flex items-center justify-between h-16 lg:hidden">
+    <div class="flex items-center justify-between h-20 lg:hidden">
       <!-- Logo -->
       <a href={getHomePermalink()} class="flex-shrink-0">
         <Logo />
@@ -77,7 +77,7 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
     </div>
 
     <!-- Desktop Header -->
-    <div class="hidden lg:flex items-center justify-between h-20">
+    <div class="hidden lg:flex items-center justify-between h-24">
       <!-- Logo -->
       <a href={getHomePermalink()} class="flex-shrink-0">
         <Logo />
@@ -143,7 +143,7 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
   >
     <div class="flex flex-col h-full">
       <!-- Header -->
-      <div class="flex items-center justify-between h-16 px-4 border-b border-gray-800">
+      <div class="flex items-center justify-between h-20 px-4 border-b border-gray-800">
         <Logo />
         <button
           id="mobile-menu-close"
