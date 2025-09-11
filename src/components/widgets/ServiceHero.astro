@@ -1,5 +1,6 @@
 ---
 import Image from '~/components/common/Image.astro';
+import FadeInImage from '~/components/common/FadeInImage.astro';
 import Button from '~/components/ui/Button.astro';
 import type { Hero as Props } from '~/types';
 
@@ -17,9 +18,9 @@ const {
 
 ---
 
-<section class="relative md:-mt-[76px] not-prose overflow-hidden service-hero" {...id ? { id } : {}}>
+<section class="relative md:-mt-[76px] not-prose min-h-screen flex items-center service-hero" {...id ? { id } : {}}>
   <!-- Background with Ken Burns effect -->
-  <div class="absolute inset-0 pointer-events-none w-full hero-background" aria-hidden="true">
+  <div class="absolute inset-0 pointer-events-none hero-background" aria-hidden="true">
     <slot name="bg">
       {bg ? <Fragment set:html={bg} /> : null}
     </slot>
@@ -29,9 +30,9 @@ const {
     
   </div>
   
-  <!-- Content with parallax effect -->
-  <div class="relative max-w-7xl mx-auto px-4 sm:px-6 hero-content">
-    <div class="pt-0 md:pt-[76px] pointer-events-none"></div>
+  <!-- Content -->
+  <div class="relative max-w-7xl mx-auto px-4 sm:px-6 w-full hero-content">
+    <div class="pt-0 md:pt-0 pointer-events-none"></div>
     <div class="py-12 md:py-20">
       <div class="text-center pb-10 md:pb-16 max-w-5xl mx-auto">
         {tagline && (
@@ -153,50 +154,4 @@ const {
   
 </style>
 
-<script>
-  // Parallax effect on scroll
-  document.addEventListener('DOMContentLoaded', () => {
-    const heroSections = document.querySelectorAll('.service-hero');
-    
-    heroSections.forEach(hero => {
-      const content = hero.querySelector('.hero-content');
-      const background = hero.querySelector('.hero-background');
-      
-      if (!content || !background) return;
-      
-      // Throttled scroll handler for performance
-      let ticking = false;
-      
-      function updateParallax() {
-        const scrolled = window.pageYOffset;
-        const heroRect = hero.getBoundingClientRect();
-        const heroTop = heroRect.top + scrolled;
-        const heroHeight = heroRect.height;
-        
-        // Only apply parallax when hero is in viewport
-        if (scrolled + window.innerHeight > heroTop && scrolled < heroTop + heroHeight) {
-          const parallaxSpeed = 0.3;
-          const yPos = -(scrolled - heroTop) * parallaxSpeed;
-          
-          background.style.transform = `translateY(${yPos}px)`;
-        }
-        
-        ticking = false;
-      }
-      
-      function requestTick() {
-        if (!ticking) {
-          window.requestAnimationFrame(updateParallax);
-          ticking = true;
-        }
-      }
-      
-      // Check for reduced motion preference
-      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      
-      if (!prefersReducedMotion) {
-        window.addEventListener('scroll', requestTick, { passive: true });
-      }
-    });
-  });
-</script>
+<!-- Removed parallax scrolling for consistency with other pages -->

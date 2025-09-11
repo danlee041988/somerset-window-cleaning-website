@@ -1,0 +1,114 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import Hero from '~/components/widgets/Hero.astro';
+import PostcodeChecker from '~/components/widgets/PostcodeChecker.astro';
+
+const metadata = {
+  title: 'Areas We Cover | Somerset Window Cleaning',
+  description: 'Somerset Window Cleaning covers 38+ postcodes across Somerset, Bath, and surrounding areas. Check if we service your location.',
+  ignoreTitleTemplate: true,
+};
+---
+
+<Layout metadata={metadata}>
+  <Hero
+    tagline="Coverage Area"
+    title="Areas We Cover"
+    subtitle="Professional window cleaning services across Somerset, Bath & surrounding areas"
+    image={{
+      src: '~/assets/images/somerset-map.jpg',
+      alt: 'Somerset coverage area map',
+    }}
+  />
+
+  <!-- Postcode Checker -->
+  <PostcodeChecker />
+
+  <!-- Coverage Areas -->
+  <section class="py-16 bg-white">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Our Service Areas</h2>
+        <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+          We provide regular window cleaning services to residential and commercial properties 
+          across Somerset and surrounding areas. Below are the postcodes we currently cover.
+        </p>
+      </div>
+
+      <!-- Coverage Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Bath & North East Somerset -->
+        <div class="bg-gray-50 rounded-lg p-6">
+          <h3 class="text-xl font-bold text-gray-900 mb-4">Bath & North East Somerset</h3>
+          <div class="space-y-2">
+            <p class="text-gray-700"><strong>Postcodes:</strong> BA1, BA2, BA3</p>
+            <p class="text-gray-600">Including Bath city centre, Bathwick, Combe Down, and surrounding areas.</p>
+          </div>
+        </div>
+
+        <!-- Mendip -->
+        <div class="bg-gray-50 rounded-lg p-6">
+          <h3 class="text-xl font-bold text-gray-900 mb-4">Mendip District</h3>
+          <div class="space-y-2">
+            <p class="text-gray-700"><strong>Postcodes:</strong> BA4, BA5, BA6, BA11, BA16</p>
+            <p class="text-gray-600">Including Shepton Mallet, Wells, Glastonbury, Street, and Frome.</p>
+          </div>
+        </div>
+
+        <!-- Sedgemoor -->
+        <div class="bg-gray-50 rounded-lg p-6">
+          <h3 class="text-xl font-bold text-gray-900 mb-4">Sedgemoor</h3>
+          <div class="space-y-2">
+            <p class="text-gray-700"><strong>Postcodes:</strong> BA6, BA7, BA8</p>
+            <p class="text-gray-600">Including Bridgwater, Burnham-on-Sea, and Highbridge.</p>
+          </div>
+        </div>
+
+        <!-- South Somerset -->
+        <div class="bg-gray-50 rounded-lg p-6">
+          <h3 class="text-xl font-bold text-gray-900 mb-4">South Somerset</h3>
+          <div class="space-y-2">
+            <p class="text-gray-700"><strong>Postcodes:</strong> BA9, BA10, BA20, BA21, BA22</p>
+            <p class="text-gray-600">Including Yeovil, Castle Cary, Wincanton, and Chard.</p>
+          </div>
+        </div>
+
+        <!-- Taunton Deane -->
+        <div class="bg-gray-50 rounded-lg p-6">
+          <h3 class="text-xl font-bold text-gray-900 mb-4">Taunton Deane</h3>
+          <div class="space-y-2">
+            <p class="text-gray-700"><strong>Postcodes:</strong> TA1, TA2, TA3, TA4</p>
+            <p class="text-gray-600">Including Taunton, Wellington, and surrounding villages.</p>
+          </div>
+        </div>
+
+        <!-- West Somerset & More -->
+        <div class="bg-gray-50 rounded-lg p-6">
+          <h3 class="text-xl font-bold text-gray-900 mb-4">West Somerset & Beyond</h3>
+          <div class="space-y-2">
+            <p class="text-gray-700"><strong>Postcodes:</strong> TA5-TA24, BS25-BS28</p>
+            <p class="text-gray-600">Including Minehead, Watchet, and parts of North Somerset.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Additional Info -->
+      <div class="mt-12 text-center">
+        <div class="bg-blue-50 rounded-lg p-6 max-w-3xl mx-auto">
+          <p class="text-gray-700">
+            <strong>Don't see your postcode?</strong> We occasionally service areas outside our standard coverage 
+            for larger properties and commercial contracts. Please <a href="/book-online" class="text-brand-red hover:underline">get in touch</a> to 
+            discuss your requirements.
+          </p>
+        </div>
+      </div>
+
+      <!-- CTA -->
+      <div class="mt-12 text-center">
+        <a href="/book-online" class="btn btn-primary text-lg px-8 py-4">
+          Book Your Service
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>

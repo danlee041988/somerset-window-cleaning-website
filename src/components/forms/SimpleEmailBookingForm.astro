@@ -1,0 +1,595 @@
+---
+/**
+ * Modern EmailJS Booking Form
+ * Clean, modern design with improved UX
+ */
+
+export interface Props {
+  formId?: string;
+  className?: string;
+}
+
+const { 
+  formId = "email-booking-form",
+  className = ""
+} = Astro.props;
+---
+
+<form 
+  id={formId}
+  class={`booking-form ${className}`}
+  aria-label="Service booking form"
+>
+  <div class="space-y-6">
+    <!-- Contact Information Section -->
+    <div class="space-y-4">
+      <h3 class="text-lg font-semibold text-white">Your Information</h3>
+      
+      <!-- Name Field -->
+      <div>
+        <input
+          type="text"
+          id={`${formId}-name`}
+          name="name"
+          required
+          minlength="2"
+          maxlength="100"
+          class="w-full px-6 py-4 rounded-xl bg-black/50 backdrop-blur border border-gray-700/50 text-white placeholder-gray-500 focus:border-brand-red focus:ring-2 focus:ring-brand-red/20 focus:outline-none transition-all"
+          placeholder="Full Name *"
+        />
+      </div>
+
+      <!-- Email Field -->
+      <div>
+        <input
+          type="email"
+          id={`${formId}-email`}
+          name="email"
+          required
+          class="w-full px-6 py-4 rounded-xl bg-black/50 backdrop-blur border border-gray-700/50 text-white placeholder-gray-500 focus:border-brand-red focus:ring-2 focus:ring-brand-red/20 focus:outline-none transition-all"
+          placeholder="Email Address *"
+        />
+      </div>
+
+      <!-- Phone Field -->
+      <div>
+        <input
+          type="tel"
+          id={`${formId}-phone`}
+          name="phone"
+          required
+          class="w-full px-6 py-4 rounded-xl bg-black/50 backdrop-blur border border-gray-700/50 text-white placeholder-gray-500 focus:border-brand-red focus:ring-2 focus:ring-brand-red/20 focus:outline-none transition-all"
+          placeholder="Phone Number *"
+        />
+      </div>
+    </div>
+
+    <!-- Property Information Section -->
+    <div class="space-y-4">
+      <h3 class="text-lg font-semibold text-white">Property Details</h3>
+      
+      <div class="grid md:grid-cols-2 gap-4">
+        <!-- Property Type -->
+        <div>
+          <select
+            id={`${formId}-property`}
+            name="property_type"
+            class="w-full px-6 py-4 rounded-xl bg-black/50 backdrop-blur border border-gray-700/50 text-white focus:border-brand-red focus:ring-2 focus:ring-brand-red/20 focus:outline-none transition-all appearance-none cursor-pointer"
+            style="background-image: url('data:image/svg+xml;charset=UTF-8,%3csvg xmlns=%27http://www.w3.org/2000/svg%27 fill=%27none%27 viewBox=%270 0 20 20%27%3e%3cpath stroke=%27%236b7280%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27 stroke-width=%271.5%27 d=%27M6 8l4 4 4-4%27/%3e%3c/svg%3e'); background-position: right 0.5rem center; background-repeat: no-repeat; background-size: 1.5em 1.5em; padding-right: 2.5rem;"
+          >
+            <option value="" class="bg-gray-900">Property Type</option>
+            <option value="Terraced House" class="bg-gray-900">Terraced House</option>
+            <option value="Semi-Detached House" class="bg-gray-900">Semi-Detached House</option>
+            <option value="Detached House" class="bg-gray-900">Detached House</option>
+            <option value="Bungalow" class="bg-gray-900">Bungalow</option>
+            <option value="Flat/Apartment" class="bg-gray-900">Flat/Apartment</option>
+            <option value="Commercial Property" class="bg-gray-900">Commercial Property</option>
+          </select>
+        </div>
+
+        <!-- Number of Bedrooms -->
+        <div>
+          <select
+            id={`${formId}-bedrooms`}
+            name="bedrooms"
+            class="w-full px-6 py-4 rounded-xl bg-black/50 backdrop-blur border border-gray-700/50 text-white focus:border-brand-red focus:ring-2 focus:ring-brand-red/20 focus:outline-none transition-all appearance-none cursor-pointer"
+            style="background-image: url('data:image/svg+xml;charset=UTF-8,%3csvg xmlns=%27http://www.w3.org/2000/svg%27 fill=%27none%27 viewBox=%270 0 20 20%27%3e%3cpath stroke=%27%236b7280%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27 stroke-width=%271.5%27 d=%27M6 8l4 4 4-4%27/%3e%3c/svg%3e'); background-position: right 0.5rem center; background-repeat: no-repeat; background-size: 1.5em 1.5em; padding-right: 2.5rem;"
+          >
+            <option value="" class="bg-gray-900">Number of Bedrooms</option>
+            <option value="1" class="bg-gray-900">1 Bedroom</option>
+            <option value="2" class="bg-gray-900">2 Bedrooms</option>
+            <option value="3" class="bg-gray-900">3 Bedrooms</option>
+            <option value="4" class="bg-gray-900">4 Bedrooms</option>
+            <option value="5+" class="bg-gray-900">5+ Bedrooms</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Postcode Field -->
+      <div>
+        <input
+          type="text"
+          id={`${formId}-postcode`}
+          name="postcode"
+          required
+          pattern="[A-Za-z]{1,2}[0-9]{1,2}[A-Za-z]?\s?[0-9][A-Za-z]{2}"
+          placeholder="Postcode *"
+          class="w-full px-6 py-4 rounded-xl bg-black/50 backdrop-blur border border-gray-700/50 text-white placeholder-gray-500 focus:border-brand-red focus:ring-2 focus:ring-brand-red/20 focus:outline-none transition-all"
+        />
+      </div>
+
+      <!-- Conservatory Question -->
+      <div class="bg-black/30 rounded-xl p-4 border border-gray-700/50">
+        <p class="text-white mb-3">Does the property have a conservatory?</p>
+        <div class="flex gap-4">
+          <label class="flex items-center cursor-pointer group">
+            <input
+              type="radio"
+              name="has_conservatory"
+              value="yes"
+              class="sr-only peer"
+            />
+            <div class="w-6 h-6 rounded-full border-2 border-gray-600 peer-checked:border-brand-red peer-checked:bg-brand-red transition-all duration-200 flex items-center justify-center">
+              <div class="w-2 h-2 rounded-full bg-white scale-0 peer-checked:scale-100 transition-transform duration-200"></div>
+            </div>
+            <span class="ml-3 text-white group-hover:text-brand-red transition-colors">Yes</span>
+          </label>
+          <label class="flex items-center cursor-pointer group">
+            <input
+              type="radio"
+              name="has_conservatory"
+              value="no"
+              class="sr-only peer"
+            />
+            <div class="w-6 h-6 rounded-full border-2 border-gray-600 peer-checked:border-brand-red peer-checked:bg-brand-red transition-all duration-200 flex items-center justify-center">
+              <div class="w-2 h-2 rounded-full bg-white scale-0 peer-checked:scale-100 transition-transform duration-200"></div>
+            </div>
+            <span class="ml-3 text-white group-hover:text-brand-red transition-colors">No</span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <!-- Services Section -->
+    <div class="space-y-4">
+      <h3 class="text-lg font-semibold text-white">Select Services *</h3>
+      <div class="grid gap-3">
+        <!-- Window Cleaning -->
+        <label class="relative flex items-start p-4 rounded-xl bg-black/30 border border-gray-700/50 cursor-pointer hover:border-brand-red/50 transition-all group">
+          <input
+            type="checkbox"
+            id={`${formId}-service-window`}
+            name="services"
+            value="Window Cleaning"
+            class="sr-only peer"
+          />
+          <div class="w-6 h-6 rounded border-2 border-gray-600 peer-checked:border-brand-red peer-checked:bg-brand-red transition-all duration-200 flex items-center justify-center flex-shrink-0 mt-0.5">
+            <svg class="w-4 h-4 text-white opacity-0 peer-checked:opacity-100 transition-opacity" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+            </svg>
+          </div>
+          <div class="ml-4 flex-1">
+            <span class="font-medium text-white group-hover:text-brand-red transition-colors">Window Cleaning</span>
+            <p class="text-sm text-gray-400 mt-1">Professional exterior window cleaning with pure water system</p>
+          </div>
+        </label>
+
+        <!-- Gutter Cleaning -->
+        <label class="relative flex items-start p-4 rounded-xl bg-black/30 border border-gray-700/50 cursor-pointer hover:border-brand-red/50 transition-all group">
+          <input
+            type="checkbox"
+            id={`${formId}-service-gutter`}
+            name="services"
+            value="Gutter Cleaning"
+            class="sr-only peer"
+          />
+          <div class="w-6 h-6 rounded border-2 border-gray-600 peer-checked:border-brand-red peer-checked:bg-brand-red transition-all duration-200 flex items-center justify-center flex-shrink-0 mt-0.5">
+            <svg class="w-4 h-4 text-white opacity-0 peer-checked:opacity-100 transition-opacity" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+            </svg>
+          </div>
+          <div class="ml-4 flex-1">
+            <span class="font-medium text-white group-hover:text-brand-red transition-colors">Gutter Cleaning</span>
+            <p class="text-sm text-gray-400 mt-1">Vacuum system removes all debris safely from ground level</p>
+          </div>
+        </label>
+
+        <!-- Solar Panel Cleaning -->
+        <label class="relative flex items-start p-4 rounded-xl bg-black/30 border border-gray-700/50 cursor-pointer hover:border-brand-red/50 transition-all group">
+          <input
+            type="checkbox"
+            id={`${formId}-service-solar`}
+            name="services"
+            value="Solar Panel Cleaning"
+            class="sr-only peer"
+          />
+          <div class="w-6 h-6 rounded border-2 border-gray-600 peer-checked:border-brand-red peer-checked:bg-brand-red transition-all duration-200 flex items-center justify-center flex-shrink-0 mt-0.5">
+            <svg class="w-4 h-4 text-white opacity-0 peer-checked:opacity-100 transition-opacity" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+            </svg>
+          </div>
+          <div class="ml-4 flex-1">
+            <span class="font-medium text-white group-hover:text-brand-red transition-colors">Solar Panel Cleaning</span>
+            <p class="text-sm text-gray-400 mt-1">Maximize efficiency with specialist solar panel cleaning</p>
+          </div>
+        </label>
+
+        <!-- Conservatory Cleaning -->
+        <label class="relative flex items-start p-4 rounded-xl bg-black/30 border border-gray-700/50 cursor-pointer hover:border-brand-red/50 transition-all group">
+          <input
+            type="checkbox"
+            id={`${formId}-service-conservatory`}
+            name="services"
+            value="Conservatory Cleaning"
+            class="sr-only peer"
+          />
+          <div class="w-6 h-6 rounded border-2 border-gray-600 peer-checked:border-brand-red peer-checked:bg-brand-red transition-all duration-200 flex items-center justify-center flex-shrink-0 mt-0.5">
+            <svg class="w-4 h-4 text-white opacity-0 peer-checked:opacity-100 transition-opacity" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+            </svg>
+          </div>
+          <div class="ml-4 flex-1">
+            <span class="font-medium text-white group-hover:text-brand-red transition-colors">Conservatory Cleaning</span>
+            <p class="text-sm text-gray-400 mt-1">Complete roof and frame cleaning to restore light</p>
+          </div>
+        </label>
+
+        <!-- Fascia & Soffit Cleaning -->
+        <label class="relative flex items-start p-4 rounded-xl bg-black/30 border border-gray-700/50 cursor-pointer hover:border-brand-red/50 transition-all group">
+          <input
+            type="checkbox"
+            id={`${formId}-service-fascia`}
+            name="services"
+            value="Fascia & Soffit Cleaning"
+            class="sr-only peer"
+          />
+          <div class="w-6 h-6 rounded border-2 border-gray-600 peer-checked:border-brand-red peer-checked:bg-brand-red transition-all duration-200 flex items-center justify-center flex-shrink-0 mt-0.5">
+            <svg class="w-4 h-4 text-white opacity-0 peer-checked:opacity-100 transition-opacity" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+            </svg>
+          </div>
+          <div class="ml-4 flex-1">
+            <span class="font-medium text-white group-hover:text-brand-red transition-colors">Fascia & Soffit Cleaning</span>
+            <p class="text-sm text-gray-400 mt-1">Restore UPVC to brilliant white appearance</p>
+          </div>
+        </label>
+      </div>
+    </div>
+
+    <!-- Window Cleaning Frequency (shown when window cleaning is selected) -->
+    <div id={`${formId}-frequency-section`} class="hidden space-y-4 animate-fadeIn">
+      <h3 class="text-lg font-semibold text-white">Window cleaning frequency</h3>
+      <div class="grid gap-3">
+        <label class="relative flex items-start p-4 rounded-xl bg-black/30 border border-gray-700/50 cursor-pointer hover:border-brand-red/50 transition-all group" tabindex="0">
+          <input
+            type="radio"
+            id={`${formId}-frequency-4`}
+            name="frequency"
+            value="4-weekly"
+            class="sr-only peer"
+            tabindex="-1"
+          />
+          <div class="w-6 h-6 rounded-full border-2 border-gray-600 peer-checked:border-brand-red peer-checked:bg-brand-red transition-all duration-200 flex items-center justify-center flex-shrink-0 mt-0.5">
+            <div class="w-2.5 h-2.5 rounded-full bg-white scale-0 peer-checked:scale-100 transition-transform duration-200"></div>
+          </div>
+          <div class="ml-4 flex-1">
+            <span class="font-medium text-white group-hover:text-brand-red transition-colors">4-Weekly Service</span>
+            <p class="text-sm text-gray-400 mt-1">Most popular - keeps windows consistently clean</p>
+          </div>
+        </label>
+
+        <label class="relative flex items-start p-4 rounded-xl bg-black/30 border border-gray-700/50 cursor-pointer hover:border-brand-red/50 transition-all group" tabindex="0">
+          <input
+            type="radio"
+            id={`${formId}-frequency-8`}
+            name="frequency"
+            value="8-weekly"
+            class="sr-only peer"
+            tabindex="-1"
+          />
+          <div class="w-6 h-6 rounded-full border-2 border-gray-600 peer-checked:border-brand-red peer-checked:bg-brand-red transition-all duration-200 flex items-center justify-center flex-shrink-0 mt-0.5">
+            <div class="w-2.5 h-2.5 rounded-full bg-white scale-0 peer-checked:scale-100 transition-transform duration-200"></div>
+          </div>
+          <div class="ml-4 flex-1">
+            <span class="font-medium text-white group-hover:text-brand-red transition-colors">8-Weekly Service</span>
+            <p class="text-sm text-gray-400 mt-1">Good for less exposed properties</p>
+          </div>
+        </label>
+
+        <label class="relative flex items-start p-4 rounded-xl bg-black/30 border border-yellow-700/50 cursor-pointer hover:border-yellow-600/50 transition-all group" tabindex="0">
+          <input
+            type="radio"
+            id={`${formId}-frequency-one`}
+            name="frequency"
+            value="one-off"
+            class="sr-only peer"
+            tabindex="-1"
+          />
+          <div class="w-6 h-6 rounded-full border-2 border-gray-600 peer-checked:border-yellow-500 peer-checked:bg-yellow-500 transition-all duration-200 flex items-center justify-center flex-shrink-0 mt-0.5">
+            <div class="w-2.5 h-2.5 rounded-full bg-white scale-0 peer-checked:scale-100 transition-transform duration-200"></div>
+          </div>
+          <div class="ml-4 flex-1">
+            <span class="font-medium text-white group-hover:text-yellow-400 transition-colors">One-Off Clean</span>
+            <p class="text-sm text-yellow-500 mt-1">⚠️ Additional charges apply for one-off services</p>
+          </div>
+        </label>
+      </div>
+    </div>
+
+    <!-- Additional Information -->
+    <div class="space-y-4">
+      <h3 class="text-lg font-semibold text-white">Additional Information</h3>
+      <textarea
+        id={`${formId}-message`}
+        name="message"
+        rows="3"
+        class="w-full px-6 py-4 rounded-xl bg-black/50 backdrop-blur border border-gray-700/50 text-white placeholder-gray-500 focus:border-brand-red focus:ring-2 focus:ring-brand-red/20 focus:outline-none transition-all resize-none"
+        placeholder="Any specific requirements or access information..."
+      ></textarea>
+    </div>
+
+    <!-- Submit Button -->
+    <button
+      type="submit"
+      class="w-full bg-gradient-to-r from-brand-red to-red-700 hover:from-red-700 hover:to-red-800 text-white font-bold py-5 px-8 rounded-xl transition-all duration-300 shadow-lg hover:shadow-brand-red/30 transform hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+    >
+      <span class="button-text">Get Your Free Quote</span>
+      <span class="loading-text hidden flex items-center justify-center gap-2">
+        <svg class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+          <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+          <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+        </svg>
+        Sending...
+      </span>
+    </button>
+
+    <!-- Success/Error Messages -->
+    <div id={`${formId}-success`} class="hidden bg-gradient-to-r from-green-900/30 to-green-950/30 backdrop-blur border border-green-700/50 text-green-400 px-6 py-4 rounded-xl animate-slideUp" role="alert">
+      <div class="flex items-start gap-3">
+        <svg class="w-6 h-6 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+          <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+        </svg>
+        <div>
+          <p class="font-semibold">Thank you for your enquiry!</p>
+          <p class="text-sm mt-1">We'll be in touch within 24 hours with your personalised quote.</p>
+        </div>
+      </div>
+    </div>
+    
+    <div id={`${formId}-error`} class="hidden bg-gradient-to-r from-red-900/30 to-red-950/30 backdrop-blur border border-red-700/50 text-red-400 px-6 py-4 rounded-xl animate-shake" role="alert">
+      <div class="flex items-start gap-3">
+        <svg class="w-6 h-6 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+          <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/>
+        </svg>
+        <div>
+          <p class="font-semibold">Oops! Something went wrong</p>
+          <p class="text-sm mt-1 error-detail">Please try again or call us on 01458 860339</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+
+<script>
+  import emailjs from '@emailjs/browser';
+  
+  // Initialize EmailJS
+  emailjs.init(import.meta.env.PUBLIC_EMAILJS_PUBLIC_KEY || '');
+  
+  // Get all forms on the page
+  const forms = document.querySelectorAll('.booking-form');
+  
+  forms.forEach(form => {
+    const formEl = form as HTMLFormElement;
+    const windowCleaningCheckbox = formEl.querySelector(`#${formEl.id}-service-window`) as HTMLInputElement;
+    const frequencySection = formEl.querySelector(`#${formEl.id}-frequency-section`) as HTMLElement;
+    
+    // Show/hide frequency section based on window cleaning selection
+    if (windowCleaningCheckbox && frequencySection) {
+      windowCleaningCheckbox.addEventListener('change', () => {
+        if (windowCleaningCheckbox.checked) {
+          frequencySection.classList.remove('hidden');
+          // Make frequency required when window cleaning is selected
+          const frequencyInputs = frequencySection.querySelectorAll('input[name="frequency"]');
+          frequencyInputs.forEach(input => {
+            input.setAttribute('required', 'required');
+          });
+        } else {
+          frequencySection.classList.add('hidden');
+          // Remove required attribute when window cleaning is not selected
+          const frequencyInputs = frequencySection.querySelectorAll('input[name="frequency"]');
+          frequencyInputs.forEach(input => {
+            input.removeAttribute('required');
+          });
+          // Clear selection
+          const selectedFrequency = frequencySection.querySelector('input[name="frequency"]:checked') as HTMLInputElement;
+          if (selectedFrequency) {
+            selectedFrequency.checked = false;
+          }
+        }
+      });
+    }
+    
+    // Add keyboard navigation for custom radio/checkbox labels
+    const customLabels = formEl.querySelectorAll('label[tabindex="0"]');
+    customLabels.forEach(label => {
+      label.addEventListener('keydown', (e) => {
+        if (e.key === ' ' || e.key === 'Enter') {
+          e.preventDefault();
+          const input = label.querySelector('input') as HTMLInputElement;
+          if (input) {
+            input.checked = !input.checked;
+            input.dispatchEvent(new Event('change', { bubbles: true }));
+          }
+        }
+      });
+    });
+    
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      const formData = new FormData(formEl);
+      const submitBtn = formEl.querySelector('button[type="submit"]') as HTMLButtonElement;
+      const successMsg = formEl.querySelector(`#${formEl.id}-success`) as HTMLElement;
+      const errorMsg = formEl.querySelector(`#${formEl.id}-error`) as HTMLElement;
+      
+      // Hide messages
+      successMsg.classList.add('hidden');
+      errorMsg.classList.add('hidden');
+      
+      // Disable button and show loading
+      submitBtn.disabled = true;
+      submitBtn.querySelector('.button-text')?.classList.add('hidden');
+      submitBtn.querySelector('.loading-text')?.classList.remove('hidden');
+      
+      try {
+        // Check if at least one service is selected
+        const selectedServices = formEl.querySelectorAll('input[name="services"]:checked');
+        if (selectedServices.length === 0) {
+          throw new Error('Please select at least one service');
+        }
+        
+        // Validate form
+        if (!formEl.checkValidity()) {
+          formEl.reportValidity();
+          throw new Error('Please fill in all required fields');
+        }
+        
+        // Collect selected services
+        const services: string[] = [];
+        selectedServices.forEach((checkbox: Element) => {
+          services.push((checkbox as HTMLInputElement).value);
+        });
+        
+        // Check if window cleaning is selected and frequency is required
+        if (windowCleaningCheckbox && windowCleaningCheckbox.checked) {
+          const selectedFrequency = formEl.querySelector('input[name="frequency"]:checked');
+          if (!selectedFrequency) {
+            throw new Error('Please select a window cleaning frequency');
+          }
+        }
+        
+        // Prepare email parameters
+        const emailParams = {
+          // Customer info
+          customer_name: formData.get('name'),
+          customer_email: formData.get('email'),
+          customer_phone: formData.get('phone'),
+          
+          // Service details
+          services_selected: services.join(', '),
+          window_cleaning_frequency: formData.get('frequency') || 'Not applicable',
+          property_type: formData.get('property_type') || 'Not specified',
+          bedrooms: formData.get('bedrooms') || 'Not specified',
+          has_conservatory: formData.get('has_conservatory') || 'Not specified',
+          postcode: formData.get('postcode'),
+          message: formData.get('message') || 'No additional information',
+          
+          // Company info
+          company_name: 'Somerset Window Cleaning',
+          company_email: 'info@somersetwindowcleaning.co.uk',
+          company_phone: '01458 860339',
+          
+          // Timestamp
+          date: new Date().toLocaleDateString('en-GB'),
+          time: new Date().toLocaleTimeString('en-GB'),
+        };
+        
+        // Send email using the template ID from env
+        const result = await emailjs.send(
+          import.meta.env.PUBLIC_EMAILJS_SERVICE_ID,
+          import.meta.env.PUBLIC_EMAILJS_TEMPLATE_ID,
+          emailParams
+        );
+        
+        if (result.status === 200) {
+          // Show success
+          successMsg.classList.remove('hidden');
+          formEl.reset();
+          // Hide frequency section after reset
+          if (frequencySection) {
+            frequencySection.classList.add('hidden');
+          }
+          
+          // Track conversion if Google Analytics is available
+          if (window.gtag) {
+            window.gtag('event', 'generate_lead', {
+              'currency': 'GBP',
+              'value': 50.0 // Average job value
+            });
+          }
+        } else {
+          throw new Error('Failed to send email');
+        }
+        
+      } catch (error) {
+        console.error('Form submission error:', error);
+        errorMsg.classList.remove('hidden');
+        // Update error message if it's a validation error
+        const errorDetail = errorMsg.querySelector('.error-detail');
+        if (errorDetail && error instanceof Error) {
+          if (error.message.includes('service') || error.message.includes('frequency')) {
+            errorDetail.textContent = error.message;
+          } else {
+            errorDetail.textContent = 'Please try again or call us on 01458 860339';
+          }
+        }
+      } finally {
+        // Re-enable button
+        submitBtn.disabled = false;
+        submitBtn.querySelector('.button-text')?.classList.remove('hidden');
+        submitBtn.querySelector('.loading-text')?.classList.add('hidden');
+      }
+    });
+  });
+</script>
+
+<style>
+  /* Custom checkbox styles */
+  input[type="checkbox"]:checked + div svg {
+    animation: checkmark 0.2s ease-in-out;
+  }
+  
+  /* Custom radio styles */
+  input[type="radio"]:checked + div > div {
+    animation: radioDot 0.2s ease-in-out;
+  }
+  
+  @keyframes checkmark {
+    from { transform: scale(0); }
+    to { transform: scale(1); }
+  }
+  
+  @keyframes radioDot {
+    from { transform: scale(0); }
+    to { transform: scale(1); }
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  @keyframes slideUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  @keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+  }
+  
+  .animate-fadeIn {
+    animation: fadeIn 0.3s ease-out;
+  }
+  
+  .animate-slideUp {
+    animation: slideUp 0.3s ease-out;
+  }
+  
+  .animate-shake {
+    animation: shake 0.5s ease-in-out;
+  }
+</style>

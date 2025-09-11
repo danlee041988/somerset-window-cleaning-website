@@ -1,8 +1,13 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
-import SupabaseBookingForm from '~/components/forms/SupabaseBookingForm.astro';
+import { Icon } from 'astro-icon/components';
+import { Picture } from 'astro:assets';
+import SimpleEmailBookingForm from '~/components/forms/SimpleEmailBookingForm.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
 import Features2 from '~/components/widgets/Features2.astro';
+
+// Import hero image
+import bookingHeroImage from '~/assets/images/services/Image.jpg';
 
 const metadata = {
   title: 'Book Window Cleaning Online | Somerset Window Cleaning',
@@ -34,115 +39,136 @@ const benefits = [
 ---
 
 <Layout metadata={metadata}>
-  <!-- Hero Section -->
-  <section class="relative bg-primary-50 py-12 md:py-16">
+  <!-- Hero Section with Image -->
+  <section class="relative bg-black overflow-hidden">
+    <!-- Background Image -->
+    <div class="absolute inset-0 z-0">
+      <Picture
+        src={bookingHeroImage}
+        alt="Professional window cleaning service in Somerset"
+        width={1920}
+        height={600}
+        widths={[640, 768, 1024, 1280, 1600, 1920]}
+        sizes="100vw"
+        formats={['webp', 'jpg']}
+        loading="eager"
+        fetchpriority="high"
+        quality={80}
+        class="absolute inset-0 w-full h-full object-cover opacity-30"
+      />
+      <div class="absolute inset-0 bg-gradient-to-b from-black/50 via-black/70 to-black"></div>
+    </div>
+    
+    <!-- Content -->
+    <div class="relative z-10 py-16 md:py-24">
+      <div class="max-w-7xl mx-auto px-4">
+        <div class="text-center">
+          <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">
+            Book Your <span class="text-brand-red">Window Cleaning</span> Service
+          </h1>
+          <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+            Professional window cleaning across Somerset. Get an instant quote and book online in minutes.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Benefits Bar -->
+  <section class="py-8 bg-gradient-to-b from-black to-gray-900">
     <div class="max-w-7xl mx-auto px-4">
-      <div class="text-center mb-8">
-        <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-          Book Your <span class="text-primary-600">Window Cleaning</span> Service
-        </h1>
-        <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-          Professional window cleaning across Somerset. Get an instant quote and book online in minutes.
-        </p>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+        {benefits.map((benefit) => (
+          <div class="flex flex-col items-center">
+            <Icon name={benefit.icon} class="w-8 h-8 text-brand-red mb-2" />
+            <h3 class="font-semibold text-white text-sm">{benefit.title}</h3>
+            <p class="text-gray-400 text-xs mt-1">{benefit.description}</p>
+          </div>
+        ))}
       </div>
     </div>
   </section>
 
   <!-- Main Booking Section -->
-  <section class="py-12 md:py-16 bg-white">
-    <div class="max-w-7xl mx-auto px-4">
-      <div class="grid md:grid-cols-2 gap-12 items-start">
-        <!-- Form Column -->
-        <div class="bg-gray-50 rounded-xl p-6 md:p-8">
-          <h2 class="text-2xl font-bold text-gray-900 mb-6">Get Your Free Quote</h2>
-          <SupabaseBookingForm formId="main-booking-form" />
+  <section class="py-12 md:py-16 bg-black">
+    <div class="max-w-5xl mx-auto px-4">
+      <div class="bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl p-6 md:p-10 border border-gray-700/50 shadow-2xl">
+        <h2 class="text-3xl font-bold text-white mb-8 text-center">Get Your Free Quote</h2>
+        <SimpleEmailBookingForm formId="main-booking-form" />
+      </div>
+      
+      <!-- Trust Badges Below Form -->
+      <div class="mt-8 grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div class="flex items-center justify-center gap-2 text-gray-300">
+          <svg class="w-5 h-5 text-green-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+          </svg>
+          <span class="text-sm">100% Satisfaction</span>
         </div>
-
-        <!-- Benefits Column -->
-        <div>
-          <h2 class="text-2xl font-bold text-gray-900 mb-6">Why Choose Somerset Window Cleaning?</h2>
-          <Features2
-            items={benefits}
-            columns={1}
-          />
-          
-          <!-- Trust Badges -->
-          <div class="mt-8 p-6 bg-primary-50 rounded-lg">
-            <h3 class="font-semibold text-gray-900 mb-4">Our Guarantees:</h3>
-            <ul class="space-y-2 text-gray-700">
-              <li class="flex items-start">
-                <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-                </svg>
-                100% Satisfaction Guarantee
-              </li>
-              <li class="flex items-start">
-                <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-                </svg>
-                Fully Insured & DBS Checked
-              </li>
-              <li class="flex items-start">
-                <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-                </svg>
-                Eco-Friendly Pure Water System
-              </li>
-              <li class="flex items-start">
-                <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-                </svg>
-                No Contract Required
-              </li>
-            </ul>
-          </div>
+        <div class="flex items-center justify-center gap-2 text-gray-300">
+          <svg class="w-5 h-5 text-green-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+          </svg>
+          <span class="text-sm">Fully Insured</span>
+        </div>
+        <div class="flex items-center justify-center gap-2 text-gray-300">
+          <svg class="w-5 h-5 text-green-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+          </svg>
+          <span class="text-sm">Eco-Friendly</span>
+        </div>
+        <div class="flex items-center justify-center gap-2 text-gray-300">
+          <svg class="w-5 h-5 text-green-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+          </svg>
+          <span class="text-sm">No Contract</span>
         </div>
       </div>
     </div>
   </section>
 
   <!-- Service Areas -->
-  <section class="py-12 bg-gray-50">
+  <section class="py-12 bg-gradient-to-b from-black to-gray-900">
     <div class="max-w-7xl mx-auto px-4 text-center">
-      <h2 class="text-2xl font-bold text-gray-900 mb-4">Areas We Cover</h2>
-      <p class="text-gray-600 mb-8">Professional window cleaning services across Somerset and surrounding areas</p>
+      <h2 class="text-2xl font-bold text-white mb-4">Areas We Cover</h2>
+      <p class="text-gray-300 mb-8">Professional window cleaning services across Somerset and surrounding areas</p>
       <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
-        <div class="bg-white p-4 rounded-lg shadow-sm">
-          <h3 class="font-semibold">Bath</h3>
-          <p class="text-sm text-gray-600">BA1 - BA3</p>
+        <div class="bg-gradient-to-br from-gray-800 to-gray-900 p-4 rounded-lg border border-gray-700/50">
+          <h3 class="font-semibold text-white">Bath</h3>
+          <p class="text-sm text-gray-400">BA1 - BA3</p>
         </div>
-        <div class="bg-white p-4 rounded-lg shadow-sm">
-          <h3 class="font-semibold">Bristol</h3>
-          <p class="text-sm text-gray-600">BS1 - BS48</p>
+        <div class="bg-gradient-to-br from-gray-800 to-gray-900 p-4 rounded-lg border border-gray-700/50">
+          <h3 class="font-semibold text-white">Bristol</h3>
+          <p class="text-sm text-gray-400">BS1 - BS48</p>
         </div>
-        <div class="bg-white p-4 rounded-lg shadow-sm">
-          <h3 class="font-semibold">Taunton</h3>
-          <p class="text-sm text-gray-600">TA1 - TA24</p>
+        <div class="bg-gradient-to-br from-gray-800 to-gray-900 p-4 rounded-lg border border-gray-700/50">
+          <h3 class="font-semibold text-white">Taunton</h3>
+          <p class="text-sm text-gray-400">TA1 - TA24</p>
         </div>
-        <div class="bg-white p-4 rounded-lg shadow-sm">
-          <h3 class="font-semibold">Frome</h3>
-          <p class="text-sm text-gray-600">BA11</p>
+        <div class="bg-gradient-to-br from-gray-800 to-gray-900 p-4 rounded-lg border border-gray-700/50">
+          <h3 class="font-semibold text-white">Frome</h3>
+          <p class="text-sm text-gray-400">BA11</p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- FAQ Section -->
-  <section class="py-12 bg-white">
+  <section class="py-12 bg-gray-900">
     <div class="max-w-4xl mx-auto px-4">
-      <h2 class="text-2xl font-bold text-gray-900 mb-8 text-center">Frequently Asked Questions</h2>
+      <h2 class="text-2xl font-bold text-white mb-8 text-center">Frequently Asked Questions</h2>
       <div class="space-y-6">
-        <div class="bg-gray-50 p-6 rounded-lg">
-          <h3 class="font-semibold text-gray-900 mb-2">How quickly can you provide a quote?</h3>
-          <p class="text-gray-600">We aim to respond to all quote requests within 24 hours. For urgent requests, please call us directly on 07450 227851.</p>
+        <div class="bg-gradient-to-br from-gray-800 to-gray-900 p-6 rounded-lg border border-gray-700/50">
+          <h3 class="font-semibold text-white mb-2">How quickly can you provide a quote?</h3>
+          <p class="text-gray-300">We aim to respond to all quote requests within 24 hours. For urgent requests, please call us directly on 01458 860339.</p>
         </div>
-        <div class="bg-gray-50 p-6 rounded-lg">
-          <h3 class="font-semibold text-gray-900 mb-2">Do I need to be home during the service?</h3>
-          <p class="text-gray-600">No, as long as we have access to all windows. Many customers prefer to schedule service while they're at work.</p>
+        <div class="bg-gradient-to-br from-gray-800 to-gray-900 p-6 rounded-lg border border-gray-700/50">
+          <h3 class="font-semibold text-white mb-2">Do I need to be home during the service?</h3>
+          <p class="text-gray-300">No, as long as we have access to all windows. Many customers prefer to schedule service while they're at work.</p>
         </div>
-        <div class="bg-gray-50 p-6 rounded-lg">
-          <h3 class="font-semibold text-gray-900 mb-2">What payment methods do you accept?</h3>
-          <p class="text-gray-600">We accept bank transfer, cash, and card payments. Payment is due after service completion.</p>
+        <div class="bg-gradient-to-br from-gray-800 to-gray-900 p-6 rounded-lg border border-gray-700/50">
+          <h3 class="font-semibold text-white mb-2">What payment methods do you accept?</h3>
+          <p class="text-gray-300">We accept bank transfer, cash, and card payments. Payment is due after service completion.</p>
         </div>
       </div>
     </div>
@@ -156,13 +182,13 @@ const benefits = [
       {
         variant: 'primary',
         text: 'Call Now',
-        href: 'tel:07450227851',
+        href: 'tel:01458860339',
         icon: 'tabler:phone',
       },
       {
         variant: 'secondary',
         text: 'WhatsApp',
-        href: 'https://wa.me/447450227851',
+        href: 'https://wa.me/447415526331',
         icon: 'tabler:brand-whatsapp',
       }
     ]}

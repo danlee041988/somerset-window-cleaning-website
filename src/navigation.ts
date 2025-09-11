@@ -8,7 +8,7 @@ export const headerData = {
       ariaLabel: 'Go to homepage',
     },
     {
-      text: 'Services',
+      text: 'Services We Offer',
       href: getPermalink('/services'),
       ariaLabel: 'View our services',
       links: [
@@ -21,13 +21,23 @@ export const headerData = {
       ],
     },
     {
+      text: 'Areas We Cover',
+      href: getPermalink('/areas'),
+      ariaLabel: 'View areas covered by Somerset Window Cleaning',
+    },
+    {
       text: 'Meet the Team',
       href: getPermalink('/about'),
       ariaLabel: 'Meet the Somerset Window Cleaning team',
     },
+    {
+      text: 'FAQs',
+      href: getPermalink('/faqs'),
+      ariaLabel: 'Frequently asked questions about our services',
+    },
   ],
   actions: [
-    { text: 'Request Free Quote', href: getPermalink('/book-now'), variant: 'red', icon: 'tabler:file-text', priority: 1, class: 'sparkle-button animate-pulse hover:animate-none shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105', ariaLabel: 'Request free quote for window cleaning service' },
+    { text: 'Get Free Quote', href: getPermalink('/book-online'), variant: 'red', icon: 'tabler:file-text', priority: 1, class: 'btn btn-primary sparkle-button animate-pulse hover:animate-none shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105', ariaLabel: 'Get free quote for window cleaning service' },
   ],
 };
 
@@ -49,18 +59,19 @@ export const footerData = {
     {
       title: 'Get Started',
       links: [
-        { text: 'Request Free Quote', href: getPermalink('/book-now'), ariaLabel: 'Request free quote online' },
-        { text: 'Call 01458 860339', href: 'tel:01458860339', ariaLabel: 'Call Somerset Window Cleaning on 01458 860339' },
+        { text: 'Get Free Quote', href: getPermalink('/book-online'), ariaLabel: 'Get free quote online' },
         { text: 'WhatsApp Quote', href: 'https://wa.me/447415526331?text=Hi%20Somerset%20Window%20Cleaning%2C%20please%20can%20I%20get%20a%20quote%20for%20window%20cleaning', ariaLabel: 'Get a quote via WhatsApp' },
+        { text: 'Areas We Cover', href: getPermalink('/areas'), ariaLabel: 'View areas covered' },
         { text: 'Meet the Team', href: getPermalink('/about'), ariaLabel: 'Meet the Somerset Window Cleaning team' },
+        { text: 'FAQs', href: getPermalink('/faqs'), ariaLabel: 'Frequently asked questions' },
       ],
     },
     {
       title: 'Contact Details',
       links: [
+        { text: 'Call: 01458 860339', href: 'tel:01458860339', ariaLabel: 'Call Somerset Window Cleaning on 01458 860339' },
         { text: 'Email: info@somersetwindowcleaning.co.uk', href: 'mailto:info@somersetwindowcleaning.co.uk', ariaLabel: 'Email Somerset Window Cleaning' },
-        { text: '13 Rockhaven Business Centre', href: 'https://maps.google.com/?q=13+Rockhaven+Business+Centre+Gravenchon+Way+Street+Somerset+BA16+0HW', ariaLabel: 'View office location on Google Maps' },
-        { text: 'Gravenchon Way, Street, Somerset BA16 0HW', href: 'https://maps.google.com/?q=13+Rockhaven+Business+Centre+Gravenchon+Way+Street+Somerset+BA16+0HW', ariaLabel: 'View full address on Google Maps' },
+        { text: '13 Rockhaven Business Centre, Gravenchon Way, Street, Somerset BA16 0HW', href: 'https://maps.google.com/?q=13+Rockhaven+Business+Centre+Gravenchon+Way+Street+Somerset+BA16+0HW', ariaLabel: 'View office location on Google Maps' },
       ],
     },
   ],

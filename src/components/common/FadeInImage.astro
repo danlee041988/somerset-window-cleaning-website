@@ -1,0 +1,175 @@
+---
+import { Image } from 'astro:assets';
+import type { HTMLAttributes } from 'astro/types';
+
+export interface Props extends HTMLAttributes<'img'> {
+  src: string | ImageMetadata;
+  alt: string;
+  width?: number;
+  height?: number;
+  loading?: 'lazy' | 'eager';
+  class?: string;
+  sizes?: string;
+  widths?: number[];
+  priority?: boolean;
+}
+
+const {
+  src,
+  alt,
+  width,
+  height,
+  loading = 'lazy',
+  class: className = '',
+  sizes,
+  widths,
+  priority = false,
+  ...attrs
+} = Astro.props;
+
+// Use eager loading for priority images
+const finalLoading = priority ? 'eager' : loading;
+
+// Generate a unique ID for this image instance
+const imageId = `img-${Math.random().toString(36).substr(2, 9)}`;
+---
+
+<div class={`fade-in-image-wrapper relative overflow-hidden ${className}`} data-image-id={imageId}>
+  <!-- Skeleton loader -->
+  <div class="skeleton-loader absolute inset-0 bg-gray-200 animate-pulse" aria-hidden="true"></div>
+  
+  <!-- Main image -->
+  <Image
+    src={src}
+    alt={alt}
+    width={width}
+    height={height}
+    loading={finalLoading}
+    class="fade-in-image opacity-0 transition-opacity duration-500 ease-in-out"
+    sizes={sizes}
+    widths={widths}
+    {...attrs}
+  />
+</div>
+
+<style>
+  .fade-in-image-wrapper {
+    background-color: #f3f4f6;
+  }
+  
+  .skeleton-loader {
+    background: linear-gradient(
+      90deg,
+      #f3f4f6 0%,
+      #e5e7eb 50%,
+      #f3f4f6 100%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+  }
+  
+  @keyframes shimmer {
+    0% {
+      background-position: -200% 0;
+    }
+    100% {
+      background-position: 200% 0;
+    }
+  }
+  
+  .fade-in-image.loaded {
+    opacity: 1;
+  }
+  
+  /* For images that are already cached, show immediately */
+  @media (prefers-reduced-motion: reduce) {
+    .fade-in-image {
+      transition: none;
+    }
+    .skeleton-loader {
+      animation: none;
+    }
+  }
+</style>
+
+<script>
+  // Image loading observer
+  document.addEventListener('DOMContentLoaded', () => {
+    const imageWrappers = document.querySelectorAll('.fade-in-image-wrapper');
+    
+    imageWrappers.forEach((wrapper) => {
+      const img = wrapper.querySelector('.fade-in-image') as HTMLImageElement;
+      const skeleton = wrapper.querySelector('.skeleton-loader');
+      
+      if (!img) return;
+      
+      // Function to handle image load
+      const handleImageLoad = () => {
+        img.classList.add('loaded');
+        if (skeleton) {
+          setTimeout(() => {
+            skeleton.style.display = 'none';
+          }, 500); // Match the transition duration
+        }
+      };
+      
+      // Check if image is already loaded (from cache)
+      if (img.complete && img.naturalHeight !== 0) {
+        handleImageLoad();
+      } else {
+        // Listen for load event
+        img.addEventListener('load', handleImageLoad);
+        
+        // Handle error case
+        img.addEventListener('error', () => {
+          // Still hide skeleton on error
+          if (skeleton) {
+            skeleton.style.display = 'none';
+          }
+          // Optionally show a placeholder or error state
+          img.style.opacity = '0.5';
+        });
+      }
+    });
+    
+    // Preload priority images
+    const priorityImages = document.querySelectorAll('img[loading="eager"]');
+    priorityImages.forEach((img) => {
+      const imageElement = img as HTMLImageElement;
+      if (imageElement.dataset.src && !imageElement.src) {
+        imageElement.src = imageElement.dataset.src;
+      }
+    });
+  });
+  
+  // Intersection Observer for truly lazy loading
+  if ('IntersectionObserver' in window) {
+    const lazyImageObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const wrapper = entry.target as HTMLElement;
+          const img = wrapper.querySelector('img');
+          
+          if (img && img.dataset.src && !img.src) {
+            img.src = img.dataset.src;
+            lazyImageObserver.unobserve(wrapper);
+          }
+        }
+      });
+    }, {
+      // Start loading when image is 50px away from viewport
+      rootMargin: '50px',
+    });
+    
+    // Observe all lazy images
+    document.addEventListener('DOMContentLoaded', () => {
+      const lazyImages = document.querySelectorAll('.fade-in-image-wrapper img[loading="lazy"]');
+      lazyImages.forEach((img) => {
+        const wrapper = img.closest('.fade-in-image-wrapper');
+        if (wrapper) {
+          lazyImageObserver.observe(wrapper);
+        }
+      });
+    });
+  }
+</script>

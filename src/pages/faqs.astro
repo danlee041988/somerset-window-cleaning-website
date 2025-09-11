@@ -1,0 +1,187 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import FAQs from '~/components/widgets/FAQs.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+import Hero2 from '~/components/widgets/Hero2.astro';
+
+const metadata = {
+  title: 'Frequently Asked Questions | Somerset Window Cleaning',
+  description: 'Get answers to common questions about our window cleaning, gutter clearing, and exterior cleaning services in Somerset. Pricing, booking, and service details.',
+  ignoreTitleTemplate: true,
+};
+---
+
+<Layout metadata={metadata}>
+  <!-- Hero Section -->
+  <Hero2>
+    <Fragment slot="title">
+      Frequently Asked <span class="text-red-600">Questions</span>
+    </Fragment>
+    <Fragment slot="subtitle">
+      Everything you need to know about our professional exterior cleaning services in Somerset
+    </Fragment>
+  </Hero2>
+
+  <!-- General Service Questions -->
+  <FAQs
+    id="general-faqs"
+    title="General Service Questions"
+    subtitle="Common questions about Somerset Window Cleaning services"
+    items={[
+      {
+        title: 'What areas do you cover?',
+        description: 'We provide professional exterior cleaning services throughout Somerset, including Bath, Wells, Street, Glastonbury, Bridgwater, Burnham-on-Sea, Highbridge, Cheddar, Axbridge, and surrounding villages. <a href="/book-online" class="text-red-600 hover:underline font-semibold">Check if we cover your postcode</a>.',
+      },
+      {
+        title: 'Are you fully insured?',
+        description: 'Yes, we carry comprehensive £5 million public liability insurance for your complete peace of mind. We can provide insurance certificates upon request for commercial clients.',
+      },
+      {
+        title: 'How do I pay for services?',
+        description: 'We accept card payments, bank transfers, and direct debit for regular customers. Payment is typically taken after work is completed, and you\'ll receive an invoice by email.',
+      },
+      {
+        title: 'Do you need access to my property?',
+        description: 'For most services, no access is required. We clean from outside using professional reach-and-wash equipment. We\'ll send notification messages when we arrive and complete work.',
+      },
+      {
+        title: 'What happens if I\'m not satisfied?',
+        description: 'We offer a 48-hour quality guarantee. If you\'re not completely happy with our work, we\'ll return to address any concerns at no extra cost.',
+      },
+      {
+        title: 'Can I book online?',
+        description: 'Absolutely! Our online booking system provides instant quotes and lets you schedule services at your convenience. <a href="/book-online" class="text-red-600 hover:underline font-semibold">Get your free quote now</a>.',
+      },
+      {
+        title: 'Do you work in all weather?',
+        description: 'We work in light rain as our pure water system isn\'t affected by moisture. We only reschedule if conditions are unsafe (high winds, storms, or ice).',
+      },
+      {
+        title: 'How soon can you start?',
+        description: 'New customers are typically scheduled within one week of booking. We organize routes efficiently by area to provide reliable service.',
+      },
+    ]}
+  />
+
+  <!-- Window Cleaning FAQs -->
+  <FAQs
+    id="window-cleaning-faqs"
+    title="Window Cleaning Questions"
+    subtitle="Answers about our professional window cleaning service"
+    items={[
+      {
+        title: 'What cleaning frequency do you recommend?',
+        description: 'Most residential customers choose 4-weekly cleaning for consistently spotless windows. Properties in quieter areas often do well with 8-weekly service. We\'ll recommend the best schedule based on your location and preferences.',
+      },
+      {
+        title: 'Will rain affect freshly cleaned windows?',
+        description: 'No! Our pure water system leaves no residue, so rainwater simply sheets off without marking. Traditional detergents leave microscopic film that attracts dirt - pure water doesn\'t.',
+      },
+      {
+        title: 'Why pure water instead of detergents?',
+        description: 'Pure water removes all minerals and contaminants, leaving windows completely clean without residue. This results in longer-lasting cleanliness, streak-free drying, and better results than traditional cleaning products.',
+      },
+      {
+        title: 'Do you clean frames and sills too?',
+        description: 'Yes, absolutely! All external window frames, sills, and glass are cleaned as standard. We want your whole window to look perfect, not just the glass.',
+      },
+      {
+        title: 'What about difficult-to-reach windows?',
+        description: 'Our reach-and-wash system can safely clean windows up to 4 stories high from ground level. No ladders against your walls, no safety concerns, just professional results.',
+      },
+      {
+        title: 'Do you offer one-time cleaning?',
+        description: 'Yes! We provide one-off cleaning for special occasions, property moves, or seasonal deep cleans. No obligation to continue, though many customers love the convenience.',
+      },
+    ]}
+  />
+
+  <!-- Gutter Cleaning FAQs -->
+  <FAQs
+    id="gutter-cleaning-faqs"
+    title="Gutter Cleaning Questions"
+    subtitle="Important information about our gutter clearing service"
+    items={[
+      {
+        title: 'How do I know if my gutters need clearing?',
+        description: 'Signs include water overflowing during rain, plants growing in gutters, or staining on exterior walls. Most Somerset homes need clearing twice yearly - after autumn leaves and before summer storms.',
+      },
+      {
+        title: 'What damage can blocked gutters cause?',
+        description: 'Blocked gutters can lead to water damage costing thousands - damp in walls, foundation problems, and structural damage. Regular clearing prevents expensive repairs and protects your property investment.',
+      },
+      {
+        title: 'Why vacuum cleaning instead of ladders?',
+        description: 'Our vacuum system is safer (no ladders against your property), more thorough (we can see inside gutters with cameras), and creates no mess. It\'s modern technology applied to an age-old problem.',
+      },
+      {
+        title: 'Can you reach high gutters safely?',
+        description: 'Yes! Our equipment reaches up to 4 storeys from ground level. Whether you have a cottage or converted barn, we can clean your gutters safely without scaffolding.',
+      },
+      {
+        title: 'Do you provide before/after photos?',
+        description: 'Absolutely! We provide photo evidence as standard - partly for your peace of mind, partly because we\'re proud of our thorough work. You\'ll see exactly what we\'ve removed.',
+      },
+      {
+        title: 'Will you report any damage you find?',
+        description: 'Yes, we photograph any issues like loose brackets, cracks, or gaps. We won\'t attempt repairs (we\'re cleaners, not roofers), but we\'ll help you understand what needs attention.',
+      },
+    ]}
+  />
+
+  <!-- Pricing & Booking FAQs -->
+  <FAQs
+    id="pricing-faqs"
+    title="Pricing & Booking Questions"
+    subtitle="Transparent information about costs and scheduling"
+    items={[
+      {
+        title: 'How much do your services cost?',
+        description: 'Prices vary by property size and service type. Our online booking system provides instant, accurate quotes based on your specific requirements. <a href="/book-online" class="text-red-600 hover:underline font-semibold">Get your free quote in 60 seconds</a>.',
+      },
+      {
+        title: 'Do you offer discounts for multiple services?',
+        description: 'Yes! Many customers save money by combining services like window cleaning and gutter clearing. Our booking system automatically applies the best pricing for your service combination.',
+      },
+      {
+        title: 'Is there a minimum charge?',
+        description: 'We have reasonable minimum charges to ensure efficient routing and service delivery. These are clearly shown during the online quoting process.',
+      },
+      {
+        title: 'Can I change my service schedule?',
+        description: 'Of course! Regular customers can adjust frequency or pause service anytime. Just give us a call or send a message - we\'re flexible with your changing needs.',
+      },
+      {
+        title: 'Do you charge extra for difficult access?',
+        description: 'Standard access is included in our pricing. Only truly exceptional circumstances (like requiring special equipment) might incur additional costs, which we\'d discuss beforehand.',
+      },
+      {
+        title: 'What about cancellations?',
+        description: 'Life happens! For regular customers, no problem with reasonable notice. One-off bookings can be rescheduled if needed - we just ask for as much notice as possible.',
+      },
+    ]}
+  />
+
+  <!-- Contact CTA -->
+  <CallToAction
+    actions={[
+      {
+        variant: 'primary',
+        text: 'Get Free Quote',
+        href: '/book-online',
+        icon: 'tabler:file-text',
+      },
+      {
+        variant: 'secondary',
+        text: 'Call 01458 860339',
+        href: 'tel:01458860339',
+        icon: 'tabler:phone',
+      },
+    ]}
+  >
+    <Fragment slot="title">Still Have Questions?</Fragment>
+    <Fragment slot="subtitle">
+      Get in touch for personalized answers about your specific cleaning needs
+    </Fragment>
+  </CallToAction>
+</Layout>

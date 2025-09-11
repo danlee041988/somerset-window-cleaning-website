@@ -23,6 +23,7 @@ import AdvancedViewTransitions from '~/components/common/AdvancedViewTransitions
 import LocalBusinessSchema from '~/components/seo/LocalBusinessSchema.astro';
 import OrganizationSchema from '~/components/seo/OrganizationSchema.astro';
 import OptimizedFonts from '~/components/common/OptimizedFonts.astro';
+import FloatingWhatsApp from '~/components/widgets/FloatingWhatsApp.astro';
 
 // Modern View Transitions using ClientRouter (Astro 5+)
 import { ClientRouter } from 'astro:transitions';
@@ -126,8 +127,14 @@ const { language, textDirection } = I18N;
     <AriaEnhancer />
     <EnhancedKeyboardNav />
     <slot />
+    
+    <!-- Floating WhatsApp button for instant contact -->
+    <FloatingWhatsApp />
 
     <BasicScripts />
+    
+    <!-- Image loading enhancements -->
+    <script src="/image-loader.js" defer></script>
     
     <!-- Temporary fixes for development -->
     <script src="/unregister-sw.js" is:inline></script>

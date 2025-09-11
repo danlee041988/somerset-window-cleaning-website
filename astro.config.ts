@@ -10,7 +10,7 @@ import partytown from '@astrojs/partytown';
 import icon from 'astro-icon';
 import compress from 'astro-compress';
 import type { AstroIntegration } from 'astro';
-import vercel from '@astrojs/vercel/serverless';
+import vercel from '@astrojs/vercel';
 
 import astrowind from './vendor/integration';
 
@@ -33,18 +33,7 @@ export default defineConfig({
     host: true
   },
   
-  // Proxy API requests to backend during development
-  vite: {
-    server: {
-      proxy: {
-        '/api': {
-          target: 'http://localhost:3001',
-          changeOrigin: true,
-          rewrite: (path) => path
-        }
-      }
-    }
-  },
+  // Vite configuration will be at the end of the config
 
   integrations: [
     tailwind({
@@ -150,13 +139,7 @@ export default defineConfig({
     sourcemap: false,
   },
 
-  // Performance optimizations
-  server: {
-    // Enable port reuse for faster dev starts
-    port: 4321,
-    host: false, // Listen on all addresses
-    // HMR is now configured in vite config
-  },
+  // Server configuration (moved to vite config)
 
   markdown: {
     remarkPlugins: [readingTimeRemarkPlugin],
@@ -164,8 +147,10 @@ export default defineConfig({
   },
 
   vite: {
-    // Fix WebSocket connection issues
+    // Server and WebSocket configuration
     server: {
+      port: 4321,
+      host: false,
       hmr: {
         protocol: 'ws',
         host: 'localhost',
@@ -173,6 +158,14 @@ export default defineConfig({
       watch: {
         usePolling: false, // Disable polling unless necessary
       },
+      // Proxy API requests to backend during development
+      proxy: {
+        '/api': {
+          target: 'http://localhost:3001',
+          changeOrigin: true,
+          rewrite: (path) => path
+        }
+      }
     },
     build: {
       // Optimize chunk size for better caching

@@ -1,13 +1,6 @@
 ---
-import Layout from '~/layouts/PageLayout.astro';
-import Image from '~/components/common/Image.astro';
-import { siteConfig } from '~/config/site';
-
-const metadata = {
-  title: 'Request Your Free Quote | Somerset Window Cleaning',
-  description: 'Get a personalized quote for window cleaning, gutter clearing, conservatory cleaning and more. Professional service across Somerset. Quick response guaranteed.',
-  ignoreTitleTemplate: true,
-};
+// Redirect to the book-online page which has the working EmailJS form
+return Astro.redirect('/book-online', 301);
 ---
 
 <Layout metadata={metadata} structuredDataType="services">

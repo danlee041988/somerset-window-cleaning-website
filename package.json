@@ -54,7 +54,6 @@
     "@astrolib/seo": "^1.0.0-beta.8",
     "@emailjs/browser": "^3.11.0",
     "@fontsource-variable/inter": "^5.2.6",
-    "@supabase/supabase-js": "^2.56.1",
     "@types/nodemailer": "^7.0.1",
     "astro": "^5.12.9",
     "astro-embed": "^0.9.0",

@@ -50,8 +50,8 @@ const {
       <div class="service-card-container perspective-1000">
         <div class="service-card relative w-full h-[420px] md:h-[380px] lg:h-[420px] transition-transform duration-700 transform-style-preserve-3d cursor-pointer group">
           <!-- Front of card -->
-          <div class="card-front absolute inset-0 w-full h-full backface-hidden rounded-2xl bg-secondary border border-gray-700 hover:border-red-500/50 p-6 flex flex-col shadow-xl hover:shadow-2xl transition-all duration-300">
-            <div class="absolute inset-0 bg-gradient-to-br from-red-600/10 via-transparent to-red-600/5 rounded-2xl opacity-50"></div>
+          <div class="card-front absolute inset-0 w-full h-full backface-hidden rounded-2xl bg-gradient-to-br from-gray-800 to-gray-900 border border-gray-700/50 hover:border-gray-600 p-6 flex flex-col shadow-xl hover:shadow-2xl transition-all duration-300">
+            <div class="absolute inset-0 bg-gradient-to-br from-black/20 via-transparent to-black/10 rounded-2xl opacity-50"></div>
             <div class="relative flex-grow">
               <h3 class="text-2xl font-bold text-white mb-4 leading-tight">{title}</h3>
               <p class="text-gray-200 text-base leading-relaxed content-width">{description}</p>
@@ -59,8 +59,8 @@ const {
           </div>
           
           <!-- Back of card -->
-          <div class="card-back absolute inset-0 w-full h-full backface-hidden rounded-2xl bg-secondary border border-gray-700 p-6 flex flex-col justify-between rotate-y-180 shadow-2xl">
-            <div class="absolute inset-0 bg-gradient-to-br from-red-600/10 via-transparent to-red-600/5 rounded-2xl opacity-50"></div>
+          <div class="card-back absolute inset-0 w-full h-full backface-hidden rounded-2xl bg-gradient-to-br from-gray-800 to-gray-900 border border-gray-700/50 p-6 flex flex-col justify-between rotate-y-180 shadow-2xl">
+            <div class="absolute inset-0 bg-gradient-to-br from-black/20 via-transparent to-black/10 rounded-2xl opacity-50"></div>
             <div class="relative">
               <div class="flex items-center gap-3 mb-6">
                 <div class="w-10 h-10 bg-gradient-to-br from-success to-green-600 rounded-lg flex items-center justify-center shadow-lg">
@@ -91,7 +91,7 @@ const {
               <div class="relative">
                 <a 
                   href={callToAction.href}
-                  class="mt-6 inline-flex items-center justify-center w-full px-6 py-4 btn-primary rounded-xl shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-300"
+                  class="mt-6 inline-flex items-center justify-center w-full px-6 py-4 rounded-xl shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-300 bg-gray-700 hover:bg-gray-600 text-white border border-gray-600"
                 >
                   {callToAction.text}
                   <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -138,8 +138,8 @@ const {
   .service-card-container:hover .card-back {
     transform: translateY(-2px);
     box-shadow: 
-      0 10px 20px rgba(255, 0, 0, 0.08),
-      0 0 0 1px rgba(255, 0, 0, 0.1),
+      0 10px 20px rgba(0, 0, 0, 0.3),
+      0 0 0 1px rgba(255, 255, 255, 0.1),
       inset 0 1px 0 rgba(255, 255, 255, 0.1);
     border-radius: 1.125rem;
   }
@@ -180,6 +180,14 @@ const {
   /* Mobile tap highlight removal */
   .service-card {
     -webkit-tap-highlight-color: transparent;
+  }
+  /* Service card button styles */
+  .service-card-container a[href*="/services/"] {
+    color: white !important;
+  }
+  
+  .service-card-container .card-back a {
+    color: white !important;
   }
 </style>
 

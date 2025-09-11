@@ -290,7 +290,16 @@
   }
 
   .btn-primary {
-    @apply btn font-semibold bg-black text-white !text-white border-black hover:bg-gray-900 hover:border-gray-900 hover:!text-white shadow-light-md hover:shadow-light-lg transform hover:-translate-y-1 transition-all duration-300;
+    @apply btn font-semibold text-white border-brand-red shadow-light-md hover:shadow-light-lg transform hover:-translate-y-1 transition-all duration-300;
+    background-color: #D84040 !important;
+    border-color: #D84040 !important;
+    color: white !important;
+  }
+  
+  .btn-primary:hover {
+    background-color: #b91c1c !important;
+    border-color: #b91c1c !important;
+    color: white !important;
   }
 
   .btn-secondary {
@@ -586,4 +595,41 @@ select:focus {
   top: 4px;
   font-size: 0.75rem;
   color: #DC2626;
+}
+
+/* ===== Image Loading Improvements ===== */
+
+/* Smooth fade-in for all images */
+img {
+  transition: opacity 0.3s ease-in-out;
+}
+
+/* Add loading state to lazy images */
+img[loading="lazy"] {
+  opacity: 0;
+}
+
+img[loading="lazy"].loaded {
+  opacity: 1;
+}
+
+/* Prevent layout shift */
+img[width][height] {
+  height: auto;
+}
+
+/* Loading animation */
+@keyframes image-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in-image {
+  animation: image-fade-in 0.5s ease-out forwards;
 }
