@@ -1,0 +1,23 @@
+{
+  "watch": ["src", "public", "astro.config.ts", "package.json"],
+  "ext": "js,ts,astro,css,md,mdx,json,yaml",
+  "ignore": [
+    "dist/*",
+    "node_modules/*",
+    ".astro/*",
+    "dev.log",
+    "*.log"
+  ],
+  "exec": "astro dev",
+  "env": {
+    "NODE_ENV": "development",
+    "FORCE_COLOR": "1"
+  },
+  "delay": "1000",
+  "verbose": true,
+  "restartable": "rs",
+  "events": {
+    "restart": "echo '\\n🔄 Restarting Astro dev server...\\n'",
+    "crash": "echo '\\n💥 Astro dev server crashed! Restarting in 2 seconds...\\n' && sleep 2"
+  }
+}

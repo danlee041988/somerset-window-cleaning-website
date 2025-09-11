@@ -85,6 +85,6 @@ export const footerData = {
     { ariaLabel: 'Connect with Somerset Window Cleaning on LinkedIn', icon: 'tabler:brand-linkedin', href: 'https://uk.linkedin.com/company/somerset-window-cleaning' },
   ],
   footNote: `
-    © ${new Date().getFullYear()} Somerset Window Cleaning · VAT: 359 427 172 · Professional Window Cleaning Since 2019
+    © ${new Date().getFullYear()} Somerset Window Cleaning · VAT: 359 427 172 · Professional Exterior Cleaning Since 2019
   `,
 };

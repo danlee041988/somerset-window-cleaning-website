@@ -8,6 +8,8 @@
   },
   "scripts": {
     "dev": "astro dev",
+    "dev:stable": "node dev-server.cjs",
+    "dev:watch": "nodemon",
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
