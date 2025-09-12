@@ -46,7 +46,7 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
 ---
 
 <header
-  class="fixed top-0 left-0 right-0 z-50 bg-black/95 backdrop-blur-md border-b border-gray-800"
+  class="fixed top-0 left-0 right-0 z-50 bg-black/95 backdrop-blur-md border-b border-gray-800 min-h-[96px]"
   {...id ? { id } : {}}
 >
   <div class="max-w-7xl mx-auto px-4 sm:px-6">
@@ -77,19 +77,19 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
     </div>
 
     <!-- Desktop Header -->
-    <div class="hidden lg:flex items-center justify-between h-24">
+    <div class="hidden lg:flex items-center justify-between h-24 py-4">
       <!-- Logo -->
       <a href={getHomePermalink()} class="flex-shrink-0">
         <Logo />
       </a>
       
       <!-- Navigation -->
-      <nav class="flex items-center gap-8">
+      <nav class="flex items-center gap-8 mx-8">
         {links.map(({ text, href, links: subLinks }) => (
           <div class="relative group">
             {subLinks?.length ? (
               <>
-                <button class="text-white hover:text-red-400 transition-colors py-2 flex items-center gap-1">
+                <button class="text-white hover:text-red-400 transition-colors py-2 px-3 flex items-center gap-1 font-medium text-base">
                   {text}
                   <Icon name="tabler:chevron-down" class="w-4 h-4 transition-transform group-hover:rotate-180" />
                 </button>
@@ -109,7 +109,7 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
             ) : (
               <a
                 href={href}
-                class="text-white hover:text-red-400 transition-colors py-2"
+                class="text-white hover:text-red-400 transition-colors py-2 px-3 font-medium text-base"
                 aria-current={href === currentPath ? 'page' : undefined}
               >
                 {text}
@@ -274,14 +274,28 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
     transition: max-height 0.2s ease-in-out;
   }
   
-  /* Ensure consistent header height */
-  #header {
-    height: 5rem; /* 80px mobile */
+  /* Ensure consistent header height and navigation visibility */
+  header {
+    min-height: 5rem; /* 80px mobile */
   }
   
   @media (min-width: 1024px) {
-    #header {
-      height: 6rem; /* 96px desktop */
+    header {
+      min-height: 6rem; /* 96px desktop */
     }
+  }
+  
+  /* Ensure navigation is visible */
+  nav {
+    display: flex !important;
+    align-items: center;
+    gap: 2rem;
+  }
+  
+  /* Make navigation links more visible */
+  nav a, nav button {
+    white-space: nowrap;
+    font-size: 1rem;
+    font-weight: 500;
   }
 </style>
