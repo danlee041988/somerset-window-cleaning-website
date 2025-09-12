@@ -16,14 +16,14 @@
     max-width: 100%;
   }
   
-  /* Modern header styles */
+  /* Modern header styles - consistent with Header component */
   body {
-    padding-top: 5rem; /* Mobile header height */
+    padding-top: 5rem; /* 80px - Mobile header height */
   }
   
   @media (min-width: 1024px) {
     body {
-      padding-top: 6rem; /* Desktop header height */
+      padding-top: 6rem; /* 96px - Desktop header height */
     }
   }
 }

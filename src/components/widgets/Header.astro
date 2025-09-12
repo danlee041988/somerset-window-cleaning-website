@@ -269,19 +269,19 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
 </script>
 
 <style>
-  /* Ensure header doesn't cause layout shifts */
-  body {
-    padding-top: 4rem; /* 64px for mobile header */
-  }
-  
-  @media (min-width: 1024px) {
-    body {
-      padding-top: 5rem; /* 80px for desktop header */
-    }
-  }
-  
   /* Smooth transitions for mobile menu */
   .mobile-submenu {
     transition: max-height 0.2s ease-in-out;
+  }
+  
+  /* Ensure consistent header height */
+  #header {
+    height: 5rem; /* 80px mobile */
+  }
+  
+  @media (min-width: 1024px) {
+    #header {
+      height: 6rem; /* 96px desktop */
+    }
   }
 </style>
